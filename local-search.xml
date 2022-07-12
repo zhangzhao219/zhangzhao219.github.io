@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>Mathematics for Machine Learning: Linear Algebra</title>
+    <link href="/2022/07/12/Mathematics-for-Machine-Learning-Linear-Algebra/"/>
+    <url>/2022/07/12/Mathematics-for-Machine-Learning-Linear-Algebra/</url>
+    
+    <content type="html"><![CDATA[<h1 id="为什么我们需要线性代数？"><a href="#为什么我们需要线性代数？" class="headerlink" title="为什么我们需要线性代数？"></a>为什么我们需要线性代数？</h1><ol><li>让计算机快速求解多元方程组<br>例如：多元方程组，$\left{\begin{matrix} 2a+3b&#x3D;8 \ 10a+1b&#x3D;13 \ \end{matrix}\right.$，可以转换为 $\left(\begin{array}{cc}2&amp;3\10&amp;1\\end{array}\right)\left[\begin{array}{c}a\b\\end{array}\right]&#x3D;\left[\begin{array}{c}8\13\\end{array}\right]$，然后进行求解。</li><li>为数据拟合方程<br>随着神经网络和机器学习的发展，并不仅仅是拟合方程，最好还能在已有方程曲线的前提下，找到最佳的拟合参数，从而更适用于当前的数据。</li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Machine Learning</tag>
+      
+      <tag>Linear Algebra</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Trip To Qingdao</title>
     <link href="/2022/07/11/trip-to-qingdao/"/>
     <url>/2022/07/11/trip-to-qingdao/</url>
