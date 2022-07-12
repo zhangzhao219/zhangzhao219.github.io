@@ -24,7 +24,7 @@
 <meta property="og:description" content="为什么我们需要线性代数？ 让计算机快速求解多元方程组例如：多元方程组，$\left\{\begin{matrix} 2a+3b&#x3D;8 \\ 10a+1b&#x3D;13 \\ \end{matrix}\right.$，可以转换为 $\left(\begin{array}{cc}2&amp;3\\10&amp;1\\\end{array}\right)\left[\begin{array}{c}a\\b\\\e">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T13:26:58.000Z">
-<meta property="article:modified_time" content="2022-07-12T14:08:55.052Z">
+<meta property="article:modified_time" content="2022-07-12T14:28:15.550Z">
 <meta property="article:author" content="Zhang Zhao">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="Linear Algebra">
@@ -83,9 +83,7 @@
 
 
   
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <body>
@@ -576,5 +574,21 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
