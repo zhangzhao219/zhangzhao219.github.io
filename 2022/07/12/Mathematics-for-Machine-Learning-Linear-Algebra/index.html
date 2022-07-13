@@ -16,19 +16,22 @@
   <meta name="author" content="Zhang Zhao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="为什么我们需要线性代数？ 让计算机快速求解多元方程组例如：多元方程组，$\left\{\begin{matrix} 2a+3b&#x3D;8 \\ 10a+1b&#x3D;13 \\ \end{matrix}\right.$，可以转换为 $\left(\begin{array}{cc}2&amp;3\\10&amp;1\\\end{array}\right)\left[\begin{array}{c}a\\b\\\e">
+    <meta name="description" content="开始学习 总是觉得自己数学有一点差，可能是因为上大学学习的时候题目做的比较少，我的脑子又不太灵光，因此一直不能很好的理解数学相关的一些公式、定理等，平时编程的时候尽量找简单的方法绕开复杂的数学公式。假期有时间了，试一下帝国理工的线性代数课程，注重记录，注重理解。这也是第一次看没有中文字幕的全英文课。加油！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mathematics for Machine Learning: Linear Algebra">
 <meta property="og:url" content="https://zhangzhao219.github.io/2022/07/12/Mathematics-for-Machine-Learning-Linear-Algebra/index.html">
 <meta property="og:site_name" content="ZhangZhao&#39;s Blog">
-<meta property="og:description" content="为什么我们需要线性代数？ 让计算机快速求解多元方程组例如：多元方程组，$\left\{\begin{matrix} 2a+3b&#x3D;8 \\ 10a+1b&#x3D;13 \\ \end{matrix}\right.$，可以转换为 $\left(\begin{array}{cc}2&amp;3\\10&amp;1\\\end{array}\right)\left[\begin{array}{c}a\\b\\\e">
+<meta property="og:description" content="开始学习 总是觉得自己数学有一点差，可能是因为上大学学习的时候题目做的比较少，我的脑子又不太灵光，因此一直不能很好的理解数学相关的一些公式、定理等，平时编程的时候尽量找简单的方法绕开复杂的数学公式。假期有时间了，试一下帝国理工的线性代数课程，注重记录，注重理解。这也是第一次看没有中文字幕的全英文课。加油！">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh?inline=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D2a%2B3b%3D8%5C%5C10a%2B1b%3D13%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh?inline=%5Cleft%28%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%29%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Da%5C%5Cb%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D8%20%5C%5C%2013%5Cend%7Barray%7D%5Cright%5D">
 <meta property="article:published_time" content="2022-07-12T13:26:58.000Z">
-<meta property="article:modified_time" content="2022-07-12T14:28:15.550Z">
+<meta property="article:modified_time" content="2022-07-13T00:51:29.030Z">
 <meta property="article:author" content="Zhang Zhao">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="Linear Algebra">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh?inline=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D2a%2B3b%3D8%5C%5C10a%2B1b%3D13%5Cend%7Barray%7D%5Cright.">
   
   
   
@@ -220,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          336 字
+          1.1k 字
         
       </span>
     
@@ -231,7 +234,7 @@
         
         
         
-          3 分钟
+          10 分钟
         
       </span>
     
@@ -274,9 +277,20 @@
             
               <div class="markdown-body">
                 
-                <h1 id="为什么我们需要线性代数？"><a href="#为什么我们需要线性代数？" class="headerlink" title="为什么我们需要线性代数？"></a>为什么我们需要线性代数？</h1><ol>
-<li>让计算机快速求解多元方程组<br>例如：多元方程组，$\left\{\begin{matrix} 2a+3b=8 \\ 10a+1b=13 \\ \end{matrix}\right.$，可以转换为 $\left(\begin{array}{cc}2&amp;3\\10&amp;1\\\end{array}\right)\left[\begin{array}{c}a\\b\\\end{array}\right]=\left[\begin{array}{c}8\\13\\\end{array}\right]$，然后进行求解。</li>
-<li>为数据拟合方程<br>随着神经网络和机器学习的发展，并不仅仅是拟合方程，最好还能在已有方程曲线的前提下，找到最佳的拟合参数，从而更适用于当前的数据。</li>
+                <h1>开始学习</h1>
+<p>总是觉得自己数学有一点差，可能是因为上大学学习的时候题目做的比较少，我的脑子又不太灵光，因此一直不能很好的理解数学相关的一些公式、定理等，平时编程的时候尽量找简单的方法绕开复杂的数学公式。假期有时间了，试一下帝国理工的线性代数课程，注重记录，注重理解。这也是第一次看没有中文字幕的全英文课。加油！</p>
+<span id="more"></span>
+<h1>课程简介</h1>
+<p>In this course on Linear Algebra we look at what linear algebra is and how it relates to vectors and matrices. Then we look through what vectors and matrices are and how to work with them, including the knotty problem of eigenvalues and eigenvectors, and how to use these to solve problems. Finally  we look at how to use these to do fun things with datasets - like how to rotate images of faces and how to extract eigenvectors to look at how the Pagerank algorithm works.</p>
+<p>Since we’re aiming at data-driven applications, we’ll be implementing some of these ideas in code, not just on pencil and paper. Towards the end of the course, you’ll write code blocks and encounter Jupyter notebooks in Python, but don’t worry, these will be quite short, focussed on the concepts, and will guide you through if you’ve not coded before.</p>
+<p>At the end of this course you will have an intuitive understanding of vectors and matrices that will help you bridge the gap into linear algebra problems, and how to apply these concepts to machine learning.</p>
+<h1>为什么我们需要线性代数？</h1>
+<ol>
+<li>让计算机快速求解多元方程组<br>
+例如：多元方程组<img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D2a%2B3b%3D8%5C%5C10a%2B1b%3D13%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，可以转换为<img src="https://math.now.sh?inline=%5Cleft%28%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%29%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Da%5C%5Cb%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D8%20%5C%5C%2013%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，然后进行求解。</li>
+<li>为数据拟合方程<br>
+随着神经网络和机器学习的发展，并不仅仅是拟合方程，最好还能在已有方程曲线的前提下，找到最佳的拟合参数，从而更适用于当前的数据。</li>
+<li></li>
 </ol>
 
                 
@@ -285,6 +299,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
