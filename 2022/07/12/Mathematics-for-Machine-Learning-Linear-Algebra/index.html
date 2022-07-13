@@ -60,8 +60,11 @@
 <meta property="og:image" content="https://math.now.sh?inline=%7C%5Cvec%7Bb_2%7D%7C">
 <meta property="og:image" content="https://math.now.sh?inline=%5Cvec%7Br_e%7D%3D2%5Cvec%7Bb_1%7D%2B%5Cfrac%7B1%7D%7B2%7D%5Cvec%7Bb_2%7D">
 <meta property="og:image" content="https://math.now.sh?inline=r_b%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C%5Cfrac%7B1%7D%7B2%7D%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh?inline=%5Cvec%7Be_1%5E%7B">
 <meta property="article:published_time" content="2022-07-12T13:26:58.000Z">
-<meta property="article:modified_time" content="2022-07-13T12:44:28.939Z">
+<meta property="article:modified_time" content="2022-07-13T13:16:06.292Z">
 <meta property="article:author" content="Zhang Zhao">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="Linear Algebra">
@@ -258,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.5k 字
         
       </span>
     
@@ -269,7 +272,7 @@
         
         
         
-          18 分钟
+          21 分钟
         
       </span>
     
@@ -320,6 +323,11 @@
 <p>In this course on Linear Algebra we look at what linear algebra is and how it relates to vectors and matrices. Then we look through what vectors and matrices are and how to work with them, including the knotty problem of eigenvalues and eigenvectors, and how to use these to solve problems. Finally  we look at how to use these to do fun things with datasets - like how to rotate images of faces and how to extract eigenvectors to look at how the Pagerank algorithm works.</p>
 <p>Since we’re aiming at data-driven applications, we’ll be implementing some of these ideas in code, not just on pencil and paper. Towards the end of the course, you’ll write code blocks and encounter Jupyter notebooks in Python, but don’t worry, these will be quite short, focussed on the concepts, and will guide you through if you’ve not coded before.</p>
 <p>At the end of this course you will have an intuitive understanding of vectors and matrices that will help you bridge the gap into linear algebra problems, and how to apply these concepts to machine learning.</p>
+<h1>什么是线性代数</h1>
+<p>Linear algebra is a mathematical system for manipulating vectors in the spaces described by vectors.</p>
+<p>Linear algebra is linear, because it just takes input values, and multiplies them by constants, everything is linear.</p>
+<p>Linear algebra is algebra, that is it’s a notation describing mathematical objects and a system of manipulating those notations.</p>
+<p>How vectors are transformed by matrices is the heart of linear algebra.</p>
 <h1>为什么我们需要线性代数？</h1>
 <ol>
 <li>让计算机快速求解多元方程组<br>
@@ -360,6 +368,9 @@
 <p>然后将待转换的向量<img src="https://math.now.sh?inline=r_e%3D3%5Cvec%7Be_1%7D%2B4%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C4%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，对<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>的投影为<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cvec%7Br_e%7D%5Ccdot%5Cvec%7Bb_1%7D%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，这个投影除以<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>的模长<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cvec%7Br_e%7D%5Ccdot%5Cvec%7Bb_1%7D%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D%5Ccdot%5Cfrac%7B1%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D%3D%5Cfrac%7B3*2%2B4*1%7D%7B2%5E2%2B1%5E2%7D%3D2" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，即<img src="https://math.now.sh?inline=%5Cvec%7Br_e%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>在<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>方向的投影为2个<img src="https://math.now.sh?inline=%7C%5Cvec%7Bb_1%7D%7C" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>长度。同理，即<img src="https://math.now.sh?inline=%5Cvec%7Br_e%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>在<img src="https://math.now.sh?inline=%5Cvec%7Bb_2%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>方向的投影为0.5个<img src="https://math.now.sh?inline=%7C%5Cvec%7Bb_2%7D%7C" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>长度。</p>
 <p>从而得出<img src="https://math.now.sh?inline=%5Cvec%7Br_e%7D%3D2%5Cvec%7Bb_1%7D%2B%5Cfrac%7B1%7D%7B2%7D%5Cvec%7Bb_2%7D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，最终计算得<img src="https://math.now.sh?inline=r_b%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C%5Cfrac%7B1%7D%7B2%7D%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>。</p>
 <p><strong>找到一个合适的坐标系，帮助我们解决数学问题，是非常重要的。</strong></p>
+<h1>矩阵(Matrices)</h1>
+<p>矩阵与向量相乘，相当于将向量转换到不同的坐标系。</p>
+<p>如<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>，相当于将<img src="https://math.now.sh?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>转换到了<img src="https://math.now.sh?inline=%5Cvec%7Be_1%5E%7B'%7D%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="display:inline-block;margin: 0;"/>。</p>
 <h1>资料</h1>
 <p>Formula Sheet: Sheet summarising all the formulae covered in this course.</p>
 
@@ -693,21 +704,5 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
