@@ -1425,6 +1425,11 @@ hr,
 .markdown-body figcaption:not(.image-caption) {
   display: none;
 }
+.markdown-body p > img,
+.markdown-body p > a > img {
+  box-shadow: unset;
+  border-radius: 0px;
+}
 .post-content,
 post-custom {
   box-sizing: border-box;
