@@ -1,0 +1,1230 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《高级人工智能》课程笔记：第1讲 人工智能概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：高级人工智能-第1讲 人工智能概述">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/01/UCAS/advanced-ai/advanced-ai-1/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《高级人工智能》课程笔记：第1讲 人工智能概述">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-01T18:19:56.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Advanced AI">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>研究生课程：高级人工智能-第1讲 人工智能概述 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：高级人工智能-第1讲 人工智能概述</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-01 18:19" pubdate>
+          2022年9月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：高级人工智能-第1讲 人工智能概述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《高级人工智能》课程笔记：第1讲 人工智能概述</p>
+<span id="more"></span>
+<p>首先讲授人工智能基础知识，进而分三个专题（联结主义、符号主义、行为主义）介绍人工智能的新进展。</p>
+<h1>第1讲 人工智能概述</h1>
+<h2 id="智能和人工智能">智能和人工智能</h2>
+<p>智能：个体适应环境并能在不同环境中实现其目标的能力。</p>
+<p>蕴含众多方面的能力</p>
+<ul>
+<li>创造、推理、学习</li>
+<li>归纳、演绎、类比</li>
+<li>优化、规划、知识</li>
+<li>模式识别、问题求解</li>
+</ul>
+<p>人工智能：</p>
+<ul>
+<li>机器智能：使机器具备计算和“判别”的行为能力</li>
+<li>类脑智能：仿生智能，让机器像人或生物一样思考</li>
+<li>群体智能：社会智能的机器重现与利用、涌现智能</li>
+</ul>
+<h2 id="人工智能的发展历史">人工智能的发展历史</h2>
+<p>机械智能 ➡ 理性思考 ➡ 数理逻辑 ➡ 计算思维</p>
+<p>萌芽期</p>
+<ul>
+<li>机械自动化
+<ul>
+<li>希腊，蒸汽驱动的“会唱歌”的乌鸦</li>
+<li>中国，鲁班的“木鸢”，诸葛亮的“木牛流马”</li>
+</ul>
+</li>
+<li>逻辑推理
+<ul>
+<li>亚里士多德的“三段论”：从一般前提到具体论断</li>
+</ul>
+</li>
+</ul>
+<p>孕育期（文艺复兴以来）</p>
+<ul>
+<li>理性主义
+<ul>
+<li>笛卡尔：mind/body二象性，不相信机器会具有智能</li>
+</ul>
+</li>
+<li>数理逻辑学科
+<ul>
+<li>莱布尼茨：演算推论器，符号逻辑，提出将人的知识汇成“知识库”</li>
+<li>弗雷治：谓词演算</li>
+</ul>
+</li>
+<li>计算思维
+<ul>
+<li>巴贝奇：差分机</li>
+<li>图灵：图灵机</li>
+</ul>
+</li>
+</ul>
+<p>形成期（1956年-1961年）</p>
+<ul>
+<li>1956年，首次人工智能研讨会</li>
+<li>IBM的西洋跳棋程序、文法体系、逻辑推理机、行动计划咨询系统、通用问题求解器</li>
+</ul>
+<p>发展期（60年代）</p>
+<ul>
+<li>研究领域拓展
+<ul>
+<li>问题求解、博弈、定理证明、程序设计、机器视觉、自然语言理解、知识表示、专家系统、神经网络、智能机器人……</li>
+</ul>
+</li>
+<li>1969年，第一届国际人工智能联合会议（IJCAI）</li>
+<li>1970年，《人工智能》国际杂志创刊，《Artificial Intelligence 》</li>
+</ul>
+<p>寒冬期（60年代末到70年代初）</p>
+<ul>
+<li>1966年，美国政府取消了机器翻译项目的所有投资</li>
+<li>英国政府取消了几乎所有人工智能研究投入</li>
+<li>神经网络的研究经费缩减到几乎没有</li>
+</ul>
+<p>艰难前行（70年代）</p>
+<ul>
+<li>弱方法：构建搜索机制，试图找出完全解
+<ul>
+<li>下棋：搜索解空间</li>
+</ul>
+</li>
+<li>强方法：构建领域知识库
+<ul>
+<li>专家系统：知识表示开始成为研究热点</li>
+</ul>
+</li>
+</ul>
+<p>走向工业（80年代）</p>
+<ul>
+<li>1982年，第一个商用专家系统RI</li>
+<li>1981年，日本启动“第五代计算机”计划，运行prolog语言的智能计算机</li>
+<li>美国、英国恢复对人工智能的投入</li>
+</ul>
+<p>今天</p>
+<ul>
+<li>大数据利用、计算能力提升、网络泛在化</li>
+<li>神经网络的复兴
+<ul>
+<li>多层感知机及其学习算法（BP算法）的提出</li>
+<li>隐马尔科夫模型（HMM）在语音识别上取得成功</li>
+<li>贝叶斯网络</li>
+</ul>
+</li>
+<li>专家系统逐渐成熟
+<ul>
+<li>知识发现、数据挖掘兴起</li>
+</ul>
+</li>
+<li>人工智能开始成为科学
+<ul>
+<li>学科边界开始明晰</li>
+<li>并开始借鉴其他学科的理论，如控制论、心里学、统计学</li>
+</ul>
+</li>
+</ul>
+<h2 id="人工智能：研究如何像人一样行动？"><strong>人工智能：研究如何像人一样行动？</strong></h2>
+<h3 id="考试内容：图灵测试"><strong>考试内容：图灵测试</strong></h3>
+<p>Can Machine Think?</p>
+<p>图灵测试：一个人（C）在完全不接触对方（A和B）的情况下，和对方进行一系列的问答，如果在相当长时间内，他无法根据这些问题判断对方是人（B）还是计算机（A），那么，就认为该计算机具有同人相当的智能（即计算机是能思维的）。</p>
+<p>质疑：</p>
+<ul>
+<li>图灵测试不是可构造的
+<ul>
+<li>例如：“完全不接触”的环境难以构建</li>
+</ul>
+</li>
+<li>图灵测试不是可重现的
+<ul>
+<li>例如：问题是开放的，答案正确性的判定是主观的</li>
+</ul>
+</li>
+<li>图灵测试无法进行数学分析
+<ul>
+<li>只是一种操作式测试，缺少形式化描述不严谨</li>
+</ul>
+</li>
+</ul>
+<p>图灵预言：到2000年，机器可以做到5分钟内以30%的可能性让普通人分辨不出其是机器还是人。</p>
+<p>图灵测试案例</p>
+<ul>
+<li>Master横空出世：Master在围棋对战网站上出现连胜30多场，才开始有人怀疑这是“机器人”。</li>
+<li>人工智能机器人Sophia：电视节目主持人查理•罗斯在节目《60分钟》中采访了Sophia机器人时，索菲亚不但对答如流，还与他开起了玩笑。</li>
+</ul>
+<h3 id="神经网络模拟器">神经网络模拟器</h3>
+<ul>
+<li>Snare：1951年由马文·明斯基提出，学习如何穿过迷宫</li>
+<li>他是多智能体的最早尝试者之一，使机器能基于过去行为的知识，预测其当前行为的结果</li>
+</ul>
+<h2 id="人工智能三大学派">人工智能三大学派</h2>
+<p>达特茅斯会议：1956年在达特茅斯学院发起</p>
+<p>发起人</p>
+<ul>
+<li>约翰·麦卡锡（人工智能之父，Lisp语言发明者，1971年获图灵奖）</li>
+<li>马文·明斯基（1969年获图灵奖，首个获图灵奖的人工智能学者）</li>
+<li>克劳德·香农（信息论之父）</li>
+<li>纳撒尼尔·罗彻斯特（IBM 700系列计算机首席工程师，发明了首个汇编语言）</li>
+</ul>
+<p>会议成就</p>
+<ul>
+<li>首次提出了“人工智能”一词</li>
+<li>会议三大亮点
+<ul>
+<li>明斯基的Snare</li>
+<li>麦卡锡的𝛼-𝛽搜索法</li>
+<li>西蒙和纽厄尔的“逻辑理论家”</li>
+</ul>
+</li>
+</ul>
+<p><strong>并且出现了人工智能三大学派：</strong></p>
+<ul>
+<li><strong>符号主义学派</strong></li>
+<li><strong>联结主义学派</strong></li>
+<li><strong>行为主义学派</strong></li>
+</ul>
+<h3 id="符号主义学派（逻辑学派）：规则驱动的确定性智能">符号主义学派（逻辑学派）：规则驱动的确定性智能</h3>
+<ul>
+<li>认为“<strong>人的认知基元是符号，认知过程即符号操作过程</strong>”</li>
+<li>认为人和计算机都是物理符号系统，可以用计算机来模拟人的智能行为</li>
+<li>认为人工智能的<strong>核心是知识表示、知识推理和知识运用</strong></li>
+<li>代表人物
+<ul>
+<li>西蒙（1975年获图灵奖、1978年获诺贝尔经济学奖）</li>
+<li>纽厄尔</li>
+</ul>
+</li>
+</ul>
+<p><strong>衍生出：逻辑、专家系统、知识库</strong></p>
+<h3 id="联结主义学派（仿生学派或生理学派）：数据驱动的不确定性智能">联结主义学派（仿生学派或生理学派）：数据驱动的不确定性智能</h3>
+<ul>
+<li>认为人的思维基元是神经元，而不是符号处理过程</li>
+<li>认为人脑不同于电脑</li>
+<li>原理：神经网络及神经网络间的连接机制和学习算法</li>
+<li>代表人物
+<ul>
+<li>麦卡洛克（McCulloch）</li>
+<li>皮茨（Pitts）</li>
+</ul>
+</li>
+</ul>
+<p><strong>衍生出：人工神经网络、认知科学、类脑计算</strong></p>
+<h3 id="行为主义学派（进化主义或控制论学派）：交互驱动的涌现智能">行为主义学派（进化主义或控制论学派）：交互驱动的涌现智能</h3>
+<ul>
+<li>认为智能取决于感知和行动</li>
+<li>主张利用机器对环境作用后的响应或反馈为原型来实现智能化</li>
+<li>认为人工智能可以像人类智能一样通过进化、学习来逐渐提高和增强</li>
+<li>代表人物：布鲁克斯</li>
+</ul>
+<p><strong>衍生出：控制论、多智能体、强化学习等</strong></p>
+<h2 id="人工智能研究的课题">人工智能研究的课题</h2>
+<p>三大层次</p>
+<ul>
+<li>基础理论：数学、思维科学、认知科学等</li>
+<li>原理技术：启发式搜索、演化计算</li>
+<li>工程应用：模式识别、计算机视觉、自然语言理解、问答系统</li>
+</ul>
+<p>四大问题</p>
+<ul>
+<li>知识科学、问题求解、机器学习、系统构成</li>
+</ul>
+<h2 id="人工智能之哲学基础">人工智能之哲学基础</h2>
+<p>弱人工智能</p>
+<ul>
+<li>机器表现得像具有智能一样</li>
+<li>图灵测试</li>
+</ul>
+<p>强人工智能</p>
+<ul>
+<li>机器实际具有智能</li>
+<li>机器具有自我意识吗？</li>
+<li>自由意志悖论
+<ul>
+<li>受物理法则严格支配的思想会是自由的吗？</li>
+<li>如果不能够说出我下一步会做什么，就说明我具有自由意志？</li>
+</ul>
+</li>
+</ul>
+<p>人工智能恐慌</p>
+<ul>
+<li>会不会造成人们失业？
+<ul>
+<li>目前来看，人工智能技术带来的自动化，其创造的就业就会大于其减少的就业机会</li>
+</ul>
+</li>
+<li>对隐私权的侵害？</li>
+<li>是否导致可审计的丧失？
+<ul>
+<li>例如：听从了医疗诊断专家系统的建议而带来的医疗事故，责任归谁？</li>
+</ul>
+</li>
+</ul>
+<p>人工智能实现了会怎样？</p>
+<ul>
+<li>人工智能的成功是否会意味着人类灭亡
+<ul>
+<li>人工演化取代自然选择</li>
+<li>机器智能一旦超过人类智能，他就能设计出更聪明的机器</li>
+<li>智力爆炸和技术奇点，人类时代的终结</li>
+</ul>
+</li>
+<li>怎么办？
+<ul>
+<li>让机器保持可控</li>
+<li>使用人工智能拓展人类智能，将人工智能合并到人类智能中</li>
+</ul>
+</li>
+</ul>
+<p>人工智能伦理</p>
+<ul>
+<li>机器人三法则
+<ul>
+<li>第一法则：机器人不得伤害人类，或袖手旁观坐视人类受到伤害</li>
+<li>第二法则：除非违背第一法则，机器人必须服从人类的命令</li>
+<li>第三法则：在不违背第一及第二法则下，机器人必须保护自己</li>
+</ul>
+</li>
+</ul>
+<h2 id="人工智能的目标">人工智能的目标</h2>
+<ul>
+<li>近期目标
+<ul>
+<li>研究如何使机器做过去只有依靠人的智力才能完成的工作</li>
+</ul>
+</li>
+<li>远期目标
+<ul>
+<li>研究如何利用自动机模拟人的思维过程和智能行为，从而造出智能机器</li>
+</ul>
+</li>
+<li>终极目标
+<ul>
+<li>机器智能实现甚至超过生物智能</li>
+</ul>
+</li>
+</ul>
+<p>“准人”水平的人工智能：手写识别、物体识别、语音识别、自然语言处理、词义消歧、机器翻译</p>
+<p>“过人”水平的人工智能：游戏、双陆棋、国际象棋、桥牌、填词、拼字、七巧板、自动驾驶、智力竞赛问答、OCR字符识别</p>
+<p>“许多尖端的人工智能由于应用广泛，已经不再被称为人工智能。因为，人们一旦觉得某些东西非常有用并广泛使用，就不再称之为人工智能了。”</p>
+<h2 id="人工智能案例实践">人工智能案例实践</h2>
+<ul>
+<li>定理证明
+<ul>
+<li>50年代中期，西蒙和纽厄尔提出的“逻辑理论家”，证明了《数学原理》书中的38个定理</li>
+<li>1962年，改进后证明了书中全部52个定理，被认为是用计算机探讨人类智能的第一个真正成果</li>
+</ul>
+</li>
+<li>案例
+<ul>
+<li>四色定理
+<ul>
+<li>1852年提出，一直无人给出理论证明</li>
+<li>1976年6月，哈肯在伊利诺伊用两台计算机，用时1200个小时，通过100亿次判断，完成了证明，轰动世界</li>
+</ul>
+</li>
+<li>吴方法：吴文俊教授提出的“数学机器化”</li>
+</ul>
+</li>
+<li>通用问题求解器（GPS：General Problem Solver）
+<ul>
+<li>1957年开始，纽厄尔等人开始研究不依赖于具体领域的通用解题程序</li>
+<li>模仿人类问题求解过程，第一个实现了“像人一样思考”的程序</li>
+</ul>
+</li>
+<li>专家系统
+<ul>
+<li>将领域专家的知识整理出来，让计算机利用这些知识求解专门领域的问题</li>
+<li>DENDRAL：第一个专家系统，1968年问世，斯坦福大学完成，用于推断化学分子结构</li>
+<li>MYCIN：著名的医疗诊断专家系统</li>
+<li>RI：第一个商用专家系统，DEC公司于1982年正式使用</li>
+</ul>
+</li>
+<li>海湾战争中的专家系统
+<ul>
+<li>1991年的海湾战争，美国将专家系统用于后勤规划和运输日程安排</li>
+<li>涉及50000个车辆、货物和人，需要考虑起点、目的地、路径以及解决参数冲突问题</li>
+<li>该系统使一个计划可以在几个小时内产生，而旧方法需要几个星期</li>
+</ul>
+</li>
+<li>数字识别
+<ul>
+<li>清华大学智能技术与系统国家重点实验室采用神经元网络研制了数字识别系统</li>
+<li>用于2000年我国的人口普查</li>
+<li>错误率达到低于万分之一的水平</li>
+</ul>
+</li>
+<li>古籍数字化（OCR技术）：《四库全书》</li>
+<li>国际象棋：IBM的“深蓝”
+<ul>
+<li>1997年，IBM公司的“深蓝”在美国纽约公平大厦以3.5:2.5击败了国际象棋世界冠军卡斯帕罗夫</li>
+</ul>
+</li>
+<li>围棋
+<ul>
+<li>AlphaGo: DeepMind
+<ul>
+<li>使用深度学习技术（CNN：卷积神经网络）对棋局的局势进行估值</li>
+<li>在和其他围棋程序的对弈中取得99.8%的胜率</li>
+<li>和李世石的人机大战中以4:1取胜，在人机对战中60连胜，以3:0战胜柯洁</li>
+</ul>
+</li>
+<li>AlphaGo背后的技术
+<ul>
+<li><strong>深度学习</strong>（联结主义）+ <strong>强化学习</strong>（行为主义）</li>
+<li>利用<strong>残差神经网络</strong>（ResNet）训练深度模型</li>
+<li>利用<strong>马尔科夫树搜索</strong>技术解决围棋的搜索空间爆炸问题</li>
+<li>采用**“自我对弈”**策略进行无人工标注的自我训练</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自动驾驶
+<ul>
+<li>在高速公路上，自动识别道路，自动躲避障碍物</li>
+<li>平均时速达到100公里/小时，最高速度可达150公里/小时</li>
+<li>从匹兹堡到圣地亚哥，98%的时间自动驾驶</li>
+</ul>
+</li>
+<li>自然语言处理
+<ul>
+<li>神经语言模型和词嵌入技术：word2vec</li>
+<li>机器翻译：统计机器翻译（SMT）到神经机器翻译（NMT）</li>
+<li>文本生成技术：给图像或视频加标题、聊天机器人、机器人写新闻报道、BERT和GPT-3</li>
+</ul>
+</li>
+<li>生成式预训练语言模型：GPT</li>
+<li>IBM仿人脑芯片：TrueNorth
+<ul>
+<li>DARPA的研究项目SyNapse（自适应可塑可伸缩电子神经系统）的最新成果</li>
+<li>邮票大小、重量只有几克，集成54 亿个硅晶体管，内置4096 个内核，100 万个“神经元”、2.56 亿个“突触”，能力相当于一台超级计算机，功耗只有65 毫瓦</li>
+<li>目标：突破冯·诺依曼体系</li>
+</ul>
+</li>
+<li>脑科学
+<ul>
+<li>2013年1月，欧盟启动“人类大脑计划”</li>
+<li>2013年4月，奥巴马宣布启动“大脑基金计划”</li>
+<li>2014年，我国着手启动“脑科学计划”</li>
+</ul>
+</li>
+<li>互联网大脑：知识图谱+深度学习，利用网络大数据推断目标间的潜在关联关系等关系，为用户提供查询推荐、搜索导航等知识获取和深度理解功能。</li>
+<li>系统论
+<ul>
+<li>复杂自适应系统
+<ul>
+<li>1984年，美国圣塔菲研究所成立</li>
+<li>诺贝尔物理学将得主盖尔曼认为智能体现为个体的自适应能力，大量智能体（agent）积极地相互竞争和合作，在没有中央指挥的情况下，通过彼此相互作用和相互适应也能形成整体的有序状态</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="人工智能的今天">人工智能的今天</h2>
+<ol>
+<li>自然语言理解（主战场之一）：聊天机器人：小冰</li>
+<li>智能阅卷：安庆会考全学科智能阅卷</li>
+<li>考试机器人：美国华盛顿大学图灵中心和日本Todai高考机器人</li>
+<li>人工智能三级跳：运算智能（能存会算）➡感知智能（能听会说、能看会认）➡认知智能（能理解会思考）</li>
+<li>深度学习技术：DNN、RNN、CNN</li>
+<li>生物特征识别技术（刷脸、瞳仁、声纹……）</li>
+<li>中国创业公司：Face++</li>
+</ol>
+<h2 id="人工智能的发展趋势">人工智能的发展趋势</h2>
+<ul>
+<li>从“人机对抗”走向“人机协作”
+<ul>
+<li>AI 1.0
+<ul>
+<li>让机器在某些任务上“战胜”人</li>
+</ul>
+</li>
+<li>AI 2.0：人本计算（human computation）
+<ul>
+<li>让机器和人相互协作，完成更复杂的任务</li>
+<li>机器做机器擅长的：计算</li>
+<li>人做人擅长的：思考</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从单点智能走向网络智能
+<ul>
+<li>AI 1.0
+<ul>
+<li>单个机器具备人的某些智能，例如：听、说、读、写、感知、认知……</li>
+</ul>
+</li>
+<li>AI 2.0
+<ul>
+<li>借助互联网实现智能网络化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>从专用人工智能走向通用人工智能
+<ul>
+<li>AI 1.0
+<ul>
+<li>在具体的任务上，让机器具备智能，例如：围棋、自动驾驶……</li>
+</ul>
+</li>
+<li>AI 2.0
+<ul>
+<li>研究通用人工智能，包括探索智能形成的机制，AlphaGo到Master是一种初步尝试，让机器具备能够自我学习、形成概念的能力</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>人工智能是国家战略：2017年，国务院印发了《新一代人工智能发展规划》，人工智能成为国家战略，大数据在人工智能中将扮演越来越重要的角色。</strong></p>
+<p><strong>人工智能经过60余年的发展取得了长足进步，近年来呈现出爆发之势，但总体上还处于初级阶段，通用智能之路任重道远。</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Advanced-AI/" class="print-no-link">#Advanced AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：高级人工智能-第1讲 人工智能概述</div>
+      <div>https://zhangzhao219.github.io/2022/09/01/UCAS/advanced-ai/advanced-ai-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/02/Leetcode/Leetcode-101/Leetcode-101-7/" title="Leetcode 刷题笔记-Leetcode 101 第7章 动态规划">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第7章 动态规划</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/31/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-1/" title="研究生课程：模式识别与机器学习-第1章 概论">
+                        <span class="hidden-mobile">研究生课程：模式识别与机器学习-第1章 概论</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

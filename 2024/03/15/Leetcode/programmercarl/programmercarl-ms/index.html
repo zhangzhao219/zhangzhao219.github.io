@@ -1,0 +1,1052 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代码随想录-单调栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录-单调栈">
+<meta property="og:url" content="https://zhangzhao219.github.io/2024/03/15/Leetcode/programmercarl/programmercarl-ms/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="代码随想录-单调栈">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-15T16:54:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码随想录-单调栈 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">代码随想录-单调栈</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-15 16:54" pubdate>
+          2024年3月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">代码随想录-单调栈</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>代码随想录-单调栈</p>
+<span id="more"></span>
+<h1>单调栈</h1>
+<h2 id="739-每日温度">739. 每日温度</h2>
+<p>给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">dailyTemperatures</span><span class="hljs-params">(temperatures []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;
+    l := <span class="hljs-built_in">len</span>(temperatures)
+    result := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,l)
+    stack := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;l;i++&#123;
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(stack) == <span class="hljs-number">0</span> || temperatures[i] &lt;= temperatures[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+            stack = <span class="hljs-built_in">append</span>(stack,i)
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(stack) &gt; <span class="hljs-number">0</span> &amp;&amp; temperatures[i] &gt; temperatures[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+                result[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]] = i - stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+                stack = stack[:<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            &#125;
+            stack = <span class="hljs-built_in">append</span>(stack,i)
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dailyTemperatures</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; temperatures)</span> </span>&#123;
+        stack&lt;<span class="hljs-type">int</span>&gt; st;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">result</span><span class="hljs-params">(temperatures.size(),<span class="hljs-number">0</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;temperatures.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>() &amp;&amp; temperatures[st.<span class="hljs-built_in">top</span>()] &lt; temperatures[i])&#123;
+                result[st.<span class="hljs-built_in">top</span>()] = i - st.<span class="hljs-built_in">top</span>();
+                st.<span class="hljs-built_in">pop</span>();
+            &#125;
+            st.<span class="hljs-built_in">push</span>(i);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="496-下一个更大元素-I">496.下一个更大元素 I</h2>
+<p>nums1 中数字 x 的 下一个更大元素 是指 x 在 nums2 中对应位置 右侧 的 第一个 比 x 大的元素。</p>
+<p>给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。</p>
+<p>对于每个 0 &lt;= i &lt; nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 nums2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。</p>
+<p>返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">nextGreaterElement</span><span class="hljs-params">(nums1 []<span class="hljs-type">int</span>, nums2 []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;
+    lennums1 := <span class="hljs-built_in">len</span>(nums1)
+    ans := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,lennums1)
+    nummap := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>] <span class="hljs-type">int</span>)
+    stack := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums2);i++&#123;
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(stack) == <span class="hljs-number">0</span> || nums2[i] &lt;= stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]&#123;
+            stack = <span class="hljs-built_in">append</span>(stack,nums2[i])
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(stack) &gt; <span class="hljs-number">0</span> &amp;&amp; nums2[i] &gt; stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]&#123;
+                nummap[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]] = nums2[i]
+                stack = stack[:<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            &#125;
+            stack = <span class="hljs-built_in">append</span>(stack,nums2[i])
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lennums1;i++&#123;
+        a,ok := nummap[nums1[i]]
+        <span class="hljs-keyword">if</span> ok&#123;
+            ans[i] = a
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            ans[i] = <span class="hljs-number">-1</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> ans
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">nextGreaterElement</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">result</span><span class="hljs-params">(nums<span class="hljs-number">1.</span>size(),<span class="hljs-number">-1</span>)</span></span>;
+        stack&lt;<span class="hljs-type">int</span>&gt; st;
+        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; mp;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();i++)&#123;
+            mp[nums1[i]] = i;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>() &amp;&amp; st.<span class="hljs-built_in">top</span>() &lt; nums2[i])&#123;
+                <span class="hljs-keyword">if</span>(mp.<span class="hljs-built_in">find</span>(st.<span class="hljs-built_in">top</span>()) != mp.<span class="hljs-built_in">end</span>())&#123;
+                    result[mp[st.<span class="hljs-built_in">top</span>()]] = nums2[i];
+                &#125;
+                st.<span class="hljs-built_in">pop</span>();
+            &#125;
+            st.<span class="hljs-built_in">push</span>(nums2[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="503-下一个更大元素II">503. 下一个更大元素II</h2>
+<p>给定一个循环数组 nums （ nums[nums.length - 1] 的下一个元素是 nums[0] ），返回 nums 中每个元素的 下一个更大元素 。</p>
+<p>数字 x 的 下一个更大的元素 是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1 。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">nextGreaterElements</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;
+    lennums1 := <span class="hljs-built_in">len</span>(nums)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lennums1<span class="hljs-number">-1</span>;i++&#123;
+        nums = <span class="hljs-built_in">append</span>(nums,nums[i])
+    &#125;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    result := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,lennums)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lennums;i++&#123;
+        result[i] = <span class="hljs-number">-1</span>
+    &#125;
+    stack := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lennums;i++&#123;
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(stack) == <span class="hljs-number">0</span> || nums[i] &lt;= nums[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+            stack = <span class="hljs-built_in">append</span>(stack,i)
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(stack) &gt; <span class="hljs-number">0</span> &amp;&amp;  nums[i] &gt; nums[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+                result[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]] = nums[i]
+                stack = stack[:<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            &#125;
+            stack = <span class="hljs-built_in">append</span>(stack,i)
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> result[:lennums1]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">nextGreaterElements</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">numsall</span><span class="hljs-params">(nums.size()*<span class="hljs-number">2</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;numsall.<span class="hljs-built_in">size</span>();i++)&#123;
+            numsall[i] = nums[i%nums.<span class="hljs-built_in">size</span>()];
+        &#125;
+        stack&lt;<span class="hljs-type">int</span>&gt; st;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">result</span><span class="hljs-params">(nums.size(),<span class="hljs-number">-1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;numsall.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>() &amp;&amp; numsall[st.<span class="hljs-built_in">top</span>()] &lt; numsall[i])&#123;
+                <span class="hljs-keyword">if</span>(result[st.<span class="hljs-built_in">top</span>()%nums.<span class="hljs-built_in">size</span>()] == <span class="hljs-number">-1</span>)&#123;
+                    result[st.<span class="hljs-built_in">top</span>()%nums.<span class="hljs-built_in">size</span>()] = numsall[i];
+                &#125;
+                st.<span class="hljs-built_in">pop</span>();
+            &#125;
+            st.<span class="hljs-built_in">push</span>(i);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="42-接雨水">42. 接雨水</h2>
+<p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">trap</span><span class="hljs-params">(height []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-number">0</span>
+    lenh := <span class="hljs-built_in">len</span>(height)
+    stack := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    stack = <span class="hljs-built_in">append</span>(stack,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lenh;i++&#123;
+        <span class="hljs-keyword">if</span> height[i] &lt; height[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+            stack = <span class="hljs-built_in">append</span>(stack,i)
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> height[i] == height[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+            stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>] = i
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(stack) &gt; <span class="hljs-number">0</span> &amp;&amp; height[i] &gt; height[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+                mid := stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+                stack = stack[:<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(stack) != <span class="hljs-number">0</span>&#123;
+                    h := min(height[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]], height[i]) - height[mid];
+                    w := i - stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>] - <span class="hljs-number">1</span>;
+                    result += h * w;
+                &#125;
+            &#125;
+            stack = <span class="hljs-built_in">append</span>(stack,i)
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">if</span> a &lt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">trap</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; height)</span> </span>&#123;
+        stack&lt;<span class="hljs-type">int</span>&gt; st;
+        st.<span class="hljs-built_in">push</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; height.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">while</span> (!st.<span class="hljs-built_in">empty</span>() &amp;&amp; height[i] &gt; height[st.<span class="hljs-built_in">top</span>()]) &#123;
+                <span class="hljs-type">int</span> mid = st.<span class="hljs-built_in">top</span>();
+                st.<span class="hljs-built_in">pop</span>();
+                <span class="hljs-keyword">if</span> (!st.<span class="hljs-built_in">empty</span>()) &#123;
+                    <span class="hljs-type">int</span> h = <span class="hljs-built_in">min</span>(height[st.<span class="hljs-built_in">top</span>()], height[i]) - height[mid];
+                    <span class="hljs-type">int</span> w = i - st.<span class="hljs-built_in">top</span>() - <span class="hljs-number">1</span>;
+                    sum += h * w;
+                &#125;
+            &#125;
+            st.<span class="hljs-built_in">push</span>(i);
+        &#125;
+        <span class="hljs-keyword">return</span> sum;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="84-柱状图中最大的矩形">84. 柱状图中最大的矩形</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">largestRectangleArea</span><span class="hljs-params">(heights []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    maxarea := <span class="hljs-number">0</span>
+    stack := []<span class="hljs-type">int</span>&#123;<span class="hljs-number">-1</span>&#125;
+    heights=<span class="hljs-built_in">append</span>(heights,<span class="hljs-number">0</span>)
+    l := <span class="hljs-built_in">len</span>(heights)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;l;i++&#123;
+        <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(stack)&gt;<span class="hljs-number">1</span> &amp;&amp; heights[i] &lt; heights[stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]]&#123;
+            cur := stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            stack = stack[:<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            left := stack[<span class="hljs-built_in">len</span>(stack)<span class="hljs-number">-1</span>]
+            h := heights[cur]
+            w := i - left - <span class="hljs-number">1</span>
+            maxarea = max(maxarea,h*w)
+        &#125;
+        stack = <span class="hljs-built_in">append</span>(stack,i)
+    &#125;
+    <span class="hljs-keyword">return</span> maxarea
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">largestRectangleArea</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; heights)</span> </span>&#123;
+        stack&lt;<span class="hljs-type">int</span>&gt; st;
+        heights.<span class="hljs-built_in">insert</span>(heights.<span class="hljs-built_in">begin</span>(), <span class="hljs-number">0</span>);
+        heights.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">0</span>); 
+        st.<span class="hljs-built_in">push</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; heights.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">while</span> (heights[i] &lt; heights[st.<span class="hljs-built_in">top</span>()]) &#123;
+                <span class="hljs-type">int</span> mid = st.<span class="hljs-built_in">top</span>();
+                st.<span class="hljs-built_in">pop</span>();
+                <span class="hljs-type">int</span> w = i - st.<span class="hljs-built_in">top</span>() - <span class="hljs-number">1</span>;
+                <span class="hljs-type">int</span> h = heights[mid];
+                sum = <span class="hljs-built_in">max</span>(sum, w * h);
+            &#125;
+            st.<span class="hljs-built_in">push</span>(i);
+        &#125;
+        <span class="hljs-keyword">return</span> sum;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="239-滑动窗口最大值">239. 滑动窗口最大值</h2>
+<p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回 滑动窗口中的最大值 。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxSlidingWindow</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>, k <span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;
+    lennum := <span class="hljs-built_in">len</span>(nums)
+    queue := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;k<span class="hljs-number">-1</span>;i++&#123;
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(queue) == <span class="hljs-number">0</span> || nums[i] &lt; nums[queue[<span class="hljs-built_in">len</span>(queue)<span class="hljs-number">-1</span>]]&#123;
+            queue = <span class="hljs-built_in">append</span>(queue,i)
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(queue) &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] &gt;= nums[queue[<span class="hljs-built_in">len</span>(queue)<span class="hljs-number">-1</span>]]&#123;
+                queue = queue[:<span class="hljs-built_in">len</span>(queue)<span class="hljs-number">-1</span>]
+            &#125;
+            queue = <span class="hljs-built_in">append</span>(queue,i)
+        &#125;
+    &#125;
+    result := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> i:=k<span class="hljs-number">-1</span>;i&lt;lennum;i++&#123;
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(queue) == <span class="hljs-number">0</span> || nums[i] &lt; nums[queue[<span class="hljs-built_in">len</span>(queue)<span class="hljs-number">-1</span>]]&#123;
+            queue = <span class="hljs-built_in">append</span>(queue,i)
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(queue) &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] &gt;= nums[queue[<span class="hljs-built_in">len</span>(queue)<span class="hljs-number">-1</span>]]&#123;
+                queue = queue[:<span class="hljs-built_in">len</span>(queue)<span class="hljs-number">-1</span>]
+            &#125;
+            queue = <span class="hljs-built_in">append</span>(queue,i)
+        &#125;
+        result = <span class="hljs-built_in">append</span>(result,nums[queue[<span class="hljs-number">0</span>]])
+        <span class="hljs-keyword">if</span> i-(k<span class="hljs-number">-1</span>) == queue[<span class="hljs-number">0</span>]&#123;
+            queue = queue[<span class="hljs-number">1</span>:]
+        &#125; 
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyQueue</span> &#123; <span class="hljs-comment">//单调队列（从大到小）</span>
+<span class="hljs-keyword">public</span>:
+    deque&lt;<span class="hljs-type">int</span>&gt; que; <span class="hljs-comment">// 使用deque来实现单调队列</span>
+    <span class="hljs-comment">// 每次弹出的时候，比较当前要弹出的数值是否等于队列出口元素的数值，如果相等则弹出。</span>
+    <span class="hljs-comment">// 同时pop之前判断队列当前是否为空。</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (!que.<span class="hljs-built_in">empty</span>() &amp;&amp; value == que.<span class="hljs-built_in">front</span>()) &#123;
+            que.<span class="hljs-built_in">pop_front</span>();
+        &#125;
+    &#125;
+    <span class="hljs-comment">// 如果push的数值大于入口元素的数值，那么就将队列后端的数值弹出，直到push的数值小于等于队列入口元素的数值为止。</span>
+    <span class="hljs-comment">// 这样就保持了队列里的数值是单调从大到小的了。</span>
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> value)</span> </span>&#123;
+        <span class="hljs-keyword">while</span> (!que.<span class="hljs-built_in">empty</span>() &amp;&amp; value &gt; que.<span class="hljs-built_in">back</span>()) &#123;
+            que.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+        que.<span class="hljs-built_in">push_back</span>(value);
+
+    &#125;
+    <span class="hljs-comment">// 查询当前队列里的最大值 直接返回队列前端也就是front就可以了。</span>
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">front</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> que.<span class="hljs-built_in">front</span>();
+    &#125;
+&#125;;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">maxSlidingWindow</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;
+        MyQueue que;
+        vector&lt;<span class="hljs-type">int</span>&gt; result;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) &#123; <span class="hljs-comment">// 先将前k的元素放进队列</span>
+            que.<span class="hljs-built_in">push</span>(nums[i]);
+        &#125;
+        result.<span class="hljs-built_in">push_back</span>(que.<span class="hljs-built_in">front</span>()); <span class="hljs-comment">// result 记录前k的元素的最大值</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = k; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;
+            que.<span class="hljs-built_in">pop</span>(nums[i - k]); <span class="hljs-comment">// 滑动窗口移除最前面元素</span>
+            que.<span class="hljs-built_in">push</span>(nums[i]); <span class="hljs-comment">// 滑动窗口前加入最后面的元素</span>
+            result.<span class="hljs-built_in">push_back</span>(que.<span class="hljs-built_in">front</span>()); <span class="hljs-comment">// 记录对应的最大值</span>
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码随想录-单调栈</div>
+      <div>https://zhangzhao219.github.io/2024/03/15/Leetcode/programmercarl/programmercarl-ms/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

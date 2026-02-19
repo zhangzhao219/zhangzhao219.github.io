@@ -1,0 +1,1397 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="LLM面试题准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLM面试题准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/07/29/Interview/Interview-Questions-LLM/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="LLM面试题准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=i-k">
+<meta property="og:image" content="https://math.now.sh/?inline=i-1">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-3d909261d3c550d4c8e26cf3fd2ff7ee_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-edd15d93240c12cd01e3f9cf6ef9f950_720w.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=U%3D%28u_%7B-k%7D%2C...%2Cu_%7B-1%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E1%2C%20x%5E2%2C...%2Cx%5Em">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-be2c7b06852e7bc0e58613e9e97a6288_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-e98e4369d4b4ddd02e989e06b617c558_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-77f07b2a11b78ce2fc80c12a036ff750_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-f8a7df6277da6d7a2a6de6c3b947b1c0_720w.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=1%2F%5Csqrt%20n">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-73b126d30e470335fe5bdf06235b629f_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-a1952ff557a55bff099faba375cb3085_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-8893d066128c0751cdcd93d1b5160e61_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-45720e2b1663348bb3241e41dfe21520_720w.webp">
+<meta property="og:image" content="https://developer.qcloudimg.com/http-save/yehe-1293914/a38a27391e9f10be39a6cc8f2cbf45ff.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-6d18fd84363055c3668ba4be280d0eb5_720w.webp">
+<meta property="og:image" content="https://dongnian.icu/llm_interview_note/02.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/llama%E7%B3%BB%E5%88%97%E6%A8%A1%E5%9E%8B/image/image_Li8zwpP-Yl.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-40a334ca9411ea2b115b3960220127e7_1440w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-5ed436da38fdb4a3cf2ea31012095f12_1440w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-658ceaa238e56d09b95f08084b2fa41e_1440w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-585fca20d3c78deaf1ced7f58c9d6189_1440w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-3ff84231fa3e51296fb46f2252138e10_1440w.webp">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/1edcbd5076bb815851068f56d3a42b36.png">
+<meta property="og:image" content="http://images.overfit.cn/upload/20240401/66ad3ae033124c2689ddf4f73c901de0.jpeg?x-oss-process=image/resize,w_1400/format,webp">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7BP%28AB%29%7D%7BP(A)P(B)%7D">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-ac217327b4061b0be369f55bd22801e3_720w.webp">
+<meta property="og:image" content="https://course.openi.org.cn/api/attachments/5797367?type=image/png">
+<meta property="og:image" content="https://course.openi.org.cn/api/attachments/5797368?type=image/png">
+<meta property="og:image" content="https://course.openi.org.cn/api/attachments/5797369?type=image/png">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=h%3DWx%2B%5Cfrac%7B%5Calpha%7D%7Br%7DBAx">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha%3Dr">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Calpha%7D%7Br%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Calpha%7D%7Br%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Calpha%7D%7Br%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5CLambda%20Q">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-d1c8c18c6e14fc320c9da6bd476e898a_1440w.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5CLambda%20Q">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CLambda">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CLambda">
+<meta property="og:image" content="https://math.now.sh/?inline=P%2CQ">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csigma">
+<meta property="og:image" content="https://math.now.sh/?inline=P">
+<meta property="og:image" content="https://math.now.sh/?inline=Q">
+<meta property="og:image" content="https://math.now.sh/?inline=P">
+<meta property="og:image" content="https://math.now.sh/?inline=Q">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5CLambda%20Q">
+<meta property="og:image" content="https://dongnian.icu/llm_interview_note/05.%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83/3.adapter-tuning/image/image_h7IGbTA3iH.png">
+<meta property="article:published_time" content="2023-07-29T21:12:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=i-k">
+  
+  
+  
+  <title>LLM面试题准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">LLM面试题准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-29 21:12" pubdate>
+          2023年7月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          21k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          179 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LLM面试题准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>LLM面试题准备</p>
+<span id="more"></span>
+<h1>GPT系列</h1>
+<h2 id="GPT-1">GPT-1</h2>
+<p>动机：虽然无标注的文本很多，但是在下游任务上，有标注的文本很少。</p>
+<p>GPT提出了一种方法：采用语言模型的方式在无标注文本下进行预训练，之后再在各个下游任务上进行微调。</p>
+<p>模型主要是三个方向的贡献：</p>
+<ol>
+<li>如何在没有标注的数据集上进行预训练</li>
+<li>如何做微调</li>
+<li>如何在每个子任务上表示其输入</li>
+</ol>
+<p><strong>预训练</strong>：输入含有大量token的语料库，GPT使用一个语言模型来极大化这个似然函数。具体的说，语言模型就是给定第 <img src="https://math.now.sh?inline=i-k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到第<img src="https://math.now.sh?inline=i-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个词，预测第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个词出现的概率。其中<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>被称为滑动窗口，当<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的值被设置的很大的时候，模型将会看到更多的上文，当<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的值被设计的很小时，模型将会看到更少的上文。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-3d909261d3c550d4c8e26cf3fd2ff7ee_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>语言模型的损失函数其实是一个乘法规则，因为有log所以变成加法</p>
+<p>作者选择transformer的decoder作为骨干模型。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-edd15d93240c12cd01e3f9cf6ef9f950_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>当输入是<img src="https://math.now.sh?inline=U%3D%28u_%7B-k%7D%2C...%2Cu_%7B-1%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，将这些词通过映射矩阵转化为词嵌入，再加上位置嵌入，再通过transformer块对其进行更新，最后输入到全连接层，得到最终的预测值。</p>
+<p>而训练的过程其实非常的简单，就是将句子n个词的词向量(第一个为 <code>&lt;SOS&gt;</code>)加上Positional Encoding后输入到前面提到的Transfromer中，n个输出分别预测该位置的下一个词(<code>&lt;SOS&gt;</code>预测句子中的第一个词，最后一个词的预测结果不用于语言模型的训练)。</p>
+<p><strong>微调</strong>：当预训练后，作者将预训练好的参数直接迁移到下游任务中来。下游任务数据集中的每一个数据含有一系列的token：<img src="https://math.now.sh?inline=x%5E1%2C%20x%5E2%2C...%2Cx%5Em" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，标签为<img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。将这些数据喂到预训练好参数的transformer decoder中，将得到的结果用softmax进行分类，得到最后的结果。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-be2c7b06852e7bc0e58613e9e97a6288_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>将预测值和真实值进行比对，得到有监督部分的损失函数，如下所示：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-e98e4369d4b4ddd02e989e06b617c558_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>将预训练时的损失函数和有监督的损失函数加在一起，可以取得更好的效果</p>
+<p><img src="https://pic1.zhimg.com/80/v2-77f07b2a11b78ce2fc80c12a036ff750_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>下游任务的损失=有监督的损失+预训练的损失</p>
+<p>如何把NLP里面很不一样的子任务表示成一个我们想要的形式（表示成一个序列+对应的标签）</p>
+<p><img src="https://pic1.zhimg.com/80/v2-f8a7df6277da6d7a2a6de6c3b947b1c0_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>classification分类任务：一段文字，之后输出这段文字的标签。start+文本+extract输入到transformer_block中，之后将得到的结果输入到线性分类器中，得到最终的结果。</li>
+<li>entailment蕴含任务：给出两段文字，之后输出这两段文字是否是相互关联的。start+文本1+delim+文本2+extract输入到transformer_block中，之后将得到的结果输入到线性分类器中，得到最终的结果。</li>
+<li>similarity相似任务：给出两段文字，之后输出这两段文字是否相关。start+文本1+delim+文本2；start+文本2+delim+文本1，将以上两个标签输入到transformer_block中，之后将得到的结果输入到线性分类器中，得到最终的结果。</li>
+<li>multiple choice多项选择任务：给出一个问题和几个候选选项，之后挑选出正确的答案。start+文本+delim+候选选项1，……start+文本+delim+候选选项n，分别输入到transformer_block中，之后将得到的结果输入到线性分类器</li>
+</ul>
+<h2 id="GPT-2">GPT-2</h2>
+<p>GPT2不仅仅使用一个更大的数据集，使用更大的模型去学习，还提出了一个新的更难的任务，<strong>zero-shot零样本学习</strong>，即将预训练好的模型，直接接诸多的下游任务，<strong>不再进行微调操作</strong>，在多个任务下都可以取得很好的效果。</p>
+<p>这两个模型的区别可以概括为：</p>
+<ol>
+<li>从数据量上，GPT 使用了约 5GB 数据，而 GPT2 利用了 40GB，并且质量更高；</li>
+<li>从模型的规模和参数量上说，GPT 有 1.17 亿的参数量，而 GPT2 使用了更深的网络结构，更高的隐藏层维度，参数量达到了15亿；</li>
+<li>模型结构方面
+<ol>
+<li>后置层归一化（ post-norm ）改为前置层归一化（ pre-norm ）。</li>
+<li>在模型最后一个自注意力层之后，额外增加一个层归一化</li>
+<li>调整参数的初始化方式，按残差层个数进行缩放，缩放比例为<img src="https://math.now.sh?inline=1%2F%5Csqrt%20n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>输入序列的最大长度从 512 扩充到 1024，词表大小也增加</li>
+</ol>
+</li>
+<li>训练任务方面，GPT2 放弃了 GPT 第二阶段的有监督训练，完全使用无监督任务进行语言模型训练。完全不需要去定义这个模型应该做什么任务，因为很多标签所蕴含的信息，就存在于语料当中。</li>
+</ol>
+<p>关于 post-norm 和 pre-norm，两者的主要区别在于，post-norm 将 transformer 中每一个 block 的层归一化放在了残差层之后，而 pre-norm 将层归一化放在了每个 block 的输入位置，GPT-2 进行上述模型调整的主要原因在于，随着模型层数不断增加，梯度消失和梯度爆炸的风险越来越大，这些调整能够 <strong>减少预训练过程中各层之间的方差变化，使梯度更加稳定</strong> 。如下图所示：</p>
+<p>Pre Norm结构无形地增加了模型的宽度而降低了模型的深度，而我们知道深度通常比宽度更重要，所以是无形之中的降低深度导致最终效果变差了。Pre Norm结构会过度倾向于恒等分支（bottom layers），从而使得Pre Norm倾向于退化（degradation）为一个“浅而宽”的模型，最终不如同一深度的Post Norm</p>
+<p><img src="https://pic4.zhimg.com/80/v2-73b126d30e470335fe5bdf06235b629f_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="GPT-3">GPT-3</h2>
+<p>GPT3的参数量进一步的增大，并且使用few-shot learning的方法，取得了很好的效果。</p>
+<p>GPT3特别大，在计算子任务的时候无法计算梯度，性能非常好。</p>
+<p>最近一些年来，大家都使用预训练好的语言模型，之后再进行微调，这其实是有问题的：</p>
+<ol>
+<li>微调需要对每一个任务有一个任务相关的数据集以及和任务相关的微调。</li>
+<li>需要一个大的数据集，需要对其进行标号，当一个样本没有出现在数据分布的时候，泛化性不见得比小模型要好，</li>
+</ol>
+<p>GPT-3提出了一种in-context learning的方法，就是给出任务的描述和一些参考案例的情况下，模型能根据当前任务描述、参数案例明白到当前的语境，即使在下游任务和预训练的数据分布不一致情况下，模型也能表现很好。注意的是，GPT并没有利用实例进行Fine-tune，而是让案例作为一种输入的指导，帮助模型更好的完成任务。</p>
+<p>在模型结构上，GPT-3 延续使用 GPT 模型结构，但是引入了 Sparse Transformer 中的 sparse attention 模块（稀疏注意力）。</p>
+<p>sparse attention 与传统 self-attention（称为 dense attention） 的区别在于：</p>
+<p>dense attention：每个 token 之间两两计算 attention，复杂度 O(n²)</p>
+<p>sparse attention：每个 token 只与其他 token 的一个子集计算 attention，复杂度 O(n*logn)，具体来说，sparse attention 除了相对距离不超过 k 以及相对距离为 k，2k，3k，… 的 token，其他所有 token 的注意力都设为 0</p>
+<p>使用 sparse attention 的好处主要有以下两点：</p>
+<ol>
+<li><strong>减少注意力层的计算复杂度</strong> ，节约显存和耗时，从而能够处理更长的输入序列；</li>
+<li><strong>具有“局部紧密相关和远程稀疏相关”的特性</strong> ，对于距离较近的上下文关注更多，对于距离较远的上下文关注较少；</li>
+</ol>
+<p>GPT3是一个1750亿参数的模型，评估用的是三种方法：</p>
+<ol>
+<li>Few-shot learning，对每个子任务，提供大概10-100个训练样本：在预训练和真正翻译的样本之间，插入多个样本做指导。好比说在预训练好的结果和所要执行的任务之间，给多个例子，告诉模型应该如何工作。</li>
+<li>one-shot，也就是每一个类别只有一个样本：在预训练和真正翻译的样本之间，插入一个样本做指导。好比说在预训练好的结果和所要执行的任务之间，给一个例子，告诉模型英语翻译为法语，应该这么翻译。</li>
+<li>zero-shot，一个样本都不提供，直接让其进行测试：先给出任务的描述，之后给出一个测试数据对其进行测试，直接让预训练好的模型去进行任务测试。</li>
+</ol>
+<p><img src="https://pic2.zhimg.com/80/v2-a1952ff557a55bff099faba375cb3085_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>整体来看，GPT-3 相比于 GPT-2 有如下几点区别：</p>
+<ol>
+<li><strong>效果上</strong> ，超出 GPT-2 非常多，能生成人类难以区分的新闻文章；</li>
+<li><strong>主推 few-shot</strong> ，相比于 GPT-2 的 zero-shot，具有很强的创新性；</li>
+<li><strong>模型结构</strong>略微变化，采用 sparse attention 模块；</li>
+<li><strong>海量训练语料</strong> 45TB（清洗后 570GB），相比于 GPT-2 的 40GB；</li>
+<li><strong>海量模型参数</strong> ，最大模型为 1750 亿，GPT-2 最大为 15 亿参数；</li>
+</ol>
+<h2 id="GPT缺点">GPT缺点</h2>
+<ol>
+<li><strong>当生成文本长度较长时</strong> ，GPT-3 还是会出现各种问题，比如重复生成一段话，前后矛盾，逻辑衔接不好等等；</li>
+<li><strong>模型和结构的局限性</strong> ，对于某一些任务，比如填空类型的文本任务，使用单向的自回归语言模型确实存在一定的局限性，这时候如果同时考虑上文和下文的话，效果很可能会更好一些；</li>
+<li>预训练语言模型的通病，在训练时，语料中所有的词都被同等看待，对于一些虚词或无意义的词同样需要花费很多计算量去学习， <strong>无法区分学习重点</strong> ；</li>
+<li><strong>样本有效性或者利用率过低</strong> ，训一个模型几乎要把整个互联网上的文本数据全都用起来，这与我们人类学习时所需要的成本存在非常大的差异，这方面也是未来人工智能研究的重点；</li>
+<li>有一个不太确定的点是，模型到底是在“ <strong>学习</strong> ”还是在“ <strong>记忆</strong> ”？我们当然希望它能够学习，但是在使用数据量如此大的情况下，很难去判断它到底是什么样的；</li>
+<li>众所周知，GPT-3 的训练和使用<strong>成本都太大</strong>了；</li>
+<li>GPT-3 跟很多深度学习模型一样，都是<strong>不可解释</strong>的，没办法知道模型内部到底是如何作出一系列决策的；</li>
+<li>模型最终呈现的效果取决于训练数据，这会导致模型会出现各种各样的“ <strong>偏见</strong> ”；</li>
+</ol>
+<h2 id="InstructGPT">InstructGPT</h2>
+<p>GPT-3 虽然在各大 NLP 任务以及文本生成的能力上令人惊艳，但是他仍然还是会生成一些带有偏见的，不真实的，有害的造成负面社会影响的信息，而且很多时候，他并不按人类喜欢的表达方式去说话。在这个背景下，OpenAI 提出了一个概念“Alignment”，意思是模型输出与人类真实意图对齐，符合人类偏好。因此，为了让模型输出与用户意图更加 “align”，就有了 InstructGPT 这个工作。</p>
+<p>关于 InstructGPT 的技术方案，原文分为了三个步骤：有监督微调，奖励模型训练，强化学习训练；实际上可以把它拆分成两种技术方案，一个是有监督微调（SFT），一个是基于人类反馈的强化学习（RLHF），下面我们简单介绍这两种技术方案。</p>
+<h3 id="SFT（Supervised-Fine-Tuning）">SFT（Supervised Fine-Tuning）</h3>
+<p><img src="https://pic2.zhimg.com/80/v2-8893d066128c0751cdcd93d1b5160e61_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>本质上来说，SFT 可以理解为人工标注了一批数据，然后去微调 GPT-3。</p>
+<p>这里标注的数据与 GPT-3 之前用来做下游任务使用的 few-shot 格式，有非常本质的区别。</p>
+<p>GPT-3 中的 few-shot 对于同一个下游任务，通常采用固定的任务描述方式，而且需要人去探索哪一种任务表述方式更好。显然这种模式与真实场景下用户的使用方式存在较大的 gap，用户在向 GPT-3 提问时才不会采用某种固定的任务表述，而是随心所欲地以自己的说话习惯去表达某个需求。</p>
+<p>InstructGPT 在 SFT 中标注的数据，正是为了消除这种模型预测与用户表达习惯之间的 gap。在标注过程中，他们从 GPT-3 的用户真实请求中采样大量下游任务的描述，然后让标注人员对任务描述进行续写，从而得到该问题的高质量回答。这里用户真实请求又被称为某个任务的指令，即 InstructGPT 的核心思想“基于人类反馈的指令微调”。</p>
+<h3 id="RLHF（Reinforcement-Learning-from-Human-Feedback）">RLHF（Reinforcement Learning from Human Feedback）</h3>
+<p><img src="https://pic1.zhimg.com/80/v2-45720e2b1663348bb3241e41dfe21520_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>基于 SFT 得到的模型被用于后续的 RLHF 做进一步的模型优化。</p>
+<p>如上图所示，以摘要生成任务为例，详细展示了如何基于人类反馈进行强化学习，最终训练完成得到 InstructGPT 模型。主要分为三步：</p>
+<ol>
+<li><strong>收集人类反馈</strong> ：使用初始化模型对一个样本生成多个不同摘要，人工对多个摘要按效果进行排序，得到一批排好序的摘要样本；</li>
+<li><strong>训练奖励模型</strong> ：使用第1步得到的样本集，训练一个模型，该模型输入为一篇文章和对应的一个摘要，模型输出为该摘要的得分；</li>
+<li><strong>训练策略模型</strong> ：使用初始化的策略模型生成一篇文章的摘要，然后使用奖励模型对该摘要打分，再使用打分值借助 PPO 算法重新优化策略模型；</li>
+</ol>
+<h3 id="直接偏好优化（DPO）">直接偏好优化（DPO）</h3>
+<p><img src="https://developer.qcloudimg.com/http-save/yehe-1293914/a38a27391e9f10be39a6cc8f2cbf45ff.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>直接偏好优化 (DPO)</strong> 是一种微调大型语言模型 (<strong>LLM</strong>)以符合人类偏好的新颖方法。与涉及来自人类反馈的复杂强化学习 (RLHF) 的传统方法不同， DPO简化了流程。它的工作原理是创建人类偏好对的数据集，每个偏好对都包含一个提示和两种可能的完成方式——一种是首选，一种是不受欢迎。然后对LLM进行微调，以最大限度地提高生成首选完成的可能性，并最大限度地减少生成不受欢迎的完成的可能性。</p>
+<p>与 RLHF 相比，DPO 具有多项优势：</p>
+<ul>
+<li>简单性： DPO更容易实施和训练，使其更易于使用。</li>
+<li>稳定性： 不易陷入局部最优，保证训练过程更加可靠。</li>
+<li>效率：与 RLHF 相比， DPO 需要更少的计算资源和数据，使其计算量轻。</li>
+<li>有效性： 实验结果表明，DPO在情感控制、摘要和对话生成等任务中可以优于 RLHF 。</li>
+</ul>
+<h3 id="InstructGPT-总结">InstructGPT 总结</h3>
+<p>总的来说，InstructGPT 相对于之前的 GPT 系列，有以下几点值得注意：</p>
+<ol>
+<li>解决 GPT-3 的输出与人类意图之间的 Align 问题；</li>
+<li>让具备丰富世界知识的大模型，学习“人类偏好”；</li>
+<li>标注人员明显感觉 InstructGPT 的输出比 GPT-3 的输出更好，更可靠；</li>
+<li>InstructGPT 在真实性，丰富度上表现更好；</li>
+<li>InstructGPT 对有害结果的生成控制的更好，但是对于“偏见”没有明显改善；</li>
+<li>基于指令微调后，在公开任务测试集上的表现仍然良好；</li>
+<li>InstructGPT 有令人意外的泛化性，在缺乏人类指令数据的任务上也表现很好；</li>
+</ol>
+<h2 id="GPT-4">GPT-4</h2>
+<ul>
+<li>GPT-4可以接受包含文本和图像的提示，但是输出只能是文本</li>
+<li>支持更长的上下文窗口</li>
+<li>扮演一个角色，风格可控</li>
+<li>预测很自信，但是RLHF后自信会减少</li>
+<li>改善幻觉、安全等局限性</li>
+<li>用小模型预测大模型的loss非常稳定</li>
+</ul>
+<h1>思维链CoT</h1>
+<p>单纯的扩大LLM模型的参数量无法让模型在算术推理/常识推理/符号推理等推理任务上取得理想的效果。 如何提升LLM在这些推理任务上性能呢？首次提出思维链（Chain-of-Throught，CoT）的概念，思维链就是一系列中间的推理步骤。</p>
+<p>在问LLM问题前，手工在prompt里面加入一些 <strong>包含思维过程（Chain of thought）的问答示例</strong> ，就可以让LLM在推理任务上大幅提升。CoT的方法，就是在 In-Context-Learning 的范式中，增加了对推理的示范，从而希望LLM在给出答案的时候，也像模像样地进行推理。</p>
+<p>思维链提示作为一种促进语言模型推理的方法，有几个吸引人的特性。</p>
+<ol>
+<li>首先，思维链，在原则上，允许模型将多步骤问题分解成中间步骤，这意味着额外的计算可以分配给需要更多推理步骤的问题。</li>
+<li>第二，一个思维链为模型的行为提供了一个可解释的窗口，表明它是如何得到一个特定的答案的，并提供了调试推理路径出错的机会(尽管完整地描述支持一个答案的模型的计算仍然是一个开放的问题)。</li>
+<li>第三，思维链推理可以用于诸如数学应用题、常识推理和符号操作等任务，并且可能(至少在原则上)适用于任何人类可以通过语言解决的任务。</li>
+<li>最后，思想链推理可以很容易地在足够大的现成语言模型中得到，只需将思想链序列的示例包含到小样本提示的范例中即可。</li>
+</ol>
+<h2 id="Zero-shot-CoT">Zero-shot CoT</h2>
+<p>大模型，尤其是足够大的模型，可能不需要你写一堆CoT来作为prompt了，它自己可能就会推理了，秘诀就是加上一句咒语：“Let’s think step by step.”</p>
+<p>具体则是需要LLM<strong>两次</strong>生成：</p>
+<ol>
+<li>先使用 “Let’s think step by step.” 让模型自己给出推理过程</li>
+<li>把原始问题以及给出的推理过程再合在一起，让模型抽取出最终答案。</li>
+</ol>
+<ul>
+<li>Zero-shot CoT和Few-shot CoT在常识推理问题（CommonsenseQA）上，并没有太大的提升（相比于数学推理）。很多时候CoT给不出正确的答案，但是推理过程却是合理且灵活的。Zero-shot CoT在多项选择时，倾向于给出多个答案，很难只给出一个答案。</li>
+<li>在数学推理问题上，CoT能有显著的提升，但是Zero-shot CoT和Few-shot CoT犯错误时的特点很不一样：Zero-shot方法在推出正确答案后，可能会继续“画蛇添足”，导致最终错误；另外，Zero-shot有时候干脆不推理，直接重复题目。Few-shot方法则是在生成的推理过程中包含三元运算的时候很容易出错，例如(3+2)*4</li>
+</ul>
+<h2 id="Auto-CoT">Auto CoT</h2>
+<p>能不能<strong>利用 Zero-shot CoT 来让 LLM 产生很多带有推理的QA pair，然后把这些QA pair加入到prompt中，构成ICL的上文，再让LLM进行推理。</strong></p>
+<p>有 <strong>一大堆的待测试的问题</strong> （没有标注，不知道正确答案和推理过程），我们要<strong>怎么利用 LLM 和这么一个无标注问题集合，在不进行手工编写CoT的情况下，提升LLM回答这些模型的质量。</strong></p>
+<p>作者的基本思路是这样的：</p>
+<ul>
+<li>给定待测试的问题q，从无标注问题集合中，<strong>采样</strong>一批问题；</li>
+<li>使用 GPT-3 作为产生推理过程的工具，即直接使用 “Let’s think step by step.” 咒语，来对这一批采样的问题产生推理过程；</li>
+<li>把产生的这些问题和推理过程，构成In-Context-Learning的上文加入到prompt中，再让LLM对问题q进行回答。</li>
+</ul>
+<p>关键就在于这个<strong>采样</strong>过程，作者分别先测试了两种简单的采样过程：</p>
+<ol>
+<li>随机采样，Random-Q-CoT</li>
+<li>基于跟待测试q的相似度进行采样，Retrieval-Q-CoT</li>
+</ol>
+<p>实验发现，居然随机采样还要更好一些。经过探究，作者发现GPT-3自动产生推理过程是有一定比例出错的，而 <strong>出错的问题也容易聚集</strong> ，因此基于相似度搜索的时候，容易导致采样出一批错误的示范，而随机采样的方法，则可能避免聚集性地出错。基于这样的考虑，作者设计了基于多样性的采样方法，先试用SentenceBERT对所有问题进行聚类，然后从每个cluster中进行采样</p>
+<p>Auto的方法居然可以比Manual更好。其实有一种解释，Manual方法其实给多个任务都使用的是同一套模板，比方6个数学任务里面5个都使用的同一套示例（为了省力，同时Manual-CoT的论文也不是为了刷榜，而是为了揭示这么一个现象，所以CoT没有进行仔细调优），而Auto-CoT则是每个任务都会有自己的一套示例产生，毕竟问题集合不一样，聚类的结果也会不一样。</p>
+<h1>LLaMA</h1>
+<p>给定一个目标性能水平，首选的模型不是训练速度最快的，而是推理速度最快的，尽管训练一个大的模型以达到一定的性能水平可能更便宜，但训练时间较长的小模型最终会在推理中更便宜。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44826203/article/details/129255185">代码详解</a></p>
+<p>tokenizer使用的是BPE算法</p>
+<p><img src="https://pic2.zhimg.com/80/v2-6d18fd84363055c3668ba4be280d0eb5_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://dongnian.icu/llm_interview_note/02.%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/llama%E7%B3%BB%E5%88%97%E6%A8%A1%E5%9E%8B/image/image_Li8zwpP-Yl.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>结构修改</p>
+<ul>
+<li>Pre-normalization （借鉴于GPT-3）作者选择在transformer的入口处使用normalization，而不是在出口，该技巧称为pre-normalization，作者认为这样做有助于提升训练的稳定性。使用的normalization为RMS Norm
+<ul>
+<li>相同的深度条件下，Post-Norm的效果要优于Pre-Norm，因为Pre-Norm实际上相当于通过了一个更宽的网络而非更深的网络，所以在同等深度下，Pre-Norm的实际效果相当于一个更浅却更宽的网络。然而在LLaMA中却采用了Pre-Norm，或许是因为模型够深，而Pre-Norm的恒等分支更加明显，有利于梯度的传播。</li>
+<li>RMS Norm 在梯度下降时令损失更加平滑，与layerNorm相比，RMS Norm的主要区别在于去掉了减去均值的部分（re-centering），只保留方差部分（re-scaling）</li>
+</ul>
+</li>
+<li>SwiGLU 激活函数 （借鉴于PaLM）x * sigmoid(x) GLU(x) = x ⊗ σ(g(x))，相较于ReLU函数，SiLU函数可能会更适合一些需要保留更多输入信息的场景。</li>
+<li>Rotary Embeddings （借鉴于GPTNeo）：作者在模型的每一层transformer结构中都加入RoPE了，采用绝对位置编码的形式，实现相对位置编码</li>
+</ul>
+<p>一般认为，Post-Norm在残差之后做归一化，对参数正则化的效果更强，进而模型的收敛性也会更好；而Pre-Norm有一部分参数直接加在了后面，没有对这部分参数进行正则化，可以在反向时防止梯度爆炸或者梯度消失，大模型的训练难度大，因而使用Pre-Norm较多</p>
+<p>加速技巧</p>
+<ul>
+<li>使用<a href="https://link.zhihu.com/?target=https%3A//github.com/facebookresearch/xformers">xformer</a>中高效的multi-head attention，以减小内存和加速</li>
+<li>基于checkpointing技术，减少了反向传播过程中的激活函数重计算，减少了在check point的后向传递中重新计算的激活量，在实现上，通过手动实现transformer层的后向函数来进行操作。为了充分受益于这种优化，还通过如Korthikanti等人（2022）中采用的方法，进行使用模型和序列并行来减少模型的内存使用。</li>
+<li>尽可能的使网络中GPU间的计算和通信重合（这里没说明是如何实现的？）</li>
+</ul>
+<h2 id="LLaMA-2">LLaMA 2</h2>
+<p>与Llama 1相比，主要的架构差异包括增加的上下文长度和分组查询注意力（GQA）</p>
+<ul>
+<li>上下文长度： Llama 2 的上下文窗口从 2048 个标记扩展到 4096 个字符。 越长上下文窗口使模型能够处理更多信息，这对于支持聊天应用程序中较长的历史记录、各种摘要任务以及理解较长的文档。多个评测结果表示较长的上下文模型在各种通用任务上保持了强大的性能。</li>
+<li>Grouped-Query Attention 分组查询注意力：（1）自回归解码的标准做法是缓存序列中先前标记的键 (K) 和值 (V) 对，从而加快注意力计算速度。 然而，随着上下文窗口或批量大小的增加，多头注意力 (MHA) 模型中与 KV 缓存大小相关的内存成本显着增长。 对于较大的模型，KV 缓存大小成为瓶颈，键和值投影可以在多个头之间共享，而不会大幅降低性能。 GQA将查询头分成G组，每个组共享一个Key 和 Value 矩阵。GQA-G是指具有G组的grouped-query attention。GQA-1具有单个组，因此具有单个Key 和 Value，等效于MQA。而GQA-H具有与头数相等的组，等效于MHA。</li>
+</ul>
+<p>Llama 2-Chat的训练过程：该过程始于使用公开可用的在线资源对Llama 2进行 <strong>预训练</strong> 。随后，我们通过<strong>有监督的微调</strong>创建Llama 2-Chat的初始版本。随后，我们使用强化学习与人类反馈（ <strong>RLHF</strong> ）方法，具体包括拒绝抽样和近端策略优化（PPO），对模型进行迭代优化。在RLHF阶段，<strong>迭代奖励建模数据</strong>的积累与模型改进密切相关，以确保奖励模型保持在分布内。</p>
+<h1>Mistral 7B</h1>
+<p><strong>Sliding Window Attention</strong> ，attention 中的操作数量与序列长度呈二次关系，通过Sliding Window Attention，可减少计算，但是会牺牲一点的效果。</p>
+<p>做法如下，第2层中的位置4的隐藏状态，关注来自前一层中位置在4- W和4之间的所有隐藏状态，下图中w=3</p>
+<p><img src="https://pic4.zhimg.com/80/v2-40a334ca9411ea2b115b3960220127e7_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://pic3.zhimg.com/80/v2-5ed436da38fdb4a3cf2ea31012095f12_1440w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>Rolling Buffer Cache，</strong> 显存消耗与序列长度呈二次关系。当长度比较长时，显存的消耗是比较多的</p>
+<p>Rolling Buffer Cache使用的是LRU算法，选择最久未使用的数据予以淘汰，相当于缓存最新数据。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-658ceaa238e56d09b95f08084b2fa41e_1440w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>缓存预处理</p>
+<p><img src="https://pic2.zhimg.com/80/v2-585fca20d3c78deaf1ced7f58c9d6189_1440w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>在生成序列时，由于每个标记的生成都依赖于前一个标记，因此需要逐个预测。但是，在开始生成之前，提示信息是已知的，我们可以预先将提示信息填充到（k, v）缓存中。</p>
+<p>具体而言，首先将已知的提示信息按照选定的块大小进行分段，并将每一小段的数据预处理后填充到滚动缓冲区缓存中。在生成新标记的过程中，模型会根据当前时刻的输入以及缓存中的历史信息来计算注意力权重，并更新隐藏状态。这样，在生成长序列时，通过预先填充和分块技术，可以有效地利用已知信息并保持内存使用量的可控性，同时确保模型能充分考虑整个上下文信息进行预测。</p>
+<h1>Qwen</h1>
+<p><strong>Pretraining Data</strong></p>
+<p>去重：标准化后进行完全匹配重复数据删除,以及<strong>使用 MinHash 和 LSH 算法</strong>进行模糊重复数据删除</p>
+<p>过滤质量低的数据：过滤低质量的数据,采用了<strong>规则型和基于机器学习的方法</strong>的组合。多个模型对内容进行评分,包括语言模型,文本质量评分模型以及用于识别潜在的攻击性或不适当内容的模型。 <strong>人工从各种来源中对文本进行抽样并审阅,以确保其质量</strong> 。</p>
+<p>高质量指令：由于多任务指令可以增强他们的零样本和少样本性能，预训练过程中<strong>加入了高质量的指令数据。</strong></p>
+<p><strong>Tokenizer</strong></p>
+<p>使用基于<strong>bytepair encoding (BPE)</strong> 的tiktoken算法，其相当于BPE tokenizer分词更快。首先使用cl100k作为base token，针对连续数字分会拆为单独的数字，最终 <strong>词典大小为152K</strong> 。</p>
+<p>编码压缩率越小，则传递的信息就更多，每种语言100万个文档语料库来测试和比较不同模型的编码压缩率，</p>
+<p>可看到qwen编码压缩率是比较低的</p>
+<p><strong>Architecture</strong></p>
+<p>Embedding和output 投影层：解开输入嵌入和输出投影的权重，这一决定是为了以内存成本为代价获得更好的性能</p>
+<p>位置嵌入：RoPE，选择使用FP32精度的逆频率矩阵,而不是BF16或FP16,以优先考虑模型性能并获得更高的准确性。</p>
+<p>激活函数：SwiGLU</p>
+<p>normal方法：RMSNorm，前馈网络(FFN)的维度从隐藏大小的4倍减少到隐藏大小的83倍</p>
+<p>content长度：</p>
+<p><strong>长度外推，在QKV注意力层中添加bias以增强模型的外推能力。下图可看到加上了bias，长度大于1024效果下降不是很多。</strong></p>
+<p>NTK-aware interpolation，动态 NTK-aware 插值,则每个块比例不同：高频部分外推，低频部分内插。</p>
+<p>LogN-Scaling，q和v乘以一个系数，context length和training length的长度关系，来保持注意力的稳定。保证注意力的熵在上下文长度增加时也保持稳定，同时能提升外推表现。</p>
+<p>window attention，将注意力限制在有限的上下文窗口内,防止模型关注距离太远的标记。基于这一发现,我们为每个层分配不同的窗口大小,对较低层使用较短的窗口,对较高层使用较长的窗口。</p>
+<h1>Baichuan</h1>
+<p><strong>Pre-training</strong></p>
+<p>来源收集数据,包括常规互联网网页、书籍、研究论文、代码库等,以构建一个广泛的世界知识体系。</p>
+<p>去重，构建了一个大规模的重复数据删除和聚类系统,支持LSH类似特征和稠密嵌入特征。最终只保留原始数据的31.68%的数据进行训练。</p>
+<p><strong>Tokenizer</strong></p>
+<p>字节对编码(BPE)， <strong>不对输入文本应用任何规范化,也不添加虚拟前缀</strong> 。将数字拆分为单独的数字，处理额外空格的代码数据,向分词器添加仅空格标记，最大标记长度设置为32,以处理长中文词组。</p>
+<p><strong>Architecture</strong></p>
+<p>位置嵌入：RoPE</p>
+<p>激活函数：SwiGLU</p>
+<p>注意力层：xFormers减少内存。</p>
+<p>normal方法：RMSNorm，并且 <strong>规范化输出嵌入lm_head</strong> 。</p>
+<p>norm_head loss</p>
+<p><strong>最大z损失</strong> ，在训练过程中,发现LLM的logits可能变得非常大。添加了一个最大z损失来规范化logits。其中z是最大logit值,这有助于稳定训练,并使推理更加稳健地适应超参数。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-3ff84231fa3e51296fb46f2252138e10_1440w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h1>大模型基础知识</h1>
+<h2 id="为何Decoder-only结构">为何Decoder only结构</h2>
+<ol>
+<li><strong>Encoder的低秩问题</strong> ：Encoder的双向注意力会存在低秩问题，这可能会削弱模型表达能力，就生成任务而言，引入双向注意力并无实质好处。</li>
+<li><strong>更好的Zero-Shot性能、更适合于大语料自监督学习</strong> ：decoder-only 模型在没有任何 tuning 数据的情况下、zero-shot 表现最好，而 encoder-decoder 则需要在一定量的标注数据上做 multitask finetuning 才能激发最佳性能。</li>
+<li><strong>效率问题</strong> ：decoder-only支持一直复用KV-Cache，对多轮对话更友好，因为每个Token的表示之和它之前的输入有关，而encoder-decoder和PrefixLM就难以做到。</li>
+</ol>
+<h2 id="LLMs复读机问题">LLMs复读机问题</h2>
+<p>LLMs复读机问题（LLMs Parroting Problem）是指大型语言模型在生成文本时过度依赖输入文本的复制，而缺乏创造性和独特性。当面对一个问题或指令时，模型可能会简单地复制输入文本的一部分或全部内容，并将其作为生成的输出，而不是提供有意义或新颖的回应。</p>
+<ol>
+<li><strong>数据偏差</strong> ：大型语言模型通常是通过预训练阶段使用大规模无标签数据进行训练的。如果训练数据中存在大量的重复文本或者某些特定的句子或短语出现频率较高，模型在生成文本时可能会倾向于复制这些常见的模式。</li>
+<li><strong>训练目标的限制</strong> ：大型语言模型的训练通常是基于自监督学习的方法，通过预测下一个词或掩盖词来学习语言模型。这样的训练目标可能使得模型更倾向于生成与输入相似的文本，导致复读机问题的出现。</li>
+<li><strong>缺乏多样性的训练数据</strong> ：虽然大型语言模型可以处理大规模的数据，但如果训练数据中缺乏多样性的语言表达和语境，模型可能无法学习到足够的多样性和创造性，导致复读机问题的出现。</li>
+<li><strong>模型结构和参数设置</strong> ：大型语言模型的结构和参数设置也可能对复读机问题产生影响。例如，模型的注意力机制和生成策略可能导致模型更倾向于复制输入的文本。</li>
+</ol>
+<p>为了缓解LLMs复读机问题，可以尝试以下方法：</p>
+<ol>
+<li><strong>多样性训练数据</strong> ：在训练阶段，使用多样性的语料库来训练模型，避免数据偏差和重复文本的问题。这可以包括从不同领域、不同来源和不同风格的文本中获取数据。</li>
+<li><strong>引入噪声</strong> ：在生成文本时，引入一些随机性或噪声，例如通过采样不同的词或短语，或者引入随机的变换操作，以增加生成文本的多样性。这可以通过在生成过程中对模型的输出进行采样或添加随机性来实现。</li>
+<li><strong>温度参数调整</strong> ：温度参数是用来控制生成文本的多样性的一个参数。通过调整温度参数的值，可以控制生成文本的独创性和多样性。较高的温度值会增加随机性，从而减少复读机问题的出现。</li>
+<li><strong>Beam搜索调整</strong> ：在生成文本时，可以调整Beam搜索算法的参数。Beam搜索是一种常用的生成策略，它在生成过程中维护了一个候选序列的集合。通过调整Beam大小和搜索宽度，可以控制生成文本的多样性和创造性。</li>
+<li><strong>后处理和过滤</strong> ：对生成的文本进行后处理和过滤，去除重复的句子或短语，以提高生成文本的质量和多样性。可以使用文本相似度计算方法或规则来检测和去除重复的文本。</li>
+<li><strong>人工干预和控制</strong> ：对于关键任务或敏感场景，可以引入人工干预和控制机制，对生成的文本进行审查和筛选，确保生成结果的准确性和多样性。</li>
+</ol>
+<h2 id="位置编码">位置编码</h2>
+<p>链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/v_JULY_v/article/details/134085503">https://blog.csdn.net/v_JULY_v/article/details/134085503</a></p>
+<h3 id="绝对位置编码">绝对位置编码</h3>
+<p>在句子的上下文中，假设我们有一个代表一个单词的嵌入。为了对其位置进行编码，需要使用另一个具有相同维度的向量，其中每个向量唯一地代表句子中的一个位置。例如，为句子中的第二个单词指定特定向量。所以每个句子位置都有其独特的向量。然后通过将词嵌入与其相应的位置嵌入求和来形成 Transformer 层的输入。</p>
+<p>有两种主要方法来生成这些嵌入：</p>
+<ol>
+<li><strong>从数据中学习：</strong> 在这里，位置向量是在训练过程中学习的，就像其他模型参数一样。我们为每个位置（例如从 1 到 512）学习一个唯一的向量。这引入了一个限制——最大序列长度受到限制。如果模型仅学习到位置 512，则它无法表示比该位置更长的序列。</li>
+<li><strong>正弦函数：</strong> 此方法涉及使用正弦函数为每个位置构建唯一的嵌入。尽管这种构造的细节很复杂，但它本质上为序列中的每个位置提供了独特的位置嵌入。实证研究表明，从数据中学习和使用正弦函数可以在现实世界模型中提供相当的性能。</li>
+</ol>
+<p><strong>绝对位置编码的局限性</strong></p>
+<p>尽管使用广泛但绝对位置嵌入也并非没有缺点：</p>
+<ol>
+<li><strong>有限序列长度：</strong> 如上所述，如果模型学习到某个点的位置向量，它本质上不能表示超出该限制的位置。</li>
+<li><strong>位置嵌入的独立性：</strong> 每个位置嵌入都是独立于其他位置嵌入的。这意味着在模型看来，位置 1 和 2 之间的差异与位置 2 和 500 之间的差异相同。但是其实位置 1 和 2 应该比位置 500 相关性更密切，位置 500 距离明显更远。这种相对定位的缺乏可能会阻碍模型理解语言结构的细微差别的能力。</li>
+</ol>
+<h3 id="相对位置编码">相对位置编码</h3>
+<p>相对位置位置不是关注标记在句子中的绝对位置，而是关注标记对之间的距离。该方法不会直接向词向量添加位置向量。而是改变了注意力机制以纳入相对位置信息。</p>
+<p>最经典得案例就是T5（Text-to-Text Transfer Transformer）是一种利用相对位置嵌入的著名模型。T5 引入了一种处理位置信息的微妙方式：</p>
+<ul>
+<li><strong>位置偏移的偏差：</strong> T5 使用偏差（浮点数）来表示每个可能的位置偏移。例如，偏差 B1 可能表示任意两个相距一个位置的标记之间的相对距离，无论它们在句子中的绝对位置如何。</li>
+<li><strong>自注意力层中的集成：</strong> 该相对位置偏差矩阵被添加到自注意力层中的查询矩阵和关键矩阵的乘积中。这确保了相同相对距离的标记始终由相同的偏差表示，无论它们在序列中的位置如何。</li>
+<li><strong>可扩展性：</strong> 该方法的一个显着优点是其可扩展性。它可以扩展到任意长的序列，这比绝对位置嵌入有明显的优势。</li>
+</ul>
+<p><strong>相对位置编码的局限性</strong></p>
+<ol>
+<li>计算效率低下：必须创建成对的位置编码矩阵，然后执行大量张量操作以获得每个时间步的相对位置编码。特别是对于较长的序列。这主要是由于自注意力层中的额外计算步骤，其中位置矩阵被添加到查询键矩阵中。</li>
+<li>键值缓存使用的复杂性：由于每个附加令牌都会改变每个其他令牌的嵌入，这使得 Transformer 中键值缓存的有效使用变得复杂。使用 KV 缓存的一项要求是 <strong>已经生成的单词的位置编码，<strong>在生成新单词时</strong>不改变（绝对位置编码提供）因此相对位置编码不适合推理，因为</strong>每个标记的嵌入会随着每个新时间步的变化而变化。</li>
+</ol>
+<p>由于这些工程复杂性，位置编码未得到广泛采用，特别是在较大的语言模型中。</p>
+<h3 id="旋转位置编码-RoPE">旋转位置编码 (RoPE)</h3>
+<p>在位置编码上删除了绝对位置嵌入，而在网络的每一层增加了<a target="_blank" rel="noopener" href="https://kexue.fm/archives/8265" title="旋转位置嵌入(RoPE)">旋转位置嵌入(RoPE)</a>，采用绝对位置编码的形式实现相对位置编码，且主要借助了复数的思想</p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/1edcbd5076bb815851068f56d3a42b36.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>RoPE 代表了一种编码位置信息的新方法。传统方法中无论是绝对方法还是相对方法，都有其局限性。绝对位置编码为每个位置分配一个唯一的向量，虽然简单但不能很好地扩展并且无法有效捕获相对位置；相对位置编码关注标记之间的距离，增强模型对标记关系的理解，但使模型架构复杂化。</p>
+<p>RoPE巧妙地结合了两者的优点。允许模型理解标记的绝对位置及其相对距离的方式对位置信息进行编码。这是通过旋转机制实现的，其中序列中的每个位置都由嵌入空间中的旋转表示。RoPE 的优雅之处在于其简单性和高效性，这使得模型能够更好地掌握语言语法和语义的细微差别。</p>
+<p>我们看到旋转矩阵保留了原始向量的大小(或长度),如上图中的“r”所示,唯一改变的是与x轴的角度。</p>
+<p>RoPE 引入了一个新颖的概念。它不是添加位置向量，而是对词向量应用旋转。旋转角度 (θ) 与单词在句子中的位置成正比。第一个位置的向量旋转 θ，第二个位置的向量旋转 2θ，依此类推。这种方法有几个好处：</p>
+<ol>
+<li><strong>向量的稳定性：</strong> 在句子末尾添加标记不会影响开头单词的向量，有利于高效缓存。</li>
+<li><strong>相对位置的保留：</strong> 如果两个单词在不同的上下文中保持相同的相对距离，则它们的向量将旋转相同的量。这确保了角度以及这些向量之间的点积保持恒定</li>
+</ol>
+<p><strong>RoPE 的矩阵公式</strong></p>
+<p><img src="http://images.overfit.cn/upload/20240401/66ad3ae033124c2689ddf4f73c901de0.jpeg?x-oss-process=image/resize,w_1400/format,webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>RoPE的技术实现涉及到旋转矩阵。在 2D 情况下，论文中的方程包含一个旋转矩阵，该旋转矩阵将向量旋转 Mθ 角度，其中 M 是句子中的绝对位置。这种旋转应用于 Transformer 自注意力机制中的查询向量和键向量。</p>
+<p>对于更高维度，向量被分成 2D 块，并且每对独立旋转。这可以被想象成一个在空间中旋转的 n 维。听着这个方法好好像实现是复杂，其实不然，这在 PyTorch 等库中只需要大约十行代码就可以高效的实现。</p>
+<p>为了旋转是通过简单的向量运算而不是矩阵乘法来执行。距离较近的单词更有可能具有较高的点积，而距离较远的单词则具有较低的点积，这反映了它们在给定上下文中的相对相关性。</p>
+<p>使用 RoPE 对 RoBERTa 和 Performer 等模型进行的实验表明，与正弦嵌入相比，它的训练时间更快。并且该方法在各种架构和训练设置中都很稳健。</p>
+<p>最主要的是RoPE是可以外推的，也就是说可以直接处理任意长的问题。在最早的llamacpp项目中就有人通过线性插值RoPE扩张，在推理的时候直接通过线性插值将LLAMA的context由2k拓展到4k，并且性能没有下降，所以这也可以证明RoPE的有效性。</p>
+<h3 id="总结">总结</h3>
+<p>旋转位置嵌入代表了 Transformer 架构的范式转变，提供了一种更稳健、直观和可扩展的位置信息编码方式。</p>
+<p>RoPE不仅解决了LLM context过长之后引起的上下文无法关联问题，并且还提高了训练和推理的速度。这一进步不仅增强了当前的语言模型，还为 NLP 的未来创新奠定了基础。随着我们不断解开语言和人工智能的复杂性，像 RoPE 这样的方法将有助于构建更先进、更准确、更类人的语言处理系统。</p>
+<h2 id="Tokenizer">Tokenizer</h2>
+<h3 id="BPE">BPE</h3>
+<p>BPE，即字节对编码。其核心思想在于将 <strong>最常出现的子词对合并，直到词汇表达到预定的大小时停止</strong> 。</p>
+<p>BPE是一种基于数据压缩算法的分词方法。它通过不断地合并出现频率最高的字符或者字符组合，来构建一个词表。具体来说，BPE的运算过程如下：</p>
+<ol>
+<li>将所有单词按照字符分解为字母序列。例如：“hello”会被分解为[“h”,“e”,“l”,“l”,“o”]。</li>
+<li>统计每个字母序列出现的频率，将频率最高的序列合并为一个新序列。</li>
+<li>重复第二步，直到达到预定的词表大小或者无法再合并。</li>
+</ol>
+<h3 id="WordPiece">WordPiece</h3>
+<p>wordpiece算法可以看作是BPE的变种。不同的是，WordPiece基于概率生成新的subword而不是下一最高频字节对。WordPiece算法也是每次从词表中选出两个子词合并成新的子词。BPE选择频数最高的相邻子词合并，而 WordPiece选择使得语言模型概率最大的相邻子词加入词表 。即它每次合并的两个字符串A和B，应该具有最大的<img src="https://math.now.sh?inline=%5Cfrac%7BP%28AB%29%7D%7BP(A)P(B)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>值。合并AB之后，所有原来切成A+B两个tokens的就只保留AB一个token。</p>
+<h3 id="Unigram">Unigram</h3>
+<p>与BPE或者WordPiece不同，Unigram的算法思想是 <strong>从一个巨大的词汇表出发</strong> ，再 <strong>逐渐删除trim down其中的词汇</strong> ，直到size满足预定义。</p>
+<p>初始的词汇表可以 <strong>采用所有预分词器分出来的词，再加上所有高频的子串</strong> 。</p>
+<p>每次从词汇表中删除词汇的<strong>原则是使预定义的损失最小</strong></p>
+<h3 id="SentencePiece">SentencePiece</h3>
+<p>SentencePiece，顾名思义，它是 <strong>把一个句子看作一个整体，再拆成片段</strong> ，而没有保留天然的词语的概念。一般地，它 <strong>把空格space也当作一种特殊字符来处理，再用BPE或者Unigram算法来构造词汇表</strong> 。</p>
+<h3 id="遇到OOV（Out-Of-Vocabulary）怎么做">遇到OOV（Out Of Vocabulary）怎么做?</h3>
+<p>也就是词汇表外的词。在NLP中，通常会预先构建一个词汇表，包含所有模型能够识别的词。然而，总会有一些词没有出现在预先构建的词汇表中，这些词就是 OOV。传统的处理方式往往是将这些 OOV 映射到一个特殊的符号，如 UnKnow，但这种方式无法充分利用 OOV 中的信息。例如，对于词汇表中没有的词 “unhappiness”，如果直接映射为UnKnow ，则模型就无法理解它的含义。</p>
+<p>WordPiece/Byte Pair Encoding (BPE) 等基于子词的分词方法提供了一种解决 OOV 问题的方式。现在更多的语言大模型选择基于BPE的方式，只不过BERT时代更多还是WordPiece。BPE 通过将词分解为更小的单元（子词或字符），可以有效地处理词汇表外的词。对于上面的 “unhappiness” 例子，即使 “unhappiness” 本身不在词汇表中，但是它可以被分解为 “un”、“happiness” 等子词，而这些子词可能在词汇表中。这样，模型就可以通过这些子词来理解 “unhappiness” 的含义。另一方面就是，BPE本身的语义粒度也很合适，一个token不会太大，也不会小到损失连接信息（如一个字母）。</p>
+<h2 id="LLM长文本">LLM长文本</h2>
+<p><strong>理论上来说，LLMs（大型语言模型）可以处理任意长度的输入句子，但实际上存在一些限制和挑战</strong> 。下面是一些相关的考虑因素：</p>
+<ol>
+<li><strong>计算资源</strong> ：生成长句子需要更多的计算资源，包括内存和计算时间。由于LLMs通常是基于神经网络的模型，计算长句子可能会导致内存不足或计算时间过长的问题。</li>
+<li><strong>模型训练和推理</strong> ：训练和推理长句子可能会面临一些挑战。在训练阶段，处理长句子可能会导致梯度消失或梯度爆炸的问题，影响模型的收敛性和训练效果。在推理阶段，生成长句子可能会增加模型的错误率和生成时间。</li>
+<li><strong>上下文建模</strong> ：LLMs是基于上下文建模的模型，长句子的上下文可能会更加复杂和深层。模型需要能够捕捉长句子中的语义和语法结构，以生成准确和连贯的文本。</li>
+</ol>
+<p>要让大模型处理更长的文本，可以考虑以下几个方法：</p>
+<ol>
+<li><strong>分块处理</strong> ：将长文本分割成较短的片段，然后逐个片段输入模型进行处理。这样可以避免长文本对模型内存和计算资源的压力。在处理分块文本时，可以使用重叠的方式，即将相邻片段的一部分重叠，以保持上下文的连贯性。</li>
+<li><strong>层次建模</strong> ：通过引入层次结构，将长文本划分为更小的单元。例如，可以将文本分为段落、句子或子句等层次，然后逐层输入模型进行处理。这样可以减少每个单元的长度，提高模型处理长文本的能力。</li>
+<li><strong>部分生成</strong> ：如果只需要模型生成文本的一部分，而不是整个文本，可以只输入部分文本作为上下文，然后让模型生成所需的部分。例如，输入前一部分文本，让模型生成后续的内容。</li>
+<li><strong>注意力机制</strong> ：注意力机制可以帮助模型关注输入中的重要部分，可以用于处理长文本时的上下文建模。通过引入注意力机制，模型可以更好地捕捉长文本中的关键信息。</li>
+<li><strong>模型结构优化</strong> ：通过优化模型结构和参数设置，可以提高模型处理长文本的能力。例如，可以增加模型的层数或参数量，以增加模型的表达能力。还可以使用更高效的模型架构，如Transformer等，以提高长文本的处理效率。</li>
+</ol>
+<h3 id="长度外推">长度外推</h3>
+<p><strong>大模型在训练时和预测时的输入长度不一致，导致模型的泛化能力下降的问题</strong> 。在目前的大模型中，一般指的是超出预训练设置的上下文长度时，依旧保持良好推理效果的能力。</p>
+<ol>
+<li>进制表示</li>
+</ol>
+<p>我们将整数n以一个三维向量[a,b,c]来输入，a,b,c分别是n的百位、十位、个位。这样，我们既缩小了数字的跨度，又没有缩小相邻数字的差距，代价了增加了输入的维度——刚好，神经网络擅长处理高维数据。</p>
+<p>如果想要进一步缩小数字的跨度，我们还可以进一步缩小进制的基数，如使用8进制、6进制甚至2进制，代价是进一步增加输入的维度。</p>
+<ol start="2">
+<li>直接外推</li>
+</ol>
+<p>简单来说，假如原来位置编码用三维向量表示，那外插就是直接增加一维。</p>
+<p>可以提前预留多几维，训练阶段设为0，推理阶段直接改为其他数字，这就是外推（Extrapolation）。</p>
+<p>然而，训练阶段预留的维度一直是0，如果推理阶段改为其他数字，效果不见得会好，因为模型对没被训练过的情况不一定具有适应能力。也就是说， <strong>由于某些维度的训练数据不充分，所以直接进行外推通常会导致模型的性能严重下降</strong> 。</p>
+<ol start="3">
+<li>线性插值</li>
+</ol>
+<p>就是将2000以内压缩到1000以内，比如通过除以2，1749就变成了874.5，然后转为三维向量[8,7,4.5]输入到原来的模型中。从绝对数值来看，新的[7,4,9]实际上对应的是1498，是原本对应的2倍，映射方式不一致；从相对数值来看，原本相邻数字的差距为1，现在是0.5，最后一个维度更加“拥挤”。所以，做了内插修改后，通常都需要微调训练，以便模型重新适应拥挤的映射关系。</p>
+<p>不过，内插方案也不尽完美，当处理范围进一步增大时，相邻差异则更小，并且这个相邻差异变小集中在个位数，剩下的百位、十位，还是保留了相邻差异为1。换句话说， <strong>内插方法使得不同维度的分布情况不一样，每个维度变得不对等起来，模型进一步学习难度也更大</strong> 。</p>
+<ol start="4">
+<li>进制转换</li>
+</ol>
+<p>有没有不用新增维度，又能保持相邻差距的方案呢？ <strong>进制转换</strong> ！三个数字的10进制编码可以表示0～999，如果是16进制呢？它最大可以表示163−1=4095&gt;1999。所以，只需要转到16进制，如1749变为[6,13,5]，那么三维向量就可以覆盖目标范围，代价是每个维度的数字从0～9变为0～15。</p>
+<p>这个进制转换的思想，实际上就对应着 NTK-aware scaled RoPE！</p>
+<p>长度外推需要关注的两个点：</p>
+<ol>
+<li><strong>预测时位置编码的外推</strong> ：没见过的就无法保证很好的泛化，不仅学习式位置编码如此；像正弦位置编码、RoPE也有这样的问题，它们自身虽然不用学习，但是会影响上层参数的学习；</li>
+<li><strong>预测时序列更长，导致注意力相比训练时更分散</strong> ：序列长度增大意味着attention分布的熵增大了，注意力更分散了；</li>
+</ol>
+<h2 id="大模型训练共同点">大模型训练共同点</h2>
+<p>llama2、qwen和baichuan2的论文 都提到使用RoPE位置嵌入、SwiGLU激活函数、RMSNorm方法。并且都在<strong>尽可能实现更长长度的预测</strong></p>
+<h2 id="大模型训练不同点">大模型训练不同点</h2>
+<p>数据上，qwen和baichuan2 <strong>去重上做了许多工作</strong> 。并且qwen在数据质量上做了两方面工作首先 <strong>过滤低质量语料</strong> ，其次<strong>加入高质量指令</strong>提高预训练效果。</p>
+<p>模型结构上：都在更长预测上下文长度进行提升，只是每个模型使用方式不一样。llama2使用 <strong>GQA</strong> ，Mistral 使用  <strong>Sliding Window Attention 和 Rolling Buffer Cache。</strong> qwen在 <strong>QKV注意力层中添加bias以增强模型的外推能力、NTK-aware interpolation、LogN-Scaling和window attention</strong> 。</p>
+<p>另外，baichuan2<strong>使用规范化输出嵌入lm_head和最大z损失提升模型</strong>稳定性。qwen在 <strong>核心的矩阵计算中使用FP32换取更好效果</strong> 。</p>
+<h2 id="大模型推理">大模型推理</h2>
+<ul>
+<li>Temperature：temperature参数控制生成语言模型中生成文本的随机性和创造性，调整模型的softmax输出层中预测词的概率；当temperature较高时，会更平均地分配概率给各个token，这导致生成的文本更具随机性和多样性；temperature较低接近0时，会倾向于选择概率最高的token，从而使生成的文本更加确定和集中。注：temperature=1时表示不使用此方式。</li>
+<li>top-p 是一个用于控制生成文本多样性的参数，也被称为&quot;nucleus sampling&quot;。这个参数的全名是&quot;top probability&quot;，通常用一个介于 0 到 1 之间的值来表示生成下一个token时，在概率分布中选择的最高概率的累积阈值</li>
+<li>top_k 用于在生成下一个token时，限制模型只能考虑前k个概率最高的token，这个策略可以降低模型生成无意义或重复的输出的概率，同时提高模型的生成速度和效率。</li>
+<li>repetition_penalty 的目标是在这个概率分布中对先前生成过的token，又重复的生成了该token进行惩罚（降低概率），以减少生成文本中的重复性</li>
+<li>do_sample 对模型计算出来的概率要不要进行多项式采样（从一个具有多个可能结果的离散概率分布中进行随机抽样）。首先，根据概率分布对应的概率，为每个可能结果分配一个抽样概率。这些抽样概率之和必须为1。然后，在进行一次抽样时，会根据这些抽样概率来选择一个结果。具体地，会生成一个随机数，然后根据抽样概率选择结果。抽样概率越高的结果，被选中的概率也就越大。最终，被选中的结果就是这次抽样的输出。在多项式采样中， <strong>概率高的结果更有可能被选中，但不同于确定性的选择，每个结果仍然有一定的概率被选中</strong> 。这使得模型在生成文本时具有一定的随机性，但又受到概率的控制，以便生成更加多样且符合概率分布的文本。</li>
+<li>num_beams参数是用于束搜索（beam search）算法的，其用途是控制生成的多个候选句子的数量，该参数控制的是每个生成步要保留的生成结果的数量，用于在生成过程中增加多样性或生成多个可能的结果。</li>
+<li>length_penalty 在束搜索的生成中，候选序列的得分通过对数似然估计计算得到，即得分是负对数似然。</li>
+</ul>
+<p>联合采样：先top-k，k大一点，然后top-p，最后用temperature进行归一化</p>
+<h1>ChatGLM</h1>
+<h2 id="GLM">GLM</h2>
+<h3 id="预训练">预训练</h3>
+<p><img src="https://pic4.zhimg.com/80/v2-ac217327b4061b0be369f55bd22801e3_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>GLM 将 NLU 任务制定为包含任务描述的完形填空问题，这些问题可以通过自回归生成来回答。</p>
+<h3 id="多任务预训练">多任务预训练</h3>
+<p>在前面的部分中，GLM掩蔽短跨度，并适用于NLU任务。然而，我们有兴趣预训练一个单一模型，可以处理NLU和文本生成。我们研究了一个多任务预训练设置，其中第二个目标是与空白填充目标联合优化的长文本生成任务。我们考虑以下两个目标：</p>
+<ul>
+<li>文档级别。我们随机抽样一个跨度，其长度从原始长度的50％到100％的均匀分布中抽样。该目标旨在进行长文本生成。</li>
+<li>句子级别。我们限制掩蔽跨度必须是完整的句子。我们随机抽样多个跨度（句子）以覆盖15％的原始令牌。此目标旨在进行序列到序列任务，其预测通常为完整的句子或段落。</li>
+</ul>
+<h3 id="模型架构">模型架构</h3>
+<ul>
+<li>Layer Normalization的顺序和残差连接被重新排列</li>
+<li>用于输出标记预测的单个线性层</li>
+<li>用GeLU替换Relu</li>
+</ul>
+<h3 id="2D位置编码">2D位置编码</h3>
+<p>自回归空白填充任务的挑战之一是如何对位置信息进行编码。Transformers依靠位置编码来注入令牌的绝对位置和相对位置。GLM提出了2D位置编码来应对这一挑战。具体来说，每个令牌都使用两个位置id进行编码。第一个位置id表示mask文本Xcorrupt中的位置。对于掩码跨度，它是相应[MASK]标记的位置。第二个位置id表示跨度内的位置。对于A部分中的标记，它们的第二个位置id为0。对于B部分中的标记，它们的范围从1到span的长度。通过可学习embedding将两个位置id投影到两个向量中，这两个向量都被添加到输入token embedding中。GLM的编码方法确保模型在重建它们时，不知道掩蔽跨度的长度。</p>
+<h3 id="微调GLM">微调GLM</h3>
+<p>对于分类任务：将NLU分类任务重新表述为空白填充的生成任务</p>
+<p>对于生成任务：给定的上下文构成输入的A部分，并在末尾附加一个掩码标记。该模型自回归地生成B部分的文本</p>
+<h3 id="GLM和其他预训练模型之间的差异">GLM和其他预训练模型之间的差异</h3>
+<p>与BERT比较：BERT无法捕获掩码令牌的相互依赖性。BERT的另一个缺点是它不能正确地填充多个令牌的空白。为了推断长度为l的答案的概率，BERT需要执行l个连续预测。如果长度l未知，可能需要枚举所有可能的长度，因为BERT需要根据长度更改[MASK]令牌的数量。</p>
+<p>与XLNet比较：GLM和XLNet都是用自回归目标预训练的，但它们之间有两个不同之处。首先，XLNet使用mask前的原始位置编码。在推理过程中，需要知道或枚举答案的长度，这与BERT的问题相同。其次，为了避免Transformer内部的信息泄漏，XLNet使用two-stream自注意机制，而不是right-shift。这使得预训练的时间成本翻倍。</p>
+<p>与T5比较：T5提出了一个类似的空白填充目标来预训练编码器-解码器Transformer。T5对编码器和解码器使用独立的位置编码，并依赖于多个 sentinel tokens来区分掩码跨度。在下游任务中，只使用一个 sentinel tokens，导致模型容量的浪费和预训练和微调之间的不一致。此外，T5总是按照从左到右的固定顺序预测跨度。因此，在参数和数据更少的情况下，GLM在NLU和seq2seq任务上的性能明显优于T5。</p>
+<p>与UniLM比较：UniLM通过改变双向、单向和交叉注意之间的注意掩码，将不同的预训练目标组合在自动编码框架下。然而，UniLM总是用[MASK]令牌替换掩码跨度，这限制了它建模掩码跨度与其上下文之间依赖关系的能力。GLM输入前一个令牌并自回归生成下一个令牌。对下游生成任务的UniLM进行微调也依赖于掩码语言建模，效率较低。UniLMv2 (Bao等人，2020)对生成任务采用部分自回归建模，同时对NLU任务采用自编码目标。相反，GLM将NLU和生成任务与自回归预训练相结合。</p>
+<h2 id="ChatGLM">ChatGLM</h2>
+<p>ChatGLM 参考了 ChatGPT 的设计思路，在千亿基座模型 GLM-130B 中注入了代码预训练，通过有监督微调（Supervised Fine-Tuning）等技术实现人类意图对齐。ChatGLM 当前版本模型的能力提升主要来源于独特的千亿基座模型 GLM-130B。</p>
+<ul>
+<li>ChatGLM采用的是编码器-解码器架构，ChatGPT采用的是仅解码器架构</li>
+<li>ChatGLM是基于 Base 模型进行有监督微调（SFT）训练而来。而ChatGPT是基于人工反馈的强化学习（RLHF）训练而来</li>
+<li>ChatGLM 模型参数量仅62亿，而ChatGPT无论是GPT3.5还是GPT4都是上千亿级规模的参数量</li>
+</ul>
+<p><strong>具体来说，ChatGLM-6B 有如下特点：</strong></p>
+<ul>
+<li><strong>充分的中英双语预训练</strong> ： ChatGLM-6B 在 1:1 比例的中英语料上训练了 1T 的 token 量，兼具双语能力。</li>
+<li><strong>优化的模型架构和大小</strong> ： 吸取 GLM-130B 训练经验，修正了二维 RoPE 位置编码实现，使用传统FFN结构。6B（62亿）的参数大小，也使得研究者和个人开发者自己微调和部署 ChatGLM-6B 成为可能。</li>
+<li><strong>较低的部署门槛</strong> ： FP16 半精度下，ChatGLM-6B 需要至少 13GB 的显存进行推理，结合模型量化技术，这一需求可以进一步降低到 10GB（INT8） 和 6GB（INT4）， 使得 ChatGLM-6B 可以部署在消费级显卡上。</li>
+<li><strong>更长的序列长度</strong> ： 相比 GLM-10B（序列长度1024），ChatGLM-6B 序列长度达 2048，支持更长对话和应用。</li>
+<li><strong>人类意图对齐训练</strong> ： 使用了监督微调（Supervised Fine-Tuning）、反馈自助（Feedback Bootstrap）、人类反馈强化学习（Reinforcement Learning from Human Feedback） 等方式，使模型初具理解人类指令意图的能力。输出格式为 markdown，方便展示。</li>
+</ul>
+<p>因此，ChatGLM-6B 具备了一定条件下较好的对话与问答能力。当然，ChatGLM-6B 也有相当多已知的局限和不足：</p>
+<ul>
+<li><strong>模型容量较小</strong> ： 6B 的小容量，决定了其相对较弱的模型记忆和语言能力。在面对许多事实性知识任务时，ChatGLM-6B 可能会生成不正确的信息；她也不擅长逻辑类问题（如数学、编程）的解答。</li>
+<li><strong>可能会产生有害说明或有偏见的内容</strong> ：ChatGLM-6B 只是一个初步与人类意图对齐的语言模型，可能会生成有害、有偏见的内容。</li>
+<li><strong>较弱的多轮对话能力</strong> ：ChatGLM-6B 的上下文理解能力还不够充分，在面对长答案生成，以及多轮对话的场景时，可能会出现上下文丢失和理解错误的情况。</li>
+<li><strong>英文能力不足</strong> ：训练时使用的指示大部分都是中文的，只有一小部分指示是英文的。因此在使用英文指示时，回复的质量可能不如中文指示的回复，甚至与中文指示下的回复矛盾。</li>
+<li><strong>易被误导</strong> ：ChatGLM-6B 的“自我认知”可能存在问题，很容易被误导并产生错误的言论。例如当前版本模型在被误导的情况下，会在自我认知上发生偏差。即使该模型经过了1万亿标识符（token）左右的双语预训练，并且进行了指令微调和人类反馈强化学习（RLHF），但是因为模型容量较小，所以在某些指示下可能会产生有误导性的内容。</li>
+</ul>
+<h1>微调方法</h1>
+<p>Freeze方法</p>
+<p>Freeze方法，即参数冻结，对原始模型部分参数进行冻结操作，仅训练部分参数。</p>
+<p>大模型的Prompt构造方式严重影响下游任务的效果。比如：GPT-3采用人工构造的模版来做上下文学习（in context learning），但人工设计的模版的变化特别敏感，加一个词或者少一个词，或者变动位置都会造成比较大的变化。</p>
+<h2 id="Prefix-Tuning">Prefix-Tuning</h2>
+<p>Prefix Tuning，在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而PLM中的其他部分参数固定。</p>
+<p><img src="https://course.openi.org.cn/api/attachments/5797367?type=image/png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>针对不同的模型结构，需要构造不同的Prefix。</p>
+<ul>
+<li>针对自回归架构模型：在句子前面添加前缀，得到 <code>z = [PREFIX; x; y]</code>，合适的上文能够在固定 LM 的情况下去引导生成下文（比如：GPT3的上下文学习）。</li>
+<li>针对编码器-解码器架构模型：Encoder和Decoder都增加了前缀，得到 <code>z = [PREFIX; x; PREFIX0; y]</code>。Encoder端增加前缀是为了引导输入部分的编码，Decoder 端增加前缀是为了引导后续token的生成。</li>
+</ul>
+<p>为了防止直接更新Prefix的参数导致训练不稳定和性能下降的情况，在Prefix层前面加了MLP结构，训练完成后，只保留Prefix的参数。除此之外，通过消融实验证实，只调整embedding层的表现力不够，将导致性能显著下降，因此，在每层都加了prompt的参数。</p>
+<h2 id="Prompt-Tuning">Prompt-Tuning</h2>
+<p>Prompt Tuning方法可以看作是Prefix Tuning的简化版本，它给每个任务定义了自己的Prompt，然后拼接到数据上作为输入，但 <strong>只在输入层加入prompt tokens</strong> ，并且不需要加入 MLP 进行调整来解决难训练的问题。</p>
+<p>与输出相关的tokens组成的上下文信息即可理解为是一个prompt。Prompt通常是一种短文本字符串，用于指导语言模型生成响应。Prompt提供上下文和任务相关信息，以帮助模型更好地理解要求，并生成正确的输出。例如，在问答任务中，prompt可能包含问题或话题的描述，以帮助模型生成正确的答案。Prompt通常是人类设计的，以帮助模型更好地理解特定任务或领域。</p>
+<p>简单总结就是说Prompt就是利用语言模型的生成能力帮我们完成任务。而Prompt-tuning的目的就是设计更加精巧的prompt，然后让模型输出我们想要的内容。</p>
+<p>以句子的情感分类为例，基于prompt方式让模型做情感分类任务的做法通常是在句子前面加入前缀“该句子的情感是”即可。本质上BERT这样的模型是一种生成模型，是无法完成特定任务的。它只是一个提取文本特征的通用模型。当你在句子前加入“该句子的情感是”这样的前缀，你实际上是将情感分类任务转换为一个“填空”任务。这是因为，在训练过程中，BERT可以学习到这个前缀与句子情感之间的关联。例如，它可以学习到“该句子的情感是积极的”和“该句子的情感是消极的”之间的差异。</p>
+<h2 id="P-Tuning">P-Tuning</h2>
+<p>主要针对NLU任务</p>
+<p>P-tuning v1 微调方法是将 Prompt 加入到微调过程中， <strong>只对 Prompt 部分的参数进行训练，而语言模型的参数固定不变</strong> 。</p>
+<p><img src="https://course.openi.org.cn/api/attachments/5797368?type=image/png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>P-Tuning方法将Prompt转换为可以学习的Embedding层，并用MLP+LSTM的方式来对Prompt Embedding进行一层处理。相比Prefix Tuning，P-Tuning加入的可微的virtual token，但仅限于输入层，没有在每一层都加；另外，virtual token的位置也不一定是前缀，插入的位置是可选的。这里的出发点实际是把传统人工设计模版中的真实token替换成可微的virtual token。</p>
+<h3 id="V2">V2</h3>
+<p>之前的Prompt Tuning和P-Tuning等方法存在两个主要的问题：</p>
+<p>第一，缺乏模型参数规模和任务通用性。</p>
+<ul>
+<li>缺乏规模通用性：Prompt Tuning论文中表明当模型规模超过100亿个参数时，提示优化可以与全量微调相媲美。但是对于那些较小的模型（从100M到1B），提示优化和全量微调的表现有很大差异，这大大限制了提示优化的适用性。</li>
+<li>缺乏任务普遍性：尽管Prompt Tuning和P-tuning在一些 NLU 基准测试中表现出优势，但提示调优对硬序列标记任务（即序列标注）的有效性尚未得到验证。</li>
+</ul>
+<p>第二，缺少深度提示优化，在Prompt Tuning和P-tuning中，连续提示只被插入transformer第一层的输入embedding序列中，在接下来的transformer层中，插入连续提示的位置的embedding是由之前的transformer层计算出来的，这可能导致两个可能的优化挑战。</p>
+<ul>
+<li>由于序列长度的限制，可调参数的数量是有限的。</li>
+<li>输入embedding对模型预测只有相对间接的影响。</li>
+</ul>
+<p>P-tuning v2 微调方法是 P-tuning v1 微调方法的改进版，同时借鉴了 prefix-tuning 微调的方法。如下图所示：</p>
+<p><img src="https://course.openi.org.cn/api/attachments/5797369?type=image/png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>与 P-tuning v1 微调方法相比，P-tuning v2 微调方法采用了 prefix-tuning 的做法，在输入前面的每一层都加入可微调的参数。在 prefix 部分，每一层的 transformer 的 embedding 输入都需要被微调，而 P-tuning v1 只在第一层进行微调。同时，对于 prefix 部分，每一层 transformer 的输入不是从上一层输出，而是随机初始化的 embedding 作为输入。</p>
+<p>P-Tuning v2方法在每一层都加入了Prompts tokens作为输入，而不是仅仅加在输入层，这带来两个方面的好处：</p>
+<ul>
+<li>更多可学习的参数（从P-tuning和Prompt Tuning的0.01%增加到0.1%-3%），同时也足够参数高效。</li>
+<li>加入到更深层结构中的Prompt能给模型预测带来更直接的影响。</li>
+</ul>
+<p><strong>和prefix tuning的区别在于P-Tuning V2每一层的prompt是独立的，并不是由上一层计算得来</strong></p>
+<p>具体做法基本同Prefix Tuning，可以看作是将文本生成的Prefix Tuning技术适配到NLU任务中，然后做了一些改进：</p>
+<ul>
+<li><strong>移除重参数化的编码器</strong> 。以前的方法利用重参数化功能来提高训练速度和鲁棒性（如：Prefix Tuning中的MLP、P-Tuning中的LSTM））。在 P-tuning v2 中，作者发现重参数化的改进很小，尤其是对于较小的模型，同时还会影响模型的表现。</li>
+<li><strong>针对不同任务采用不同的提示长度</strong> 。提示长度在提示优化方法的超参数搜索中起着核心作用。在实验中，我们发现不同的理解任务通常用不同的提示长度来实现其最佳性能，这与Prefix-Tuning中的发现一致，不同的文本生成任务可能有不同的最佳提示长度。</li>
+<li><strong>引入多任务学习</strong> 。先在多任务的Prompt上进行预训练，然后再适配下游任务。多任务学习对我们的方法来说是可选的，但可能是相当有帮助的。一方面，连续提示的随机惯性给优化带来了困难，这可以通过更多的训练数据或与任务相关的无监督预训练来缓解；另一方面，连续提示是跨任务和数据集的特定任务知识的完美载体。我们的实验表明，在一些困难的序列任务中，多任务学习可以作为P-tuning v2的有益补充。</li>
+<li><strong>回归传统的分类标签范式，而不是映射器</strong> 。标签词映射器（Label Word Verbalizer）一直是提示优化的核心组成部分，它将one-hot类标签变成有意义的词，以利用预训练语言模型头。尽管它在few-shot设置中具有潜在的必要性，但在全数据监督设置中，Verbalizer并不是必须的。它阻碍了提示调优在我们需要无实际意义的标签和句子嵌入的场景中的应用。因此，P-Tuning v2回归传统的CLS标签分类范式，采用随机初始化的分类头（Classification Head）应用于tokens之上，以增强通用性，可以适配到序列标注任务。</li>
+</ul>
+<h2 id="Lora方法">Lora方法</h2>
+<p>LoRA（Low-Rank Adaptation of Large Language Models），直译为 <strong>大语言模型的低阶自适应</strong> 。LoRA 的基本原理 <strong>是冻结预训练好的模型权重参数，在冻结原模型参数的情况下，通过往模型中加入额外的网络层，并只训练这些新增的网络层参数</strong> 。由于这些新增参数数量较少，这样不仅 finetune 的成本显著下降，还能获得和全模型参数参与微调类似的效果。</p>
+<p>Lora方法的核心是在大型语言模型上对指定参数增加额外的低秩矩阵，也就是在原始PLM旁边增加一个旁路，做一个降维再升维的操作。并在模型训练过程中，固定PLM的参数，只训练降维矩阵A与升维矩阵B。</p>
+<p>原始论文加到Q和V上效果最好。</p>
+<p>先降维再升维，两个低秩矩阵A和B，一个高斯初始化，一个零初始化，目的是最开始的时候不会给模型带来噪声</p>
+<p><img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为秩，<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是调节学习率用的，<img src="https://math.now.sh?inline=h%3DWx%2B%5Cfrac%7B%5Calpha%7D%7Br%7DBAx" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>当我们第一次做实验时，我们会尽量把<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>调得大些，例如32、64，并假设在这个秩下，低秩权重已经好了，因此这时我们设置<img src="https://math.now.sh?inline=%5Calpha%3Dr" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，意味着我们假定LoRA低秩微调的效果和全参数微调持平。</p>
+<p>那么接下来，我们肯定就要往小的<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行尝试了。这时我们把<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>固定住，意味着随着<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的减小，<img src="https://math.now.sh?inline=%5Cfrac%7B%5Calpha%7D%7Br%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>会越来越大，我们这样做的原因是：</p>
+<ul>
+<li><strong>当<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>越小时，低秩矩阵表示的信息精炼，但不全面。我们通过调大<img src="https://math.now.sh?inline=%5Cfrac%7B%5Calpha%7D%7Br%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，来放大forward过程中新知识对模型的影响。</strong></li>
+<li><strong>当<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>越小时，低秩矩阵表示的信息精炼，噪声/冗余信息少，此时梯度下降的方向也更加确信，所以我们可以通过调大<img src="https://math.now.sh?inline=%5Cfrac%7B%5Calpha%7D%7Br%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，适当增加梯度下降的步伐，也就相当于调整learning rate了</strong></li>
+</ul>
+<h3 id="AdaLora">AdaLora</h3>
+<p>在使用LoRA微调时，对模型的不同模块使用相同的秩，显然是不合理的</p>
+<p>LoRA微调过程中一直保持秩不变也是不合理的</p>
+<p>AdaLoRA的总体改进目标：找到一种办法，让模型在微调过程中，去学习每个模块参数对训练结果（以loss衡量）的重要性。然后，根据重要性，动态地调整不同模块的秩。</p>
+<p>LoRA是学习两个矩阵A和B，用来近似SVD分解的结果，而AdaLoRA是<strong>让模型去学习三个权重矩阵<img src="https://math.now.sh?inline=P%5CLambda%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></strong>，直接近似真实的SVD分解结果</p>
+<p><img src="https://pic3.zhimg.com/80/v2-d1c8c18c6e14fc320c9da6bd476e898a_1440w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol>
+<li>首先，我们初始化三个矩阵<img src="https://math.now.sh?inline=P%5CLambda%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。其中，<img src="https://math.now.sh?inline=%5CLambda" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>矩阵比较特殊，其大部分元素为0，只有对角线上的<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个元素有值。所以实操中我们可将其视为长度为<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的向量，初始化时，我们将<img src="https://math.now.sh?inline=%5CLambda" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>初始化为0，<img src="https://math.now.sh?inline=P%2CQ" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>初始化为高斯随机矩阵 。这样做的目的和LoRA一样，都是为了避免引入噪声。</li>
+<li><strong>正常做forward和backward，得到Loss和参数的梯度</strong>。</li>
+<li><strong>根据Loss和参数梯度</strong> ，我们可以对图中所示的每个三元组<strong>计算重要性分数</strong></li>
+<li><strong>根据计算出来的重要性分数，我们将不重要的三元组挑选出来</strong>。</li>
+<li><strong>对于不重要的三元组，我们将其<img src="https://math.now.sh?inline=%5Csigma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>值置0</strong> 。这样，在下一次做forward时，这个三元组里对应的<img src="https://math.now.sh?inline=P" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>向量和<img src="https://math.now.sh?inline=Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>向量<strong>相当于</strong>被mask掉了，对Loss没有贡献。也就起到了<strong>变秩</strong>的效果。</li>
+<li>使用（2）中计算出来的梯度，更新<img src="https://math.now.sh?inline=P" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的参数。</li>
+<li>使用更新完毕的<img src="https://math.now.sh?inline=P%5CLambda%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，开启新一轮forward和backward，重复上面步骤，随时动态更新参数的秩。</li>
+</ol>
+<p>LoRA中是让模型学习BA，去近似SVD分解的结果，但是在训练过程中，没有引入任何SVD分解相关的性质做约束，所以模型就可能学歪了（因此LoRA作者在文章中写了很多实验，证明学出来的BA在一定程度上能近似SVD分解，能取得较好的效果）。而AdaLoRA则是直接将这一束缚考虑到了Loss中。</p>
+<h3 id="主要优势">主要优势</h3>
+<ol>
+<li>预训练模型参数可以被共享，用于为不同的任务构建许多小的 LoRA 模块。冻结共享模型，并通过替换矩阵 A 和 B 可以有效地切换任务，从而显著降低存储需求和多个任务切换的成本。</li>
+<li>当使用自适应优化器时，由于不需要计算梯度以及保存太多模型参数，LoRA 使得微调效果更好，并将微调的硬件门槛降低了 3 倍。</li>
+<li>低秩分解采用线性设计的方式使得在部署时能够将可训练的参数矩阵与冻结的参数矩阵合并，与完全微调的方法相比，不引入推理延迟。</li>
+<li>LoRA 与其它多种微调方法不冲突，可以与其它微调方法相结合。</li>
+</ol>
+<h2 id="Adapter-Tuning">Adapter Tuning</h2>
+<p>Adapter Tuning <strong>设计了Adapter结构</strong> ，并将其嵌入Transformer的结构里面， <strong>针对每一个Transformer层，增加了两个Adapter结构(分别是多头注意力的投影之后和第二个feed-forward层之后) <strong>，</strong> 在训练时，固定住原来预训练模型的参数不变，只对新增的 Adapter 结构和 Layer Norm 层进行微调，从而保证了训练的高效性</strong> 。</p>
+<p>每当出现新的下游任务，通过添加Adapter模块来产生一个易于扩展的下游模型，从而避免全量微调与灾难性遗忘的问题。</p>
+<p><img src="https://dongnian.icu/llm_interview_note/05.%E6%9C%89%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83/3.adapter-tuning/image/image_h7IGbTA3iH.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>其他ChatGPT</h1>
+<p>ChatGPT 模型上基本上和之前 GPT-3 都没有太大变化，主要变化的是<strong>训练策略</strong>变了，用上了强化学习</p>
+<p>监督调优模型</p>
+<p>收集演示数据，用监督学习去训练生成规则（把一些问题写出答案，把问题和答案都丢给GPT去训练，这个是有监督的训练，已经有答案了，让AI一葫芦画瓢，这种方法可以引导AI往人类所期望的方向去做答）</p>
+<p>但是，我们不可能人工穷举出所有可能的问题和答案，这个显然是不现实的，所以OpenAI只是提供了可能几万个这种有答案的数据，主要是为了让它在这个基础上进行泛化，然后提供一个方向上的引导，就是告诉模型，你就往这个方向上去答。</p>
+<p>训练回报模型</p>
+<p>让简化版的GPT监督训练之后变得更强，通过人工标注所有输出的优劣势</p>
+<p>先让ChatGPT输出很多个答案，然后基于它所生成的答案给他排序，我们只需要人工标注哪个答案是最好的，所以OpenAI做了大量的这种标注，</p>
+<p>使用 PPO 模型微调 SFT 模型</p>
+<p>通过PPO强化学习算法，实现模型的自我优化，强化学习就是让AI在不断的试错过程中自我调整优化策略，然后最大化预期的长期奖励，简单来说，就是让AI自己去不断尝试，前两步学习的模型在强化学习这一步都能派上用场。</p>
+<p>首先用监督版学习的ChatGPT来初始化PPO模型，让Reward模型去指导它，去给回答一个评分，然后AI就基于这个评分去调整自己的参数，试图在下一个回答中得到更高的分数，不断的重复这个过程，这个幼儿版的ChatGPT就成熟起来了，能够自我更新了。</p>
+<h1>T5和Bart</h1>
+<p>T5（Text-to-Text Transfer Transformer）和Bart（Bidirectional and Auto-Regressive Transformer）是两个常见的预训练模型，它们之间的区别如下：</p>
+<p>T5是一种基于Transformer的通用文本生成模型。T5的训练目标是将不同的自然语言处理（NLP）任务统一为文本到文本的转换任务。它采用了编码器-解码器结构，通过输入一个自然语言文本，输出另一个相关的自然语言文本，可以应用于机器翻译、摘要生成、问题回答等多个NLP任务。</p>
+<h2 id="Span-Masking">Span Masking</h2>
+<p>给定一系列的tokens , 我们迭代式的从中选择出tokens的子集 , 直到我们达到masking budget（例如，15%）。在每一次迭代中，我们首先从一个几何分布中采样出一个span length 。然后从中均匀地采样出一个starting point，作为该masked span的第一个token。</p>
+<p>与BERT保持一致的是，本文作者在SpanBERT中也同样会将15%的tokens给mask了，其中80%的用[MASK]来进行代替，10%的用random tokens，另外10%的就使用它本身的tokens。但是，对于同一个masked span来说，它们所做的替换操作是一样的（即，要么全用[MASK]来代替，要么全用sampled tokens来进行代替）。</p>
+<ul>
+<li>Transformer Encoder-Decoder 模型；</li>
+<li>BERT-style 式的破坏方法；</li>
+<li>Replace Span 的破坏策略；</li>
+<li>15 %的破坏比；</li>
+<li>3 的破坏时小段长度。</li>
+</ul>
+<p>Bart是建立在T5模型基础上的一个变种，它专注于生成式任务。Bart模型使用了自回归解码器，通过训练一个自编码器来重构原始文本，同时采用了标准的语言模型预训练目标，从而使得生成的文本更加流畅和连贯。Bart的主要应用领域包括文本生成、摘要生成、对话系统等。</p>
+<p>在任务类型上，T5更加通用，适用于多种NLP任务的文本转换，而Bart则更加专注于生成式任务，并且在生成文本的质量和连贯性上有所优化。</p>
+<p>关于Bart的DAE（Denoising AutoEncoder）任务，它是Bart模型的一种预训练目标。DAE任务要求模型从输入的有噪声的文本中恢复原始的无噪声文本。通过在训练过程中向输入文本中添加噪声，并要求模型重建无噪声的文本，Bart可以学习到更好的文本表示和重构能力，从而提高生成文本的质量和准确性。</p>
+<p>BART的预训练任务是 <strong>将带噪声的输入还原</strong> 。如下图所示，输入为ABCDE，在AB中插入一个span长度为0的mask，再将CD替换为mask，最终得到加噪输入的A_B_E。模型的目标是将其还原为ABCDE。</p>
+<p>BART最终使用Text Infilling + Sentence permutation，其中Text Infilling起到了最主要的作用，其实就是Span级别的mask，只不过这里允许span长度为0，span的长度服从泊松分布，lambda = 3，总共mask30%的字符。Sentence permutation提升不大，之所以使用是作者假设模型规模提升后这个任务会有用。</p>
+<ul>
+<li><strong>Token Masking</strong> : 就是BERT的方法----随机将token替换成[MASK]</li>
+<li><strong>Token Deletion</strong> : 随机删去token</li>
+<li><strong>Text Infilling</strong> : 随机将一段连续的token（称作span）替换成一个[MASK]，span的长度服从3 的泊松分布。注意span长度为0就相当于插入一个[MASK]。</li>
+<li><strong>Sentence Permutation</strong> : 将一个document的句子打乱</li>
+<li><strong>Document Rotation</strong> : 从document序列中随机选择一个token，然后使得该token作为document的开头</li>
+</ul>
+<h1>PALM</h1>
+<p>模型使用的是标准的Transformer结构中的Decoder</p>
+<p>PaLM做了以下修改：</p>
+<ul>
+<li>使用了SwiGLU激活函数</li>
+<li>将Decoder的公式并行化</li>
+<li>K、V是共享的，并且维度变成[1,h]。Q任然是[k, h]。这样做可以减少自回归解码的时间，同时对模型性能不会有太大的影响。这是因为标准multi-headed attention，在解码的过程中对硬件加速的效率利用率比较低，因为K,V不共享，每次输出只能输出一个token。</li>
+<li>RoPE旋转位置编码对于长文本具有更好的性能</li>
+<li>共享输入&amp;输出Embedding矩阵</li>
+<li>在mlp、normlayer等算法中，都不使用bias。对于大模型，可以提高训练稳定性。</li>
+<li>使用SentencePiece进行tokenization</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LLM面试题准备</div>
+      <div>https://zhangzhao219.github.io/2023/07/29/Interview/Interview-Questions-LLM/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1219 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go 高质量编程与性能调优">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 高质量编程与性能调优">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/19/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day04/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go 高质量编程与性能调优">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/551a67231c244f4aad77cbaabc10e2cf~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b91cd175657042f5ab0430cbc8784172~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="article:published_time" content="2023-01-19T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/551a67231c244f4aad77cbaabc10e2cf~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+  
+  
+  
+  <title>Go 高质量编程与性能调优 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go 高质量编程与性能调优</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-19 10:00" pubdate>
+          2023年1月19日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go 高质量编程与性能调优</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go 高质量编程与性能调优</p>
+<span id="more"></span>
+<h1>Go 高质量编程与性能调优</h1>
+<h2 id="课程概述">课程概述</h2>
+<ul>
+<li>介绍编码规范，帮助大家写出高质量程序</li>
+<li>介绍 Go 语言的性能优化建议，分析对比不同方式对性能的影响和背后的原理</li>
+<li>讲解常用性能分析工具 pprof 的使用和工作原理，熟悉排查程序性能问题的基本流程</li>
+<li>分析性能调优实际案例，介绍实际性能调优时的工作内容</li>
+</ul>
+<h2 id="课前">课前</h2>
+<ul>
+<li>课程内容概要</li>
+</ul>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/551a67231c244f4aad77cbaabc10e2cf~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="实践准备-必须">实践准备 (必须)</h3>
+<ul>
+<li>克隆 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fwolfogre%2Fgo-pprof-practice" title="https://github.com/wolfogre/go-pprof-practice">github.com/wolfogre/go…</a> 到本地，保证能够编译运行</li>
+<li>尝试使用 test 命令，编写并运行简单测试 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgo.dev%2Fdoc%2Ftutorial%2Fadd-a-test" title="https://go.dev/doc/tutorial/add-a-test">go.dev/doc/tutoria…</a></li>
+<li>尝试使用 -bench 参数，对编写的函数进行性能测试，<a href="https://link.juejin.cn?target=https%3A%2F%2Fpkg.go.dev%2Ftesting%23hdr-Benchmarks" title="https://pkg.go.dev/testing#hdr-Benchmarks">pkg.go.dev/testing#hdr…</a></li>
+</ul>
+<h3 id="推荐阅读">推荐阅读</h3>
+<ul>
+<li>Go 代码 Review 建议<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fwiki%2FCodeReviewComments" title="https://github.com/golang/go/wiki/CodeReviewComments">github.com/golang/go/w…</a></li>
+<li>Uber 的 Go 编码规范，<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fuber-go%2Fguide" title="https://github.com/uber-go/guide">github.com/uber-go/gui…</a></li>
+</ul>
+<h2 id="课程笔记">课程笔记</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/course/bytetech/7140987981803814919/section/7142746789941084197">https://juejin.cn/course/bytetech/7140987981803814919/section/7142746789941084197</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/course/bytetech/7140987981803814919/section/7142746472319025182">https://juejin.cn/course/bytetech/7140987981803814919/section/7142746472319025182</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/course/bytetech/7140987981803814919/section/7142747721789603848">https://juejin.cn/course/bytetech/7140987981803814919/section/7142747721789603848</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/course/bytetech/7140987981803814919/section/7142747721793798158">https://juejin.cn/course/bytetech/7140987981803814919/section/7142747721793798158</a></li>
+</ul>
+<h3 id="高质量编程">高质量编程</h3>
+<h4 id="简介">简介</h4>
+<ul>
+<li>编写的代码能够达到正确可靠、简洁清晰、无性能隐患的目标就能称之为高质量代码</li>
+<li>实际应用场景千变万化，各种语言的特性和语法各不相同，但是高质量编程遵循的原则是相通的</li>
+<li>高质量的编程需要注意以下原则：简单性、可读性、生产力</li>
+</ul>
+<h4 id="常见编码规范">常见编码规范</h4>
+<h5 id="代码格式">代码格式</h5>
+<ul>
+<li>使用 gofmt 自动格式化代码，保证所有的 Go 代码与官方推荐格式保持一致</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>提升可读性，风格一致的代码更容易维护、需要更少的学习成本、团队合作成本，同时可以降低 Review 成本</li>
+</ul>
+<h5 id="注释">注释</h5>
+<ul>
+<li>
+<p>注释应该解释代码作用</p>
+<ul>
+<li>适合注释公共符号，<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fos%2Ffile.go%23L313" title="https://github.com/golang/go/blob/master/src/os/file.go#L313">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+<li>
+<p>注释应该解释代码如何做的</p>
+<ul>
+<li>适合注释方法，<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fnet%2Fhttp%2Fclient.go%23L678" title="https://github.com/golang/go/blob/master/src/net/http/client.go#L678">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+<li>
+<p>注释应该解释代码实现的原因</p>
+<ul>
+<li>解释代码的外部因素，<a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fnet%2Fhttp%2Fclient.go%23L521" title="https://github.com/golang/go/blob/master/src/net/http/client.go#L521">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+<li>
+<p>注释应该解释代码什么情况会出错</p>
+</li>
+<li>
+<p>公共符号始终要注释</p>
+<ul>
+<li>包中声明的每个公共的符号：变量、常量、函数以及结构都需要添加注释</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fio%2Fio.go%23L638" title="https://github.com/golang/go/blob/master/src/io/io.go#L638">github.com/golang/go/b…</a></li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fio%2Fio.go%23L455" title="https://github.com/golang/go/blob/master/src/io/io.go#L455">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>代码是最好的注释</li>
+<li>注释应该提供代码未表达出的上下文信息</li>
+</ul>
+<h5 id="命名规范">命名规范</h5>
+<ul>
+<li>
+<p>variable</p>
+<ul>
+<li>简洁胜于冗长</li>
+<li>缩略词全大写，但当其位于变量开头且不需要导出时，使用全小写</li>
+<li>变量距离其被使用的地方越远，则需要携带越多的上下文信息</li>
+<li>全局变量在其名字中需要更多的上下文信息，使得在不同地方可以轻易辨认出其含义</li>
+</ul>
+</li>
+<li>
+<p>function</p>
+<ul>
+<li>函数名不携带包名的上下文信息，因为包名和函数名总是成对出现的</li>
+<li>函数名尽量简短</li>
+<li>当名为 foo 的包某个函数返回类型 Foo 时，可以省略类型信息而不导致歧义</li>
+<li>当名为 foo 的包某个函数返回类型 T 时（T 并不是 Foo），可以在函数名中加入类型信息</li>
+</ul>
+</li>
+<li>
+<p>package</p>
+<ul>
+<li>只由小写字母组成。不包含大写字母和下划线等字符</li>
+<li>简短并包含一定的上下文信息。例如 schema、task 等</li>
+<li>不要与标准库同名。例如不要使用 sync 或者 strings</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>关于命名的大多数规范核心在于考虑上下文</li>
+<li>人们在阅读理解代码的时候也可以看成是计算机运行程序，好的命名能让人把关注点留在主流程上，清晰地理解程序的功能，避免频繁切换到分支细节，增加理解成本</li>
+</ul>
+<h5 id="控制流程">控制流程</h5>
+<ul>
+<li>
+<p>避免嵌套，保持正常流程清晰</p>
+</li>
+<li>
+<p>如果两个分支中都包含 return 语句，则可以去除冗余的 else</p>
+</li>
+<li>
+<p>尽量保持正常代码路径为最小缩进，优先处理错误情况/特殊情况，并尽早返回或继续循环来减少嵌套，增加可读性</p>
+<ul>
+<li>Go 公共库的代码</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fbufio%2Fbufio.go%23L277" title="https://github.com/golang/go/blob/master/src/bufio/bufio.go#L277">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>线性原理，处理逻辑尽量走直线，避免复杂的嵌套分支</li>
+<li>提高代码的可读性</li>
+</ul>
+<h5 id="错误和异常处理">错误和异常处理</h5>
+<ul>
+<li>
+<p>简单错误处理</p>
+<ul>
+<li>优先使用 errors.New 来创建匿名变量来直接表示该错误。有格式化需求时使用 fmt.Errorf</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fnet%2Fhttp%2Fclient.go%23L802" title="https://github.com/golang/go/blob/master/src/net/http/client.go#L802">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+<li>
+<p>错误的 Wrap 和 Unwrap</p>
+<ul>
+<li>在 fmt.Errorf 中使用 %w 关键字来将一个错误 wrap 至其错误链中</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fcmd%2Fgo%2Finternal%2Fwork%2Fexec.go%23L983" title="https://github.com/golang/go/blob/master/src/cmd/go/internal/work/exec.go#L983">github.com/golang/go/b…</a></li>
+<li>Go1.13 在 errors 中新增了三个新 API 和一个新的 format 关键字，分别是 <a target="_blank" rel="noopener" href="http://errors.Is">errors.Is</a>、<a target="_blank" rel="noopener" href="http://errors.As">errors.As</a> 、errors.Unwrap 以及 fmt.Errorf 的 %w。如果项目运行在小于 Go1.13 的版本中，导入 <a target="_blank" rel="noopener" href="http://golang.org/x/xerrors">golang.org/x/xerrors</a> 来使用。以下语法均已 Go1.13 作为标准。</li>
+</ul>
+</li>
+<li>
+<p>错误判定</p>
+<ul>
+<li>使用 <a target="_blank" rel="noopener" href="http://errors.Is">errors.Is</a> 可以判定错误链上的所有错误是否含有特定的错误。</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Fcmd%2Fgo%2Finternal%2Fmodfetch%2Fsumdb.go%23L208" title="https://github.com/golang/go/blob/master/src/cmd/go/internal/modfetch/sumdb.go#L208">github.com/golang/go/b…</a></li>
+<li>在错误链上获取特定种类的错误，使用 <a target="_blank" rel="noopener" href="http://errors.As">errors.As</a></li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Ferrors%2Fwrap_test.go%23L255" title="https://github.com/golang/go/blob/master/src/errors/wrap_test.go#L255">github.com/golang/go/b…</a></li>
+</ul>
+</li>
+<li>
+<p>panic</p>
+<ul>
+<li>不建议在业务代码中使用 panic</li>
+<li>如果当前 goroutine 中所有 deferred 函数都不包含 recover 就会造成整个程序崩溃</li>
+<li>当程序启动阶段发生不可逆转的错误时，可以在 init 或 main 函数中使用 panic</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FShopify%2Fsarama%2Fblob%2Fmain%2Fexamples%2Fconsumergroup%2Fmain.go%23L94" title="https://github.com/Shopify/sarama/blob/main/examples/consumergroup/main.go#L94">github.com/Shopify/sar…</a></li>
+</ul>
+</li>
+<li>
+<p>recover</p>
+<ul>
+<li>recover 只能在被 defer 的函数中使用，嵌套无法生效，只在当前 goroutine 生效</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Fblob%2Fmaster%2Fsrc%2Ffmt%2Fscan.go%23L247" title="https://github.com/golang/go/blob/master/src/fmt/scan.go#L247">github.com/golang/go/b…</a></li>
+<li>如果需要更多的上下文信息，可以 recover 后在 log 中记录当前的调用栈。</li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fwebsite%2Fblob%2Fmaster%2Finternal%2Fgitfs%2Ffs.go%23L228" title="https://github.com/golang/website/blob/master/internal/gitfs/fs.go#L228">github.com/golang/webs…</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li>panic 用于真正异常的情况</li>
+<li>error 尽可能提供简明的上下文信息，方便定位问题</li>
+<li>recover 生效范围，在当前 goroutine 的被 defer 的函数中生效</li>
+</ul>
+<h4 id="性能优化建议">性能优化建议</h4>
+<ul>
+<li>
+<p>在满足正确性、可靠性、健壮性、可读性等质量因素的前提下，设法提高程序的效率</p>
+</li>
+<li>
+<p>性能对比测试代码，可参考 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2FRaymondCode%2Fgo-practice" title="https://github.com/RaymondCode/go-practice">github.com/RaymondCode…</a></p>
+</li>
+<li>
+<h5 id="slice-预分配内存">slice 预分配内存</h5>
+<ul>
+<li>在尽可能的情况下，在使用 make() 初始化切片时提供容量信息，特别是在追加切片时</li>
+<li>原理
+<ul>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fueokande.github.io%2Fgo-slice-tricks%2F" title="https://ueokande.github.io/go-slice-tricks/">ueokande.github.io/go-slice-tr…</a></li>
+<li>切片本质是一个数组片段的描述，包括了数组的指针，这个片段的长度和容量(不改变内存分配情况下的最大长度)</li>
+<li>切片操作并不复制切片指向的元素，创建一个新的切片会复用原来切片的底层数组，因此切片操作是非常高效的</li>
+<li>切片有三个属性，指针(ptr)、长度(len) 和容量(cap)。append 时有两种场景：
+<ul>
+<li>当 append 之后的长度小于等于 cap，将会直接利用原底层数组剩余的空间</li>
+<li>当 append 后的长度大于 cap 时，则会分配一块更大的区域来容纳新的底层数组</li>
+</ul>
+</li>
+<li>因此，为了避免内存发生拷贝，如果能够知道最终的切片的大小，预先设置 cap 的值能够获得最好的性能</li>
+</ul>
+</li>
+<li>另一个陷阱：大内存得不到释放
+<ul>
+<li>在已有切片的基础上进行切片，不会创建新的底层数组。因为原来的底层数组没有发生变化，内存会一直占用，直到没有变量引用该数组</li>
+<li>因此很可能出现这么一种情况，原切片由大量的元素构成，但是我们在原切片的基础上切片，虽然只使用了很小一段，但底层数组在内存中仍然占据了大量空间，得不到释放</li>
+<li>推荐的做法，使用 copy 替代 re-slice</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="map-预分配内存">map 预分配内存</h5>
+<ul>
+<li>原理
+<ul>
+<li>不断向 map 中添加元素的操作会触发 map 的扩容</li>
+<li>根据实际需求提前预估好需要的空间</li>
+<li>提前分配好空间可以减少内存拷贝和 Rehash 的消耗</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="使用-strings-Builder">使用 strings.Builder</h5>
+<ul>
+<li>常见的字符串拼接方式<br>
+*
+<ul>
+<li>strings.Builder</li>
+<li>bytes.Buffer</li>
+</ul>
+</li>
+<li>strings.Builder 最快，bytes.Buffer 较快，+ 最慢</li>
+<li>原理
+<ul>
+<li>字符串在 Go 语言中是不可变类型，占用内存大小是固定的，当使用 + 拼接 2 个字符串时，生成一个新的字符串，那么就需要开辟一段新的空间，新空间的大小是原来两个字符串的大小之和</li>
+<li>strings.Builder，bytes.Buffer 的内存是以倍数申请的</li>
+<li>strings.Builder 和 bytes.Buffer 底层都是 []byte 数组，bytes.Buffer 转化为字符串时重新申请了一块空间，存放生成的字符串变量，而 strings.Builder 直接将底层的 []byte 转换成了字符串类型返回</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="使用空结构体节省内存">使用空结构体节省内存</h5>
+<ul>
+<li>空结构体不占据内存空间，可作为占位符使用</li>
+<li>比如实现简单的 Set
+<ul>
+<li>Go 语言标准库没有提供 Set 的实现，通常使用 map 来代替。对于集合场景，只需要用到 map 的键而不需要值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="使用-atomic-包">使用 atomic 包</h5>
+<ul>
+<li>原理
+<ul>
+<li>锁的实现是通过操作系统来实现，属于系统调用，atomic 操作是通过硬件实现的，效率比锁高很多</li>
+<li>sync.Mutex 应该用来保护一段逻辑，不仅仅用于保护一个变量</li>
+<li>对于非数值系列，可以使用 atomic.Value，atomic.Value 能承载一个 interface{}</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="总结">总结</h5>
+<ul>
+<li>避免常见的性能陷阱可以保证大部分程序的性能</li>
+<li>针对普通应用代码，不要一味地追求程序的性能，应当在满足正确可靠、简洁清晰等质量要求的前提下提高程序性能</li>
+</ul>
+<h3 id="性能调优实战">性能调优实战</h3>
+<h4 id="性能调优简介">性能调优简介</h4>
+<ul>
+<li>性能调优原则
+<ul>
+<li>要依靠数据不是猜测</li>
+<li>要定位最大瓶颈而不是细枝末节</li>
+<li>不要过早优化</li>
+<li>不要过度优化</li>
+</ul>
+</li>
+</ul>
+<h4 id="性能分析工具">性能分析工具</h4>
+<p>性能调优的核心是性能瓶颈的分析，对于 Go 应用程序，最方便的就是 pprof 工具</p>
+<ul>
+<li>
+<h5 id="pprof-功能说明">pprof 功能说明</h5>
+<ul>
+<li>pprof 是用于可视化和分析性能分析数据的工具</li>
+<li>可以知道应用在什么地方耗费了多少 CPU、memory 等运行指标<br>
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b91cd175657042f5ab0430cbc8784172~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+<li>
+<h4 id="pprof-实践">pprof 实践</h4>
+<ul>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fwolfogre%2Fgo-pprof-practice" title="https://github.com/wolfogre/go-pprof-practice">github.com/wolfogre/go…</a></li>
+<li>前置准备，熟悉简单指标，能够编译运行 pprof 测试项目</li>
+<li>实际分析排查过程
+<ul>
+<li>排查 CPU 问题
+<ul>
+<li>命令行分析
+<ul>
+<li>go tool pprof “<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A6060%2Fdebug%2Fpprof%2Fprofile%3Fseconds%3D10" title="http://localhost:6060/debug/pprof/profile?seconds=10">http://localhost:6060/debug/pprof/profile?seconds=10</a>”</li>
+</ul>
+</li>
+<li>top 命令</li>
+<li>list 命令</li>
+<li>熟悉 web 页面分析</li>
+<li>调用关系图，火焰图</li>
+<li>go tool pprof -http=:8080 “<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A6060%2Fdebug%2Fpprof%2Fcpu" title="http://localhost:6060/debug/pprof/cpu">http://localhost:6060/debug/pprof/cpu</a>”</li>
+</ul>
+</li>
+<li>排查堆内存问题
+<ul>
+<li>go tool pprof -http=:8080 “<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A6060%2Fdebug%2Fpprof%2Fheap" title="http://localhost:6060/debug/pprof/heap">http://localhost:6060/debug/pprof/heap</a>”</li>
+</ul>
+</li>
+<li>排查协程问题
+<ul>
+<li>go tool pprof -http=:8080 “<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A6060%2Fdebug%2Fpprof%2Fgoroutine" title="http://localhost:6060/debug/pprof/goroutine">http://localhost:6060/debug/pprof/goroutine</a>”</li>
+</ul>
+</li>
+<li>排查锁问题
+<ul>
+<li>go tool pprof -http=:8080 “<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A6060%2Fdebug%2Fpprof%2Fmutex" title="http://localhost:6060/debug/pprof/mutex">http://localhost:6060/debug/pprof/mutex</a>”</li>
+</ul>
+</li>
+<li>排查阻塞问题
+<ul>
+<li>go tool pprof -http=:8080 “<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A6060%2Fdebug%2Fpprof%2Fblock" title="http://localhost:6060/debug/pprof/block">http://localhost:6060/debug/pprof/block</a>”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="pprof-的采样过程和原理">pprof 的采样过程和原理</h5>
+<ul>
+<li>CPU 采样</li>
+<li>堆内存采样</li>
+<li>协程和系统线程采样</li>
+<li>阻塞操作和锁竞争采样</li>
+</ul>
+</li>
+</ul>
+<h4 id="性能调优案例">性能调优案例</h4>
+<ul>
+<li>
+<h5 id="基本概念">基本概念</h5>
+<ul>
+<li>服务：能单独部署，承载一定功能的程序</li>
+<li>依赖：Service A 的功能实现依赖 Service B 的响应结果，称为 Service A 依赖 Service B</li>
+<li>调用链路：能支持一个接口请求的相关服务集合及其相互之间的依赖关系</li>
+<li>基础库：公共的工具包、中间件</li>
+</ul>
+</li>
+<li>
+<h5 id="业务优化">业务优化</h5>
+<ul>
+<li>流程
+<ul>
+<li>建立服务性能评估手段</li>
+<li>分析性能数据，定位性能瓶颈</li>
+<li>重点优化项改造</li>
+<li>优化效果验证</li>
+</ul>
+</li>
+<li>建立压测评估链路
+<ul>
+<li>服务性能评估</li>
+<li>构造请求流量</li>
+<li>压测范围</li>
+<li>性能数据采集</li>
+</ul>
+</li>
+<li>分析性能火焰图，定位性能瓶颈
+<ul>
+<li>pprof 火焰图</li>
+</ul>
+</li>
+<li>重点优化项分析
+<ul>
+<li>规范组件库使用</li>
+<li>高并发场景优化</li>
+<li>增加代码检查规则避免增量劣化出现</li>
+<li>优化正确性验证</li>
+</ul>
+</li>
+<li>上线验证评估
+<ul>
+<li>逐步放量，避免出现问题</li>
+</ul>
+</li>
+<li>进一步优化，服务整体链路分析
+<ul>
+<li>规范上游服务调用接口，明确场景需求</li>
+<li>分析业务流程，通过业务流程优化提升服务性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="基础库优化">基础库优化</h5>
+<ul>
+<li>适应范围更广，覆盖更多服务</li>
+<li>AB 实验 SDK 的优化
+<ul>
+<li>分析基础库核心逻辑和性能瓶颈</li>
+<li>完善改造方案，按需获取，序列化协议优化</li>
+<li>内部压测验证</li>
+<li>推广业务服务落地验证</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h5 id="Go-语言优化">Go 语言优化</h5>
+<ul>
+<li>适应范围最广，Go 服务都有收益</li>
+<li>优化方式
+<ul>
+<li>优化内存分配策略</li>
+<li>优化代码编译流程，生成更高效的程序</li>
+<li>内部压测验证</li>
+<li>推广业务服务落地验证</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="课后">课后</h2>
+<ul>
+<li>了解下其他语言的编码规范，是否和 Go 语言编码规范有相通之处，注重理解哪些共同点</li>
+<li>编码规范或者性能优化建议大部分是通用的，有没有方式能够自动化对代码进行检测？</li>
+<li>从 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgolang%2Fgo%2Ftree%2Fmaster%2Fsrc" title="https://github.com/golang/go/tree/master/src">github.com/golang/go/t…</a> 中选择感兴趣的包，看看官方代码是如何编写的</li>
+<li>使用 Go 进行并发编程时有哪些性能陷阱或者优化手段？</li>
+<li>在真实的线上环境中，每个场景或者服务遇到的性能问题也是各种各样，搜索下知名公司的官方公众号或者博客，里面有哪些性能优化的案例？比如 <a href="https://link.juejin.cn?target=https%3A%2F%2Feng.uber.com%2Fcategory%2Foss-projects%2Foss-go%2F" title="https://eng.uber.com/category/oss-projects/oss-go/">eng.uber.com/category/os…</a></li>
+<li>Go 语言本身在持续更新迭代，每个版本在性能上有哪些重要的优化点？</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go 高质量编程与性能调优</div>
+      <div>https://zhangzhao219.github.io/2023/01/19/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day04/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/20/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day05/" title="Go 语言内存管理详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go 语言内存管理详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/17/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day03/" title="Go 框架三件套详解(Web/RPC/ORM)">
+                        <span class="hidden-mobile">Go 框架三件套详解(Web/RPC/ORM)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

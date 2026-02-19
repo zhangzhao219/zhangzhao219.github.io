@@ -1,0 +1,1249 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《现代信息检索》期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：现代信息检索-期末复习">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/11/09/UCAS/information-retrieval/information-retrieval-final/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《现代信息检索》期末复习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC3hFS.png">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cgamma">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8kTK.png">
+<meta property="og:image" content="https://math.now.sh/?inline=T">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28w%29%3D%5Cfrac%7BC(w)%7D%7BT%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=C%28w%29">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28x%7Cw%29">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8KOI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/10/z9prND.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8Jfg.png">
+<meta property="og:image" content="https://math.now.sh/?inline=D">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28R%7CD%29">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28NR%7CD%29">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28R%7CD%29%3EP(NR%7CD)">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28D%7CR%29%20%2F%20P(D%7CNR)">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28D%7CR%29%2CP(D%7CNR)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7B1%2C0%2C1%2C0%2C1%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=p_i">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28D%7CR%29%3Dp_1(1-p_2)p_3(1-p_4)p_5">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28D%7CNR%29%3Ds_1(1-s_2)s_3(1-s_4)s_5">
+<meta property="og:image" content="https://math.now.sh/?inline=log%5Cfrac%7BP%28D%7CR%29%7D%7BP(D%7CNR)%7D%3D%5Csum_%7Bi%3Ad_i%3D1%7Dlog%5Cfrac%7Bp_i(1-s_i)%7D%7Bs_i(1-p_i)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%3D1">
+<meta property="og:image" content="https://math.now.sh/?inline=r_i">
+<meta property="og:image" content="https://math.now.sh/?inline=n_i-r_i">
+<meta property="og:image" content="https://math.now.sh/?inline=n_i">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=R-r_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%28N-R%29-(n_i-r_i)">
+<meta property="og:image" content="https://math.now.sh/?inline=N-n_i">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=N-R">
+<meta property="og:image" content="https://math.now.sh/?inline=N">
+<meta property="og:image" content="https://math.now.sh/?inline=p_i%3D%5Cfrac%7Br_i%2B0.5%7D%7BR%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=s_i%3D%5Cfrac%7Bn_i-r_i%2B0.5%7D%7BN-R%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csum_%7Bq_i%3Dd_i%3D1%7Dlog%5Cfrac%7B%28r_i%2B0.5%29(N-R-n_i%2Br_i%2B0.5)%7D%7B(n_i-r_i%2B0.5)(R-r_i%2B0.5)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28k_1%2Ck_3%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=log%5Cfrac%7BN-df%2B0.5%7D%7Bdf%2B0.5%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bqtf%7D%7Bk_3%2Bqtf%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bk_1%5Ccdot%20tf%7D%7Btf%2Bk_1%281-b%2Bb%5Cfrac%7Bl_d%7D%7Bavg_l%7D%29%7D">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zCMO8s.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zCMxK0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8stU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zCKQeO.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8476.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8g1J.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8fn1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zC8jBt.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zCGEBq.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/11/zCGn4U.png">
+<meta property="og:image" content="https://math.now.sh/?inline=q">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%88_j%20%3D%20%CF%88%28d_j%20%2C%20q%29">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i">
+<meta property="og:image" content="https://math.now.sh/?inline=d_j">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%2Cd_j">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i">
+<meta property="og:image" content="https://math.now.sh/?inline=d_j">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%3Cd_j">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i">
+<meta property="og:image" content="https://math.now.sh/?inline=d_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%D0%A4%28d_i%2Cd_j%2Cq%29">
+<meta property="og:image" content="https://math.now.sh/?inline=y_%7Bijq%7D%3D%2B1">
+<meta property="og:image" content="https://math.now.sh/?inline=%E2%88%921">
+<meta property="og:image" content="https://math.now.sh/?inline=w%5ET%D0%A4%28d_i%2Cd_j%2Cq%29%3E0%2Cif%20d_i%3Cd_j">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/09/zS0Wkt.png">
+<meta property="og:image" content="https://math.now.sh/?inline=bid_2%20%C3%97%20CTR_2%20%2F%20CTR_1%3D3*%5Cfrac%7B0.03%7D%7B0.06%7D%2B0.01%3D1.51">
+<meta property="og:image" content="https://math.now.sh/?inline=bid_3%20%C3%97%20CTR_3%20%2F%20CTR_2%3D1*%5Cfrac%7B0.08%7D%7B0.03%7D%2B0.01%3D2.67">
+<meta property="og:image" content="https://math.now.sh/?inline=A%28p%29%3D%5Csum%20H(q_i)">
+<meta property="og:image" content="https://math.now.sh/?inline=q_i">
+<meta property="og:image" content="https://math.now.sh/?inline=p">
+<meta property="og:image" content="https://math.now.sh/?inline=H%28p%29%3D%5Csum%20A(r_i)">
+<meta property="og:image" content="https://math.now.sh/?inline=r_i">
+<meta property="og:image" content="https://math.now.sh/?inline=p">
+<meta property="article:published_time" content="2022-11-09T13:04:58.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.197Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Information Retrieval">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/11/11/zC3hFS.png">
+  
+  
+  
+  <title>研究生课程：现代信息检索-期末复习 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：现代信息检索-期末复习</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-09 13:04" pubdate>
+          2022年11月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：现代信息检索-期末复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《现代信息检索》期末复习</p>
+<span id="more"></span>
+<p>考试主要涉及概念上的问题，可能没有特别复杂的计算的内容</p>
+<h1>第1讲 布尔检索</h1>
+<p>倒排索引基本结构：</p>
+<p>对每个词项t，记录所有包含t的文档列表。每篇文档用一个唯一的docID来表示，通常是正整数，如1,2,3…</p>
+<p>为什么要用倒排索引：</p>
+<p>当用户发起查询时（假设查询为一个关键词），搜索引擎会扫描索引库中的所有文档，找出所有包含关键词的文档，这样依次从文档中去查找是否含有关键词的方法叫做正向索引 。</p>
+<p>为了增加效率， 搜索引擎会把正向索引变为倒排索引即把“文档→单词”的形式变为“单词→文档”的形式 。</p>
+<p>倒排索引是实现“单词-文档矩阵”的一种具体存储形式，通过倒排索引，可以根据单词快速获取包含这个单词的文档列表。</p>
+<p>布尔查询的处理优化：</p>
+<ul>
+<li>每个布尔表达式都能转换成合取范式</li>
+<li>获得每个词项的df</li>
+<li>通过将词项的df相加，估计每个OR表达式对应的倒排记录表的大小</li>
+<li>按照上述估计从小到大依次处理每个OR表达式</li>
+</ul>
+<p>问题：什么是倒排索引？为什么说倒排索引能加快检索的速度？假设“信息”、“检索”在倒排索引中是两个独立的term，试说明检索短语“信息检索”的基本流程。</p>
+<p>答案：倒排索引指的是从词项到文档的一种索引结构。由于它直接可以从查询词定位到文档，所以能够大大加快检索的速度。检索短语“信息检索”的基本流程：从词典中分别查找到“信息”和“检索”这两个词，分别返回它们的倒排记录表，然后求这两个表的交集，在求交集时要考虑它们在文档中的位置相对关系。</p>
+<p><strong>词条</strong> ：一段文本中有效词的子序列，其中每个子序列称为一个词条。</p>
+<p><strong>词条类</strong> ：相同词条构成的集合。</p>
+<p><strong>词项</strong> ：一个词项指的是在信息检索系统词典中所包含的某个可能经过归一化处理的词条类。（词项集合和词条集合可以完全不同，比如可以采用某一个分类体系中的类别标签作为词项。当然，在实际的信息检索系统中，词项往往和词条密切相关）</p>
+<p><strong>注意：①文档-词项关联矩阵只包含01②要按字典序进行排序</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC3hFS"><img src="https://s1.ax1x.com/2022/11/11/zC3hFS.png" srcset="/img/loading.gif" lazyload alt="zC3hFS.png"></a></p>
+<h1>第2讲 索引构建</h1>
+<h2 id="基于排序的索引构建方法存在的问题">基于排序的索引构建方法存在的问题</h2>
+<p>在构建索引时，每次解析一篇文档，因此对于每个词项而言，其倒排记录表不到最后一篇文档都是不完整的。</p>
+<p>如果每个 <code>(termID, docID)</code>对占用 <code>8</code>个字节, 那么处理大规模语料需要大量的空间。</p>
+<p>一般内存的容量比较小，没有办法将前面产生的倒排记录表全部放在内存中，需要在磁盘上存储中间结果。</p>
+<h2 id="BSBI算法">BSBI算法</h2>
+<p><strong>一种减少寻道操作的排序：Blocked sort-based Indexing</strong></p>
+<p>将所有记录划分为每个大小约为10M的块，收集每一块的倒排记录，排序，将倒排索引写入硬盘，最后将不同的分块合并为一个大的倒排索引。</p>
+<h2 id="SPIMI算法">SPIMI算法</h2>
+<p><strong>内存式单遍扫描索引构建算法：Single-pass in-memory indexing</strong></p>
+<p>关键思想：</p>
+<ul>
+<li>对每个块都产生一个独立的词典（不需要在块之间进行 <code>term-termID</code>的映射）</li>
+<li>对倒排记录表不排序，按照它们出现的先后顺序排列，只对词典排序（实际上由于指针的存在，倒排记录表没有排序的必要）。</li>
+</ul>
+<p><strong>在扫描文档的同时，直接在内存中维护一个不断更新的倒排索引</strong></p>
+<p>因此对每个块生成一个完整的倒排索引，这些独立的索引最后合并成一个大索引</p>
+<p>最终合并词典的过程中，需要进行词项字符串的比较，因为此时没有全局词典提供词项-整数ID的映射。</p>
+<h2 id="BSBI算法和SPIMI算法的主要区别">BSBI算法和SPIMI算法的主要区别</h2>
+<p>BSBI算法：在分块索引阶段，BSBI算法维护一个全局Term (String) – Termid (int) 的映射表，局部索引为Termid及其倒排记录表，仍然按词典顺序排序。</p>
+<p>SPIMI算法：分块索引阶段与BSBI算法不同在于建立局部词典和索引，无需全局词典。在合并阶段，将局部索引两两合并，最后产生全局词典建立Term – Termid的映射。</p>
+<p><strong>使用文本预处理步骤可以大大减小系统所需要存储的倒排记录表的数目，从而提高索引构建和检索的速度</strong></p>
+<h1>第3讲 索引压缩</h1>
+<p>有损压缩：丢弃一些信息-很多常用的预处理步骤可以看成是有损压缩</p>
+<p>无损压缩：所有信息都保留-索引压缩中通常都使用无损压缩</p>
+<h2 id="词典压缩">词典压缩</h2>
+<p>定长数组方式下的词典存储：每个词项需要20（字符串）+4（词频）+4（指向倒排索引表的指针）=28个字节。</p>
+<p>将整部词典看成单一字符串：4（词频）+4（指向倒排索引表的指针）+3（指向字符串的指针，按照实际大小决定，例如8*400000个位置需要$log_2(8 * 400000)&lt; 24 $位来表示）+8（每个字符串平均需要8个字节）=19个字节</p>
+<p>按块存储，假设块大小k=4，此时每4个词项只需要保留1个词项指针，但是同时需要增加4个字节（比较短，1个字节就可以）来表示每个词项的长度，因此每4个词项需要3+4=7B，比之前的节省了12-7=5B</p>
+<p>前端编码：每个块当中 (k = 4)会有公共前缀，可以采用前端编码方式继续压缩</p>
+<p>如果使用词干还原，由于将同一词汇的不同形式还原到词根，因此前端编码的压缩效果有限</p>
+<h2 id="倒排记录表压缩">倒排记录表压缩</h2>
+<p>倒排记录表的压缩：两种经典编码VB和γ编码（<strong>注意对gap进行编码，第一个id，后面都是gap</strong>）</p>
+<p><strong>可变字节(VB)码</strong>：设定一个专用位 (高位) c作为延续位(continuation bit)，如果间隔表示少于7比特，那么c置1，将间隔编入一个<br>
+字节的后7位中；否则将高7位放入当前字节中，并将c置0，剩下的位数采用同样的方法进行处理，最后一个字节的c置1（表<br>
+示结束）</p>
+<p><strong><img src="https://math.now.sh?inline=%5Cgamma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>编码</strong>：</p>
+<ul>
+<li>将G (Gap, 间隔) 表示成长度(length)和偏移(offset)两部分</li>
+<li>偏移对应G的二进制编码，只不过将首部的1去掉（因为所有的编码第一位都是1）</li>
+<li>长度部分给出的是偏移的位数，采用一元编码</li>
+<li>手动计算的时候先计算偏移，再根据偏移计算长度</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8kTK"><img src="https://s1.ax1x.com/2022/11/11/zC8kTK.png" srcset="/img/loading.gif" lazyload alt="zC8kTK.png"></a></p>
+<h1>第4讲 拼写矫正</h1>
+<p>通道模型：</p>
+<p>若有包含<img src="https://math.now.sh?inline=T" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个词条的大文本语料，则<img src="https://math.now.sh?inline=P%28w%29%3D%5Cfrac%7BC(w)%7D%7BT%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=C%28w%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是词频。（一元先验概率）</p>
+<p>通道模型概率-计算错误概率<img src="https://math.now.sh?inline=P%28x%7Cw%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：混淆“矩阵”（计算一个字符变为另一个字符的概率如何）</p>
+<p>轮排索引：<strong>（主要思想：让星号出现在词汇的末尾）</strong></p>
+<ul>
+<li>将每个通配查询旋转，使*出现在末尾</li>
+<li>将每个旋转后的结果存放在词典中，即B-树中</li>
+</ul>
+<p>轮排索引的查找过程：</p>
+<ul>
+<li>将查询进行旋转，将通配符旋转到右部</li>
+<li>同以往一样查找B-树，得到匹配的所有词项，将这些词项对应的倒排记录表取出</li>
+</ul>
+<p>相对于通常的B-树，轮排索引(轮排树)的空间要大4倍以上 (经验值)</p>
+<p>k-gram索引：枚举一个词项中所有连读的k个字符构成k-gram（在首尾添加k-1个首尾符号）</p>
+<ul>
+<li>构建一个倒排索引，此时词典部分是所有的k-gram，倒排记录表部分是包含某个k-gram的所有词项</li>
+<li>相当于对词项再构建一个倒排索引（二级索引）</li>
+<li>比轮排索引空间开销要小</li>
+<li>但是可能返回一些伪正例，需要进行后过滤</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8KOI"><img src="https://s1.ax1x.com/2022/11/11/zC8KOI.png" srcset="/img/loading.gif" lazyload alt="zC8KOI.png"></a></p>
+<p>k-gram索引 vs. 轮排索引</p>
+<ul>
+<li>k-gram索引的空间消耗小</li>
+<li>轮排索引不需要进行后过滤</li>
+</ul>
+<h1>第5讲 TF-IDF</h1>
+<p>tf-idf词频及log词频</p>
+<p>TF是词项t的词项频率，是与文档相关的一个量，可以认为是文档内代表度的一个量，也可以认为是一种局部信息。</p>
+<p>IDF是反映词项t的信息量的一个指标，是一种全局性指标，反应的是词项在全局的区别性，可视为一种词项全局信息量的指标。</p>
+<p>向量空间模型基本思想：把查询和文本表示成向量（早期表示成TF-IDF权重）</p>
+<p>向量空间模型的不同实现方案（不用背表，但是有很多情况，要看好题）（比如有时候idf不用算）：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/z9prND"><img src="https://s1.ax1x.com/2022/11/10/z9prND.md.png" srcset="/img/loading.gif" lazyload alt="z9prND.md.png"></a></p>
+<p>注意：看好题目，不说对数、归一化什么的就不要做</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8Jfg"><img src="https://s1.ax1x.com/2022/11/11/zC8Jfg.png" srcset="/img/loading.gif" lazyload alt="zC8Jfg.png"></a></p>
+<h1>第6讲 概率检索模型</h1>
+<p>主要是BM25模型的基本概念，IDF是怎么计算的，以及它的基本假设，伯努利分布</p>
+<p>BIM的基本假设，BM25的二重泊松分布，考虑了哪些因素，如长度归一等等。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bentuwuying/p/6730891.html">参考资料</a></p>
+<p>以往的向量空间模型是将query和文档使用向量表示然后计算其内容相似性来进行相关性估计的，而概率检索模型是一种直接对用户需求进行相关性的建模方法，一个query进来，将所有的文档分为两类-相关文档、不相关文档，这样就转为了一个相关性的分类问题。</p>
+<p>对于某个文档<img src="https://math.now.sh?inline=D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来说，<img src="https://math.now.sh?inline=P%28R%7CD%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示该文档属于相关文档的概率，则<img src="https://math.now.sh?inline=P%28NR%7CD%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示该文档属于不相关文档的概率，如果query属于相关文档的概率大于不相关文档<img src="https://math.now.sh?inline=P%28R%7CD%29%3EP(NR%7CD)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则认为这个文档是与用户查询相关的。</p>
+<p>使用贝叶斯公式转换一下，则在搜索排序过程中不需要真正的分类，只需要保证相关性由高到底排序即可，所以只需要<img src="https://math.now.sh?inline=P%28D%7CR%29%20%2F%20P(D%7CNR)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>降序即可，<br>
+这样就最终转为计算<img src="https://math.now.sh?inline=P%28D%7CR%29%2CP(D%7CNR)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的值即可。</p>
+<h2 id="二值独立概率模型BIM">二值独立概率模型BIM</h2>
+<p>为了能够使得上述两个计算因子可行，二元独立模型做出了两个假设</p>
+<ol>
+<li>二元假设</li>
+</ol>
+<p>类似于布尔模型中的文档表示方法，一篇文档在由特征（或者单词）进行表示的时候，以特征（或者单词）出现和不出现两种情况来表示，不考虑词频等其他因素。</p>
+<ol start="2">
+<li>词汇独立性假设</li>
+</ol>
+<p>指文档里出现的单词之间没有任何关联，任意一个单词在文档的分布概率不依赖于其他单词是否出现。因为词汇之间没有关联，所以可以将文档概率转换为单词概率的乘积。</p>
+<p>上述提到的文档D表示为<img src="https://math.now.sh?inline=%5C%7B1%2C0%2C1%2C0%2C1%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，用<img src="https://math.now.sh?inline=p_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来表示第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个单词在相关文档出现的概率，则在已知相关文档集合的情况下，观察到D的概率为：</p>
+<p><img src="https://math.now.sh?inline=P%28D%7CR%29%3Dp_1(1-p_2)p_3(1-p_4)p_5" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>同理在不相关文档中出现的概率为<img src="https://math.now.sh?inline=P%28D%7CNR%29%3Ds_1(1-s_2)s_3(1-s_4)s_5" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>可以推导出：<img src="https://math.now.sh?inline=log%5Cfrac%7BP%28D%7CR%29%7D%7BP(D%7CNR)%7D%3D%5Csum_%7Bi%3Ad_i%3D1%7Dlog%5Cfrac%7Bp_i(1-s_i)%7D%7Bs_i(1-p_i)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设文档统计量如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>相关文档</th>
+<th>不相关文档</th>
+<th>文档数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://math.now.sh?inline=d_i%3D1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=r_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=n_i-r_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=n_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+</tr>
+<tr>
+<td><img src="https://math.now.sh?inline=d_i%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=R-r_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=%28N-R%29-(n_i-r_i)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=N-n_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+</tr>
+<tr>
+<td>文档数量</td>
+<td><img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=N-R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+<td><img src="https://math.now.sh?inline=N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></td>
+</tr>
+</tbody>
+</table>
+<p>则可以得出（加1平滑）：<img src="https://math.now.sh?inline=p_i%3D%5Cfrac%7Br_i%2B0.5%7D%7BR%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=s_i%3D%5Cfrac%7Bn_i-r_i%2B0.5%7D%7BN-R%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此最终的公式为：</p>
+<p><img src="https://math.now.sh?inline=%5Csum_%7Bq_i%3Dd_i%3D1%7Dlog%5Cfrac%7B%28r_i%2B0.5%29(N-R-n_i%2Br_i%2B0.5)%7D%7B(n_i-r_i%2B0.5)(R-r_i%2B0.5)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>其代表的含义是：对于同时出现在用户查询Q和文档D中的单词，累加每个单词的估值，其和就是文档D和查询的相关性度量。</p>
+<p><strong>在不确定哪些文档是相关的，哪些文档是不相关的的时候，可以给公式的估算因子直接赋予固定值，则该公式将会退化为IDF因子。</strong></p>
+<p>优点：BIM模型建立在数学基础上，理论性较强</p>
+<p>缺点：</p>
+<ul>
+<li>需要估计参数</li>
+<li>原始的BIM没有考虑TF、文档长度因素</li>
+<li>BIM中同样存在词项独立性假设</li>
+<li>BIM实质上是一个idf权重公式，仅考虑了全局信息，缺少局部信息。因此需要和TF权重配合使用</li>
+</ul>
+<h2 id="BM25模型">BM25模型</h2>
+<p>BM25模型计算公式其实融合了4个考虑因素：IDF因子，文档长度因子，文档词频和查询词频。并对3个自由调节因子<img src="https://math.now.sh?inline=%28k_1%2Ck_3%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行权值的调整。</p>
+<p>IDF因子：设BIM模型中的相关文档数量为0，则退化为<img src="https://math.now.sh?inline=log%5Cfrac%7BN-df%2B0.5%7D%7Bdf%2B0.5%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>查询权重：<img src="https://math.now.sh?inline=%5Cfrac%7Bqtf%7D%7Bk_3%2Bqtf%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，考虑查询词频</p>
+<p>TF权重（基于二重泊松分布）：<img src="https://math.now.sh?inline=%5Cfrac%7Bk_1%5Ccdot%20tf%7D%7Btf%2Bk_1%281-b%2Bb%5Cfrac%7Bl_d%7D%7Bavg_l%7D%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，考虑文档中词频和文档长度</p>
+<p>最终形式为三项相乘</p>
+<p>例题：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zCMO8s"><img src="https://s1.ax1x.com/2022/11/11/zCMO8s.png" srcset="/img/loading.gif" lazyload alt="zCMO8s.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zCMxK0"><img src="https://s1.ax1x.com/2022/11/11/zCMxK0.png" srcset="/img/loading.gif" lazyload alt="zCMxK0.png"></a></p>
+<p>优点：</p>
+<ul>
+<li>一定程度上的理论化模型</li>
+<li>基于二重泊松假设——适用于绝大多数文本语料上的IR检索应用</li>
+<li>实验证明有效</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>待调参数多且参数敏感性高</li>
+<li>必须去停用词</li>
+</ul>
+<p>问题：BM25和向量空间模型(VSM)为何需要长度归一？语言模型为何需要平滑处理？两个问题之间有何联系？</p>
+<p>答案：由于长文挡中词项反复出现的可能性大，包含更多的不同词项，所以词项频率和词汇量可能更大。这显然是不公平的。长度归一化，可以使长文档和短文档的向量中的权重都处于同一数量级。平滑处理是为了解决数据稀疏引起的0概率问题。两者都是常见的数据预处理方法，提高了数据质量，为了保证模型的鲁棒性。</p>
+<h1>第7讲 语言建模的检索模型</h1>
+<p>流行的是基于多项式分布，对于生成模型的计算有零概率的问题，需要进行平滑，基本概念要知道</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8stU"><img src="https://s1.ax1x.com/2022/11/11/zC8stU.png" srcset="/img/loading.gif" lazyload alt="zC8stU.png"></a></p>
+<h1>第8讲 信息检索的评价</h1>
+<p>指标计算，如正确率召回率等等，F1，未插值的AP</p>
+<p>题目：什么是非插值的MAP？为什么说它在引入序的作用的同时考虑了召回率？</p>
+<p>答案：单个查询的非插值MAP指的是所有相关文档（不论是否在结果出现，若不出现就假定出现在无穷远处）在结果出现位置上的正确率的算术平均值。系统的非插值MAP是所有查询上的非插值AP的算术平均值。从非插值AP的定义看，一方面，如果出现在结果中的相关文档越多，求和结果也越大，那么非插值AP值也越大。另一方面，如果相关文档在结果中出现位置越靠前，那么非插值AP值也越大。因此，可以认为非插值MAP同时考底了召回率和序的作用。</p>
+<p>Bpref：在相关性判断不完全的情况下，计算在进行了相关性判断的文档集合中，在判断到相关文档前，需要判断的不相关文档的篇数。相关性判断完全的情况下，利用Bpref和MAP进行评价的结果很一致，但是相关性判断不完全的情况下，Bpref更鲁棒。</p>
+<p>NDCG：每个文档不仅仅只有相关和不相关两种情况，而是有相关度级别，比如0,1,2,3。我们可以假设，对于返回结果：相关度级别越高的结果越多越好，相关度级别越高的结果越靠前越好</p>
+<p>优点：</p>
+<ul>
+<li>图形直观，易解释</li>
+<li>支持非二值的相关度定义，比P-R曲线更精确</li>
+<li>能够反映用户的行为特征(如：用户的持续性persistence)</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>相关度的定义难以一致</li>
+<li>需要参数设定</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zCKQeO"><img src="https://s1.ax1x.com/2022/11/11/zCKQeO.png" srcset="/img/loading.gif" lazyload alt="zCKQeO.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8476"><img src="https://s1.ax1x.com/2022/11/11/zC8476.png" srcset="/img/loading.gif" lazyload alt="zC8476.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8g1J"><img src="https://s1.ax1x.com/2022/11/11/zC8g1J.png" srcset="/img/loading.gif" lazyload alt="zC8g1J.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8fn1"><img src="https://s1.ax1x.com/2022/11/11/zC8fn1.png" srcset="/img/loading.gif" lazyload alt="zC8fn1.png"></a></p>
+<h1>第9讲 完整搜索系统中的评分计算</h1>
+<p>考试基本不涉及</p>
+<h1>第10讲 查询扩展</h1>
+<p>相关反馈的本质是将检索返回的文档的相关性判定(不同的判定来源：人工或非人工)作为返回信息，希望提升检索效果（召回率和正确率）</p>
+<p>反馈信息的来源：显式（用户点击）、隐式（用户行为等）、伪相关反馈（返回的前几个结果算相关）</p>
+<p>Rocchio算法</p>
+<p>查询扩展的最初含义是对查询进行扩充，近年来越来越向查询重构偏移，即现在的查询扩展是指对原有查询进行修改。</p>
+<p>通过在查询中加入同义或者相关的词项来提高检索结果。</p>
+<p>相关词项的来源: 人工编辑的同义词词典、自动构造的同义词词典、查询日志等等。</p>
+<p>查询扩展和相关反馈对检索效果的提升是非常有用的经验性的方法</p>
+<p>问题：什么是伪相关反馈？为什么说有时候伪相关反馈会降低某个查询的检索效果？</p>
+<p>答案：伪相关反馈指的是系统对上次返回的检索结采进行“伪”判定（比如假设前几个结果是相关的)，然后根据这个结果进行反馈。伪相关反馈依赖于上次检索的结果，那么在上次检索结果不可靠情况下，假设成立的可能性很小，此时就进行伪相关反馈反而可能降低后一次检索的效果。</p>
+<p><strong>注意：负权重要记为0，同时也要进行排序</strong></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zC8jBt"><img src="https://s1.ax1x.com/2022/11/11/zC8jBt.png" srcset="/img/loading.gif" lazyload alt="zC8jBt.png"></a></p>
+<h1>第11、12、13讲 文本分类</h1>
+<p>问题：文本分类当中，什么是宏平均？什么是微平均？为什么说微平均计算时易受大类影响？</p>
+<p>答案：宏平均指的是在每个类别上分类效果的平均值，也即将每个类别看成一个单位。而微平均是将所有类别看成一个类别后求到的效果值，即将每篇文档看成一个单位。由于微平均将文档看成单位，而大类文档数目较多，因此它在计算时易受大类影响。</p>
+<h2 id="朴素贝叶斯（线性分类器）">朴素贝叶斯（线性分类器）</h2>
+<p>使用log将乘积计算变为求和计算</p>
+<p>最大似然估计（零概率的情况下怎么进行加一平滑）</p>
+<h2 id="Rocchio分类（线性分类器）">Rocchio分类（线性分类器）</h2>
+<p>计算每个类的中心向量（所有文档向量的算术平均）</p>
+<p>将每篇测试文档分到离它最近的那个中心向量</p>
+<p>Rocchio分类器是要训练的</p>
+<h2 id="KNN（非线性分类器）">KNN（非线性分类器）</h2>
+<p>kNN分类决策取决于k个邻居类中的多数类</p>
+<p>类别之间的分类面是分段线性的</p>
+<p>kNN分类器几乎不需要训练</p>
+<p>但是像kNN这种非线性学习方法在某些情况下也会产生一个线性分类器</p>
+<h2 id="SVM">SVM</h2>
+<p>SVM分线性SVM和非线性SVM，SVM本身是一个线性决策，但是核函数可以是线性或非线性的</p>
+<p>算法本身是转化成一个线性公式，但是最终得到的是一个非线性的决策面，只不过把样本投射到高维空间里面</p>
+<p>问题：总结SVM中处理线性不可分数据的方法，给出其基本原理。</p>
+<ul>
+<li>广义最优分类面：在条件中增加一个松弛项，容纳少量线性不可分的噪声样本。</li>
+<li>核函数：从低维空间非线性映射到线性可分的高维空间。</li>
+</ul>
+<p>问题：什么是核函数？它的作用是什么？为什么核函数的引入常常称为核技巧？</p>
+<p>答案：核函数是满足若干性质的相似度计算函数。它的主要作用是计算两个对象的相似度，具体地说，它可以基于原始空间上的点来定义映射后空间上的内积函数。核函数避免知道空间映射的具体函数形式，能够直接基于核函数进行映射后的对象相似度计算，所以它的引入常常称为核技巧。</p>
+<h2 id="偏差和方差">偏差和方差</h2>
+<p>对于像Rocchio和NB一样的线性方法来说，对于非线性问题它们的偏差就比较大</p>
+<p>像kNN一样的非线性方法的偏差较小，方差较大</p>
+<p>如果拥有的训练数据非常少，而又要训练出一个基于监督学习的分类器，应该采用具有高偏差的分类器，在这种情况下NB能取得较好的结果，诸如kNN的低偏差模型大概是不可取的。</p>
+<h2 id="分类题目">分类题目</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zCGEBq"><img src="https://s1.ax1x.com/2022/11/11/zCGEBq.png" srcset="/img/loading.gif" lazyload alt="zCGEBq.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zCGn4U"><img src="https://s1.ax1x.com/2022/11/11/zCGn4U.png" srcset="/img/loading.gif" lazyload alt="zCGn4U.png"></a></p>
+<h1>第12讲 排序学习</h1>
+<p>现有检索排序算法存在哪些问题，怎么改进？</p>
+<p>很多传统的IR权重计算机制中都包含了基本指标的非线性缩放过程（比如词项频率或idf 的对数权重计算）。目前为止，机器学习非常擅长特征线性组合（或者其他类似的受限模型）中的权重优化，但是并不擅长基本指标的非线性缩放。这个领域仍然需要人工的特征工程方法。</p>
+<h2 id="基于布尔权重的学习">基于布尔权重的学习</h2>
+<p>给定训练样例集合，每个样例表示为三元组，相关或者不相关</p>
+<p>从上述样例中学习权重，使得学到的评分接近训练集中的相关性判定结果。</p>
+<h2 id="基于实数权重的学习（pointwise）">基于实数权重的学习（pointwise）</h2>
+<p>设置评分函数是两个因子的线性组合：查询和文档的向量空间相似度评分和查询词项在文档中存在的最小窗口宽度</p>
+<p>相关记为1，不相关记为0，我们的目标是寻找一个评分函数，该函数能够组合特征因子的值，并尽量接近0或1，希望该函数的结果尽量与训练集上的结果保持一致</p>
+<h2 id="基于序回归的排序学习（pairwise）">基于序回归的排序学习（pairwise）</h2>
+<p>为什么将IR排序问题看成一个序回归问题？</p>
+<ul>
+<li>对于同一查询，文档之间可以按照相对得分排序即可，并不一定要求每篇文档有一个全局的绝对得分</li>
+<li>因此，只需要一个排序，而不要得到相关度的绝对得分，问题空间可以减小</li>
+<li>pairwise 方法相对 pointwise 方法对噪声标注更敏感，即一个错误标注会引起多个 doc pair 标注错误。</li>
+</ul>
+<p>方法：</p>
+<ul>
+<li>给定一些已经判定的查询</li>
+<li>对训练集中的每条查询<img src="https://math.now.sh?inline=q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>, 我们都有针对该查询的一系列文档集合，这些文档已经由人工按照其与查询的相关度排序</li>
+<li>对每个文档、查询对，构造特征向量<img src="https://math.now.sh?inline=%CF%88_j%20%3D%20%CF%88%28d_j%20%2C%20q%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，这里的特征可以采用前面的特征</li>
+<li>对于两篇文档<img src="https://math.now.sh?inline=d_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=d_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，可以计算特征向量之间的差异向量</li>
+<li>依据假设，<img src="https://math.now.sh?inline=d_i%2Cd_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中的一个更相关</li>
+<li>如果<img src="https://math.now.sh?inline=d_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>比<img src="https://math.now.sh?inline=d_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>更相关，记为<img src="https://math.now.sh?inline=d_i%3Cd_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（在检索结果中，<img src="https://math.now.sh?inline=d_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>应该出现在<img src="https://math.now.sh?inline=d_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>前面）, 那么分配给<img src="https://math.now.sh?inline=%D0%A4%28d_i%2Cd_j%2Cq%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>向量的类别为<img src="https://math.now.sh?inline=y_%7Bijq%7D%3D%2B1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，否则为<img src="https://math.now.sh?inline=%E2%88%921" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>学习的目标是建立一个分类器，满足：<img src="https://math.now.sh?inline=w%5ET%D0%A4%28d_i%2Cd_j%2Cq%29%3E0%2Cif%20d_i%3Cd_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<h1>第14、15讲</h1>
+<p>词项表示：通过分析文档集来自动生成同义词库-基于共现的同义词库</p>
+<p>词嵌入：得到每个词的低维密集向量表示</p>
+<p>Neural IR 模型分类</p>
+<p><strong>Representation based（基于表示学习的模型）</strong>：学习文本的分布式表示，在高维空间匹配</p>
+<ul>
+<li>词表示：one hot → distributed</li>
+<li>句子表示：bag of words → distributed</li>
+<li>匹配能力取决于学习文本表示的算法能力</li>
+<li>代表模型：DSSM, CDSSM</li>
+</ul>
+<p><strong>Matching function（基于交互匹配的模型）</strong>：文本之间先进行交互匹配，再对匹配信号进行融合</p>
+<ul>
+<li>输入：比较底层的输入</li>
+<li>匹配函数：cosine, dot product → NN</li>
+<li>优点：可以考虑更加丰富的匹配信号， 如软匹配 (soft matching)</li>
+<li>代表模型：MatchPyramid , DRMM, K NRM, PACRR, NPRF</li>
+</ul>
+<p>Combination of both: 既考虑 Representation 又考虑 Matching function</p>
+<p>BERT在检索应用中的特点：</p>
+<ol>
+<li>在高频查询上，BM25的偏差比BERT更大，导致BM25的效果不好</li>
+<li>BERT可以检索到更稀有的词项</li>
+<li>在长查询上，BERT的表现不如BM25更好</li>
+</ol>
+<p>问题：简述BERT的基本结构？如何预训练一个BERT（涉及什么任务）？</p>
+<p>BERT的基本结构：</p>
+<ol>
+<li>词向量</li>
+<li>多层Transformer Encoder结构：包括自注意力和Feed-Forward</li>
+<li>任务特定的输出层</li>
+</ol>
+<p>BERT的训练任务有两类：</p>
+<ol>
+<li>masked language model 随机掩盖掉一些单词，然后通过上下文预测该单词。BERT中有15%的wordpiece token会被随机掩盖，这15%的token中80%用[MASK]这个token来代替，10%用随机的一个词来替换，10%保持这个词不变。这种设计使得模型具有捕捉上下文关系的能力，同时能够有利于token-level tasks，例如序列标注等。</li>
+<li>next sentence prediction 语料中50%的句子，选择其相应的下一句一起形成上下句，作为正样本；其余50%的句子Embedding随机选择一句非下一句一起形成上下句，作为负样本。这种设定，有利于sentence-level tasks，例如问答，注意：作者特意说了语料的选取很关键，要选用document-level的而不是sentence-level的，这样可以具备抽象连续长序列特征的能力。</li>
+</ol>
+<h1>第16讲 Web搜索</h1>
+<p>Google次高竞标价格拍卖机制：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zS0Wkt"><img src="https://s1.ax1x.com/2022/11/09/zS0Wkt.png" srcset="/img/loading.gif" lazyload alt="zS0Wkt.png"></a></p>
+<p>bid：每个广告商为每次点击给出的最大投标价格</p>
+<p>CTR：一旦被显示后被点击的比率</p>
+<p>ad rank=bid × CTR：这种做法可以在广告商愿意支付的价钱和广告的相关度高低之间进行平衡。</p>
+<p>排名第1的C，需要支付的价格是它的下一位的<img src="https://math.now.sh?inline=bid_2%20%C3%97%20CTR_2%20%2F%20CTR_1%3D3*%5Cfrac%7B0.03%7D%7B0.06%7D%2B0.01%3D1.51" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>排名第2的B，需要支付的价格是它的下一位的<img src="https://math.now.sh?inline=bid_3%20%C3%97%20CTR_3%20%2F%20CTR_2%3D1*%5Cfrac%7B0.08%7D%7B0.03%7D%2B0.01%3D2.67" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>这样做避免了“保底”行为的产生，可以使收益更大化。</p>
+<h1>第17讲 爬虫</h1>
+<p>采集器必须做到</p>
+<ul>
+<li>礼貌性
+<ul>
+<li>不要高频率采集某个网站</li>
+<li>仅仅采集robots.txt所规定的可以采集的网页
+<ul>
+<li>robots.txt协议不让采集，不过写程序还是可以采集到的，但是不能这样做，一定要遵守协议</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>鲁棒性
+<ul>
+<li>能够处理采集器陷阱、重复页面、超大页面、超大网站、动态页面等问题</li>
+</ul>
+</li>
+</ul>
+<h1>第18讲 链接分析</h1>
+<p>锚文本是人为创建的超链接，可以理解为质量认证的信号。</p>
+<h2 id="BV算法-邻接表压缩的经典算法">BV算法-邻接表压缩的经典算法</h2>
+<p>邻接表：一个节点的邻居集合，可以视为一个结点（URL）所有指向它的页面的集合</p>
+<p>假设每个URL由一个整数表示，对于40亿页的网站，每个结点需要32位甚至64位，存储开销非常大</p>
+<p>BV算法可以降低到平均3位</p>
+<p>压缩中使用到的属性：</p>
+<ul>
+<li>相似度（邻接表之间）</li>
+<li>位置（一个页面中的许多链接都连接到“附近”的页面）-将所有URL按照字母顺序排序，同一个网站的页面的链接相似</li>
+<li>在已排序的邻接表中使用间隔编码</li>
+<li>gap value 的分布</li>
+</ul>
+<p>BV算法主要思想：由于模板的缘故，一个节点的邻接列表类似于字典顺序中的7个先前的URL之一，根据这7个中的之一表示邻接表，否则重新编码。</p>
+<p>BV算法的主要优势</p>
+<ul>
+<li>仅依赖于位置的规范顺序-字典顺序对web十分适用</li>
+<li>邻接查询可以被非常高效地回答</li>
+<li>易于实现one-pass算法
+<ul>
+<li>顺序读取，不需要无限缓冲。读取复杂度与网页数量是线性关系</li>
+</ul>
+</li>
+</ul>
+<h2 id="PageRank">PageRank</h2>
+<p>起源 : 引用分析</p>
+<p>特点：</p>
+<ol>
+<li>一个网页如果它的入链越多，那么它也越重要（PageRank越高）</li>
+<li>一个网页如果被越重要的网页所指向，那么它也越重要（PageRank越高）</li>
+</ol>
+<p>PageRank背后的假设：</p>
+<ol>
+<li>Web 上的链接是网页质量的标志-链出网页的作者认为链向的网页具有很高的质量</li>
+<li>锚文本能够描述链向网页的内容</li>
+</ol>
+<p>PageRank的计算：迭代法计算</p>
+<p>如果存在循环通路，需要虚拟一个结点，或者以一定的概率选取一个其他结点到达</p>
+<h2 id="HITS-Hub节点-Authority节点">HITS: Hub节点&amp;Authority节点</h2>
+<p>每个网页计算两个值：</p>
+<ul>
+<li>Hub：目录型或导航型网页的权重</li>
+<li>Authority：权威型网页的权重</li>
+</ul>
+<p>计算方法：</p>
+<p><img src="https://math.now.sh?inline=A%28p%29%3D%5Csum%20H(q_i)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=q_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是所有链接到<img src="https://math.now.sh?inline=p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的页面</p>
+<p><img src="https://math.now.sh?inline=H%28p%29%3D%5Csum%20A(r_i)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=r_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是所有页面<img src="https://math.now.sh?inline=p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>链接到的页面</p>
+<ul>
+<li>一个网页被越重要的导航型网页指向越多，那么它的Authority越大</li>
+<li>一个网页指向的高重要度权威型网页越多，那么它的Hub越大</li>
+</ul>
+<p>实际计算过程：</p>
+<ol>
+<li>首先进行Web 搜索，搜索的结果称为根集（从搜索结果中选择一部分排名靠前的网页作为根集，也叫做种子集合）</li>
+<li>将所有链向种子集合和种子集合链出的网页加入到种子集合，新的更大的集合称为基本集</li>
+<li>最后，在基本集上计算每个网页的hub值和authority值</li>
+</ol>
+<h2 id="PageRank-vs-HITS">PageRank vs. HITS</h2>
+<p>PageRank算法是Google提出的一个链接分析的算法，它可以根据节点之间的链接关系计算出每个节点的重要性，反映的是“越多越重要的节点指向该节点则该节点越重要”这个事实。</p>
+<p>HITS是IBM提出的另一种链接分析算法，它根据节点之间的链接关系对每个节点计算出两个值：权威度(authority值)和导航度(hub值).</p>
+<p>相同点：两者都是基于链接分析的排序算法，并且在算法中两者都利用了特征向量作为理论基础和收敛性依据。</p>
+<p>不同点：网页的PageRank是一种静态评分，与查询主题无关，可以事先算好，因此适合于大型搜索引擎；HITS算法的计算与查询主题相关，检索之后再进行计算，因此不适合于大型搜索引擎。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Information-Retrieval/" class="print-no-link">#Information Retrieval</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：现代信息检索-期末复习</div>
+      <div>https://zhangzhao219.github.io/2022/11/09/UCAS/information-retrieval/information-retrieval-final/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/11/Go/Go-Project-Mass-Communication-System/" title="Go项目-海量用户通讯系统">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go项目-海量用户通讯系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/03/Go/Go-Project-Customer-Management-System/" title="Go项目-客户信息管理系统">
+                        <span class="hidden-mobile">Go项目-客户信息管理系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

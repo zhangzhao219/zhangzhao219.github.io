@@ -1,0 +1,2999 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代码随想录-动态规划专题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录-动态规划专题">
+<meta property="og:url" content="https://zhangzhao219.github.io/2024/03/07/Leetcode/programmercarl/programmercarl-dp/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="代码随想录-动态规划专题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/07/x3odjs.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/08/x8hWVK.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/09/xJY2rR.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/09/xJYoGD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/10/xY6wKx.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/10/xY6yIe.png">
+<meta property="article:published_time" content="2024-03-07T15:43:20.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.195Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/10/07/x3odjs.png">
+  
+  
+  
+  <title>代码随想录-动态规划专题 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">代码随想录-动态规划专题</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-07 15:43" pubdate>
+          2024年3月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          21k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          175 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">代码随想录-动态规划专题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>代码随想录-动态规划专题</p>
+<span id="more"></span>
+<h1>动态规划专题</h1>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/x3odjs"><img src="https://s1.ax1x.com/2022/10/07/x3odjs.png" srcset="/img/loading.gif" lazyload alt="x3odjs.png"></a></p>
+<h2 id="基础知识">基础知识</h2>
+<p>动态规划中每一个状态一定是由上一个状态推导出来的， <strong>这一点就区分于贪心</strong> ，贪心没有状态推导，而是从局部直接选最优的</p>
+<p><strong>解决动态规划问题的五步曲：</strong></p>
+<ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序</li>
+<li>举例推导dp数组</li>
+</ol>
+<p><strong>做动规的题目，写代码之前一定要把状态转移在dp数组的上具体情况模拟一遍，心中有数，确定最后推出的是想要的结果</strong> 。</p>
+<p>然后再写代码，如果代码没通过就打印dp数组，看看是不是和自己预先推导的哪里不一样。</p>
+<p>如果打印出来和自己预先模拟推导是一样的，那么就是自己的递归公式、初始化或者遍历顺序有问题了。</p>
+<p>如果和自己预先模拟推导的不一样，那么就是代码实现细节有问题。</p>
+<h2 id="基础题目">基础题目</h2>
+<h3 id="509-斐波那契数">509. 斐波那契数</h3>
+<p><strong>斐波那契数</strong> （通常用 <code>F(n)</code> 表示）形成的序列称为 <strong>斐波那契数列</strong> 。该数列由 <code>0</code> 和 <code>1</code> 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
+<div class="code-wrapper"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">F</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span> = <span class="hljs-number">0</span>，<span class="hljs-built_in">F</span>(<span class="hljs-number">1</span>) = <span class="hljs-number">1</span>
+<span class="hljs-function"><span class="hljs-title">F</span><span class="hljs-params">(n)</span></span> = <span class="hljs-built_in">F</span>(n - <span class="hljs-number">1</span>) + <span class="hljs-built_in">F</span>(n - <span class="hljs-number">2</span>)，其中 n &gt; <span class="hljs-number">1</span></code></pre></div>
+<p>给定 <code>n</code> ，请计算 <code>F(n)</code> 。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp数组表示当前求得的数字，下标表示当前是第几个数字（dp[i]的定义为：第i个数的斐波那契数值是dp[i]）</li>
+<li>确定递推公式：<code>dp[i]=dp[i-1]+dp[i-2]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=0, dp[1]=1</code></li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：1, 1, 2, 3, 5, 8,…</li>
+</ul>
+<p>因为每一个数字的求出只依赖于之前的两个数字，因此不需要存储整个数组，只需要存储前两个数字即可。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fib</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+	a := <span class="hljs-number">0</span>
+	b := <span class="hljs-number">1</span>
+	<span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span> &#123;
+		<span class="hljs-keyword">return</span> a
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> n == <span class="hljs-number">1</span> &#123;
+		<span class="hljs-keyword">return</span> b
+	&#125;
+	<span class="hljs-keyword">var</span> c <span class="hljs-type">int</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">2</span>; i &lt;= n; i++ &#123;
+		c = a + b
+		<span class="hljs-keyword">if</span> i == n &#123;
+			<span class="hljs-keyword">break</span>
+		&#125;
+		a, b = b, c
+	&#125;
+	<span class="hljs-keyword">return</span> c
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span> || n == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> n;
+        &#125;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n<span class="hljs-number">+1</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;
+            dp[i] = dp[i<span class="hljs-number">-1</span>] + dp[i<span class="hljs-number">-2</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="70-爬楼梯">70. 爬楼梯</h3>
+<p>假设你正在爬楼梯。需要 <code>n</code> 阶你才能到达楼顶。</p>
+<p>每次你可以爬 <code>1</code> 或 <code>2</code> 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]的定义为：爬到第i个台阶的方法数目</li>
+<li>确定递推公式：爬到第i个台阶，可以是爬到第i-1个台阶后跨一步，也可以是爬到第i-2个台阶后跨两步，因此 <code>dp[i]=dp[i-1]+dp[i-2]</code></li>
+<li>dp数组如何初始化：<code>dp[1]=1, dp[2]=2</code>（注意 <code>dp[0]</code>是没有意义的，不要强行赋值进去）</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：1, 2, 3,…</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+    dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">2</span>;i&lt;=n;i++&#123;
+        dp[i]=dp[i<span class="hljs-number">-1</span>]+dp[i<span class="hljs-number">-2</span>]
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n<span class="hljs-number">+1</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;
+            dp[i] = dp[i<span class="hljs-number">-1</span>] + dp[i<span class="hljs-number">-2</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="746-使用最小花费爬楼梯">746. 使用最小花费爬楼梯</h3>
+<p>给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。</p>
+<p>你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。</p>
+<p>请你计算并返回达到楼梯顶部的最低花费。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]的定义为：到达第i个台阶的最低花费</li>
+<li>确定递推公式：到达第i个台阶的最低花费，可以是到达第i-1个台阶后支付第i-1台阶后的花费，也可以是到达第i-2个台阶后支付第i-2台阶后的花费，两者需要进行比较取最小值，因此 <code>dp[i]=min(dp[i-1]+cost[i-1],dp[i-2]+cost[i-2])</code>，这里认为第一步是不要花钱的，最后一步需要花钱。</li>
+<li>dp数组如何初始化：<code>dp[0]=0, dp[1]=0</code>（因为第一步都不要钱）</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minCostClimbingStairs</span><span class="hljs-params">(cost []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    n := <span class="hljs-built_in">len</span>(cost)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,n+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>],dp[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>,<span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:= <span class="hljs-number">2</span>;i&lt;=n;i++&#123;
+        dp[i]=min(dp[i<span class="hljs-number">-1</span>]+cost[i<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-2</span>]+cost[i<span class="hljs-number">-2</span>])
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n]
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a, b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">if</span> a &lt; b &#123;
+		<span class="hljs-keyword">return</span> a
+	&#125;
+	<span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minCostClimbingStairs</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; cost)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = cost.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n<span class="hljs-number">+2</span>)</span></span>;
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+        dp[<span class="hljs-number">2</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">3</span>;i&lt;=n<span class="hljs-number">+1</span>;i++)&#123;
+            dp[i] = <span class="hljs-built_in">min</span>(dp[i<span class="hljs-number">-1</span>] + cost[i<span class="hljs-number">-2</span>], dp[i<span class="hljs-number">-2</span>] + cost[i<span class="hljs-number">-3</span>]);
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">+1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="62-不同路径">62. 不同路径</h3>
+<p>一个机器人位于一个 <code>m x n</code> 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
+<p>问总共有多少条不同的路径？</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i][j]的定义为：到达第(i, j)格子的不同路径数量</li>
+<li>确定递推公式：到达第(i, j)格子的不同路径数量，是到达第(i-1, j)格子和到达第(i, j-1)格子的数量之和，因此 <code>dp[i][j]=dp[i-1][j]+dp[i][j-1]</code></li>
+<li>dp数组如何初始化：到达第一行和第一列的不同路径数量都为1</li>
+<li>确定遍历顺序：从上到下，从左到右遍历</li>
+<li>举例推导dp数组</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">uniquePaths</span><span class="hljs-params">(m <span class="hljs-type">int</span>, n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>, m+<span class="hljs-number">1</span>)
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; m+<span class="hljs-number">1</span>; i++ &#123;
+		dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)
+	&#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;m+<span class="hljs-number">1</span>;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;n+<span class="hljs-number">1</span>;j++&#123;
+            <span class="hljs-keyword">if</span> i == <span class="hljs-number">1</span> || j == <span class="hljs-number">1</span>&#123;
+                dp[i][j] = <span class="hljs-number">1</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + dp[i][j<span class="hljs-number">-1</span>]
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[m][n]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">uniquePaths</span><span class="hljs-params">(<span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span> </span>&#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+            dp[<span class="hljs-number">0</span>][j] = <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;n;j++)&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + dp[i][j<span class="hljs-number">-1</span>];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m<span class="hljs-number">-1</span>][n<span class="hljs-number">-1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<p>事实上使用一个一维数组就可以实现了，可以对代码的空间复杂度进行优化：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">uniquePaths</span><span class="hljs-params">(m <span class="hljs-type">int</span>, n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n+<span class="hljs-number">1</span>; i++ &#123;
+		dp[i] = <span class="hljs-number">1</span>
+	&#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">2</span>;i&lt;m+<span class="hljs-number">1</span>;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">2</span>;j&lt;n+<span class="hljs-number">1</span>;j++&#123;
+            dp[j] += dp[j<span class="hljs-number">-1</span>]
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n]
+&#125;</code></pre></div>
+<h3 id="63-不同路径Ⅱ">63. 不同路径Ⅱ</h3>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish”）。</p>
+<p>现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？</p>
+<p>网格中的障碍物和空位置分别用 1 和 0 来表示。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i][j]的定义为：到达第(i, j)格子的不同路径数量</li>
+<li>确定递推公式：到达第(i, j)格子的不同路径数量，是到达第(i-1, j)格子和到达第(i, j-1)格子的数量之和，因此 <code>dp[i][j]=dp[i-1][j]+dp[i][j-1]</code>，<strong>但是，若该格子是障碍物，到达这个格子的路径数量为0，因此直接置</strong> <code>dp[i][j]=0</code></li>
+<li>dp数组如何初始化：初始化时候要考虑是否是障碍物，如果是障碍物，那么后面的格子肯定也是无法到达的，不能仅仅置为1</li>
+<li>确定遍历顺序：从上到下，从左到右遍历</li>
+<li>举例推导dp数组</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">uniquePathsWithObstacles</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; obstacleGrid)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = obstacleGrid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = obstacleGrid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>));
+        <span class="hljs-keyword">if</span>(obstacleGrid[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+            dp[<span class="hljs-number">0</span>][j] = <span class="hljs-number">0</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span> &amp;&amp; j == <span class="hljs-number">1</span>)&#123;
+                    dp[i][j] = <span class="hljs-number">1</span>;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(obstacleGrid[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] == <span class="hljs-number">1</span>)&#123;
+                    dp[i][j] = <span class="hljs-number">0</span>;
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j] + dp[i][j<span class="hljs-number">-1</span>];
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m][n];
+    &#125;
+&#125;;</code></pre></div>
+<p>直接给出状态压缩后的写法：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">uniquePathsWithObstacles</span><span class="hljs-params">(obstacleGrid [][]<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    m := <span class="hljs-built_in">len</span>(obstacleGrid)
+    n := <span class="hljs-built_in">len</span>(obstacleGrid[<span class="hljs-number">0</span>])
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n)
+    <span class="hljs-keyword">var</span> sign <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;n;j++&#123;
+        <span class="hljs-keyword">if</span> obstacleGrid[<span class="hljs-number">0</span>][j] == <span class="hljs-number">1</span>&#123;
+            sign = <span class="hljs-number">1</span>
+            dp[j] = <span class="hljs-number">0</span>
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> sign == <span class="hljs-number">1</span>&#123;
+            dp[j] = <span class="hljs-number">0</span>
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            dp[j] = <span class="hljs-number">1</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;m;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;n;j++&#123;
+            <span class="hljs-keyword">if</span> obstacleGrid[i][j] == <span class="hljs-number">1</span>&#123;
+                dp[j] = <span class="hljs-number">0</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">if</span> j != <span class="hljs-number">0</span>&#123;
+                    dp[j] += dp[j<span class="hljs-number">-1</span>]
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">-1</span>]
+&#125;</code></pre></div>
+<h3 id="343-整数拆分">343. 整数拆分</h3>
+<p>给定一个正整数 <code>n</code> ，将其拆分为 <code>k</code> 个 <strong>正整数</strong> 的和（ <code>k &gt;= 2</code> ），并使这些整数的乘积最大化。</p>
+<p>返回 <em>你可以获得的最大乘积</em> 。</p>
+<ul>
+<li>确定dp数组以及下标的含义：分拆数字i，可以得到的最大乘积为dp[i]</li>
+<li>确定递推公式：从1遍历比i更小的数字j，有两种情况：①如果直接用这个数字，就是j*(i-j)，②如果将j继续拆分，就是j*dp[i-j]。因此 <code>dp[i] = max(dp[i], max((i - j) * j, dp[i - j] * j))</code></li>
+<li>dp数组如何初始化：<code>dp[0]</code>和 <code>dp[1]</code>都没有意义，<code>dp[2]=1</code></li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">integerBreak</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,n+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">3</span>;i&lt;=n;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;i<span class="hljs-number">-1</span>;j++&#123;
+            dp[i] = max(dp[i], max((i - j) * j, dp[i - j] * j))
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">integerBreak</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n<span class="hljs-number">+1</span>)</span></span>;
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">-1</span>;j&gt;=<span class="hljs-number">1</span>;j--)&#123;
+                dp[i] = <span class="hljs-built_in">max</span>(dp[i],<span class="hljs-built_in">max</span>(j * dp[i-j], j*(i-j)));
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="96-不同的二叉搜索树">96.不同的二叉搜索树</h3>
+<p>给你一个整数 <code>n</code> ，求恰由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的 <strong>二叉搜索树</strong> 有多少种？返回满足题意的二叉搜索树的种数。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]表示有i个结点的互不相同的二叉搜索树的种类数</li>
+<li>确定递推公式：二叉搜索树的性质决定了根结点的值一定比左边结点的值大，一定比右边的值小，因此可以通过根结点将二叉搜索树分为左右的两个部分。而不管是左边的部分还是右边的部分，结点的值一定是连续的，就是在找结点数目更少的二叉搜索树的数量。因此分为左右两个部分分别寻找，然后相乘到一起即可。递推公式为：<code>dp[i] = dp[i] + dp[j-1] * dp[i-j]</code>，j是遍历时候的标记。</li>
+<li>dp数组如何初始化：<code>dp[0]=1,dp[1]=1</code>，感觉 <code>dp[0]</code>也是很难解释。。。</li>
+<li>确定遍历顺序：从前到后</li>
+<li>举例推导dp数组：推导后才发现之前的简单想法是错误的</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,n+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+    dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">2</span>;i&lt;=n;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=i;j++&#123;
+            dp[i] = dp[i] + dp[j<span class="hljs-number">-1</span>] * dp[i-j]
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n<span class="hljs-number">+1</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i;j&gt;=<span class="hljs-number">1</span>;j--)&#123;
+                dp[i] = dp[i] + dp[j<span class="hljs-number">-1</span>] * dp[i-j];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n];
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="背包问题">背包问题</h2>
+<h3 id="01-背包解题方法">01 背包解题方法</h3>
+<p>有n件物品和一个最多能背重量为w 的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。 <strong>每件物品只能用一次</strong> ，求解将哪些物品装入背包里物品价值总和最大。</p>
+<ol>
+<li>确定dp数组以及下标的含义：对于背包问题，有一种写法是使用二维数组，即 <strong>dp[i][j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少</strong> 。</li>
+<li>确定递推公式</li>
+</ol>
+<p>再回顾一下dp[i][j]的含义：从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少。</p>
+<p>那么可以有两个方向推出来dp[i][j]，</p>
+<ul>
+<li><strong>不放物品i</strong> ：由dp[i - 1][j]推出，即背包容量为j，里面不放物品i的最大价值，此时dp[i][j]就是dp[i - 1][j]。(其实就是当物品i的重量大于背包j的重量时，物品i无法放进背包中，所以被背包内的价值依然和前面相同。)</li>
+<li><strong>放物品i</strong> ：由dp[i - 1][j - weight[i]]推出，dp[i - 1][j - weight[i]] 为背包容量为j - weight[i]的时候不放物品i的最大价值，那么dp[i - 1][j - weight[i]] + value[i] （物品i的价值），就是背包放物品i得到的最大价值</li>
+</ul>
+<p>所以递归公式： dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</p>
+<ol start="3">
+<li>dp数组如何初始化</li>
+</ol>
+<p><strong>关于初始化，一定要和dp数组的定义吻合，否则到递推公式的时候就会越来越乱</strong> 。</p>
+<p>首先从dp[i][j]的定义出发，如果背包容量j为0的话，即dp[i][0]，无论是选取哪些物品，背包价值总和一定为0。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/x8hWVK"><img src="https://s1.ax1x.com/2022/10/08/x8hWVK.md.png" srcset="/img/loading.gif" lazyload alt="x8hWVK.md.png"></a></p>
+<p>状态转移方程 dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]); 可以看出i 是由 i-1 推导出来，那么i为0的时候就一定要初始化。</p>
+<p>dp[0][j]，即：i为0，存放编号0的物品的时候，各个容量的背包所能存放的最大价值。</p>
+<p>那么很明显当 j &lt; weight[0]的时候，dp[0][j] 应该是 0，因为背包容量比编号0的物品重量还小。</p>
+<p>当j &gt;= weight[0]时，dp[0][j] 应该是value[0]，因为背包容量足够放编号0物品。</p>
+<ol start="4">
+<li>确定遍历顺序</li>
+</ol>
+<p><strong>要理解递归的本质和递推的方向</strong> 。</p>
+<p>dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]); 递归公式中可以看出dp[i][j]是靠dp[i-1][j]和dp[i - 1][j - weight[i]]推导出来的。</p>
+<p>dp[i-1][j]和dp[i - 1][j - weight[i]] 都在dp[i][j]的左上角方向（包括正上方向）</p>
+<p>先遍历物品再遍历背包这个顺序更好理解，但是怎么遍历都可以</p>
+<h4 id="一维dp数组（滚动数组）">一维dp数组（滚动数组）</h4>
+<p>对于背包问题其实状态都是可以压缩的。</p>
+<p>在使用二维数组的时候，递推公式：dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</p>
+<p><strong>其实可以发现如果把dp[i - 1]那一层拷贝到dp[i]上，表达式完全可以是：dp[i][j] = max(dp[i][j], dp[i][j - weight[i]] + value[i]);</strong></p>
+<p><strong>与其把dp[i - 1]这一层拷贝到dp[i]上，不如只用一个一维数组了</strong> ，只用dp[j]（一维数组，也可以理解是一个滚动数组）。</p>
+<p>这就是滚动数组的由来，需要满足的条件是上一层可以重复利用，直接拷贝到当前层。</p>
+<ol>
+<li>确定dp数组的定义</li>
+</ol>
+<p>在一维dp数组中，dp[j]表示：容量为j的背包，所背的物品价值最大可以为dp[j]。</p>
+<ol start="2">
+<li>一维dp数组的递推公式</li>
+</ol>
+<p>dp[j]为 容量为j的背包所背的最大价值，那么如何推导dp[j]呢？</p>
+<p>dp[j]可以通过dp[j - weight[i]]推导出来，dp[j - weight[i]]表示容量为j - weight[i]的背包所背的最大价值。</p>
+<p>dp[j - weight[i]] + value[i] 表示 容量为 j - 物品i重量 的背包 加上 物品i的价值。（也就是容量为j的背包，放入物品i了之后的价值即：dp[j]）</p>
+<p>此时dp[j]有两个选择，一个是取自己dp[j] 相当于 二维dp数组中的dp[i-1][j]，即不放物品i，一个是取dp[j - weight[i]] + value[i]，即放物品i，指定是取最大的，毕竟是求最大价值，</p>
+<p>所以递归公式为：dp[j] = max(dp[j], dp[j - weight[i]] + value[i])</p>
+<p>可以看出相对于二维dp数组的写法，就是把dp[i][j]中i的维度去掉了。</p>
+<ol start="3">
+<li>一维dp数组如何初始化</li>
+</ol>
+<p><strong>关于初始化，一定要和dp数组的定义吻合，否则到递推公式的时候就会越来越乱</strong> 。</p>
+<p>dp[j]表示：容量为j的背包，所背的物品价值可以最大为dp[j]，那么dp[0]就应该是0，因为背包容量为0所背的物品的最大价值就是0。</p>
+<p>那么dp数组除了下标0的位置，初始为0，其他下标应该初始化多少呢？</p>
+<p>看一下递归公式：dp[j] = max(dp[j], dp[j - weight[i]] + value[i]);</p>
+<p>dp数组在推导的时候一定是取价值最大的数，如果题目给的价值都是正整数那么非0下标都初始化为0就可以了。</p>
+<p><strong>这样才能让dp数组在递归公式的过程中取的最大的价值，而不是被初始值覆盖了</strong> 。</p>
+<p>那么我假设物品价值都是大于0的，所以dp数组初始化的时候，都初始为0就可以了。</p>
+<ol start="4">
+<li>一维dp数组遍历顺序</li>
+</ol>
+<p><strong>和二维dp的写法中，遍历背包的顺序是不一样的！</strong></p>
+<p>二维dp遍历的时候，背包容量是从小到大，而一维dp遍历的时候，背包是从大到小。</p>
+<p><strong>倒序遍历是为了保证物品i只被放入一次！</strong> 但如果一旦正序遍历了，那么物品0就会被重复加入多次！</p>
+<p>从后往前循环，每次取得状态不会和之前取得状态重合，这样每种物品就只取一次了。</p>
+<p><strong>为什么二维dp数组历的时候不用倒序呢？</strong> 因为对于二维dp，dp[i][j]都是通过上一层即dp[i - 1][j]计算而来，本层的dp[i][j]并不会被覆盖！</p>
+<p><strong>再来看看两个嵌套for循环的顺序，代码中是先遍历物品嵌套遍历背包容量，那可不可以先遍历背包容量嵌套遍历物品呢？</strong></p>
+<p>不可以！因为一维dp的写法，背包容量一定要倒序遍历，如果遍历背包容量放在上一层，那么每个dp[j]就只会放入一个物品，即：背包里只放入了一个物品。</p>
+<h3 id="416-分割等和子集">416. 分割等和子集</h3>
+<p>给你一个 <strong>只包含正整数</strong> 的 <strong>非空</strong>数组 <code>nums</code> 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示是否能凑出总和为j的数值</li>
+<li>确定递推公式：判断当前的数值是否能凑出来，首先如果目前已有的数值都能凑出来，那么加上这个数字肯定也能凑出来。其次如果减掉这个数值的前一步能凑出来，那么这个更大的数值也能凑出来。因此 <code>dp[j] = dp[j] || dp[j-nums[i]]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=true</code></li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从后到前进行填充，避免填充多个数字</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">canPartition</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    <span class="hljs-keyword">var</span> sum <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        sum += nums[i]
+    &#125;
+    <span class="hljs-keyword">if</span> sum % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    &#125;
+    sum /= <span class="hljs-number">2</span>
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>,sum+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        <span class="hljs-keyword">for</span> j:=sum;j&gt;=nums[i];j--&#123;
+            dp[j] = dp[j] || dp[j-nums[i]]
+        &#125;
+        <span class="hljs-keyword">if</span> dp[sum] == <span class="hljs-literal">true</span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[sum]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canPartition</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> numsum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            numsum += nums[i];
+        &#125;
+        <span class="hljs-keyword">if</span>(numsum % <span class="hljs-number">2</span> != <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-type">int</span> target = numsum / <span class="hljs-number">2</span>;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(nums.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(target<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=target;i++)&#123;
+            <span class="hljs-keyword">if</span>(i &gt;= nums[<span class="hljs-number">0</span>])&#123;
+                dp[<span class="hljs-number">0</span>][i] = nums[<span class="hljs-number">0</span>];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=target;j++)&#123;
+                <span class="hljs-keyword">if</span>(j &lt; nums[i])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j];
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i<span class="hljs-number">-1</span>][j-nums[i]] + nums[i]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][target] == target;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="1049-最后一块石头的重量-II">1049. 最后一块石头的重量 II</h3>
+<p>有一堆石头，用整数数组 stones 表示。其中 stones[i] 表示第 i 块石头的重量。</p>
+<p>每一回合，从中选出任意两块石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<p>如果 x == y，那么两块石头都会被完全粉碎；</p>
+<p>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</p>
+<p>最后，最多只会剩下一块石头。返回此石头最小的可能重量 。如果没有石头剩下，就返回 0。</p>
+<p>分析：将石头分成重量大致相同的两堆，也就是看在不超过sum/2的情况下背包内最多能装多少石头，然后计算差值即可</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示是否能凑出总和为j的重量的石头</li>
+<li>确定递推公式：判断当前的数值是否能凑出来，首先如果目前已有的数值都能凑出来，那么加上这个数字肯定也能凑出来。其次如果减掉这个数值的前一步能凑出来，那么这个更大的数值也能凑出来。因此 <code>dp[j] = dp[j] || dp[j-nums[i]]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=true</code></li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从后到前进行填充，避免填充多个数字</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">lastStoneWeightII</span><span class="hljs-params">(stones []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">var</span> sum1,sum <span class="hljs-type">int</span> = <span class="hljs-number">0</span>,<span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(stones);i++&#123;
+        sum1 += stones[i]
+    &#125;
+    <span class="hljs-keyword">if</span> sum1 % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>&#123;
+        sum = (sum1 <span class="hljs-number">-1</span>) / <span class="hljs-number">2</span>
+    &#125; <span class="hljs-keyword">else</span>&#123;
+        sum = sum1 / <span class="hljs-number">2</span>
+    &#125;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>,sum+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(stones);i++&#123;
+        <span class="hljs-keyword">for</span> j:=sum;j&gt;=stones[i];j--&#123;
+            dp[j] = dp[j] || dp[j-stones[i]]
+        &#125;
+    &#125;
+    <span class="hljs-keyword">var</span> result <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> j:=sum;j&gt;=<span class="hljs-number">0</span>;j--&#123;
+        <span class="hljs-keyword">if</span> dp[j] == <span class="hljs-literal">true</span>&#123;
+            result = j
+            <span class="hljs-keyword">break</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> sum1 - result * <span class="hljs-number">2</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lastStoneWeightII</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; stones)</span> </span>&#123;
+        <span class="hljs-type">int</span> numsum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;stones.<span class="hljs-built_in">size</span>();i++)&#123;
+            numsum += stones[i];
+        &#125;
+        <span class="hljs-type">int</span> target = numsum;
+        numsum /= <span class="hljs-number">2</span>;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(stones.<span class="hljs-built_in">size</span>(),<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(numsum<span class="hljs-number">+1</span>, <span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=numsum;i++)&#123;
+            <span class="hljs-keyword">if</span>(i &gt;= stones[<span class="hljs-number">0</span>])&#123;
+                dp[<span class="hljs-number">0</span>][i] = stones[<span class="hljs-number">0</span>];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;stones.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=numsum;j++)&#123;
+                <span class="hljs-keyword">if</span>(j &lt; stones[i])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j];
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i<span class="hljs-number">-1</span>][j-stones[i]] + stones[i]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(target<span class="hljs-number">-2</span>*dp[stones.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][numsum]);
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="494-目标和">494. 目标和</h3>
+<p>给你一个整数数组 nums 和一个整数 target 。</p>
+<p>向数组中的每个整数前添加 ‘+’ 或 ‘-’ ，然后串联起所有整数，可以构造一个 表达式 ：</p>
+<p>例如，nums = [2, 1] ，可以在 2 之前添加 ‘+’ ，在 1 之前添加 ‘-’ ，然后串联起来得到表达式 “+2-1” 。</p>
+<p>返回可以通过上述方法构造的、运算结果等于 target 的不同表达式的数目。</p>
+<p>分析：假设加法的总和为x，那么减法对应的总和就是sum - x。所以我们要求的是 x - (sum - x) = S，x = (S + sum) / 2，<strong>此时问题就转化为，装满容量为x背包，有几种方法</strong>。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示装满容量为j的背包的方法数量</li>
+<li>确定递推公式：如果不选数字i，则方法数量为dp[j]，如果选择数字i，则方法数量为dp[j-nums[i]]，因此总共的方法数量应该是dp[j]+dp[j-nums[i]]，因此递推公式为 <code>dp[j] = dp[j]+dp[j-nums[i]]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=1</code>，装0件物品对应的方法数量为1，就是什么都不装</li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从后到前进行填充，避免填充多个数字</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findTargetSumWays</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>, target <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">var</span> sum <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        sum += nums[i]
+    &#125;
+    x := target + sum
+    <span class="hljs-keyword">if</span> x % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> || x &lt; <span class="hljs-number">0</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    &#125;
+    x /= <span class="hljs-number">2</span>
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,x+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        <span class="hljs-keyword">for</span> j:=x;j&gt;=nums[i];j--&#123;
+            dp[j] += dp[j-nums[i]]
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[x]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findTargetSumWays</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;
+        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) sum += nums[i];
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(target) &gt; sum) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 此时没有方案</span>
+        <span class="hljs-keyword">if</span> ((target + sum) % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 此时没有方案</span>
+        <span class="hljs-type">int</span> bagSize = (target + sum) / <span class="hljs-number">2</span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(bagSize + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = bagSize; j &gt;= nums[i]; j--) &#123;
+                dp[j] += dp[j - nums[i]];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[bagSize];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="474-一和零">474.一和零</h3>
+<p>给你一个二进制字符串数组 strs 和两个整数 m 和 n 。</p>
+<p>请你找出并返回 strs 的最大子集的长度，该子集中 最多 有 m 个 0 和 n 个 1 。</p>
+<p>如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集 。</p>
+<p>分析：相当于一个三维的0-1背包问题，可以通过压缩的方式压缩成二维背包，且需要对数据进行预处理</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j][k]表示最多有j个0和k个1的最大子集长度</li>
+<li>确定递推公式：<code>dp[j][k] = max(dp[j][k],dp[j-strs[i]][k-strs[i]]+1)</code></li>
+<li>dp数组如何初始化：<code>dp[0][0]=0</code></li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从后到前进行填充，避免填充多个数字</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findMaxForm</span><span class="hljs-params">(strs []<span class="hljs-type">string</span>, m <span class="hljs-type">int</span>, n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>, m+<span class="hljs-number">1</span>)
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; m+<span class="hljs-number">1</span>; i++ &#123;
+		dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)
+	&#125;
+    <span class="hljs-keyword">for</span> _,str := <span class="hljs-keyword">range</span> strs&#123;
+        zero := strings.Count(str, <span class="hljs-string">&quot;0&quot;</span>)
+		one := <span class="hljs-built_in">len</span>(str) - zero
+        <span class="hljs-keyword">for</span> j:=m;j&gt;=zero;j--&#123;
+            <span class="hljs-keyword">for</span> k:=n;k&gt;=one;k--&#123;
+                dp[j][k] = max(dp[j][k],dp[j-zero][k-one]+<span class="hljs-number">1</span>)
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[m][n]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span> <span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findMaxForm</span><span class="hljs-params">(vector&lt;string&gt;&amp; strs, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span> </span>&#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;strs.<span class="hljs-built_in">size</span>();i++)&#123;
+            string s = strs[i];
+            <span class="hljs-type">int</span> zeronum = <span class="hljs-number">0</span>;
+            <span class="hljs-type">int</span> onenum = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;s.<span class="hljs-built_in">size</span>();j++)&#123;
+                <span class="hljs-keyword">if</span>(s[j] == <span class="hljs-string">&#x27;0&#x27;</span>)&#123;
+                    zeronum += <span class="hljs-number">1</span>;
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    onenum += <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> x=m;x &gt;= zeronum;x--)&#123;
+                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> y=n;y&gt;=onenum;y--)&#123;
+                    dp[x][y] = <span class="hljs-built_in">max</span>(dp[x][y],dp[x-zeronum][y-onenum]<span class="hljs-number">+1</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m][n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="完全背包解题方法">完全背包解题方法</h3>
+<p>有N件物品和一个最多能背重量为W的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。 <strong>每件物品都有无限个（也就是可以放入背包多次）</strong> ，求解将哪些物品装入背包里物品价值总和最大。</p>
+<p><strong>完全背包和01背包问题唯一不同的地方就是，每种物品有无限件</strong> 。</p>
+<p>01背包和完全背包唯一不同就是体现在遍历顺序上</p>
+<p>我们知道01背包内嵌的循环是从大到小遍历，为了保证每个物品仅被添加一次。</p>
+<p>而完全背包的物品是可以添加多次的，所以要从小到大去遍历</p>
+<p><strong>在完全背包中，对于一维dp数组来说，其实两个for循环嵌套顺序同样无所谓！</strong></p>
+<p>因为dp[j] 是根据 下标j之前所对应的dp[j]计算出来的。 只要保证下标j之前的dp[j]都是经过计算的就可以了。</p>
+<h3 id="518-零钱兑换-II">518. 零钱兑换 II</h3>
+<p>给你一个整数数组 coins 表示不同面额的硬币，另给一个整数 amount 表示总金额。</p>
+<p>请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回 0 。</p>
+<p>假设每一种面额的硬币有无限个。</p>
+<p>题目数据保证结果符合 32 位带符号整数。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示凑成金额j的组合数量</li>
+<li>确定递推公式：dp[j]有两种情况，第一种情况是加上这个硬币后无法凑出新的种类，因此维持不变。第二种情况是加上新的硬币后能凑出新的种类了，因此dp[j]=dp[j]+dp[j-coins[i]]，因此递推公式为 <code>dp[j]=dp[j]+dp[j-coins[i]]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=1</code>，凑成金额0的组合数量为1，不影响后面的递推，解释起来就是凑成金额0的组合数量只有一种，就是什么都不凑</li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从前到后进行填充，从而允许多个选择，符合完全背包的条件。外层for循环遍历物品（钱币），内层for遍历背包（金钱总额）的情况是找组合数，而反向实际上是排列数，因此遍历的顺序不能反</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">change</span><span class="hljs-params">(<span class="hljs-type">int</span> amount, vector&lt;<span class="hljs-type">int</span>&gt;&amp; coins)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = coins.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(amount<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=coins[i];j&lt;=amount;j++)&#123;
+                dp[j] += dp[j-coins[i]];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[amount];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="377-组合总和-Ⅳ">377. 组合总和 Ⅳ</h3>
+<p>给你一个由 不同 整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。</p>
+<p>题目数据保证答案符合 32 位整数范围。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示凑成j的<strong>排列</strong>数量</li>
+<li>确定递推公式：dp[j]有两种情况，第一种情况是加上这个数字后无法凑出新的排列，因此维持不变。第二种情况是加上新的数字后能凑出新的排列了，因此dp[j]=dp[j]+dp[j-nums[i]]，因此递推公式为 <code>dp[j]=dp[j]+dp[j-nums[i]]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=1</code>，凑成整数0的组合数量为1，不影响后面的递推</li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从前到后进行填充，从而允许多个选择，符合完全背包的条件。外层for循环背包（目标整数），内层for遍历物品（数组）的情况是找排列数，而反向实际上是组合数，因此遍历的顺序不能反</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">combinationSum4</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>, target <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    coinlen := <span class="hljs-built_in">len</span>(nums)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,target+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;=target;j++&#123;
+        <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;coinlen;i++&#123;
+            <span class="hljs-keyword">if</span> j-nums[i] &gt;= <span class="hljs-number">0</span>&#123;
+                dp[j] += dp[j-nums[i]]
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[target]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">combinationSum4</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(target<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=target;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i - nums[j] &gt;= <span class="hljs-number">0</span>  &amp;&amp; dp[i] &lt; INT_MAX - dp[i - nums[j]] )&#123;
+                    dp[i] = dp[i] + dp[i - nums[j]];
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[target];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="70-爬楼梯-2">70. 爬楼梯</h3>
+<p>假设你正在爬楼梯。需要 <code>n</code> 阶你才能到达楼顶。</p>
+<p>每次你可以爬 <code>1</code> 或 <code>2</code> 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p><strong>改为：一步一个台阶，两个台阶，三个台阶，…，直到 m个台阶。问有多少种不同的方法可以爬到楼顶呢？</strong></p>
+<p>实际上就是一个完全背包问题</p>
+<h3 id="322-零钱兑换">322. 零钱兑换</h3>
+<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。</p>
+<p>计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示能凑成j的最少的硬币个数</li>
+<li>确定递推公式：dp[j]有两种情况，第一种情况是加上这种硬币后无法凑出新的组合，因此维持不变。第二种情况是加上新的数字后能凑出新的组合了，因此dp[j]=dp[j-nums[i]]+1，要取两者的最小值，因此递推公式为 <code>dp[j]=min(dp[j],dp[j-nums[i]]+1)</code></li>
+<li>dp数组如何初始化：<code>dp[0]=0</code>，凑成整数0的最少硬币个数为0，不影响后面的递推。同时要将整个dp数组初始化一个比较大的数值，从而不影响min的判断</li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从前到后进行填充，从而允许多个选择，符合完全背包的条件。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">coinChange</span><span class="hljs-params">(coins []<span class="hljs-type">int</span>, amount <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    coinlen := <span class="hljs-built_in">len</span>(coins)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,amount+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=amount;i++&#123;
+        dp[i] = amount+<span class="hljs-number">1</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;coinlen;i++&#123;
+        <span class="hljs-keyword">for</span> j:=coins[i];j&lt;=amount;j++&#123;
+            dp[j] = min(dp[j],dp[j-coins[i]]+<span class="hljs-number">1</span>)
+        &#125;
+    &#125;
+    <span class="hljs-keyword">if</span> dp[amount] == amount+<span class="hljs-number">1</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
+    &#125;
+    <span class="hljs-keyword">return</span> dp[amount]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> b
+    &#125;
+    <span class="hljs-keyword">return</span> a
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">coinChange</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; coins, <span class="hljs-type">int</span> amount)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = coins.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(amount<span class="hljs-number">+1</span>,INT_MAX)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=coins[i];j&lt;=amount;j++)&#123;
+                <span class="hljs-keyword">if</span> (dp[j - coins[i]] != INT_MAX) &#123;
+                    dp[j] = <span class="hljs-built_in">min</span>(dp[j], dp[j-coins[i]]<span class="hljs-number">+1</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[amount] == INT_MAX ? <span class="hljs-number">-1</span> : dp[amount];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="279-完全平方数">279. 完全平方数</h3>
+<p>给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。</p>
+<p>完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示和为j的完全平方数的最少数量</li>
+<li>确定递推公式：dp[j]有两种情况，第一种情况是不能凑出完全平方数。第二种情况是遍历比它小的数字，可以通过一些组合凑出完全平方数，最终取最少的数量，因此递推公式为 <code>dp[j]=min(dp[j],dp[j-i*i]+1)</code></li>
+<li>dp数组如何初始化：<code>dp[0]=0</code>，凑成整数0的完全平方数的最少数量为0，不影响后面的递推。同时要将整个dp数组初始化一个比较大的数值，从而不影响min的判断</li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从前到后进行填充。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">numSquares</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,n+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=n;i++&#123;
+        dp[i] = n+<span class="hljs-number">1</span>
+    &#125;
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;=n;j++&#123;
+        <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i*i&lt;=j;i++&#123;
+            dp[j] = min(dp[j],dp[j-i*i]+<span class="hljs-number">1</span>)
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[n]
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> b
+    &#125;
+    <span class="hljs-keyword">return</span> a
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numSquares</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+        vector&lt;<span class="hljs-type">int</span>&gt; nums;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;
+            <span class="hljs-keyword">if</span>(i * i &lt;= n)&#123;
+                nums.<span class="hljs-built_in">push_back</span>(i*i);
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> m = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n<span class="hljs-number">+1</span>, INT_MAX)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=nums[i];j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(dp[j-nums[i]] == INT_MAX)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                dp[j] = <span class="hljs-built_in">min</span>(dp[j],dp[j-nums[i]]<span class="hljs-number">+1</span>);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="139-单词拆分">139. 单词拆分</h3>
+<p>给你一个字符串 <code>s</code> 和一个字符串列表 <code>wordDict</code> 作为字典。请你判断是否可以利用字典中出现的单词拼接出 <code>s</code> 。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[j]表示字符串s以下标j结尾是否能通过字符串列表拼接出来</li>
+<li>确定递推公式:如果当前减掉遍历的字符串的长度为真，且这个减掉的区间的字符串恰好等于这个字符串，那么dp[j]=true，否则dp[j]=false，要注意不要被后面没有匹配上的干扰了，因此 <code>dp[i] = dp[i] || dp[i-len(wordDict[j])]</code></li>
+<li>dp数组如何初始化：<code>dp[0]=true</code>，以0为结尾是一个空串，是可以拼接出来的，后续要用到这个真值进行递推。</li>
+<li>确定遍历顺序：遍历每一个数值，填充dp数组时要从前到后进行填充，以符合完全背包的条件。外层遍历字符串，内层遍历字典中的数值，相当于每多一个字符就把字典内全部的字符串拿过去尝试一下</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">wordBreak</span><span class="hljs-params">(s <span class="hljs-type">string</span>, wordDict []<span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    lenword := <span class="hljs-built_in">len</span>(wordDict)
+    lens := <span class="hljs-built_in">len</span>(s)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>,lens+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;=lens;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;lenword;j++&#123;
+            <span class="hljs-keyword">if</span> i-<span class="hljs-built_in">len</span>(wordDict[j]) &gt;= <span class="hljs-number">0</span>&#123;
+                <span class="hljs-keyword">if</span> wordDict[j] == s[i-<span class="hljs-built_in">len</span>(wordDict[j]):i]&#123;
+                    dp[i] = dp[i] || dp[i-<span class="hljs-built_in">len</span>(wordDict[j])]
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[lens]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">wordBreak</span><span class="hljs-params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;
+        <span class="hljs-function">unordered_set&lt;string&gt; <span class="hljs-title">wordSet</span><span class="hljs-params">(wordDict.begin(), wordDict.end())</span></span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(s.size() + <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= s.<span class="hljs-built_in">size</span>(); i++) &#123;   <span class="hljs-comment">// 遍历背包</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;       <span class="hljs-comment">// 遍历物品</span>
+                string word = s.<span class="hljs-built_in">substr</span>(j, i - j); <span class="hljs-comment">//substr(起始位置，截取的个数)</span>
+                <span class="hljs-keyword">if</span> (wordSet.<span class="hljs-built_in">find</span>(word) != wordSet.<span class="hljs-built_in">end</span>() &amp;&amp; dp[j]) &#123;
+                    dp[i] = <span class="hljs-literal">true</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[s.<span class="hljs-built_in">size</span>()];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="多重背包">多重背包</h3>
+<p>有N种物品和一个容量为V 的背包。第i种物品最多有Mi件可用，每件耗费的空间是Ci ，价值是Wi 。求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<p>每件物品最多有Mi件可用，把Mi件摊开，其实就是一个01背包问题了。</p>
+<h3 id="背包问题总结"><a target="_blank" rel="noopener" href="https://www.programmercarl.com/%E8%83%8C%E5%8C%85%E6%80%BB%E7%BB%93%E7%AF%87.html">背包问题总结</a></h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xJY2rR"><img src="https://s1.ax1x.com/2022/10/09/xJY2rR.md.png" srcset="/img/loading.gif" lazyload alt="xJY2rR.md.png"></a></p>
+<h4 id="背包递推公式">背包递推公式</h4>
+<p>问能否能装满背包（或者最多装多少）：dp[j] = max(dp[j], dp[j - nums[i]] + nums[i]); ，对应题目如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0416.%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86.html">动态规划：416.分割等和子集(opens new window)</a></li>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/1049.%E6%9C%80%E5%90%8E%E4%B8%80%E5%9D%97%E7%9F%B3%E5%A4%B4%E7%9A%84%E9%87%8D%E9%87%8FII.html">动态规划：1049.最后一块石头的重量 II(opens new window)</a></li>
+</ul>
+<p>问装满背包有几种方法：dp[j] += dp[j - nums[i]] ，对应题目如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0494.%E7%9B%AE%E6%A0%87%E5%92%8C.html">动态规划：494.目标和(opens new window)</a></li>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0518.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2II.html">动态规划：518. 零钱兑换 II(opens new window)</a></li>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0377.%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C%E2%85%A3.html">动态规划：377.组合总和Ⅳ(opens new window)</a></li>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0070.%E7%88%AC%E6%A5%BC%E6%A2%AF%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E7%89%88%E6%9C%AC.html">动态规划：70. 爬楼梯进阶版（完全背包）(opens new window)</a></li>
+</ul>
+<p>问背包装满最大价值：dp[j] = max(dp[j], dp[j - weight[i]] + value[i]); ，对应题目如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0474.%E4%B8%80%E5%92%8C%E9%9B%B6.html">动态规划：474.一和零(opens new window)</a></li>
+</ul>
+<p>问装满背包所有物品的最小个数：dp[j] = min(dp[j - coins[i]] + 1, dp[j]); ，对应题目如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2.html">动态规划：322.零钱兑换(opens new window)</a></li>
+<li><a target="_blank" rel="noopener" href="https://programmercarl.com/0279.%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.html">动态规划：279.完全平方数</a></li>
+</ul>
+<h4 id="遍历顺序">遍历顺序</h4>
+<h5 id="01背包">01背包</h5>
+<p>在<a target="_blank" rel="noopener" href="https://programmercarl.com/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-1.html">动态规划：关于01背包问题，你该了解这些！ <strong>(opens new window)</strong></a>中我们讲解二维dp数组01背包先遍历物品还是先遍历背包都是可以的，且第二层for循环是从小到大遍历。</p>
+<p>和<a target="_blank" rel="noopener" href="https://programmercarl.com/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-2.html">动态规划：关于01背包问题，你该了解这些！（滚动数组） <strong>(opens new window)</strong></a>中，我们讲解一维dp数组01背包只能先遍历物品再遍历背包容量，且第二层for循环是从大到小遍历。</p>
+<p><strong>一维dp数组的背包在遍历顺序上和二维dp数组实现的01背包其实是有很大差异的，大家需要注意！</strong></p>
+<h5 id="完全背包">完全背包</h5>
+<p>说完01背包，再看看完全背包。</p>
+<p>在<a target="_blank" rel="noopener" href="https://programmercarl.com/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85.html">动态规划：关于完全背包，你该了解这些！ <strong>(opens new window)</strong></a>中，讲解了纯完全背包的一维dp数组实现，先遍历物品还是先遍历背包都是可以的，且第二层for循环是从小到大遍历。</p>
+<p>但是仅仅是纯完全背包的遍历顺序是这样的，题目稍有变化，两个for循环的先后顺序就不一样了。</p>
+<p><strong>如果求组合数就是外层for循环遍历物品，内层for遍历背包</strong> 。</p>
+<p><strong>如果求排列数就是外层for遍历背包，内层for循环遍历物品</strong> 。</p>
+<p>相关题目如下：</p>
+<ul>
+<li>求组合数：<a target="_blank" rel="noopener" href="https://programmercarl.com/0518.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2II.html">动态规划：518.零钱兑换II(opens new window)</a></li>
+<li>求排列数：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Iixw0nahJWQgbqVNk8k6gA">动态规划：377. 组合总和 Ⅳ <strong>(opens new window)</strong></a>、<a target="_blank" rel="noopener" href="https://programmercarl.com/0070.%E7%88%AC%E6%A5%BC%E6%A2%AF%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E7%89%88%E6%9C%AC.html">动态规划：70. 爬楼梯进阶版（完全背包）(opens new window)</a></li>
+</ul>
+<p>如果求最小数，那么两层for循环的先后顺序就无所谓了，相关题目如下：</p>
+<ul>
+<li>求最小数：<a target="_blank" rel="noopener" href="https://programmercarl.com/0322.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2.html">动态规划：322. 零钱兑换 <strong>(opens new window)</strong></a>、<a target="_blank" rel="noopener" href="https://programmercarl.com/0279.%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.html">动态规划：279.完全平方数(opens new window)</a></li>
+</ul>
+<p><strong>对于背包问题，其实递推公式算是容易的，难是难在遍历顺序上，如果把遍历顺序搞透，才算是真正理解了</strong> 。</p>
+<h3 id="总结">总结</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xJYoGD"><img src="https://s1.ax1x.com/2022/10/09/xJYoGD.png" srcset="/img/loading.gif" lazyload alt="xJYoGD.png"></a></p>
+<h2 id="打家劫舍">打家劫舍</h2>
+<h3 id="198-打家劫舍">198. 打家劫舍</h3>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]表示偷到第i个房屋的最高金额</li>
+<li>确定递推公式：设当前是第i个房间，则如果偷第i个房间，则dp[i] = dp[i-2] + nums[i-1]，如果不偷第i个房间，则dp[i] = dp[i-1]。因此递推公式为 <code>dp[i]=max(dp[i-2] + nums[i-1], dp[i-1])</code></li>
+<li>dp数组如何初始化：<code>dp[0]=0</code>，偷第0个房间得到的金额为0；<code>dp[1] = nums[0]</code>，偷第1个房间得到的金额只能是第一个房间的金额</li>
+<li>确定遍历顺序：从前到后遍历即可。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">rob</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    numslen := <span class="hljs-built_in">len</span>(nums)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,numslen+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">1</span>] = nums[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">2</span>;i&lt;=numslen;i++&#123;
+        dp[i]=max(dp[i<span class="hljs-number">-2</span>] + nums[i<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-1</span>])
+    &#125;
+    <span class="hljs-keyword">return</span> dp[numslen]
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];
+        &#125;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n,<span class="hljs-number">0</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">0</span>], nums[<span class="hljs-number">1</span>]);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;n;i++)&#123;
+            dp[i] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-2</span>]+nums[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">-1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="213-打家劫舍II">213. 打家劫舍II</h3>
+<p>你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警 。</p>
+<p>给定一个代表每个房屋存放金额的非负整数数组，计算你 在不触动警报装置的情况下 ，今晚能够偷窃到的最高金额。</p>
+<p>分两种情况讨论就好，第一种情况是偷第一间房间，那么最后一间房间就不能偷了，第二种情况是不偷第一件房间，那么就可以偷最后一间房间。分类讨论即可。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]表示偷到第i个房屋的最高金额</li>
+<li>确定递推公式：设当前是第i个房间，则如果偷第i个房间，则dp[i] = dp[i-2] + nums[i-1]，如果不偷第i个房间，则dp[i] = dp[i-1]。因此递推公式为 <code>dp[i]=max(dp[i-2] + nums[i-1], dp[i-1])</code></li>
+<li>dp数组如何初始化：<code>dp[0]=0</code>，偷第0个房间得到的金额为0；<code>dp[1] = nums[0]</code>，偷第1个房间得到的金额只能是第一个房间的金额</li>
+<li>确定遍历顺序：从前到后遍历即可。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">rob</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    numslen := <span class="hljs-built_in">len</span>(nums)
+    <span class="hljs-keyword">if</span> numslen == <span class="hljs-number">1</span>&#123;
+        <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>]
+    &#125;
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,numslen)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">1</span>] = nums[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">2</span>;i&lt;numslen;i++&#123;
+        dp[i]=max(dp[i<span class="hljs-number">-2</span>] + nums[i<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-1</span>])
+    &#125;
+    a := dp[numslen<span class="hljs-number">-1</span>]
+
+    dp2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,numslen)
+    dp2[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    dp2[<span class="hljs-number">1</span>] = nums[<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">2</span>;i&lt;numslen;i++&#123;
+        dp2[i]=max(dp2[i<span class="hljs-number">-2</span>] + nums[i], dp2[i<span class="hljs-number">-1</span>])
+    &#125;
+    b := dp2[numslen<span class="hljs-number">-1</span>]
+  
+    <span class="hljs-keyword">return</span> max(a,b)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];
+        &#125;
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">2</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">0</span>], nums[<span class="hljs-number">1</span>]);
+        &#125;
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">3</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">0</span>],<span class="hljs-built_in">max</span>(nums[<span class="hljs-number">1</span>], nums[<span class="hljs-number">2</span>]));
+        &#125;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n)</span></span>;
+        dp[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];
+        dp[<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">0</span>],nums[<span class="hljs-number">1</span>]);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;n<span class="hljs-number">-1</span>;i++)&#123;
+            dp[i] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-2</span>] + nums[i]);
+        &#125;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp2</span><span class="hljs-params">(n)</span></span>;
+        dp2[<span class="hljs-number">1</span>] = nums[<span class="hljs-number">1</span>];
+        dp2[<span class="hljs-number">2</span>] = <span class="hljs-built_in">max</span>(nums[<span class="hljs-number">1</span>],nums[<span class="hljs-number">2</span>]);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">3</span>;i&lt;n;i++)&#123;
+            dp2[i] = <span class="hljs-built_in">max</span>(dp2[i<span class="hljs-number">-1</span>], dp2[i<span class="hljs-number">-2</span>] + nums[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(dp[n<span class="hljs-number">-2</span>], dp2[n<span class="hljs-number">-1</span>]);
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="337-打家劫舍-III">337. 打家劫舍 III</h3>
+<p>小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为 root 。</p>
+<p>除了 root 之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果 两个直接相连的房子在同一天晚上被打劫 ，房屋将自动报警。</p>
+<p>给定二叉树的 root 。返回 在不触动警报的情况下 ，小偷能够盗取的最高金额 。</p>
+<ol>
+<li>确定递归函数的参数和返回值</li>
+</ol>
+<p>这里我们要求一个节点 偷与不偷的两个状态所得到的金钱，那么返回值就是一个长度为2的数组。</p>
+<ol start="2">
+<li>确定终止条件</li>
+</ol>
+<p>在遍历的过程中，如果遇到空节点的话，很明显，无论偷还是不偷都是0，所以就返回，这也相当于dp数组的初始化</p>
+<ol start="3">
+<li>确定遍历顺序</li>
+</ol>
+<p>首先明确的是使用后序遍历。 因为通过递归函数的返回值来做下一步计算。</p>
+<p>通过递归左节点，得到左节点偷与不偷的金钱。</p>
+<p>通过递归右节点，得到右节点偷与不偷的金钱。</p>
+<ol start="4">
+<li>确定单层递归的逻辑</li>
+</ol>
+<p>如果是偷当前节点，那么左右孩子就不能偷，val1 = cur-&gt;val + left[0] + right[0];</p>
+<p>如果不偷当前节点，那么左右孩子就可以偷，至于到底偷不偷一定是选一个最大的，所以：val2 = max(left[0], left[1]) + max(right[0], right[1]);</p>
+<p>最后当前节点的状态就是{val2, val1}; 即：{不偷当前节点得到的最大金钱，偷当前节点得到的最大金钱}</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Definition for a binary tree node.</span>
+<span class="hljs-comment"> * type TreeNode struct &#123;</span>
+<span class="hljs-comment"> *     Val int</span>
+<span class="hljs-comment"> *     Left *TreeNode</span>
+<span class="hljs-comment"> *     Right *TreeNode</span>
+<span class="hljs-comment"> * &#125;</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">rob</span><span class="hljs-params">(root *TreeNode)</span></span> <span class="hljs-type">int</span> &#123;
+    res := DFS(root)
+    <span class="hljs-keyword">return</span> max(res[<span class="hljs-number">0</span>],res[<span class="hljs-number">1</span>])
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">DFS</span><span class="hljs-params">(root *TreeNode)</span></span> []<span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> root == <span class="hljs-literal">nil</span>&#123;
+        <span class="hljs-keyword">return</span> []<span class="hljs-type">int</span>&#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;
+    &#125;
+    <span class="hljs-comment">// 后序遍历</span>
+	left := DFS(root.Left)
+	right := DFS(root.Right)
+
+    <span class="hljs-comment">// 考虑去偷当前的屋子</span>
+	robCur := root.Val + left[<span class="hljs-number">0</span>] + right[<span class="hljs-number">0</span>]
+    <span class="hljs-comment">// 考虑不去偷当前的屋子</span>
+	notRobCur := max(left[<span class="hljs-number">0</span>], left[<span class="hljs-number">1</span>]) + max(right[<span class="hljs-number">0</span>], right[<span class="hljs-number">1</span>])
+
+    <span class="hljs-comment">// 注意顺序：0:不偷，1:去偷</span>
+	<span class="hljs-keyword">return</span> []<span class="hljs-type">int</span>&#123;notRobCur, robCur&#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">rob</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;
+        vector&lt;<span class="hljs-type">int</span>&gt; result = <span class="hljs-built_in">robTree</span>(root);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(result[<span class="hljs-number">0</span>], result[<span class="hljs-number">1</span>]);
+    &#125;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">robTree</span><span class="hljs-params">(TreeNode* root)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">NULL</span>)&#123;
+            <span class="hljs-keyword">return</span> vector&lt;<span class="hljs-type">int</span>&gt;&#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;;
+        &#125;
+        vector&lt;<span class="hljs-type">int</span>&gt; left = <span class="hljs-built_in">robTree</span>(root-&gt;left);
+        vector&lt;<span class="hljs-type">int</span>&gt; right = <span class="hljs-built_in">robTree</span>(root-&gt;right);
+        <span class="hljs-type">int</span> val1 = root-&gt;val + left[<span class="hljs-number">0</span>] + right[<span class="hljs-number">0</span>];
+        <span class="hljs-type">int</span> val2 = <span class="hljs-built_in">max</span>(left[<span class="hljs-number">0</span>], left[<span class="hljs-number">1</span>]) + <span class="hljs-built_in">max</span>(right[<span class="hljs-number">0</span>], right[<span class="hljs-number">1</span>]);
+        <span class="hljs-keyword">return</span> vector&lt;<span class="hljs-type">int</span>&gt;&#123;val2, val1&#125;;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="股票问题">股票问题</h2>
+<h3 id="121-买卖股票的最佳时机">121. 买卖股票的最佳时机</h3>
+<p>给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。</p>
+<p>你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p>
+<p>贪心：取最左最小值，取最右最大值，那么得到的差值就是最大利润。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(prices []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    pricelen := <span class="hljs-built_in">len</span>(prices)
+    result := <span class="hljs-number">0</span>
+    minnum := prices[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:= <span class="hljs-number">0</span>;i&lt;pricelen;i++&#123;
+        minnum = min(minnum,prices[i])
+        result = max(result,prices[i] - minnum)
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &lt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(prices.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>));
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>];
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;prices.<span class="hljs-built_in">size</span>();i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], -prices[i]);
+            dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + prices[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(dp[prices.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], dp[prices.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]);
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="122-买卖股票的最佳时机II">122. 买卖股票的最佳时机II</h3>
+<p>给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。</p>
+<p>在每一天，你可以决定是否购买和/或出售股票。你在任何时候 最多 只能持有 一股 股票。你也可以先购买，然后在 同一天 出售。</p>
+<p>返回 你能获得的 最大 利润 。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i][0]在第i天持有股票获得的最大利润，dp[i][1]在第i天不持有股票获得的最大利润</li>
+<li>确定递推公式：
+<ul>
+<li>如果持有股票：
+<ul>
+<li>第i-1天不持有股票，那么第i天是买入了，因此dp[i][0]=dp[i-1][1]-prices[i]</li>
+<li>第i-1天持有股票，那么获得的利润和前一天是相同的，因此dp[i][0]=dp[i-1][0]</li>
+</ul>
+</li>
+<li>如果不持有股票：
+<ul>
+<li>第i-1天不持有股票，那么获得的利润和前一天是相同的，因此dp[i][1]=dp[i-1][1]</li>
+<li>第i-1天持有股票，那么第i天是卖出了，因此dp[i][1]=dp[i-1][0]+prices[i]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dp数组如何初始化：第0天不持有股票 <code>dp[0][1]=0</code>，第0天持有股票 <code>dp[0][0]=-prices[0]</code>，</li>
+<li>确定遍历顺序：从前到后遍历即可。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(prices []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenprices := <span class="hljs-built_in">len</span>(prices)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,lenprices+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">2</span>)
+    &#125;
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lenprices;i++&#123;
+        dp[i][<span class="hljs-number">0</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]-prices[i],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>])
+        dp[i][<span class="hljs-number">1</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]+prices[i])
+    &#125;
+    <span class="hljs-keyword">return</span> max(dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>],dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>])
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = prices.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>));
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>];
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>] - prices[i]);
+            dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + prices[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="123-买卖股票的最佳时机III">123. 买卖股票的最佳时机III</h3>
+<p>给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔 交易。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<ul>
+<li>确定dp数组以及下标的含义：一天一共就有五个状态
+<ul>
+<li>dp[i][0]表示第i天没有操作所能获取的最大利润</li>
+<li>dp[i][1]表示第i天是第一次买入所能获取的最大利润</li>
+<li>dp[i][2]表示第i天是第一次卖出所能获取的最大利润</li>
+<li>dp[i][3]表示第i天是第二次买入所能获取的最大利润</li>
+<li>dp[i][4]表示第i天是第二次卖出所能获取的最大利润</li>
+</ul>
+</li>
+<li>确定递推公式：
+<ul>
+<li>第i天没有操作的状态一定沿用i-1天没有操作的状态，则dp[i][0]=dp[i-1][0]</li>
+<li>第i天第一次买入的状态
+<ul>
+<li>若第i天买入，前面一定没有买过，dp[i][1]=dp[i-1][0]-prices[i]</li>
+<li>若第i天不变，沿用上一天买入的状态，dp[i][1]=dp[i-1][1]</li>
+</ul>
+</li>
+<li>第i天第一次卖出的状态
+<ul>
+<li>若第i天卖出，前面一定会买入，dp[i][2]=dp[i-1][1]+prices[i]</li>
+<li>若第i天不变，沿用上一天第一次卖出的状态，dp[i][2]=dp[i-1][2]</li>
+</ul>
+</li>
+<li>第i天第二次买入的状态
+<ul>
+<li>若第i天第二次买入，前面一定会卖出，dp[i][3]=dp[i-1][2]-prices[i]</li>
+<li>若第i天不变，沿用上一天第二次买入的状态，dp[i][3]=dp[i-1][3]</li>
+</ul>
+</li>
+<li>第i天第二次卖出的状态
+<ul>
+<li>若第i天第二次卖出，前面一定会买入，dp[i][4]=dp[i-1][3]+prices[i]</li>
+<li>若第i天不变，沿用上一天第二次卖出的状态，dp[i][4]=dp[i-1][4]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dp数组如何初始化：
+<ul>
+<li>第0天没有操作：dp[0][0] = 0</li>
+<li>第0天第一次买入：dp[0][1] = -prices[0]</li>
+<li>第0天第一次卖出：卖出的操作一定是收获利润，整个股票买卖最差情况也就是没有盈利即全程无操作现金为0，从递推公式中可以看出每次是取最大值，那么既然是收获利润如果比0还小了就没有必要收获这个利润了，因此初始化dp[0][2] = 0</li>
+<li>第0天第二次买入：dp[0][3] = -prices[0]</li>
+<li>第0天第二次卖出：dp[0][4] = 0</li>
+</ul>
+</li>
+<li>确定遍历顺序：从前到后遍历即可。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(prices []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenprices := <span class="hljs-built_in">len</span>(prices)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,lenprices+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">5</span>)
+    &#125;
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = -prices[<span class="hljs-number">0</span>]
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>] = -prices[<span class="hljs-number">0</span>]
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">4</span>] = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lenprices;i++&#123;
+        dp[i][<span class="hljs-number">0</span>]=dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]
+        dp[i][<span class="hljs-number">1</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]-prices[i],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>])
+        dp[i][<span class="hljs-number">2</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]+prices[i],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>])
+        dp[i][<span class="hljs-number">3</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>]-prices[i],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>])
+        dp[i][<span class="hljs-number">4</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>]+prices[i],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">4</span>])
+    &#125;
+    <span class="hljs-keyword">return</span> dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">4</span>]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = prices.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">4</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-comment">// 第一次持有</span>
+        <span class="hljs-comment">// 第一次不持有</span>
+        <span class="hljs-comment">// 第二次持有</span>
+        <span class="hljs-comment">// 第二次不持有</span>
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>];
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] = -prices[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], - prices[i]);
+            dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + prices[i]);
+            dp[i][<span class="hljs-number">2</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>] - prices[i]);
+            dp[i][<span class="hljs-number">3</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>] + prices[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>]);
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="188-买卖股票的最佳时机IV">188. 买卖股票的最佳时机IV</h3>
+<p>给定一个整数数组 prices ，它的第 i 个元素 prices[i] 是一支给定的股票在第 i 天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(k <span class="hljs-type">int</span>, prices []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenprices := <span class="hljs-built_in">len</span>(prices)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,lenprices+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,k*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;k*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;i++&#123;
+        <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>&#123;
+            dp[<span class="hljs-number">0</span>][i] = -prices[<span class="hljs-number">0</span>]
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lenprices;i++&#123;
+        dp[i][<span class="hljs-number">0</span>]=dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=<span class="hljs-number">2</span>*k;j++&#123;
+            <span class="hljs-keyword">if</span> j % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>&#123;
+                dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]-prices[i],dp[i<span class="hljs-number">-1</span>][j])
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = max(dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]+prices[i],dp[i<span class="hljs-number">-1</span>][j])
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>*k]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = prices.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(k*<span class="hljs-number">2</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;k*<span class="hljs-number">2</span>;i+=<span class="hljs-number">2</span>)&#123;
+            dp[<span class="hljs-number">0</span>][i] = -prices[<span class="hljs-number">0</span>];
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], - prices[i]);
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;<span class="hljs-number">2</span>*k;j++)&#123;
+                <span class="hljs-keyword">if</span>(j % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] - prices[i]);
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + prices[i]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> maxprofit = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">2</span>*k;i++)&#123;
+            maxprofit = <span class="hljs-built_in">max</span>(maxprofit, dp[n<span class="hljs-number">-1</span>][i]);
+        &#125;
+        <span class="hljs-keyword">return</span> maxprofit;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="309-最佳买卖股票时机含冷冻期">309. 最佳买卖股票时机含冷冻期</h3>
+<p>给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格 。</p>
+<p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
+<p>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<ul>
+<li>确定dp数组以及下标的含义：一天一共有四个状态
+<ul>
+<li>dp[i][0]表示第i天是买入股票状态（今天买入股票，或者是之前就买入了股票然后没有操作）</li>
+<li>dp[i][1]表示第i天是两天前就卖出了股票，度过了冷冻期，一直没操作，今天保持卖出股票状态</li>
+<li>dp[i][2]表示第i天是今天卖出了股票</li>
+<li>dp[i][3]表示第i天是冷冻期状态</li>
+</ul>
+</li>
+<li>确定递推公式：
+<ul>
+<li>第i天是买入股票状态
+<ul>
+<li>状态不变，则dp[i][0]=dp[i-1][0]</li>
+<li>第i-1天是状态1，则dp[i][0]=dp[i-1][1]-prices[i]</li>
+<li>第i-1天是状态3，则dp[i][0]=dp[i-1][3]-prices[i]</li>
+</ul>
+</li>
+<li>第i天是两天前就卖出了股票，度过了冷冻期，一直没操作，今天保持卖出股票状态
+<ul>
+<li>状态不变，则dp[i][1]=dp[i-1][1]</li>
+<li>第i-1天是状态3，则dp[i][1]=dp[i-1][3]</li>
+</ul>
+</li>
+<li>第i天是今天卖出了股票的状态，那么第i-1天一定是状态0，dp[i][2]=dp[i-1][0]+prices[i]</li>
+<li>第i天是冷冻期状态，那么第i-1天一定是状态2，dp[i][3]=dp[i-1][2]</li>
+</ul>
+</li>
+<li>dp数组如何初始化：
+<ul>
+<li>状态0：dp[0][0] = -prices[0]</li>
+<li>状态1：dp[0][1] = 0</li>
+<li>状态2：dp[0][2] = 0</li>
+<li>状态3：dp[0][3] = 0</li>
+</ul>
+</li>
+<li>确定遍历顺序：从前到后遍历即可。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(prices []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenprices := <span class="hljs-built_in">len</span>(prices)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,lenprices+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">4</span>)
+    &#125;
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>]
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>] = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lenprices;i++&#123;
+        dp[i][<span class="hljs-number">0</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>],max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>])-prices[i])
+        dp[i][<span class="hljs-number">1</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>])
+        dp[i][<span class="hljs-number">2</span>]=dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]+prices[i]
+        dp[i][<span class="hljs-number">3</span>]=dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>]
+    &#125;
+    <span class="hljs-keyword">return</span> max(dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>],max(dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>],dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>]))
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = prices.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">4</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-comment">// 持有</span>
+        <span class="hljs-comment">// 不持有不是今天卖的</span>
+        <span class="hljs-comment">// 不持有是今天卖的</span>
+        <span class="hljs-comment">// 冷冻期</span>
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>]) - prices[i]);
+            dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>]);
+            dp[i][<span class="hljs-number">2</span>] = dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + prices[i];
+            dp[i][<span class="hljs-number">3</span>] = dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], <span class="hljs-built_in">max</span>(dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">2</span>],dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">3</span>]));
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="714-买卖股票的最佳时机含手续费">714. 买卖股票的最佳时机含手续费</h3>
+<p>给定一个整数数组 prices，其中 prices[i]表示第 i 天的股票价格 ；整数 fee 代表了交易股票的手续费用。</p>
+<p>你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。</p>
+<p>返回获得利润的最大值。</p>
+<p>注意：这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。</p>
+<p>分析：卖出的时候扣除手续费即可。如果买入的时候扣除手续费，会导致买入的代价过大。卖出是获利的，卖出时候扣除手续费就可以了</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i][0]在第i天持有股票获得的最大利润，dp[i][1]在第i天不持有股票获得的最大利润</li>
+<li>确定递推公式：
+<ul>
+<li>如果持有股票：
+<ul>
+<li>第i-1天不持有股票，那么第i天是买入了，因此dp[i][0]=dp[i-1][1]-prices[i]</li>
+<li>第i-1天持有股票，那么获得的利润和前一天是相同的，因此dp[i][0]=dp[i-1][0]</li>
+</ul>
+</li>
+<li>如果不持有股票：
+<ul>
+<li>第i-1天不持有股票，那么获得的利润和前一天是相同的，因此dp[i][1]=dp[i-1][1]</li>
+<li>第i-1天持有股票，那么第i天是卖出了，因此dp[i][1]=dp[i-1][0]+prices[i]<strong>-fee</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dp数组如何初始化：第0天不持有股票 <code>dp[0][1]=0</code>，第0天持有股票 <code>dp[0][0]=-prices[0]</code>，</li>
+<li>确定遍历顺序：从前到后遍历即可。</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(prices []<span class="hljs-type">int</span>, fee <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenprices := <span class="hljs-built_in">len</span>(prices)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,lenprices+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">2</span>)
+    &#125;
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>
+    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lenprices;i++&#123;
+        dp[i][<span class="hljs-number">0</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]-prices[i],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>])
+        dp[i][<span class="hljs-number">1</span>]=max(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>],dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>]+prices[i]-fee)
+    &#125;
+    <span class="hljs-keyword">return</span> max(dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>],dp[lenprices<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>])
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices, <span class="hljs-type">int</span> fee)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = prices.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">0</span>));
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = -prices[<span class="hljs-number">0</span>]-fee;
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>] - prices[i]-fee);
+            dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + prices[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="股票问题总结">股票问题总结</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xY6wKx"><img src="https://s1.ax1x.com/2022/10/10/xY6wKx.md.png" srcset="/img/loading.gif" lazyload alt="xY6wKx.md.png"></a></p>
+<h2 id="子序列问题">子序列问题</h2>
+<h3 id="300-最长递增子序列">300. 最长递增子序列</h3>
+<p>给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。</p>
+<p>子序列 是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]的定义到第i个数字截止的最长严格递增子序列的长度</li>
+<li>确定递推公式：第i个数字截止的最长严格递增子序列的长度，是要遍历这个数字前面的数字，发现前面的数字j比这个数字小，即可以再长一位。即dp[i]=max(dp[i],dp[j]+1)</li>
+<li>dp数组如何初始化：每一个数字的最长严格递增子序列最少是自己本身，因此要初始化为全1</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">lengthOfLIS</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,lennums)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-number">1</span>
+    &#125;
+    <span class="hljs-keyword">var</span> result <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lennums;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;i;j++&#123;
+            <span class="hljs-keyword">if</span> nums[i] &gt; nums[j]&#123;
+                dp[i] = max(dp[i],dp[j]+<span class="hljs-number">1</span>)
+            &#125;
+        &#125;
+        result = max(result,dp[i])
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lengthOfLIS</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n,<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-type">int</span> result = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;i;j++)&#123;
+                <span class="hljs-keyword">if</span>(nums[i] &gt; nums[j])&#123;
+                    dp[i] = <span class="hljs-built_in">max</span>(dp[i],dp[j]<span class="hljs-number">+1</span>);
+                &#125;
+            &#125;
+            result = <span class="hljs-built_in">max</span>(result, dp[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="674-最长连续递增序列">674. 最长连续递增序列</h3>
+<p>给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。</p>
+<p>连续递增的子序列 可以由两个下标 l 和 r（l &lt; r）确定，如果对于每个 l &lt;= i &lt; r，都有 nums[i] &lt; nums[i + 1] ，那么子序列 [nums[l], nums[l + 1], …, nums[r - 1], nums[r]] 就是连续递增子序列。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]的定义到第i个数字截止的最长连续递增的子序列的长度</li>
+<li>确定递推公式：如果第i个数字比第i-1个数字数值大，则dp[i]=dp[i-1]+1，否则不变。最终找到整个dp数组中的最大值</li>
+<li>dp数组如何初始化：每一个数字的最长连续递增的子序列的长度最少是自己本身，因此要初始化为全1</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findLengthOfLCIS</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,lennums)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-number">1</span>
+    &#125;
+    <span class="hljs-keyword">var</span> result <span class="hljs-type">int</span> = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;lennums;i++&#123;
+        <span class="hljs-keyword">if</span> nums[i] &gt; nums[i<span class="hljs-number">-1</span>]&#123;
+            dp[i] = dp[i<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>
+        &#125;
+        result = max(result,dp[i])
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findLengthOfLCIS</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n,<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-type">int</span> result = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">if</span>(nums[i] &gt; nums[i<span class="hljs-number">-1</span>])&#123;
+                dp[i] = dp[i<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>;
+            &#125;
+            result = <span class="hljs-built_in">max</span>(result,dp[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="718-最长重复子数组">718. 最长重复子数组</h3>
+<p>给两个整数数组 <code>nums1</code> 和 <code>nums2</code> ，返回  两个数组中 <strong>公共的</strong> 、长度最长的子数组的长度。</p>
+<p>注意题目中说的子数组，其实就是连续子序列。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i][j]表示nums1到下标i-1，nums2到下标j-1的公共的长度最长的子数组的长度</li>
+<li>确定递推公式：如果nums[i-1] == nums[j-1]，则说明长度可以再增长一位，dp[i][j] = dp[i-1][j-1] + 1，如果不相等，则不可以延续，保持为0</li>
+<li>dp数组如何初始化：dp[i][0]和dp[0][j]均初始化为0</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findLength</span><span class="hljs-params">(nums1 []<span class="hljs-type">int</span>, nums2 []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    nums1len := <span class="hljs-built_in">len</span>(nums1)
+    nums2len := <span class="hljs-built_in">len</span>(nums2)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,nums1len+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,nums2len+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">var</span> result <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=nums1len;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=nums2len;j++&#123;
+            <span class="hljs-keyword">if</span> nums1[i<span class="hljs-number">-1</span>] == nums2[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>
+            &#125;
+            result = max(result,dp[i][j])
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findLength</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = nums<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = nums<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(nums1[i<span class="hljs-number">-1</span>] == nums2[j<span class="hljs-number">-1</span>])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>;
+                &#125;
+                result = <span class="hljs-built_in">max</span>(result, dp[i][j]);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="1143-最长公共子序列">1143. 最长公共子序列</h3>
+<p>给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。</p>
+<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
+<p>例如，“ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。</p>
+<p>两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i][j]表示text1到下标i-1，text2到下标j-1的最长公共子序列的长度</li>
+<li>确定递推公式：如果text1[i-1] == text2[j-1]，则说明长度可以再增长一位，dp[i][j] = dp[i-1][j-1] + 1，如果不相等，则保留前面的最长公共子序列的长度，即dp[i][j] = max(dp[i][j-1],dp[i-1][j]</li>
+<li>dp数组如何初始化：dp[i][0]和dp[0][j]均初始化为0</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">longestCommonSubsequence</span><span class="hljs-params">(text1 <span class="hljs-type">string</span>, text2 <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    text1len := <span class="hljs-built_in">len</span>(text1)
+    text2len := <span class="hljs-built_in">len</span>(text2)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,text1len+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,text2len+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=text1len;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=text2len;j++&#123;
+            <span class="hljs-keyword">if</span> text1[i<span class="hljs-number">-1</span>] == text2[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = max(dp[i][j<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-1</span>][j])
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[text1len][text2len]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestCommonSubsequence</span><span class="hljs-params">(string text1, string text2)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = text<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = text<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(text1[i<span class="hljs-number">-1</span>] == text2[j<span class="hljs-number">-1</span>])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>;
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i][j<span class="hljs-number">-1</span>]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m][n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="1035-不相交的线">1035. 不相交的线</h3>
+<p>在两条独立的水平线上按给定的顺序写下 nums1 和 nums2 中的整数。</p>
+<p>现在，可以绘制一些连接两个数字 nums1[i] 和 nums2[j] 的直线，这些直线需要同时满足：nums1[i] == nums2[j]</p>
+<p>且绘制的直线不与任何其他连线（非水平线）相交。</p>
+<p>请注意，连线即使在端点也不能相交：每个数字只能属于一条连线。</p>
+<p>以这种方法绘制线条，并返回可以绘制的最大连线数。</p>
+<p>分析：直线不能相交，这就是说明在字符串A中 找到一个与字符串B相同的子序列，且这个子序列不能改变相对顺序，只要相对顺序不改变，链接相同数字的直线就不会相交。</p>
+<p><strong>本题说是求绘制的最大连线数，其实就是求两个字符串的最长公共子序列的长度！</strong></p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxUncrossedLines</span><span class="hljs-params">(nums1 []<span class="hljs-type">int</span>, nums2 []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    nums1len := <span class="hljs-built_in">len</span>(nums1)
+    nums2len := <span class="hljs-built_in">len</span>(nums2)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,nums1len+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,nums2len+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=nums1len;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=nums2len;j++&#123;
+            <span class="hljs-keyword">if</span> nums1[i<span class="hljs-number">-1</span>] == nums2[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = max(dp[i][j<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-1</span>][j])
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[nums1len][nums2len]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxUncrossedLines</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = nums<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = nums<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>; i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(nums1[i<span class="hljs-number">-1</span>] == nums2[j<span class="hljs-number">-1</span>])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>;
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i][j<span class="hljs-number">-1</span>]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m][n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="53-最大子序和">53. 最大子序和</h3>
+<p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>子数组是数组中的一个连续部分。</p>
+<ul>
+<li>确定dp数组以及下标的含义：dp[i]表示以第i个数字为结尾的连续子数组的最大和</li>
+<li>确定递推公式：dp[i]有两种情况，一种情况是自身就是具有最大和的连续子数组，另外一种情况是与dp[i-1]一起是具有最大和的连续子数组，因此dp[i]=max(dp[i-1]+nums[i],nums[i])</li>
+<li>dp数组如何初始化：dp[0]=0</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxSubArray</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,lennums+<span class="hljs-number">1</span>)
+    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">var</span> result <span class="hljs-type">int</span> = nums[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=lennums;i++&#123;
+        dp[i] = max(nums[i<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-1</span>]+nums[i<span class="hljs-number">-1</span>])
+        result = max(result,dp[i])
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxSubArray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n,<span class="hljs-number">0</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];
+        <span class="hljs-type">int</span> result = dp[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+            dp[i] = <span class="hljs-built_in">max</span>(nums[i], dp[i<span class="hljs-number">-1</span>] + nums[i]);
+            result = <span class="hljs-built_in">max</span>(result,dp[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="918-环形子数组的最大和">918. 环形子数组的最大和</h3>
+<p>给定一个长度为 <code>n</code> 的<strong>环形整数数组</strong> <code>nums</code> ，返回 * <code>nums</code> 的非空 <strong>子数组</strong> 的最大可能和 * 。</p>
+<p><strong>环形数组</strong> 意味着数组的末端将会与开头相连呈环状。形式上， <code>nums[i]</code> 的下一个元素是 <code>nums[(i + 1) % n]</code> ， <code>nums[i]</code> 的前一个元素是 <code>nums[(i - 1 + n) % n]</code> 。</p>
+<p><strong>子数组</strong> 最多只能包含固定缓冲区 <code>nums</code> 中的每个元素一次。形式上，对于子数组 <code>nums[i], nums[i + 1], ..., nums[j]</code> ，不存在 <code>i &lt;= k1, k2 &lt;= j</code> 其中 <code>k1 % n == k2 % n</code> 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxSubarraySumCircular</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(nums.size(),<span class="hljs-number">0</span>)</span></span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">leftMax</span><span class="hljs-params">(nums.size(),<span class="hljs-number">0</span>)</span></span>;
+        dp[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];
+        <span class="hljs-type">int</span> maxlength = dp[<span class="hljs-number">0</span>];
+        <span class="hljs-type">int</span> leftSum = dp[<span class="hljs-number">0</span>];
+        leftMax[<span class="hljs-number">0</span>] = dp[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            dp[i] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>] + nums[i], nums[i]);
+            maxlength = <span class="hljs-built_in">max</span>(maxlength, dp[i]);
+            leftSum += nums[i];
+            leftMax[i] = <span class="hljs-built_in">max</span>(leftMax[i<span class="hljs-number">-1</span>], leftSum);
+        &#125;
+        <span class="hljs-type">int</span> rightSum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;j&gt;<span class="hljs-number">0</span>;j--)&#123;
+            rightSum += nums[j];
+            maxlength = <span class="hljs-built_in">max</span>(maxlength, rightSum + leftMax[j<span class="hljs-number">-1</span>]);
+        &#125;
+        <span class="hljs-keyword">return</span> maxlength;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="392-判断子序列">392. 判断子序列</h3>
+<p>给定字符串 s 和 t ，判断 s 是否为 t 的子序列。</p>
+<p>字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，&quot;ace&quot;是&quot;abcde&quot;的一个子序列，而&quot;aec&quot;不是）。</p>
+<ul>
+<li>确定dp数组以及下标的含义：<strong>dp[i][j] 表示以下标i-1为结尾的字符串s，和以下标j-1为结尾的字符串t，相同子序列的长度为dp[i][j]</strong> 。</li>
+<li>确定递推公式：如果s[i-1] == t[j-1]，则说明长度可以再增长一位，dp[i][j] = dp[i-1][j-1] + 1，如果不相等，则保留前面的最长公共子序列的长度，即dp[i][j] = max(dp[i][j-1],dp[i-1][j])</li>
+<li>dp数组如何初始化：dp[i][0]和dp[0][j]均初始化为0</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isSubsequence</span><span class="hljs-params">(s <span class="hljs-type">string</span>, t <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    slen := <span class="hljs-built_in">len</span>(s)
+    tlen := <span class="hljs-built_in">len</span>(t)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,slen+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,tlen+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=slen;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=tlen;j++&#123;
+            <span class="hljs-keyword">if</span> s[i<span class="hljs-number">-1</span>] == t[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = max(dp[i][j<span class="hljs-number">-1</span>],dp[i<span class="hljs-number">-1</span>][j])
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[slen][tlen] == slen
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSubsequence</span><span class="hljs-params">(string s, string t)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = s.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = t.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(s[i<span class="hljs-number">-1</span>] == t[j<span class="hljs-number">-1</span>])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>;
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i][j<span class="hljs-number">-1</span>]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (dp[m][n] == m)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="115-不同的子序列">115. 不同的子序列</h3>
+<p>给定一个字符串 s 和一个字符串 t ，计算在 s 的子序列中 t 出现的个数。</p>
+<p>字符串的一个 子序列 是指，通过删除一些（也可以不删除）字符且不干扰剩余字符相对位置所组成的新字符串。（例如，“ACE” 是 “ABCDE” 的一个子序列，而 “AEC” 不是）</p>
+<p>题目数据保证答案符合 32 位带符号整数范围。</p>
+<ul>
+<li>确定dp数组以及下标的含义：<strong>dp[i][j] 表示以i-1为结尾的s子序列中出现以j-1为结尾的t的个数为dp[i][j]</strong></li>
+<li>确定递推公式：如果s[i-1] == t[j-1]，dp[i][j]可以由两部分组成：一部分是用s[i - 1]来匹配，那么个数为dp[i - 1][j - 1]，一部分是不用s[i - 1]来匹配，个数为dp[i - 1][j]。当s[i - 1] 与 t[j - 1]不相等时，dp[i][j]只有一部分组成，不用s[i - 1]来匹配，即：dp[i - 1][j]</li>
+<li>dp数组如何初始化：
+<ul>
+<li>dp[i][0] 表示：以i-1为结尾的s可以随便删除元素，出现空字符串的个数。那么dp[i][0]一定都是1，因为也就是把以i-1为结尾的s，删除所有元素，出现空字符串的个数就是1。</li>
+<li>dp[0][j]：空字符串s可以随便删除元素，出现以j-1为结尾的字符串t的个数。那么dp[0][j]一定都是0，s如论如何也变成不了t。</li>
+<li>dp[0][0]应该是1，空字符串s，可以删除0个元素，变成空字符串t。</li>
+</ul>
+</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">numDistinct</span><span class="hljs-params">(s <span class="hljs-type">string</span>, t <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    slen := <span class="hljs-built_in">len</span>(s)
+    tlen := <span class="hljs-built_in">len</span>(t)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,slen+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,tlen+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;=slen;i++&#123;
+        dp[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>
+    &#125;
+    <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=tlen;j++&#123;
+        dp[<span class="hljs-number">0</span>][j] = <span class="hljs-number">0</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=slen;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=tlen;j++&#123;
+            <span class="hljs-keyword">if</span> s[i<span class="hljs-number">-1</span>] == t[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]+dp[i<span class="hljs-number">-1</span>][j]
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j]
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[slen][tlen]
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numDistinct</span><span class="hljs-params">(string s, string t)</span> </span>&#123;
+        vector&lt;vector&lt;<span class="hljs-type">uint64_t</span>&gt;&gt; <span class="hljs-built_in">dp</span>(s.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">uint64_t</span>&gt;(t.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>));
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) dp[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; t.<span class="hljs-built_in">size</span>(); j++) dp[<span class="hljs-number">0</span>][j] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= s.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= t.<span class="hljs-built_in">size</span>(); j++) &#123;
+                <span class="hljs-keyword">if</span> (s[i - <span class="hljs-number">1</span>] == t[j - <span class="hljs-number">1</span>]) &#123;
+                    dp[i][j] = dp[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">1</span>][j];
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    dp[i][j] = dp[i - <span class="hljs-number">1</span>][j];
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[s.<span class="hljs-built_in">size</span>()][t.<span class="hljs-built_in">size</span>()];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="583-两个字符串的删除操作">583. 两个字符串的删除操作</h3>
+<p>给定两个单词 <code>word1</code> 和 <code>word2</code> ，返回使得 <code>word1</code> 和  <code>word2</code> <strong>相同</strong>所需的 <strong>最小步数</strong> 。</p>
+<p>每步可以删除任意一个字符串中的一个字符。</p>
+<ul>
+<li>确定dp数组以及下标的含义：<strong>dp[i][j] 表示以i-1为结尾的word1子序列和以j-1为结尾的word2子序列，使两者相同的最小步数</strong></li>
+<li>确定递推公式：如果word1[i-1] == word2[j-1]，相同则步数一样，则dp[i][j]=dp[i-1][j-1]。当word1[i - 1] 与 word2[j - 1]不相等时，dp[i][j]至少需要删除掉两个字符中的某一个，因此dp[i][j]=min(dp[i-1][j],dp[i][j-1])+1</li>
+<li>dp数组如何初始化：
+<ul>
+<li>dp[i][0]：以i-1为结尾的word1随便删除元素，等于空字符串的最小步数。那么dp[i][0]一定都是i，全部都要删了</li>
+<li>dp[0][j]：同理dp[0][j]=j</li>
+</ul>
+</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minDistance</span><span class="hljs-params">(word1 <span class="hljs-type">string</span>, word2 <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    word1len := <span class="hljs-built_in">len</span>(word1)
+    word2len := <span class="hljs-built_in">len</span>(word2)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,word1len+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,word2len+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;=word1len;i++&#123;
+        dp[i][<span class="hljs-number">0</span>] = i
+    &#125;
+    <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=word2len;j++&#123;
+        dp[<span class="hljs-number">0</span>][j] = j
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=word1len;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=word2len;j++&#123;
+            <span class="hljs-keyword">if</span> word1[i<span class="hljs-number">-1</span>] == word2[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = min(dp[i<span class="hljs-number">-1</span>][j],dp[i][j<span class="hljs-number">-1</span>])+<span class="hljs-number">1</span>
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[word1len][word2len]
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &lt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minDistance</span><span class="hljs-params">(string word1, string word2)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = word<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = word<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">1</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span>)&#123;
+                    dp[i][j] = j;
+                &#125;
+                <span class="hljs-keyword">if</span>(j == <span class="hljs-number">0</span>)&#123;
+                    dp[i][j] = i;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(word1[i<span class="hljs-number">-1</span>] == word2[j<span class="hljs-number">-1</span>])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">min</span>(dp[i<span class="hljs-number">-1</span>][j], dp[i][j<span class="hljs-number">-1</span>]) + <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m][n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="72-编辑距离">72. 编辑距离</h3>
+<p>给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数  。</p>
+<p>你可以对一个单词进行如下三种操作：插入一个字符、删除一个字符、替换一个字符</p>
+<ul>
+<li>确定dp数组以及下标的含义：<strong>dp[i][j] 表示以i-1为结尾的word1子序列和以j-1为结尾的word2子序列，使两者相同的最小步数</strong></li>
+<li>确定递推公式：
+<ul>
+<li>如果word1[i-1] == word2[j-1]，相同则步数一样，则dp[i][j]=dp[i-1][j-1]。</li>
+<li>当word1[i - 1] 与 word2[j - 1]不相等时：
+<ul>
+<li>若删除或新增，则dp[i][j]=min(dp[i-1][j],dp[i][j-1])+1</li>
+<li>若替换，则dp[i][j]=dp[i-1][j-1]+1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dp数组如何初始化：
+<ul>
+<li>dp[i][0]：以i-1为结尾的word1删除元素，等于空字符串的最小步数。那么dp[i][0]一定都是i，全部都要删了</li>
+<li>dp[0][j]：同理dp[0][j]=j</li>
+</ul>
+</li>
+<li>确定遍历顺序：从前到后遍历</li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minDistance</span><span class="hljs-params">(word1 <span class="hljs-type">string</span>, word2 <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    word1len := <span class="hljs-built_in">len</span>(word1)
+    word2len := <span class="hljs-built_in">len</span>(word2)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,word1len+<span class="hljs-number">1</span>)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,word2len+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;=word1len;i++&#123;
+        dp[i][<span class="hljs-number">0</span>] = i
+    &#125;
+    <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=word2len;j++&#123;
+        dp[<span class="hljs-number">0</span>][j] = j
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;=word1len;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">1</span>;j&lt;=word2len;j++&#123;
+            <span class="hljs-keyword">if</span> word1[i<span class="hljs-number">-1</span>] == word2[j<span class="hljs-number">-1</span>]&#123;
+                dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j] = min(dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>],min(dp[i<span class="hljs-number">-1</span>][j],dp[i][j<span class="hljs-number">-1</span>]))+<span class="hljs-number">1</span>
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[word1len][word2len]
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &lt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minDistance</span><span class="hljs-params">(string word1, string word2)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = word<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = word<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(m<span class="hljs-number">+1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n<span class="hljs-number">+1</span>,<span class="hljs-number">1</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span>)&#123;
+                    dp[i][j] = j;
+                &#125;
+                <span class="hljs-keyword">if</span>(j == <span class="hljs-number">0</span>)&#123;
+                    dp[i][j] = i;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;j++)&#123;
+                <span class="hljs-keyword">if</span>(word1[i<span class="hljs-number">-1</span>] == word2[j<span class="hljs-number">-1</span>])&#123;
+                    dp[i][j] = dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    dp[i][j] = <span class="hljs-built_in">min</span>(&#123;dp[i<span class="hljs-number">-1</span>][j], dp[i][j<span class="hljs-number">-1</span>], dp[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>]&#125;) + <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[m][n];
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="647-回文子串">647. 回文子串</h3>
+<p>给你一个字符串 s ，请你统计并返回这个字符串中回文子串的数目。</p>
+<p>回文字符串 是正着读和倒过来读一样的字符串。</p>
+<p>子字符串 是字符串中的由连续字符组成的一个序列。</p>
+<p>具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</p>
+<ul>
+<li>确定dp数组以及下标的含义：<strong>dp[i][j]：表示区间范围[i,j] （注意是左闭右闭）的子串是否是回文子串</strong>
+<ul>
+<li><strong>注意因为dp[i][j]的定义，所以j一定是大于等于i的，那么在填充dp[i][j]的时候一定是只填充右上半部分</strong></li>
+</ul>
+</li>
+<li>确定递推公式：
+<ul>
+<li>s[i]!=s[j]，dp[i][j]一定是false</li>
+<li>s[i]==s[j]
+<ul>
+<li>下标i与j相同，同一个字符，是回文子串</li>
+<li>下标i与j相差为1，也一定是回文子串</li>
+<li>i与j相差大于1的时候，dp[i][j]=dp[i + 1][j - 1]（也就是往回看）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dp数组如何初始化：均为false</li>
+<li>确定遍历顺序：会用到dp[i + 1][j - 1]，因此要<strong>从下到上，从左到右遍历，这样保证dp[i + 1][j - 1]都是经过计算的</strong></li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">countSubstrings</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    slen := <span class="hljs-built_in">len</span>(s)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">bool</span>,slen)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>,slen)
+    &#125;
+    <span class="hljs-keyword">var</span> result <span class="hljs-type">int</span> = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=slen<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--&#123;
+        <span class="hljs-keyword">for</span> j:=i;j&lt;slen;j++&#123;
+            <span class="hljs-keyword">if</span> s[i] == s[j]&#123;
+                <span class="hljs-keyword">if</span> j - i &lt;= <span class="hljs-number">1</span>&#123;
+                    dp[i][j] = <span class="hljs-literal">true</span>
+                    result++
+                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> dp[i+<span class="hljs-number">1</span>][j<span class="hljs-number">-1</span>]&#123;
+                    dp[i][j] = <span class="hljs-literal">true</span>
+                    result++
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countSubstrings</span><span class="hljs-params">(string s)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+        vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n,<span class="hljs-literal">false</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(s[i] == s[j])&#123;
+                    <span class="hljs-keyword">if</span>(j-i &lt;= <span class="hljs-number">1</span>)&#123;
+                        result += <span class="hljs-number">1</span>;
+                        dp[i][j] = <span class="hljs-literal">true</span>;
+                    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(dp[i<span class="hljs-number">+1</span>][j<span class="hljs-number">-1</span>])&#123;
+                        result += <span class="hljs-number">1</span>;
+                        dp[i][j] = <span class="hljs-literal">true</span>;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h3 id="516-最长回文子序列">516. 最长回文子序列</h3>
+<p>给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。</p>
+<p>子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。</p>
+<ul>
+<li>确定dp数组以及下标的含义：<strong>dp[i][j]：表示区间范围[i,j] （注意是左闭右闭）的最长的回文子序列的长度</strong>
+<ul>
+<li><strong>注意因为dp[i][j]的定义，所以j一定是大于等于i的，那么在填充dp[i][j]的时候一定是只填充右上半部分</strong></li>
+</ul>
+</li>
+<li>确定递推公式：
+<ul>
+<li>s[i]!=s[j]，无法延续，因此dp[i][j]=max(dp[i+1][j],dp[i][j-1])</li>
+<li>s[i]==s[j]，可以延续，因此dp[i][j]=dp[i+1][j-1]+2</li>
+</ul>
+</li>
+<li>dp数组如何初始化：不需要进行初始化</li>
+<li>确定遍历顺序：会用到dp[i + 1][j - 1]，因此要<strong>从下到上，从左到右遍历，这样保证dp[i + 1][j - 1]都是经过计算的</strong></li>
+<li>举例推导dp数组：</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">longestPalindromeSubseq</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    slen := <span class="hljs-built_in">len</span>(s)
+    dp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,slen)
+    <span class="hljs-keyword">for</span> i,_ := <span class="hljs-keyword">range</span> dp&#123;
+        dp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,slen)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=slen<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--&#123;
+        <span class="hljs-keyword">for</span> j:=i;j&lt;slen;j++&#123;
+            <span class="hljs-keyword">if</span> j == i&#123;
+                dp[i][j] = <span class="hljs-number">1</span>
+                <span class="hljs-keyword">continue</span>
+            &#125;
+            <span class="hljs-keyword">if</span> s[i] == s[j]&#123;
+                dp[i][j]=dp[i+<span class="hljs-number">1</span>][j<span class="hljs-number">-1</span>]+<span class="hljs-number">2</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                dp[i][j]=max(dp[i+<span class="hljs-number">1</span>][j],dp[i][j<span class="hljs-number">-1</span>])
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][slen<span class="hljs-number">-1</span>]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a <span class="hljs-type">int</span>,b <span class="hljs-type">int</span>)</span></span><span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestPalindromeSubseq</span><span class="hljs-params">(string s)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n,<span class="hljs-literal">false</span>));
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;
+            dp[i][i] = <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span> (s[i] == s[j]) &#123;
+                    dp[i][j] = dp[i + <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + <span class="hljs-number">2</span>;
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    dp[i][j] = <span class="hljs-built_in">max</span>(dp[i + <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][n<span class="hljs-number">-1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h1>动态规划总结</h1>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xY6yIe"><img src="https://s1.ax1x.com/2022/10/10/xY6yIe.png" srcset="/img/loading.gif" lazyload alt="xY6yIe.png"></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码随想录-动态规划专题</div>
+      <div>https://zhangzhao219.github.io/2024/03/07/Leetcode/programmercarl/programmercarl-dp/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

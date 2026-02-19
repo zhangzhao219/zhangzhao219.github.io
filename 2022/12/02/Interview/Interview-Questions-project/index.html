@@ -1,0 +1,2357 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="面试项目准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试项目准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/02/Interview/Interview-Questions-project/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="面试项目准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=PP%28W%29%3DP(w_1w_2w_3%5Cdots%20w_n)%5E%7B-%5Cfrac%7B1%7D%7BN%7D%7D%3D%5Csqrt%7B%5Cfrac%7B1%7D%7BP(w_1w_2%5Cdots%20w_N)%7D%7D%5EN">
+<meta property="og:image" content="https://s21.ax1x.com/2024/07/04/pk2TSLF.md.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/QwenLM/online_merging_optimizers/main/assets/main.jpg">
+<meta property="og:image" content="https://s21.ax1x.com/2024/07/04/pk2o5M8.md.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/07/07/pkWtgaj.md.png">
+<meta property="og:image" content="https://math.now.sh/?from=E_u%3DStack%5BN_1%2C%20N_2%2C...N_H%5D%0A">
+<meta property="og:image" content="https://math.now.sh/?from=U_%7B%F0%9D%91%90%F0%9D%91%9C%F0%9D%91%9B%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%A5%F0%9D%91%A1%7D%20%3D%20MultiHead%28E_%F0%9D%91%A2%2C%20E_%F0%9D%91%A2%2C%20E_%F0%9D%91%A2%20%29%0A">
+<meta property="og:image" content="https://math.now.sh/?from=a_n%3DSoftmax%28Tanh(W*E_u%5Ei%2Bb%29)%0A">
+<meta property="og:image" content="https://math.now.sh/?from=U%3D%5Csum_%7Bi%3D1%7D%5EN%20a_i%5EnN_i%5En%0A">
+<meta property="og:image" content="https://s21.ax1x.com/2024/07/07/pkWt0RP.md.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-d94f53c172b3e645d0a36ac384cb2508_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-fcc0ee2197693fee049f0b39feea806f_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-32f606a7ec764928bc591ea3451ddd4f_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-cf55df85501dfb817ae6f69433448680_720w.webp">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fa8834e10aba4305813551bcb3280ace.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-2ba04416d08ffc371fcbb0d571a1660a_1440w.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cgamma">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cgamma">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=p">
+<meta property="og:image" content="https://math.now.sh/?from=r%3D%5Cepsilon%20g%20%2F%20%7C%7Cg%7C%7C_2%0A">
+<meta property="og:image" content="https://math.now.sh/?inline=XYZ">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha%5Cbeta%5Cgamma">
+<meta property="og:image" content="https://math.now.sh/?inline=X">
+<meta property="og:image" content="https://math.now.sh/?inline=Y">
+<meta property="og:image" content="https://math.now.sh/?inline=XYZ">
+<meta property="article:published_time" content="2022-12-02T20:26:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Internship">
+<meta property="article:tag" content="Project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=PP%28W%29%3DP(w_1w_2w_3%5Cdots%20w_n)%5E%7B-%5Cfrac%7B1%7D%7BN%7D%7D%3D%5Csqrt%7B%5Cfrac%7B1%7D%7BP(w_1w_2%5Cdots%20w_N)%7D%7D%5EN">
+  
+  
+  
+  <title>面试项目准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">面试项目准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-02 20:26" pubdate>
+          2022年12月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          35k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          291 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">面试项目准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>面试项目准备</p>
+<span id="more"></span>
+<h1>自我介绍</h1>
+<p>您好，我是张兆，就读于中国科学院计算技术研究所，是预计25年夏季毕业的硕士研究生。我本科来自于中南大学计算机学院，是通过推荐免试的方式进入到中科院计算所就读研究生的。我在本科期间获得了国家奖学金和省级优秀毕业生的荣誉称号，同时拿过一些程序设计竞赛、数学建模和英语竞赛的奖项。</p>
+<ul>
+<li>本科期间我在中南大学可视化实验室参与无线电信号的视觉摘要可视化设计这个项目，获得了一篇软著和一篇专利，并参与发表了可视化顶会的论文。</li>
+<li>保研后到现在我先后尝试了四份实习工作，分别是在商汤科技、MetaApp、微软STCA和蚂蚁集团，其中商汤科技是作为算法研究实习生进行篮球项目的算法研究工作，MetaApp是一家游戏公司，它与Meta没有任何关系，我在这里加入了推荐和广告部门做了一些高并发广告服务的维护和开发。微软STCA是在做Bing News的新闻分类与推荐工作。在蚂蚁集团是作为蚂蚁星计划的候选人，在隐语团队做一些垂直领域大模型相关的工作。</li>
+<li>我在实验室的研究方向是立场检测，我尝试着将立场检测与大模型进行结合，充分利用大模型的zero-shot能力产生知识，并且使用生成式模型Bart与原型聚类对比学习相结合，在zero-shot与cross-target的两个立场检测任务的标准数据集上取得了SOTA效果。我的一作论文已经在NAACL 2024上发表。同时我与清华大学KEG实验室一起合作探索大型语言模型对于小规模的模型的知识蒸馏过程，我们设计了ARTE的框架，通过知识提取、偏好收集和偏好对齐三个步骤，让教师模型根据学生模型的偏好来生成为知识蒸馏量身定制的训练数据，我们的大量实验证明了方法的有效性和泛化性。目前作为第一作者已经行文投稿至NeurIPS 2024。</li>
+<li>除此之外我在其他时间参加了一些算法竞赛，参加的所有比赛均拿到了名次，按照时间先后顺序，包括CCF大数据与计算智能大赛全国总决赛三等奖（5/1624），ChatGLM金融大模型挑战赛的季军（9/2200），百度搜索创新大赛的优秀奖（4-10/220），CodeQwen代码大模型比赛的季军（3/600），以及WSDM Cup 2024 的冠军（这个是与对话式多文档问答大模型相关的比赛）。我们团队一共两人，得到WSDM Cup的冠军后我们受邀在WSDM会议上进行了汇报并整理冠军方案发表了一篇WSDM Workshop的论文。</li>
+</ul>
+<p>我的主要经历大概这样，有哪些经历您比较感兴趣我可以更加详细的介绍一下。</p>
+<h1>蚂蚁实习</h1>
+<h2 id="简历内容">简历内容</h2>
+<p>目标：基于Qwen进行医疗行业垂直领域大模型建设，包括医疗领域数据增量预训练、监督微调、强化学习等大模型全链路方法，同时增加检索增强、密态隐私安全等相关特色能力；</p>
+<p>方法：收集爬取4.5B医学领域开源数据和中英文通用领域开源数据，并使用 <strong>PPL</strong> 、<strong>MinHash</strong>等方法对数据进行清洗、过滤等，随后在Qwen2系列LLM上进行继续预训练尝试；在SFT阶段针对医疗任务的指令特点，设计了一种基于<strong>多轮对话</strong>的指令扩充方法，增强模型指令能力；在SFT的基础上，设计奖励模型数据获取流程，对PPO、DPO及变体等进行了简单尝试；</p>
+<p>目前成果：设计了完备的<strong>多维度模型评测</strong>流程，与其他著名开源医疗模型相比胜和率平均达到 <strong>64.8%</strong> ，选择题准确率超出 <strong>35%</strong> ，同时在三项中文医疗领域著名算法竞赛上取得 <strong>第一名</strong> 。</p>
+<h2 id="背景">背景</h2>
+<p>隐语团队要打造大模型密算平台，其一要吸引外部客户在密算平台上训练模型，所以需要向外展示隐语团队有较强的打造垂域模型的能力。其二医疗作为目前是受众最多的垂域领域之一，结合密算平台推出隐语自研的安全医疗大模型，可以和医疗机构合作达到落地的目的。</p>
+<p>垂域能力打造：在安全框架下针对特定医疗领域达到或超过蚂蚁医疗大模型的能力。</p>
+<h2 id="结果">结果</h2>
+<p><strong>利用网上已有的公开数据资源，基于Qwen2系列预训练模型进行继续预训练、监督微调和对齐，目前在开源中文医疗大模型领域取得了SOTA效果，与闭源医疗大模型及GPT系列性能相当。</strong></p>
+<table>
+<thead>
+<tr>
+<th>QA-Rouge</th>
+<th></th>
+<th>Our vs. HuatuoGPT-II</th>
+<th>Our vs. Zhongjing</th>
+<th>Our vs. ChiMed-GPT</th>
+<th>Our vs. WiNGPT2</th>
+<th>Our vs. bailing</th>
+<th>Our vs. Qwen2-7B-Instruct</th>
+<th>Our vs. ChatGPT</th>
+<th>Our vs. GPT-4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多轮对话</td>
+<td>CMtMedQA</td>
+<td><strong>0.7544/0.0/0.2456</strong></td>
+<td><strong>0.5919/0.0019/0.4062</strong></td>
+<td><strong>0.8607/0.0019/0.1373</strong></td>
+<td>0.3675/0.0/0.6325</td>
+<td>0.4062/0.0019/0.5919</td>
+<td><strong>0.8124/0.0019/0.1857</strong></td>
+<td>0.3424/0.0019/0.6557</td>
+<td><strong>0.6538/0.0/0.3462</strong></td>
+</tr>
+<tr>
+<td>单轮对话</td>
+<td>All</td>
+<td><strong>0.558/0.008/0.434</strong></td>
+<td><strong>0.539/0.014/0.447</strong></td>
+<td><strong>0.5/0.013/0.487</strong></td>
+<td><strong>0.545/0.01/0.445</strong></td>
+<td>0.434/0.01/0.556</td>
+<td><strong>0.71/0.002/0.288</strong></td>
+<td>0.451/0.01/0.539</td>
+<td><strong>0.54/0.007/0.453</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>huatuo26M</td>
+<td><strong>0.584/0.008/0.408</strong></td>
+<td><strong>0.506/0.016/0.478</strong></td>
+<td><strong>0.506/0.008/0.486</strong></td>
+<td><strong>0.532/0.008/0.46</strong></td>
+<td>0.4/0.01/0.59</td>
+<td><strong>0.754/0.002/0.244</strong></td>
+<td>0.416/0.008/0.576</td>
+<td><strong>0.55/0.006/0.444</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>webMedQA</td>
+<td><strong>0.532/0.008/0.46</strong></td>
+<td><strong>0.572/0.012/0.416</strong></td>
+<td><strong>0.494/0.018/0.488</strong></td>
+<td><strong>0.558/0.012/0.43</strong></td>
+<td>0.468/0.01/0.522</td>
+<td><strong>0.666/0.002/0.332</strong></td>
+<td>0.486/0.012/0.502</td>
+<td><strong>0.53/0.008/0.462</strong></td>
+</tr>
+<tr>
+<td>医学名词解释</td>
+<td>medtiku</td>
+<td><strong>0.76/0.003/0.237</strong></td>
+<td><strong>0.638/0.002/0.36</strong></td>
+<td><strong>0.687/0.005/0.308</strong></td>
+<td><strong>0.654/0.001/0.345</strong></td>
+<td><strong>0.514/0.004/0.482</strong></td>
+<td><strong>0.94/0.0/0.06</strong></td>
+<td><strong>0.605/0.006/0.389</strong></td>
+<td><strong>0.842/0.0/0.158</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>QA-GPT</th>
+<th></th>
+<th>Our vs. HuatuoGPT-II</th>
+<th>Our vs. Zhongjing</th>
+<th>Our vs. ChiMed-GPT</th>
+<th>Our vs. WiNGPT2</th>
+<th>Our vs. bailing</th>
+<th>Our vs. Qwen2-7B-Instruct</th>
+<th>Our vs. ChatGPT</th>
+<th>Our vs. GPT-4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多轮对话</td>
+<td>CMtMedQA</td>
+<td><strong>0.3907/0.4874/0.1219</strong></td>
+<td><strong>0.6209/0.3366/0.0426</strong></td>
+<td><strong>0.9884/0.0097/0.0019</strong></td>
+<td><strong>0.6209/0.3133/0.0658</strong></td>
+<td><strong>0.5861/0.3443/0.0696</strong></td>
+<td>0.089/0.5841/0.3269</td>
+<td><strong>0.265/0.5861/0.1489</strong></td>
+<td>0.1644/0.5184/0.3172</td>
+</tr>
+<tr>
+<td>单轮对话</td>
+<td>All</td>
+<td><strong>0.242/0.567/0.186</strong></td>
+<td><strong>0.702/0.248/0.045</strong></td>
+<td><strong>0.975/0.013/0.005</strong></td>
+<td><strong>0.861/0.114/0.019</strong></td>
+<td><strong>0.588/0.338/0.07</strong></td>
+<td>0.087/0.593/0.316</td>
+<td><strong>0.325/0.554/0.117</strong></td>
+<td>0.037/0.505/0.452</td>
+</tr>
+<tr>
+<td></td>
+<td>huatuo26M</td>
+<td><strong>0.282/0.54/0.178</strong></td>
+<td><strong>0.712/0.244/0.044</strong></td>
+<td><strong>0.972/0.016/0.008</strong></td>
+<td><strong>0.876/0.106/0.014</strong></td>
+<td><strong>0.612/0.306/0.082</strong></td>
+<td>0.11/0.568/0.322</td>
+<td><strong>0.364/0.506/0.13</strong></td>
+<td>0.056/0.516/0.426</td>
+</tr>
+<tr>
+<td></td>
+<td>webMedQA</td>
+<td><strong>0.202/0.594/0.194</strong></td>
+<td><strong>0.692/0.252/0.046</strong></td>
+<td><strong>0.978/0.01/0.002</strong></td>
+<td><strong>0.846/0.122/0.024</strong></td>
+<td><strong>0.564/0.37/0.058</strong></td>
+<td>0.064/0.618/0.31</td>
+<td><strong>0.286/0.602/0.104</strong></td>
+<td>0.018/0.494/0.478</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>选择题</th>
+<th>HuatuoGPT-II</th>
+<th>Zhongjing</th>
+<th>ChiMed-GPT</th>
+<th>WiNGPT2</th>
+<th>bailing</th>
+<th>ChatGPT</th>
+<th>gpt-4</th>
+<th>qwen2-7b-instruct</th>
+<th>Our</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All</td>
+<td>0.1844</td>
+<td>0.1195</td>
+<td>0.3348</td>
+<td>0.3075</td>
+<td>0.6704</td>
+<td>0.4875</td>
+<td>0.7072</td>
+<td>0.7153</td>
+<td><strong>0.7596</strong></td>
+</tr>
+<tr>
+<td>PLE</td>
+<td>0.11</td>
+<td>0.085</td>
+<td>0.21</td>
+<td>0.265</td>
+<td>0.595</td>
+<td>0.405</td>
+<td><strong>0.685</strong></td>
+<td>0.61</td>
+<td><strong>0.685</strong></td>
+</tr>
+<tr>
+<td>Ceval</td>
+<td>0.2683</td>
+<td>0.1463</td>
+<td>0.4146</td>
+<td>0.439</td>
+<td>0.5122</td>
+<td>0.561</td>
+<td><strong>0.7317</strong></td>
+<td>0.7561</td>
+<td>0.7073</td>
+</tr>
+<tr>
+<td>CMB</td>
+<td>0.155</td>
+<td>0.08</td>
+<td>0.27</td>
+<td>0.275</td>
+<td>0.645</td>
+<td>0.49</td>
+<td>0.68</td>
+<td>0.72</td>
+<td><strong>0.765</strong></td>
+</tr>
+<tr>
+<td>CMMLU</td>
+<td>0.2084</td>
+<td>0.1315</td>
+<td>0.379</td>
+<td>0.3343</td>
+<td>0.7007</td>
+<td>0.5021</td>
+<td>0.7287</td>
+<td>0.7483</td>
+<td><strong>0.7902</strong></td>
+</tr>
+<tr>
+<td>CMExam</td>
+<td>0.185</td>
+<td>0.145</td>
+<td>0.35</td>
+<td>0.26</td>
+<td>0.695</td>
+<td>0.5</td>
+<td>0.675</td>
+<td>0.69</td>
+<td><strong>0.73</strong></td>
+</tr>
+</tbody>
+</table>
+<p>结果分析</p>
+<ol>
+<li>除在多轮对话数据集上，使用Rouge-L的评价指标，团队的自研医疗模型与WiNGPT2仍有一定的差距之外，在其余的评价指标、评测数据上团队的自研医疗模型性能均在其他的开源医疗模型之上。（WiNGPT2回答的内容比较凝练精准，其他模型输出比较详细但冗长）</li>
+<li>在选择题上团队的自研医疗模型性能基本超过包括开源模型、蚂蚁闭源医疗模型、GPT-4等全部对比模型</li>
+<li>在医学名词解释数据集上自研医疗模型超过其余全部模型，反映了自研医疗模型输出内容的专业性</li>
+<li>目前在Rouge-L的评价指标上不如蚂蚁闭源医疗模型和ChatGPT，在模型对抗的评价指标上不如Qwen2-7B-Instruct和GPT-4。
+<ol>
+<li>蚂蚁闭源医疗模型和ChatGPT的输出较为简短且精确，与标准答案之间的文字相似性更高</li>
+<li>模型对抗的评价指标更倾向于输出内容较长的（认为比较详细）</li>
+</ol>
+</li>
+</ol>
+<h2 id="CPT">CPT</h2>
+<p>团队获取数据的来源主要有三种</p>
+<ol>
+<li>医疗开源数据，包括已发表的论文中包含的和直接在HuggingFace上面开源的数据；</li>
+<li>其他中文开源数据，例如中文通用问答数据等；</li>
+<li>自行爬取的医疗数据，如好大夫在线、丁香园等。</li>
+</ol>
+<p>继续预训练：共2.7B token，其中通用语料约1.4B token，医疗领域约1.3B token</p>
+<p>+英文数据：</p>
+<ul>
+<li>pmc_llama_instructions row 513999 tokens:151723250</li>
+<li>pubmed abstracts 5.4B token row:112165 tokens:29505846</li>
+</ul>
+<p>共1.8B token</p>
+<table>
+<thead>
+<tr>
+<th>数据集名称</th>
+<th>数据集简介</th>
+<th>数据集条数</th>
+<th>数据集Token数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Suprit/CMtMedQA">CMtMedQA</a></td>
+<td>包含 70,000 条多轮对话数据集，来源于真实医患交流，包含了大量的主动问询语句</td>
+<td>68023</td>
+<td>25569575</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/michaelwzhu/ChatMed_Consult_Dataset">ChatMed_Consult_Dataset</a></td>
+<td>来自于互联网上的医疗问诊问题，反映了真实世界的不同用户/患者的医疗问诊需求。目前response都是由OpenAI GPT-3.5引擎回答的</td>
+<td>549326</td>
+<td>79788168</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Flmc/DISC-Med-SFT">DISC-Med-SFT</a></td>
+<td>包含了超过47万个衍生于现有的医疗数据集重新构建得到的样本。</td>
+<td>464898</td>
+<td>147775556</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.heywhale.com/mw/dataset/5f51e41fc85f1c0031b2eaae">MedDiag</a></td>
+<td>医患之间的中文对话</td>
+<td>2725990</td>
+<td>351973718</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/michael-wzhu/PromptCBLUE">PromptCBLUE</a></td>
+<td>对CBLUE基准进行二次开发，将16种不同的医疗场景NLP任务全部转化为基于提示的语言生成任务,形成首个中文医疗场景的LLM评测基准</td>
+<td>151500</td>
+<td>27127160</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/michaelwzhu/ShenNong_TCM_Dataset">ShenNong_TCM</a></td>
+<td>以中医药知识图谱为基础,采用以实体为中心的自指令方法，调用ChatGPT得到11w+的围绕中医药的指令数据；</td>
+<td>112565</td>
+<td>25168926</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/wangrongsheng/cMedQA-V2.0">cMedQA-V2.0</a></td>
+<td>中国社区医疗问答的数据集</td>
+<td>226266</td>
+<td>22608102</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FreedomIntelligence/huatuo_knowledge_graph_qa">huatuo_knowledge_graph_qa</a></td>
+<td>基于医学知识图谱构建了这个QA数据集，共有798444条数据，其中问题是通过模板构建的，答案是知识图谱中条目的内容。</td>
+<td>798444</td>
+<td>30869480</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FreedomIntelligence/HuatuoGPT-sft-data-v1">huatuo_sft_train_data</a></td>
+<td>训练HuatuoGPT的部分数据</td>
+<td>226042</td>
+<td>67348069</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FreedomIntelligence/huatuo_encyclopedia_qa">huatuo_encyclopedia_qa</a></td>
+<td>从医学百科全书和医学文章中提取医学QA对。在中文维基百科上收集了8699个疾病百科全书条目和2736个药物百科全书条目。此外，我们从千问健康网站上抓取了226432篇高质量的医学文章。</td>
+<td>362420</td>
+<td>135298899</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/hejunqing/webMedQA">webMedQA</a></td>
+<td>从在线健康咨询网站收集的真实的中文医疗问答的数据集</td>
+<td>316110</td>
+<td>56211345</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/Toyhom/Chinese-medical-dialogue-data">Chinese-medical-dialogue-data</a></td>
+<td>中文医疗问答数据集</td>
+<td>792099</td>
+<td>115022641</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/williamliujl/CMExam">CMExam</a></td>
+<td>来自中国国家医师资格考试的数据集。包括60K以上的多项选择题</td>
+<td>68119</td>
+<td>15019251</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FreedomIntelligence/CMB">CMB-Exam</a></td>
+<td>全方位多层次测评模型医疗知识</td>
+<td>280839</td>
+<td>18724518</td>
+</tr>
+<tr>
+<td>questions</td>
+<td>一些中文医疗数据</td>
+<td>48376</td>
+<td>4376377</td>
+</tr>
+<tr>
+<td>教科书</td>
+<td>中文医学教科书数据</td>
+<td>21471</td>
+<td>15179698</td>
+</tr>
+<tr>
+<td>Crawler</td>
+<td>从好大夫、丁香园等自行爬取的数据</td>
+<td>482922</td>
+<td>68760072</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/open?id=1_vgGQZpfSxN_Ng9iTAvE7hM3Z7NVwXP2">baike2018qa</a></td>
+<td>百科类问答，含有150万个预先过滤过的、高质量问题和答案</td>
+<td>1470142</td>
+<td>358976186</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/open?id=1u2yW_XohbYL2YAK6Bzc5XrngHstQTf0v">webtext2019zh</a></td>
+<td>社区问答，含有410万个预先过滤过的、高质量问题和回复。</td>
+<td>4258310</td>
+<td>763721567</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1EdHUZIDpgcBoSqbjlfNKJ3b1t0XIUjbt/view?usp=sharing">wiki2019zh</a></td>
+<td>维基百科，可以做为通用中文语料，做预训练的语料或构建词向量，也可以用于构建知识问答。</td>
+<td>1248027</td>
+<td>314398588</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.yiigle.com/index">yiigle</a></td>
+<td>中华医学期刊标题与摘要</td>
+<td>308869</td>
+<td>104137233</td>
+</tr>
+<tr>
+<td>总数</td>
+<td>14980758</td>
+<td>2748055129</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="PPL">PPL</h3>
+<ul>
+<li>
+<p>困惑度（perplexity ppl）基本内容</p>
+<ul>
+<li>用来评价语言模型好坏或文本质量的指标。</li>
+<li>基本思想：给测试集的句子赋予较高概率值的语言模型较好,当语言模型训练完之后，测试集中的句子都是正常的句子，那么训练好的模型就是在测试集上的概率越高越好。<img src="https://math.now.sh?inline=PP%28W%29%3DP(w_1w_2w_3%5Cdots%20w_n)%5E%7B-%5Cfrac%7B1%7D%7BN%7D%7D%3D%5Csqrt%7B%5Cfrac%7B1%7D%7BP(w_1w_2%5Cdots%20w_N)%7D%7D%5EN" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中，W=w1w2w3…wN表示一个句子。</li>
+</ul>
+</li>
+<li>
+<p>基本解释：困惑度越小，说明文本语义等内容越流畅。挑选困惑度较小的数据进行训练</p>
+</li>
+</ul>
+<h3 id="MinHash">MinHash</h3>
+<p>用文档中所有词最小的K个哈希值做特征集合来表征这篇文档，然后基于特征集合的Jaccard距离计算文档之间的相似度。适合海量文档，是一种大规模文本去重算法。代表是GPT-3和Gopher.</p>
+<h3 id="探索尝试">探索尝试</h3>
+<p>Base模型还是Instruct模型：一般来说，继续预训练是基于Base版本的模型进行的，也就是在预训练阶段并不提供给模型问答模板，模型仅需专注于注入领域知识即可。模型的对话能力在SFT阶段赋予。但是团队经过实验后发现使用Instruct版本模型进行继续预训练的效果比Base版本的模型进行继续预训练的效果更好。团队认为我们的医疗数据数量不足，因此Instruct模型在SFT阶段学到的知识并不能被我们的领域数据补足，因此基于Instruct模型进行预训练的实验效果要更好一些。</p>
+<p>是否添加英文数据：一般来说，在模型预训练的阶段应当让其见到更多的知识，因此加入英文医疗预训练数据理论上是对中文医疗任务有一定帮助的。但是一方面团队的数据量较少，另一方面自研医疗大模型面向的场景都是中文医疗场景，没有其他的英文场景的需求。因此加入英文数据后效果并没有明显提升，反而增加了一倍的训练时间。因此团队在后续进行继续预训练的时候并没有加入英文数据。</p>
+<h2 id="SFT">SFT</h2>
+<p>对预训练模型进行SFT，是提高模型在特定任务上的能力的方法。在这一阶段中需要筛选出高质量的特定任务上的数据集。团队在上述预训练的数据的基础之上，筛选出了100w条左右问答数据和选择题数据。</p>
+<table>
+<thead>
+<tr>
+<th>数据集名称</th>
+<th>数据集简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/michaelwzhu/ChatMed_Consult_Dataset">ChatMed_Consult_Dataset</a></td>
+<td>来自于互联网上的医疗问诊问题，反映了真实世界的不同用户/患者的医疗问诊需求。目前response都是由OpenAI GPT-3.5引擎回答的</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/Flmc/DISC-Med-SFT">DISC-Med-SFT</a></td>
+<td>包含了超过47万个衍生于现有的医疗数据集重新构建得到的样本。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.heywhale.com/mw/dataset/5f51e41fc85f1c0031b2eaae">MedDiag</a></td>
+<td>医患之间的中文对话</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/michael-wzhu/PromptCBLUE">PromptCBLUE</a></td>
+<td>对CBLUE基准进行二次开发，将16种不同的医疗场景NLP任务全部转化为基于提示的语言生成任务,形成首个中文医疗场景的LLM评测基准</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/wangrongsheng/cMedQA-V2.0">cMedQA-V2.0</a></td>
+<td>中国社区医疗问答的数据集</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FreedomIntelligence/HuatuoGPT-sft-data-v1">huatuo_sft_train_data</a></td>
+<td>训练HuatuoGPT的部分数据</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/FreedomIntelligence/huatuo_encyclopedia_qa">huatuo_encyclopedia_qa</a></td>
+<td>从医学百科全书和医学文章中提取医学QA对。在中文维基百科上收集了8699个疾病百科全书条目和2736个药物百科全书条目。此外，我们从千问健康网站上抓取了226432篇高质量的医学文章。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/williamliujl/CMExam">CMExam</a></td>
+<td>来自中国国家医师资格考试的数据集。包括60K以上的多项选择题</td>
+</tr>
+</tbody>
+</table>
+<p>除上述数据外，团队还收集了一些通用领域的对话数据。具体如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>数据集名称</th>
+<th>数据集简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/shibing624/alpaca-zh">alpaca-zh</a></td>
+<td>参考Alpaca方法基于GPT4得到的self-instruct数据</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/BelleGroup/multiturn_chat_0.8M">BelleGroup/multiturn_chat_0.8M</a></td>
+<td>包含约80万条由BELLE项目生成的用户与助手的多轮对话。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/datasets/BelleGroup/train_0.5M_CN">BelleGroup/train_0.5M_CN</a></td>
+<td>包含约50万条由BELLE项目生成的中文指令数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="指令扩充">指令扩充</h3>
+<p>在收集医疗领域相关的数据的同时，团队发现并没有相关的指令数据。因此如果直接将问答对输入到模型中进行训练，则可能由于过于单一的指令导致模型无法充分学习。因此团队希望借助于其他开源大模型的能力对指令数据进行扩充。一方面可以增强模型对于指令适应的鲁棒性，另一方面也可以视为对更大规模模型的知识蒸馏的过程，借助更强大模型的指令能力对自研的医疗大模型进行完善。</p>
+<p>单轮对话数据与多轮对话数据使用不同的指令：对于单轮对话数据和多轮对话数据，所需要的指令理论上是不同的。如果希望模型回答多轮对话的问题，则模型可以在第一个问题后不必马上做出回答，如果患者询问问题中的有效信息过少，则可以直接进行追问，防止过少的信息对模型的理解造成干扰。而对于单轮对话场景来说，模型是一定要给出回复的。因此我们对于单轮对话和多轮对话的问答数据需要给出不同的指令，从而指导模型进行学习。</p>
+<ul>
+<li>单轮对话：请你基于患者的问题给出回复，说话方式要像医生。</li>
+<li>多轮对话：在必要时如果无法明确诊断患者的疾病，可以询问患者更多的信息。但请切记，不要重复之前轮次的询问。</li>
+</ul>
+<p>基于问题的指令扩充</p>
+<p>团队发现，指令的内容基本上是指导性的内容，并没有和后面的问答数据有必然的关联。因此团队考虑将指令的指导内容与后面的问答数据联系起来，使得指令充当一部分问题的功能，从而促使模型在学习问答对的同时也学习到一些如何对问题进行回答的知识。具体的做法设计了一个Prompt，然后抽取出每一条问答数据中的问题，让Qwen-72B-Instruct模型针对问题生成一个包含一定问题信息的指令。这种指令的优点是多样性较高，且与问题相关联，指令的内容与后续的问题是紧密相关的。缺点是指令并不具有通用性，强依赖于问题数据，且每一次生成的时候都要参考问题，因此对于每一个数据集都需要重新生成一次，成本比较高。</p>
+<p>基于多轮对话的指令扩充</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pk2TSLF"><img src="https://s21.ax1x.com/2024/07/04/pk2TSLF.md.png" srcset="/img/loading.gif" lazyload alt="pk2TSLF.md.png"></a></p>
+<p>团队针对医疗任务的指令特点，将原始的指令分成三个部分来考虑：</p>
+<ol>
+<li>基本说明：请你基于患者当前及历史的问题给出回复，说话方式要像医生</li>
+<li>补充说明： 在必要时如果无法明确诊断患者的疾病，可以询问患者更多的信息。 （针对多轮对话医疗问答的特点，模型并不一定马上给出正确回复，可以进行适当的追问）</li>
+<li>限制：但请切记，不要重复之前轮次的询问。</li>
+</ol>
+<p>对于基本说明的部分来说，我们在网络上查找到了约70条英文的医疗相关的基本说明，对于补充说明和限制，在网络上并没有相关的数据，因此团队自行编写了两条。因此原始的指令库为70+条基本说明+2条补充说明+2条限制。</p>
+<p>指令扩充流程如下：</p>
+<ol>
+<li>将原始指令经过排列组合后平均分成两份放入到1号指令库和2号指令库中</li>
+<li>从1号指令库中抽取5条指令作为指令生成的问题，同时在2号指令库中抽取5条指令作为指令生成的答案，两者进行两两配对后构成目前指令生成Prompt的历史对话。</li>
+<li>从1号指令库中抽取一条指令作为需要扩充指令的种子指令，然后使用glm-4-9b-chat大模型对指令进行生成。在生成的时候不限制其生成的数量。</li>
+<li>将生成的多个指令进行分割，同时对指令的完整性和专业性进行简单判断，例如指令中一定包含与医疗相关的词汇等。符合要求的指令一半放回到1号指令库中，另一半放回到2号指令库中。</li>
+<li>两个指令库仅保留最旧的1000个指令和最新的500个指令，使得新生成的指令既会参考一些其他较新的指令，保证指令的多样性；同时新生成的指令也会参考一部分比较原始的指令，同时保证了指令的规范性。两个指令库在迭代生成指令的过程中定期互换，保证构造历史对话时的问题和答案的随机性。</li>
+</ol>
+<p>使用基于多轮对话的指令扩充的优势：</p>
+<ol>
+<li>减少模型无法理解指令从而输出不相关内容的现象</li>
+<li>种子数据较少但是排列组合比较多样，增强模型输出的随机性</li>
+<li>避免模型输出过长</li>
+</ol>
+<h3 id="探索尝试-2">探索尝试</h3>
+<p>混合日常数据：使用医疗数据对通用大模型进行继续预训练后，大模型的通用能力会被遗忘，因此比较常用的方式是混合一些通用数据+领域内的数据一起进行训练，这样的话既能学习新领域知识又能维持住通用能力。经过实验，确定了 7:3 的数据混合比例，即医疗领域数据:通用数据≈7:3</p>
+<p>增加更多选择题数据：团队发现如果在SFT阶段使用的选择题数据较少，则模型的选择题能力遗忘较为严重。因此团队在SFT阶段加入了数量较多的选择题，帮助模型掌握选择题的知识以及回答选择题的能力。</p>
+<p>SFT数据去重：采用目前大模型较为常用的Minhash+LSH的方法进行SFT数据的去重</p>
+<h3 id="论文：从推理的角度缓解遗忘">论文：从推理的角度缓解遗忘</h3>
+<h2 id="DPO">DPO</h2>
+<h3 id="获取rm数据">获取rm数据</h3>
+<p>对于对齐来说，高质量的数据如何构造是比较关键的。在其他场景下，一般采用人工标注的方式，对模型输出的多种答案进行排序，找出较好和较差的部分，甚至是使用人工直接编写人工认为更好的答案；或者是为了达到一些其他的目的，比如防止模型输出一些违法违规的内容，从而引入一些其他外部的高质量偏好数据进行对齐。对于医疗场景来说，团队缺少这种高质量数据或是充足的人力资源。因此团队考虑从数据侧与模型侧两个角度对偏好数据进行构造：</p>
+<ol>
+<li>
+<p>数据侧</p>
+<ol>
+<li>使用SFT的训练数据</li>
+<li>使用SFT中没有使用的数据，不过数据来源与SFT的数据相同</li>
+</ol>
+</li>
+<li>
+<p>模型侧</p>
+<ol>
+<li>使用通用模型构造数据，认为通用模型的输出比自研医疗模型的输出更加详细，信息量更为丰富</li>
+<li>使用SFT模型的不同的checkpoint构造数据，认为对于不同的数据来说，不同checkpoint的输出会有倾向性，例如比较简单的数据可能模型在靠前的训练过程中就已经掌握了，再靠后的训练过程可能会导致过拟合的问题。</li>
+</ol>
+</li>
+</ol>
+<p>团队通过上述的数据侧与模型侧进行两两组合，且每一种角度可以选取一半的数据，比如可以选一半的SFT的数据和一半的SFT中没有使用的数据，以及一半数据使用通用模型构造，一半数据使用SFT模型的不同checkpoint构造等。</p>
+<p>除使用通用模型构造的数据之外，其余的数据团队采用大模型联合评价方式进行评价，即将一个问题的多个回复送给目前普遍认为效果比较好的大模型，让其判断哪个回复比较好，哪个回复不太好，从而构建Chosen和Rejected的数据对。</p>
+<p>具体做法：</p>
+<ol>
+<li>在sft数据中随机采样6w条数据</li>
+<li>设置temprature为1.0，将第一步的数据使用sft模型推理五遍，得到五个不同的推理结果。</li>
+<li>使用qwen2-72b-instruct，glm4-9b, yi1.5-34b 分别对第二步得到的数据进行评判，从五个结果中选出最好的回答和最差的回答。</li>
+<li>构建RM数据使用的原始数据从SFT数据里面选择或者不从SFT数据里面选择，使用SFT的不同ckpt进行选择还是使用通用大模型生成chosen的答案</li>
+</ol>
+<h3 id="RM数据选择">RM数据选择</h3>
+<p>在上面生成的RM数据中，对于Chosen和Rejected的评价是使用大模型或者直接引入其他的大模型的数据实现的，这种评价方式具有一定的权威性，但是并不一定非常准确。因此团队参考了MOSS-RLHF论文的训练方式，对我们上述使用的RM数据进行了进一步的筛选。</p>
+<p>具体的做法是使用上面的Chosen和Rejected对的数据，采用不同的随机数种子训练多个奖励模型，这些模型对于Chosen的打分要比对Rejected的打分更高。定义偏好强度为Chosen的打分与Rejected的打分之差，然后取多个奖励模型的偏好强度的平均值，则这个平均偏好强度会呈现一个正态分布，即有些数据的Chosen的打分比Rejected的打分高很多，有些数据的Chosen的打分甚至不如Rejected的打分更高。</p>
+<p>平均偏好强度在一定程度上反映了模型对于数据的偏好。对于平均偏好强度最低的10%，团队认为这些数据模型没有学习好的原因是标签应该是错误的，也就是Chosen和Rejected的数据分布与其他的数据分布有差异。因此团队将Chosen和Rejected的标签对换，从而辅助后续的模型进行学习；对于偏好强度最高的10%，团队认为这些数据之间的质量差距过大，后续对齐的过程中过于专注这些数据的训练会导致学习到的对齐的模型分布较偏，因此这些数据团队将其直接去除。</p>
+<h3 id="在线模型合并">在线模型合并</h3>
+<p>在做对齐的过程中，可能会产生“对齐税”，也就是模型可能会遗忘之前在SFT阶段获得的能力。目前比较常见的做法是将对齐后模型的参数与SFT后模型的参数进行融合，但是这种方法又可能会降低对齐的效果。因此团队在对齐的每个优化步骤中集成对齐策略和SFT模型，不断调整训练方向，引入在线合并优化器。具体来说，将梯度与SFT和预训练模型之间的参数差异合并，将梯度转向朝着SFT的最佳优化方向，这样可以在对齐的同时极大缓解对之前的SFT模型的遗忘的问题。</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/QwenLM/online_merging_optimizers/main/assets/main.jpg"><img src="https://raw.githubusercontent.com/QwenLM/online_merging_optimizers/main/assets/main.jpg" srcset="/img/loading.gif" lazyload alt="pk2o5M8.md.png"></a></p>
+<h2 id="评测">评测</h2>
+<p>在缺少专业医疗团队的帮助下，为了对医疗大模型进行更为专业的全方位评测，团队在参考其他开源医疗模型的评测方式的同时，增加了额外的评测任务。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pk2o5M8"><img src="https://s21.ax1x.com/2024/07/04/pk2o5M8.md.png" srcset="/img/loading.gif" lazyload alt="pk2o5M8.md.png"></a></p>
+<p>模型：与下面开源医疗大模型进行对比（模型开源能跑通且较新）</p>
+<ol>
+<li><strong>Zhongjing</strong> <a target="_blank" rel="noopener" href="https://github.com/SupritYoung/Zhongjing">https://github.com/SupritYoung/Zhongjing</a></li>
+<li><strong>HuatuoGPT-II</strong> <a target="_blank" rel="noopener" href="https://github.com/FreedomIntelligence/HuatuoGPT-II">https://github.com/FreedomIntelligence/HuatuoGPT-II</a></li>
+<li><strong>WiNGPT2</strong> <a target="_blank" rel="noopener" href="https://github.com/winninghealth/WiNGPT2">https://github.com/winninghealth/WiNGPT2</a></li>
+<li><strong>ChiMed-GPT</strong> <a target="_blank" rel="noopener" href="https://github.com/synlp/ChiMed-GPT">https://github.com/synlp/ChiMed-GPT</a></li>
+</ol>
+<p>为了评测模型的对话能力，我们引入医疗相关的专业对话问答数据进行评测，并设计了单轮对话和多轮对话两个场景，以模拟真实情况下的医患交流。同时为了评测模型的专业知识，我们设计了选择题评测和医学名词解释类的题目，通过评价模型对于选择题目的掌握情况和医学名词解释的专业程度来直观反映医疗模型的能力。</p>
+<p>评测数据分为单轮对话、多轮对话、选择题和医学名词解释四种类别：</p>
+<ol>
+<li>单轮对话：Huatuo26M-test 和 webMedQA，各随机抽取500条数据，共1000条数据</li>
+<li>多轮对话：CMtMedQA，抽取150组对话，共517条数据</li>
+<li>选择题：C-Eval, CMMLU, CMExam, CMB, 2023_Pharmacist_Licensure_Examination，共抽取1356道题目</li>
+<li>医学名词解释：medtiku网站（自行爬取），共抽取1000道题目</li>
+</ol>
+<h3 id="评测流程">评测流程</h3>
+<p>目前对大模型各项指标最权威的评价方式为人工评价，即利用人力资源对不同模型的输出进行对比。在没有额外人力资源的情况下，目前学界认为GPT系列模型与人类的评价结果较为接近，因此可以采用目前较为普遍的GPT系列的闭源模型的api进行替代，如GPT-3.5或GPT-4等。</p>
+<p>团队在尝试使用GPT-3.5进行评测的时候，发现GPT评测的结果对位置信息较为敏感。如输入的顺序为&quot;模型1：xxxx；模型2：yyyyy&quot;的时候，GPT有90%的概率认为模型1的输出比模型2更加符合需求。但是如果将输入的顺序更改为&quot;模型1：yyyyy；模型2：xxxx&quot;，GPT仍有90%的概率认为模型1的输出比模型2更加符合需求。因此团队发现将两个模型的输出同时送给GPT进行评测的方式是不准确的。</p>
+<p>针对上述问题，团队对评测方法做了两点改进。</p>
+<ol>
+<li>单独对GPT输入每一个模型的结果，编写Prompt仅对模型的结果进行打分而不进行比较。一方面可以避免GPT系列对于输入顺序的偏见问题；另一方面，打分的结果可以本地缓存，也就是对于一次模型输出结果仅需请求一次GPT的api，解决时间与金钱。</li>
+<li>在GPT输入的内容中加入标准答案，让GPT进行评价的时候参考标准答案，可以一定程度上缓解GPT的偏见问题。</li>
+</ol>
+<p>权威模型对抗的评价方式适用于对话问答类题目，也就是数据集中的单轮对话和多轮对话数据集。</p>
+<p>对于选择类题目，由于选择题目有标准答案，因此可以直接对模型回答的选项进行提取，然后计算答案的准确率。这里面有两个方面较为关键：</p>
+<ol>
+<li>后处理脚本。因为模型有可能在回答中蕴含了某个选项，但是并没有明确给出选项的序号，因此后处理脚本需要有准确提取模型选项意图的能力。团队参考了大量其他类似的脚本，针对医疗模型的特点设计了较为完备的选项后处理方案。</li>
+<li>对选择题推理时输入给模型的Prompt。有些模型的指令能力并不一定很强，如果输入较为复杂的Prompt，模型可能无法理解从而无法给出答案。团队设计了较为简单的Prompt进行推理，一方面尽量消除复杂的Prompt对模型输出的影响，另一方面模型的指令能力也应当是越强越好的，如果无法理解指令，认为输出是错误的也是有一定的道理的。</li>
+</ol>
+<p>在上述评价的过程中，我们发现对于权威模型对抗的方式来说，权威模型更为倾向于输出内容比较长的模型，给出的理由一般是“比较详细”。团队在分析医疗数据的特点后认为输出长度与输出质量之间并不一定呈正相关，真实场景下医生的回复往往精准而简短，过于详细的答案可能对于言语能力较差的患者并不友好。</p>
+<p>针对上述问题，由于上述的对话数据和医学名词解释的数据都包含标准答案，因此团队采用Rouge-L这一被广泛应用于评价生成式任务的评价指标进行评测</p>
+<h2 id="其他结论">其他结论</h2>
+<ol>
+<li>GPT评测与顺序和长度强相关，经过实验，放在前面的回复更容易让GPT认为这个回复更好，且两个完全相同的回答GPT也认为靠前的回答更好一下而不是输出“一样好”。因此至少在GPT-3.5下，不能输入两个回答然后让GPT去评测。现在修改为给答案和标准答案然后让GPT去打分，打分后再离线进行比较，同时增加答案与标准答案之间的RougeL分数并完善准确率评测，目前从三个角度对模型进行评测。</li>
+<li>其他的开源大模型对选择题支持不太好</li>
+<li>训练后的模型相比于其他开源模型在各项指标上都要更好（和HuatuoGPT Ⅱ差距较小）。对比Qwen2-7B-Instruct我们的模型在RougeL评测上表现更好，但是在GPT评测上不如原始的Qwen2-7B-Instruct，主要原因认为是在SFT的过程中训练的数据答案比较短，而前期实验GPT的评测更倾向于较长的回复，因此在GPT评测指标下差距较大。</li>
+<li>推理时不同Temperature对结果影响不大</li>
+<li>单instruction在对话上不如不加，但是选择题有提升</li>
+<li>多instruction有提升</li>
+<li>base post pretrain对话上总体有提升，选择题也有提升</li>
+<li>日常数据对选择题提升很大</li>
+<li>sft在12000step的性能最好</li>
+<li>选择题数据多加一些对其他的性能没有很大影响，且选择题提升很大</li>
+</ol>
+<h1>知识蒸馏论文</h1>
+<h2 id="简历内容-2">简历内容</h2>
+<p>动机：为了保证隐私安全，需要部署本地小型LLM，且我们希望其拥有大型LLM的能力，因此需要对大型LLM进行 <strong>知识蒸馏</strong> ，将大型LLM的语言理解能力迁移到小型LLM上；</p>
+<p>受教育学中响应式教学的启发，创新性地考虑 <strong>学生模型的反馈</strong> ，提出ARTE框架，让 <strong>大型LLM（教师模型）根据小型LLM（学生模型）的偏好来生成为知识蒸馏量身定制的训练数据</strong> ；</p>
+<p>ARTE框架通过 <strong>知识提取</strong> 、<strong>偏好收集</strong>和<strong>偏好对齐</strong>的三个步骤，经过Llama-3-70B对Gemma-2B的知识蒸馏实验，在BIG-Bench-Hard评测标准上面相比于其他方法提升超过 <strong>3%</strong> ；</p>
+<p>小型LLM在其他的数据集的微调效果展示了 <strong>学生模型的良好泛化性能</strong> ；经过对齐后的大型LLM在其他任务方面与其他相似尺寸的小型LLM层面展示了 <strong>教师模型的良好泛化性能</strong> 。</p>
+<h2 id="简介">简介</h2>
+<p>大型语言模型在自然语言处理的很多任务中都表现的比较出色。其中很大一部分原因是因为参数量比较大，模型的能力比较强，但是在处理隐私敏感数据时，为了保证隐私数据不被泄露，我们可能会需要在自己的设备上本地部署 LLM，而不能使用其他服务器或者是提供的api这种。 但是我们自己有的一般是小型设备，不太能直接部署大规模的 LLM。因此我们需要一种方法将大规模的模型的能力迁移到小规模的模型上，也就是一个知识蒸馏的过程。</p>
+<p>目前已经有很多工作来探究这种知识蒸馏的过程，有些是采用COT的方式让大模型生成一个回答问题的过程从而让小模型进行模仿。让大模型生成小模型的训练数据并不困难，难点是保证数据的多样性和高质量。有些研究通过一些相似性度量方式（如ROUGE-L等）找出冗余的数据从而保证数据的多样性，phi模型是希望找到一些比较类似于教科书的数据，还有人认为生成数据的时候对于不同的任务应该采取不同的策略。这些工作都是聚焦于训练数据本身，而并没有考虑如果有了<strong>学生模型的反馈</strong>，对大模型的数据进行更有针对性的提取，会对这个教师模型生成数据的过程产生促进作用。这个就类似于教学法中的响应式教学，老师就是大规模的大模型，学生就是小规模的大模型，一个老师应该根据学生的反馈来调整自己的教学内容。</p>
+<p>我们提出了ARTE的框架，让教师模型根据学生模型的偏好来生成为知识蒸馏量身定制的训练数据。主要有三个步骤</p>
+<ol>
+<li>知识提取：使用自己编写的种子问题作为prompt对教师模型进行推理，令教师模型草拟生成一些问题和答案</li>
+<li>偏好收集：在验证集上进行1-shot的上下文学习推理来收集上面生成的问题和答案的偏好，也就是哪些问题和答案比较好，哪些问题和答案不太好，就可以从提取出最具辨别力的top k的问题和答案对。</li>
+<li>偏好对齐：通过直接偏好优化 （DPO）让教师模型的偏好与学生模型保持一致</li>
+</ol>
+<p>使用对齐的教师模型重新生成问题和答案，这个训练数据就是为学生模型量身定制的，使用它们来微调学生模型，在下游任务上取得的效果更好。</p>
+<p>我们的知识蒸馏方法在BBH数据集上面要比不采用我们这个方法提升3个点以上，我们同时也测试了这个方法的泛化性能。</p>
+<ol>
+<li>我们将在BBH上面设计的偏好微调出来的学生模型直接迁移到其他的数据集上面进行微调、例如PIQA、ARC、GSM8K等，验证了这个框架在增强学生模型学习能力上面的有效性</li>
+<li>我们探究了对齐偏好后的教师模型的泛化性能，效果也是很不错的
+<ol>
+<li>任务层面的泛化性：在BBH上面设计的对齐教师模型可以迁移到其他的数据集上，例如生成PIQA、ARC等数据集更偏好的数据</li>
+<li>学生模型层面的泛化性：这个对齐的教师模型生成的数据也可以用来微调其他种类或者其他尺寸的小型大模型</li>
+</ol>
+</li>
+</ol>
+<p>我们的贡献主要有三个方面：</p>
+<ol>
+<li>受教育学响应式教学的启发，我们提出了一种新的框架，使教师语言模型与学生语言模型的偏好保持一致，为学生模型生成量身定制的训练数据。</li>
+<li>在领域内和领域外的推理基准数据集中的大量实验表明，我们的框架生成的带有定制化的训练示例的微调学生模型大大优于现有的指令调优数据集。</li>
+<li>我们还研究了对齐教师模型的泛化，包括跨任务的泛化和跨学生模型的泛化。结果表明对齐的教师模型可以针对不同的推理任务和具有相似参数能力的不同学生模型生成量身定制的训练数据，从而完成知识蒸馏的过程。</li>
+</ol>
+<h2 id="方法">方法</h2>
+<p>我们的主实验是在BBH上面进行的，这个数据集总共有27个子任务</p>
+<h3 id="知识提取">知识提取</h3>
+<p>使用自己编写的种子问题作为prompt对教师模型进行推理，令教师模型草拟生成一些问题和答案</p>
+<p>首先是第一个知识提取的步骤，我们使用三个种子问题来构建一个问题生成提示作为Prompt对教师模型进行推理，引导教师模型集思广益，生成多个问题，在temperature=1的情况下多次进行推理，最终在每一个任务上得到大概250个问题。</p>
+<p>然后，对于每个问题我们让教师模型生成一个经过思考后的答案，我们使用不同的Prompt推理让其进行生成，例如直接一句简单的Prompt然后回答、详细解释后回答，先说一下一些基本原理然后回答，step by step等，因为我们认为对于不同的问题和不同的模型，最好的推理Prompt可能是不同的。例如给定一个相同的数学问题，更强大的语言模型可能更喜欢纯粹基于数学符号的基本原理，因为它有这个能力，而小模型可能更喜欢将数学符号和自然语言组合在一起的一个推理过程。我们人为的设计了4个Prompt来生成答案。</p>
+<p>最后，我们将每个问题和相应的回答两两结合起来，这样我们获取了task * 250 * 4=1000个问题回答对作为最初的数据集，也就是从教师模型中提取知识的过程。</p>
+<h3 id="偏好收集">偏好收集</h3>
+<p>在验证集上进行1-shot的上下文学习推理来收集上面生成的问题和答案的偏好，也就是哪些问题和答案比较好，哪些问题和答案不太好，就可以从提取出最具辨别力的top k的问题和答案对。</p>
+<p>第二个步骤是偏好收集。在这一步中，我们的目标是收集学生模型在问题和答案两个层面的偏好。也就是说我们的目标是确定哪个问题或回答更有可能被学生模型接受。有研究指出，语言模型在上下文学习期间也会进行上下文示例的梯度下降。因此我们认为小模型对于这些问题和回答的偏好可以通过上下文学习的方式来获得，这样就不需要对模型进行微调，可以比较快速获取结果。我们具体的做法是从big-bench里面抽取了一个验证集，然后通过上下文学习的方式验证上面的问题和答案的有效性。也就是把上面的问题和答案对分别作为1-shot，加入到上面的有答案的验证集的前面，然后将temperature置为1推理100次，统计这100次中回答正确的次数。由于上面我们生成数据的时候对于每一个问题有不同的回答方式，这里我们对每一种回答方式都进行统计，最终对于每一个回答都可以获得一个分数，就是答案层面的一个偏好。然后一个问题的所有四个回答的分数的平均值就作为这个问题的分数，就是问题层面的一个偏好。</p>
+<p>（IRT theory 待补充）不用全部的BBH数据，用十条数据测一下就行了</p>
+<h3 id="偏好对齐">偏好对齐</h3>
+<p>通过直接偏好优化 （DPO）让教师模型的偏好与学生模型保持一致</p>
+<p>在收集了问题和回答的偏好分数后，我们的目标是使教师模型与学生模型的偏好保持一致，也就是我们调整教师模型之后，教师模型能够有为目标任务生成量身定制的训练数据的能力。我们不仅要生成量身定制的回答，还要生成量身定制的问题。我们的实现方式是采用直接偏好优化的方式（DPO）。这种方式比较简单且稳定。</p>
+<ul>
+<li>对于问题级别的偏好优化，我们在上面收集的分数最高的25个问题和分数最低的25个问题中进行随机抽取排列组合，分别作为DPO训练数据的chosen和rejected的答案。最终我们对于每个任务抽取了50个，得到50*task个训练数据对</li>
+<li>对于回答级别的偏好优化，我们选择上面每个问题的偏好得分最高的回答作为chosen，选择偏好分数最低的回答作为rejected。最终我们对于每个任务抽取了250个，得到250*task个训练数据对</li>
+</ul>
+<p>最后，我们将问题和回答的DPO数据混合在一起进行教师模型的DPO，以使教师模型与学生模型的偏好保持一致。</p>
+<h3 id="最终数据生成">最终数据生成</h3>
+<p>经过上面的三个步骤后，我们就获得了经过对齐的教师模型。那么我们使用对齐的教师模型来重新生成问题和答案，这个训练数据就是为学生模型量身定制的，使用它们来sft微调学生模型，然后在下游任务上进行测试。</p>
+<h2 id="实验效果">实验效果</h2>
+<p>实验就是在没有相关benchmark数据的情况下，用什么数据来微调小模型才能让这个小模型在benchmark上面表现得更好</p>
+<p>首先我们整个过程都是在BBH上面进行的，我们将BBH的23个子任务分成了四大部分的任务，分别是逻辑推理、常识推理、世界知识和数学能力。我们使用多种数据对小模型进行微调，每个数据都是250*27=6750条左右，从而证明我们方法的有效性。我们的大模型是Llama-70b-instruct，小模型是gemma-2b，DPO学习率1e-7，SFT学习率2e-5。</p>
+<p>其他的指令微调数据集包括：</p>
+<ul>
+<li>GPT-4-LLM：使用Self-Instruct方法从GPT-4中蒸馏出来的指令微调数据集</li>
+<li>Tulu-v2：多个高质量之指令微调数据集的混合，包括FLAN、OpenAssistant等</li>
+<li>OpenOrca：使用GPT-4或3.5对Orca数据生成解释进行增强</li>
+<li>WizardLM-Evol-Instruct：通过Evol-Instruct从GPT-4中蒸馏出来的指令微调数据集</li>
+</ul>
+<p>除了用上面的流程生成的数据之外，我们也使用了一些其他的数据，分别在0-shot和3-shot两种实验设置下进行了实验。</p>
+<ul>
+<li>其他比较有名的指令微调数据集</li>
+<li>原始的数据集：就是我们上面的第一阶段的数据，但是我们筛选了dpo chosen的数据，只用这些在验证集上面得分比较高的数据进行微调</li>
+<li>DPO仅回答：只有答案由对齐的教师模型生成，问题是从原始数据中得来的。</li>
+<li>DPO仅问题：只有问题由对齐的教师模型生成，答案是从原始数据中得来的。</li>
+</ul>
+<p>我们的效果比其他的都好，同时我们发现问题的质量比回答的质量起着更重要的作用。</p>
+<p>然后我们探究了我们的框架的泛化性能</p>
+<ul>
+<li>我们将在BBH上面设计的偏好微调出来的学生模型直接迁移到其他的数据集上面进行推理、例如PIQA、ARC、GSM8K等，验证了这个框架在增强学生模型学习能力上面的有效性，超越了用原始数据的方法1.5个点左右。</li>
+<li>我们探究了对齐偏好后的教师模型的泛化性能，效果也是很不错的
+<ol>
+<li>任务层面的泛化性：在BBH上面设计的对齐教师模型可以迁移到其他的数据集上，我们调整了一下Prompt让它生成PIQA、ARC等数据集的训练数据，这些数据是整个过程中都没有见过的。然后生成偏好的数据一样可以达到很好的效果，证明了通过偏好对齐，对齐的教师模型对学生模型的偏好有了更深入的理解，这有助于完成没有见过的任务。同时与原始教师模型相比，这种对教师模型的理解使得更容易将对齐教师模型的具体能力提炼到学生模型中。</li>
+<li>学生模型层面的泛化性：这个对齐的教师模型生成的数据也可以用来微调其他种类或者其他尺寸的小型大模型，我们在Gemma-7B、CodeGemma 2B和Qwen 1.8B上面进行了实验，结果表明，在Qwen1.5-1.8B和CodeGemma-2B中性能更好一些，但是在Gemma-7B 中，并没有更好。这表明具有相似参数容量的语言模型具有相似的训练数据的偏好。参数量不相似的模型的偏好是不一样的。</li>
+</ol>
+</li>
+</ul>
+<h2 id="附录">附录</h2>
+<h3 id="Limitations">Limitations</h3>
+<p>尽管使用的大多数数据都是由教师模型自动生成的，但仍然需要一些手动工作来构造提示并收集偏好分数。</p>
+<p>主要有两个方面：</p>
+<ol>
+<li>在答案生成中，为了生成多样化和高质量的答案，需要一套精心设计的Prompt。在这项工作中，我们自己使用不同的推理技术为每项任务手工制作了系统提示。最近，有研究提出了CoT-Decoding，以揭示语言模型中问题的推理过程，而无需人工设计，后面会继续探索。</li>
+<li>其次，在偏好集合中，需要一组由问题和答案组成的问答对来充当验证集和偏好集。在这些标记的问答对上收集偏好分数，以衡量学生模型对草稿问题和理由的偏好。在这项工作中，我们只是将原始 Big-Bench 数据集中的数据重用为验证集。未来，我们将探索通过学生模型的内部状态直接衡量偏好的可能性</li>
+</ol>
+<h3 id="为小模型生成答案的一些启示">为小模型生成答案的一些启示</h3>
+<p>通过分析小模型的偏好的答案，我们有下面的一些启示：</p>
+<ol>
+<li>
+<p>答案越详细并不一定意味着小语言模型的性能越好。我们发现，答案的长度与偏好分数之间没有显着的线性相关性，即小语言模型在1-shot上下文学习中的准确性。具有完整而简洁的推理步骤的基本原理更有利于小语言模型的学习。原因可能有两方面：</p>
+<ol>
+<li>首先，当输入上下文太长时，语言模型可能会丢失信息。对于容量有限的语言模型，当示例理由太长时，小语言模型可能会迷失在叙述中，忘记要解决的问题。</li>
+<li>在长篇细致的理论中，教师模型可以多次重复相同的步骤，例如在解决数学问题时。对于容量有限的语言模型，此重复步骤可能会导致小型语言模型陷入循环并无限重复同一步骤。</li>
+</ol>
+</li>
+<li>
+<p>尽管同一任务中的不同问题更喜欢不同的推理策略，但在监督微调中，小语言模型更喜欢为一个任务使用一致的推理策略。</p>
+</li>
+</ol>
+<p>我们还有一个问题可以进行探索，就是在偏好对齐后用大模型生成回答数据的时候，用哪个Prompt是更好的。（因为我们上面设计了四种Prompt对一个问题来生成答案）</p>
+<p>训练语料库的多样性对于语言模型的预训练阶段至关重要，为了研究训练数据集中推理策略多样性的影响，我们在 Big-Bench-Hard 上使用四个不同的训练数据集对 Gemma-2B 进行了微调。</p>
+<ol>
+<li>Randomly Selected：从不同的推理策略中随机选择每个问题的答案。</li>
+<li>Most Preferred：根据上面测试的最高偏好分数选择每个问题的答案。</li>
+<li>Task Consistent：一个任务选一个任务的Prompt，平均得分最高的</li>
+<li>Aligned Teacher：最朴素的，第三个Prompt最简单，希望微调后的模型不要太多的Prompt工程就可以生成更好的数据</li>
+</ol>
+<p>结果是使用Most Preferred数据集微调的 Gemma-2B 的性能与Randomly Selected数据集相似，而Task Consistent和Aligned Teacher数据集的性能都优于其他两个数据集。这说明在微调阶段，特别是当我们尝试增强小语言模型的一两个特定能力时，一致的推理策略更有益。这背后的原因是，当推理策略对于一项任务来说过于多样化时，小语言模型可能会感到困惑，而一致的推理策略为小语言模型提供了明确的指导，以模仿特定的能力增强。</p>
+<h1>微软实习</h1>
+<h2 id="简历内容-3">简历内容</h2>
+<p>使用停留时间的用户历史行为特征从<strong>输入侧</strong>与<strong>模型侧</strong>两个角度优化Unium特征向量，解决用户误点击及停留时间过长等问题，同时增强模型的鲁棒性。线上AUC+0.51%；</p>
+<p>利用GPT和Ada2 Embedding升级原始多级主题模型，不依赖于人工标注，并保证对其他市场和其他主题的 <strong>泛化能力</strong> 。线下精确率在英语市场提升1.9%，在非英语市场提升7.4%；</p>
+<p>分析线上用于推荐的特征，将线上用于对Top 30 Bing首页新闻进行CTR预估的简单DNN模型升级为以<strong>DeepFM</strong>为基础的推荐模型，完善模型训练流程并上线，线上AUC+0.37%；</p>
+<p>针对线上问题，如Linkoff点击率过高、新闻文章质量、不同市场之间效果差异较大等，在GPT能力加持下训练深度学习模型进行解决，满足需求同时确保线上指标不变或有增益。</p>
+<h2 id="用户停留时间推荐">用户停留时间推荐</h2>
+<p>如何利用用户停留时间实现更为高效的推荐？</p>
+<p>为什么要使用用户停留时间的特征？因为只看用户是否点击是不够的。</p>
+<ul>
+<li>用户可能会因为“误点击”而迅速离开新闻内容页面。</li>
+<li>用户点击行为并不总是他们兴趣的全面体现。例如，他们可能会被新闻封面或标题所吸引，但在点击后很快意识到内容与他们的兴趣不一致而离开。</li>
+</ul>
+<p>用户停留时间可以帮助过滤掉不相关的新闻，并有助于在用户建模中准确衡量特定点击行为的相关性。</p>
+<p>但是有下面的问题：</p>
+<ul>
+<li>仅仅依靠停留时间作为新闻质量和积极/消极用户行为的绝对衡量标准，并不能解释单个用户的多样化和个性化阅读习惯，短暂的停留时间不能最终解释为对内容不感兴趣或缺乏参与度。</li>
+<li>需要考虑现实场景中数据收集的潜在延迟等问题，可能有一些数据收集不到，因此模型的鲁棒性是需要特殊考虑的</li>
+</ul>
+<p>对停留时间进行分析：</p>
+<ul>
+<li>停留时间为0的点击文章很多，呈长尾分布</li>
+<li>用户的点击主要集中在5到200s之间，停留时间过长可能反映了用户在没有实质性阅读的情况下无意停留在页面上。</li>
+</ul>
+<p>之前的版本：新闻表示+用户表示 + 多头注意力 双塔结构</p>
+<ul>
+<li>新闻的表示：使用Ada Embedding获取</li>
+<li>用户的表示：用户点击的H篇文章的embedding（H，emb_size）作为用户的特征输入</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkWtgaj"><img src="https://s21.ax1x.com/2024/07/07/pkWtgaj.md.png" srcset="/img/loading.gif" lazyload alt="pkWtgaj.md.png"></a></p>
+<p>DweW（停留时间权重）</p>
+<p>之前的工作将停留时间作为一个过滤条件，过滤掉停留时间比较短的用户点击行为。但是这种方法没有考虑在现实场景下面的收集用户点击时间延迟的问题，以及用户的个性化问题（如某些用户就是停留时间比较短）。首先将用户的停留时间进行离散化，按照0和5为阈值，筛选出停留时间大于0的用户点击行为和停留时间大于5的点击行为。然后使用用户表示方法送入相同的多头注意力层和Attention pool层获取语义信息。</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=E_u%3DStack%5BN_1%2C%20N_2%2C...N_H%5D%0A" srcset="/img/loading.gif" lazyload /></p><p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=U_%7B%F0%9D%91%90%F0%9D%91%9C%F0%9D%91%9B%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%A5%F0%9D%91%A1%7D%20%3D%20MultiHead%28E_%F0%9D%91%A2%2C%20E_%F0%9D%91%A2%2C%20E_%F0%9D%91%A2%20%29%0A" srcset="/img/loading.gif" lazyload /></p><p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=a_n%3DSoftmax%28Tanh(W*E_u%5Ei%2Bb%29)%0A" srcset="/img/loading.gif" lazyload /></p><p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=U%3D%5Csum_%7Bi%3D1%7D%5EN%20a_i%5EnN_i%5En%0A" srcset="/img/loading.gif" lazyload /></p><p>考虑到每一个用户都有独一无二的阅读习惯，我们引入了一个阅读偏好网络。将用户的停留时间编码进矩阵，过Attention层，获取大于0和大于5的两个部分的权重，使用门控网络将这些向量合并，形成一个更细微的用户兴趣表示。</p>
+<p>DweA（停留时间Attention）</p>
+<p>之前的工作过于依赖停留时间，且没有考虑语义和停留时间的交互过程。DweA将用户的停留时间编码进矩阵，拼接到原始的嵌入维度中（Q和K），使模型能够权衡被点击新闻的语义内容和停留时间。</p>
+<p>随机抽取4条在同一会话中出现但未被该用户点击的新闻作为负样本。此外，我们扰乱新闻的顺序，以避免可能的位置偏见。</p>
+<p>数据集：</p>
+<ul>
+<li>一天数据集训练，一天数据集测试</li>
+<li>五千多万用户+五百多万新闻+389亿曝光+2亿点击</li>
+<li>Adam，lr=10-3，batch 32 dropout 0.2</li>
+<li>选择用户的最后50个行为，10个头，维度为20</li>
+</ul>
+<p>至关重要的是，我们的方法对用户停留时间信息表现出鲁棒性，即使在停留时间数据完全缺失的极端情况下，也能保持推荐高质量内容的能力。</p>
+<h2 id="TERA">TERA</h2>
+<p>主题模型可以推荐给用户他们感兴趣的东西，主要有两点问题</p>
+<ul>
+<li>需要保持迅速扩展topic的能力，新topic过来后要尽快使用</li>
+<li>需要获得多语言多主题的大量数据来训练模型，依赖人工标注代价太大了</li>
+</ul>
+<p>通过多个角度利用GPT的能力：作为先知（标注数据）和编码器（获取ada2 embedding）</p>
+<p>之前是一个分级的model，第一级13个，第二级400，第三级10w</p>
+<p>现在一共4000topic左右</p>
+<p>在Ada2 Embedding上面搭建的LightGBM</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkWt0RP"><img src="https://s21.ax1x.com/2024/07/07/pkWt0RP.md.png" srcset="/img/loading.gif" lazyload alt="pkWt0RP.md.png"></a></p>
+<p>模型结构：title embedding和body embedding各1536维直接取平均，query（也就是主题）直接送给ada2 embedding，也是1536维，两个向量逐个元素相乘成为1536维，query与title body 和刚才平均的进行点乘作为剩下的三维，1539维输入到LightGBM里面进行打分</p>
+<ul>
+<li>使用元素相乘和点乘：这是因为输入文本的更高相似度被期望转化为它们的嵌入的更高余弦相似度，这相当于它们的点积，而点积又是它们的按元素的积之和。因此比直接连接两个向量要更好一些</li>
+</ul>
+<p>评价：主要关注精确率，不关心召回（召回也很难算）</p>
+<p>一周的数据，70w行，来自11个市场的7个语言，4k多主题</p>
+<p>从已有的topic model上面拿数据，然后用GPT标，0.77是对的，0.23是错的，很多主题没有出现过，因此采样了一些，保证主题覆盖率的同时增加负样本的数量。同时也采样了一些正样本，让GPT给10个主题这样的方式</p>
+<p>最后50对50的数据，8：2分训练集和验证集</p>
+<p>测试集构造：为了包括全部的文档类别，用GPT Embedding进行聚类然后随机采样</p>
+<p>7天的数据，还包括了2个非英语市场，一个市场聚100类然后取10个，是用GPT-4标注的</p>
+<p>精确率在英语市场上提升1.9%，在非英语市场上提升7.4%</p>
+<h2 id="特征">特征</h2>
+<table>
+<thead>
+<tr>
+<th><strong>feature</strong></th>
+<th><strong>example value</strong></th>
+<th><strong>possible values</strong></th>
+<th><strong>description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AbstractLength</td>
+<td>102</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>AbstractWordCount</td>
+<td>18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>BrandAuthority</td>
+<td>800</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ImageScore</td>
+<td>1419822</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Score</td>
+<td>1473</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>timeSlot</td>
+<td>18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TitleLength</td>
+<td>140</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TitleWordCount</td>
+<td>23</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TrendingScore</td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IsLocalContent</td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>delayMinutes</td>
+<td>1939</td>
+<td></td>
+<td>current datetime minus “DateCreated” in IntAttributes</td>
+</tr>
+<tr>
+<td>isWeekend</td>
+<td>7</td>
+<td>1-7</td>
+<td>day of week</td>
+</tr>
+<tr>
+<td>Clicks5</td>
+<td>0</td>
+<td></td>
+<td>total clicks in the past 5 minutes</td>
+</tr>
+<tr>
+<td>Clicks10</td>
+<td>0</td>
+<td></td>
+<td>total clicks in the past 10 minutes</td>
+</tr>
+<tr>
+<td>Clicks30</td>
+<td>0</td>
+<td></td>
+<td>total clicks in the past 30 minutes</td>
+</tr>
+<tr>
+<td>CTR5</td>
+<td>10</td>
+<td></td>
+<td>ctr in the past 5 minutes</td>
+</tr>
+<tr>
+<td>CTR10</td>
+<td>10</td>
+<td></td>
+<td>ctr in the past 10 minutes</td>
+</tr>
+<tr>
+<td>CTR30</td>
+<td>10</td>
+<td></td>
+<td>ctr in the past30 minutes</td>
+</tr>
+<tr>
+<td>Udi[0-67]</td>
+<td></td>
+<td></td>
+<td>element wide product between user’s unium_v4 and item’s unium_v4 vector</td>
+</tr>
+<tr>
+<td>Cosine[0-10]</td>
+<td></td>
+<td></td>
+<td>cosine similarity of unium_v4 vectors between user’s pass 10 clicks and the item</td>
+</tr>
+<tr>
+<td>dotProd[0-10]</td>
+<td></td>
+<td></td>
+<td>dot product of unium_v4 vectors between user’s pass 10 clicks and the item</td>
+</tr>
+<tr>
+<td>neastCosine</td>
+<td>1339050</td>
+<td></td>
+<td>largest cosine-similarity</td>
+</tr>
+<tr>
+<td>neastCosinePos</td>
+<td>6</td>
+<td></td>
+<td>index of the largest consine similarity in user’s click history</td>
+</tr>
+<tr>
+<td>neastDotprod</td>
+<td>921662</td>
+<td></td>
+<td>largest dot product</td>
+</tr>
+<tr>
+<td>neastDotprodPos</td>
+<td>2</td>
+<td></td>
+<td>index of largest dot product in user’s click history</td>
+</tr>
+<tr>
+<td>vertType</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Locale[0-54]</td>
+<td></td>
+<td>0,1</td>
+<td>one-hot encoding of locale</td>
+</tr>
+<tr>
+<td>Product[1-5]</td>
+<td></td>
+<td>0,1</td>
+<td>one hot encoding of locale</td>
+</tr>
+<tr>
+<td>vertType[0-18]</td>
+<td></td>
+<td>0,1</td>
+<td>one-hot encoding of vertical type</td>
+</tr>
+<tr>
+<td>ContentType[0-3]</td>
+<td></td>
+<td>0,1</td>
+<td>one-hot encoding of ContentType</td>
+</tr>
+</tbody>
+</table>
+<h2 id="CTR预估">CTR预估</h2>
+<p>训练参数：hidden_units 512 256 64，batch_size 4096 Adamw lr 5e-2</p>
+<p>这是一个名为 <code>FM_Layer</code>的因子分解机（Factorization Machine）层的实现。因子分解机是一种用于处理稀疏数据的机器学习算法，它可以捕获特征之间的交互关系。</p>
+<p>在 <code>__init__</code>方法中，初始化了一个线性层和一个嵌入层。线性层用于处理输入特征的线性关系，嵌入层用于将输入特征映射到一个低维空间，以便处理特征之间的交互关系。</p>
+<p>在 <code>forward</code>方法中，首先计算了线性项，然后计算了交互项。交互项的计算使用了因子分解机的一个重要特性，即通过嵌入向量的内积来模拟特征之间的交互。具体来说，交互项的计算公式为：<code>(sum(v*x))^2 - sum((v*x)^2)</code>，其中 <code>v</code>是嵌入向量，<code>x</code>是输入特征。这个公式可以有效地计算所有特征对的交互，而且计算复杂度是线性的，这是因子分解机的一个重要优点。</p>
+<p>最后，将线性项和交互项相加，得到最终的输出。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FM_Layer</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, n_features, k</span>):
+        <span class="hljs-built_in">super</span>(FM_Layer, <span class="hljs-variable language_">self</span>).__init__()
+        <span class="hljs-variable language_">self</span>.linear = nn.Linear(n_features, <span class="hljs-number">1</span>)
+        <span class="hljs-variable language_">self</span>.embedding = nn.Embedding(n_features, k)
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        linear_term = <span class="hljs-variable language_">self</span>.linear(x)
+        interaction_term = torch.<span class="hljs-built_in">sum</span>(<span class="hljs-variable language_">self</span>.embedding(x), dim=<span class="hljs-number">1</span>) ** <span class="hljs-number">2</span> - torch.<span class="hljs-built_in">sum</span>(<span class="hljs-variable language_">self</span>.embedding(x) ** <span class="hljs-number">2</span>, dim=<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">return</span> linear_term + interaction_term</code></pre></div>
+<p>FM模型的二次项<strong>等价化简</strong>过程如下：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-d94f53c172b3e645d0a36ac384cb2508_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>FM部分结构图如下：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-fcc0ee2197693fee049f0b39feea806f_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>下图为DNN部分的结构图：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-32f606a7ec764928bc591ea3451ddd4f_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>上面分别介绍了FM和DNN,下面把他们融合起来。典型网络融合有两种方式，一种是并行结构，一种是串行结构，DeepFM采用的是并行的方式。</p>
+<p>在 <code>forward</code>方法中，模型首先通过输入层处理输入数据，然后将稀疏特征进行嵌入，接着将嵌入的稀疏特征和密集特征拼接在一起。如果启用了批量归一化，那么会对输入进行归一化。最后，模型将处理过的输入通过全连接层和逻辑回归层，然后将两者的输出相加，得到最终的预测结果。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-cf55df85501dfb817ae6f69433448680_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>与 Wide&amp;Deep 的异同：</strong></p>
+<p>相同点：都是线性模型与深度模型的结合，低阶与高阶特征交互的融合。</p>
+<p>不同点：DeepFM 两个部分共享输入，而 Wide&amp;Deep 的 wide 侧是稀疏输入，deep 侧是稠密输入；DeepFM 无需加入人工特征，可端到端的学习，线上部署更方便，Wide&amp;Deep 则需要在输入上加入人工特征提升模型表达能力。</p>
+<p><strong>DeepFM 优缺点:</strong></p>
+<p>优点：</p>
+<ol>
+<li>两部分联合训练，无需加入人工特征，更易部署；</li>
+<li>结构简单，复杂度低，两部分共享输入，共享信息，可更精确的训练学习。</li>
+</ol>
+<p>缺点：</p>
+<p>1 将类别特征对应的稠密向量拼接作为输入，然后对元素进行两两交叉。这样导致模型无法意识到域的概念，FM 与 Deep 两部分都不会考虑到域，属于同一个域的元素应该对应同样的计算。</p>
+<div class="code-wrapper"><pre><code class="hljs python">sparse_features = [<span class="hljs-string">&#x27;IsLocalContent&#x27;</span>, <span class="hljs-string">&#x27;isWeekend&#x27;</span>, <span class="hljs-string">&#x27;vertType&#x27;</span>, <span class="hljs-string">&#x27;timeSlot&#x27;</span>, <span class="hljs-string">&#x27;HeadLineWholePageOrder&#x27;</span>, <span class="hljs-string">&#x27;WholePageOrder&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority0&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority1&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority2&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority3&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority4&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority5&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority6&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority7&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority8&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority9&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority10&#x27;</span>, <span class="hljs-string">&#x27;minAuthority&#x27;</span>, <span class="hljs-string">&#x27;avgAuthority&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_0&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_1&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_2&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_3&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_0&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_1&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_2&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_3&#x27;</span>, <span class="hljs-string">&#x27;vertType_0&#x27;</span>, <span class="hljs-string">&#x27;vertType_1&#x27;</span>, <span class="hljs-string">&#x27;vertType_2&#x27;</span>, <span class="hljs-string">&#x27;vertType_3&#x27;</span>, <span class="hljs-string">&#x27;vertType_4&#x27;</span>, <span class="hljs-string">&#x27;vertType_5&#x27;</span>, <span class="hljs-string">&#x27;vertType_6&#x27;</span>, <span class="hljs-string">&#x27;vertType_7&#x27;</span>, <span class="hljs-string">&#x27;vertType_8&#x27;</span>, <span class="hljs-string">&#x27;vertType_9&#x27;</span>, <span class="hljs-string">&#x27;vertType_10&#x27;</span>, <span class="hljs-string">&#x27;vertType_11&#x27;</span>, <span class="hljs-string">&#x27;vertType_12&#x27;</span>, <span class="hljs-string">&#x27;vertType_13&#x27;</span>, <span class="hljs-string">&#x27;vertType_14&#x27;</span>, <span class="hljs-string">&#x27;vertType_15&#x27;</span>, <span class="hljs-string">&#x27;vertType_16&#x27;</span>, <span class="hljs-string">&#x27;vertType_17&#x27;</span>, <span class="hljs-string">&#x27;vertType_18&#x27;</span>, <span class="hljs-string">&#x27;blingMatchCount&#x27;</span>, <span class="hljs-string">&#x27;userBlingCtrCount&#x27;</span>, <span class="hljs-string">&#x27;userBlingNegCount&#x27;</span>, <span class="hljs-string">&#x27;IsMale&#x27;</span>, <span class="hljs-string">&#x27;IsFemale&#x27;</span>, <span class="hljs-string">&#x27;NoGender&#x27;</span>, <span class="hljs-string">&#x27;IndexedAgeIntValue&#x27;</span>, <span class="hljs-string">&#x27;IsSemiFresh&#x27;</span>]</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">DeepFM</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, </span>
+<span class="hljs-params">                 feature_config,</span>
+<span class="hljs-params">                 hidden_units=[<span class="hljs-number">512</span>,<span class="hljs-number">64</span>],</span>
+<span class="hljs-params">                 output_dim=<span class="hljs-number">1</span>,</span>
+<span class="hljs-params">                 emb_size=<span class="hljs-number">10</span>,</span>
+<span class="hljs-params">                 embedding_cols=<span class="hljs-number">230</span>,</span>
+<span class="hljs-params">                 bucket_cols=<span class="hljs-number">54</span>,</span>
+<span class="hljs-params">                 dropout=<span class="hljs-number">0.0</span>,</span>
+<span class="hljs-params">                 activation=<span class="hljs-string">&#x27;relu&#x27;</span>,</span>
+<span class="hljs-params">                 use_senet=<span class="hljs-literal">False</span>,</span>
+<span class="hljs-params">                 sparse_batchnorm=<span class="hljs-literal">True</span>,</span>
+<span class="hljs-params">                 mlp_normalization=<span class="hljs-string">&#x27;batch&#x27;</span>,</span>
+<span class="hljs-params">                 non_blocking=<span class="hljs-literal">False</span>,</span>
+<span class="hljs-params">                 device=<span class="hljs-string">&#x27;cuda&#x27;</span></span>):
+  
+        <span class="hljs-built_in">super</span>(DeepFM, <span class="hljs-variable language_">self</span>).__init__()
+        <span class="hljs-variable language_">self</span>.device = device
+        <span class="hljs-variable language_">self</span>.non_blocking = non_blocking
+        <span class="hljs-variable language_">self</span>.sparse_batchnorm = sparse_batchnorm
+        <span class="hljs-variable language_">self</span>.bucket_feat = [<span class="hljs-string">&#x27;IsLocalContent&#x27;</span>, <span class="hljs-string">&#x27;isWeekend&#x27;</span>, <span class="hljs-string">&#x27;vertType&#x27;</span>, <span class="hljs-string">&#x27;timeSlot&#x27;</span>, <span class="hljs-string">&#x27;HeadLineWholePageOrder&#x27;</span>, <span class="hljs-string">&#x27;WholePageOrder&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority0&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority1&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority2&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority3&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority4&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority5&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority6&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority7&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority8&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority9&#x27;</span>, <span class="hljs-string">&#x27;hostAuthority10&#x27;</span>, <span class="hljs-string">&#x27;minAuthority&#x27;</span>, <span class="hljs-string">&#x27;avgAuthority&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_0&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_1&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_2&#x27;</span>, <span class="hljs-string">&#x27;Product_OHIndex_3&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_0&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_1&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_2&#x27;</span>, <span class="hljs-string">&#x27;ContentType_OHIndex_3&#x27;</span>, <span class="hljs-string">&#x27;vertType_0&#x27;</span>, <span class="hljs-string">&#x27;vertType_1&#x27;</span>, <span class="hljs-string">&#x27;vertType_2&#x27;</span>, <span class="hljs-string">&#x27;vertType_3&#x27;</span>, <span class="hljs-string">&#x27;vertType_4&#x27;</span>, <span class="hljs-string">&#x27;vertType_5&#x27;</span>, <span class="hljs-string">&#x27;vertType_6&#x27;</span>, <span class="hljs-string">&#x27;vertType_7&#x27;</span>, <span class="hljs-string">&#x27;vertType_8&#x27;</span>, <span class="hljs-string">&#x27;vertType_9&#x27;</span>, <span class="hljs-string">&#x27;vertType_10&#x27;</span>, <span class="hljs-string">&#x27;vertType_11&#x27;</span>, <span class="hljs-string">&#x27;vertType_12&#x27;</span>, <span class="hljs-string">&#x27;vertType_13&#x27;</span>, <span class="hljs-string">&#x27;vertType_14&#x27;</span>, <span class="hljs-string">&#x27;vertType_15&#x27;</span>, <span class="hljs-string">&#x27;vertType_16&#x27;</span>, <span class="hljs-string">&#x27;vertType_17&#x27;</span>, <span class="hljs-string">&#x27;vertType_18&#x27;</span>, <span class="hljs-string">&#x27;blingMatchCount&#x27;</span>, <span class="hljs-string">&#x27;userBlingCtrCount&#x27;</span>, <span class="hljs-string">&#x27;userBlingNegCount&#x27;</span>, <span class="hljs-string">&#x27;IsMale&#x27;</span>, <span class="hljs-string">&#x27;IsFemale&#x27;</span>, <span class="hljs-string">&#x27;NoGender&#x27;</span>, <span class="hljs-string">&#x27;IndexedAgeIntValue&#x27;</span>, <span class="hljs-string">&#x27;IsSemiFresh&#x27;</span>]
+        <span class="hljs-variable language_">self</span>.bucket_size = [<span class="hljs-number">2</span>, <span class="hljs-number">8</span>, <span class="hljs-number">19</span>, <span class="hljs-number">24</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">11</span>, <span class="hljs-number">129</span>, <span class="hljs-number">129</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">11</span>, <span class="hljs-number">2</span>]
+  
+        <span class="hljs-variable language_">self</span>.embedding_dim = emb_size
+        <span class="hljs-variable language_">self</span>.use_senet = use_senet
+  
+
+        input_size = embedding_cols + bucket_cols * <span class="hljs-variable language_">self</span>.embedding_dim
+  
+        <span class="hljs-keyword">if</span> sparse_batchnorm:
+            <span class="hljs-variable language_">self</span>.sparse_norm = nn.BatchNorm1d(embedding_cols + bucket_cols * <span class="hljs-variable language_">self</span>.embedding_dim)
+            <span class="hljs-variable language_">self</span>.sparse_norm_wide = nn.BatchNorm1d((embedding_cols + bucket_cols) * <span class="hljs-number">1</span> )
+  
+        <span class="hljs-comment"># Deep</span>
+        <span class="hljs-variable language_">self</span>.dnn = MLP_Layer(input_dim=input_size, 
+                             hidden_units=hidden_units, 
+                             output_dim=<span class="hljs-number">1</span>,
+                             dropout=dropout,
+                             activation=activation,
+                             bn_name=mlp_normalization)
+
+        <span class="hljs-variable language_">self</span>.fc = nn.Linear(hidden_units[-<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, bias=<span class="hljs-literal">True</span>)
+  
+  
+        <span class="hljs-variable language_">self</span>.emb_layer = nn.ModuleList([nn.Embedding(<span class="hljs-variable language_">self</span>.bucket_size[i], <span class="hljs-variable language_">self</span>.embedding_dim) <span class="hljs-keyword">for</span> i, _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-variable language_">self</span>.bucket_feat)])
+
+        <span class="hljs-variable language_">self</span>.input_layer = CustomInputLayer(feature_config,device)
+  
+        <span class="hljs-comment"># self.alpha = nn.Parameter(torch.FloatTensor([0.05]))</span>
+  
+        <span class="hljs-comment"># Wide</span>
+        <span class="hljs-variable language_">self</span>.lr_layer = LogisticRegression_Layer(input_size, use_bias=<span class="hljs-literal">False</span>)
+        <span class="hljs-variable language_">self</span>.fm_layer = FM_Layer(embedding_cols + bucket_cols, <span class="hljs-number">5</span>)
+  
+        <span class="hljs-variable language_">self</span>.initialize()
+
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">initialize</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">def</span> <span class="hljs-title function_">init_weights</span>(<span class="hljs-params">m</span>):
+            <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(m, (nn.Linear, nn.Embedding)):
+                nn.init.xavier_uniform_(m.weight)
+                <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(m, (nn.Linear)) <span class="hljs-keyword">and</span> m.bias <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+                    m.bias.data.fill_(<span class="hljs-number">0.01</span>)
+        <span class="hljs-variable language_">self</span>.apply(init_weights)
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, X</span>):
+        sparse_feature, dense_feature = <span class="hljs-variable language_">self</span>.input_layer(X)
+
+        <span class="hljs-comment"># wide_input = torch.cat([sparse_feature, dense_feature], -1)</span>
+  
+        sparse_embedding = [layer(sparse_feature[:,i]) <span class="hljs-keyword">for</span> i, layer <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(<span class="hljs-variable language_">self</span>.emb_layer)]
+
+        <span class="hljs-built_in">input</span> = torch.cat(sparse_embedding + [dense_feature], -<span class="hljs-number">1</span>)
+  
+        <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.sparse_batchnorm:
+            <span class="hljs-built_in">input</span> = <span class="hljs-variable language_">self</span>.sparse_norm(<span class="hljs-built_in">input</span>)
+  
+        lr_logit = <span class="hljs-variable language_">self</span>.lr_layer(<span class="hljs-built_in">input</span>)
+        <span class="hljs-comment">#print(lr_logit)</span>
+        <span class="hljs-comment"># input = torch.cat((input, dense_feature_log), -1)</span>
+  
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.dnn(<span class="hljs-built_in">input</span>) + lr_logit</code></pre></div>
+<h1>立场检测NAACL论文</h1>
+<h2 id="简历内容-4">简历内容</h2>
+<p>立场检测任务：从某人的<strong>言论</strong>中判断他对某个<strong>目标</strong>的立场（支持、反对、中立），相比于普通的情感分析的难点在于 <strong>目标（较短）不同的相同言论（较长）的立场标签可能完全相反</strong> ；</p>
+<p>充分利用大模型的语言理解能力，对言论与目标的关系进行 <strong>显式深度分析</strong> ；使用生成式小模型（BART）微调立场标签的 <strong>生成</strong> ，并创新性应用<strong>原型聚类对比学习</strong>的训练策略增强语义理解；</p>
+<p>提出的立场检测方法在Zero-Shot与Cross-Target两种类型的立场检测任务上分别超越前SOTA **2.5%**及 <strong>10-15%</strong> 。消融实验证明了上述每一个模块的有效性。<a target="_blank" rel="noopener" href="https://aclanthology.org/2024.naacl-short.32/">论文地址</a>。</p>
+<h2 id="任务介绍">任务介绍</h2>
+<p>立场检测任务是指从某人的言论（也就是文本text）中判断他对某个目标（也就是target）的立场。这个言论是发表在一些公开场合的文字，如Twitter，Facebook或者辩论会上面。需要判断的立场一般分三种，分别是支持、反对和中立，表示这个人发表的言论text对于target的一个立场态度，（支持target，反对target，或者仅仅是对target的客观评价，并没有情感倾向），也有的数据集可能会包括“不相关”的第四个立场，也就是这个言论与这个target完全没有关系。这个任务类似于文本分类任务中的情感分析的任务，不同的是target很重要，比如美国总统大选的时候，target一般就指Trump和Biden，如果一个人发表了一大段支持特朗普的言论，则对于拜登的立场就会是完全相反的。target的变化在数据集中可能仅仅是一个单词的变化，结果会导致立场标签完全不同，也就是立场检测相比于普通的情感分析的难点所在。</p>
+<h2 id="任务分类">任务分类</h2>
+<p>根据target在测试集中是否可见，立场检测可分为三类： 一、训练集与测试集有相同的target；二、target在测试集中不存在，但是测试集中有相似的target（也就是cross-target的分类）；三、target在测试集中不存在，也没有相似的target存在（也就是立场检测中的zero-shot）。我这篇论文主要是做zero-shot的任务，因为后两个任务要比第一个任务更为困难一些。</p>
+<h2 id="详细说明">详细说明</h2>
+<h3 id="LLM驱动的知识">LLM驱动的知识</h3>
+<p>之前的工作普遍希望使用各种方法扩充target的信息，如在wiki上面查找target的相关知识并拼接一起输入到模型等，或者是在模型结构上对target语义进行更为详尽的提取。但是很少有工作对target与text之间进行显式的分析。我们有了大模型，这个问题正好可以使用大模型来解决，可以利用类似于ChatGPT等大模型的语言理解能力，去显式提取text与target之间的关系，也就是增加额外的“LLM驱动的知识”。这个知识与之前相比更加具体，语义更加丰富。</p>
+<p>我们具体的做法是将text与target一起送给GPT-3.5，让它分析关键词、修辞手法、隐藏情感，最后说一下对这个立场的看法，但是并不允许直接给出表明立场的词汇。提取关键词的目的是让模型更为关注这些关键词语，修辞手法和隐藏情感的目的是找到一些表达立场的证据，如果这个是一个讽刺的言论，那么立场应该是完全相反的。最后只让它分析立场而并不是直接给出立场，因为我们前期实验发现让大模型直接给出立场的效果并不好，在VAST数据集上面只有69左右，因此不让其给出立场词汇是会防止其误导模型，有助于最后的立场检测效果。</p>
+<p>我们后面做了一些消融实验证明了这里面的每一个部分对于我们整个模型的效果都是起促进作用的。如果不加这些LLM驱动的知识的话效果大概是不到75的样子，像之前的工作添加wiki的知识的效果大概是76多，我们添加关键词的效果可以到达75多，修辞手法和隐藏情感大概76多，加上分析立场的文字后大概是77多，如果一起加上的效果最终是79.6</p>
+<h3 id="BART">BART</h3>
+<p>因为立场标签也是有语义的，为了弥补这个知识与立场标签之间的语义的gap，我们使用了双向自回归语言模型-BART作为我们的主干网络，因此我们把这个分类问题转换成了一个立场标签的生成问题，输入是文本和LLM驱动的知识，输出是利用了丰富的语义进行解码的立场标签的文字。</p>
+<p>我们后面做了消融实验证明了BART的有效性，我们分别实验了将上面的LLM驱动的知识直接使用LLM进行分析，以及使用BERT或者BART作为主干网络，最终效果最好的是BART</p>
+<ul>
+<li>BART的预训练目标就是对于被破坏的文章优化一个重构损失函数，实际上就是针对Decoder的预测结果和目标文章（label）的交叉熵损失。亮点是它允许接受任意破坏形式的文章</li>
+<li>单Token级别的掩码（Token Masking），这个和BERT一样，按一定比例随机采样Token进行[MASK]；</li>
+<li>Token级别的丢失（Token Deletion），直接随机删掉文章中的一些单词（注意作者没有提到deletion的Token是否可以连续，因此猜测这种方式同样也包含了连续几个Token被delete的情况），这和MASK可不一样，MASK的话模型至少知道原Token在哪，而直接deletion的话，模型不仅需要知道原Token是啥，还需要知道原Token都在哪些位置，这无形就提高了模型的预测能力。</li>
+<li>片段级别的Token MASK（Text Infilling），这个在上文已经解释过了，这里作者给出了片段选取的依据，即通过均值λ为3的泊松分布对span text进行采样，比如有长度为0的，长度为3的，长度为5的等等片段，将它们分别只用一个MASK替换。作者也提到这种方式和SpanBERT的思路类似，区别在于SpanBERT使用的是clamped geometric分布采样，且采出来的片段长度是多少，就用相同数量的MASK替换，可见BART实际上对这种方式的学习更加苛刻。作者也说了，text-infilling是为了让模型学习到一个MASK中原本是有多少个Token，其它们是啥。</li>
+<li>句序打乱（Sentence Permutation），将完整的句子在原文中的顺序打乱，让模型学习它们原来应该在什么位置。</li>
+<li>文章旋转（Document Rotation），其实就是随机在文章中取一个词，并以该词为基点将文章旋转，然后再让模型学习原文的起始Token是啥。说实话，这个操作挺骚气的，虽然看上去很牛的样子，但是还没怎么领会其中的奥妙，我觉得Sentence Permutation已经包含了这个功能了。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/fa8834e10aba4305813551bcb3280ace.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="原型聚类对比学习">原型聚类对比学习</h3>
+<p>之前的工作一般使用对比学习的方式，也就是将立场标签相同的文本在向量空间中拉近，将立场标签不同的文本在向量空间中推远，这样最终立场标签的表示应该会形成类别数量的簇。</p>
+<p>但是虽然标签相同的文本，在语义上可能是不太相同的，将其强行归为一个类别并不是很合理。因此为了更好的align立场的表示与标签的语义，我们在上述框架的基础上进一步采用原型聚类对比学习的方式，与普通对比学习的区别在于我们并不强制相同类别的标签一定将彼此拉近，而是采用多个原型来对分类特征空间进行建模，然后优化对比损失，使得立场标签被相应标签的最近的原型吸引，并被其他立场的原型排斥。这样最终的立场标签的表示会更为鲁棒，会形成原型类别的簇，立场的表示与标签的语义就会更为统一。</p>
+<p>具体的做法是在最初对每个类别都初始化一个原型，对比学习的时候将样本归到最相近的原型中，这也会有一个问题，也就是之前的归类更多的原型后面的相似度越来越高导致所有样本都聚类到这个原型上面，可能导致我们最终只有一个原型起作用。因此我们训练5个epoch后使用Kmeans对最近的1000个类别向量重新设定类别中心来缓解这个问题。实验表明原型的数量为3的时候效果最好，总体上大概有1-2个点的提升。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MCContrastiveLoss</span>(torch.nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, training_steps, seed, bert_config</span>):
+        <span class="hljs-built_in">super</span>(MCContrastiveLoss, <span class="hljs-variable language_">self</span>).__init__()
+        <span class="hljs-variable language_">self</span>.prototype_contrastive_class = bert_config[<span class="hljs-string">&quot;prototype_contrastive_class&quot;</span>]
+        <span class="hljs-variable language_">self</span>.prototype_contrastive_num = bert_config[<span class="hljs-string">&quot;prototype_contrastive_num&quot;</span>]
+        <span class="hljs-variable language_">self</span>.encoder_label_pos = bert_config[<span class="hljs-string">&quot;encoder_label_pos&quot;</span>]
+        <span class="hljs-variable language_">self</span>.decoder_label_pos = bert_config[<span class="hljs-string">&quot;decoder_label_pos&quot;</span>]
+        <span class="hljs-variable language_">self</span>.label_id_list = bert_config[<span class="hljs-string">&quot;label_id_list&quot;</span>]
+        <span class="hljs-variable language_">self</span>.prototype_contrastive_project_dimension = bert_config[
+            <span class="hljs-string">&quot;prototype_contrastive_project_dimension&quot;</span>
+        ]
+        <span class="hljs-variable language_">self</span>.prototype_contrastive_temperature = bert_config[
+            <span class="hljs-string">&quot;prototype_contrastive_temperature&quot;</span>
+        ]
+        <span class="hljs-variable language_">self</span>.prototype_contrastive_ema = bert_config[<span class="hljs-string">&quot;prototype_contrastive_ema&quot;</span>]
+        <span class="hljs-variable language_">self</span>.loss_combination_ratio = bert_config[<span class="hljs-string">&quot;loss_combination_ratio&quot;</span>]
+        <span class="hljs-variable language_">self</span>.kmeans_step = bert_config[<span class="hljs-string">&quot;kmeans_epoch&quot;</span>] * training_steps
+
+        <span class="hljs-variable language_">self</span>.kmeans = KMeans(
+            n_clusters=<span class="hljs-variable language_">self</span>.prototype_contrastive_num, random_state=seed, n_init=<span class="hljs-string">&quot;auto&quot;</span>
+        )
+        <span class="hljs-variable language_">self</span>.kmeans_deque = [
+            deque(maxlen=bert_config[<span class="hljs-string">&quot;kmeans_deque&quot;</span>])
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-variable language_">self</span>.prototype_contrastive_class)
+        ]
+
+        <span class="hljs-variable language_">self</span>.project = nn.Linear(<span class="hljs-number">768</span>, <span class="hljs-variable language_">self</span>.prototype_contrastive_project_dimension)
+        <span class="hljs-variable language_">self</span>.anchor = torch.randn(
+            (
+                <span class="hljs-variable language_">self</span>.prototype_contrastive_class,
+                <span class="hljs-variable language_">self</span>.prototype_contrastive_num,
+                <span class="hljs-variable language_">self</span>.prototype_contrastive_project_dimension,
+            ),
+            dtype=torch.float32,
+        )
+        <span class="hljs-variable language_">self</span>.anchor = F.normalize(<span class="hljs-variable language_">self</span>.anchor, p=<span class="hljs-number">2</span>, dim=-<span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, outputs, labels</span>):
+        <span class="hljs-comment"># judge when to apply kmeans</span>
+        <span class="hljs-variable language_">self</span>.kmeans_step -= <span class="hljs-number">1</span>
+
+        <span class="hljs-comment"># to gpu</span>
+        <span class="hljs-variable language_">self</span>.project = <span class="hljs-variable language_">self</span>.project.to(labels.device)
+        <span class="hljs-variable language_">self</span>.anchor = <span class="hljs-variable language_">self</span>.anchor.to(labels.device)
+
+        <span class="hljs-comment"># predict label now</span>
+        predict_label = (
+            outputs.logits[:, <span class="hljs-variable language_">self</span>.decoder_label_pos, <span class="hljs-variable language_">self</span>.label_id_list]
+            .squeeze(<span class="hljs-number">1</span>)
+            .detach()
+        )
+        <span class="hljs-comment"># transform predict label to one-hot</span>
+        predict_label_index = F.one_hot(
+            torch.<span class="hljs-built_in">max</span>(predict_label, dim=<span class="hljs-number">1</span>)[<span class="hljs-number">1</span>],
+            num_classes=<span class="hljs-variable language_">self</span>.prototype_contrastive_class,
+        )  <span class="hljs-comment"># (64, 3)</span>
+
+        <span class="hljs-comment"># transform actual label to one hot</span>
+        contrastive_mask = F.one_hot(
+            labels, num_classes=<span class="hljs-variable language_">self</span>.prototype_contrastive_class
+        )  <span class="hljs-comment"># (64, 3)</span>
+
+        <span class="hljs-comment"># project encoder_last_hidden_state into smaller dimension</span>
+        contrastive_vector = F.normalize(
+            <span class="hljs-variable language_">self</span>.project(
+                outputs.encoder_last_hidden_state[:, <span class="hljs-variable language_">self</span>.encoder_label_pos, :].squeeze(
+                    <span class="hljs-number">1</span>
+                )
+            ),
+            p=<span class="hljs-number">2</span>,
+            dim=-<span class="hljs-number">1</span>,
+        )  <span class="hljs-comment"># (64, 128)</span>
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-variable language_">self</span>.prototype_contrastive_class):
+            <span class="hljs-comment"># only extract same label both label and predict</span>
+            temp_mask = contrastive_mask[:, i] * predict_label_index[:, i]
+            <span class="hljs-keyword">if</span> torch.count_nonzero(temp_mask) != <span class="hljs-number">0</span>:
+                <span class="hljs-comment"># contrastive_vector for class i</span>
+                contrastive_vector_class = contrastive_vector[temp_mask.<span class="hljs-built_in">bool</span>()].detach()
+
+                <span class="hljs-variable language_">self</span>.kmeans_deque[i].extend(contrastive_vector_class)
+
+                <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.kmeans_step == <span class="hljs-number">0</span>:
+                    now_deque_tensor = torch.stack(<span class="hljs-built_in">list</span>(<span class="hljs-variable language_">self</span>.kmeans_deque[i]))
+                    <span class="hljs-variable language_">self</span>.kmeans.fit(now_deque_tensor.cpu().numpy().astype(<span class="hljs-string">&quot;float32&quot;</span>))
+                    cls_centers = torch.tensor(<span class="hljs-variable language_">self</span>.kmeans.cluster_centers_)
+                    cls_centers = F.normalize(cls_centers, p=<span class="hljs-number">2</span>, dim=-<span class="hljs-number">1</span>)
+                    <span class="hljs-variable language_">self</span>.anchor[i] = cls_centers
+
+                <span class="hljs-comment"># choose the most similar one</span>
+                max_index = torch.<span class="hljs-built_in">max</span>(
+                    torch.einsum(<span class="hljs-string">&quot;bd,nd-&gt;bn&quot;</span>, contrastive_vector_class, <span class="hljs-variable language_">self</span>.anchor[i]),
+                    dim=<span class="hljs-number">1</span>,
+                )[<span class="hljs-number">1</span>]
+                <span class="hljs-comment"># print(max_index)</span>
+
+                <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-variable language_">self</span>.prototype_contrastive_num):
+                    proto_index = (max_index == j).nonzero()
+                    <span class="hljs-keyword">if</span> proto_index.size(<span class="hljs-number">0</span>) == <span class="hljs-number">0</span>:
+                        <span class="hljs-keyword">continue</span>
+                    cur_mean_vector = torch.mean(
+                        contrastive_vector_class[proto_index], dim=<span class="hljs-number">0</span>
+                    )
+
+                    <span class="hljs-variable language_">self</span>.anchor[i][j] = <span class="hljs-variable language_">self</span>.anchor[i][
+                        j
+                    ].data * <span class="hljs-variable language_">self</span>.prototype_contrastive_ema + cur_mean_vector * (
+                        <span class="hljs-number">1</span> - <span class="hljs-variable language_">self</span>.prototype_contrastive_ema
+                    )
+
+                    <span class="hljs-variable language_">self</span>.anchor[i][j] = F.normalize(<span class="hljs-variable language_">self</span>.anchor[i][j].data, p=<span class="hljs-number">2</span>, dim=-<span class="hljs-number">1</span>)
+
+        feat_sim_mat = torch.<span class="hljs-built_in">max</span>(
+            torch.matmul(<span class="hljs-variable language_">self</span>.anchor, contrastive_vector.T).permute(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), dim=-<span class="hljs-number">1</span>
+        )[<span class="hljs-number">0</span>]
+        feat_sim_mat = torch.div(feat_sim_mat, <span class="hljs-variable language_">self</span>.prototype_contrastive_temperature)
+
+        logits_max, _ = torch.<span class="hljs-built_in">max</span>(feat_sim_mat, dim=<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)
+        feat_sim_mat = feat_sim_mat - logits_max.detach()
+
+        <span class="hljs-comment"># compute log_prob</span>
+        exp_logits = torch.exp(feat_sim_mat)
+        log_prob = feat_sim_mat - torch.log(<span class="hljs-number">1e-7</span> + exp_logits.<span class="hljs-built_in">sum</span>(<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>))
+        <span class="hljs-comment"># print(log_prob)</span>
+        <span class="hljs-comment"># print(log_prob.shape)</span>
+        contrastive_loss = -(
+            (contrastive_mask * log_prob).<span class="hljs-built_in">sum</span>(<span class="hljs-number">1</span>) / (contrastive_mask.<span class="hljs-built_in">sum</span>(<span class="hljs-number">1</span>) + <span class="hljs-number">1e-7</span>)
+        ).mean()
+        <span class="hljs-comment"># print(contrastive_loss)</span>
+
+        <span class="hljs-keyword">return</span> outputs.loss + contrastive_loss * <span class="hljs-variable language_">self</span>.loss_combination_ratio</code></pre></div>
+<h3 id="数据集">数据集</h3>
+<p>我们在P-Stance和VAST两个数据集上面取得了SOTA的效果，实验表明在zero-shot（VAST数据集）与cross-target（P-Stance数据集）两种类型的立场检测任务上分别超越前SOTA 2.5% 及10-15%。</p>
+<h1>WSDM Cup 2024</h1>
+<h2 id="简历内容-5">简历内容</h2>
+<p>比赛目标：在给定<strong>上下文对话</strong>和最多5篇 <strong>参考文档</strong> （小红书文本笔记）的基础上，根据用户的<strong>最终问题</strong>生成正确的回答，评价指标主要为ROUGE-L，要求模型总参数量不超过14B；</p>
+<p>方案简介：以SOLAR 10.7B大模型为基座进行<strong>LoRA</strong> <strong>微调</strong> ，结合Prompt设计、<strong>多轮对话</strong>训练方式、混合训练、不相关参考文档的联合过滤、生成式任务的<strong>模型集成</strong>等策略；</p>
+<p>比赛结果：在三个评价指标上分别领先亚军网易互娱与季军华为2012实验室 <strong>1.6%</strong> ， <strong>0.9%</strong> 和 <strong>2.3%</strong> 获得冠军，受邀<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.18385">投稿</a>并在WSDM 2024会议进行汇报。<a target="_blank" rel="noopener" href="https://github.com/zhangzhao219/WSDM-Cup-2024">Github仓库</a>Star  <strong>140+</strong> 。</p>
+<h2 id="介绍">介绍</h2>
+<p>WSDM Cup 2024是一个解决多文档对话式问答的比赛。</p>
+<p>对话式问答是根据对话中识别的用户意图生成正确且有意义的答案，（在现代搜索引擎和对话系统中发挥着至关重要的作用）。 目前的挑战是训练模型的数据中可能不包含时效性高的信息，因为在语言模型在训练阶段是无法获得当下或者是训练时间之后的知识。 尽管可以通过检索增强的方式为模型提供多个相关文档作为上下文信息，但模型仍然面临着无法从长文本中获取有效信息，被大量无关信息输入误导的风险。本次比赛就是鼓励对这种对话式多文档问答类问题进行进一步的探索。</p>
+<p>本次比赛提供的数据集是json的格式，其中训练集包括12557 条数据，验证集包括1794条数据，测试集包括3588条数据。所有数据中都包含uuid，历史的问答对，最多5篇小红书的参考文档和用户的问题。数据就类似于一个人在询问如何将iPhone中的照片导入到电脑中，然后回答说可以通过这样的方式，需要一个USB线，然后用户说如果我没有这根线该怎么办。然后会给几篇小红书上面的参考文档，我们的目标就是生成最终的答案，尽量与标准答案越相似越好。其中训练集包括主办方给出的回答的标准答案，验证集和测试集需要我们自己生成答案提交到竞赛平台上面进行评测。评价标准有三个，包括字符级别的rouge l，文字级别的rouge l和keywords recall（关键词的召回率），这个关键词也是数据集中的预先标注的，不过在训练、验证和测试三个数据集中都不会公开给我们，仅用于评测。参赛模型的参数量要求不允许超过14B</p>
+<p>最近，ChatGPT 等大语言模型在多项自然语言处理任务上表现出了 SOTA 性能，我们希望通过利用大模型的理解和推理能力来探索这一问题。 我们做了很多的尝试，最work的方案是首先根据任务微调 LLM，然后设计了一种混合训练策略，以充分利用无标注的验证集数据和测试集数据。并使用一个文本嵌入模型来过滤潜在的不相关文档，最后设计和比较了几种模型集成的方法，拿到了这个比赛的冠军。</p>
+<h2 id="LLM">LLM</h2>
+<p>首先使用LLM进行微调的时候，由于我们的输入有很多信息，包括历史对话、参考文档和问题等。我们仔细设计了三者的输入顺序，最终确定了历史对话、问题、参考文档的格式。首先历史对话与问题是相关的，我们发现在问题中会存在一些代词，可能要去历史对话中找答案，且问题有可能很简短，实际上的信息都保存在历史的对话中。因此历史对话与问题是要连在一起输入的。其次有研究表明，在RAG中与问题越接近的文档，模型的关注度会越高，而我们参考的小红书的文档顺序是直接从搜索引擎中得来的，因此最相关的文档排序靠前，也就与问题更为接近。经过实验我们的这种组织方式效果是最好的。我们并没有仔细设计prompt，因为我们前期做了一些简单的尝试发现Prompt对于最终结果的影响并不是很大。</p>
+<p>然后我们对大模型进行微调。虽然我们发现历史的答案与最终的答案并不是很相似，最终的答案的长度要大于历史的答案，但是我们经过实验后还是采用多轮对话的方式进行训练。我们猜测多轮对话的模式可以使大模型更加关注上下文信息，帮助解决我们上面提到的最终问题中可能存在的指代消解。</p>
+<ul>
+<li>将一条多轮对话数据，拆分成多条数据</li>
+<li>将一条多轮对话数据拼接之后，输入模型，并行计算每个位置的loss，只有Assistant部分的loss参与权重更新。</li>
+</ul>
+<p>为什么Work？答案在于因果语言模型的attention mask。以GPT为代表的Causal Language Model(因果语言模型)，这种模型的attention mask是一个对角掩码矩阵，每个token在编码的时候，只能看到它之前的token，看不到它之后的token。</p>
+<p>最后我们对目前比较流行的多个开源且参数量小于14B的大模型进行了尝试，发现SOLAR的模型表现最好。它是两个Llama结构（使用了mistral的权重）拼接在一起后使用高质量的训练数据进行再次预训练后得到的大模型，因此最后我们使用SOLAR大模型进行微调。</p>
+<p>SOLAR模型：</p>
+<p>Depthwise scaling的过程如下：</p>
+<ol>
+<li>从32层的基础模型开始，我们将该模型复制一份以进行后续修改。</li>
+</ol>
+<p>然后，从原始模型中移除最后m层，并从其复制体中移除最初的m层，这样就形成了两个各有(n-m)层的独特模型。</p>
+<ol start="2">
+<li>将这两个模型拼接在一起，构建一个具有s = 2·(n−m)层的扩展模型。</li>
+</ol>
+<p>在SOLAR 10.7B-Instruct中，由于基础模型n为32层，并且考虑到硬件限制以及扩展模型效率（模型参数量介于70亿至130亿之间），SOLAR 10.7B-Instruct设置s为48层。因此，需要移除的中间层数目m计算得出为8层（即m=8）。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-2ba04416d08ffc371fcbb0d571a1660a_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>然后进行预训练+SFT+DPO（最后使用了数学的数据集）</li>
+</ol>
+<h2 id="混合训练">混合训练</h2>
+<p>在大模型的训练或微调中，高质量的数据要比数量更为重要。但是由于小红书的数据比较特殊，我们无法找到很相似的数据进行数据增强。不过我们在评测测试集的效果的时候，验证集是可以使用的。因此我们使用我们第一阶段的最好的模型对验证集进行推理，推理得到的结果加入到训练数据中再次进行训练，也就是训练数据从12000条增长到了14000条。一方面可以被视为对域内无标签数据的知识蒸馏过程，另一方面，因为我们只为最终答案生成伪标签，历史问题的答案仍然是官方标注的，这有利于多轮对话的训练模式。实验结果表明这样训练会将各个指标提升半个点到一个点。不过我们不会进一步加入测试数据集的伪标签，因为它可能会过度校正模型，实验结果表明这样反而会降低最终的模型性能。</p>
+<h2 id="不相关文档过滤">不相关文档过滤</h2>
+<p>其次我们发现有一些不相关的文档，一种不相关的文档是这个文档可能是视频或者图片的形式，因此提取出来的文字就只有对问题的重复，因此对于回答这个问题来说并没有任何的帮助。另一种不相关的文档是真正的不相关的文档，描述的内容与问题或者是历史的对话都是完全不相关的。因此在不存在真实答案的情况下量化相关性就显得至关重要，相似度太高的和相似度太低的文档是都要进行剔除的。</p>
+<p>我们从语义和词汇的角度使用了多种方式进行联合判断，如计算单词或字符级的 ROUGE-L ，也可以被视为词汇相关性标准。或者使用文本嵌入模型计算文档与相应问题（或与对话历史问答一起）之间的余弦相似度，或者我们对每个评价指标都设置了一个较高的和一个较低的阈值，如果计算的分数不在这个阈值的区间范围内我们就将其进行剔除。最终，我们在第二阶段过滤掉了 193 个噪声文档，分数有一点点的提升。一方面是这个参考文档本身就比较短，我们将全部的数据拼接在一起也不会超过3072个token，另一方面我们也发现大模型是有一定的过滤不相关文档的能力的。</p>
+<p>此外，之前的工作表明，将重要的信息放在大模型的开头或结尾处有利于其更好地利用有效信息，因此，我们也尝试了对输入数据的参考文档进行顺序调整。 然而，我们发现原数据中参考文档的索引（即其出现顺序）和官方标注的答案中其出现的相对顺序之间存在很强的相关性，相关实验也表明，对参考文档重新排序可能会导致严重的性能下降，因此我们实际上并没有对文档的顺序进行调整。</p>
+<h2 id="模型集成">模型集成</h2>
+<p>模型集成已被证明在判别类任务中是有效的，但是，很少有工作在生成任务上对其进行探索。在这项工作中，我们希望找到一种方法可以近似评估不同模型生成答案的质量，然后从中选择选择最好的一个作为最终结果。我们想象这样一个现实场景，假设有 N 位候选者都提出了自己的方案，那么最终的方案应该是获得赞成最多的方案。因此，我们最终选择的答案应该是与最多候选模型达成一致的代表。具体地，假设给定一个测试样本，我们有M个候选答案进行集成，对于每个候选r_i，我们计算r_i和r_j之间的相关性分数，将它们加在一起作为r_i的质量分数q_i。这个质量分数我们也尝试了一些，例如上文提到的余弦相似度，rouge l等。虽然使用我们上面的方案就已经超出第二名很多了，我们通过这种方式进行集成也可以显著提升最终模型的效果，且集成的数量越多，效果提升就越明显。最终我们训练出了8个比较好的单模型一起集成。</p>
+<h1>ChatGLM金融大模型</h1>
+<h2 id="简历内容-6">简历内容</h2>
+<p>赛题目标：以ChatGLM2-6B大模型为中心制作一个问答系统，根据上市公司的原始PDF年报，回答用户的 <strong>金融相关问题</strong> 。问题包括基本查询、统计分析、联合对比、开放性问题等；</p>
+<p>将原始金融年报的文字与表格提取到数据库中，利用通用模型的<strong>上下文多轮对话能力</strong>提取问题的关键部分。针对不同的问题类型，首先微调LoRA权重进行问题分类，对于查询统计对比类问题，使用 <strong>NL2SQL</strong> （微调的LoRA权重）+正则匹配+查表的联合方法解决；对于开放性问题使用 <strong>多路检索召回</strong> +Prompt设计解决，最终实现了完整的金融年报问答系统，得分85.89。</p>
+<p>任务是以ChatGLM2-6B模型为中心制作一个问答系统，根据上市公司的原始PDF年报，回答用户的金融相关的问题。上市公司每一年都会发布一个公开的金融年报，格式基本相同，且大部分是表格形式的数据，一个年报的总页数大概在400页左右。主办方提供了1万多篇年报文档和五千的待回答的问题，所有问题都没有答案，只能在天池的线上系统进行评测。评测指标：首先要包括最重要的答案数字，占0.25分，但是如果数字答案不对直接为0分，其次查找答案中的关键词，满分为0.25分，没有关键词会按照缺失比例扣分，最后的0.5分是根据语句的相似度匹配进行计算给出的分数。</p>
+<h2 id="问题介绍">问题介绍</h2>
+<p>问题类型有三种，实际上是五种问题：</p>
+<ol>
+<li>数据基本查询：参赛者需要利用提供的ChatGLM2-6B开源模型和上市公司年报原始数据，并以此为基础创建信息问答系统。系统需能够解决基本查询，如：某公司2021年的研发费用是多少？等问题。</li>
+<li>数据统计分析查询：在初级阶段的基础上，参赛者需要进行金融数据的统计分析和关联指标查询。系统需基于各类指标，提供问题和答案，如：某公司2021年研发费用增长率为多少？等问题。决赛增加了一些难度更大的问题，如上海研发费用增长率排名前10的公司是哪些，需要对多个年报文档进行联合查询。</li>
+<li>开放性问题：如某公司2021年主要研发项目是否涉及国家创新领域，如新能源技术、人工智能等？或者询问一些年报中提到的概念，如什么是研发费用等。前面的问题是需要参考年报进行回答的，后面的问题是纯开放性问题，年报中也不包含任何的相关信息。</li>
+</ol>
+<h2 id="年报数据处理">年报数据处理</h2>
+<p>方案介绍 – PDF2TXT工具优化</p>
+<ol>
+<li>解决处理非封闭表格数据使用原有lines方式获取表格缺失数据问题？ （兼容考虑第一行和第一列可能是合并单元格的情况）<br>
+通过page.rects分析表格线条是否完整封闭，如果非封闭的表格，使用明确的水平线和垂直线获取表格数据；如果是封闭的表格使用原有的line的方式获取表格数据</li>
+<li>解决虽然是封闭的表格，但是使用lines的方式获取表格没有被正常提取的情况，缺失部分列的情况？<br>
+使用原有的方式获取到表格后，对表格的宽带进行判断，如果小于页面宽度的60%，会基于explicit指定水平线的方式进行指定位置之下的表格进行获取，获取后判断是否替换当前的表格</li>
+<li>对文本数据进行优化处理（主要用于解决完全无框的数据或其他表格行数据粘连的情况）<br>
+对现有的文本进行处理，主要处理思想为对文本间距超过10个像素的同行数据追加时增加空格；对于换行数据，判断是否为段落, 符合段落条件的合并为一个一行数据</li>
+<li>对行列数据的进一步处理（如判断数据合并，删除空行空列，判断删除错位的空列等）</li>
+<li>对页眉数据的进一步优化，增加判断是否存在页眉线，如果存在页眉线以上数据作为页眉处理</li>
+</ol>
+<p>年报数据主要包括公司的基础信息，例如公司名称、注册地址等，财务的数据，主要都是表格，利润表负债表等等，以及综合信息部分，包括财务指标业务概要等</p>
+<p>有人开源了处理pdf文件的代码，基于pdfplumber将pdf年报提取成为txt文件，表格也作为一行一行的文字存储在txt文件中。</p>
+<p>有一些表格txt提取的不太好，我们使用html文件进行了二次提取，有几个年报是图片形式的，我们使用paddleocr进行提取。最终将提取到的表格存储在csv文件中，文字以txt的形式保存</p>
+<p>同时将提供的计算公式引入，将计算的字段名称直接作为已知条件插入到数据库中</p>
+<h2 id="问题分类">问题分类</h2>
+<p>对问题进行结构化解析，提取公司名称、年份和问题的关键词（研发费用等词语）,模拟多轮对话的方式，使用In Context Learning的关键词抽取方案，无需微调，保留大模型的通用能力，拓展性和灵活性更好。</p>
+<p>然后将问题与关键词一起输入到大模型中，训练一个Lora对问题进行分类（训练大模型做选择题），我们人工对给定的问题进行标注，将其分为基本统计题目，计算题目，SQL题目，根据文档的开放性问题和纯开放性问题。由于问题的特征都比较明显，因此这个Lora是非常好训练的，准确率可以达到99%之上。</p>
+<h2 id="NL2SQL-正则匹配解决统计分析问题">NL2SQL+正则匹配解决统计分析问题</h2>
+<p>基本统计题目和计算题目直接通过关键词与csv文件中的标题字段名等进行匹配，定位到正确的关键词，通过向量相似度和编辑距离进行匹配（金融特有词汇使用向量语义匹配的效果不是很好）</p>
+<p>答案通过规则的方式进行生成（也就是只需要找到正确的数字）</p>
+<p>训练一个LoRA解决复杂的SQL问题（哪家在上海注册的上市公司，2020年营业收入最高？金额是？）</p>
+<p>提供的数据量不够，大模型对微调数据质量要求非常高，重要性在数据量之上。使用GPT-4+人工修改的方式进行数据集的扩充。</p>
+<p>生成SQL后实际进行运行，运行不通重新进行生成（通过分词和 sqlparse 校对 SQL ，并编写算法）</p>
+<h2 id="多路检索召回解决根据文档的开放性问题">多路检索召回解决根据文档的开放性问题</h2>
+<p>基于向量语义匹配的广度优先搜索</p>
+<p>首先语义匹配数据库字段，再语义匹配文档树中章节标题节点，最后深度向量语义检索文档树子叶，或全文向量语义检索，保证系统的泛化和可靠</p>
+<p>如果未能精准匹配到章节标题，扩大检索范围，检索faiss向量数据库，召回top-n条文本块。</p>
+<p>将文档解析成文档树，根据提取出来的关键词，通过BM25与向量检索两者融合选出相关的top5文档块，输入到大模型的上下文中作为prompt让大模型直接进行回答</p>
+<h2 id="设计Prompt解决纯开放性问题">设计Prompt解决纯开放性问题</h2>
+<p>简单设计了一个prompt让大模型回答纯开放性问题</p>
+<h1>CodeQwen</h1>
+<h2 id="简历内容-7">简历内容</h2>
+<p>使用大规模公开的代码数据集提升通用模型的代码能力，同时 <strong>利用GPT-4扩充</strong> “代码修复”任务相关数据，并参考测试集的<strong>Prompt****组织方式</strong> ，对Qwen1.8B模型进行参数高效微调；</p>
+<p>采用<strong>多任务学习</strong>的微调方式，添加额外语义相关任务进行 <strong>联合训练</strong> ，显著提升代码能力，同时探索最佳训练推理参数。初赛Pass@1为0.2594（第一名），复赛Pass@1为0.3001。</p>
+<h2 id="介绍-2">介绍</h2>
+<p>任务：使用Qwen系列的大模型生成可以实际运行的实际代码，探索Qwen大模型的代码生成的能力</p>
+<p>初赛任务：只允许使用Qwen 1.8B模型，在MFTCoder训练框架上进行数据收集与微调，评测指标是pass@1，使用humanevalpack和mbpp的benchmark进行评测。</p>
+<p>评测指标：humanevalpack是人工编写的164个问题的代码解决方案，每一个问题都用六种编程语言实现。这些代码会被组织成三种任务，包括代码编写、代码解释和代码修复，这个比赛在评测的时候只评测代码编写和代码修复的任务。mbpp是python代码生成任务，数据量要稍大一些。评测指标使用pass@1，就是让模型生成一个解决方案，然后将代码放到可以实际运行的环境中进行编译执行。如果这个代码可以通过所有的测试样例，证明这个解决方案正确；反之如果不能通过任何一个测试样例则认为这个解决方案是错误的。它不单单关注代码的语法是否正确，更重视代码能否正确执行功能，这种评估方式更符合实际编程工作中的要求。<br>
+数据集：数据集是可以自行收集的，比赛中给出了建议使用的CodeExercise-Python-27k和Evol-Instruction-66k，但是不允许使用humanevalpack或者mbpp这些测试数据进行训练。</p>
+<p>复赛任务：使用Qwen-72B进行微调，不需要自行操作，使用阿里平台提供的api进行在线训练，我们只能上传数据和模型的参数，具体的训练方式是不可见的，训练结束之后我们可以通过api自行进行代码生成效果的测试。提供的验证集A榜是Leetcode上面的50道问题，验证集B榜是更大规模的Leetcode的数据。数据限定问题都只是中文的语言描述，最终只会要求生成Python的代码。</p>
+<p>初赛的亮点：数据组织与生成、多任务学习、参数尝试</p>
+<ol>
+<li>数据组织与生成<br>
+数据生成：我们在huggingface上面找了很多相关的代码数据，针对测试集的问题，从这些数据集中过滤出仅为英文的数据。由于Python的数据集比较多，其它语言的数据集比较少，我们使用GPT-4让其将Python语言的数据翻译成其他语言的数据，然后利用主办方提供的评测镜像判断其是否能正确运行，仅保留可以正确运行的生成的数据。这样就构造了humanevalpack的代码生成任务和mbpp的任务所需要的数据。由于代码修复的数据集几乎没有，我们在第一步生成的数据的基础上让GPT-4去在代码中产生与humanevalpack数据集类似的bug，这样构造了代码修复的数据。</li>
+</ol>
+<p>数据组织：按照humanevalpack和mbpp的prompt的组织方法，将不同数据集的组织形式更改成与他们尽量相似的形式，使得训练过程与测试过程尽量相似。</p>
+<ol start="2">
+<li>多任务学习：主办方提供了MFTCoder的大模型多任务学习的框架帮助我们进行训练。我们参考了微软的PHI-1的训练方式，这个小模型在humaneval上能够达到51%的准确率<br>
+PHI-1使用的数据集有三种，第一个是从stackoverflow中提取的代码-语言数据集，包括Python代码和相关的自然语言的注释，大概有6B的token，第二个是教材数据集，是Python教材的自然语言文本和相关的代码片段，大概有1B的token，最后是Python编程练习和相应的解决方案，大约180M个token。PHI-1首先在前两个数据集上面进行预训练，最后在最后一个数据集上面进行微调，最终达到了对一个小模型而言非常好的效果。</li>
+</ol>
+<p>MFTCoder是一个多任务的学习框架，可以接受不同组织形式的输入同时进行训练，得到多个loss的汇总结果。借助PHI-1的思想，我们除了让其通过写代码的方式进行训练之外，也让其学习对代码进行解释。因为在代码数据中会存在一些注释，正常在我们写代码的时候注释会给我们很大的帮助。因此除了写代码的任务之外，我们还加入了对代码进行解释的任务，实验效果表明确实会增强写代码的效果。</p>
+<p>为了解决数据量不平衡的问题</p>
+<ul>
+<li>MFTCoder会确保在单个epoch内所有任务的每一个样本都被使用且只使用一次。</li>
+<li>为了避免模型偏向具有较多数据的任务，我们在损失计算过程中引入了权重分配策略。
+<ul>
+<li>一种基于任务样本数量</li>
+<li>一种基于纳入loss计算的的有效Tokens数量。（样本数量与有效Tokens数量具有极端差异的任务（例如&quot;是&quot;或&quot;否&quot;回答的二元分类任务或单项选择考试任务）时可能表现不佳）</li>
+</ul>
+</li>
+<li>为了解决任务难易不一的问题，借鉴了Focal Loss的思想，并将其纳入到MFTCoder中。实现了两个不同层次的Focal Loss函数，以适应不同的细粒度。一个在样本级别操作，另一个在任务级别操作</li>
+<li>为了解决收敛速度不一致的问题，借鉴了FAMO方法的思想，并创新地将其应用于计算validation loss。首先，我们假设每个任务（以索引i表示）都有自己的原始损失函数Li(θ)。在第t次迭代中，我们根据对应任务的validation loss的梯度来更新每个任务的权重，目标是最大化收敛速度最慢的任务的权重w_i，为了确保任务以相似的速度收敛，我们引入了一种动态平衡机制。在每次迭代中，我们根据任务的validation loss梯度更新任务特定的权重。该方法旨在给予收敛速度较慢的任务更多的关注，使其对整体优化过程产生更大的影响</li>
+</ul>
+<ol start="3">
+<li>参数尝试：我们尝试了许多不同的参数组合，如Lora参数、学习率、不同的ckpt等。最终取了评测最好的效果提交。learn rate 1e-4, batch size 4, max length 4096, epoch 3，选最好的epoch提交</li>
+</ol>
+<p>复赛：<br>
+复赛的时候是通过api的方式提交进行训练，我们并没有在训练技巧上面的发挥空间，只能在训练数据和训练参数上面简单尝试。在72B模型上，我们测试zero-shot能力已经达到了0.5，由于模型已经具备较强的推理能力，想要在特定任务上获得更好的模型效果，需要加入特定任务的高质量的数据集。因此我们使用了公开的Leetcode中文数据集（由于事先告知全部为中文Python评测数据），同时也加入了代码解释的任务。由于已知测试集都是中文数据，因此并没有加入英文的数据进行训练。同时我们制作了本地的单样例的评测脚本，使用Leetcode上面公开的测试样例进行测试，与线上结果相差10个点左右（50道题中本地测试要比线上测试多正确5道题目）。最终版本模型加入了测试集A榜的数据进行训练，最终模型在B榜的效果也不错，在10支决赛队伍中排名第5。</p>
+<p>训练参数：直接zero-shot的方式性能有0.5，尝试过增大lora_rank，增大epoch，效果下降。</p>
+<h1>百度搜索</h1>
+<h2 id="简历内容-8">简历内容</h2>
+<p>使用Baichuan2-7B大模型进行LoRA微调，配合数据增强、风格适应、NEFTune、探索最佳推理参数、集成学习等策略，完成对多文档搜索摘要进行组织的任务，性能达到0.5032。</p>
+<h2 id="介绍-3">介绍</h2>
+<p>任务：针对用户查询检索返回的不超过5个的文档，利用生成模型进行组织，生成一个正确、语义通顺、满足用户需求的答案。<br>
+评价指标：BLEU-4与ROUGE-L，BLEU-4侧重于衡量答案的准确性和精确匹配程度，类似于精确度Precision，ROUGE-L更侧重于衡量答案的信息完整性和涵盖程度，更类似于召回率Recall。<br>
+数据集：百度提供的数据集，训练集、验证集、测试集分别包含8000条、1000条和1000条查询及从网页搜索结果中抽取的摘要，除了测试集外都包含了人工撰写的答案。<br>
+限制条件：模型可以在单卡A100使用最多40G显存完成推理，允许使用外部数据集但不允许使用api，如chatgpt等直接进行回答。</p>
+<p>我们选择了合适的大模型基座，基于LoRA进行微调，对于训练、推理参数进行了调优，并尝试了噪声微调、知识蒸馏、等方式进一步提升模型性能。</p>
+<p>模型选择：我们进行了一些实验进行基座模型的选择，包括不同模型尺寸的Baichuan2，Qwen，ChatGLM-3，Lingowhale等尝试进行相同配置下的训练与推理，最后发现Baichuan2-7B和Qwen-14B的效果比较好。此外我们利用Baichuan2-7B模型比较了Base和Chat权重对于模型性能的影响，发现Base权重要好于Chat权重，可能是由于我们的任务形式相对较为单一，可能并不需要Chat模型多轮对话、理解问题意图的能力。</p>
+<p>性能调优：我们主要在Baichuan2-7B上对训练和推理时的一些重要参数进行选择，训练时需要考虑的主要是LoRA的秩的大小，它决定了可训练参数的量，但是我们实际发现一些比较常用的秩，比如8和16的微调效果都差不多。在推理参数上，我们发现温度系数对于模型效果的影响十分显著，较大的温度系数使得预测输出分布更为均匀，更多的词有机会被输出，继而生成答案也更加丰富多样，但同时也有偏离主题的风险，而较小的温度系数使得预测输出分布更加尖锐，模型输出的准确性和真实性更高一些，实验发现0.7左右的温度系数可以取得较好的表现。此外，topp和topk等采样参数也会在一定程度上影响推理表现，但是我们发现没有温度系数影响的更为明显，因此我们维持了默认参数。</p>
+<p>训练的时候打乱检索摘要能提升两个点 不打乱的话loss降的很快</p>
+<p>推理的时候我们还采取了风格适应的策略，在prompt里面给几个例子让它照着生成，并且在推理结束之后让模型自行反思推理的质量。</p>
+<p>之后，我们尝试纳入更多的训练数据来提升模型的表现，主要想法是搜集一些问答数据集，然后利用一个在原训练集训练好的大语言模型产生回答作为伪标签，得到的问题-摘要-伪标签对作为新数据与原训练集合并，然后指导一个模型从零开始训练。在这里，我们称产生伪标签的模型为教师模型，而从零开始训练的模型为学生模型，当教师模型与学生模型相同时，相当于一个同样容量的模型在自举地生成数据，即Bootstrap，当教师模型比学生模型能力更强、容量更大时，相当于通过蒸馏，即Distillation的方式在两个模型之间传递知识。</p>
+<p>对于上述训练流程，最重要的是如何选择与所提供数据集分布较为一致的数据集，经过调研，我们选择了百度整理的WebQA中文问答数据集作为额外的训练集，选择它的一个重要原因是相较于其它数据集，WebQA对于每个问题都有多个从百度知道等渠道返回的检索摘要，虽然数据集当中也有标注的问题答案，但是考虑到其可能与本次竞赛人工撰写答案存在分布不一致的情况，因此我们舍弃了这些答案，而使用前述的伪标签生成的方式重新生成答案。此外，我们也对数据集进行了简单的自动化清洗，比如限制问题对应的检索摘要数目大于等于3条小于等于5条，并去掉了其中总字数过短的样本。之后，我们利用合并后的数据集对于不同设置下的模型进行重新训练，使用自举，也就是保持师生一致的情况下，模型性能的提升较小，而采用性能较好、参数量更大的教师模型向性能稍差、参数量更小的学生模型蒸馏知识时，则可以较为显著地提升学生模型的性能，但是其性能相较于规模更大的教师模型还有一定差距。因此，我猜想如果我们获得了性能更好、但是由于参数量过大而无法在40G A100 GPU 上完成推理的模型，是否也可以通过这样蒸馏的方式获得一个效果稍差一点、但是参数尺寸符合参赛要求的模型呢。</p>
+<p>之后，我们使用了一系列技巧尝试进一步提升模型的性能，首先尝试的是NEFTune，其想法来源于Noisy Embeddings Improve Instruction Finetuning这篇文章。主要方法较为简单，就是在训练过程中对于输入指令的问题部分还及多条检索摘要部分的嵌入表示随机添加均匀采样的噪声，希望以此提升模型的鲁棒性，缓解过拟合，同时，也有研究表明其可以使得生成结果包含额外的细节，增强答案的丰富性。实验发现，NEFTune可以较大地提升7B模型的表现，但是对于13B模型性能提升则相对较少，除此之外可以看出，这种方法对于ROUGE-L，也就是召回，提升更为明显，说明模型生成的答案更多地包含了之前所没有的细节。</p>
+<p>最后我们采取了一系列的集成策略，首先是由于我们将temperature设置的很高，所以我们获取结果的时候推理多次，然后取这个结果中与原始的材料重合度最高的作为我们的最终答案。</p>
+<h1>小样本文本分类竞赛</h1>
+<h2 id="简历内容-9">简历内容</h2>
+<p>赛题目标：对小样本训练数据的中文专利文本进行分类，数据包括标题、发明人和专利摘要，共36个数值类别（类别标签 <strong>无语义信息</strong> ），训练集: 测试集≈1: 20，评价指标为F1-Score；</p>
+<p>提出基于<strong>类别动态阈值伪标签</strong>与<strong>尾部类别数据增强</strong>的小样本文本分类方法，采用恰当的Prompt组织策略，使用<strong>ERNIE-3.0</strong>中文预训练模型微调文本分类任务，利用无标签的大量测试集数据标注 <strong>伪标签</strong> 、采用<strong>多语言回译</strong>等文本数据增强方法并加入<strong>对抗训练</strong>策略提升模型的鲁棒性，在A榜测试集分数为0.6516，在B榜测试集分数为0.5955。解决方案在<a target="_blank" rel="noopener" href="https://github.com/zhangzhao219/CCF-BDCI-fewshot-classification">Github开源</a>。</p>
+<h2 id="数据及评价标准">数据及评价标准</h2>
+<p>数据是专利文本数据，包括专利名称、专利发明单位（一般是企业）和专利的摘要，最后有一个专利的类别标签。专利的类别标签共有36个，是数字形式的，也就是说从标签本身是无法获取标签的语义信息的。训练集数据总共900条左右（带标签），测试集（不带标签）A、B榜数据分别都是两万条左右。在比赛的前两个月是可以获得训练集和A榜测试集的，其中A榜测试集的预测标签每一天可以在网站上提交三次，网站会返回这个测试集的得分。评价标准是宏平均的F1-Score，即求出每一个类别的F1-Score后取平均（也就是除以36）。最后一天开放B榜的数据，只能提交一次且无法看到自己的成绩，比赛结束后统一公布B榜成绩，按照B榜成绩决定团队的名次。</p>
+<h2 id="主要方法">主要方法</h2>
+<p>预训练模型+伪标签+尾部类别数据增强+对抗训练+模型集成</p>
+<h3 id="预训练模型">预训练模型</h3>
+<p>尝试了一些huggingface上面的预训练模型，包括bert-chinese、mengzi、macbert、roberta-wwm等等，最终我们发现使用百度的ernie作为主干效果最好。</p>
+<h3 id="伪标签">伪标签</h3>
+<p>因为我们的训练数据比较少，因此在训练集上训练第一个模型后，我们对测试集进行了标签的预测，根据预测的softmax分数打了测试集的伪标签。</p>
+<p>在长尾识别任务下，尾部类别虽然召回率Recall较低，但却有着较高的精确度Precision，而头部类别则相反。这启发我们根据标签分布情况及模型预测情况为每一个类别设置不同的阈值：头部类别较多，模型学习情况较好，应为其设置较高的阈值，保证其精确度；尾部类别较少，模型学习情况较差，应为其设置较低的阈值，从而获得较高的召回率。</p>
+<p>对于每一类别，我们先得到预测标签为该类的所有记录，之后将这些记录按照对于该类预测概率由大到小进行排序，进一步地，我们求其<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分位数（即前<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>大的预测概率）作为该类别的阈值，同时，若求得的阈值小于一个预先给定的固定阈值<img src="https://math.now.sh?inline=%5Cgamma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则将其重新置为<img src="https://math.now.sh?inline=%5Cgamma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。利用<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分位数筛选伪标签可以充分地考虑到各个类别的学习情况（头部类别学习情况较好，通常模型预测的置信度较高，而尾部类别则相反），同时固定阈值γ作为下限，使得尾部类别的筛选不至于混入过多的噪声样本。</p>
+<p>这种方式的伪标签产生流程可以迭代进行，即训练得到一个较好的模型A，利用其产生的伪标签再训练一个模型B，再利用模型B对无标签测试数据打伪标签，并由此再训练一个新的模型C。在这个过程中我们会将标准定的越来越严格。最终的训练数据大概在1万5左右。</p>
+<p>提升大概是从0.55-0.62左右</p>
+<h3 id="尾部类别数据增强">尾部类别数据增强</h3>
+<p>为了缓解类别不平衡的问题，我们对尾部类别（类别12、22、32、35）应用两类数据增强方法。</p>
+<ol>
+<li>回译：我们利用谷歌翻译接口，将中文翻译为英法德日韩5种语言，再翻译回中文，得到新的样本。</li>
+<li>简单文本数据增强：由4种不同的方法组成
+<ol>
+<li>同义词替换（从句子中随机选择<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个非停用词，随机选择它们的同义词进行替换）</li>
+<li>随机插入（从句子中随机选择一个非停用词的单词，随机选择它的一个近义词并将它插入在句子的任意位置。并将此过程重复<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次）</li>
+<li>随机替换（随机选择句子中的两个单次并将它们交换位置。将此过程重复<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次）</li>
+<li>随机删除（对句子中的每一个单词，都以一给定概率<img src="https://math.now.sh?inline=p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>判定此单词是否被删除）。</li>
+</ol>
+</li>
+</ol>
+<p>提升大概是0.62-0.63左右</p>
+<p>其他的数据增强方法：</p>
+<ol>
+<li>Paraphrasing：对句子中的词、短语、句子结构做一些更改，保留原始的语义
+<ol>
+<li>Thesaurus：利用词典、知识图谱等外部数据，随机将非停用词替换成同义词或上位词，如果增加多样性的话还可以替换成相同词性的其他词</li>
+<li>Semantic Embeddings：利用语义向量，将词或短语替换成相近的（不一定是同义词）。由于每个词都有语义表示，可替换的范围更大。而上一种方法只能替换图谱里的</li>
+<li>MLMs：利用BERT等模型，随机mask掉一些成分后生成新的</li>
+<li>Rules：利用一些规则，例如缩写、动词变位、否定等，对句子一些成分进行改写，比如把 is not 变成 isn’t</li>
+<li>Machine Translation：分为两种，Back-translation指把句子翻译成其他语言再翻译回来，Unidirectional Translation指在跨语言任务中，把句子翻译成其他语言</li>
+<li>Model Generation：利用Seq2Seq模型生成语义一致的句子</li>
+</ol>
+</li>
+<li>Noising：在保证label不变的同时，增加一些离散或连续的噪声，对语义的影响不大
+<ol>
+<li>Swapping：除了交换词之外，在分类任务中也可以交换instance或者sentence</li>
+<li>Deletion：可以根据tf-idf等词的重要程度进行删除</li>
+<li>Insertion：可以把同义词随机插入句子中</li>
+<li>Substitution：把一些词随机替换成其他词（非同义），模拟misspelling的场景。为了避免改变label，可以使用label-independent的词，或者利用训练数据中的其他句子</li>
+<li>Mixup：这个方法最近两年比较火，把句子表示和标签分别以一定权重融合，引入连续噪声，可以生成不同label之间的数据，但可解释性较差</li>
+</ol>
+</li>
+<li>Sampling：旨在根据目前的数据分布选取新的样本，会生成更多样的数据
+<ol>
+<li>Rules：用规则定义新的样本和label，比如把句子中的主谓进行变换</li>
+<li>Seq2Seq Models：根据输入和label生成新的句子，比如在NLI任务中，有研究者先为每个label（entailment，contradiction，neutral）训一个生成模型，再给定新的句子，生成对应label的。对比之下，paraphrasing主要是根据当前训练样本进行复述</li>
+<li>Language Models：给定label，利用语言模型生成样本，有些研究会加个判别模型过滤</li>
+<li>Self-training：先有监督训练一个模型，再给无监督数据打一些标签，有点蒸馏的感觉</li>
+</ol>
+</li>
+</ol>
+<h3 id="对抗训练">对抗训练</h3>
+<p>对抗训练是一种引入噪声的训练方式，可以对参数进行正则化，提升模型鲁棒性和泛化能力。</p>
+<p>对抗训练的假设是：给输入加上扰动之后，输出分布和原Y的分布一致</p>
+<p>往增大损失的方向增加扰动</p>
+<p>在计算对抗扰动时虽然计算了梯度，但不对参数进行更新， <strong>因为当前得到的对抗扰动是对旧参数最优的</strong> 。</p>
+<p>用一句话形容对抗训练的思路，就是 <strong>在输入上进行梯度上升(增大loss)，在参数上进行梯度下降(减小loss)</strong> ，<strong>实际的做法是在embedding table上进行梯度上升</strong> 。</p>
+<p>接下来介绍不同的方法，后续方法<strong>优化的主要方向有两点：得到更优的扰动 &amp; 提升训练速度</strong></p>
+<p>FGM</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=r%3D%5Cepsilon%20g%20%2F%20%7C%7Cg%7C%7C_2%0A" srcset="/img/loading.gif" lazyload /></p><p>对于每个x：（输入的梯度是g）</p>
+<ol>
+<li>计算x的前向loss、反向传播得到梯度</li>
+<li>根据embedding矩阵的梯度计算出r，并加到当前embedding上，相当于x+r</li>
+<li>计算x+r的前向loss，反向传播得到对抗的梯度，累加到(1)的梯度上</li>
+<li>将embedding恢复为(1)时的值</li>
+<li>根据(3)的梯度对参数进行更新</li>
+</ol>
+<p>PGD小步走多走几步</p>
+<h3 id="模型集成-2">模型集成</h3>
+<p>训练模型的时候采用了5折交叉验证的方式，因此实际上每一次训练后我们可以得到6个推理结果，分别是五个小模型的结果和最终投票的结果。但是我们在实际提交的时候发现，并不总是最终投票的结果的得分最高，有可能是其中的某一折或某几折的效果更好。因此通过前期多种模型的线上提交返回的F1分数，我们最终选择了效果较好的9个模型作为参赛系统的最终结果。9个模型的具体参数细节各不相同，训练数据也采用了不同阶段得到的伪标签。同时为了满足模型的总大小不超过2G的要求，我们将单精度模型转换为半精度，实验表明这种转换对于最终的推理结果影响不大。最后我们通过投票法将9个模型集成在一起得到最终的推理结果。</p>
+<p>最终A榜成绩是0.65159296/0.65780034，评测后的B榜成绩是0.59547145/0.61387745</p>
+<h1>商汤科技</h1>
+<h2 id="简历内容-10">简历内容</h2>
+<p>项目目标：进行场馆级别多相机跟踪与动作捕捉研究：通过相机架设、目标感知、多视角多目标匹配、三维关键点重建、动作分析等模块，最终实现篮球场景下的动作分析和技术统计；</p>
+<p>辅助完善多相机匹配模块，在多相机感知的基础上利用多种特征、考虑时间连续性与相机的空间连续性，优化层级式匈牙利匹配算法，最终离线性能达到 **99.5%**<strong>以上</strong> ；</p>
+<p>独立设计实现相机架设优化算法模块，满足全链路中 <strong>不同模块的需求</strong> ，与原始的相机架设相比性能提升 <strong>50%以上</strong> ；并设计小工具辅助相机架设算法在实际场景中进行验证，效果良好。</p>
+<h2 id="整体介绍">整体介绍</h2>
+<p>项目的整体目标是完成球类运动（主要是篮球）的动作分析和技术统计，动作分析包括球员动作的标准程度等，技术统计包括球员得分、球员跑动距离、球速统计等等。背景是选择一个篮球场馆，然后架设多台相机，通过相机实时拍摄到的视频流进行实时的效果输出。</p>
+<p>项目整体分为五大模块：</p>
+<ol>
+<li>相机架设和标定：这个模块是在做后面模块后添加的，因为我们发现相机的架设位置也可以影响后面模块的性能。</li>
+<li>感知：通过深度学习的方法，尽量准确的识别，检测目标，最终得到目标表征，具体来说是球员的检测框、球员身体的2D的21个关键点和模型根据这个检测框提取出来的一个向量形式的特征。</li>
+<li>匹配：通过感知得到的各种信息，在时间和空间上将同一个人匹配在一起。在时间上是这一帧与下一帧的球员进行匹配，空间上是在场地四周架设的相机之间进行匹配，一个匹配序列称为一个tracklet，最终得到每一个球员的tracklet。</li>
+<li>重建：利用相机，感知的2D关键点和匹配的信息，计算出球员的3D关键点的信息，也就是得到一个球员在3D世界中的动作，在电脑上观看就是火柴人在录像中打球的模拟视频。</li>
+<li>动作分析：对人体关键点进行分析，获得球员的动作信息，例如球员的投篮一瞬间的手臂的夹角，球员的脚有没有踩到边界之外等等。这个也是传统方法，对上一步的3D关键点进行进一步的分析。</li>
+</ol>
+<p>除此之外，在感知的层面还需要对篮球单独跑一个模型进行检测，同时项目后期我们加入了人脸的检测，在感知到的人体的框中切割出人脸的部分并进行人脸识别，后面准备也添加进去作为一种特征。我们在算法研究的时候是采集了小部分的数据，包括三个场馆的不同数量的球员的打球的视频，请外部团队进行标注后供我们进行算法研究。后期我们在实际的篮球场馆中进行验证，主要是根据实际情况对一些超参数进行调整。最终的效果达到了验收的标准。</p>
+<h2 id="匹配模块">匹配模块</h2>
+<p>上一层感知模块的输出包括人体的检测框，深度学习模型提取出来的人体的唯一特征向量，和检测出来的人体的21个关键点（平面关键点）。关键点的信息没有使用，主要是使用了检测框和提取出来的特征向量。同时也通过相机的内外参计算检测框的底边中点在真实世界中的位置，作为另外一个特征。</p>
+<p>运用信息及评价标准：（归一化到0-1）</p>
+<ul>
+<li>2D检测框：IOU，交集/并集，两个框越接近IOU越大</li>
+<li>特征：归一化的向量，使用cos相似度进行度量（1-cos）/ 2</li>
+<li>Homo点：使用欧氏距离，1-exp的方式</li>
+</ul>
+<p>算法流程：第一张图片有几个检测框就认为有几个tracklet，然后外层循环遍历全部帧，内层循环遍历全部相机，将一帧、一个相机中的检测框与这些tracklet进行匈牙利匹配。匹配的过程中会包含一个阈值，因此会有匹配不上的，或者前期有可能检测框的数量多于tracklet的数量。产生了这些情况就新建一个tracklet。最终选择匹配到的数量最多的球员数量的tracklet作为该球员的tracklet。</p>
+<p>我们将我们使用到的特征进行了分类：</p>
+<ul>
+<li>长时匹配(跟踪)：使用长时不变的特征保证长时性能，利用tracklet前T-1帧，特征归一化后的算术平均值</li>
+<li>短时匹配(跟踪)：使用短时不变，相似性高的特征保证短时性能，利用tracklet第T-1帧匹配的bbox框，homo_point</li>
+</ul>
+<p>同时探究了空间连续性对相机匹配顺序带来的影响，因为一个相机对于它的相邻的相机的重合部分更高，用两个重合度更高的相机进行匹配的准确率也会更高。</p>
+<p>核心代码：</p>
+<p>这段代码的主要目的是预测视频中物体的轨迹。具体来说，它首先加载视频数据和特征点，然后对每一帧进行处理。在处理每一帧时，它会提取出人脸、特征点、轨迹等信息，并根据输入的匹配函数进行匹配。匹配结果会被存储在 <code>new</code>数组中，最后将预测结果用于评估。</p>
+<p><strong>以下是代码的主要步骤：</strong></p>
+<ol>
+<li>加载视频数据和特征点：使用 <code>np.load()</code>函数加载 <code>homopath</code>、<code>trackpath</code>、<code>norm_feature_path</code>和 <code>id_feature_path</code>中的文件，分别得到特征点矩阵 <code>track_np1</code>、<code>norm_feature_np1</code>、<code>id_feature_np1</code>和 <code>id_feature_path</code>。</li>
+<li>初始化变量：定义一些变量，如时间戳 <code>T1</code>、最大跟踪数 <code>max_track_num</code>、布尔值 <code>humannum</code>等。</li>
+<li>遍历每一帧：对于视频中的每一帧，首先获取当前的时间戳 <code>frame</code>，然后根据 <code>framenum</code>和 <code>camnum</code>计算出当前帧的最大跟踪数 <code>max_track_num</code>。</li>
+<li>提取人脸、特征点和轨迹信息：对于每一帧，首先计算当前帧的人脸特征向量 <code>featurelist</code>，然后提取特征点 <code>featurelist</code>和轨迹信息 <code>tracklist</code>。</li>
+<li>匹配过程：对于每一帧，首先计算单应性矩阵 <code>homomat</code>，然后根据输入的匹配函数 <code>match_function</code>进行匹配。匹配结果会被存储在 <code>new</code>数组中。</li>
+<li>更新变量：在每一帧处理完成后，更新相关变量，如 <code>count</code>、<code>count2</code>等。</li>
+<li>保存匹配结果：将预测结果 <code>new</code>保存到文件中，以便后续评估。</li>
+</ol>
+<h2 id="相机架设模块">相机架设模块</h2>
+<p>在原始的相机架设方案中，相机的架设一般都是纯人为架设的，通俗来说，就是简单观察一下球场，让相机尽量的平均分布一下，相机的位置和朝向等全凭借着在场人员的经验进行实施。整个的过程没有任何数学上的依据，比较简单粗暴。</p>
+<p>我们将相机架设的问题看成一个最优化问题，最优化问题主要需要明确下面的四个问题：设计变量、目标函数、约束函数和优化方法</p>
+<p>设计变量即是相机的架设可变的量，也就是相机的架设相关参数。</p>
+<p>对于单个相机来说，分为外参和内参的变化。</p>
+<ul>
+<li>相机的内参在确定相机的型号后使用焦距进行控制，相当于只有1个变量</li>
+<li>相机的外参有6个变量，包括相机架设的空间位置<img src="https://math.now.sh?inline=XYZ" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，以及相机的架设角度<img src="https://math.now.sh?inline=%5Calpha%5Cbeta%5Cgamma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>目标函数是变量到评价标准之间的映射模型，使用其来评估相机架设的好坏，可以从感知，匹配以及重建，或者功能的好坏等方面来进行评估。</p>
+<p>首先对于感知来说，对于人体的大小和人脸的大小有要求，也就是适合感知的区域要尽可能大。因此需要满足人体和人脸大小的有效区域尽可能大，同时要考虑是否能够覆盖全场。其次对于匹配来说，对于人体大小和人体拍摄视角有一定的要求，这些会影响特征提取，框的重叠程度，homo点的误差等。同时对于相机之间的空间连续性有一定的要求，相机拍到的非目标区域要尽可能少，目标区域要尽可能大，使得相机的拍摄范围内基本都是我们关注的球员，减少其他场外人员的干扰。最后考虑重建的方面，同一个区域是否有多个相机可以看到，如果没有几个相机拍摄到同一个位置就很难进行重建。并且相机和相机，相机和目标之间的角度关系是否合适。最终希望适合重建的区域要尽可能多，适合重建的相机也要尽可能多。</p>
+<p>约束函数也就是相机架设的物理限制，比如说相机架设的高度，架设的数目等等。</p>
+<ul>
+<li>具体的架设环境决定：相机只能架设在球场的边缘，因此<img src="https://math.now.sh?inline=X" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=Y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中一定有一个的搜索空间比较小；相机只能架设在已有的墙上，已有的屋顶上，会对<img src="https://math.now.sh?inline=XYZ" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>产生一些约束。除此之外还会有客户对于架设提出的约束要求，以及在实际架设相机时，架设的困难和容易的程度。</li>
+<li>对称性约束是比较符合常理认知的一种约束条件。如果在一个角落架设了一台相机，很自然在另外一个对称的角落也会架设另外一台相机；如果架设了一个照射半场的相机，很自然也应该架设另外一台照射另外一个半场的相机。</li>
+</ul>
+<p>定义了优化问题之后，可以使用一些优化方法来进行优化。我们采用的是遗传算法进行优化。</p>
+<h1>可视化论文</h1>
+<p>一种展示中长期信号时变特征的新的视觉抽象方法，负责数据处理、时间片划分算法的损失函数并设计算法效果评价标准，发表二作专利、一作软著并协助撰写部分论文。<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9904890">论文地址</a>。</p>
+<p>项目目标：设计一种新的视觉抽象方法，可以在有限屏幕空间内显示中长期无线电信号的时变特征。</p>
+<p>承担工作：设计了系统核心部分的时间片划分算法及其对应的损失函数，创新了无线电信号的度量方法。</p>
+<p>项目背景：如何在有限屏幕空间内显示中长期无线电信号的时变特征，无线电信号只有0和1两个数值</p>
+<p>视觉抽象设计：采用五种基本图形编码无线电信号，菱形表示短联，正方形表示长联，空白表示中断，长方形+三角形表示先出联后消失，X形表示中间中断两边出联。异常使用红线表示，横竖两种红线表示不同的异常种类</p>
+<p>时间分割算法：平均分算法+微调 优化目标</p>
+<p>优化目标：</p>
+<ul>
+<li>数据分布和空间分布的相似性：将视觉的编码通过面积的方式转化为01信号，与实际的01数据取差的绝对值</li>
+<li>占空比的差异：无线电信号出现的时间比例：一个信号的占空比与划分的视觉编码的平均占空比的差值</li>
+<li>时间片的变异系数：标准差/均值，测量时间片对应真实时间差异的离散程度</li>
+</ul>
+<h1>开发</h1>
+<h2 id="简历内容-11">简历内容</h2>
+<p>参与推荐广告、激励视频广告、用户特征等后端服务研发；使用Hertz、Kitex等新框架升级旧系统架构，引入泛型等新特性降低服务资源消耗3-4%；协助周末假期等高峰期的故障排除。</p>
+<h2 id="字节跳动青训营-抖音项目-Redis和MQ相关">字节跳动青训营 抖音项目 Redis和MQ相关</h2>
+<p>由于服务端直接与数据库交互导致响应客户端时间过慢，因此在完成点赞模块基本功能的基础上，增加缓存减少数据获取的时间从而减少响应时间，使用具有高性能特点的Redis作为缓存数据库。考虑到实际情况下，用户在客户端刷视频时，使用率最频繁的是点赞、取消赞功能，因此在变更点赞状态时，直接更新缓存中的数据进行返回响应，提高用户刷视频的流畅度。同时查询点赞数量、获取点赞列表、判断是否点赞、点赞总数、被点赞总数都可根据缓存中的已有数据进行性能优化</p>
+<p>在大量用户同时使用客户端的情况下，会出现请求数量过大导致数据库压力过大、处理能力下降甚至是宕机的问题。因此，设计在服务端与数据库操作间加入消息队列。计划使用具有较高可靠性和稳定性的rabbitMQ作为消息队列。当需要对数据库进行操作时，将数据库操作放入消息队列，服务端取出消息队列中的信息，在对数据库操作后再取出下一个信息进行处理，从而避免数据库在一段时间接收大量响应出现异常，同时为了避免数据库操作失败，设置了update失败重试机制。</p>
+<p>最初的设计是客户端在发起请求后，需要在Mysql的likes表中添加或者更新相应点赞关系的信息，响应时间较久，影响客户体验。</p>
+<p>优化方案：考虑将这些信息存进缓存中，当点赞或者取消赞的时候，只需要添加或者删除对应的信息即可，响应时间更快，再采用往rabbitmq中传递需要修改数据库的关键信息，通过协程的方式修改数据库。</p>
+<p>设计两种Redis存储信息内容：</p>
+<ul>
+<li>第一种key(userid)-set（videoId）：存储用户点赞的视频id；</li>
+<li>第二种key（videoid)-set（userid）:存储给对应视频点赞的用户id；</li>
+</ul>
+<p>当进行点赞或者取消赞的操作时，同时维护这两种数据结构。这边考虑到脏读的情况，所以每个key首次加载的过程中，加入永不读取或者更新的值“-1”。</p>
+<p>使用缓存进行性能优化提升后，需要解决一个新的问题，即数据的脏读问题。在多个用户进行删除、读取评论操作时，若某一个操作恰好将缓存中的数据清空，而此时数据库还未来得及对数据做出同样的操作（脏数据），此时，读取数据的用户在读取不到缓存中信息的情况下，很可能将数据库中的脏数据重新写入缓存，此时就会出现大量用户读取到脏数据且无法恢复正确值的情况。</p>
+<p>针对上述情况，计划对缓存中的键值设置一个固定的、不会被删除的id值。经过项目组成员讨论一致决定，使用-1作为首次添加新key时对应的预设value值。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Internship/" class="print-no-link">#Internship</a>
+      
+        <a href="/tags/Project/" class="print-no-link">#Project</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>面试项目准备</div>
+      <div>https://zhangzhao219.github.io/2022/12/02/Interview/Interview-Questions-project/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

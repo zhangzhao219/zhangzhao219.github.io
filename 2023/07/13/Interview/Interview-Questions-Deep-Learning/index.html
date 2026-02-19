@@ -1,0 +1,1114 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="深度学习面试题准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习面试题准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/07/13/Interview/Interview-Questions-Deep-Learning/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="深度学习面试题准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=w">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=w">
+<meta property="og:image" content="https://math.now.sh/?inline=%281-p_t%29%5E%5Cgamma">
+<meta property="og:image" content="https://math.now.sh/?inline=p_t%20%5Crightarrow1">
+<meta property="og:image" content="https://math.now.sh/?from=r%3D%5Cepsilon%20g%20%2F%20%7C%7Cg%7C%7C_2%0A">
+<meta property="article:published_time" content="2023-07-13T15:35:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.jianshu.com/math?formula=w">
+  
+  
+  
+  <title>深度学习面试题准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">深度学习面试题准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-07-13 15:35" pubdate>
+          2023年7月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">深度学习面试题准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>深度学习面试题准备</p>
+<span id="more"></span>
+<h1>机器学习算法优缺点</h1>
+<h2 id="逻辑回归">逻辑回归</h2>
+<p>优点：</p>
+<ol>
+<li>简单易用：逻辑回归算法的输入输出都是数值，它的实现方法和解释方法都很直观。</li>
+<li>计算简单：逻辑回归模型的计算比较简单，易于实现，在大数据量下仍然能较快地计算出结果。</li>
+<li>容易推导：逻辑回归模型可以用统计方法很容易推导出来。</li>
+<li>效果良好：逻辑回归模型在许多应用场景中效果很好，比如二分类问题。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>线性假设：逻辑回归假设数据具有线性关系，而很多分类问题并不是线性可分的，不适用于非线性问题。</li>
+<li>数据不平衡：逻辑回归不能很好处理数据不平衡的情况。</li>
+<li>对异常值敏感：逻辑回归对于异常值非常敏感，如果数据中存在异常值，逻辑回归的结果将会受到影响。</li>
+<li>容易欠拟合：如果样本量不够大，逻辑回归容易欠拟合，导致分类结果不准确。</li>
+</ol>
+<p>适用场景：</p>
+<ol>
+<li>二分类问题：当问题是一个二分类问题，即将样本划分为两类的问题时，逻辑回归是一个不错的选择。例如，预测一个人是否有疾病、预测一个电子邮件是否是垃圾邮件等。</li>
+<li>变量解释性强：逻辑回归可以给出对预测变量贡献的说明，即它们对预测结果的贡献程度，这使得逻辑回归变量具有很好的可解释性。</li>
+<li>处理大数据量：逻辑回归能够处理大数据量，并且不需要很高的计算能力。</li>
+<li>离散变量：逻辑回归可以处理离散和连续变量，因此非常适合处理含有离散变量的数据集。</li>
+<li>线性可分：逻辑回归是一种线性分类算法，因此它在数据线性可分的情况下表现很好。</li>
+</ol>
+<h2 id="决策树">决策树</h2>
+<p>优点：</p>
+<ol>
+<li>实现简单、复杂度低：决策树的构建和预测的计算复杂度较低，特别是当决策树的深度不是特别深时。</li>
+<li>数据的类型不限：决策树分类算法对数据的类型没有严格的限制，既可以处理离散型变量，也可以处理连续型变量。</li>
+<li>可解释性高：决策树模型具有很高的可解释性，模型的每一个决策点都可以解释为一个特征或一个特征的一个特定值，更易于人们理解。</li>
+<li>对数据准备要求较少：不需要进行特征标准化或数据转换便可输入模型进行训练。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>容易过拟合：决策树算法容易被过度训练，从而导致模型过于复杂，在预测新样本时出现高误差。</li>
+<li>特征不平衡问题：决策树对不同特征数量的敏感，如果一个特征的数量比其他特征高得多，决策树就会偏向于这个特征。</li>
+<li>忽略了数据不平衡：决策树算法不能很好地处理类别不平衡问题，即某一类别的样本数量远小于其他类别的样本数量。</li>
+<li>剪枝麻烦：决策树算法需要对树进行剪枝，以防止过拟合。但是，如果剪枝不当，容易导致模型准确性降低。</li>
+</ol>
+<p>适用场景:</p>
+<ol>
+<li>对离散特征数据进行分类</li>
+<li>处理特征关系非线性的数据分类问题</li>
+<li>用于处理大量的特征数据</li>
+<li>解决二分类和多分类问题</li>
+<li>适用于缺失数据的分类问题。</li>
+</ol>
+<h2 id="支持向量机">支持向量机</h2>
+<p>优点：</p>
+<ol>
+<li>强大的泛化能力：SVM能够很好地处理高维数据，并且能够很好地抵抗噪声的影响。</li>
+<li>可以处理非线性问题：SVM支持使用核函数，可以处理非线性的分类问题。</li>
+<li>对离群点不敏感：SVM通过求解最大间隔来分类，对离群点不敏感。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>计算复杂度高：计算最大间隔的复杂度很高，特别是对于大型数据集，可能需要大量的时间和计算资源。</li>
+<li>参数调整困难：SVM需要对许多参数进行调整，并且很难找到合适的参数。</li>
+<li>不适用于大数据集：SVM不适用于大数据集，因为其计算复杂度高。</li>
+<li>对缺失数据敏感：SVM对缺失数据敏感，因此在使用SVM之前需要处理缺失的数据。</li>
+</ol>
+<p>适用场景：</p>
+<ol>
+<li>处理二分类问题：SVM是一种非常有效的二分类模型，特别是在数据点数量较少时。</li>
+<li>处理高维数据：SVM是一种比较好的高维数据分类模型。</li>
+<li>处理非线性分类问题：SVM可以使用核函数进行非线性映射，然后再在高维空间中进行线性分类，因此可以解决非线性分类问题。</li>
+<li>处理数据有噪音的分类问题：SVM可以通过引入惩罚项来解决数据有噪音的分类问题。</li>
+</ol>
+<h2 id="K近邻法">K近邻法</h2>
+<p>优点：</p>
+<ol>
+<li>实现简单：KNN算法的实现非常简单，因为它没有任何训练过程，只需要记住训练数据的样本。</li>
+<li>适用于小数据集：KNN算法在数据量较小的情况下表现良好。</li>
+<li>精度高：KNN算法在多数情况下具有很高的分类精度。</li>
+<li>多分类能力：KNN算法可以实现多分类任务。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>计算复杂度高：KNN算法的计算复杂度随着数据量的增加而增加。</li>
+<li>对离群值敏感：KNN算法对离群值非常敏感，在计算距离时可能会影响分类结果。</li>
+<li>对特征数据类型敏感：KNN算法对特征数据类型敏感，不能对具有不同数量级的特征值的样本进行分类。</li>
+<li>对不平衡数据集敏感：KNN算法对不平衡数据集敏感，在不平衡数据集中可能会得到不准确的分类结果。</li>
+</ol>
+<p>适用场景：</p>
+<ol>
+<li>非常简单的分类问题：KNN算法比较适合简单的分类问题，这些问题没有太多的特征和复杂的规则。</li>
+<li>对于非线性数据的分类：KNN算法在非线性数据的分类方面表现不错，因为它对每个样本点周围的数据点进行分类，所以能够适应非线性的数据。</li>
+<li>缺失数据的分类：KNN算法不需要计算出特征的全部值，所以对于缺失数据也能进行分类。</li>
+<li>对于高维数据的分类：KNN算法可以在高维数据空间中进行分类，因为它不需要进行高维特征空间的映射。</li>
+</ol>
+<h2 id="朴素贝叶斯">朴素贝叶斯</h2>
+<p>优点：</p>
+<ol>
+<li>朴素贝叶斯分类算法的计算量比较小，存储资源低，适合在硬件资源有限的环境中使用。</li>
+<li>对缺失数据不太敏感，算法也比较简单，易于理解和实现。</li>
+<li>可以处理多分类问题。</li>
+<li>对于输入数据的准备没有特别严格的要求，可以处理连续性和离散性数据。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>该模型的假设是属性之间相互独立，这在实际应用中往往是不成立的。</li>
+<li>对输入数据的表达形式很敏感。</li>
+<li>对于参数估计，需要大量的样本数据。</li>
+</ol>
+<p>适用场景：</p>
+<ol>
+<li>大数据集：朴素贝叶斯算法的计算代价比较低，适用于处理大数据集。</li>
+<li>分类任务：朴素贝叶斯算法主要用于分类任务，特别是二分类任务。</li>
+<li>简单的特征：朴素贝叶斯算法假设特征之间是独立的，如果特征简单，朴素贝叶斯算法的表现很好。</li>
+<li>分类基于统计：朴素贝叶斯算法是基于统计学的，它适用于基于统计学的分类任务。</li>
+<li>数据缺失：朴素贝叶斯算法对数据缺失较强，适用于数据缺失的分类任务。</li>
+</ol>
+<h2 id="神经网络">神经网络</h2>
+<p>优点：</p>
+<ol>
+<li>模型灵活：神经网络模型可以模拟人类的大脑，并且可以通过不断学习来解决复杂的问题；</li>
+<li>强大的预测能力：神经网络分类算法具有强大的预测能力，可以提取数据的隐含信息；</li>
+<li>可以处理大量的特征：神经网络分类算法可以处理大量的特征，并且能够高效地处理结构化和非结构化的数据；</li>
+<li>处理非线性关系：神经网络分类算法可以通过多层神经元，表示复杂的非线性关系；</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>数据偏差问题：如果训练数据有偏差，神经网络分类算法的预测结果会受到影响；</li>
+<li>过拟合问题：神经网络分类算法容易对训练数据进行过度拟合，从而影响对新数据的预测的准确率；</li>
+<li>训练复杂度高：神经网络分类算法的训练复杂度高，对于大规模数据集，需要大量的时间和计算资源；</li>
+<li>训练比较耗时：神经网络分类算法需要训练大量的数据，因此训练时间比较长。</li>
+</ol>
+<p>适用场景:</p>
+<ol>
+<li>适用于处理非线性问题，例如图像分类、语音识别、文本分类等。</li>
+<li>可以学习和抽象高维数据的复杂关系，并在大量训练数据的情况下表现得非常出色。</li>
+<li>适用于处理非结构化数据，例如图像和语音。</li>
+</ol>
+<h1>自回归语言模型与自编码语言模型</h1>
+<p>自回归语言模型，是通过上文一步一步预测下文，不能看见未来信息的模型。像坚持只用单向Transformer的GPT就是典型的自回归语言模型</p>
+<p>自编码语言模型是类似于bert 这种，使用了mask LM，可以使用上下文语境信息进行预测。这也是为什么bert是双向的原因。</p>
+<p><strong>自回归语言模型</strong>没能自然的同时获取单词的上下文信息（ELMo把两个方向的LSTM做concat是一个很好的尝试，但是效果并不是太好）；</p>
+<p><strong>自编码语言模型</strong>能很自然的把上下文信息融合到模型中（Bert中的每个Transformer都能看到整句话的所有单词，等价于双向语言模型），但在Fine-tune阶段，模型是看不到[mask]标记的，所以这就会带来一定的误差。</p>
+<p>XLNet的思路采用的是自回归语言模型，根据上文来预测下一个单词，但是在上文中添加了下文信息，这样就既解决了[mask]带来的两阶段不一致问题和无法同时引入上下文信息的问题。实际上是通过排列组合的方式将一部分下文单词放到上文单词的位置，但实际形式还是一个从左到右预测的<strong>自回归语言模型</strong></p>
+<h1>优化器</h1>
+<h2 id="SGD">SGD</h2>
+<ul>
+<li><strong>批梯度下降（Batch gradient descent）</strong>：遍历全部数据集算一次损失函数，计算量开销大，计算速度慢，不支持在线学习。</li>
+<li><strong>随机梯度下降（Stochastic gradient descent，SGD）</strong> : 每看一个数据就算一下损失函数，然后求梯度更新参数。这个方法速度比较快，但是收敛性能不太好。</li>
+<li><strong>批量随机梯度下降（Min-batch SGD）</strong> ：用一些小样本来近似全部的，其本质就是既然1个样本的近似不一定准，那就用更大的30个或50个样本来近似。将样本分成m个mini-batch，每个mini-batch包含n个样本。</li>
+</ul>
+<p>使用小批量梯度下降的优点是：</p>
+<ol>
+<li>可以减少参数更新的波动，最终得到效果更好和更稳定的收敛。</li>
+<li>还可以使用最新的深层学习库中通用的矩阵优化方法，使计算小批量数据的梯度更加高效。</li>
+<li>通常来说，小批量样本的大小范围是从50到256，可以根据实际问题而有所不同。</li>
+<li>在训练神经网络时，通常都会选择小批量梯度下降算法。</li>
+</ol>
+<p><strong>SGD方法中的高方差振荡使得网络很难稳定收敛</strong> ，所以有研究者提出了一种称为 <strong>动量（Momentum）的技术</strong> ，通过优化相关方向的训练和弱化无关方向的振荡，来加速SGD训练。在动量学习算法中，每一步走多远不仅依赖于本次的梯度的大小还取决于过去的速度。速度v是累积各轮训练参的梯度。</p>
+<h2 id="Adam算法">Adam算法</h2>
+<p>RMSprop将学习率分解成一个平方梯度的指数衰减的平均。 Adam中动量直接并入了梯度一阶矩（指数加权）的估计。其次，相比于缺少修正因子导致二阶矩估计可能在训练初期具有很高偏置的RMSProp，Adam还包括偏置修正，修正从原点初始化的 <strong>一阶矩（动量项）</strong> 和（非中心的） <strong>二阶矩估计</strong> 。</p>
+<p>本质上是带有动量项的RMSprop，它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">adam_update</span>(<span class="hljs-params">parameters, gradients, m, v, t, lr=<span class="hljs-number">0.001</span>, beta1=<span class="hljs-number">0.9</span>, beta2=<span class="hljs-number">0.999</span>, epsilon=<span class="hljs-number">1e-8</span></span>):
+    <span class="hljs-keyword">for</span> param, grad <span class="hljs-keyword">in</span> <span class="hljs-built_in">zip</span>(parameters, gradients):
+        m[param] = beta1 * m[param] + (<span class="hljs-number">1</span> - beta1) * grad
+        v[param] = beta2 * v[param] + (<span class="hljs-number">1</span> - beta2) * (grad ** <span class="hljs-number">2</span>)
+        m_corrected = m[param] / (<span class="hljs-number">1</span> - beta1 ** t)
+        v_corrected = v[param] / (<span class="hljs-number">1</span> - beta2 ** t)
+        param_update = lr * m_corrected / (np.sqrt(v_corrected) + epsilon)
+        param -= param_update</code></pre></div>
+<h2 id="Adam与SGD的区别">Adam与SGD的区别</h2>
+<p>SGD缺点是其更新方向完全依赖于当前batch计算出的梯度，因而十分不稳定。</p>
+<p>Adam的优点主要在于：</p>
+<ul>
+<li>考虑历史步中的梯度更新信息，能够降低梯度更新噪声。</li>
+<li>经过偏差校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。</li>
+</ul>
+<p>但是Adam也有其自身问题：可能会对前期出现的特征过拟合，后期才出现的特征很难纠正前期的拟合效果。二者似乎都没法很好避免局部最优问题。不收敛、无法达到全局最优。</p>
+<h2 id="其他">其他</h2>
+<p><strong>Nesterov梯度加速法</strong> ，通过使网络更新与误差函数的斜率相适应，并依次加速SGD，也可根据每个参数的重要性来调整和更新对应参数，以执行更大或更小的更新幅度。</p>
+<p><strong>AdaDelta方法</strong>是AdaGrad的延伸方法，它倾向于解决其学习率衰减的问题。Adadelta不是累积所有之前的平方梯度，而是将累积之前梯度的窗口限制到某个固定大小w。</p>
+<p>Adagrad方法是通过参数来调整合适的学习率η，对稀疏参数进行大幅更新和对频繁参数进行小幅更新。因此，Adagrad方法非常适合处理稀疏数据。</p>
+<h1>过拟合</h1>
+<p>一般定义：模型在训练集上的表现很好，但在测试集和新数据上的表现很差。</p>
+<p>出现的原因：</p>
+<ul>
+<li>模型复杂度过高，参数过多</li>
+<li>训练数据比较小</li>
+<li>训练集和测试集分布不一致</li>
+<li>样本里面的噪声数据干扰过大，导致模型过分记住了噪声特征。</li>
+</ul>
+<p>解决的方法：</p>
+<ul>
+<li>降低模型复杂度</li>
+<li>数据增强</li>
+<li>正则化：
+<ul>
+<li>L1 惩罚权重绝对值, 生成简单、可解释的模型</li>
+<li>L2 惩罚权重平方和, 能够学习复杂数据模式</li>
+<li>dropout</li>
+</ul>
+</li>
+<li>早停</li>
+</ul>
+<h1>BN与LN</h1>
+<p>将这些输入值进行标准化，降低scale的差异至同一个范围内。这样做的好处在于一方面提高梯度的收敛程度， <strong>加快模型的训练速度</strong> ；另一方面使得每一层可以尽量面对同一特征分布的输入值，减少了变化带来的不确定性，也降低了对后层网路的影响，各层网路变得相对独立， <strong>缓解了训练中的梯度消失问题</strong> 。</p>
+<p>训练时，均值、方差分别是该批次内数据相应维度的均值与方差；推理时，均值、方差是基于所有批次的期望计算所得。其中在推理时所用的均值和方差是通过移动平均计算得到的，可以减少存储每个batch均值方差的内存。</p>
+<p>LN层与BN相比，只考虑单个sample内的统计变量，因此也不用使用BN实现中的running mean, running var.，LN也完全不用考虑输入batch_size的问题。</p>
+<p>为什么transformer中不使用BN归一化</p>
+<p>解释一：CV和NLP数据特性的不同，对于NLP数据，前向和反向传播中，batch统计量及其梯度都不太稳定，一个Batch中每个句子对应位置的分量不一定有意义。</p>
+<p>解释二：要能在某个维度做独立同分布假设，才能合理归一化。对于CV来说，batch之间的图像是独立的，可以使用BN，而对于自然语言的token，相互是具有较强的关联性，不是相互独立的。</p>
+<p>BN是对每个特征在batch_size上求的均值和方差，如果BN应用到NLP任务中，对应的是对每一个单词作处理，也就是说，现在的每一个单词是对应到了MLP中的每一个特征，也就是默认了在同一个位置的单词对应的是同一种特征，比如:“我/爱/中国/共产党”和“今天/天气/真/不错”</p>
+<p>如果使用BN，代表着认为 &quot;我&quot;和“今天”是对应的同一个维度特征，这样才可以去做BN。但是每个单词表达的特征是不一样的，所以按照位置对单词特征进行缩放，是违背直觉的。</p>
+<p>layer-norm 做的是针对每一个样本，做特征的缩放。也就是，它认为“我/爱/中国/共产党”这四个词在同一个特征之下，所以基于此而做归一化。</p>
+<h1>梯度消失和爆炸</h1>
+<p>梯度消失的原因：主要是是网络层较深，其次是采用了不合适的损失函数，会使得靠近输入层的参数更新缓慢。导致在训练时，只等价于后面几层的浅层网络的学习。</p>
+<p>梯度爆炸的原因：一般出现在深层网络和权值初始化值太大的情况下。在深层神经网络或循环神经网络中，误差的梯度可在更新中累积相乘。如果网络层之间的梯度值大于 1.0，那么重复相乘会导致梯度呈指数级增长，梯度变的非常大，然后导致网络权重的大幅更新，并因此使网络变得不稳定。</p>
+<p>梯度爆炸会使得在训练过程中，权重的值变得非常大，以至于溢出，导致模型损失变成 NaN等等。</p>
+<p>解决方法：梯度剪切，对梯度设定阈值；权重正则化；batch normalization；残差网络的捷径（shortcut）；</p>
+<p>防止梯度爆炸：</p>
+<ol>
+<li>梯度剪切：更新梯度时，梯度超过某个阈值，就将其强制限制在这个范围内</li>
+<li>权重正则化：L1正则和L2正则</li>
+</ol>
+<p>防止梯度消失：</p>
+<ol>
+<li>合理的激活函数（如ReLU）+权重初始化</li>
+<li>Batch Normalization：应用于每层激活函数之前</li>
+<li>残差网络</li>
+</ol>
+<p>以上问题可以拓展到具体的模型上，比如问BERT是如何防止梯度消失的，就可以从残差网络等方面回答</p>
+<h1>Bert与GPT区别</h1>
+<ol>
+<li>模型不同-单双向</li>
+<li>预训练任务不同</li>
+<li>使用方法区别</li>
+<li>GPT是单向模型，无法利用上下文信息，只能利用上文；Bert是双向模型。</li>
+<li>GPT是基于自回归模型，可以应用在NLU和NLG两大任务，而原生的BERT采用的基于自编码模型，只能完成NLU任务，无法直接应用在文本生成上面。</li>
+<li>同等参数规模下，BERT的效果要好于GPT。</li>
+</ol>
+<h1>LSTM的优缺点</h1>
+<p>优点：</p>
+<ol>
+<li>解决梯度消失问题：传统的RNN在处理长序列时容易出现梯度消失的问题，导致难以训练。LSTM引入了门控机制，可以有效地缓解梯度消失问题，从而能够处理更长的序列数据。</li>
+<li>捕捉长期依赖关系：LSTM通过细胞状态和门控机制，能够更好地捕捉序列数据中的长期依赖关系。相比传统的RNN，LSTM有更好的记忆性能，可以在处理序列数据时保留较远的上下文信息。</li>
+<li>可以学习到时序特征：LSTM具有对时间的敏感性，能够学习到时序数据中的模式和特征。这使得LSTM在时间序列预测、信号处理等任务中具有优势。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>计算复杂度高：相比传统的RNN，LSTM的计算复杂度更高。由于引入了门控机制和长期记忆机制，LSTM需要更多的参数和计算量。</li>
+<li>难以解释：LSTM的复杂性使得其内部运行机制不太直观，难以解释网络的决策过程。这对于某些应用场景，如金融领域或医疗领域，可能带来一定的困扰。</li>
+<li>需要大量数据进行训练：LSTM有更多的参数需要训练，因此需要更多的数据来避免过拟合。如果训练数据不足，LSTM可能面临泛化能力不足的问题。</li>
+</ol>
+<h1>Dropout</h1>
+<p>Dropout可以作为训练深度神经网络的一种trick供选择。在每个训练批次中，在前向传播的时候，让某个神经元的激活值以一定的概率p停止工作，这样可以使模型泛化性更强，因为它不会太依赖某些局部的特征</p>
+<ol>
+<li>取平均的作用：相当于对很多个不同的神经网络取平均</li>
+<li>减少神经元之间复杂的共适应关系：因为dropout程序导致两个神经元不一定每次都在一个dropout网络中出现。这样权值的更新不再依赖于有固定关系的隐含节点的共同作用，阻止了某些特征仅仅在其它特定特征下才有效果的情况 。迫使网络去学习更加鲁棒的特征 ，这些特征在其它的神经元的随机子集中也存在。</li>
+</ol>
+<h1>L1 L2 正则化</h1>
+<p>L1正则化是指在损失函数中加入权值向量w的绝对值之和，即各个元素的绝对值之和，使权重稀疏，可以进行特征选择</p>
+<p>L2正则化指在损失函数中加入权值向量w的平方和，使权重平滑</p>
+<p>L1范数MAE 与 L2范数 MSE作为损失函数的对比：</p>
+<p>MAE相比MSE，鲁棒性更强。MSE对误差取了平方，如果数据存在异常值，误差会被放大。所以，MAE对于异常值比MSE更稳定。</p>
+<p>然而MAE存在一个严重的问题（特别是对于神经网络）：更新的梯度始终相同，也就是说，即使对于很小的损失值，梯度也很大。这样不利于模型的学习。为了解决这个缺陷，我们可以使用变化的学习率，在损失接近最小值时降低学习率。</p>
+<p>而MSE在这种情况下的表现就很好，即便使用固定的学习率也可以有效收敛。MSE损失的梯度随损失增大而增大，而损失趋于0时则会减小。这使得在训练结束时，使用MSE模型的结果会更精确。</p>
+<h1>Word2Vec</h1>
+<p>Word2Vec是轻量级的神经网络，其模型仅仅包括输入层、隐藏层和输出层，模型框架根据输入输出的不同，主要包括CBOW和Skip-gram模型。 CBOW的方式是在知道词的上下文的情况下预测当前词，而Skip-gram是在知道了词的情况下,对词的上下文进行预测。</p>
+<p>Word2Vec提出两种加快训练速度的方式，一种是Hierarchical softmax，另一种是Negative Sampling</p>
+<p>在进行最优化的求解过程中：从隐藏层到输出的Softmax层的计算量很大，因为要计算所有词的Softmax概率，再去找概率最大的值。</p>
+<p>Hierarchical softmax相当于将线性的Softmax转换为哈夫曼树，从而将时间复杂度降低到log级别</p>
+<p>无需计算词表中所有单词的softmax并选择最大的作为输出，只需遍历树的深度个节点，即可找到softmax值最大的词作为输出</p>
+<p>Negative Sampling</p>
+<ol>
+<li>针对softmax运算导致的每次梯度计算开销过大，将softmax函数调整为sigmoid函数，当然对应的含义也由给定中心词，每个词作为背景词的概率，变成了给定中心词，每个词出现在背景窗口中的概率</li>
+<li>进行负采样，引入负样本，随机选择一小部分的 negative words，比如选 10个 negative words 来更新对应的权重参数</li>
+</ol>
+<p>Word2vec 的优缺点</p>
+<p>优点：</p>
+<ol>
+<li>由于 Word2vec 会考虑上下文，跟之前的方法相比，效果要更好</li>
+<li>比之前的Embedding方法维度更少，所以速度更快</li>
+<li>通用性很强，可以用在各种 NLP 任务中</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>由于词和向量是一对一的关系，所以多义词的问题无法解决。</li>
+<li>Word2vec 是一种静态的方式，虽然通用性强，但是无法针对特定任务做动态优化</li>
+</ol>
+<h1>Softmax</h1>
+<p>下溢出与上溢出</p>
+<ul>
+<li>如果都是一个非常大的负数，则下溢出，分母为0，结果未定义</li>
+<li>如果都是一个非常大的正数，则上溢出，结果未定义</li>
+</ul>
+<p>解决方式：将全部的分量减去最大值</p>
+<ul>
+<li>当分量都比较小的时候，减去后至少有一个为0，因此分母至少有一个为1，解决了下溢出的问题</li>
+<li>当分量都比较大的时候，相当于分子分母同时除以一个非常大的数，解决了上溢出的问题</li>
+</ul>
+<h1>带权重交叉熵与Focal Loss</h1>
+<p>加权交叉熵思想是用一个系数描述样本在loss中的重要性。对于小数目样本，加强它对loss的贡献，对于大数目的样本减少它对loss的贡献。带权重的交叉熵在<strong>正样本</strong>的判别上加了一个<img src="https://math.jianshu.com/math?formula=w" srcset="/img/loading.gif" lazyload alt="w">系数，<img src="https://math.jianshu.com/math?formula=w" srcset="/img/loading.gif" lazyload alt="w">需要事先根据数据集计算。也就是权重参数是不变的</p>
+<p>focal loss的设计很巧妙，就是在cross entropy的基础上加上权重，让模型注重学习难以学习的样本，训练数据不均衡中占比较少的样本，相对放大对难分类样本的梯度，相对降低对易分类样本的梯度，并在一定程度上解决类别不均衡问题。</p>
+<p>focal loss相比交叉熵多了一个<img src="https://math.now.sh?inline=%281-p_t%29%5E%5Cgamma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，对于分类准确的样本<img src="https://math.now.sh?inline=p_t%20%5Crightarrow1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，参数趋近于0</p>
+<p>相比交叉熵损失，focal loss对于分类不准确的样本，损失没有改变，对于分类准确的样本，损失会变小。 整体而言，相当于增加了分类不准确样本在损失函数中的权重。</p>
+<h1>对抗训练</h1>
+<p>对抗训练是一种引入噪声的训练方式，可以对参数进行正则化，提升模型鲁棒性和泛化能力。</p>
+<p>对抗训练的假设是：给输入加上扰动之后，输出分布和原Y的分布一致</p>
+<p>往增大损失的方向增加扰动</p>
+<p>在计算对抗扰动时虽然计算了梯度，但不对参数进行更新， <strong>因为当前得到的对抗扰动是对旧参数最优的</strong> 。</p>
+<p>用一句话形容对抗训练的思路，就是 <strong>在输入上进行梯度上升(增大loss)，在参数上进行梯度下降(减小loss)</strong> 。由于输入会进行embedding lookup，所以 <strong>实际的做法是在embedding table上进行梯度上升</strong> 。</p>
+<p>接下来介绍不同的方法，后续方法<strong>优化的主要方向有两点：得到更优的扰动 &amp; 提升训练速度</strong></p>
+<p>FGM</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=r%3D%5Cepsilon%20g%20%2F%20%7C%7Cg%7C%7C_2%0A" srcset="/img/loading.gif" lazyload /></p><p>对于每个x：（输入的梯度是g）</p>
+<ol>
+<li>计算x的前向loss、反向传播得到梯度</li>
+<li>根据embedding矩阵的梯度计算出r，并加到当前embedding上，相当于x+r</li>
+<li>计算x+r的前向loss，反向传播得到对抗的梯度，累加到(1)的梯度上</li>
+<li>将embedding恢复为(1)时的值</li>
+<li>根据(3)的梯度对参数进行更新</li>
+</ol>
+<p>PGD小步走多走几步</p>
+<h1>NLP</h1>
+<h2 id="N-Gram">N-Gram</h2>
+<p>N-Gram是一种基于统计语言模型的算法。它的基本思想是将文本里面的内容按照字节进行大小为N的滑动窗口操作，形成了长度是N的字节片段序列。</p>
+<p>每一个字节片段称为gram，对所有gram的出现频度进行统计，并且按照事先设定好的阈值进行过滤，形成关键gram列表，也就是这个文本的向量特征空间，列表中的每一种gram就是一个特征向量维度。</p>
+<p>该模型基于这样一种假设，第N个词的出现只与前面N-1个词相关，而与其它任何词都不相关，整句的概率就是各个词出现概率的乘积。这些概率可以通过直接从语料中统计N个词同时出现的次数得到。常用的是二元的Bi-Gram和三元的Tri-Gram。</p>
+<p>模型通过训练语句对指数级语义相关的句子进行建模。</p>
+<p>（1）每个单词的分布式表示</p>
+<p>（2）单词序列的概率函数。</p>
+<p>（3）泛化（Generalization）是指从未出现的单词序列，可以通过类似的词的组成的已经出现的句子来获得较高的概率。</p>
+<p>语言模型与其他学习问题的最基本的问题就是维度爆炸</p>
+<p>两者的含义基本相同，但是NNLM使用了神经网络模型</p>
+<h2 id="Seq2Seq">Seq2Seq</h2>
+<p>编码器+解码器的结构：</p>
+<p>编码器处理输入序列中的每一项，将捕获的信息编译成一个向量（输入序列的编码）</p>
+<p>解码器接收编码器处理后的上下文，逐项生成输出序列</p>
+<p>应用：阅读理解，文本摘要，闲聊系统，看图说话</p>
+<p>添加Attention机制后：</p>
+<p>编码器向解码器传递更多的数据，编码器不仅仅传递编码阶段的最后一个隐藏状态，而是将所有的隐藏状态传递给解码器</p>
+<p>注意解码器在产生输出之前的额外的步骤，为了聚焦于与该解码时间步骤相关的输入部分，解码的每一时刻都通过编码器隐藏状态与编码器当前隐藏状态的相关性，对不同的编码器隐藏状态进行打分，打分后的编码器隐藏状态加权相加，并与当前的隐藏状态相结合，再进行最后的输出运算</p>
+<p>文本生成的评价标准：</p>
+<p>BLEU：比较候选译文与参考译文的n-gram重合程度</p>
+<p>BLEU专注于召回率（关注有多少个参考译句中的n-gram出现在了输出之中），而非精度（候选译文的n-gram有没有在参考译文中出现过）</p>
+<p>ROUGE-N：将BLEU的精确率优化为召回率</p>
+<p>ROUGE-L：将BLEU的n-gram优化为公共子序列（公共子序列不一定连续）</p>
+<p>ROUGE-W：在ROUGE-L的基础上对连续性添加一个权重</p>
+<p>ROUGE-S：对n-gram进行统计，但是允许跳词</p>
+<p>METEOR：考虑了基于整个语料库上的准确率和召回率，包括同义词匹配与同型词匹配</p>
+<p>Seq2Seq模型输入的方式：</p>
+<p>①将前一时刻的输出作为下一时刻的输入</p>
+<p>缺点：如果预测错了，后面都是错的，错误会一直累积</p>
+<p>②以正确的作为输入</p>
+<p>缺点：测试时候不知道输入，因此存在训练测试偏差</p>
+<p>③Curriculum Learning</p>
+<p>使用概率p决定是①还是②</p>
+<p>开始训练时候②概率较大，随着训练时间减小</p>
+<p>Beam Search：</p>
+<p>贪心的方法：一个步骤一个步骤去看，可能不太准确</p>
+<p>Beam search对每一个单词的预测概率进行搜索，生成多个候选输出序列</p>
+<h2 id="ELMo（Embeddings-from-Language-Model）">ELMo（Embeddings from Language Model）</h2>
+<p>一词多义的现象——应用同一词向量不合适</p>
+<p>基于双向两层的LSTM，训练动态词表征</p>
+<p>双向的循环神经网络能更好地学习词语间的上下文关系</p>
+<p>两层的循环神经网络能学习到更深层次的语义表征。</p>
+<p>低层能够提取语法等方面的初级信息</p>
+<p>高层擅长于捕捉语义等高级特征</p>
+<p>对原始输入进行字符级别的卷积，能更好的抓取字词的内部信息</p>
+<p>核心：基于语言模型的思路，利用上下文信息去建模某一单词</p>
+<h2 id="多轮对话">多轮对话</h2>
+<ul>
+<li>将一条多轮对话数据，拆分成多条数据</li>
+<li>将一条多轮对话数据拼接之后，输入模型，并行计算每个位置的loss，只有Assistant部分的loss参与权重更新。</li>
+</ul>
+<p>为什么Work？</p>
+<p>答案在于因果语言模型的attention mask。以GPT为代表的Causal Language Model(因果语言模型)，这种模型的attention mask是一个对角掩码矩阵，每个token在编码的时候，只能看到它之前的token，看不到它之后的token。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>深度学习面试题准备</div>
+      <div>https://zhangzhao219.github.io/2023/07/13/Interview/Interview-Questions-Deep-Learning/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年7月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,999 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《模式识别与机器学习》课程笔记：第4章 特征选择和提取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：模式识别与机器学习-第4章 特征选择和提取">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/18/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-4/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《模式识别与机器学习》课程笔记：第4章 特征选择和提取">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/18/xpsWjI.png">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7Bx_1%2C%20x_2%2C%E2%80%A6%2C%20x_n%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=m%3Cn">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7Bx_1%2C%20x_2%2C%E2%80%A6%2C%20x_n%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7By_1%2C%20y_2%2C%E2%80%A6%2C%20y_m%5C%7D%20%28m%3Cn%29">
+<meta property="og:image" content="https://math.now.sh/?inline=D%5E2%28%5Cboldsymbol%7Ba%7D%2C%20%5Cboldsymbol%7Bb%7D%29%3D(%5Cboldsymbol%7Ba%7D-%5Cboldsymbol%7Bb%7D)%5ET(%5Cboldsymbol%7Ba%7D-%5Cboldsymbol%7Bb%7D)%3D%5Csum_%7Bk%3D1%7D%5En%5Cleft(a_k-b_k%5Cright)%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bb%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathrm%7Bn%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=a_k">
+<meta property="og:image" content="https://math.now.sh/?inline=b_k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coverline%7BD%5E2%5Cleft%28%5Cboldsymbol%7Ba%7D%2C%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D%5Cright%29%7D%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bi%3D1%7D%5EK%20D%5E2%5Cleft(%5Cboldsymbol%7Ba%7D%2C%20%5Cboldsymbol%7Bx%7D%5Ei%5Cright)%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bi%3D1%7D%5EK%5Cleft%5C%7B%5Csum_%7Bk%3D1%7D%5En%5Cleft(a_k-x_k%5Ei%5Cright)%5E2%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coverline%7BD%5E2%5Cleft%28%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ej%5Cright%5C%7D%2C%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D%5Cright%29%7D%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bj%3D1%7D%5EK%5Cleft%5B%5Cfrac%7B1%7D%7BK-1%7D%20%5Csum_%7B%5Csubstack%7Bi%3D1%20%5C%5C%20i%20%5Cneq%20j%7D%7D%5EK%20%5Csum_%7Bk%3D1%7D%5En%5Cleft(x_k%5Ej-x_k%5Ei%5Cright)%5E2%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=i%2C%20j%3D1%2C2%2C%20%5Cldots%2C%20K%2C%20i%20%5Cneq%20j">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D%3D%5Csum_%7Bi%3D1%7D%5EK%5Cleft%5C%7B%5Cleft%28%5Cboldsymbol%7Bx%7D%5Ei-%5Cboldsymbol%7Bm%7D%5Cright%29%5Cleft(%5Cboldsymbol%7Bx%7D%5Ei-%5Cboldsymbol%7Bm%7D%5Cright)%5ET%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bi%3D1%7D%5EK%20%5Cboldsymbol%7Bx%7D%5Ei">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7B%5Cboldsymbol%7Ba%7D%5Ei%5C%7D%2C%5C%7B%5Cboldsymbol%7Bb%7D%5Ej%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coverline%7BD%5E2%5Cleft%28%5Cleft%5C%7B%5Cboldsymbol%7Ba%7D%5Ei%5Cright%5C%7D%2C%5Cleft%5C%7B%5Cboldsymbol%7Bb%7D%5Ej%5Cright%5C%7D%5Cright%29%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K_a%20%3B%20j%3D1%2C2%2C%20%5Cldots%2C%20K_b%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=D%5E2%3D%5Csum_%7Bk%3D1%7D%5En%5Cleft%28m_%7B1_k%7D-m_%7B2_k%7D%5Cright%29%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_2">
+<meta property="og:image" content="https://math.now.sh/?inline=m_%7B1_k%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m_%7B2_k%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_2">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_%7Bb%202%7D%3D%5Cleft%28%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright%29%5Cleft(%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright)%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_b%3D%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft%28%5Comega_i%5Cright%29%20%5Csum_%7Bj%3D1%7D%5EM%20P%5Cleft(%5Comega_j%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_j%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_j%5Cright)%5ET%3D%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft(%5Comega_i%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_0">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_0%3DE%5C%7B%5Cboldsymbol%7Bx%7D%5C%7D%3D%5Csum_%7Bi%3D1%7D%5Ec%20P%5Cleft%28%5Comega_i%5Cright%29%20%5Cboldsymbol%7Bm%7D_i%2C%20%5Cquad%20%5Cforall%20%5Comega_i%2C%20i%3D1%2C2%2C%20%5Cldots%2C%20M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_w%3D%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft%28%5Comega_i%5Cright%29%20E%5Cleft%5C%7B%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5ET%20%5Cmid%20%5Comega_i%5Cright%5C%7D%3D%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft(%5Comega_i%5Cright)%20%5Cboldsymbol%7BC%7D_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BC%7D_i">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_t%3DE%5Cleft%5C%7B%5Cleft%28%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_0%5Cright%29%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_0%5Cright)%5ET%5Cright%5C%7D%2C%20%5Cquad%20%5Cboldsymbol%7Bx%7D%20%5Cin%20%5Cforall%20%5Comega_i%2C%20i%3D1%2C2%2C%20%5Cldots%2C%20M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_t%3D%5Cboldsymbol%7BS%7D_w%2B%5Cboldsymbol%7BS%7D_b">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=C_n%5Em">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_%7B%5Cmathrm%7Bi%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_%7B%5Cmathrm%7Bj%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_j">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=m_%7Bi%20k%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m_%7Bj%20k%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csigma_%7B%5Cmathrm%7Bik%7D%7D%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csigma_%7B%5Cmathrm%7Bjk%7D%7D%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=G_k%3D%5Cfrac%7B%5Cleft%28m_%7Bi%20k%7D-m_%7Bj%20k%7D%5Cright%29%5E2%7D%7B%5Csigma_%7Bi%20k%7D%5E2%2B%5Csigma_%7Bj%20k%7D%5E2%7D%2C%20k%3D1%2C2%2C%20%5Cldots%2C%20n">
+<meta property="og:image" content="https://math.now.sh/?inline=G_K">
+<meta property="og:image" content="https://math.now.sh/?inline=G_K">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_%7B%5Cmathrm%7Bi%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_%7B%5Cmathrm%7Bj%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7BG_K%2C%20k%3D1%2C2%2C%20%5Cldots%2C%20%5Cmathrm%7Bn%7D%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_w%3D%5Csum_%7Bi%3D1%7D%5Ec%20P%5Cleft%28%5Comega_i%5Cright%29%20E%5Cleft%5C%7B%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5ET%20%5Cmid%20%5Comega_i%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_b%3D%5Csum_%7Bi%3D1%7D%5Ec%20P%5Cleft%28%5Comega_i%5Cright%29%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=J_1%3D%5Coperatorname%7Bdet%7D%5Cleft%28%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b%5Cright%29%3D%5Cprod_i%20%5Clambda_i">
+<meta property="og:image" content="https://math.now.sh/?inline=J_2%3D%5Coperatorname%7Btr%7D%5Cleft%28%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b%5Cright%29%3D%5Csum_i%20%5Clambda_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Clambda_%7B%5Cmathrm%7Bi%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathrm%7BJ%7D_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathrm%7BJ%7D_2">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=n-k">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%28t%29%2C%20T_1%20%E2%89%A4t%E2%89%A4T_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%28t%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cvarphi_%7B%5Cmathrm%7Bj%7D%7D%28%5Cunderline%7Bt%7D%29%2C%20%5Cmathrm%7Bj%7D%3D1%2C2%2C%20%5Cldots%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x%28t%29%3Da_1%20%5Cvarphi_1(t)%2Ba_2%20%5Cvarphi_2(t)%2B%5Ccdots%2Ba_j%20%5Cvarphi_j(t)%2B%5Ccdots%3D%5Csum_%7Bj%3D1%7D%5E%7B%5Cinfty%7D%20a_j%20%5Cvarphi_j(t)%2C%20%5Cquad%20T_1%20%5Cleq%20t%20%5Cleq%20T_2">
+<meta property="og:image" content="https://math.now.sh/?inline=a_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%86_j%28t%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cint_%7BT_%7B1%7D%7D%5E%7BT_%7B2%7D%7D%20%5Cvarphi_%7Bn%7D%5E%7B%28t%29%7D%20%5Ctilde%7B%5Cvarphi%7D_%7Bm%7D(t)%20d%20t%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D1%2C%20%26%20%5Ctext%20%7B%20if%20%7D%20m%3Dn%20%5C%5C%200%20%26%20%5Ctext%20%7B%20if%20%7D%20m%20%5Cneq%20n%20%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctilde%7B%5Cvarphi%7D_%7Bm%7D%28t%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%86_m%28t%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%28t%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%86_j%28t%29">
+<meta property="og:image" content="https://math.now.sh/?inline=T_1%20%5Cleq%20t%20%5Cleq%20T_2">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%28t%29%20%5Crightarrow%20%5C%7Bx(1)%2Cx(2)%2C%5Ccdots%2Cx(n)%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%86_j%28t%29%5Crightarrow%20%5C%7B%CF%86_j(1)%2C%CF%86_j(2)%2C%5Ccdots%2C%CF%86_j(n)%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%3D%28x(1%29%2Cx(2)%2C%5Ccdots%2Cx(n))%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%CF%86%7D_j%20%3D%20%28%CF%86_j(1%29%2C%CF%86_j(2)%2C%5Ccdots%2C%CF%86_j(n))%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%3D%5Csum_%7Bj%3D1%7D%5Ena_j%5C%20%5Cboldsymbol%7B%5Cvarphi%7D_j%3D%5Cboldsymbol%7B%5CPhi%20a%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28a_1%2Ca_2%2C%5Ccdots%2Ca_j%2C%5Ccdots%2Ca_n%29%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n*n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%5Cleft%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%5Cright%29%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcccc%7D%5Cvarphi_%7B1%7D(1)%20%26%20%5Cvarphi_%7B2%7D(1)%20%26%20%5Ccdots%20%26%20%5Cvarphi_%7Bn%7D(1)%20%5C%5C%20%5Cvarphi_%7B1%7D(2)%20%26%20%5Cvarphi_%7B2%7D(2)%20%26%20%5Ccdots%20%26%20%5Cvarphi_%7Bn%7D(2)%20%5C%5C%20%5Ccdots%20%26%20%5Ccdots%20%26%20%5Ccdots%20%26%20%5Ccdots%20%5C%5C%20%5Cvarphi_%7B1%7D(n)%20%26%20%5Cvarphi_%7B2%7D(n)%20%26%20%5Ccdots%20%26%20%5Cvarphi_%7Bn%7D(n)%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%86_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvarphi_j">
+<meta property="og:image" content="https://math.now.sh/?inline=a_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%7B%5Cboldsymbol%7B%CF%86%7D_j%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=R%20%3D%20E%5C%7B%5Cboldsymbol%7Bxx%7D%5ET%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=R%3D%5Cboldsymbol%7B%5CPhi%7D%28E%5C%7B%5Cboldsymbol%7Baa%5ET%7D%5C%7D%29%5Cboldsymbol%7B%5CPhi%7D%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=E%5C%7B%5Cboldsymbol%7Baa%5ET%7D%5C%7D%3D%5Cboldsymbol%7BD_%5Clambda%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BD_%5Clambda%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5Cvarphi%7D_%7Bj%7D%5E%7BT%7D%20%5Cboldsymbol%7B%5Cvarphi%7D_%7Bk%7D%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D1%20%26%20%5Ctext%20%7B%20if%20%7D%20j%3Dk%20%5C%5C%200%20%26%20%5Ctext%20%7B%20if%20%7D%20j%20%5Cneq%20k%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BR%7D%20%3D%20E%5C%7B%5Cboldsymbol%7Bxx%7D%5ET%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BR%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BB_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%86_j">
+<meta property="og:image" content="https://math.now.sh/?inline=j%20%3D%201%2C2%2C%E2%80%A6%2Cn">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Ba%7D%20%3D%20%5Cboldsymbol%7B%CE%A6%5ETx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n*m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%CE%A6%5ETx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=E%5Ba_j%5D%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=E%5B%5Cboldsymbol%7Ba%7D%5D%3DE%5B%5CPhi%5E%7BT%7D%20%5Cboldsymbol%7Bx%7D%5D%3D%5CPhi%5ETE%5B%5Cboldsymbol%7Bx%7D%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=E%5B%5Cboldsymbol%7Bx%7D%5D%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=C">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=E%5B%5Cboldsymbol%7Bx%7D%5D%20%E2%89%A00">
+<meta property="og:image" content="https://math.now.sh/?inline=a_j">
+<meta property="og:image" content="https://math.now.sh/?inline=y_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7By%7D%3D%5CPhi%5E%7BT%7D%20%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CPhi">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Clambda_1%3E%5Clambda_2%3E%5Ccdots%3E%5Clambda_m%3E%5Ccdots%3E%5Clambda_n%E2%89%A50">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="article:published_time" content="2022-09-18T13:48:21.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.198Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Pattern Recognition and Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/09/18/xpsWjI.png">
+  
+  
+  
+  <title>研究生课程：模式识别与机器学习-第4章 特征选择和提取 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：模式识别与机器学习-第4章 特征选择和提取</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-18 13:48" pubdate>
+          2022年9月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：模式识别与机器学习-第4章 特征选择和提取</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《模式识别与机器学习》课程笔记：第4章 特征选择和提取</p>
+<span id="more"></span>
+<h1>第4章 特征选择和提取</h1>
+<p>特征选择和提取是模式识别中的一个关键问题，前面讨论分类器设计的时候，一直假定已给出了特征向量维数确定的样本集，其中各样本的每一维都是该样本的一个特征；这些特征的选择是很重要的，它强烈地影响到分类器的设计及其性能；假若对不同的类别，这些特征的差别很大，则比较容易设计出具有较好性能的分类器。</p>
+<p>例如，描述人可以用好多特征，如肤色，体重，身高等，但是如果要判断软件工程师，显然编程这个特征比较有判别性；如果要判断是不是篮球员，则体重、身高有很强的判别性。</p>
+<p>特征选择和提取是构造模式识别系统时的一个重要课题。在很多实际问题中，往往不容易找到那些最重要的特征，或受客观条件的限制，不能对它们进行有效的测量；因此在测量时，由于人们心理上的作用，只要条件许可总希望把特征取得多一些；另外，由于客观上的需要，为了突出某些有用信息，抑制无用信息，有意加上一些比值、指数或对数等组合计算特征；如果将数目很多的测量值不做分析，全部直接用作分类特征，不但耗时，而且会影响到分类的效果，产生“特征维数灾难”问题。</p>
+<p>为了设计出效果好的分类器，通常需要对原始的测量值集合进行分析，经过选择或变换处理，组成有效的识别特征；在保证一定分类精度的前提下，减少特征维数，即进行“降维”处理，使分类器实现快速、准确和高效的分类。为达到上述目的，关键是所提供的识别特征应具有很好的可分性，使分类器容易判别。为此，需对特征进行选择：</p>
+<ul>
+<li>应去掉模棱两可、不易判别的特征；</li>
+<li>所提供的特征不要重复，即去掉那些相关性强且没有增加更多分类信息的特征。</li>
+</ul>
+<p>特征选择和提取这一任务应在设计分类器之前进行；</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xpsWjI"><img src="https://s1.ax1x.com/2022/09/18/xpsWjI.png" srcset="/img/loading.gif" lazyload alt="xpsWjI.png"></a></p>
+<p>所谓特征选择，就是从<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个度量值集合<img src="https://math.now.sh?inline=%5C%7Bx_1%2C%20x_2%2C%E2%80%A6%2C%20x_n%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中，按某一准则选取出供分类用的子集，作为降维（<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维，<img src="https://math.now.sh?inline=m%3Cn" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>）的分类特征；</p>
+<p>所谓特征提取，就是使<img src="https://math.now.sh?inline=%5C%7Bx_1%2C%20x_2%2C%E2%80%A6%2C%20x_n%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>通过某种变换，产生<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征<img src="https://math.now.sh?inline=%5C%7By_1%2C%20y_2%2C%E2%80%A6%2C%20y_m%5C%7D%20%28m%3Cn%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> ，作为新的分类特征（或称为二次特征）；</p>
+<p>其目的都是为了在尽可能保留识别信息的前提下，降低特征空间的维数，以达到有效的分类效果。</p>
+<h2 id="模式类别可分性的测度">模式类别可分性的测度</h2>
+<p>距离和散布矩阵：</p>
+<ul>
+<li>点到点之间的距离：<img src="https://math.now.sh?inline=D%5E2%28%5Cboldsymbol%7Ba%7D%2C%20%5Cboldsymbol%7Bb%7D%29%3D(%5Cboldsymbol%7Ba%7D-%5Cboldsymbol%7Bb%7D)%5ET(%5Cboldsymbol%7Ba%7D-%5Cboldsymbol%7Bb%7D)%3D%5Csum_%7Bk%3D1%7D%5En%5Cleft(a_k-b_k%5Cright)%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中, <img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=%5Cboldsymbol%7Bb%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 为 <img src="https://math.now.sh?inline=%5Cmathrm%7Bn%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 维向量, 其第 <img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 个分量分别是 <img src="https://math.now.sh?inline=a_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=b_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>点到点集之间的距离：点<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到点集<img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>之间的距离为<img src="https://math.now.sh?inline=%5Coverline%7BD%5E2%5Cleft%28%5Cboldsymbol%7Ba%7D%2C%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D%5Cright%29%7D%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bi%3D1%7D%5EK%20D%5E2%5Cleft(%5Cboldsymbol%7Ba%7D%2C%20%5Cboldsymbol%7Bx%7D%5Ei%5Cright)%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bi%3D1%7D%5EK%5Cleft%5C%7B%5Csum_%7Bk%3D1%7D%5En%5Cleft(a_k-x_k%5Ei%5Cright)%5E2%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>类内距离：<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维空间中同一类内各模式样本点集<img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其内部各点的均方距离为<img src="https://math.now.sh?inline=%5Coverline%7BD%5E2%5Cleft%28%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ej%5Cright%5C%7D%2C%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D%5Cright%29%7D%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bj%3D1%7D%5EK%5Cleft%5B%5Cfrac%7B1%7D%7BK-1%7D%20%5Csum_%7B%5Csubstack%7Bi%3D1%20%5C%5C%20i%20%5Cneq%20j%7D%7D%5EK%20%5Csum_%7Bk%3D1%7D%5En%5Cleft(x_k%5Ej-x_k%5Ei%5Cright)%5E2%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=i%2C%20j%3D1%2C2%2C%20%5Cldots%2C%20K%2C%20i%20%5Cneq%20j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>类内散布矩阵：考虑一类内模式点集<img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cboldsymbol%7Bx%7D%5Ei%5Cright%5C%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其类内散布矩阵为：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D%3D%5Csum_%7Bi%3D1%7D%5EK%5Cleft%5C%7B%5Cleft%28%5Cboldsymbol%7Bx%7D%5Ei-%5Cboldsymbol%7Bm%7D%5Cright%29%5Cleft(%5Cboldsymbol%7Bx%7D%5Ei-%5Cboldsymbol%7Bm%7D%5Cright)%5ET%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D%3D%5Cfrac%7B1%7D%7BK%7D%20%5Csum_%7Bi%3D1%7D%5EK%20%5Cboldsymbol%7Bx%7D%5Ei" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><strong>对属于同一类的模式样本，类内散布矩阵表示各样本点围绕其均值周围的散布情况。</strong></p>
+<p>在考虑有两个以上的类别，如集合<img src="https://math.now.sh?inline=%5C%7B%5Cboldsymbol%7Ba%7D%5Ei%5C%7D%2C%5C%7B%5Cboldsymbol%7Bb%7D%5Ej%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，类间距离对类别的可分性起着重要作用，此时应计算<img src="https://math.now.sh?inline=%5Coverline%7BD%5E2%5Cleft%28%5Cleft%5C%7B%5Cboldsymbol%7Ba%7D%5Ei%5Cright%5C%7D%2C%5Cleft%5C%7B%5Cboldsymbol%7Bb%7D%5Ej%5Cright%5C%7D%5Cright%29%7D_%7Bi%3D1%2C2%2C%20%5Cldots%2C%20K_a%20%3B%20j%3D1%2C2%2C%20%5Cldots%2C%20K_b%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>为简化起见，常用两类样本各自质心间的距离作为类间距离，并假设两类样本出现的概率相等，则<img src="https://math.now.sh?inline=D%5E2%3D%5Csum_%7Bk%3D1%7D%5En%5Cleft%28m_%7B1_k%7D-m_%7B2_k%7D%5Cright%29%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为两类模式样本集各自的均值向量，<img src="https://math.now.sh?inline=m_%7B1_k%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和<img src="https://math.now.sh?inline=m_%7B2_k%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 为<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个分量，<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为维数。</p>
+<p>两类模式的类间散布矩阵：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_%7Bb%202%7D%3D%5Cleft%28%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright%29%5Cleft(%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright)%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>对三个以上的类别，类间散布矩阵常写成<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_b%3D%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft%28%5Comega_i%5Cright%29%20%5Csum_%7Bj%3D1%7D%5EM%20P%5Cleft(%5Comega_j%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_j%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_j%5Cright)%5ET%3D%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft(%5Comega_i%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中，<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为多类模式（如共有<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类）分布的总体均值向量，即<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_0%3DE%5C%7B%5Cboldsymbol%7Bx%7D%5C%7D%3D%5Csum_%7Bi%3D1%7D%5Ec%20P%5Cleft%28%5Comega_i%5Cright%29%20%5Cboldsymbol%7Bm%7D_i%2C%20%5Cquad%20%5Cforall%20%5Comega_i%2C%20i%3D1%2C2%2C%20%5Cldots%2C%20M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>多类情况的类内散布矩阵可写成各类的类内散布矩阵的先验概率的加权和，即<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_w%3D%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft%28%5Comega_i%5Cright%29%20E%5Cleft%5C%7B%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5ET%20%5Cmid%20%5Comega_i%5Cright%5C%7D%3D%5Csum_%7Bi%3D1%7D%5EM%20P%5Cleft(%5Comega_i%5Cright)%20%5Cboldsymbol%7BC%7D_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7BC%7D_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类的协方差矩阵。</p>
+<p>有时，用多类模式总体分布的散布矩阵来反映其可分性，即：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_t%3DE%5Cleft%5C%7B%5Cleft%28%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_0%5Cright%29%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_0%5Cright)%5ET%5Cright%5C%7D%2C%20%5Cquad%20%5Cboldsymbol%7Bx%7D%20%5Cin%20%5Cforall%20%5Comega_i%2C%20i%3D1%2C2%2C%20%5Cldots%2C%20M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为多类模式分布的总体均值向量。</p>
+<p><img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_t%3D%5Cboldsymbol%7BS%7D_w%2B%5Cboldsymbol%7BS%7D_b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即总体散布矩阵是各类类内散布矩阵与类间散布矩阵之和。</p>
+<h2 id="特征选择">特征选择</h2>
+<p>设有<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个可用作分类的测量值，为了在不降低（或尽量不降低）分类精度的前提下，减小特征空间的维数以减少计算量，需从中直接选出<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个作为分类的特征。</p>
+<p>从<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个测量值中选出<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征，一共有<img src="https://math.now.sh?inline=C_n%5Em" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>种可能的选法，需寻找一种简便的可分性准则，间接判断每一种子集的优劣。</p>
+<p>对于独立特征的选择准则：类别可分性准则应具有这样的特点，即不同类别模式特征的均值向量之间的距离应最大，而属于同一类的模式特征，其方差之和应最小。<strong>假设各原始特征测量值是统计独立的</strong>，此时，只需对训练样本的<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个测量值独立地进行分析，从中选出<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个最好的作为分类特征即可。</p>
+<p>对于 <img src="https://math.now.sh?inline=%5Comega_%7B%5Cmathrm%7Bi%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=%5Comega_%7B%5Cmathrm%7Bj%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 两类训练样本，假设其均值向量为 <img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维方向的分量为 <img src="https://math.now.sh?inline=m_%7Bi%20k%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=m_%7Bj%20k%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，方差为 <img src="https://math.now.sh?inline=%5Csigma_%7B%5Cmathrm%7Bik%7D%7D%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=%5Csigma_%7B%5Cmathrm%7Bjk%7D%7D%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，定义可分性准则函数<img src="https://math.now.sh?inline=G_k%3D%5Cfrac%7B%5Cleft%28m_%7Bi%20k%7D-m_%7Bj%20k%7D%5Cright%29%5E2%7D%7B%5Csigma_%7Bi%20k%7D%5E2%2B%5Csigma_%7Bj%20k%7D%5E2%7D%2C%20k%3D1%2C2%2C%20%5Cldots%2C%20n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=G_K" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为正值。 <img src="https://math.now.sh?inline=G_K" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>值越大，表示测度值的第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个分量对分离 <img src="https://math.now.sh?inline=%5Comega_%7B%5Cmathrm%7Bi%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 和 <img src="https://math.now.sh?inline=%5Comega_%7B%5Cmathrm%7Bj%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类越有效。将<img src="https://math.now.sh?inline=%5Cleft%5C%7BG_K%2C%20k%3D1%2C2%2C%20%5Cldots%2C%20%5Cmathrm%7Bn%7D%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>按大小排队, 选出最大的<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个对应测度值作为分类特征，即达到特征选择的目的。</p>
+<p>上述基于距离测度的可分性准则，其适用范围与模式特征的分布有关。假若类概率密度函数不是或不近似正态分布，均值和方差就不足以用来估计类别的可分性，此时该准则函数不完全适用。</p>
+<p>一般特征的散布矩阵准则：</p>
+<ul>
+<li>类内：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_w%3D%5Csum_%7Bi%3D1%7D%5Ec%20P%5Cleft%28%5Comega_i%5Cright%29%20E%5Cleft%5C%7B%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5ET%20%5Cmid%20%5Comega_i%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>类间：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_b%3D%5Csum_%7Bi%3D1%7D%5Ec%20P%5Cleft%28%5Comega_i%5Cright%29%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5Cleft(%5Cboldsymbol%7Bm%7D_i-%5Cboldsymbol%7Bm%7D_0%5Cright)%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>直观上，类间离散度越大且类内离散度越小，则可分性越好。因此，可推导出散布矩阵准则采用如下形式：</p>
+<ul>
+<li>行列式形式：<img src="https://math.now.sh?inline=J_1%3D%5Coperatorname%7Bdet%7D%5Cleft%28%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b%5Cright%29%3D%5Cprod_i%20%5Clambda_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>迹形式：<img src="https://math.now.sh?inline=J_2%3D%5Coperatorname%7Btr%7D%5Cleft%28%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b%5Cright%29%3D%5Csum_i%20%5Clambda_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>其中，<img src="https://math.now.sh?inline=%5Clambda_%7B%5Cmathrm%7Bi%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 是矩阵 <img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 的特征值。使 <img src="https://math.now.sh?inline=%5Cmathrm%7BJ%7D_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 或 <img src="https://math.now.sh?inline=%5Cmathrm%7BJ%7D_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 最大的子集可作为选择的分类特征。</p>
+<h2 id="离散K-L变换（Karhunen-Loeve变换（卡洛南-洛伊变换））">离散K-L变换（Karhunen-Loeve变换（卡洛南-洛伊变换））</h2>
+<p>前面讨论的特征选择是在一定准则下，从<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征中选出<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个来反映原有模式。这种简单删掉某<img src="https://math.now.sh?inline=n-k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征的做法并不十分理想，因为一般来说，原来的<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个数据各自在不同程度上反映了识别对象的某些特征，简单地删去某些特征可能会丢失较多的有用信息。如果将原来的特征做正交变换，获得的每个数据都是原来<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个数据的线性组合，然后从新的数据中选出少数几个，使其尽可能多地反映各类模式之间的差异，而这些特征间又尽可能相互独立，则比单纯的选择方法更灵活、更有效。</p>
+<p>K-L变换就是一种适用于任意概率密度函数的正交变换。</p>
+<h3 id="离散的有限K-L展开">离散的有限K-L展开</h3>
+<p>离散的有限K-L展开式的形式：</p>
+<p>设一连续的随机实函数<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%28t%29%2C%20T_1%20%E2%89%A4t%E2%89%A4T_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%28t%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 可用已知的正交函数集 <img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cvarphi_%7B%5Cmathrm%7Bj%7D%7D%28%5Cunderline%7Bt%7D%29%2C%20%5Cmathrm%7Bj%7D%3D1%2C2%2C%20%5Cldots%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 的线性组合来展开，即：<img src="https://math.now.sh?inline=x%28t%29%3Da_1%20%5Cvarphi_1(t)%2Ba_2%20%5Cvarphi_2(t)%2B%5Ccdots%2Ba_j%20%5Cvarphi_j(t)%2B%5Ccdots%3D%5Csum_%7Bj%3D1%7D%5E%7B%5Cinfty%7D%20a_j%20%5Cvarphi_j(t)%2C%20%5Cquad%20T_1%20%5Cleq%20t%20%5Cleq%20T_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。式中，<img src="https://math.now.sh?inline=a_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为展开式的随机系数，<img src="https://math.now.sh?inline=%CF%86_j%28t%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为一连续的正交函数，它应满足：<img src="https://math.now.sh?inline=%5Cint_%7BT_%7B1%7D%7D%5E%7BT_%7B2%7D%7D%20%5Cvarphi_%7Bn%7D%5E%7B%28t%29%7D%20%5Ctilde%7B%5Cvarphi%7D_%7Bm%7D(t)%20d%20t%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D1%2C%20%26%20%5Ctext%20%7B%20if%20%7D%20m%3Dn%20%5C%5C%200%20%26%20%5Ctext%20%7B%20if%20%7D%20m%20%5Cneq%20n%20%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>,其中<img src="https://math.now.sh?inline=%5Ctilde%7B%5Cvarphi%7D_%7Bm%7D%28t%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=%CF%86_m%28t%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的共轭复数式。</p>
+<p>将上式写成离散的正交函数形式，使连续随机函数<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%28t%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和连续正交函数<img src="https://math.now.sh?inline=%CF%86_j%28t%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在区间<img src="https://math.now.sh?inline=T_1%20%5Cleq%20t%20%5Cleq%20T_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>内被等间隔采样为<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个离散点，即：</p>
+<p><img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%28t%29%20%5Crightarrow%20%5C%7Bx(1)%2Cx(2)%2C%5Ccdots%2Cx(n)%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%CF%86_j%28t%29%5Crightarrow%20%5C%7B%CF%86_j(1)%2C%CF%86_j(2)%2C%5Ccdots%2C%CF%86_j(n)%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>写成向量形式：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%3D%28x(1%29%2Cx(2)%2C%5Ccdots%2Cx(n))%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%CF%86%7D_j%20%3D%20%28%CF%86_j(1%29%2C%CF%86_j(2)%2C%5Ccdots%2C%CF%86_j(n))%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>将展开式写成离散形式：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%3D%5Csum_%7Bj%3D1%7D%5Ena_j%5C%20%5Cboldsymbol%7B%5Cvarphi%7D_j%3D%5Cboldsymbol%7B%5CPhi%20a%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为展开式中随机系数的向量形式<img src="https://math.now.sh?inline=%28a_1%2Ca_2%2C%5Ccdots%2Ca_j%2C%5Ccdots%2Ca_n%29%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=n*n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维矩阵，<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%5Cleft%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%5Cright%29%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcccc%7D%5Cvarphi_%7B1%7D(1)%20%26%20%5Cvarphi_%7B2%7D(1)%20%26%20%5Ccdots%20%26%20%5Cvarphi_%7Bn%7D(1)%20%5C%5C%20%5Cvarphi_%7B1%7D(2)%20%26%20%5Cvarphi_%7B2%7D(2)%20%26%20%5Ccdots%20%26%20%5Cvarphi_%7Bn%7D(2)%20%5C%5C%20%5Ccdots%20%26%20%5Ccdots%20%26%20%5Ccdots%20%26%20%5Ccdots%20%5C%5C%20%5Cvarphi_%7B1%7D(n)%20%26%20%5Cvarphi_%7B2%7D(n)%20%26%20%5Ccdots%20%26%20%5Cvarphi_%7Bn%7D(n)%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>其中，每一列为正交函数集中的一个函数，小括号内的序号为正交函数的采样点次序。因此，<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>实质上是由<img src="https://math.now.sh?inline=%CF%86_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>向量组成的正交变换矩阵，<br>
+它将<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>变换成<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>对各个模式类别，正交函数都是相同的，但其展开系数向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>则因类别的不同模式分布而异。</p>
+<p>K-L展开式的根本性质是将随机向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>展开为另一组正交向量<img src="https://math.now.sh?inline=%5Cvarphi_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的线性和，且其展开式系数<img src="https://math.now.sh?inline=a_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（即系数向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的各个分量）具有不同的性质。</p>
+<p>正交向量集<img src="https://math.now.sh?inline=%7B%5Cboldsymbol%7B%CF%86%7D_j%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的确定：</p>
+<p>设随机向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的总体自相关矩阵为<img src="https://math.now.sh?inline=R%20%3D%20E%5C%7B%5Cboldsymbol%7Bxx%7D%5ET%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=R%3D%5Cboldsymbol%7B%5CPhi%7D%28E%5C%7B%5Cboldsymbol%7Baa%5ET%7D%5C%7D%29%5Cboldsymbol%7B%5CPhi%7D%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，要求系数向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的各个不同分量应统计独立，则应使<img src="https://math.now.sh?inline=E%5C%7B%5Cboldsymbol%7Baa%5ET%7D%5C%7D%3D%5Cboldsymbol%7BD_%5Clambda%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7BD_%5Clambda%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为对角形矩阵，其互相关成分均为0</p>
+<p>因为<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是实对称矩阵，其不同特征值对应的特征向量应正交，即：<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5Cvarphi%7D_%7Bj%7D%5E%7BT%7D%20%5Cboldsymbol%7B%5Cvarphi%7D_%7Bk%7D%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D1%20%26%20%5Ctext%20%7B%20if%20%7D%20j%3Dk%20%5C%5C%200%20%26%20%5Ctext%20%7B%20if%20%7D%20j%20%5Cneq%20k%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>K-L展开式系数的计算步骤：</p>
+<ol>
+<li>求随机向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的自相关矩阵：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BR%7D%20%3D%20E%5C%7B%5Cboldsymbol%7Bxx%7D%5ET%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>求出矩阵<img src="https://math.now.sh?inline=%5Cboldsymbol%7BR%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的特征值<img src="https://math.now.sh?inline=%CE%BB_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和对应的特征向量<img src="https://math.now.sh?inline=%CF%86_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=j%20%3D%201%2C2%2C%E2%80%A6%2Cn" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，得矩阵：<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>计算展开式系数：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Ba%7D%20%3D%20%5Cboldsymbol%7B%CE%A6%5ETx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<h3 id="按K-L展开式选择特征">按K-L展开式选择特征</h3>
+<p>K-L展开式用于特征选择相当于一种线性变换。若从<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征向量中取出<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个组成变换矩阵<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，此时<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是一个<img src="https://math.now.sh?inline=n*m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维矩阵，<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维向量，经过<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%CE%A6%5ETx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>变换，即得到降维为<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的新向量。</p>
+<h3 id="结论">结论</h3>
+<p>从K-L展开式的性质和按最小均方差的准则来选择特征，应使<img src="https://math.now.sh?inline=E%5Ba_j%5D%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。由于<img src="https://math.now.sh?inline=E%5B%5Cboldsymbol%7Ba%7D%5D%3DE%5B%5CPhi%5E%7BT%7D%20%5Cboldsymbol%7Bx%7D%5D%3D%5CPhi%5ETE%5B%5Cboldsymbol%7Bx%7D%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，故应使<img src="https://math.now.sh?inline=E%5B%5Cboldsymbol%7Bx%7D%5D%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。基于这一条件，在将整体模式进行K-L变换之前，<strong>应先将其均值作为新坐标轴的原点，采用协方差矩阵<img src="https://math.now.sh?inline=C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>或自相关矩阵<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来计算特征值</strong>。如果<img src="https://math.now.sh?inline=E%5B%5Cboldsymbol%7Bx%7D%5D%20%E2%89%A00" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则只能得到“次最佳”的结果。</p>
+<p>将K-L展开式系数<img src="https://math.now.sh?inline=a_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（亦即变换后的特征）用<img src="https://math.now.sh?inline=y_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示，写成向量形式：<img src="https://math.now.sh?inline=%5Cboldsymbol%7By%7D%3D%5CPhi%5E%7BT%7D%20%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，此时变换矩阵<img src="https://math.now.sh?inline=%5CPhi" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>用<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征向量组成。为使误差最小，不采用的特征向量，其对应的特征值应尽可能小。因此，将特征值按大小次序标号，即<img src="https://math.now.sh?inline=%5Clambda_1%3E%5Clambda_2%3E%5Ccdots%3E%5Clambda_m%3E%5Ccdots%3E%5Clambda_n%E2%89%A50" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。若首先采用前面的<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征向量，便可使变换误差最小。此时的变换矩阵为<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5CPhi%7D%3D%28%5Cvarphi_%7B1%7D%2C%20%5Cvarphi_%7B2%7D%2C%20%5Ccdots%2C%20%5Cvarphi_%7Bn%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，</p>
+<p>K-L变换是在均方误差最小的意义下获得数据压缩（降维）的最佳变换，且不受模式分布的限制。对于一种类别的模式特征提取，它不存在特征分类问题，只是实现用低维的<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征来表示原来高维的<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征，使其误差最小，亦即使其整个模式分布结构尽可能保持不变。</p>
+<p>通过K-L变换能获得互不相关的新特征。若采用较大特征值对应的特征向量组成变换矩阵，则能对应地保留原模式中方差最大的特征成分，所以K-L变换起到了减小相关性、突出差异性的效果。在此情况下，K-L变换也称为主成分变换（PCA变换）。</p>
+<p>需要指出的是，采用K-L变换作为模式分类的特征提取时，要特别注意保留不同类别的模式分类鉴别信息，仅单纯考虑尽可能代表原来模式的主成分，有时并不一定有利于分类的鉴别。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Pattern-Recognition-and-Machine-Learning/" class="print-no-link">#Pattern Recognition and Machine Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：模式识别与机器学习-第4章 特征选择和提取</div>
+      <div>https://zhangzhao219.github.io/2022/09/18/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/19/UCAS/machine-learning/machine-learning-competition-basic/" title="机器学习算法竞赛实战-基础篇">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">机器学习算法竞赛实战-基础篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/18/Leetcode/Leetcode-101/Leetcode-101-16/" title="Leetcode 刷题笔记-Leetcode 101 第16章 复杂数据结构">
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第16章 复杂数据结构</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

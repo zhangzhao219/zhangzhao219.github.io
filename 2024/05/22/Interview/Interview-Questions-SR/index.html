@@ -1,0 +1,869 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="搜推面试题目准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜推面试题目准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2024/05/22/Interview/Interview-Questions-SR/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="搜推面试题目准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-cf032c8fea601097399b0b213453d2bf_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-6a360c55328ece54d99633bef48fdee7_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-53faf5dc30550a258e697a6c0000fbe1_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-8c31ca388bdba5b5eaf5b3440a4b41fb_720w.webp">
+<meta property="article:published_time" content="2024-05-22T13:59:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Recommendation System">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-cf032c8fea601097399b0b213453d2bf_720w.webp">
+  
+  
+  
+  <title>搜推面试题目准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">搜推面试题目准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-22 13:59" pubdate>
+          2024年5月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">搜推面试题目准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>搜推面试题目准备</p>
+<span id="more"></span>
+<h1>推荐系统经典文章</h1>
+<p>FM：作为逻辑回归模型的改进版，拟解决在稀疏数据的场景下模型参数难以训练的问题。并且考虑了特征的二阶交叉，弥补了逻辑回归表达能力差的缺陷。</p>
+<ul>
+<li>FM在线性模型的基础上添加了一个多项式，用于描述特征之间的二阶交叉。n表示一个样本的特征的个数（类别特征 onehot 之后的维度），两两交互可得到 n(n−1)/2 个交叉项；多项式要学习的参数即为 n(n−1)/2 个 w系数。</li>
+<li>对每个特征分量引入k维辅助向量，每个特征对应一个总共n个向量，然后利用向量内积的结果来表示原来的组合参数w，要学习的参数变成了元素个数为n*k的V矩阵</li>
+<li>引入辅助向量削弱了参数间的独立性，化简之后，FM的复杂度从n^2k降到线性的nk，更利于上线使用</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ol>
+<li>将二阶交叉特征考虑进来，提高模型的表达能力；</li>
+<li>引入隐向量，缓解了数据稀疏带来的参数难训练问题；</li>
+<li>模型复杂度保持为线性，并且改进为高阶特征组合时，仍为线性复杂度，有利于上线应用。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>虽然考虑了特征的交叉，但是表达能力仍然有限，不及深度模型；</li>
+<li>同一特征与不同特征组合使用的都是同一隐向量，违反了特征与不同特征组合可发挥不同重要性的事实。</li>
+</ol>
+<p>FFM 是 FM 的改进版，作者引入 field 的概念，把相同性质的特征 (经过 onehot 编码的类别特征) 归于同一个 field，同一特征与属于不同域的特征作交互时，具有不同的隐向量表示。</p>
+<p>FFM 将隐向量进一步细分，每个特征具有多个隐向量 (等于 field 的数目)。模型参数量为 1+n+n(F−1)k ， F为 field 数。公式不可化简，复杂度为n^2k ，随着特征数n 平方级增长。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>引入 field 域的概念，让某一特征与不同特征做交互时，可发挥不同的重要性，提升模型表达能力；</li>
+<li>可解释性强，可提供某些特征组合的重要性。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>复杂度高，不适用于特征数较多的场景。</li>
+</ol>
+<p>Wide&amp;Deep：一个线性模型与深度模型结合的产物</p>
+<p><img src="https://pic4.zhimg.com/80/v2-cf032c8fea601097399b0b213453d2bf_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>左边（Wide Models）为拆解出来线性模型，右边（Deep Models）为深度模型。未激活的线性模型输出与深度模型输出相加，再进行激活即得到总体模型的输出。</p>
+<p>Wide 部分：Dense Features + Sparse Features（onehot 处理）+ 特征组合</p>
+<p>Deep 部分：Dense Embeddings (Sparse Features 进行 onehot + embedding 处理)</p>
+<p><strong>优点:</strong></p>
+<ol>
+<li>结构简单，复杂度低，目前在工业界仍有广泛应用；</li>
+<li>线性模型与深度模型优势互补，分别提取低阶与高阶特征交互信息，兼顾记忆能力与泛化能力；</li>
+<li>线性部分为广义线性模型，可灵活替换为其他算法，比如 FM，提升 wide 部分提取信息的能力。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>深度模型可自适应的进行高阶特征交互，但这是隐式的构造特征组合，可解释性差；</li>
+<li>深度模型仍需要人工特征来提升模型效果，只是需求量没有线性模型大。</li>
+</ol>
+<p>DCN 是基于 Wide&amp;Deep 的改进版，它把 wide 侧的 LR 换成了 cross layer，可显式的构造有限阶特征组合，并且具有较低的复杂度。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-6a360c55328ece54d99633bef48fdee7_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>引入 cross layer 显示的构造有限阶特征组合，无需特征工程，可端到端训练；</li>
+<li>cross layer 具有线性复杂度，可累加多层构造高阶特征交互，并且因为其类似残差连接的计算方式，使其累加多层也不会产生梯度消失问题；</li>
+<li>跟 deepfm 相同，两个分支共享输入，可更精确的训练学习。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>cross layer 是以 bit-wise 方式构造特征组合的，最小粒度是特征向量中的每个元素，这样导致 DCN 不会考虑域的概念，属于同一特征的各个元素应同等对待；</li>
+</ol>
+<p>xDeepFM 是 Wide &amp; Deep 的改进版，在此基础上添加了 CIN 层显式的构造有限阶特征组合。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-53faf5dc30550a258e697a6c0000fbe1_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>上图为 xDeepFM 的总体结构，有三个分支：Linear（稀疏的01向量作为输入）、DNN（经过embedding的稠密向量作为输入）、CIN（压缩感知层）。</p>
+<p>xDeepFM 如果去掉 CIN 分支，就等同于 Wide &amp; Deep。</p>
+<p><strong>优点：</strong></p>
+<p>使用 vector-wise 的方式，通过特征的元素积来进行特征交互，将一个特征域的元素整体考虑，比 bit-wise 方式更 make sence 一些；</p>
+<p><strong>缺点：</strong></p>
+<p>CIN 层的复杂度通常比较大，它并不具有像 DCN 的 cross layer 那样线性复杂度，它的复杂度通常是平方级的，因为需要计算两个特征矩阵中特征的两两交互，这就给模型上线带来压力。</p>
+<p>FNN 采用的是串行拼接的结合方式，将 DNN 接在 FM 层后方，以减轻全连接层构造隐式特征的工作。</p>
+<p>FNN 并不是端到端的训练方式，而是两阶段的训练方式。阶段一训练一个 FM，阶段二训练一个带嵌入层的 DNN。</p>
+<p><strong>阶段一：</strong> 先使用带标签的训练集有监督的训练 FM 模型，训练完成后，会得到每个特征对应的隐向量。若输入特征维度为 n，隐向量维度为 k，则隐向量矩阵 W 的形状就为 [n, k]。</p>
+<p><strong>阶段二：</strong> 然后用隐向量矩阵 W 初始化 DNN 的嵌入层，然后再有监督训练 DNN 即可。DNN 的输入包含了 FM 学到的先验知识，可减轻 DNN 的学习压力。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>将 FM 学习得到的隐向量作为 DNN 的输入，隐向量包含了 FM 习得的先验知识，可减轻 DNN 的学习压力；</li>
+<li>FM 只考虑到了二阶特征交互，忽略了高阶特征，后面接 DNN 可弥补该缺陷，提升模型表达能力。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>采用两阶段、非端到端的训练方式，不利于模型的线上部署；</li>
+<li>将 FM 的隐向量直接拼接作为 DNN 的输入，忽略了 field 的概念；</li>
+<li>FNN 未考虑低阶特征组合，低阶、高阶特征是同等重要的。</li>
+</ol>
+<p>PNN 通过引入特征交互层 Product Layer，显式的对特征进行交互，以提升模型的表达能力。Product Layer层为特征交互层，由 z 和 p 两部分组成，其中 z 为上层的输出结果，p 为上层输出的特征交互结果，低维与高维特征的直接拼接。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>显式的进行特征交互，提高模型表达能力；</li>
+<li>以 field 为粒度进行特征交互，保留的域的概念；</li>
+<li>同时保留了低维与高维特征</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>外积交互方式参数量较大，随着特征维度平方级增长；</li>
+</ol>
+<p>DIN:</p>
+<p>Base 模型的做法是将用户点击的商品序列，简单的进行 SUM Pooling，然后将聚合得到的 embedding 向量，作为用户的兴趣表示。</p>
+<p>这种做法的缺陷也很明显，简单的累加无法突出某些商品的重要性。对于与候选商品具有强关联性的 item，应该给予更大的权重，让其在提取用户兴趣时发挥更大的作用。</p>
+<p>DIN 便是采用这种方式，引入 Activation Unit 为每个商品计算一个重要性权重，再 Pooling 得到兴趣表示。模型结构如下：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-8c31ca388bdba5b5eaf5b3440a4b41fb_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>主要关注 Activation Unit 内的权重计算方式，该单元的输入为：用户点击的商品(Inputs from User)、候选商品(Inputs from Ad)。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>引入 Attention 机制，更精准的提取用户兴趣；</li>
+<li>引入 Dice 激活函数与，并优化了稀疏场景中的 L2 正则方式。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>没有考虑用户点击商品的相对位置信息，后续的 DIEN 也是针对这点进行了改进。</li>
+</ol>
+<p>DIEN：针对行为的时间顺序进行建模，挖掘用户的兴趣及兴趣变化趋势。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>引入 GRU 层，挖掘用户兴趣的同时，引入了行为发生的时序信息；</li>
+<li>引入 GRU 与 Attention 融合层，挖掘用户的兴趣变化趋势。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>GRU 层难以训练充分，模型并行性较差，给模型上线带来压力；</li>
+<li>模型训练复杂度随着行为序列长度的增加而增长。</li>
+</ol>
+<p>DSIN：将行为序列划分为多个 Session，然后针对每个 Session 去挖掘用户的兴趣以及兴趣变化趋势。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>以会话粒度进行兴趣的提取，提取结果更精确；</li>
+<li>利用 Transformer Encoder 挖掘用户兴趣，学习能力更强；</li>
+<li>引入 双向 LSTM，挖掘用户的兴趣变化趋势;</li>
+<li>引入 Attention 机制，突出关键行为的重要性。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>引入 Encoder 单元，双层的LSTM，训练复杂度大，给模型上线带来压力。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Recommendation-System/" class="print-no-link">#Recommendation System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>搜推面试题目准备</div>
+      <div>https://zhangzhao219.github.io/2024/05/22/Interview/Interview-Questions-SR/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

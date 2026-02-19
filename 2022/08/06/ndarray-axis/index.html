@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Numpy是个好东西，但是ndarray的轴感觉弄不太明白。可能二维三维数组还好，要是再增加几维就无法在脑海中想象这个东西，对于一些有关轴的操作就稀里糊涂，只能一个个尝试。现在准备把它彻底弄明白！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Numpy中axis的理解">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/08/06/ndarray-axis/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Numpy是个好东西，但是ndarray的轴感觉弄不太明白。可能二维三维数组还好，要是再增加几维就无法在脑海中想象这个东西，对于一些有关轴的操作就稀里糊涂，只能一个个尝试。现在准备把它彻底弄明白！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-06T19:26:39.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.199Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Numpy">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Numpy中axis的理解 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Numpy中axis的理解</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-06 19:26" pubdate>
+          2022年8月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Numpy中axis的理解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Numpy是个好东西，但是ndarray的轴感觉弄不太明白。可能二维三维数组还好，要是再增加几维就无法在脑海中想象这个东西，对于一些有关轴的操作就稀里糊涂，只能一个个尝试。现在准备把它彻底弄明白！</p>
+<span id="more"></span>
+<h1>思路</h1>
+<p>首先从二维入手，然后扩展到三维以及更高的维度（从特殊到一般），然后找出普遍的规律，再进行验证（从一般到特殊）</p>
+<p>官方文档应该是最权威的，首先看官方文档是怎么说明的，然后查找一些资料，看看其他人是怎么理解的，最后总结出自己的一套规律</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</code></pre></div>
+<h1>ndarray.shape</h1>
+<p>感受一个ndarray，最简单的方法就是打印ndarray的shape。</p>
+<p>官方文档里面是这样写的：</p>
+<p>the dimensions of the array. This is a tuple of integers indicating the size of the array in each dimension. For a matrix with <em>n</em> rows and <em>m</em> columns, <code>shape</code> will be <code>(n,m)</code>. The length of the <code>shape</code> tuple is therefore the number of axes, <code>ndim</code>.</p>
+<p>只列举了矩阵的例子，尝试一下：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a1 = np.arange(<span class="hljs-number">15</span>).reshape(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
+<span class="hljs-built_in">print</span>(a1,<span class="hljs-string">&#x27;\n&#x27;</span>,a1.shape,<span class="hljs-string">&#x27;\n&#x27;</span>,a1.ndim)</code></pre></div>
+<p>输出结果：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]] 
+ (3, 5) 
+ 2</code></pre></div>
+<ol>
+<li>reshape成什么样，最后打印出来的shape就会是什么样，这一点可以确定。</li>
+<li>官方文档里面写道“对于一个n行m列的矩阵来说，shape将会是(n,m)”。经验证，打印出来了一个3行5列的矩阵，shape是(3,5)。</li>
+<li>官方文档里面写道“shape元组的长度就是轴的数量，也就是ndim”。经验证，ndim=2</li>
+</ol>
+<p>简单推断：最开始有2个方括号，因此矩阵是2维的，且第1个方括号内部有3个“2级方括号”，每一个“2级方括号”内部都有5个元素，因此这个shape可能是从外向里数的。</p>
+<p>尝试1维ndarray：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a2 = np.arange(<span class="hljs-number">15</span>)
+<span class="hljs-built_in">print</span>(a2,<span class="hljs-string">&#x27;\n&#x27;</span>,a2.shape,<span class="hljs-string">&#x27;\n&#x27;</span>,a2.ndim)</code></pre></div>
+<p>输出结果：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14] 
+ (15,) 
+ 1</code></pre></div>
+<ol>
+<li>打印ndim为1，最开始有1个方括号，因此数组是1维的。结论得到验证。</li>
+<li>打印shape为(15,)（一维元组），第1个方括号内部没有“2级方括号”shape从外向里数只有15。结论得到验证。</li>
+</ol>
+<p>尝试3维ndarray：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a3 = np.arange(<span class="hljs-number">24</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>)
+<span class="hljs-built_in">print</span>(a3,<span class="hljs-string">&#x27;\n&#x27;</span>,a3.shape,<span class="hljs-string">&#x27;\n&#x27;</span>,a3.ndim)</code></pre></div>
+<p>输出结果：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">[[[ 0  1  2  3]
+  [ 4  5  6  7]]
+
+ [[ 8  9 10 11]
+  [12 13 14 15]]
+
+ [[16 17 18 19]
+  [20 21 22 23]]] 
+ (3, 2, 4) 
+ 3</code></pre></div>
+<ol>
+<li>打印ndim为3，最开始有3个方括号，因此数组是3维的。结论得到验证。</li>
+<li>打印shape为(3, 2, 4)，第1个方括号内部有3个“2级方括号”，“2级方括号”内部有2个“3级方括号”，“3级方括号”内部有4个元素。满足shape从外向里数，结论得到验证。</li>
+</ol>
+<p>尝试4维ndarray：</p>
+<div class="code-wrapper"><pre><code class="hljs python">a4 = np.arange(<span class="hljs-number">24</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>)
+<span class="hljs-built_in">print</span>(a4,<span class="hljs-string">&#x27;\n&#x27;</span>,a4.shape,<span class="hljs-string">&#x27;\n&#x27;</span>,a4.ndim)</code></pre></div>
+<p>输出结果：</p>
+<div class="code-wrapper"><pre><code class="hljs shell">[[[[ 0  1  2  3]]
+
+  [[ 4  5  6  7]]]
+
+
+ [[[ 8  9 10 11]]
+
+  [[12 13 14 15]]]
+
+
+ [[[16 17 18 19]]
+
+  [[20 21 22 23]]]] 
+ (3, 2, 1, 4) 
+ 4</code></pre></div>
+<ol>
+<li>打印ndim为4，最开始有4个方括号，因此数组是4维的。结论得到验证。</li>
+<li>打印shape为(3, 2, 1, 4)，第1个方括号内部有3个“2级方括号”，“2级方括号”内部有2个“3级方括号”，“3级方括号”内部有1个“4级方括号”，“4级方括号”内部有4个元素。满足shape从外向里数，结论得到验证。</li>
+<li>有一个维度是1，也就是这个维度实际上并没有任何的作用。但是在实际中可能会有“凑维度”的操作，需要手动增加或者减少维度，会出现这种维度为1的情况。（增加维度使用reshape()实现，减小维度使用squeeze()实现）</li>
+</ol>
+<p><strong>因此可以得出结论：对于给定的ndarray，判断ndim就是计数最前面有多少个相连的方括号，判断shape就是从外向内看，每一层分别有多少个“元素”。</strong></p>
+<p>也可以看出，数组超过4维后，肉眼就有些难以区分了。</p>
+<h1>索引</h1>
+<p>索引就是取数组中的某些元素，官方文档有下面的举例：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>a = np.arange(<span class="hljs-number">30</span>).reshape(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>a
+array([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>],
+        [ <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>],
+        [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>]],
+
+        [[<span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>],
+        [<span class="hljs-number">20</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>],
+        [<span class="hljs-number">25</span>, <span class="hljs-number">26</span>, <span class="hljs-number">27</span>, <span class="hljs-number">28</span>, <span class="hljs-number">29</span>]]])
+<span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>, :]
+array([<span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>])
+<span class="hljs-meta">&gt;&gt;&gt; </span>a[<span class="hljs-number">0</span>, :, <span class="hljs-number">3</span>]
+array([ <span class="hljs-number">3</span>,  <span class="hljs-number">8</span>, <span class="hljs-number">13</span>])</code></pre></div>
+<p>索引操作是与shape相对应的。如上述例子，a[0]即为取数组的第1个维度（2）的第1个元素，这样原来3维的数组就降到了2维；a[0, :]就是在a[0]的基础上取数组的第2个维度（3）的全部元素，数组的维度不变，还是2维；a[0, :, 3]就是在a[0, :]的基础上取数组的第3个维度（5）的第4个元素，即可得出上面的结果。</p>
+<p><strong>索引操作后的维度与索引的数量以及是否有“:”相关。如果索引的数量与ndim相同，则最后取出来的是一个数。如果数量不同或者有“:”（数量不同可以看成在后面补“:”），则最终取得的数组的维度与“:”对应的原数组的维度相同。</strong></p>
+<h1>轴</h1>
+<p>以numpy.sum为例：</p>
+<p>官方文档：</p>
+<p>Axis or axes along which a sum is performed. The default, axis=None, will sum all of the elements of the input array. If axis is negative it counts from the last to the first axis.</p>
+<p>If axis is a tuple of ints, a sum is performed on all of the axes specified in the tuple instead of a single axis or all the axes as before.</p>
+<p>以三维数组为例：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;origin&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3,a3.shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=0&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">0</span>),a3.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">0</span>).shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=1&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>),a3.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>).shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=2&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">2</span>),a3.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">2</span>).shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=(0,1)&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)),a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)).shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=(1,2)&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)),a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)).shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=(0,2)&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>)),a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>)).shape)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=(0,1,2)&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)),a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)).shape)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs shell">origin
+[[[ 0  1  2  3]
+  [ 4  5  6  7]]
+
+ [[ 8  9 10 11]
+  [12 13 14 15]]
+
+ [[16 17 18 19]
+  [20 21 22 23]]] (3, 2, 4)
+axis=0
+[[24 27 30 33]
+ [36 39 42 45]] (2, 4)
+axis=1
+[[ 4  6  8 10]
+ [20 22 24 26]
+ [36 38 40 42]] (3, 4)
+axis=2
+[[ 6 22]
+ [38 54]
+ [70 86]] (3, 2)
+axis=(0,1)
+[60 66 72 78] (4,)
+axis=(1,2)
+[ 28  92 156] (3,)
+axis=(0,2)
+[114 162] (2,)
+axis=(0,1,2)
+276 ()</code></pre></div>
+<p><strong>axis为多少，就是在这个维度上进行操作，最终的结果就是这个维度消失</strong></p>
+<p>不要从行列什么的去思考怎么变化，直接从shape的角度入手。设置axis为多少，这个维度就没有了！比如原来是(3,2,4)的维度，要是axis=0，第一个维度就没有了，加和得到的矩阵就是(2,4)。</p>
+<p>如果希望保留维度，可以增加keepdims=True的选项，这样被操作的维度就会变为1而不是直接消失。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;axis=(0,1)&#x27;</span>)
+<span class="hljs-built_in">print</span>(a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>),keepdims=<span class="hljs-literal">True</span>),a3.<span class="hljs-built_in">sum</span>(axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>),keepdims=<span class="hljs-literal">True</span>).shape)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs lua">axis=(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>)
+<span class="hljs-string">[[[60 66 72 78]]</span>] (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>)</code></pre></div>
+<p>这样想应该会比较好理解，尤其是对于更高维的数组来说，行列的概念基本失效，从shape的角度思考会好。</p>
+<h2 id="np-concatenate">np.concatenate</h2>
+<p>另外一个比较常用的操作是np.concatenate，可以将数组进行合并，在数据处理或者神经网络中很常用。</p>
+<p>在np.concatenate上检验一下对于axis的理解：</p>
+<div class="code-wrapper"><pre><code class="hljs python">ta = np.arange(<span class="hljs-number">24</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>)
+tb = np.arange(<span class="hljs-number">24</span>,<span class="hljs-number">36</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>)
+<span class="hljs-built_in">print</span>(ta,ta.shape)
+<span class="hljs-built_in">print</span>(tb,tb.shape)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs shell">[[[ 0  1  2  3]
+  [ 4  5  6  7]]
+
+ [[ 8  9 10 11]
+  [12 13 14 15]]
+
+ [[16 17 18 19]
+  [20 21 22 23]]] (3, 2, 4)
+[[[24 25 26 27]]
+
+ [[28 29 30 31]]
+
+ [[32 33 34 35]]] (3, 1, 4)</code></pre></div>
+<p>两者合并，第2个维度不相同，应该是可以合并的，合并后的shape应该为(3,3,4)</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(np.concatenate((ta,tb),axis=<span class="hljs-number">1</span>),np.concatenate((ta,tb),axis=<span class="hljs-number">1</span>).shape)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs shell">[[[ 0  1  2  3]
+  [ 4  5  6  7]
+  [24 25 26 27]]
+
+ [[ 8  9 10 11]
+  [12 13 14 15]
+  [28 29 30 31]]
+
+ [[16 17 18 19]
+  [20 21 22 23]
+  [32 33 34 35]]] (3, 3, 4)</code></pre></div>
+<p><strong>np.concatenate除了在待合并的axis上之外，必须具有相同的shape</strong></p>
+<p>之前的结论也得到了验证。</p>
+<h1>总结</h1>
+<p>我们处在三维空间中，二维和三维是比较直观的，可以在脑海中想象出来。因此我们会觉得axis的设计有些反直觉。以后应该从shape的角度去看待axis的设计思想，首先理解上比较直观，其次在更高维度的数组上也能合理的进行操作。不要去思考数组实际中应该是个什么样子，直接观察axis就足够了。</p>
+<h1>参考资料</h1>
+<p><a href="https://zhangzhao219.github.io/file/ndarray-axis.ipynb" title="Code for Numpy axis">Code</a></p>
+<p><a target="_blank" rel="noopener" href="https://numpy.org/doc/" title="Numpy官方文档">Numpy官方文档</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/Numpy/" class="print-no-link">#Numpy</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Numpy中axis的理解</div>
+      <div>https://zhangzhao219.github.io/2022/08/06/ndarray-axis/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/04/Coursera/Unsupervised-Learning-Recommenders-Reinforcement-Learning/" title="Unsupervised Learning, Recommenders, Reinforcement Learning">
+                        <span class="hidden-mobile">Unsupervised Learning, Recommenders, Reinforcement Learning</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

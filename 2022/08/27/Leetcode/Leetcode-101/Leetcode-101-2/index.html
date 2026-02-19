@@ -1,0 +1,984 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/08/27/Leetcode/Leetcode-101/Leetcode-101-2/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-27T09:15:30.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.195Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-27 09:15" pubdate>
+          2022年8月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法</p>
+<span id="more"></span>
+<h1>贪心算法</h1>
+<p>贪心算法或贪心思想采用贪心的策略，保证每次操作都是局部最优的，从而使最后得到的结果是全局最优的。</p>
+<h2 id="分配问题">分配问题</h2>
+<h3 id="Leetcode-455">Leetcode 455</h3>
+<p>有一群孩子和一堆饼干，每个孩子有一个饥饿度，每个饼干都有一个大小。每个孩子只能吃一个饼干，且只有饼干的大小不小于孩子的饥饿度时，这个孩子才能吃饱。求解最多有多少孩子可以吃饱。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findContentChildren</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; g, vector&lt;<span class="hljs-type">int</span>&gt;&amp; s)</span> </span>&#123;
+        <span class="hljs-built_in">sort</span>(g.<span class="hljs-built_in">begin</span>(),g.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">sort</span>(s.<span class="hljs-built_in">begin</span>(),s.<span class="hljs-built_in">end</span>());
+        <span class="hljs-type">int</span> childrenCount = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>;i&lt;s.<span class="hljs-built_in">size</span>() &amp;&amp; childrenCount &lt; g.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(s[i] &gt;= g[childrenCount])&#123;
+                ++childrenCount;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> childrenCount;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：用最小大小的饼干 <code>(s)</code>去满足最小饥饿度的孩子 <code>(g)</code>，一直满足到饥饿度最大的孩子，相当于双指针的移动。</p>
+<p>贪心策略是给剩余孩子里最小饥饿度的孩子分配最小的能饱腹的饼干。</p>
+<p><strong>错误：忘记检查g是否越界，可能发生所有饼干都能满足所有孩子，然而饼干还剩着的情况。下标运算一定要确认是否越界。</strong></p>
+<h3 id="Leetcode-135">Leetcode 135</h3>
+<p>一群孩子站成一排，每一个孩子有自己的评分。现在需要给这些孩子发糖果，规则是如果一个孩子的评分比自己身旁的一个孩子要高，那么这个孩子就必须得到比身旁孩子更多的糖果；所有孩子至少要有一个糖果。求解最少需要多少个糖果。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">candy</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; ratings)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">candyNum</span><span class="hljs-params">(ratings.size(),<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>;i&lt;ratings.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;++i)&#123;
+            <span class="hljs-keyword">if</span>(ratings[i<span class="hljs-number">+1</span>] &gt; ratings[i] &amp;&amp; candyNum[i<span class="hljs-number">+1</span>] &lt;= candyNum[i])&#123;
+                candyNum[i<span class="hljs-number">+1</span>] = candyNum[i] + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i = ratings.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i&gt;<span class="hljs-number">0</span>;--i)&#123;
+            <span class="hljs-keyword">if</span>(ratings[i<span class="hljs-number">-1</span>] &gt; ratings[i] &amp;&amp; candyNum[i<span class="hljs-number">-1</span>] &lt;= candyNum[i])&#123;
+                candyNum[i<span class="hljs-number">-1</span>] = candyNum[i] + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">accumulate</span>(candyNum.<span class="hljs-built_in">cbegin</span>(),candyNum.<span class="hljs-built_in">cend</span>(),<span class="hljs-number">0</span>);
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：首先至少有一个糖果分配好，然后从左向右扫一遍，如果右边的孩子评分高，则<strong>右边孩子的糖果=左边孩子的糖果+1</strong>，再从右往左扫一遍，如果左边的孩子评分高，则<strong>左边孩子的糖果=右边孩子的糖果+1</strong>。最后求和即可。</p>
+<p>贪心策略：在每次遍历中，只考虑并更新相邻一侧的大小关系</p>
+<p><strong>错误：没有更新为相邻孩子+1，而是仅仅加了1，考虑不够完整。</strong></p>
+<h2 id="区间问题">区间问题</h2>
+<h3 id="Leetcode-435">Leetcode 435</h3>
+<p>给定一个区间的集合 <code>intervals</code> ，返回 需要移除区间的最小数量，使剩余区间互不重叠。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;a,vector&lt;<span class="hljs-type">int</span>&gt; &amp;b)</span></span>&#123;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] &lt; b[<span class="hljs-number">1</span>];
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">eraseOverlapIntervals</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;
+        <span class="hljs-built_in">sort</span>(intervals.<span class="hljs-built_in">begin</span>(),intervals.<span class="hljs-built_in">end</span>(),cmp);
+        <span class="hljs-type">int</span> intervalsCount = <span class="hljs-number">1</span>;
+        <span class="hljs-type">int</span> searchBack = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];
+        <span class="hljs-type">size_t</span> n = intervals.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i=<span class="hljs-number">0</span>;i&lt;n;++i)&#123;
+            <span class="hljs-keyword">if</span> (intervals[i][<span class="hljs-number">0</span>] &gt;= searchBack)&#123;
+                intervalsCount += <span class="hljs-number">1</span>;
+                searchBack = intervals[i][<span class="hljs-number">1</span>];
+            &#125; 
+        &#125;
+        <span class="hljs-keyword">return</span> n - intervalsCount;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：假设第一个区间是 <code>k</code>，<code>k</code>的左边没有任何区间，因此使用其他任何一个区间，只要右端点小于 <code>k</code>的右端点就可以了。而且右端点向左移动，比 <code>k</code>更优。因此<strong>首个区间就是所有可以选择的区间中右端点最小的那个区间</strong> 。后面只要去寻找其中<strong>与首个区间不重合</strong>并且右端点最小的区间即可。</p>
+<p>贪心策略：优先保留结尾小且不相交的区间</p>
+<p>错误1：没想明白右端点的问题</p>
+<p>错误2：函数要加 <code>static</code>（但是不太明白）</p>
+<p>错误3：使用引用传参，防止拷贝浪费时间</p>
+<p>建议：一些比如数组大小的数字提前计算出来，避免反复计算。</p>
+<h2 id="练习">练习</h2>
+<h3 id="Leetcode-605">Leetcode 605</h3>
+<p>有一个很长的花坛，一部分地块种植了花，另一部分却没有。花不能种植在相邻的地块上。 <code>flowerbed</code> 表示花坛，由若干 <code>0</code> 和 <code>1</code> 组成，其中 <code>0</code> 表示没种植花，<code>1</code> 表示种植了花。另有一个数 <code>n</code> ，能否在不打破种植规则的情况下种入 <code>n</code> 朵花？能则返回 <code>true</code> ，不能则返回 <code>false</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canPlaceFlowers</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; flowerbed, <span class="hljs-type">int</span> n)</span> </span>&#123;
+        <span class="hljs-type">int</span> flowerCount = <span class="hljs-number">0</span>;
+        <span class="hljs-type">size_t</span> m = flowerbed.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">if</span>(m == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">if</span>(flowerbed[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (flowerbed[<span class="hljs-number">0</span>] == <span class="hljs-number">1</span> &amp;&amp; n == <span class="hljs-number">1</span>)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(flowerbed[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> &amp;&amp; flowerbed[<span class="hljs-number">1</span>] == <span class="hljs-number">0</span>)&#123;
+            flowerbed[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+            flowerCount += <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">if</span>(flowerbed[m<span class="hljs-number">-1</span>] == <span class="hljs-number">0</span> &amp;&amp; flowerbed[m<span class="hljs-number">-2</span>] == <span class="hljs-number">0</span>)&#123;
+            flowerbed[m<span class="hljs-number">-1</span>] = <span class="hljs-number">1</span>;
+            flowerCount += <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i=<span class="hljs-number">1</span>;i&lt;m<span class="hljs-number">-1</span>;i++)&#123;
+            <span class="hljs-keyword">if</span>(flowerbed[i] == <span class="hljs-number">0</span> &amp;&amp; flowerbed[i<span class="hljs-number">-1</span>] == <span class="hljs-number">0</span> &amp;&amp; flowerbed[i<span class="hljs-number">+1</span>] == <span class="hljs-number">0</span>)&#123;
+                flowerbed[i] = <span class="hljs-number">1</span>;
+                flowerCount += <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> flowerCount &gt;= n;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：遍历即可，尤其注意开头部分和结尾部分。</p>
+<p><strong>错误：最后没有考虑等于条件也为 <code>true</code></strong></p>
+<p>建议：判断太多，有更为简洁的解法，大致思路是计算相邻的 <code>1</code>之间能种多少个 <code>0</code>。</p>
+<h3 id="Leetcode-452">Leetcode 452</h3>
+<p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 <code>points</code> ，不知道具体位置，但是知道一个位置的范围。一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，射进了气球的位置范围后，该气球就会被引爆。可以射出的弓箭的数量<strong>没有限制</strong>。 弓箭一旦被射出之后，可以无限地前进。给你一个数组 <code>points</code> ， 返回引爆所有气球所必须射出的<strong>最小</strong>弓箭数 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;a,vector&lt;<span class="hljs-type">int</span>&gt; &amp;b)</span></span>&#123;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] &lt; b[<span class="hljs-number">1</span>];
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findMinArrowShots</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; points)</span> </span>&#123;
+        <span class="hljs-built_in">sort</span>(points.<span class="hljs-built_in">begin</span>(),points.<span class="hljs-built_in">end</span>(),cmp);
+        <span class="hljs-type">int</span> n = points.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> arrowCount = <span class="hljs-number">1</span>;
+        <span class="hljs-type">int</span> endPoint = points[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">if</span>(points[i][<span class="hljs-number">0</span>] &gt; endPoint)&#123;
+                ++arrowCount;
+                endPoint = points[i][<span class="hljs-number">1</span>];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> arrowCount;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：拿第一个气球来说，要是想射爆，最佳的方法就是射最右侧的位置，这样能射到的其他的气球数量也会增加，以此类推，构成贪心算法。</p>
+<p><strong>一遍AC</strong></p>
+<h3 id="Leetcode-763">Leetcode 763</h3>
+<p>字符串 <code>S</code> 由小写字母组成。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。返回一个表示每个字符串片段的长度的列表。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">partitionLabels</span><span class="hljs-params">(string s)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">last</span><span class="hljs-params">(<span class="hljs-number">26</span>,<span class="hljs-number">-1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = s.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;i &gt;= <span class="hljs-number">0</span>;i--)&#123;
+            <span class="hljs-keyword">if</span>(last[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>] == <span class="hljs-number">-1</span>)&#123;
+                last[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>] = i;
+            &#125;
+        &#125;
+        vector&lt;<span class="hljs-type">int</span>&gt; result;
+        <span class="hljs-type">int</span> start = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> end = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;s.<span class="hljs-built_in">size</span>();i++)&#123;
+            end = <span class="hljs-built_in">max</span>(end,last[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>]);
+            <span class="hljs-keyword">if</span>(i == end)&#123;
+                result.<span class="hljs-built_in">push_back</span>(end - start + <span class="hljs-number">1</span>);
+                start = i + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：首先得到字符出现的最后的下标位置，然后重新遍历字符串，得到每个字符最后出现的位置。一旦前面的所有字符都出现完了，就算一个区间。</p>
+<p>上述做法使用贪心的思想寻找每个片段可能的最小结束下标，因此可以保证每个片段的长度一定是符合要求的最短长度，如果取更短的片段，则一定会出现同一个字母出现在多个片段中的情况。由于每次取的片段都是符合要求的最短的片段，因此得到的片段数也是最多的。</p>
+<p><strong>错误：思路有问题，没有做对</strong></p>
+<h3 id="Leetcode-122">Leetcode 122</h3>
+<p>给你一个整数数组 <code>prices</code> ，其中 <code>prices[i]</code> 表示某支股票第 <code>i</code> 天的价格。在每一天，你可以决定是否购买和/或出售股票。你在任何时候<strong>最多</strong>只能持有<strong>一股</strong>股票。你也可以先购买，然后在<strong>同一天</strong>出售。返回你能获得的<strong>最大</strong>利润 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+        <span class="hljs-type">int</span> stockSum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i=<span class="hljs-number">0</span>;i&lt;prices.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i++)&#123;
+            <span class="hljs-keyword">if</span>(prices[i<span class="hljs-number">+1</span>] &gt; prices[i])&#123;
+                stockSum = stockSum+prices[i<span class="hljs-number">+1</span>]-prices[i];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> stockSum;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：什么都不限制，涨了就卖就完事了，比较简单。贪心策略就是只要价格上涨就直接出售。</p>
+<p><strong>一遍AC</strong></p>
+<h3 id="Leetcode-406">Leetcode 406</h3>
+<p>假设有打乱顺序的一群人站成一个队列，数组 <code>people</code> 表示队列中一些人的属性（不一定按顺序）。每个 <code>people[i] = [hi, ki]</code> 表示第 <code>i</code> 个人的身高为 <code>hi</code> ，前面<strong>正好</strong>有 <code>ki</code>个身高大于或等于 <code>hi</code> 的人。</p>
+<p>请你重新构造并返回输入数组 <code>people</code> 所表示的队列。返回的队列应该格式化为数组 <code>queue</code> ，其中 <code>queue[j] = [hj, kj]</code> 是队列中第 <code>j</code> 个人的属性（<code>queue[0]</code> 是排在队列前面的人）。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;a,vector&lt;<span class="hljs-type">int</span>&gt; &amp;b)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(a[<span class="hljs-number">0</span>] != b[<span class="hljs-number">0</span>])&#123;
+            <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] &gt; b[<span class="hljs-number">1</span>];
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">reconstructQueue</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; people) &#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">result</span>(people.<span class="hljs-built_in">size</span>());
+        <span class="hljs-built_in">sort</span>(people.<span class="hljs-built_in">begin</span>(),people.<span class="hljs-built_in">end</span>(),cmp);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i=<span class="hljs-number">0</span>;i&lt;people.<span class="hljs-built_in">size</span>();++i)&#123;
+            <span class="hljs-type">int</span> pos = people[i][<span class="hljs-number">1</span>];
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> j=<span class="hljs-number">0</span>;j&lt;result.<span class="hljs-built_in">size</span>();j++)&#123;
+                <span class="hljs-keyword">if</span>(result[j].<span class="hljs-built_in">empty</span>())&#123;
+                    pos--;
+                &#125;
+                <span class="hljs-keyword">if</span>(pos == <span class="hljs-number">-1</span>)&#123;
+                    result[j] = people[i];
+                    <span class="hljs-keyword">break</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：将人员从低往高先排列，然后一个个进行插入。插入的人只会对后面的人有影响，因为后面的人的身高都会大于等于他。而对已经插入的人没有影响。因此插入的时候给后面的人要留出空位置，以便后面的人插入进去。如果身高相同，就去比较 <code>ki</code>。 <code>ki</code>更小一点的，说明这个人在靠前一点，也就是最小的 <code>ki</code>前面是不会有相同身高的人的，由于相同身高也会算在内，因此要先插入大 <code>ki</code>。</p>
+<p><strong>错误：思路有问题，没有做对</strong></p>
+<h3 id="Leetcode-665">Leetcode 665</h3>
+<p>给你一个长度为 <code>n</code> 的整数数组 <code>nums</code> ，请你判断在最多改变 <code>1</code> 个元素的情况下，该数组能否变成一个非递减数列。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">checkPossibility</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> count = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">if</span> (nums[i] &lt; nums[i - <span class="hljs-number">1</span>]) &#123;
+                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span> || nums[i] &gt;= nums[i - <span class="hljs-number">2</span>])&#123;
+                    nums[i - <span class="hljs-number">1</span>] = nums[i];
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    nums[i] = nums[i - <span class="hljs-number">1</span>];
+                &#125;
+                ++count;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> count &lt;= <span class="hljs-number">1</span>;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：要多种情况一起考虑。。。。</p>
+<p><strong>错误：思路有问题，没有做对。另外不要去改 <code>i+1</code>啊。。判断什么修改什么好吧，要不就乱套了。</strong></p>
+<h2 id="总结">总结</h2>
+<p>贪心算法确实是比较好理解的，但是怎么贪心？什么时候贪心？这些问题都要去详细认真的思考，真正出题的时候不会如此直白，要多练多想。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法</div>
+      <div>https://zhangzhao219.github.io/2022/08/27/Leetcode/Leetcode-101/Leetcode-101-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-3/" title="Leetcode 刷题笔记-Leetcode 101 第3章 双指针">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第3章 双指针</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

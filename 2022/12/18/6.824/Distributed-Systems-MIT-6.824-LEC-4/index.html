@@ -1,0 +1,933 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MIT-6.824（Spring 2022）LEC 4 Primary-Backup Replication">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT-6.824 Distributed Systems-LEC 4 Primary-Backup Replication">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/18/6.824/Distributed-Systems-MIT-6.824-LEC-4/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="MIT-6.824（Spring 2022）LEC 4 Primary-Backup Replication">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-ff55c97e63c2b1571e41c736e5f07bf6_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-3435bcea13d75fdb4741639f8e674282_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-4489f7267d3b9420243ea3a02adbba80_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-8ff15ec8bcc0154d88fda55c68e0a3f7_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-fb282163e7fc26950e1c12883cd6b159_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-5c0dc395147124b9d6aeaa915c356282_720w.webp">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/11/pSnSrQO.md.png">
+<meta property="article:published_time" content="2022-12-18T20:03:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Distributed Systems">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-ff55c97e63c2b1571e41c736e5f07bf6_720w.webp">
+  
+  
+  
+  <title>MIT-6.824 Distributed Systems-LEC 4 Primary-Backup Replication - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MIT-6.824 Distributed Systems-LEC 4 Primary-Backup Replication</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-18 20:03" pubdate>
+          2022年12月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          121 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MIT-6.824 Distributed Systems-LEC 4 Primary-Backup Replication</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MIT-6.824（Spring 2022）LEC 4 Primary-Backup Replication</p>
+<span id="more"></span>
+<h1>Fault-Tolerant Virtual Machines 论文阅读</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/523109983">参考翻译</a></p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/6.824/vm-ft.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="摘要">摘要</h2>
+<p>通过提供故障容错性的虚拟机，我们实现了一个商业化的企业级系统，建立在复制一个主虚拟机的执行过程到另一个服务器上的备份虚拟机的基础上。系统很容易使用，同时保证了应用的性能<strong>仅有少于10%的降低</strong>。另外，为了让主VM和二级VM的执行活动保持一致，对于几个实际的应用而言，需要的数据带宽少于20Mbit/s，这也允许实现更长距离的故障容错的可能性。一种容易使用，在故障后自动恢复备份的商业化系统，在复制VM执行之前需要额外的组件。我们已经设计并且实现了这些额外的组件，并且解决了在支持VM运行企业级应用的时候，遇到的许多实际问题。</p>
+<h2 id="1-简介">1. 简介</h2>
+<p>一个实现故障容忍服务器的常见方法是<strong>主备机制</strong>，主服务器失败的同时另外一个备份服务器立即进行接管，此时对于外部客户端而言，故障就相当于被隐藏了起来，并且不会造成数据丢失。因此在任何时间，备份服务器的状态必须和主服务器几乎保持一致，在备份服务器上复制状态的一种方法是将主服务器的所有状态，包括<strong>CPU、memory、IO设备</strong>，连续地送给备份服务器。然而，这种发送状态的方法，尤其是涉及到内存中的变更，其需要的带宽非常大。</p>
+<p>另一种可以用更少带宽复制服务器的方法类似于状态机。这种思路是将服务器建模为确定性的状态机，他们从相同的初始状态开始，并且确保以相同的顺序接收相同的输入请求，这样就能保持同步。因为大多数服务器或服务有一些不确定性的操作，因此必须使用额外的协调机制来确保主备同步。然而，需要保持主备一致性的额外信息数目，<strong>远远少于</strong>正在变更的主服务器上状态（主要是内存更新）的数目。</p>
+<p>实现协调机制来确保物理服务器的确定性操作是困难的，尤其随着处理器频率增长。反之，一个运行在管理程序（hypervisor）上的VM，是一个实现状态机方法的很好的平台。 <strong>一个VM可以被当作一个定义好的状态机，它的操作是机器被虚拟化的操作（包括它所有的设备）</strong> 。和物理服务器一样，VM有相同的非确定性操作（例如读取时钟或发送中断），因此为了保持同步，额外的信息必须被发送给备份服务器。管理程序（hypervisor）有VM的<strong>全权控制权利</strong>，包括处理所有输入，因此它能够获得所有与主VM上的非确定性操作有关的必要信息，并且能正确地重放这些操作。</p>
+<p>因此，这个状态机方法可以通过商业化软件上的VM来实现，它不需要硬件更改，允许在最新的微处理器上立刻实现故障容错。另外，状态机方法需要的低带宽允许了主备服务器能更好地进行物理分隔。例如，被复制的VM可以运行在横跨一个学校的物理机器上，相比于运行在同一建筑内的VM而言，可以提供更多的可靠性。</p>
+<p>我们在VMware vSphere 4.0平台上使用主备机制实现了故障容忍的VMs，VMware vSphere实现了一个完整的x86虚拟机，所以我们自动地能够为任何x86操作系统和应用提供故障容忍。这种允许我们记录一个主服务器执行，并确保备份服务器一致执行的基础技术是确定性重放。VMware vSphere Fault Tolerance(FT)是基于<strong>确定性重放（Deterministic Replay）</strong> 的，但是为了建立一个完整的故障容忍系统，还增加了必要的额外协议和功能。除了提供硬件故障容忍，我们的系统在一次失败后，通过在局部集群中任何可接受的服务器上开始一个新的备份虚拟机，进行自动地存储备份。目前确定性重放和VMare FT的产品版本只支持单处理器的VMs。多处理器VM的操作记录和重放还在开发中，因为每个共享内存的操作都是一个非确定性的操作，因此还有重要的性能问题待解决。</p>
+<p>Bressoud和Schneider描述了一个针对HP PA-RISC平台的故障容忍VMs的原型实现。我们的方法是相似的，但是出于性能原因，以及在调查了许多可替代设计后，我们已经做了一些基础性的改变。另外，为了建立一个完整的系统，而这个系统是有效的并且能够被正在运行企业级应用的客户使用，我们已经设计并实现了系统中许多额外的组件，可以处理许多实际问题。与大多数其他实际系统讨论的类似， <strong>我们只尝试应付fail-stop的故障</strong> ，这是一种服务器故障，可以在故障服务器造成一次不正确的外部可见行为之前被检测。（ <em>Hades注：fail-stop故障指的是，如果某些东西出现故障，只是单纯的停止运行，而不是运算出错误结果。比如电源线、服务器风扇导致CPU过热停止运行、网络等故障</em> ）</p>
+<h2 id="2-基本的FT设计">2. 基本的FT设计</h2>
+<p><img src="https://pic3.zhimg.com/80/v2-ff55c97e63c2b1571e41c736e5f07bf6_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>图1展示了我们系统在故障容忍VMs的基本步骤。对于一个给定的VM，我们希望提供故障容忍（主VM），我们在一个完全不同的物理机器上运行一个备份VM，保持和主VM同步并且执行一致，虽然存在短时间的滞后。我们说这两个VMs是虚拟的步调一致。VMs的虚拟磁盘是在一个<strong>共享存储</strong>中的（例如一个Fibre Channel或者iSCSI磁盘阵列），因此可以接受主备服务器的输入和输出。（我们将在4.1节中讨论带有分隔的非共享虚拟磁盘的主备VM的设计）只有主VM会说明它在网络中的存在，因此所有网络输入都会来到主VM上。相似地，所有其他输入（例如键盘和鼠标）也只会来到主VM上。</p>
+<p>所有主VM接收到的输入都会通过名为logging channel的网络连接，被发送到备份VM上。对于几个工作负载而言，主要的输入途径是网络和磁盘。为了保证备份VM和主VM使用相同的方式执行非确定性操作，下面2.1节讨论的额外的信息也需要发送。最终备份VM总是执行和主VM一致的操作。然而，备份VM的输出会被管理程序扔掉，因此只有主VM产生实际输出，并被返回给客户端。和2.2节中描述的一样，为了确保主VM失败后没有数据丢失，主备VM遵循一个具体的协议，包括备份VM明确的确认信息。</p>
+<p>为了检测主或备份虚拟机是否失败，我们的系统<strong>既使用相关服务器间的心跳机制，同时也监测 logging channel 上的流量</strong>。另外，我们我们必须确保<strong>只有主或备份VM执行操作</strong>，即使存在脑裂（split brain）的场景（在这种场景中主备服务器互相之间会失去通信）。</p>
+<h3 id="2-1-确定性重放的实现">2.1 确定性重放的实现</h3>
+<p>正如我们已经提到的，复制服务器（或者VM）的操作可以被建模为确定性状态机的复制。如果两个确定性的状态机以相同的初始状态开始，并且以相同的顺序提供确切的输入，它们将经历相同的状态序列并且产生相同的输出。一个虚拟机有很宽泛的输入，包括到来的网络包，磁盘读，以及来自键盘和鼠标的输入。非确定性事件（例如虚拟中断）和非确定性操作（例如处理器的时钟周期计数器）也会影响虚拟机的状态。这显示了对于正在运行任何操作系统和工作负载的任何虚拟机而言，复制执行有 <strong>三个挑战</strong> ：</p>
+<ol>
+<li>为了保证一个备份虚拟机的确定性执行，正确地得到<strong>所有输入以及非确定性执行</strong>是必要的。</li>
+<li><strong>正确地</strong>将输入与非确定性执行应用到备份虚拟机上。</li>
+<li>以一种<strong>不会引起性能退化</strong>的方式执行。</li>
+</ol>
+<p>另外，许多在x86处理器上的复杂操作还未被定义，因此会引起非确定性以及副作用。捕获这些未定义的操作并且重放它们产生相同的状态是一个额外的挑战。</p>
+<p>针对在VMare vSphere平台上的x86虚拟机，VMware确定性地重放恰好提供了这个功能。确定性重放记录了 VM 的输入以及与 VM执行相关的所有可能的不确定性的日志条目流，这些条目会被写入日志文件。在读取日志文件中的条目后，VM 操作会被精确地重放。 对于非确定性操作，为了允许操作以相同的状态变化和输出再现，需要记录足够的信息。 对于非确定性事件，例如定时器或 IO 完成中断，事件发生的确切指令也会被记录下来。 在重播期间，事件被传递在指令流中的同一位置。 VMware 确定性重放采用各种技术，<strong>实现了高效的事件记录和事件传递机制</strong>，包括使用AMD和英特尔联合开发的硬件性能计数器。</p>
+<p>Bressoud 和 Schneider提到将VM执行切分成不同的<strong>epoch</strong>，其中非确定性事件，例如中断仅在一个epoch结束时传递。 epoch的概念似乎被用作批处理机制，因为在它发生的确切指令处单独传递每个中断的成本太高。然而，我们的事件传递机制足够高效，以至于 VMware确定性重放<strong>不需要使用epochs</strong>。 每次中断在发生时被记录，并且在重放时有效地传递到适当的指令处。</p>
+<h3 id="2-2-FT协议">2.2 FT协议</h3>
+<p>对于 VMware FT而言，我们使用确定性重放来生成必要的日志条目来记录主VM的执行情况，但是不是将日志条目写入磁盘，而是<strong>通过日志通道将它们发送到备份VM</strong>。备份 VM 实时重放日志条目，因此与主 VM 的执行保持一致。 然而，我们必须在日志通道中使用严格的 FT 协议以增强日志条目，从而确保我们实现故障容忍。 我们的基本要求如下：</p>
+<p><strong>输出要求</strong> ：如果备份VM在主VM发生故障后接管，那么备份VM将继续以一种与主虚拟机发送到外部世界的所有输出<strong>完全一致</strong>的方式执行。</p>
+<p>请注意，在发生故障转移后（即备份 VM 需要在主VM故障后接管），备份VM开始执行的方式可能与主 VM 相当不同，因为在执行期间发生了许多非确定性事件。但是，只要备份VM满足输出要求，在故障转移到备份 VM期间 <strong>没有外部可见状态或数据的丢失</strong> ，客户端将注意到他们的服务没有中断或不一致。</p>
+<p>可以通过延迟任何外部输出（通常是网络数据包）直到备份VM 已收到重放的所有信息来确保输出要求，这些信息允许它至少执行到该输出操作的点。一个必要条件是备份 VM 必须接收到输出操作之前生成的所有日志条目。这些日志条目将允许它执行到最后一个日志条目的点。但是，假设失败是在主VM执行输出操作后立即发生。备份 VM 必须知道它必须继续重播到输出操作点，并且到那时只能“上线”（停止重播并作为主VM接管，如2.3 节所述）。如果备份将在输出操作之前的最后一个日志条目点上线，一些非确定性事件（例如计时器传递给 VM 的中断）可能会在执行输出操作之前改变其执行路径。</p>
+<p>给定上述的限制，强制满足输入要求的最容易的方式是在每个输出操作时创建一个特殊的日志条目。然后，输出要求一定被下面特殊的规则限制：</p>
+<p><strong>输出规则</strong> ：主VM可能不发送一个输出到外部世界，直到备份VM<strong>已收到并确认</strong>与产生输出的操作相关的日志条目。</p>
+<p>如果备份 VM 已收到所有日志条目，包括生成输出操作的日志条目，然后备份 VM 将能够准确地重现主 VM在输出点的状态，所以如果主VM死了， <strong>备份将正确地达到一个与输出一致的状态</strong> 。相反，如果备份VM在没有收到所有必要的日志条目的情况下接管，那么它的状态可能会 <strong>迅速分歧</strong> ，以至于与主服务器的输出不一致。输出规则在某些方面类似于 [11] 中描述的方法，其中“外部同步” IO 实际上可以被缓存，只要它在下一次外部通信之前确实被写入磁盘了。</p>
+<p>请注意，输出规则没有说明关于停止主VM执行的任何事。我们只需要延迟输出发送，但 VM 本身可以继续执行。由于操作系统通过异步中断来指示完成，因此可以执行非阻塞的网络和磁盘输出，VM可以轻松地继续执行并且不一定会立即受到输出延迟的影响。相比之下，以前的工作 [3, 9] 通常必须在执行输出之前完全停止主VM，直到备份 VM 已确认来自主 VM 的所有必要信息。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-3435bcea13d75fdb4741639f8e674282_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>作为一个例子，我们在图2中展示了 FT 协议的需求。该图显示了一个主VM和备份VM上的事件时间线。从主线到备份线的箭头表示日志条目的传输，从备份线路到主线路的箭头表示确认。有关异步事件、输入和输出操作的信息必须作为日志条目发送到备份VM并确认。如图所示，到外部世界的输出被延迟，直到主VM收到来自备份 VM 的确认，它已经收到与输出操作相关的日志条目。<strong>鉴于遵循输出规则，备份VM将能够以这样一种状态接管，即与主VM最后的输出一致。</strong></p>
+<p>我们不能保证一旦出现故障转移情况，所有输出都准确地产生一次。当主VM打算发送输出时， <strong>没有使用两阶段提交事务</strong> ，备份VM无法确定主VM是在发送它的最后一个输出之前还是之后立即崩溃。  <strong>幸运的是，网络基础设施（包括常用的TCP）旨在处理丢失的数据包和相同（重复）的数据包</strong> 。 请注意传入到主VM的数据包也可能在其故障的期间丢失，因此不会被传递给备份VM。 但是，传入的数据包可能会由于与服务器故障无关的任何原因被丢弃，因此网络基础设施、操作系统和应用程序都被写入，以确保他们可以弥补丢失的数据包。</p>
+<h3 id="2-3-检测与故障响应">2.3 检测与故障响应</h3>
+<p>如上所述，如果另一个 VM 出现故障，主备VMs必须快速响应。如果备份VM出现故障，主VM将上线，即离开记录模式（因此停止发送条目到日志通道）并开始正常执行。如果主VM失败，备份VM应该同样上线（go live），但过程更为复杂。由于其执行的滞后，备份 VM 可能会有许多它已收到并确认，但尚未消耗的日志条目，因为备份 VM 尚未达到执行的适当点。 <strong>备份VM必须继续重放日志条目，直到它消耗了最后一个日志条目</strong> 。此时，备份 VM 将停止重放模式并开始作为正常VM执行。本质上备份VM被提升为主VM（现在缺少备份VM）。由于它不再是备份 VM，当操作系统执行输出操作时，新的主VM现在将向外部世界生产输出。在过渡到正常模式期间，可能会有一些特定设备的操作需要允许正确地发送输出。特别是， <strong>出于联网目的，VMware FT 自动在网络上通告新的主VM的MAC 地址，以便物理网络交换机知道新的主 VM 所在的服务器</strong> 。此外，新提升的主VM可能需要重做一些磁盘 IO（如第 3.4 节所述）。</p>
+<p>有许多可能的方法来尝试检测主备VMs的故障。VMware FT在运行容错VMs的服务器之间使用  <strong>UDP心跳</strong> ，来检测服务器何时崩溃。此外，VMware FT 监控日志流量，包括从主到备的发送以及从备到主的确认。因为定时器中断，日志流量应该是有规律的，并且永远不会停止。因此，在日志条目或确认流中的中断可能表明VM故障。如果心跳或记录流量已停止超过特定超时时间（大约几秒钟），就可能发生故障了。</p>
+<p><strong>但是，任何此类故障检测方法都容易受到脑裂（split brain）问题的影响</strong> 。如果备份服务器停止接收来自主服务器的心跳，这可能表明主服务器出现故障，或者可能只是意味着所有仍在运行的服务器之间的网络连接丢失。如果备份VM随后上线，而主VM也仍然在运行，对于与VM通信的客户端而言可能会有数据损坏以及其他问题。因此，我们必须确保当检测到故障时，主VM和备份VM只有一个在线。为了避免脑裂问题，我们利用共享存储，来存储VM的虚拟磁盘。  <strong>当任一主或备份VM想要上线时，它会在共享存储中执行一个原子性的测试设置操作</strong> 。 如果操作成功，VM 被允许上线。 如果操作失败，那么另一个 VM 一定已经上线，所以当前虚拟机实际上停止了自己（“自杀”）。 如果尝试执行此原子操作时，VM 无法访问共享存储，然后它只是等待，直到可以访问。 注意如果由于存储网络上的某些故障而无法访问共享存储时，那么虚拟机可能无法做有用的工作，因为虚拟磁盘在同样的共享存储中，因此，为了解决脑裂问题而使用共享存储不会引入任何额外的不可接受性。（ <em>Hades注：使用共享存储这种解决方案本身使得主备又得以通信了，只不过是通过信号量，而非socket。</em> ）</p>
+<p>这个设计的一个最终方面是一旦故障发生并且一个VM已经上线，VMware FT自动地通过在另一个主机上开始一个新的备份VM，来恢复备份。虽然这个过程不能覆盖过去大部分的工作，但是对于故障容忍的VM有用，它是基础，需要仔细设计。</p>
+<h2 id="3-FT的实际执行">3. FT的实际执行</h2>
+<p>第二节描述了我们基础的设计以及FT协议。然而，为了创建一个有用的、健壮的以及自动化的系统，有许多其他组件必须设计实现。</p>
+<h3 id="3-1-启动与重启-FT-VMs">3.1 启动与重启 FT VMs</h3>
+<p>一个必须被设计的最大的额外组件是这种机制，即 <strong>启动一个拥有和主VM状态一样的备份VM</strong> 。当故障发生后重启一个备份VM时，这个机制也将变得很有用。因此，这个机制一定可用于一个处于任意状态的正在运行中的主VM。此外，我们希望该机制<strong>不会显著地中断主VM</strong>的执行，因为这会影响 VM 的任何当前客户端。</p>
+<p>对于 VMware FT而言，我们调整了VMware vSphere上现有的 <strong>VMotion</strong> 功能。 VMware VMotion [10] 允许以最少中断的方式，将正在运行的 VM 从一台服务器迁移到另一台服务器，VM的暂停时间通常不到一秒钟。我们创建了一个VMotion的修改形式，可在远程服务器上创建准确的 VM 运行副本，但不会破坏本地服务器的虚拟机。也就是说，我们修改后的 FT VMotion 将VM克隆到远程主机上而不是迁移它。 FT VMotion还设置了一个日志记录通道，并导致源VM作为主VM进入日志记录模式，而目的VM 作为备份进入重放模式。像平常的VMotion一样，FT VMotion 通常会中断主VM的执行不到一秒。因此，启用 FT在正在运行的 VM 上是一个简单的、无中断的操作。</p>
+<p>启动备份 VM 的另一个方面是选择一个运行它的服务器。容错 VM 在服务器集群中运行，可以访问共享存储，因此所有 VM通常可以运行在集群上的任何服务器中。这种灵活性允许VMware vSphere恢复FT冗余，即使一个或多个服务器失效。 <strong>VMware vSphere 实现了一种集群服务，用于维护管理以及资源信息</strong> 。 当发生故障并且主VM 现在需要一个新的备份 VM 来重新建立冗余时，主 VM 通知集群服务它需要一个新的备份。 集群服务基于资源利用率以及其他约束，决定运行备份VM最好的服务器，并调用 FT VMotion 以创建新的备份 VM。 结果是 VMware FT通常可以在几分钟内重新建立VM冗余，在一个故障容忍VM的执行上，所有这些都没有任何明显的中断。</p>
+<h3 id="3-2-管理日志通道">3.2 管理日志通道</h3>
+<p><img src="https://pic1.zhimg.com/80/v2-4489f7267d3b9420243ea3a02adbba80_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>在管理日志通道上的流量时，有许多有趣的实现细节。在我们的实现中，管理程序为主备 VM 的日志记录条目维持了一个大的 <strong>缓冲区</strong> 。当主 VM 执行时，它生成日志条目到缓冲区中，类似地，备份VM从它的日志缓冲区中消耗日志条目。主日志缓冲区的内容会被尽快刷新到日志记录通道，这些日志条目一到日志通道，就会被读取到备份的日志缓冲区。备份每次从网络上读取一些日志条目到它的日志缓冲区时，都会发送确认返回给主VM。这些确认允许 VMware FT 确定一个被输入规则延迟的输出何时可以被发送。图3说明了这个过程。</p>
+<p>如果备份 VM 在需要读取下一个日志条目时，遇到空的日志缓冲区，它将停止执行直到有新的日志条目可用。由于备份 VM 是不与外部通信的，此暂停不会影响任何VM 的客户端。同样地，当主VM需要写入一个日志条目时，如果主VM遇到一个完整的日志缓冲区，它必须停止执行，直到可以刷新日志条目。这种执行的停止是一种自然的流控制机制，当主VM生产日志条目太快了，它会减慢主VM。但是，此暂停可能会影响VM的客户端，因为主 VM 将完全停止并且无响应，直到它可以记录其条目并继续执行。因此，我们的实现必须设计为尽量减少主日志缓冲区填满的可能性。</p>
+<p>主日志缓冲区可能填满的原因之一是备份 VM 执行速度太慢，因此消耗日志条目太慢。 <strong>一般来说，备份VM必须能够以与正在记录执行的主VM大致相同的速度重放执行</strong> 。幸运的是，在 VMware 确定性重放中，记录和重放的开销大致相同。然而，如果由于其他VMs，托管备份 VM 的服务器负载很重（因此过度使用资源），备份VM 可能无法获得足够的 CPU 和内存资源，来与主 VM 一样快地执行，尽管备份管理程序的VM调度器已经尽了最大努力。</p>
+<p>如果日志缓冲区填满，除了避免意外暂停，还有另一个原因是我们不希望滞后变得太大。如果主VM出现故障，备份VM必须通过重放它在上线和开始与外部世界交流之前已经确认的所有日志条目来“赶上”。完成重放的时间基本上是失败点的执行延迟时间，所以 <strong>备份上线的时间大约等于故障检测时间加上当前执行时差</strong> 。因此，我们不希望执行滞后时间太大（超过一秒），因为这将显著地增加故障转移时间。</p>
+<p>因此，我们有一个额外的机制减慢主VM，以防止备份 VM 获取太滞后了。在我们的发送和确认日志条目的协议中，我们发送附加信息来确定主备VM之间的实时执行滞后。通常执行滞后小于 100 毫秒。 <strong>如果备份 VM 有一个显著的执行滞后（例如，超过 1 秒），VMware FT 通过通知调度程序给它稍微少一点的CPU（最初只是百分之几）来减慢主 VM</strong> 。我们使用一个缓慢的反馈循环，这将尝试逐步确定适当的 CPU 限制，将允许主备 VM同步执行。如果备份 VM 继续滞后，我们继续逐步降低主VM的 CPU 限制。反之，如果备份VM赶上，我们逐渐增加主VM的 CPU 限制，直到备份虚拟机恢复轻微的滞后。</p>
+<p>请注意，主VM的这种减速很少见，通常只在系统处于低压力时发生。第 5 节的所有性能编号包括任何此类放缓的成本。</p>
+<h3 id="3-3-FT-VMs上的操作">3.3 FT VMs上的操作</h3>
+<p>另一个实际问题是处理各种控制操作，它们可以应用于主 VM 。例如，如果主VM明确关闭电源，备份 VM 也应该停止，而不是尝试上线。 再举一个例子，任何主VM上的资源管理更改（例如增加 CPU 份额）应该 也适用于备份。 对于此类操作，为了影响备份进行合适的操作，特殊的控制条目通过日志通道从主发送到备份。</p>
+<p>一般来说，VM 上的大部分操作都应该仅在主 VM 上初始化。 VMware FT 然后发送任何必要的控制条目以造成备份VM上适当的更改。 唯一可以独立在主VM和备份VM上完成的操作是 VMotion。 那即，主VM和备份VM可以独立被 VMotioned到其他主机。 请注意，VMware FT 确保两个 VM 都不会移动到另一个 VM 所在的服务器，因为这种场景将不再提供故障容忍。</p>
+<p>主VM的VMotion增加了比普通VM更多的复杂性，因为备份VM一定会与源主VM失去连接以及在适当的时间重连。备份VM的VMotion有一个相似的问题，但是只增加了一个额外的复杂性。对于一个正常的VMotion而言，我们需要当VMotion上最后的切换发生时，所有的磁盘IO停止（或完成）。对于一个主VM而言，这种停顿是容易应付的，通过等待直到物理IO完成并将这些完成信息发送给VM。然而，对于一个备份VM而言，没有容易的方式来使得所有IO在任何需要的时刻完成，因为备用VM必须重放主VM的执行过程，并在相同的执行点完成IO。主VM可能正运行在一个工作负载上，在正常执行过程中总是有磁盘IO。VMware FT有一个独一无二的方法来解决这个问题。当一个备份VM是在VMotion最后的切换点时，它需要通过日志通道来告知主VM临时停止所有IO。备份VM的IO将自然地被停止在一个单独的执行点，因为它需要重放主VM的停止操作的过程。</p>
+<h3 id="3-4-磁盘IO的实现问题">3.4 磁盘IO的实现问题</h3>
+<p>有许多与磁盘IO相关的微小的实现问题。首先，假设磁盘操作是非阻塞的，因此访问相同磁盘位置的并行、同时执行的磁盘操作将引起非确定性。此外，我们的磁盘 IO 实现使用DMA 直接from/to虚拟机的内存，所以同时访问相同内存页的磁盘操作也可能导致不确定性。我们的解决方案是 <strong>经常检测任何此类 IO 竞争</strong> （很少见），以及强制此类竞争磁盘操作在主备VM上按顺序执行。</p>
+<p>第二，通过 VM 中的应用程序（或操作系统）时，<strong>磁盘操作与内存访问</strong>也会存在竞争，因为磁盘操作通过 DMA 直接访问 VM 的内存。例如，如果一个VM 中的应用程序/操作系统正在读取内存块，同时对该块进行磁盘读取。（ <em>Hades注：这里的意思应该是，该块内存作为DMA操作的目的地址。</em> ）这个情况也不太可能发生，但如果它发生，我们必须检测它并处理它。一种解决方案是临时设置页保护，在作为磁盘操作目标的页面上。如果VM 碰巧访问一个页，同时该页面也是磁盘操作的目标，页保护将导致一个陷阱（ <em>Hades注：trap，陷入系统调用</em> ），VM将暂停直到磁盘操作完成。 <strong>因为改变页上的MMU 保护是一项昂贵的操作，所以我们选择使用 <em>弹跳缓冲区（Bounce Buffer）</em> 代替</strong> 。bounce buffer是临时缓冲区，与正在被磁盘操作访问的内存大小相同。磁盘读取操作被修改为读取指定数据到bounce buffer，并在在IO完成时将数据复制到内存中。相似地，对于磁盘写操作，首先将要发送的数据复制到bounce buffer，磁盘写入修改为向bounce buffer写入数据。bounce buffer的使用会减慢磁盘操作，但我们还没有看到它会导致任何明显的性能损失。（ <em>Hades注：bounce buffer存在的意义是在内存访问这个操作之前加了一个拦截器，其最本质的意义是为了supervisor监控DMA操作，使得数据从bounce buffer拷贝到到内存和系统中断这两个步骤，能够同时在backup VM上被复制， <strong>否则网卡直接将网络数据包DMA到Primary虚机中这个操作是无法通过log channel进行复制的</strong> 。</em> ）</p>
+<p>第三，有一些与故障发生并且备份VM接管时，主VM未完成的磁盘 IO 相关的问题。对于新上线的主VM，没有办法确定磁盘IO是有问题的还是成功完成了。另外，由于磁盘IO没有从外部发布到备用VM上，而是通过主备传递，因此对于继续运行的新上任的主VM来说，将没有明确的IO完成信息，最终将导致VM上的操作系统开始中止或者重调度程序。我们能够发送一个错误完成，表示每个IO失败，因为即使IO成功完成了，它可以接受返回一个错误。然而，操作系统可能不能对这些来自本地磁盘的错误有很好的响应。反之，我们在备份VM上线的过程中，重新发送这些悬挂着的IO。因为我们已经限制了所有的竞争和所有的直接指定内存和磁盘的IO，这些磁盘操作可以被重新发送，即使它们已经成功完成了（即他们是<strong>幂等的</strong>）。</p>
+<h3 id="3-5-网络IO的实现问题">3.5 网络IO的实现问题</h3>
+<p>VMware vSphere针对VM网络提供了很多性能优化。一些优化是基于管理程序（supervisor） <strong>异步更新虚拟机的网络设备状态</strong> 。例如，当VM正在执行时，接收缓冲区可以由管理程序直接更新。不幸的是这些对 VM 状态的 <strong>异步更新会增加不确定性</strong> 。除非我们可以保证所有更新都发生在主备指令流上的同一点，否则备份VM的执行可能与主VM的执行不同。</p>
+<p>对于FT而言，网络仿真代码的最大变化是禁用异步网络优化。异步更新带有传入数据包的VM环形缓冲区的代码已被修改，以强制管理程序捕获到操作系统，它可以在其中记录更新然后将它们应用到 VM。同样，异步地将数据包从传输队列中拉出也被修改了，取而代之的是通过管理程序traps来完成传输（如下所述）。</p>
+<p>网络设备异步更新的消除结合第 2.2 节中描述的发送数据包的延迟带来了一些网络性能的挑战。我们采取了两种方法在运行 FT 时提高 VM 的网络性能。第一，我们实施了集群优化以减少 VM 的陷阱和中断。当 VM 以足够的比特率流式传输数据时，管理程序可以对每组数据包做一个传输trap，在最好的情况下零trap，因为它可以传输所接收新数据包的一部分数据包。同样地，通过仅对于一组数据包发布中断，管理程序可以将接收包的中断数量减少。</p>
+<p>我们对网络的第二个性能优化涉及 <strong>减少传输数据包的延迟</strong> 。如前所述，管理程序必须延迟所有发送的包直到它得到备份VM对于某些日志条目的确认。减少发送延迟的关键在于减少发送/接收备份VM信息的所需时间。我们的主要优化包括 <strong>保证收发信息在无需任何线程上下文切换的情形下就可以被执行</strong> 。VMware vSphere管理程序允许函数被注册到TCP栈中，只要TCP数据被接收到了，函数就会被一个延期执行的上下文调用（和Linux中的tasklet类似）。这允许我们快速处理备份VM上任何即将到来的日志消息，以及主VM接收的任何确认消息，而不需要任何线程上下文的切换。另外，当主VM有一个包要寄出去时，我们强制一次相关输出日志条目的日志刷出（正如2.2节中所描述的），通过调度一个延迟执行的上下文来执行这次刷出。</p>
+<h2 id="4-替代设计">4. 替代设计</h2>
+<p>在我们VMware FT的实现中，我们已经探索了许多有趣的替代设计。在这节中，我们探索一些替代设计。</p>
+<h3 id="4-1-共享-vs-非共享磁盘">4.1 共享 vs. 非共享磁盘</h3>
+<p>在我们默认的设计中，主备VM共享相同的虚拟磁盘。因此，如果一次故障转移发生，共享磁盘的内容自然是正确、可接受的。必要地，对于主备VM来说，共享磁盘被认为是外部的，因此任何共享磁盘的写入被认为是一次与外部世界的沟通。因此，只有主VM做这种实际的磁盘写入，并且为了遵循输出规则，这种写入必须被延迟。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-8ff15ec8bcc0154d88fda55c68e0a3f7_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>对于主备VM而言，一种可替代的选择是分隔的虚拟磁盘。在这种设计中，备份VM要执行所有虚拟磁盘的写入操作。而且这样做的话自然要保持它的虚拟磁盘内容与主VM虚拟磁盘内容一致。图4阐述了这种配置。在非共享磁盘的情况下，虚拟磁盘必须被认为是每个VM的内部状态。因此，依据输出规则， <strong>主VM的磁盘写入不必延迟</strong> 。在共享存储不能被主备VM接受的情况下，非共享的设计是相当有用的。这种情况可能是由于共享存储不可接受或者太昂贵，或者由于运行主备VM的服务器相隔太远（“长距离FT”）。非共享设计的一个缺点是在首次启动故障容错时，虚拟磁盘的两个复制必须以相同的方式进行显示同步。另外，发生故障后磁盘 <strong>可能会不同步</strong> ，因此当在一次失败后备份VM重启的时候，他们必须再显式地同步。FT VMotion必须不止同步主备VM的运行状态，还要同步他们的磁盘状态。</p>
+<p>在这种非共享磁盘的配置中，他们也能应付脑裂场景。在这种场景中，系统能够 <strong>使用一些其他的外部决策者</strong> ，例如所有服务器可以沟通的一个第三方服务。如果服务器是超过两个节点的集群的一部分，这个系统能够基于集群关系使用一种majority算法。在这个例子中，一个VM能够被允许上线，如果它正在一个服务器上运行，这个服务器是包含大多数原始节点的正在通信的子集群的一部分。</p>
+<h3 id="4-2-在备份VM上执行磁盘读">4.2 在备份VM上执行磁盘读</h3>
+<p>在我们默认的设计中，备份的VM从不会从它自己的虚拟磁盘上读取（无论共享还是非共享）。 <strong>因为磁盘读取被认为是一个输入</strong> ，它是自然地通过日志通道将磁盘读取的结果发送到备份VM上。</p>
+<p>一种替代的设计是 <strong>让备份VM执行磁盘读取</strong> ，因此消除了磁盘读取的日志。对于大多数时候都做磁盘读取的工作负载而言，这种方法可以很好地降低日志通道上的流量。然而，这种方法有很多小问题。它可能会减慢备份VM的执行速度，因为备份VM必须执行所有的磁盘读取，当到达VM执行中主VM已经完成的位置时，如果备份上的磁盘读取还没完成就必须等待。</p>
+<p>同样地， <strong>为了处理失败的磁盘读取操作，必须做一些额外的工作</strong> 。如果一个主VM的磁盘读取成功了，但是相应的备份VM磁盘读取失败了，备份VM的磁盘读取必须重试直到成功。因为备份VM必须获得和主VM一样的数据到内存中。相反地，如果一个主VM的磁盘读取失败了，目标内存的内容必须通过日志通道发送给备份服务器，因此内存的内容将被破坏，不能被备份VM成功的磁盘读取复制。</p>
+<p>最后，如果这种磁盘读取被用于共享磁盘配置的话，还有一个小问题。如果主VM做了一次对具体磁盘位置的读取，然后紧跟相同磁盘位置的写入，然后这个磁盘写必须被延迟到备份VM已经执行了第一次磁盘读取。这种依赖可以被检测和正确处理，但是需要增加实现上额外的复杂性。</p>
+<p>在5.1节中，对于实际的应用而言，我们给出一些性能结果以表示在备份VM上执行磁盘读取会造成一些轻微的吞吐量减少(1-4%)，因此在日志通道的带宽被限制的情况下，在备份VM上执行磁盘读取可能是有用的。</p>
+<h2 id="5-性能评估">5. 性能评估</h2>
+<p>在这节中，我们做了一次VMware FT性能的基础评估，针对许多应用负载以及网络基准。为了得到这些结果，我们在一样的服务器上运行主备VM，每个都带9个Intel Xeon 2.8Ghz CPUs and 8Gbytes of RAM。服务器间通过10 Gbit/s的交换机连接，但是在所有的例子中都能看到被使用的网络带宽远远少于1Gbit/s。从一个通过标准的4Gbit/s的光纤通道网络连接的EMC Clariion中，服务器可以连接他们的共享虚拟磁盘。客户端通过1 Gbit/s的网络来驱动一些连接服务器的工作负载。</p>
+<p>我们评估性能结果的应用如下所示。SPECJbb2005是工业标准的Java应用基准，非常耗费CPU和内存，但是IO非常少。Kernel Compile是一种运行Linux核编译的工作负载。由于许多编译过程的创建和毁灭，这个工作负载做很多磁盘读取和写入，是非常耗费CPU和MMU的。Oracle Swingbench是被Swingbench OLTP工作负载（在线事务处理）驱动的一个Oracle 11g的数据库。这个工作负载做连续的磁盘和网络IO，有80个同时在线的数据库会话。MS-SQL DVD Store是一种工作负载，运行了一个Microsoft SQL Server 2005的数据库，有60个同时在线的客户端。</p>
+<h3 id="5-1-基本性能结果（Basic-Performance-Results）">5.1 基本性能结果（Basic Performance Results）</h3>
+<p><img src="https://pic2.zhimg.com/80/v2-fb282163e7fc26950e1c12883cd6b159_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>表 1 列出了基本的性能结果。对于每个应用程序，第二列给出了应用程序的性能比例，运行服务器工作负载的虚拟机上启用和未启用FT的情况。性能比小于 1 表示带FT的工作负载更慢。显然，这些有代表性的工作负载上启用FT 的开销小于10%。 SPECJbb2005 完全受计算限制，没有空闲时间，但其表现性能良好，因为它具有最小的除定时器中断以外的不确定性事件。另一个工作负载做磁盘 IO 有一些空闲时间，所以一些FT 开销可能被 FT虚拟机的空闲时间更少的真实情况隐藏。然而，一般的结论是VMware FT 能够支持故障容忍VM，并且具备相当低的性能开销。</p>
+<p>在表的第三列中，我们给出了当应用程序正在运行时，在日志通道上发送数据的平均带宽。对于这些应用程序，日志带宽相当合理，1 Gbit/s的网络就能满足 。事实上，低带宽要求表明多个 FT 工作负载可以共享相同的 1 Gbit/s网络，同时没有任何负面的性能影响。</p>
+<p>对于运行常见操作系统的 VM，例如Linux 和 Windows，我们发现当操作系统空闲时，通常的日志记录带宽为 0.5-1.5 Mbits/sec。&quot;空闲&quot;带宽主要是记录定时器中断发送的结果。对于具有活动中工作负载的 VM而言，日志带宽由网络和必须发送到备份的磁盘输入主导—网络收到的数据包和从磁盘读取的磁盘块。因此，对于非常高的网络接收或者磁盘读取带宽的应用而言，日志带宽高于表1中的测量值。对于这类应用而言，日志通道的带宽可能是瓶颈，特别是日志通道还有其他使用时。</p>
+<p>对于许多实际应用程序而言， <strong>日志记录所需的带宽相对较低，这使得基于重放的故障容忍对于使用非共享磁盘的长距离配置非常有吸引力</strong> 。对于远距离配置而言，其主备VM可能相隔1-100公里，光纤可以轻松地支持延迟小于 10 毫秒的100-1000 Mbit/s带宽。对于表 1 中的应用而言，主备之间的额外往返延迟，可能会导致网络和磁盘输出最多延迟 20 毫秒。远距离配置仅适用于这类应用程序：他的客户端可以容忍每个请求的额外延迟。</p>
+<p>对于两个最占用磁盘空间的应用程序，我们测量了在备份 VM上执行磁盘读取（如第 4.2 节所述）与通过日志记录通道发送磁盘读取数据相比，对于性能的影响。对于 Oracle Swingbench来说，在备份VM上执行磁盘读取时的吞吐量降低约 4%；对于 MS-SQL DVD 存储，吞吐量约降低 1%。同时，Oracle Swingbench的日志带宽从 12 Mbits/sec 降低到 3 Mbits/sec，MS-SQL DVD 存储从 18 Mbits/sec 降低到 8 Mbits/sec。显然，对于具有更大磁盘读取带宽的应用程序，带宽可能会节省很多。如第 4.2 节所述，预计在备份 VM 上执行磁盘读取时，性能可能会更差。但是，对于日志通道的带宽是有限的（例如，远程配置）情况下，在备份 VM 上执行磁盘读取可能有用。</p>
+<h3 id="5-2-网络基准测试（Network-Benchmarks）">5.2 网络基准测试（Network Benchmarks）</h3>
+<p>出于多种原因。网络基准测试对我们的系统来说非常具有挑战性。第一，高速网络会有一个非常高的中断率，这需要以非常高的速度记录和重放异步事件。 第二，以高速率接收数据包的基准将导致高速率的日志流量，因为所有这些数据包必须通过日志通道发送到备份。第三，发送数据包的基准测试将受制于输出规则，延迟网络数据包的发送直到已收到来自备份VM的确认。 此延迟会增加对客户端测量的延迟。这种延迟还可能会降低到客户端的网络带宽，因为网络协议（如 TCP）由于往返延迟增加，可能不得不降低网络传输速率。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-5c0dc395147124b9d6aeaa915c356282_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>表 2 给出了我们通过标准的netperf 基准测试，多次测量的结果。在所有这些测量中，客户端 VM 和主 VM 通过 1 Gbit/s 网络连接。前两行给出了主备主机间通过1 Gbit/s 的日志通道连接时，发送和接收的性能。第三行和第四行给出当主备服务器通过10 Gbit/s的日志通道连接时，发送和接收的性能，不仅带宽更高，延迟也低于 1 Gbit/s。作为一个粗略的测量，在1 Gbit/s 网络连接的管理程序之间， ping 时间约为 150 微秒，而对于 10 Gbit/s 连接，ping时间大约需要 90 微秒。</p>
+<p>未启用 FT 时，主 VM 对于接收和发送，可以实现接近 (940 Mbit/s) 1 Gbit/s 的线路传输速率。当为接收工作负载启用 FT 时，日志记录带宽非常大，因为所有传入的网络数据包必须在日志通道上发送。因此，日志记录通道可能成为瓶颈，正如1 Gbit/s 日志网络的结果。对于 10 Gbit/s 的日志网络，影响则小了很多。当为上传工作负载启用 FT 时，上传数据包的数据不会记录，但仍必须记录网络中断。日志带宽要低得多，因此可实现的网络上传带宽高于网络接收带宽。 <strong>总的来说，我们看到 FT 在非常高的上传和接收速率情况下，可以显著地限制网络带宽，但仍然可以实现很高的速率</strong> 。</p>
+<h2 id="7-结论与今后的工作">7. 结论与今后的工作</h2>
+<p>我们在VMware vSphere 中设计并实施了一个高效完整的系统(FT) ，用于为服务器上运行的虚拟机提供容错。我们的设计基于复制主VM中的执行，再通过另一台主机上的备份VM执行VMware确定性重放。如果运行主 VM的服务器出现故障，备份 VM 能立即接管且不会中断或丢失数据。</p>
+<p>总体而言，在商业硬件上运行VMware FT时，故障容错VM的性能非常出色，并且对于某些典型应用程序，其开销低于 10%。大多数 VMware FT 的性能成本来自于使用 VMware 确定性重放来保持主备VM同步。因此，VMware FT 的低开销源自 VMware 确定性重放的效率。此外，保持主备同步所需的日志带宽非常小，通常小于 20 Mbit/s。因为日志带宽在大多数情况下很小，主备相隔很长的距离（1-100公里）似乎也是可行的实施配置。因此，VMware FT 可用于这种场景：可以防止整个站点发生故障的灾难。值得注意的是，日志流通常是可压缩的，因此简单的压缩技术可以显著地减少日志带宽，虽然有少量额外的 CPU 开销。</p>
+<p>我们对 VMware FT 的结果表明， <strong>一个高效的故障容错VM的实现可以建立在确定性重放的基础上</strong> 。 <strong>这样的系统可以透明地为运行任何操作系统和应用的虚拟机提供容错能力，仅会带来极小的开销</strong> 。然而，对客户有用的故障容错VM系统而言，它必须还具有强大、易于使用和高度自动化的特点。一个可用的系统除了复制虚拟机执行之外，还需要许多其他组件。特别是VMware FT 故障后自动地恢复冗余，通过在本地集群中找到合适的服务器并在其上创建一个新的备份VM。通过解决所有必要的问题，我们已经展示了一个在客户的数据中心可用于实际应用的系统。</p>
+<p>通过确定性重放实现容错的权衡之一是当前确定性重放仅针对单处理器VM 。然而，单处理器虚拟机足够应付各种各样的工作负载，特别是因为物理处理器不断变得更加强大。此外，许多工作负载可以通过使用许多单处理器的虚拟机来扩展，而不是通过使用一个更大的多处理器虚拟机来扩展。多处理器 VM 的高性能重放是一种活跃的研究领域，并且可以潜在地被微处理器中的一些额外硬件支持。一个有趣的方向可能是扩展事务内存模型以促进多处理器重放。</p>
+<p>将来，我们也有兴趣扩展我们的系统处理部分硬件故障。通过部分硬件故障，我们的意思是服务器上功能或冗余的部分丢失，不会导致损坏或丢失数据。一个例子是到 VM所有网络连接的丢失，或在物理服务器中备用电源丢失。如果在运行主 VM 的服务器上发生部分硬件故障，在许多情况下（但不是all) 故障转移到备份 VM 将是有利的。这样的故障转移对于关键VM而言，可以立即恢复完整服务，并确保虚拟机从可能不可靠的服务器上快速地移走。</p>
+<h1>LEC 4</h1>
+<h2 id="故障">故障</h2>
+<p>我们希望复制方案可以处理的故障：</p>
+<ol>
+<li>只处理Fail-Stop类型的故障，也就是基础设施的故障导致计算机不能正常运行的类型的失败。因此失败是一瞬间发生的，这样的失败也不会产生一些奇怪的结果。
+<ol>
+<li>排除了逻辑错误（也就是代码错误）</li>
+<li>排除了配置错误</li>
+<li>排除了恶意错误（不能处理黑客、攻击者模拟出来的错误等）</li>
+</ol>
+</li>
+<li>可能处理的：比如地震等，但是我们不关注，因为主从机器都在一个机房中</li>
+</ol>
+<h2 id="挑战">挑战</h2>
+<p>如果发生了故障，主机器真的挂掉了吗？</p>
+<p>在分布式系统中，没有办法区分网络分区和机器故障的区别，因此很有可能主机器并没有挂掉，有一些客户端还能访问主机器，但是从机器和主机器之间的网络有问题，无法互相访问到，所以从机器认为主机器已经挂掉了。因此不能有两个主机器同时存在的情况，也就是脑裂问题。</p>
+<p>如何保持主从同步？</p>
+<p>如果主机器挂了，从机器要从主机器挂掉的地方直接开始，这就意味着从机器的状态与主机器的状态相同，都是最新的。从客户端的角度感知不到这种变化。</p>
+<p>非常困难：</p>
+<ul>
+<li>我们在主机器上的所有改变都要按照相同的顺序应用到从机器上</li>
+<li>解决非确定性问题，也就是相同的更改在两台机器上作的改变必须相同</li>
+<li>故障转移：要弄明白主机器在挂掉之前有没有发送过数据包，再发送一次是否可行（或者是如果所有机器都挂掉了，回来之后哪个机器上有最新的状态呢？）</li>
+</ul>
+<h2 id="两种主从复制方法">两种主从复制方法</h2>
+<ul>
+<li>状态转移：客户端与主机器进行交互，主机器更新状态，每隔一段时间有一个检查点，将状态传给从机器。因此一旦主机器有了状态的改变，这个状态就要马上传递给从机器。</li>
+<li>状态机复制：不发送状态给从机器，而是将对主机器进行更改的操作发送给从机器。</li>
+</ul>
+<p>两种方法都是目前流行的方法，状态转移的缺点是如果一个操作生成了很多状态，这个传输的数据量非常大，因此如果只发送操作过去就很轻松。</p>
+<h2 id="复制操作的级别">复制操作的级别</h2>
+<p>应用级别：文件追加写入，需要在应用程序上进行修改</p>
+<p>机器级别：寄存器指令级别的复制，只有x86指令，不涉及应用程序方面的更改，可以使用虚拟机实现，从而不用再硬件级别上实现。</p>
+<h2 id="VM-FT">VM-FT</h2>
+<p>利用虚拟化技术，使得复制操作对应用程序是透明的，应用程序认为仅有一台服务器，并且也同时提供了很强的一致性。</p>
+<h3 id="概览">概览</h3>
+<p>虚拟机监控器（hypervisor）：在实际硬件上运行，虚拟出多个虚拟的硬件</p>
+<p>任何我们看到的外部事件实际上都经过了hypervisor，例如一个外部中断，hypervisor会先观察到并决定什么时候传递给虚拟机</p>
+<p>多个hypervisor之间通过logging channel进行通信，从而进行操作的精确复制</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSnSrQO"><img src="https://s1.ax1x.com/2023/01/11/pSnSrQO.md.png" srcset="/img/loading.gif" lazyload alt="pSnSrQO.md.png"></a></p>
+<p>storage server可以对谁当主机器进行仲裁</p>
+<p>如果主机器和从机器不能相互通信，但是都能看到storage server，两台机器都会进行test-and-set操作，比较早的那一个就会成为主机器。</p>
+<h3 id="设计">设计</h3>
+<p>目标：多台虚拟机对外表现为单一的机器</p>
+<p>问题：差异来源导致两台机器表现不一样</p>
+<p>非确定性指令：</p>
+<ul>
+<li>获取时间的指令</li>
+<li>数据的输入顺序需要相同</li>
+<li>中断指令的顺序需要相同</li>
+<li>多核——这篇论文中不允许</li>
+</ul>
+<h4 id="中断">中断</h4>
+<p>确定性指令不需要通过logging channel进行通信</p>
+<p>中断发生后，会传递给从机器中断发生的前一个指令号，但是从机器并不会马上去执行，而是缓存下来，等到下一条中断指令传递过来之后，再执行前一条指令。这样会落后一条指令</p>
+<h4 id="非确定性指令">非确定性指令</h4>
+<p>在机器启动之前会遍历全部的指令，确保浏览到全部的非确定性指令，不会直接执行，而会交给hypervisor进行控制。hypervisor执行的时候会额外记录下这些指令操作后的对应结果。传递的时候会同时对结果进行传递，这样从机器不需要真正去执行，直接修改结果就可以。</p>
+<h2 id="性能">性能</h2>
+<p>指令级别的复制会付出性能的代价</p>
+<p>论文的实验表明带宽会降低大概30%左右，由于主机器接收来自客户端的输入，然后传递给从机器，这个过程中主机器必须等待，才能将响应传递给客户端。</p>
+<p>因此状态机复制的方法并不常用的原因之一是性能会下降。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Distributed-Systems/" class="print-no-link">#Distributed Systems</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MIT-6.824 Distributed Systems-LEC 4 Primary-Backup Replication</div>
+      <div>https://zhangzhao219.github.io/2022/12/18/6.824/Distributed-Systems-MIT-6.824-LEC-4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/17/6.824/Distributed-Systems-MIT-6.824-LEC-3/" title="MIT-6.824 Distributed Systems-LEC 3 GFS">
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-LEC 3 GFS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

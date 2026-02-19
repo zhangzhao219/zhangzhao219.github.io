@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="简易抖音项目-用户模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简易抖音项目-用户模块">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/24/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Project-Users/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="简易抖音项目-用户模块">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/02/03/pSsNise.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/02/03/pSsl600.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/02/03/pSs80pD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/02/03/pSst2rQ.png">
+<meta property="article:published_time" content="2023-01-24T17:22:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.191Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/02/03/pSsNise.png">
+  
+  
+  
+  <title>简易抖音项目-用户模块 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">简易抖音项目-用户模块</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-24 17:22" pubdate>
+          2023年1月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          961 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">简易抖音项目-用户模块</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>简易抖音项目-用户模块</p>
+<span id="more"></span>
+<h1>简易抖音项目-用户模块设计说明</h1>
+<h2 id="需求分析">需求分析</h2>
+<p>用户模块包括用户注册、用户登录和用户信息三个部分。</p>
+<h3 id="1-用户注册接口-douyin-user-register">1. 用户注册接口 /douyin/user/register/</h3>
+<p>新用户注册时提供用户名，密码，昵称即可，用户名需要保证唯一。创建成功后返回用户 id 和权限token.</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs proto"><span class="hljs-keyword">service </span><span class="hljs-title class_">UserRegister</span> &#123;
+    <span class="hljs-function"><span class="hljs-keyword">rpc</span> UserRegister (douyin_user_register_request) <span class="hljs-keyword">returns</span> (douyin_user_register_response) </span>&#123;&#125;
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_register_request</span>&#123;
+    <span class="hljs-type">string</span> username = <span class="hljs-number">1</span>; <span class="hljs-comment">// 注册用户名，最长32个字符</span>
+    <span class="hljs-type">string</span> password = <span class="hljs-number">2</span>; <span class="hljs-comment">// 密码，最长32个字符</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_register_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">4</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;</code></pre></div>
+<h3 id="2-用户登录接口-douyin-user-login">2. 用户登录接口 /douyin/user/login/</h3>
+<p>通过用户名和密码进行登录，登录成功后返回用户 id 和权限 token</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs proto"><span class="hljs-keyword">service </span><span class="hljs-title class_">UserLogin</span> &#123;
+    <span class="hljs-function"><span class="hljs-keyword">rpc</span> UserLogin (douyin_user_login_request) <span class="hljs-keyword">returns</span> (douyin_user_login_response) </span>&#123;&#125;
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_login_request</span>&#123;
+    <span class="hljs-type">string</span> username = <span class="hljs-number">1</span>; <span class="hljs-comment">// 登录用户名</span>
+    <span class="hljs-type">string</span> password = <span class="hljs-number">2</span>; <span class="hljs-comment">// 登录密码</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_login_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">4</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;</code></pre></div>
+<h3 id="3-用户信息接口-douyin-user">3. 用户信息接口 /douyin/user/</h3>
+<p>获取登录用户的 id、昵称，如果实现社交部分的功能，还会返回关注数和粉丝数。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs proto"><span class="hljs-keyword">service </span><span class="hljs-title class_">UserInfo</span> &#123;
+    <span class="hljs-function"><span class="hljs-keyword">rpc</span> UserInfo (douyin_user_request) <span class="hljs-keyword">returns</span> (douyin_user_response) </span>&#123;&#125;
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_request</span>&#123;
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    User user = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户信息</span>
+&#125;</code></pre></div>
+<h2 id="整体架构设计">整体架构设计</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSsNise"><img src="https://s1.ax1x.com/2023/02/03/pSsNise.png" srcset="/img/loading.gif" lazyload alt="pSsNise.png"></a></p>
+<p>返回的状态码（虽然客户端并没有逻辑进行处理）：</p>
+<ul>
+<li>注册时用户已经存在，状态码为1</li>
+<li>用户不存在，状态码为2</li>
+<li>登录时用户存在但是密码错误，状态码为3</li>
+</ul>
+<h2 id="详细设计">详细设计</h2>
+<h3 id="用户注册">用户注册</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSsl600"><img src="https://s1.ax1x.com/2023/02/03/pSsl600.png" srcset="/img/loading.gif" lazyload alt="pSsl600.png"></a></p>
+<ol>
+<li>DY-api.UserRegister处理请求，将请求中带有的用户名和密码字段传递到服务端DY-srv.UserRegister</li>
+<li>服务端根据用户名查询数据库，如果发现重名用户名，则直接返回错误</li>
+<li>未发现重名用户名，则通过md5加盐（用户名）对密码进行加密，加密后插入数据库，数据库返回唯一自增ID</li>
+<li>服务端返回成功响应给DY-api.UserRegister</li>
+<li>DY-api.UserRegister利用响应中的ID信息，调用jwt进行Token生成，生成后构建客户端相应结构体给客户端</li>
+</ol>
+<h3 id="用户登录">用户登录</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSs80pD"><img src="https://s1.ax1x.com/2023/02/03/pSs80pD.png" srcset="/img/loading.gif" lazyload alt="pSs80pD.png"></a></p>
+<ol>
+<li>DY-api.UserLogin处理请求，将请求中带有的用户名和密码字段传递到服务端DY-srv.UserLogin</li>
+<li>服务端根据用户名查询数据库，如果未发现相同用户名，则直接返回错误，否则返回通过用户名查询出来的用户id和密码</li>
+<li>对用户输入的密码进行md5加盐（用户名）加密，与上一步返回的密码进行比较，如果不匹配直接返回错误</li>
+<li>密码匹配，则服务端返回成功响应给DY-api.UserLogin</li>
+<li>DY-api.UserLogin利用响应中的ID信息，调用jwt进行Token生成，生成后构建客户端相应结构体给客户端</li>
+</ol>
+<h3 id="用户信息">用户信息</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSst2rQ"><img src="https://s1.ax1x.com/2023/02/03/pSst2rQ.png" srcset="/img/loading.gif" lazyload alt="pSst2rQ.png"></a></p>
+<ol>
+<li>DY-api.UserInfo处理请求，将请求中带有的id字段传递到服务端DY-srv.UserInfo、DY-srv.GetFollowList和DY-srv.GetFollowerList</li>
+<li>并行请求三个服务，其中DY-srv.UserInfo根据id字段查询数据库，如果id有效，则返回用户姓名，否则返回错误</li>
+<li>等待三个服务全部成功返回后，填充响应中的User的五个字段
+<ol>
+<li>id与name字段通过DY-srv.UserInfo的响应直接获取</li>
+<li>followcount通过获取DY-srv.GetFollowList返回的切片长度获取</li>
+<li>followercount通过获取DY-srv.GetFollowerList返回的切片长度获取</li>
+<li>通过Token获取当前的登录用户id，在DY-srv.GetFollowerList切片内部查询，如果查询到为True，否则为False</li>
+</ol>
+</li>
+<li>构建响应结构体并返回给客户端</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>简易抖音项目-用户模块</div>
+      <div>https://zhangzhao219.github.io/2023/01/24/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Project-Users/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/24/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Project-Videos/" title="简易抖音项目-视频模块">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">简易抖音项目-视频模块</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/20/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day05/" title="Go 语言内存管理详解">
+                        <span class="hidden-mobile">Go 语言内存管理详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

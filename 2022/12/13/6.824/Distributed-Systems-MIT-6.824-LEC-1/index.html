@@ -1,0 +1,963 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MIT-6.824（Spring 2022）LEC 1 Introduction">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT-6.824 Distributed Systems-LEC 1 Introduction">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/13/6.824/Distributed-Systems-MIT-6.824-LEC-1/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="MIT-6.824（Spring 2022）LEC 1 Introduction">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIslPU.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28M%2BR">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28M*R%29">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=16M">
+<meta property="og:image" content="https://math.now.sh/?inline=64M">
+<meta property="og:image" content="https://math.now.sh/?inline=M%3D200000">
+<meta property="og:image" content="https://math.now.sh/?inline=R%3D5000">
+<meta property="og:image" content="https://math.now.sh/?inline=2000">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIslPU.md.png">
+<meta property="article:published_time" content="2022-12-13T22:29:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.189Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Distributed Systems">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/12/14/zIslPU.md.png">
+  
+  
+  
+  <title>MIT-6.824 Distributed Systems-LEC 1 Introduction - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MIT-6.824 Distributed Systems-LEC 1 Introduction</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-13 22:29" pubdate>
+          2022年12月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MIT-6.824 Distributed Systems-LEC 1 Introduction</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MIT-6.824（Spring 2022）LEC 1 Introduction</p>
+<span id="more"></span>
+<h1>MapReduce论文阅读</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141657364">参考翻译</a></p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/6.824/mapreduce.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="方法提出">方法提出</h2>
+<ul>
+<li>大量的数据分布在不同的机器上，为了能让某些算法在可以接受的时间内完成，需要将算法分配到不同的机器上一起并行运行</li>
+<li>受Lisp的启发，我们发现大多数的操作都可以分为两个部分，map和reduce
+<ul>
+<li>首先将输入中的逻辑记录应用map操作转化为过渡的键值对</li>
+<li>然后将相同的键对应的值应用reduce操作，从而合并上一步产生的过渡数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="编程模型">编程模型</h2>
+<p>（WordCount）</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-built_in">map</span>(String key, String value):
+<span class="hljs-comment">// key: document name</span>
+<span class="hljs-comment">// value: document contents</span>
+    <span class="hljs-keyword">for</span> each word w in value:
+        <span class="hljs-built_in">EmitIntermediate</span>(w, <span class="hljs-string">&quot;1&quot;</span>);
+<span class="hljs-built_in">reduce</span>(String key, Iterator values):
+<span class="hljs-comment">// key: a word</span>
+<span class="hljs-comment">// values: a list of counts</span>
+    <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> each v in values:
+        result += <span class="hljs-built_in">ParseInt</span>(v);
+    <span class="hljs-built_in">Emit</span>(<span class="hljs-built_in">AsString</span>(result));</code></pre></div>
+<p>map函数输出每个单词和计数的数量，reduce汇总其中某个特定单词的数量并输出。</p>
+<ul>
+<li>分布式查找：map函数匹配到了就直接输出，reduce函数不发挥作用</li>
+<li>计数URL访问频率：map函数对网页的日志进行处理并输出中间键值对，reduce函数再进行汇总处理</li>
+<li>反转网页-链接图：map函数在source网页中寻找target URL，输出 <code>&lt;target, source&gt;</code>键值对，reduce函数对目标URL汇总source并输出</li>
+<li>节点的主干词向量</li>
+<li>倒排索引</li>
+<li>分布式排序：map从每一条记录中提取键，reduce输出所有的键值对（后面详细说明）</li>
+</ul>
+<h2 id="Google对MapReduce的一种实现">Google对MapReduce的一种实现</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zIslPU"><img src="https://s1.ax1x.com/2022/12/14/zIslPU.md.png" srcset="/img/loading.gif" lazyload alt="zIslPU.md.png"></a></p>
+<p>如上图所示，map的过程是在多机器上调用的，其中分配的过程是自动化的，共分配了<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个节点进行。reduce过程是通过用户指定的节点数量，通过某种方法（如计算哈希值等）分配<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>台机器进行。</p>
+<p>其中有一个master节点，这个节点负责将任务进行分配，有些机器进行map操作，有些机器进行reduce操作等。</p>
+<p>被分配到map任务的节点读取输入，将处理好的内容写入缓存，周期性的存入硬盘。存入时直接分为<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>部分，并将数据存放的位置告知master</p>
+<p>当一个节点被master通知要进行reduce时，通过RPC的方式从硬盘中读取数据到缓存中，进行处理并排序，保证相同的key出现在相同的位置</p>
+<p>最终输出的时<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的文件，但是并不需要用户进行手动合并，因为这些文件通常是作为下一阶段的输入。</p>
+<h3 id="Master数据结构">Master数据结构</h3>
+<p>对于每一个map任务或者reduce任务，都要保存任务的状态（已经完成或者未完成）以及工作节点的信息</p>
+<p>对于每一个完成后的map任务，还要保存完成后的中间数据的位置和大小等信息</p>
+<h3 id="容错机制">容错机制</h3>
+<p>机器太多了肯定有的机器会失效</p>
+<p>Worker失效：Master会定期ping每一个Worker，如果没有得到响应，将这个节点标记为失效</p>
+<ul>
+<li>如果节点的任务正在进行，将分配给它的任务还原到初始状态，给没有失效的节点去完成</li>
+<li>如果节点的任务已经完成，对于map任务要重做，因为无法访问这个节点的存储。对于reduce来说不需要，因为已经输出到文件了</li>
+<li>map任务重做时会通知所有的reduce任务的节点</li>
+</ul>
+<p>Master失效：Master的数据要经常备份，且由于只有一个Master，不太可能失效（因为被保护好了？），因此如果Master失效了会终止整个任务</p>
+<p>故障时处理的机制：用户提供的Map和Reduce操作是输入确定性函数时，分布式的计算要保证任何情况下的输出都要一致没有错误.</p>
+<p>使用map和reduce的原子提交特点来实现。map和reduce操作都写入临时文件中，完成操作后通知Master节点。如果Master节点被通知了另外一次，则直接忽略掉。reduce操作结束后将临时文件重命名为最终输出的文件，重命名操作也是原子性，最终只会有一个符合条件的文件名。</p>
+<h3 id="存储位置">存储位置</h3>
+<p>尽量存储在本地的硬盘中，通过GFS把每个文件按64MB一个块，并在不同的机器上存储三份冗余的数据。</p>
+<h3 id="任务粒度">任务粒度</h3>
+<p>理想情况下<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>都应该比物理节点数量大得多，在每台机器都执行大量的不同任务能够提高集群的动态的负载均衡能力，并且能够加快故障恢复的速度。</p>
+<p>在我们的具体实现中对<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的取值有一定的限制，因为master必须执行<img src="https://math.now.sh?inline=O%28M%2BR" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>)次调度，并且在内存中保存<img src="https://math.now.sh?inline=O%28M*R%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个状态（一个字节一个状态）</p>
+<p><img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>值通常由用户指定，实际使用中选择合适的<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>值，以使得每一个独立任务都是处理大约<img src="https://math.now.sh?inline=16M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=64M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的输入数据</p>
+<p>MapReduce的合适执行比例：<img src="https://math.now.sh?inline=M%3D200000" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=R%3D5000" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，使用<img src="https://math.now.sh?inline=2000" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>台机器节点</p>
+<h3 id="备份任务">备份任务</h3>
+<p>在运算过程中，如果有一台机器花了很长的时间才完成最后几个Map或Reduce任务，会导致MapReduce操作总的执行时间超过预期。</p>
+<p>当一个MapReduce操作接近完成的时候，master会调度备用任务进程来一起执行最后的任务，谁完成了整个任务都算完成。</p>
+<h2 id="任务细节">任务细节</h2>
+<p>在具体的实现上，对上面描述的简单mapreduce过程可以进行优化</p>
+<ol>
+<li>reduce前需要先分配map的结果，使用哈希函数的方式分配的比较均衡，但是可能有一些场景下需要将特定的键值对分配到一起，因此用户可以传入自定义的类似于哈希的函数进行分配</li>
+<li>确保在给定的分区中，键值对数据的处理顺序是按照键进行排序后的。排序后对后面的任务都有利</li>
+<li>Map函数产生的中间key值的重复数据会占很大的比重（成千上万个&lt;the,1&gt;），因此允许用户指定一个可选的combiner函数，combiner函数首先在本地将这些记录进行一次合并，然后将合并的结果再通过网络发送出去。一般情况下，Combiner和Reduce函数相同。区别在于输出到最终文件还是中间文件。</li>
+<li>MapReduce支持不同的格式的输入数据，如文本或者键值对等，同时提供Reader接口使用户可以自定义输出，只要保证输入是可以分割的就可以</li>
+<li>某些情况下，在Map或Reduce操作过程中增加辅助的输出文件会比较省事。（但是这里不支持？）</li>
+<li>用户程序中的bug导致Map或者Reduce函数在处理某些记录的时候会崩溃掉。这个bug可能很难找。因此提供了一种执行模式，在这种模式下，为了保证保证整个处理能继续进行，MapReduce会检测哪些记录导致确定性的crash，并且跳过这些记录不处理。</li>
+<li>在远程分布式节点上调试程序非常困难，因此开发了一套MapReduce库的本地实现版本，可以调试使用</li>
+<li>master使用嵌入式的HTTP服务器（如Jetty）显示一组状态信息页面，用户可以监控各种执行状态</li>
+<li>MapReduce库使用计数器统计不同事件发生次数。比如，用户可能想统计已经处理了多少个单词、已经索引的多少篇German文档等等。可以用于MapReduce操作的完整性检查。</li>
+</ol>
+<h2 id="实验表现">实验表现</h2>
+<ul>
+<li>在大约1TB的数据中进行特定的模式匹配（从海量数据中抽取感兴趣的数据）</li>
+<li>对大约1TB的数据进行排序（对数据的形式进行转换）</li>
+</ul>
+<h2 id="应用">应用</h2>
+<ol>
+<li>大规模机器学习问题</li>
+<li>Google News和Froogle产品的集群问题</li>
+<li>从公众查询产品（比如Google的Zeitgeist）的报告中抽取数据。</li>
+<li>从大量的新应用和新产品的网页中提取有用信息（比如，从大量的位置搜索网页中抽取地理位置信息）。</li>
+<li>大规模的图形计算。</li>
+</ol>
+<p>MapReduce的成功取决于采用MapReduce库能够在不到半个小时时间内写出一个简单的程序，这个简单的程序能够在上千台机器的组成的集群上做大规模并发处理，极大的加快了开发和原形设计的周期。另外，采用MapReduce库，可以让完全没有分布式和/或并行系统开发经验的程序员很容易的利用大量的资源，开发出分布式和/或并行处理的应用。</p>
+<h2 id="结论">结论</h2>
+<p>MapReduce的成功有几个方面：</p>
+<ol>
+<li>MapReduce封装了并行处理、容错处理、数据本地化优化、负载均衡等等技术难点的细节，使得MapReduce库易于使用。</li>
+<li>大量不同类型的问题都可以通过MapReduce简单解决。</li>
+<li>实现了在数千台计算机组成的大型集群上灵活部署运行的MapReduce，使得有效利用这些计算资源变得非常简单，适合用来解决其他需要大量计算的问题。</li>
+</ol>
+<p>从MapReduce开发过程中也学到了不少东西。</p>
+<ol>
+<li>使用固定的编程模式使得并行和分布式计算非常容易，也易于构造容错的计算环境；</li>
+<li>网络带宽是稀有资源。大量的系统优化是针对减少网络传输量为目的的：本地优化策略使大量的数据从本地磁盘读取，中间文件写入本地磁盘、并且只写一份中间文件也节约了网络带宽</li>
+<li>备份服务器执行相同的任务可以减少性能缓慢的机器带来的负面影响（硬件配置的不平衡），同时解决了由于机器失效导致的数据丢失问题。</li>
+</ol>
+<h1>LEC 1</h1>
+<h2 id="什么是分布式系统">什么是分布式系统</h2>
+<ul>
+<li>多个计算机通过网络连接，因此只能通过发送和接收数据包的形式进行交互，不能共享内存等等。</li>
+<li>支持应用程序的基础设施主干架构</li>
+</ul>
+<h2 id="分布式系统的作用">分布式系统的作用</h2>
+<ul>
+<li>连接物理上分离的机器-允许用户之间的数据共享</li>
+<li>通过并行提升性能</li>
+<li>容错机制-挂掉的机器不能影响服务</li>
+<li>通过将程序分布在不同的机器上获得安全性（例如一台机器只用于登录服务的验证）</li>
+</ul>
+<h2 id="分布式系统的发展历程">分布式系统的发展历程</h2>
+<ul>
+<li>起始于局域网出现（AFS）-DNS、Email</li>
+<li>数据中心（大量数据）和大型网站（大量用户）</li>
+<li>云计算</li>
+<li>很难跟上时代发展节奏，一直在不断努力</li>
+</ul>
+<h2 id="分布式系统的挑战">分布式系统的挑战</h2>
+<ul>
+<li>很多并行的部分</li>
+<li>容错机制</li>
+<li>很难实现分布式的性能优势</li>
+</ul>
+<p>判断系统是否正常工作非常困难，例如两台机器间的网络挂掉，两边都认为对方挂掉了，因此对外提供了两份服务。</p>
+<h2 id="课程关注的内容">课程关注的内容</h2>
+<p>课程不关注应用程序，只关注基础设施，也就是支撑这些应用程序正确工作的部分。</p>
+<p>关注的三个方面：存储、计算和通信</p>
+<p>抽象：分布式系统的抽象与单机系统的抽象基本相同</p>
+<h2 id="重点内容">重点内容</h2>
+<p>容错机制</p>
+<ul>
+<li>可用性：使系统高可用的技术，某个节点挂掉仍然可以正常工作
+<ul>
+<li>关键：复制</li>
+</ul>
+</li>
+<li>可恢复性：挂掉的机器重启后还能回到分布式系统中继续工作
+<ul>
+<li>关键：日志或事务</li>
+</ul>
+</li>
+</ul>
+<p>一致性：分布式系统与单机的行为相同</p>
+<p>性能：不同类型的一致性和容错机制与性能相关</p>
+<ul>
+<li>吞吐量</li>
+<li>低延迟：某些很慢的机器会拖慢整个程序的运行过程</li>
+</ul>
+<p>实现细节：如何实现并发、远程过程调用等等</p>
+<h2 id="MapReduce">MapReduce</h2>
+<h3 id="背景">背景</h3>
+<p>在Google早期的数据中心，有一个搜索引擎，需要构建万维网的倒排索引，允许用户上网查询。</p>
+<p>在这个过程中处理TB级别的数据需要耗费几个小时。</p>
+<p>为每一个应用都编写一个这种系统很困难，因此提出了MapReduce，使得构建不同应用的分布式程序比较轻松</p>
+<p>不过这些应用必须要能分成map和reduce两个部分，然后放到MapReduce框架下运行，不需要再关注其他细节（如容错机制等等）</p>
+<h3 id="框架图">框架图</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zIslPU"><img src="https://s1.ax1x.com/2022/12/14/zIslPU.md.png" srcset="/img/loading.gif" lazyload alt="zIslPU.md.png"></a></p>
+<ol>
+<li>Map操作统计所有的输入文件，不同机器节点之间没有通信</li>
+<li>Shuffle：从每个Map获取输出，按照键进行排序（最难的操作）</li>
+<li>在键相同的字段上运行Reduce</li>
+</ol>
+<p>主要的网络通信在于传输map产生的中间文件给reduce使用</p>
+<h3 id="容错机制-2">容错机制</h3>
+<p>如果一个机器在一定的时间内没有对Coordinator作出响应，就认为这个机器已经挂掉了，因此Coordinator会重新安排其他机器重启它的任务。</p>
+<p>map和reduce任务可能会运行两次，例如Coordinator认为这个机器挂掉了，把它的任务分配给别人了，但是实际上这个机器并没有挂掉。最终使用重命名操作的原子性确保只存储一个结果。</p>
+<p>Coordinator会挂掉吗？挂掉了整个任务就都要重新跑了，一般不会挂掉。</p>
+<p>一些机器可能会运行很慢从而拖累整个任务的进程。当整个任务快要结束的时候，会复制任务到其他的空闲节点上一起做，谁先做完取谁的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Distributed-Systems/" class="print-no-link">#Distributed Systems</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MIT-6.824 Distributed Systems-LEC 1 Introduction</div>
+      <div>https://zhangzhao219.github.io/2022/12/13/6.824/Distributed-Systems-MIT-6.824-LEC-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/15/6.824/Distributed-Systems-MIT-6.824-Lab-1/" title="MIT-6.824 Distributed Systems-Lab 1 MapReduce">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-Lab 1 MapReduce</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/11/UCAS/machine-learning/machine-learning-final/" title="研究生课程：机器学习-期末复习">
+                        <span class="hidden-mobile">研究生课程：机器学习-期末复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

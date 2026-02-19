@@ -1,0 +1,913 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《机器学习》课程笔记：第7章 降维与特征选择">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：机器学习-第7章 降维与特征选择">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/30/UCAS/machine-learning/machine-learning-7/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《机器学习》课程笔记：第7章 降维与特征选择">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/22/xFNOw8.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=C_D%5Ed%3D%5Cfrac%7BD%20!%7D%7B%28D-d%29%20!%20d%20!%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=X%3D%5Cleft%28x_1%2C%20x_2%2C%20%5Cldots%2C%20x_n%5Cright%29%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=W%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_d%5Cright%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BL%3DXW%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BX%3DLR%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmin%20_%7BL%2C%20R%7D%5C%7C%5Cboldsymbol%7BX%7D-%5Cboldsymbol%7BL%7D%20%5Cboldsymbol%7BR%7D%5C%7C%5E2%20%5Cquad">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BR%7D%20%5Cboldsymbol%7BR%7D%5ET%3D%5Cboldsymbol%7BI%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7C%5Cboldsymbol%7BX%7D-%5Cboldsymbol%7BL%7D%20%5Cboldsymbol%7BW%7D%5ET%5Cright%5C%7C%5E2%3D%5Csum_i%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D_i%5ET-%5Cboldsymbol%7Bl%7D_i%5ET%20%5Cboldsymbol%7BW%7D%5ET%5Cright%5C%7C%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmax%20%5Cboldsymbol%7B_w%20w%5ET%20S%20w%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x_i%3Dx_i-%5Cbar%7Bx%7D%2C%20%5Cquad%20%5Cbar%7Bx%7D%3D%281%20%2F%20n%29%20%5Csum_i%20x_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BXX%5ET%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Clambda_1%3E%5Clambda_2%3E%5Cldots%3E%5Clambda_m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BW%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_l%5Cright%29%7D%2C%20l%3Cm">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7By%7D%5ET%3D%5Cboldsymbol%7Bx%7D%5ET%20%5Cboldsymbol%7BW%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=S_w%5E%7B-1%7D%20S_b%20%5Cboldsymbol%7Bw%7D%3D%5Clambda%20%5Cboldsymbol%7Bw%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=K">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7B%5Calpha%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BK%5Calpha%7D%3D%5Clambda%5Cboldsymbol%7B%5Calpha%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=K">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Clambda_1%3E%5Clambda_2%3E%5Cldots%3E%5Clambda_m">
+<meta property="og:image" content="https://math.now.sh/?inline=d">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha_1%2C%20%5Calpha_2%2C%20%5Cldots%2C%20%5Calpha_d">
+<meta property="og:image" content="https://math.now.sh/?inline=%EF%BC%8C">
+<meta property="og:image" content="https://math.now.sh/?inline=%EF%BC%8C%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BL%7D%3D%5CPhi%5ET%20%5Cboldsymbol%7BW%7D%3D%5CPhi%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7B%5CPhi%7D%20%5Cboldsymbol%7B%5CLambda%7D%3D%5Cboldsymbol%7BK%7D%20%5Cboldsymbol%7B%5CLambda%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7By%7D%3D%5Cphi%28%5Cboldsymbol%7Bx%7D%29%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7B%5CPhi%7D%20%5Cboldsymbol%7B%5CLambda%7D%3DK(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7BX%7D)%20%5Cboldsymbol%7B%5CLambda%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7BX%7D%29%3D%5Cleft(k%5Cleft(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_1%5Cright)%2C%20k%5Cleft(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_2%5Cright)%2C%20%5Cldots%2C%20k%5Cleft(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_n%5Cright)%5Cright)">
+<meta property="article:published_time" content="2022-09-30T12:16:22.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.198Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/09/22/xFNOw8.md.png">
+  
+  
+  
+  <title>研究生课程：机器学习-第7章 降维与特征选择 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：机器学习-第7章 降维与特征选择</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-30 12:16" pubdate>
+          2022年9月30日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：机器学习-第7章 降维与特征选择</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《机器学习》课程笔记：第7章 降维与特征选择</p>
+<span id="more"></span>
+<h1>第7章 降维与特征选择</h1>
+<h2 id="概述">概述</h2>
+<p>机器学习算法的有效性和计算复杂度是敏感于数据的特征表达和维度。</p>
+<p>特征降维的意义：</p>
+<p>数据压缩：简化数据表示，加快数据通信传输、节省存储资源、…</p>
+<p>学习算法效率：</p>
+<ul>
+<li>计算上，简化计算，加快速度</li>
+<li>性能上，提升精确度</li>
+<li>可理解性，发现数据的潜在本质特征</li>
+</ul>
+<p>特征选择：从D个特征中选择d个，来表达模式</p>
+<p>特征提取：采用特征变换的方法，生成d个新的特征</p>
+<h2 id="特征选择">特征选择</h2>
+<h3 id="特征选择框架">特征选择框架</h3>
+<p>特征选择问题：从D维特征中选择d维（d&lt;D）特征子集</p>
+<ul>
+<li>使数据的压缩率高</li>
+<li>使学习机预测性能最佳</li>
+<li>使学习机学习速度加快</li>
+</ul>
+<p>特征选择的处理过程：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xFNOw8"><img src="https://s1.ax1x.com/2022/09/22/xFNOw8.md.png" srcset="/img/loading.gif" lazyload alt="xFNOw8.md.png"></a></p>
+<h3 id="特征子集生成">特征子集生成</h3>
+<p>特征子集生成问题：D维特征中，选择d维（d&lt;D）特征子集，子集个数为<img src="https://math.now.sh?inline=C_D%5Ed%3D%5Cfrac%7BD%20!%7D%7B%28D-d%29%20!%20d%20!%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ol>
+<li>穷举（最优子集搜索）：计算特征的所有可能组合，并逐一评价。</li>
+<li>单独最优特征组合：对每个特征分别评估，找前d个单独最优特征。优点：算法简单，缺点：没有考虑特征之间的关系，存在特征冗余</li>
+<li>SFS（Sequential forward selection, 前向序贯）：每次加入一个特征，该特征使得新的特征组合最优。</li>
+<li>GSFS (广义SFS)：每次加入k个特征，使加入特征后的组合最优。</li>
+<li>SBS（Sequential backward selection, 后向序贯）：每次减掉一个特征，使剩余特征组合最优。</li>
+<li>GSBS（广义SBS）：每次减k个特征，使剩余特征组合最优。</li>
+<li>L-R 法（增加L个，减R个）每次增加L个再减R个（L &gt; R），或减R个增加L个（L &lt; R）</li>
+<li>广义的L-R（ZL , ZR）：增L和减R分Z步进行</li>
+</ol>
+<h3 id="特征评价准则">特征评价准则</h3>
+<ol>
+<li>可分性度量：在选择的特征集下，采用类别可分性的程度，评价特征选择的好与坏。常用于Filter框架下。</li>
+<li>学习算法精度的度量：在选择的特征集下，通过学习算法的精确度，评价特征选择的好与坏。常用于wrapper框架下。</li>
+</ol>
+<p>基于距离的可分性判据：</p>
+<p>通常依赖于类内类间的距离度量，前提是数据具有类别标签。可分性评估是在选择的特征子集维度上计算数据统计量。</p>
+<p>距离的可分性判据的特点：</p>
+<ul>
+<li>容易理解和实现</li>
+<li>与错误率无直接关系，不敏感于数据交叠情况</li>
+<li>常用于Filter特征选择框架下</li>
+</ul>
+<p>基于概率分布的可分性判据：从类别概率密度的角度，讨论两个类别的交叠程度</p>
+<p>常见的概率距离准则：</p>
+<p>熵可分性判据：</p>
+<h3 id="特征选择方法">特征选择方法</h3>
+<p>Filter 方法：</p>
+<p>不依赖于学习算法（如分类器）的结果，直接由数据构建评估函数，对选择的特征子集进行评估。</p>
+<p>通常方法：根据特征评价准则进行评估，选择最优的特征子集。</p>
+<p>评价准则：距离准则、概率可分、熵可分准则。</p>
+<p>优点：计算复杂度低，效率高。</p>
+<p>缺点：选择的特征之间存在冗余信息。</p>
+<p>Wrapper 方法：</p>
+<p>原理：通过学习算法（如分类器），对选择的特征子集进行评估。</p>
+<p>优点：选择的特征可以支持学习算法。</p>
+<p>缺点：算法的计算复杂度高。</p>
+<p>Embedded 方法：</p>
+<p>原理：特征选择过程在学习算法中完成，目标是完成学习过程。</p>
+<p>特点：不是专门的特征选择过程</p>
+<p>缺点：计算复杂度高。</p>
+<h2 id="特征提取">特征提取</h2>
+<p>优点：</p>
+<ul>
+<li>数据更紧致的压缩</li>
+<li>优化预测性能</li>
+<li>加快学习速度</li>
+</ul>
+<p>不同的应用问题会有不同的特征提取研究问题</p>
+<h3 id="线性变换">线性变换</h3>
+<p>特征提取目标：学习变换矩阵</p>
+<p>给定 <img src="https://math.now.sh?inline=X%3D%5Cleft%28x_1%2C%20x_2%2C%20%5Cldots%2C%20x_n%5Cright%29%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>, 通过某种降维准则, 学习变换矩阵 <img src="https://math.now.sh?inline=W%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_d%5Cright%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>两种降维表示途径：</p>
+<ul>
+<li>投影：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BL%3DXW%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>矩阵分解：低秩表示：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BX%3DLR%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<h4 id="主成分分析PCA">主成分分析PCA</h4>
+<p>目标函数：均方误差最小原则（求最优重构子空间）</p>
+<p><img src="https://math.now.sh?inline=%5Cmin%20_%7BL%2C%20R%7D%5C%7C%5Cboldsymbol%7BX%7D-%5Cboldsymbol%7BL%7D%20%5Cboldsymbol%7BR%7D%5C%7C%5E2%20%5Cquad" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> s.t. <img src="https://math.now.sh?inline=%5Cboldsymbol%7BR%7D%20%5Cboldsymbol%7BR%7D%5ET%3D%5Cboldsymbol%7BI%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cleft%5C%7C%5Cboldsymbol%7BX%7D-%5Cboldsymbol%7BL%7D%20%5Cboldsymbol%7BW%7D%5ET%5Cright%5C%7C%5E2%3D%5Csum_i%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D_i%5ET-%5Cboldsymbol%7Bl%7D_i%5ET%20%5Cboldsymbol%7BW%7D%5ET%5Cright%5C%7C%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>最小误差等价于最大投影</p>
+<p>求解目标函数：<img src="https://math.now.sh?inline=%5Cmax%20%5Cboldsymbol%7B_w%20w%5ET%20S%20w%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>特征值的意义：样本在w方向的投影平均值（或和）最大</p>
+<p>PCA算法流程：</p>
+<ol>
+<li>标准化样本<img src="https://math.now.sh?inline=x_i%3Dx_i-%5Cbar%7Bx%7D%2C%20%5Cquad%20%5Cbar%7Bx%7D%3D%281%20%2F%20n%29%20%5Csum_i%20x_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>求样本的协方差矩阵<img src="https://math.now.sh?inline=%5Cboldsymbol%7BXX%5ET%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>特征值，并降排序<img src="https://math.now.sh?inline=%5Clambda_1%3E%5Clambda_2%3E%5Cldots%3E%5Clambda_m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对应非零特征向量</li>
+<li>变换矩阵<img src="https://math.now.sh?inline=%5Cboldsymbol%7BW%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_l%5Cright%29%7D%2C%20l%3Cm" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>降维表示<img src="https://math.now.sh?inline=%5Cboldsymbol%7By%7D%5ET%3D%5Cboldsymbol%7Bx%7D%5ET%20%5Cboldsymbol%7BW%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<h4 id="线性鉴别分析LDA">线性鉴别分析LDA</h4>
+<p>PCA能保证类别区分的有效性，LDA特征的优点：类内最小、类间最大。</p>
+<p>特征方向的提取：<img src="https://math.now.sh?inline=S_w%5E%7B-1%7D%20S_b%20%5Cboldsymbol%7Bw%7D%3D%5Clambda%20%5Cboldsymbol%7Bw%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h3 id="非线性变换">非线性变换</h3>
+<h4 id="核主成分分析KPCA">核主成分分析KPCA</h4>
+<ol>
+<li>求核矩阵<img src="https://math.now.sh?inline=K" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的特征值，对应特征向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7B%5Calpha%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的问题：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BK%5Calpha%7D%3D%5Clambda%5Cboldsymbol%7B%5Calpha%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>核矩阵<img src="https://math.now.sh?inline=K" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的特征值降序<img src="https://math.now.sh?inline=%5Clambda_1%3E%5Clambda_2%3E%5Cldots%3E%5Clambda_m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，前<img src="https://math.now.sh?inline=d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征值对应特征向量<img src="https://math.now.sh?inline=%5Calpha_1%2C%20%5Calpha_2%2C%20%5Cldots%2C%20%5Calpha_d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>高维空间中的投影方向$w_i=\Phi \boldsymbol{\alpha}_i <img src="https://math.now.sh?inline=%EF%BC%8C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>\boldsymbol{\Lambda}=\left(\boldsymbol{\alpha}_1, \boldsymbol{\alpha}_2, \ldots, \boldsymbol{\alpha}_d\right)<img src="https://math.now.sh?inline=%EF%BC%8C%E6%8A%95%E5%BD%B1%E7%9F%A9%E9%98%B5" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>W=\Phi \boldsymbol{\Lambda}$</li>
+<li>降维表示
+<ol>
+<li>训练集低维表示：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BL%7D%3D%5CPhi%5ET%20%5Cboldsymbol%7BW%7D%3D%5CPhi%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7B%5CPhi%7D%20%5Cboldsymbol%7B%5CLambda%7D%3D%5Cboldsymbol%7BK%7D%20%5Cboldsymbol%7B%5CLambda%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>新样本<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的低维表示：<img src="https://math.now.sh?inline=%5Cboldsymbol%7By%7D%3D%5Cphi%28%5Cboldsymbol%7Bx%7D%29%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7B%5CPhi%7D%20%5Cboldsymbol%7B%5CLambda%7D%3DK(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7BX%7D)%20%5Cboldsymbol%7B%5CLambda%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>其中<img src="https://math.now.sh?inline=K%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7BX%7D%29%3D%5Cleft(k%5Cleft(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_1%5Cright)%2C%20k%5Cleft(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_2%5Cright)%2C%20%5Cldots%2C%20k%5Cleft(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_n%5Cright)%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+</li>
+</ol>
+<h4 id="局部线性变换LLE">局部线性变换LLE</h4>
+<p>LLE方法是一种流形学习，保持样本间的局部线性关系，整体实现非线性映射。</p>
+<h4 id="非负矩阵分解">非负矩阵分解</h4>
+<p>基本思想：通过矩阵分解，进行数据降维；分解后的矩阵为非负矩阵</p>
+<p>不同的目标函数情况：</p>
+<ol>
+<li>范数误差最小</li>
+<li>KL误差</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：机器学习-第7章 降维与特征选择</div>
+      <div>https://zhangzhao219.github.io/2022/09/30/UCAS/machine-learning/machine-learning-7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/02/UCAS/information-retrieval/information-retrieval-12/" title="研究生课程：现代信息检索-第12讲 支持向量机和排序学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第12讲 支持向量机和排序学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/30/UCAS/information-retrieval/information-retrieval-11/" title="研究生课程：现代信息检索-第11讲 文本分类">
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第11讲 文本分类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

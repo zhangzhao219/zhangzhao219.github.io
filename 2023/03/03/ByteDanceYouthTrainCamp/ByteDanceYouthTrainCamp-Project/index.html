@@ -1,0 +1,1995 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="字节跳动青训营-抖音项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字节跳动青训营-抖音项目">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/03/03/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Project/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="字节跳动青训营-抖音项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MjJhNjc0MmNmMDc2YTM5ZTQxYTUzYTNlNWNmMzVhMjRfNDdGTDE1QXdqUnpNUDNFTVZnS242SHpibHpybk1nQ0tfVG9rZW46Ym94Y255NlhGcGsza3NUeFlOSzlPd3lUQ1BnXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjI5OWRmYzEyZTVhMTY0YTU0NGJjMDgzZjQ2NmUwYTlfSk1sZEVxcmtOQU00RlZiSTRwVXRmcnZyQ3VPeHZ0RnRfVG9rZW46Ym94Y25EY0pnWm9qaFBTa09xNjNJQTJoNUJmXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YzdmZGI3MjZhYjBmNTExYjg1Nzk5OGUyNDIwODZmMGZfaFdBaUJuOFdEV2czVXpySzRCSFQ0QVNGOUpHMndOQXBfVG9rZW46Ym94Y25uaGdlbktoTmZscGFFeUhhek1ST1liXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MDYyNWQyMGRiMTE4Yzg1OTFmMGMwNDIwZTNlZWU3YTJfekFJVzBQWnFIR2dnT0lqblNaNGpPeHM1aGZiS1VwcUVfVG9rZW46Ym94Y25BM0JzNllKbThIaDVnQ0F2TlZKQzRjXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MDY2MzBhYjFjNzYyYzVhYmJmNTM3YzVkMjQyYjNiMmJfU0NCUkRQTUUxWFhPOFBGVWloUVFocXoyMXdXNDNoTktfVG9rZW46Ym94Y25qbkhZdUwyWXE4blRyeWNNME9ZMnBkXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=NmU3NjVjNzAwNmRjZDYzZGIzMTU4ZDllNTU3Y2Q5NzJfUHlydUtuQW54SVR2ZnZYVjNLckhXQzNZMW1IMFdoc3ZfVG9rZW46Ym94Y24xT0hLRElrQUdaY2l3RWxXMDF6R3ViXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGY4NzM2YmI1YjIxMjVhODQ5MWJiY2JhYWYwN2QzZjdfeXI5TWJhenhXY1BQeG1CdFF1aDRwOWpzd2ZSNEZMblVfVG9rZW46Ym94Y25yZW1hbTVnYTJQNTZIUzJyelNPRmhjXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=Mjc0MjM5OGZlNjFkNDAzNGFkNTI5Y2FlYzYyYjUxMTBfTmJvZWZudHAwckk5cFJpMWNKcFczdlJ1NVJvWjFyOVdfVG9rZW46Ym94Y25lZUtQMlc0dTJQMU5tWlJaYjliOEdkXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDdlMzEyODY4MmRiYjhmYjFiODU0Mjk4OWMwMTExYTdfOExUalZqY1hPeld1ZkhMM1E5b2twZ29rQnAzR2xoVmNfVG9rZW46Ym94Y25RR1Ztd3ZFTVFORGMzTjNtd0NjMmNoXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ODFhZmQ0YmQ2NTZmZDEzZTA5ZjJmYWNlMTQ4YWQ5ZWFfU2ZCVEJwajA1QURYVHN4UVhJN2lyZXJCTE9mcWJrQ2VfVG9rZW46Ym94Y25Bb3NHcEhjV2twMk90dWxtYXFxMk5jXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=OWVhZDA3Yjg5OTE1YjUwYjNhMGNmNjVlMGU3NDJkNDNfY0tWYnp0UllzcUFlaGx1ZnJuT1hsQ3pZSmlZd3pUQnhfVG9rZW46Ym94Y255bFZuTHB0WUQzNTVUOFVPWDQxTHFoXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YThkZTI0YWE3OGJkNWUyN2QwYzEyMjIwZmY0YzljNzFfZktHVmZ5Q09tdkF6N2N4bGRsd3hCblhWZ3VXNGhhdVRfVG9rZW46Ym94Y24zRjZTcjVWeEpaZXl4WDdEUXptTkJlXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDk5OTA0ODM2OWMzZmE3ZWU0ZTQyMTIwMTNlMzNiMzlfeHFqb3kxVENUU2pQUEpLSkw4YzA0VEE5NUpjWmd3SWJfVG9rZW46Ym94Y25wbmU2V1hWaGZJREpkenRXb3FQTEI2XzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGY5NWVkMzk1MGQ3ZTczNTIyMTdkOTI2NjQ5YTU1MTVfa01vZmhlRExwQkVZcDQxRFd5VlNiRk85cjEyZkUxb2lfVG9rZW46Ym94Y24xMkg3QmU2NExQQm1wMlZnTG0za1ViXzE2NzgxOTg3OTQ6MTY3ODIwMjM5NF9WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MTIyNWQ5MGQ5NzlhOWZjOWYxMDQzNjI4YmNkYjNkZmZfM2tIVFlEaEhIcGxwSGxRcndpNGpTc2JqSWNVMmszVGdfVG9rZW46Ym94Y25pcThzY0JSZmJDcW5KSEpnY3NVM2NlXzE2NzgxOTg3OTQ6MTY3ODIwMjM5NF9WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MGEyOGM5ODc2NmRjM2EzZmEyNjA2Y2IzMGUxMmY3OGJfeXdiMXNPWTJTS2U1ZW83SVl3SlhTblFaeTgxWlZvSktfVG9rZW46Ym94Y24zTmJuak5MNVVNWW54ZGNScGl3UEdjXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmM3ZTEyYmQ0ZmE5ZTg2ZTVhYWI5YjlhZjBiODZlZjJfOG84a29PMVp0a25Ga1ZXM0xXNnBMWEhkeXI5aGVGbExfVG9rZW46Ym94Y25tY1BlWUl5NGFwanpPY2dsd093cEdkXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDg2MzMwYzNjNmY0MGE5ZmIzY2I0OWFiYjgwNjJiYTBfTXBwN29GQmlDVWRzVGNDSHFyaTBtdzdBeUVqZFNnbThfVG9rZW46Ym94Y25zTjJEN1l6dGtmQmpnNGJWOGp2M29kXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=N2RlZDUwMDU0Y2FmMjFkZDgxYjU4MjU4NzY0YTkyMDRfRXRadFpVdE9xeDRmbUlqOEU5TVRteUpnWjU1Q0lGd3RfVG9rZW46Ym94Y25TVGR4QnQ0TkFuQ3ZneWZBWm1pYkxmXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2U5ZDc5NTBiNDczOWZlNTdlYmRlOTI3M2E5YzE0YThfMlV4V2ZURFU3dFdkTHNZdHZpT0VjSEZYamJxellGRkdfVG9rZW46Ym94Y252RzRrckJKUzMzZU1BdEE2QWM0YWxiXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YzJiMTkxNjM1NmE3ZTliZjdmMzMxMWIwMzNhOGM1N2ZfNWFFaTJUQjF0UFhkOGlacFhDMGg2R2hrYnB5VHlRRXZfVG9rZW46Ym94Y243U05qUVNtS3NWTFQ5WjJpRDRoa21QXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="og:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YjljYTUxYzBmOTIzMjBiOTBhMzFkMDJhNzQ1ZjBhMDBfaWo5WmFZN0lxZWFhYjRKN0t1VUZiVjI1QU9ud0xlR3JfVG9rZW46Ym94Y25JRVhvZGF5bE1iQ25FWUZmcHdtU0dqXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA">
+<meta property="article:published_time" content="2023-03-03T17:24:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.191Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MjJhNjc0MmNmMDc2YTM5ZTQxYTUzYTNlNWNmMzVhMjRfNDdGTDE1QXdqUnpNUDNFTVZnS242SHpibHpybk1nQ0tfVG9rZW46Ym94Y255NlhGcGsza3NUeFlOSzlPd3lUQ1BnXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA">
+  
+  
+  
+  <title>字节跳动青训营-抖音项目 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">字节跳动青训营-抖音项目</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-03 17:24" pubdate>
+          2023年3月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          81 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">字节跳动青训营-抖音项目</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>字节跳动青训营-抖音项目</p>
+<span id="more"></span>
+<h1>一、项目介绍</h1>
+<p>“NoBugVideo”基于Gin Web框架，采用微服务架构，使用Kong集成Consul做服务发现，实现了“抖音”的基本功能，包括视频流的推送、视频投稿、用户的注册与登录，以及社交（用户之间的关注与聊天）与互动（用户对视频点赞及评论）等功能。</p>
+<p>项目服务地址：<a target="_blank" rel="noopener" href="http://124.221.120.88:8000">http://124.221.120.88:8000</a></p>
+<p>Github地址：<a href="%5Bhttps://github.com/xu-jq/simple-DY%5D()">https://github.com/xu-jq/simple-DY</a></p>
+<p>我们团队实现了包括<strong>基础功能</strong>在内的两大方向：<strong>互动方向</strong>与 <strong>社交方向</strong> ，根据项目考核的4个标准，自评如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>评价项</strong></th>
+<th><strong>实现情况</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能实现</td>
+<td>微服务与其他资源能够正常运行，完全实现文档中定义的全部接口，边界情况处理良好</td>
+</tr>
+<tr>
+<td>代码质量</td>
+<td>项目结构清晰，包划分合理，代码符合编码规范</td>
+</tr>
+<tr>
+<td>服务性能</td>
+<td>数据表设置了合理的索引，代码中尽量使用并行处理提高性能</td>
+</tr>
+<tr>
+<td>安全可靠</td>
+<td>通过GORM框架防止SQL注入，通过JWT进行用户的认证，防止越权</td>
+</tr>
+</tbody>
+</table>
+<h1>二、项目分工</h1>
+<table>
+<thead>
+<tr>
+<th><strong>团队成员</strong></th>
+<th><strong>主要贡献</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>@汪辉</strong></td>
+<td>开发社交模块，搭建Kong集成Consul做服务发现</td>
+</tr>
+<tr>
+<td><strong>@许珺琪</strong></td>
+<td>开发用户互动相关模块包括点赞评论等相关接口、搭建redis服务</td>
+</tr>
+<tr>
+<td><strong>@张兆</strong></td>
+<td>开发用户模块与视频模块相关接口、搭建MySQL、RabbitMQ等服务</td>
+</tr>
+</tbody>
+</table>
+<h1>三、项目实现</h1>
+<h3 id="3-1-技术选型与相关开发文档">3.1 技术选型与相关开发文档</h3>
+<p>抖音上线于2016年9月26日，一开始是定位于专注于新生代的音乐创意短视频App，视频时常限制在15s内。年轻人比较爱赶新潮，乐于尝试新鲜事物，通过清晰明确定位在“潮流”“炫酷”“技术流”的方式，抖音吸引了第一批忠实粉丝。当产品功能逐渐完善后，抖音在运营方面开始发力，用户迎来大幅增长。抖音的主力用户群体年龄段上升，已经从早期的18岁到24岁，上升到了25岁到30岁用户。随着用户的快速增长，在内容层面也向着更加主流化、多元化的方向转变。</p>
+<p>架构方面比较常见的有三种：</p>
+<ol>
+<li>单体应用</li>
+</ol>
+<p>所有的模块打包到一起部署运行，在开发小型项目上有独特优势：易于调试、部署，运维方便。缺点是容错性低，不可靠。只能通过运行更多的服务器水平扩展， 而不同的应用服务对资源的需求不同，且不可持续发展。</p>
+<ol start="2">
+<li>SOA面向服务架构</li>
+</ol>
+<p>面向服务架构是一种设计方法，设计上通常是自上而下的，服务间松散耦合。ESB集成不同协议的服务，做消息的转化、解释、路由从而联通各个服务，解决企业通信问题，服务松耦合、可扩展。缺点是SOA更多的面向企业服务，服务拆分粒度很大，更多的是为了复用。</p>
+<ol start="3">
+<li>微服务</li>
+</ol>
+<p>微服务是去中心化的SOA的扩展，强调服务彻底的组件化，一个组件就是一个产品，服务切分力度更小，设计上更多的是自下而上的。服务间通过轻量级的协议进行通信，并根据服务本身需要独立化部署。从产品视角出发，更多聚焦可扩展性，兼顾可维护性。</p>
+<p>综合上述几种服务的对比，我们最终选择了微服务架构，并使用下面的技术栈：</p>
+<ul>
+<li>分布式中间件：Consul</li>
+<li>网关：Kong</li>
+<li>数据库：MySQL</li>
+<li>orm框架：GORM</li>
+<li>缓存：Redis</li>
+<li>消息队列：RabbitMQ</li>
+<li>对象存储：七牛云对象存储Kodo</li>
+<li>Web框架：Gin</li>
+<li>RPC 框架：GRPC</li>
+<li>数据传输协议：protobuf</li>
+<li>用户鉴权中间件：JWT</li>
+<li>配置文件：viper</li>
+</ul>
+<h4 id="3-1-1-需求分析">3.1.1 需求分析</h4>
+<h5 id="一、用户模块">一、用户模块</h5>
+<p>用户模块包括用户注册、用户登录和用户信息三个部分。</p>
+<ol>
+<li>
+<h6 id="用户注册接口-POST-douyin-user-register">用户注册接口 <code>POST-/douyin/user/register/</code></h6>
+</li>
+</ol>
+<p>新用户注册时提供用户名，密码，昵称即可，用户名需要保证唯一。创建成功后返回用户 id 和权限token。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_register_request</span>&#123;
+    <span class="hljs-type">string</span> username = <span class="hljs-number">1</span>; <span class="hljs-comment">// 注册用户名，最长32个字符</span>
+    <span class="hljs-type">string</span> password = <span class="hljs-number">2</span>; <span class="hljs-comment">// 密码，最长32个字符</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_register_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">4</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;</code></pre></div>
+<ol start="2">
+<li>
+<h6 id="用户登录接口-POST-douyin-user-login">用户登录接口 <code>POST-/douyin/user/login/</code></h6>
+</li>
+</ol>
+<p>通过用户名和密码进行登录，登录成功后返回用户 id 和权限 token</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_login_request</span>&#123;
+    <span class="hljs-type">string</span> username = <span class="hljs-number">1</span>; <span class="hljs-comment">// 登录用户名</span>
+    <span class="hljs-type">string</span> password = <span class="hljs-number">2</span>; <span class="hljs-comment">// 登录密码</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_login_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">4</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;</code></pre></div>
+<ol start="3">
+<li>
+<h6 id="用户信息接口-GET-douyin-user">用户信息接口 <code>GET-/douyin/user/</code></h6>
+</li>
+</ol>
+<p>获取登录用户的 id、昵称，如果实现社交部分的功能，还会返回关注数和粉丝数。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_request</span>&#123;
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_user_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    User user = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户信息</span>
+&#125;</code></pre></div>
+<h5 id="二、视频模块">二、视频模块</h5>
+<p>视频模块包括包括视频Feed流获取、视频投稿和获取用户投稿列表三个模块</p>
+<ol>
+<li>
+<h6 id="视频流接口-GET-douyin-feed">视频流接口 <code>GET-/douyin/feed/</code></h6>
+</li>
+</ol>
+<p>不限制登录状态，返回按投稿时间倒序的视频列表，视频数由服务端控制，单次最多30个。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_feed_request</span>&#123;
+    <span class="hljs-type">int64</span> latest_time = <span class="hljs-number">1</span>; <span class="hljs-comment">// 可选参数，限制返回视频的最新投稿时间戳，精确到秒，不填表示当前时间</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>;  <span class="hljs-comment">// 可选参数，登录用户设置</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_feed_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 视频列表</span>
+    <span class="hljs-type">int64</span> next_time = <span class="hljs-number">4</span>; <span class="hljs-comment">// 本次返回的视频中，发布最早的时间，作为下次请求时的latest_time</span>
+&#125;</code></pre></div>
+<ol start="2">
+<li>
+<h6 id="发布列表接口-GET-douyin-publish-list">发布列表接口 <code>GET-/douyin/publish/list/</code></h6>
+</li>
+</ol>
+<p>登录用户的视频发布列表，直接列出用户所有投稿过的视频。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_publish_list_request</span>&#123;
+    <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+    <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_publish_list_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+    <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户发布的视频列表</span>
+&#125;</code></pre></div>
+<ol start="3">
+<li>
+<h6 id="视频投稿接口-POST-douyin-publish-action">视频投稿接口 <code>POST-/douyin/publish/action/</code></h6>
+</li>
+</ol>
+<p>登录用户选择视频上传。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_publish_action_request</span>&#123;
+    <span class="hljs-type">string</span> token = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户鉴权token</span>
+    <span class="hljs-type">bytes</span> data = <span class="hljs-number">2</span>; <span class="hljs-comment">// 视频数据</span>
+    <span class="hljs-type">string</span> title = <span class="hljs-number">3</span>; <span class="hljs-comment">// 视频标题</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_publish_action_response</span>&#123;
+    <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+    <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+&#125;</code></pre></div>
+<h5 id="三、点赞模块">三、点赞模块</h5>
+<ol>
+<li>
+<h6 id="点赞操作接口-POST-douyin-favorite-action">点赞操作接口 <code>POST-/douyin/favorite/action/</code></h6>
+</li>
+</ol>
+<p>登录用户对视频进行点赞与取消点赞操作。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_action_request</span> &#123;
+   <span class="hljs-type">string</span> token = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户鉴权token</span>
+   <span class="hljs-type">int64</span> video_id = <span class="hljs-number">2</span>; <span class="hljs-comment">// 视频id</span>
+   <span class="hljs-type">int32</span> action_type = <span class="hljs-number">3</span>; <span class="hljs-comment">// 1-点赞，2-取消点赞</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_action_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+&#125;</code></pre></div>
+<ol start="2">
+<li>
+<h6 id="点赞列表接口-GET-douyin-favorite-list">点赞列表接口 <code>GET-/douyin/favorite/list/</code></h6>
+</li>
+</ol>
+<p>登录用户的所有点赞视频。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_request</span> &#123;
+   <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+   <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户点赞视频列表</span>
+&#125;</code></pre></div>
+<h5 id="四、评论模块">四、评论模块</h5>
+<ol>
+<li>
+<h6 id="评论操作接口-POST-douyin-comment-action">评论操作接口 <code>POST-/douyin/comment/action/</code></h6>
+</li>
+</ol>
+<p>登录用户对视频进行评论。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_comment_action_request</span> &#123;
+   <span class="hljs-type">string</span> token = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户鉴权token</span>
+   <span class="hljs-type">int64</span> video_id = <span class="hljs-number">2</span>; <span class="hljs-comment">// 视频id</span>
+   <span class="hljs-type">int32</span> action_type = <span class="hljs-number">3</span>; <span class="hljs-comment">// 1-发布评论，2-删除评论</span>
+   <span class="hljs-type">string</span> comment_text = <span class="hljs-number">4</span>; <span class="hljs-comment">// 用户填写的评论内容，在action_type=1的时候使用</span>
+   <span class="hljs-type">int64</span> comment_id = <span class="hljs-number">5</span>; <span class="hljs-comment">// 要删除的评论id，在action_type=2的时候使用</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_comment_action_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   Comment comment = <span class="hljs-number">3</span>; <span class="hljs-comment">// 评论成功返回评论内容，不需要重新拉取整个列表</span>
+&#125;</code></pre></div>
+<ol start="2">
+<li>
+<h6 id="视频评论列表接口-GET-douyin-comment-list">视频评论列表接口 <code>GET-/douyin/comment/list/</code></h6>
+</li>
+</ol>
+<p>查看视频的所有评论，按发布时间倒序。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_comment_list_request</span> &#123;
+   <span class="hljs-type">string</span> token = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户鉴权token</span>
+   <span class="hljs-type">int64</span> video_id = <span class="hljs-number">2</span>; <span class="hljs-comment">// 视频id</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_comment_list_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   <span class="hljs-keyword">repeated</span> Comment comment_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 评论列表</span>
+&#125;</code></pre></div>
+<h5 id="五、关注模块">五、关注模块</h5>
+<ol>
+<li>
+<h6 id="关注操作接口-POST-douyin-relation-action">关注操作接口 <code>POST-/douyin/relation/action/</code></h6>
+</li>
+</ol>
+<p>登录用户对其他用户进行关注或取消关注。实现用户之间的关注关系维护，登录用户能够关注或取关其他用户，同时自己能够看到自己关注过的所有用户列表，以及所有关注自己的用户列表。</p>
+<p>接口定义：</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_request</span> &#123;
+   <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+   <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户点赞视频列表</span>
+&#125;</code></pre></div>
+<ol start="2">
+<li>
+<h6 id="用户关注列表-GET-douyin-relatioin-follow-list">用户关注列表 <code>GET-/douyin/relatioin/follow/list/</code></h6>
+</li>
+</ol>
+<p>登录用户关注的所有用户列表。</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_request</span> &#123;
+   <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+   <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户点赞视频列表</span>
+&#125;</code></pre></div>
+<ol start="3">
+<li>
+<h6 id="用户粉丝列表-GET-douyin-relation-follower-list">用户粉丝列表 <code>GET-/douyin/relation/follower/list/</code></h6>
+</li>
+</ol>
+<p>所有关注登录用户的粉丝列表。</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_request</span> &#123;
+   <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+   <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户点赞视频列表</span>
+&#125;</code></pre></div>
+<ol start="4">
+<li>
+<h6 id="用户好友列表-GET-douyin-relation-friend-list">用户好友列表 <code>GET-/douyin/relation/friend/list/</code></h6>
+</li>
+</ol>
+<p>互相关注的用户列表。</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_request</span> &#123;
+   <span class="hljs-type">int64</span> user_id = <span class="hljs-number">1</span>; <span class="hljs-comment">// 用户id</span>
+   <span class="hljs-type">string</span> token = <span class="hljs-number">2</span>; <span class="hljs-comment">// 用户鉴权token</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_favorite_list_response</span> &#123;
+   <span class="hljs-type">int32</span> status_code = <span class="hljs-number">1</span>; <span class="hljs-comment">// 状态码，0-成功，其他值-失败</span>
+   <span class="hljs-type">string</span> status_msg = <span class="hljs-number">2</span>; <span class="hljs-comment">// 返回状态描述</span>
+   <span class="hljs-keyword">repeated</span> Video video_list = <span class="hljs-number">3</span>; <span class="hljs-comment">// 用户点赞视频列表</span>
+&#125;</code></pre></div>
+<h5 id="六、消息模块">六、消息模块</h5>
+<p>客户端通过定时轮询服务端接口查询消息记录</p>
+<ol>
+<li>
+<h6 id="聊天记录-GET-douyin-message-chat">聊天记录 <code>GET-/douyin/message/chat/</code></h6>
+</li>
+</ol>
+<p>当前登录用户和其他指定用户的聊天消息记录</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_message_chat_request</span>&#123;
+    <span class="hljs-keyword">required</span> <span class="hljs-type">string</span> token=<span class="hljs-number">1</span>;<span class="hljs-comment">//用户鉴权token</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int64</span> to_user_id=<span class="hljs-number">2</span>;<span class="hljs-comment">//对方用户id</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int64</span> pre_msg_time=<span class="hljs-number">3</span>;<span class="hljs-comment">//上次最新消息的时间</span>
+&#125;
+
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_message_chat_response</span> &#123;
+    <span class="hljs-keyword">required</span> int:<span class="hljs-number">32</span> status_code=<span class="hljs-number">1</span>;<span class="hljs-comment">//状态码，g-成功，其他值-失败</span>
+    <span class="hljs-keyword">optional</span> <span class="hljs-type">string</span> status._msg=<span class="hljs-number">2</span>;<span class="hljs-comment">//返回状态描述</span>
+    <span class="hljs-keyword">repeated</span> Message message_list=<span class="hljs-number">3</span>;<span class="hljs-comment">//消息列表</span>
+&#125;
+<span class="hljs-keyword">message </span><span class="hljs-title class_">Message</span>&#123;
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int64</span> id=<span class="hljs-number">1</span>;<span class="hljs-comment">//消息id</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int64</span> to_user_id=<span class="hljs-number">2</span>;<span class="hljs-comment">//该消息接收者的d</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int64</span> from_user_id=<span class="hljs-number">3</span>;<span class="hljs-comment">//该消息发送者的id</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">string</span> content=<span class="hljs-number">4</span>;<span class="hljs-comment">//消息内容</span>
+    <span class="hljs-keyword">optional</span> <span class="hljs-type">int64</span> create_time=<span class="hljs-number">5</span>;<span class="hljs-comment">//消息创建时间</span>
+&#125;</code></pre></div>
+<ol start="2">
+<li>
+<h6 id="消息操作-POST-douyin-message-action">消息操作 <code>POST-/douyin/message/action/</code></h6>
+</li>
+</ol>
+<p>登录用户对消息的相关操作，目前只支持消息发送</p>
+<div class="code-wrapper"><pre><code class="hljs ProtoBuf"><span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_relation_action_request</span>&#123;
+    <span class="hljs-keyword">required</span> <span class="hljs-type">string</span> token=<span class="hljs-number">1</span>;<span class="hljs-comment">//用户鉴权token</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int64</span> to_user_id=<span class="hljs-number">2</span>;<span class="hljs-comment">//对方用户id</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int32</span> action_type=<span class="hljs-number">3</span>;<span class="hljs-comment">//1-发送消息</span>
+    <span class="hljs-keyword">required</span> <span class="hljs-type">string</span> content=<span class="hljs-number">4</span>;<span class="hljs-comment">//消息内容</span>
+&#125;
+<span class="hljs-keyword">message </span><span class="hljs-title class_">douyin_relation_action_response</span>&#123;
+    <span class="hljs-keyword">required</span> <span class="hljs-type">int32</span> status._code=<span class="hljs-number">1</span>;<span class="hljs-comment">//状态码，g-成功，其他值-失败</span>
+    <span class="hljs-keyword">optional</span> <span class="hljs-type">string</span> status_msg=<span class="hljs-number">2</span>;<span class="hljs-comment">//返回状态描述</span>
+&#125;</code></pre></div>
+<h3 id="3-2-架构设计">3.2 架构设计</h3>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MjJhNjc0MmNmMDc2YTM5ZTQxYTUzYTNlNWNmMzVhMjRfNDdGTDE1QXdqUnpNUDNFTVZnS242SHpibHpybk1nQ0tfVG9rZW46Ym94Y255NlhGcGsza3NUeFlOSzlPd3lUQ1BnXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>运行流程：</strong></p>
+<ol>
+<li>后端服务启动，根据注册中心consul的地址（1.1.1.1:8500），将自己注册到注册中心 。</li>
+<li>客户端访问域名，根据解析找到kong网关地址（2.2.2.2:8000）。</li>
+<li>kong网关根据客户端传过来的服务名匹配到对应的Routes，再根据Routes找到对应的Service details 。</li>
+<li>然后拿着Service details里面配置Host，去找consul地址（1.1.1.1:8600）。</li>
+<li>根据名称查询consul的dns表，进而找到对应的ip+端口 。</li>
+<li>找到对应的服务，然后通信。</li>
+</ol>
+<h4 id="3-2-1-用户模块">3.2.1 用户模块</h4>
+<h5 id="1-整体架构设计">1. 整体架构设计</h5>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjI5OWRmYzEyZTVhMTY0YTU0NGJjMDgzZjQ2NmUwYTlfSk1sZEVxcmtOQU00RlZiSTRwVXRmcnZyQ3VPeHZ0RnRfVG9rZW46Ym94Y25EY0pnWm9qaFBTa09xNjNJQTJoNUJmXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="2-详细设计">2. 详细设计</h5>
+<h6 id="2-1-用户注册">2.1. 用户注册</h6>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YzdmZGI3MjZhYjBmNTExYjg1Nzk5OGUyNDIwODZmMGZfaFdBaUJuOFdEV2czVXpySzRCSFQ0QVNGOUpHMndOQXBfVG9rZW46Ym94Y25uaGdlbktoTmZscGFFeUhhek1ST1liXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>用户注册的逻辑比较简单，请求的参数中只包含用户的用户名与密码，不支持手机注册以及各种验证码操作。因此用户的唯一识别信息为用户名。如果数据库中存在相同的用户名，则认为这个用户已经存在，拒绝注册；否则则允许用户注册，并在数据库中分配给这个用户唯一的id。最后调用JWT生成Token返回响应，作为在Token生效期间的用户的唯一标识符。</p>
+<p>用户注册流程：</p>
+<ol>
+<li>DY-api.UserRegister处理请求，将请求中带有的用户名和密码字段传递到服务端DY-srv.UserRegister</li>
+<li>服务端根据用户名查询数据库，如果发现重名用户名，则直接返回错误</li>
+<li>未发现重名用户名，则通过md5加盐（用户名）对密码进行加密，加密后插入数据库，数据库返回唯一自增ID</li>
+<li>服务端返回成功响应给DY-api.UserRegister</li>
+<li>DY-api.UserRegister利用响应中的ID信息，调用jwt进行Token生成，生成后构建客户端相应结构体给客户端</li>
+</ol>
+<h6 id="2-2-用户登录">2.2. 用户登录</h6>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MDYyNWQyMGRiMTE4Yzg1OTFmMGMwNDIwZTNlZWU3YTJfekFJVzBQWnFIR2dnT0lqblNaNGpPeHM1aGZiS1VwcUVfVG9rZW46Ym94Y25BM0JzNllKbThIaDVnQ0F2TlZKQzRjXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>用户登录请求的参数中只包含用户的用户名与密码，不支持手机登录以及各种验证码操作。因此用户的唯一识别信息为用户名。如果数据库中不存在相同的用户名，则认为这个用户不存在，拒绝登录；否则则允许用户登录，并返回数据库中这个用户的唯一id。同时调用JWT生成Token返回响应，作为在Token生效期间的用户的唯一标识符。</p>
+<p>用户登录流程：</p>
+<ol>
+<li>DY-api.UserLogin处理请求，将请求中带有的用户名和密码字段传递到服务端DY-srv.UserLogin</li>
+<li>服务端根据用户名查询数据库，如果未发现相同用户名，则直接返回错误，否则返回通过用户名查询出来的用户id和密码</li>
+<li>对用户输入的密码进行md5加盐（用户名）加密，与上一步返回的密码进行比较，如果不匹配直接返回错误</li>
+<li>密码匹配，则服务端返回成功响应给DY-api.UserLogin</li>
+<li>DY-api.UserLogin利用响应中的ID信息，调用jwt进行Token生成，生成后构建客户端相应结构体给客户端</li>
+</ol>
+<h6 id="2-3-用户信息">2.3. 用户信息</h6>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MDY2MzBhYjFjNzYyYzVhYmJmNTM3YzVkMjQyYjNiMmJfU0NCUkRQTUUxWFhPOFBGVWloUVFocXoyMXdXNDNoTktfVG9rZW46Ym94Y25qbkhZdUwyWXE4blRyeWNNME9ZMnBkXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>用户信息请求的参数包括要请求的用户的id和当前登录的用户的Token。返回的用户信息应该包括用户的名称，用户的关注人数和粉丝人数，以及用户与当前登录用户的关注关系。因此除了调用DY-api.UserInfo获取用户的基本信息之外，还需要调用DY-srv.GetFollowList与DY-srv.GetFollowerList获取用户的关注人和用户的粉丝列表。两个Count数值可以通过查看切片的大小获得，关注关系需要遍历切片进行搜索。</p>
+<p>在对不同的服务进行调用的时候采取并行调用的方式，服务全部返回后在api层进行拼接，从而提高效率。</p>
+<p>用户信息流程：</p>
+<ol>
+<li>DY-api.UserInfo处理请求，将请求中带有的id字段传递到服务端DY-srv.UserInfo、DY-srv.GetFollowList和DY-srv.GetFollowerList</li>
+<li>并行请求三个服务，其中DY-srv.UserInfo根据id字段查询数据库，如果id有效，则返回用户姓名，否则返回错误</li>
+<li>等待三个服务全部成功返回后，填充响应中的User的五个字段
+<ol>
+<li>id与name字段通过DY-srv.UserInfo的响应直接获取</li>
+<li>followcount通过获取DY-srv.GetFollowList返回的切片长度获取</li>
+<li>followercount通过获取DY-srv.GetFollowerList返回的切片长度获取</li>
+<li>通过Token获取当前的登录用户id，在DY-srv.GetFollowerList切片内部查询，如果查询到为True，否则为False</li>
+</ol>
+</li>
+<li>构建响应结构体并返回给客户端</li>
+</ol>
+<h4 id="3-2-2-视频模块">3.2.2 视频模块</h4>
+<h5 id="1-整体架构设计-2">1. 整体架构设计</h5>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=NmU3NjVjNzAwNmRjZDYzZGIzMTU4ZDllNTU3Y2Q5NzJfUHlydUtuQW54SVR2ZnZYVjNLckhXQzNZMW1IMFdoc3ZfVG9rZW46Ym94Y24xT0hLRElrQUdaY2l3RWxXMDF6R3ViXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-详细设计-2">2. 详细设计</h5>
+<h6 id="2-1-视频流">2.1. 视频流</h6>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGY4NzM2YmI1YjIxMjVhODQ5MWJiY2JhYWYwN2QzZjdfeXI5TWJhenhXY1BQeG1CdFF1aDRwOWpzd2ZSNEZMblVfVG9rZW46Ym94Y25yZW1hbTVnYTJQNTZIUzJyelNPRmhjXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>获取视频流的请求参数包括视频的最新时间和当前用户的Token信息。如果当前用户在登录的状态下请求视频流，则通过最新时间在数据库中查询前30个视频的信息，包括视频本身的id和作者的id。获得最多30个视频的信息后，创建多个协程（视频数量个数），根据每个id获得视频的其他信息，如作者的详细信息，视频的点赞数量，作者的关注人数等等。在调用不同服务的时候也采用并行调用的方式。最后对返回的全部响应进行组织返回。</p>
+<p>如果用户没有登录，则Token信息为空，那么返回的响应中缺少一些交互信息，如当前用户是否已经对当前视频点赞等等。</p>
+<p>获取视频流流程：</p>
+<ol>
+<li>
+<p>DY-api.Feed处理请求，准备请求服务</p>
+</li>
+<li>
+<p>首先请求DY-srv.Feed服务，根据时间戳查询数据库，查询出不超过时间戳的前30个视频，查询后返回视频列表</p>
+</li>
+<li>
+<p>随后并行请求视频列表中的每一个视频（即最大并发数为30）</p>
+</li>
+<li>
+<p>对每一个视频，根据前一个服务响应的作者的id并行请求DY-srv.UserInfo、DY-srv.GetFollowList和DY-srv.GetFollowerList，等待全部成功返回后记录Author响应相关的5个字段</p>
+</li>
+<li>
+<p>对每一个视频，根据视频id并行请求DY-srv.douyinCommentList和DY-srv.douyinLikeVideo，对于每个视频</p>
+<ol>
+<li>commentCount通过获取DY-srv.douyinCommentList返回的切片长度获取</li>
+<li>favoriteCount通过获取DY-srv.douyinLikeVideo返回的切片长度获取</li>
+<li>通过Token获取当前的登录用户id，在DY-srv.douyinLikeVideo切片内部查询，如果查询到为True，否则为False</li>
+</ol>
+</li>
+<li>
+<p>等待全部的视频返回响应后，构建响应结构体并返回给客户端</p>
+</li>
+</ol>
+<h6 id="2-2-发布列表">2.2. 发布列表</h6>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=Mjc0MjM5OGZlNjFkNDAzNGFkNTI5Y2FlYzYyYjUxMTBfTmJvZWZudHAwckk5cFJpMWNKcFczdlJ1NVJvWjFyOVdfVG9rZW46Ym94Y25lZUtQMlc0dTJQMU5tWlJaYjliOEdkXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>获取用户视频发布列表的请求参数包括用户的id和当前用户的Token信息。两者不一定是相同的用户，因为用户在观看视频的同时点击用户头像即可以看到这个视频作者的信息和作者的视频发布列表。</p>
+<p>如果当前用户是查看自己的视频发布列表，则通过用户的id在数据库中查询发布的视频的信息。获得最多视频的信息后，创建多个协程（视频数量个数），根据每个id获得视频的其他信息，如视频的点赞数量，作者的关注人数等等。在调用不同服务的时候也采用并行调用的方式。最后对返回的全部响应进行组织返回。</p>
+<p>如果Token信息为空，则当前场景是用户查看其他用户的发布视频列表。那么返回的响应中缺少一些交互信息，如当前用户是否已经对当前作者的视频点赞等等。</p>
+<p>获取视频发布列表流程：</p>
+<ol>
+<li>
+<p>DY-api.PublishList处理请求，准备请求服务</p>
+</li>
+<li>
+<p>首先请求DY-srv.PublishList服务，根据id查询数据库，如果id在数据库中不存在，则直接返回错误，然后根据用户id查询发布的视频列表并返回</p>
+</li>
+<li>
+<p>随后并行请求DY-srv.UserInfo、DY-srv.GetFollowList和DY-srv.GetFollowerList，等待全部成功返回后记录User响应相关的5个字段</p>
+</li>
+<li>
+<p>对每一个视频，根据视频id并行请求DY-srv.douyinCommentList和DY-srv.douyinLikeVideo，对于每个视频</p>
+<ol>
+<li>commentCount通过获取DY-srv.douyinCommentList返回的切片长度获取</li>
+<li>favoriteCount通过获取DY-srv.douyinLikeVideo返回的切片长度获取</li>
+<li>通过Token获取当前的登录用户id，在DY-srv.douyinLikeVideo切片内部查询，如果查询到为True，否则为False</li>
+</ol>
+</li>
+<li>
+<p>等待全部的视频返回响应后，构建响应结构体并返回给客户端</p>
+</li>
+</ol>
+<h6 id="2-3-视频投稿">2.3. 视频投稿</h6>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDdlMzEyODY4MmRiYjhmYjFiODU0Mjk4OWMwMTExYTdfOExUalZqY1hPeld1ZkhMM1E5b2twZ29rQnAzR2xoVmNfVG9rZW46Ym94Y25RR1Ztd3ZFTVFORGMzTjNtd0NjMmNoXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>视频投稿的请求参数中包括用户的Token，上传的视频流数据以及视频的标题。其中视频流是用户从本地上传得到的，视频的标题是用户自行输入得到的。上传视频必须是在登录的状态下，因此必须包含用户的Token信息。获得参数后，根据Token信息解析出当前用户的id，然后根据用户id判断是否存在这个用户的文件夹。如果不存在文件夹则新建用户文件夹。创建文件夹后将视频流写入这个文件夹下的视频文件，同时调用ffmpeg对视频的封面进行截取从而获得视频的首图。确认视频文件与图片文件都保存在本地后，构建返回的响应，并将上传文件的消息推送到消息队列中，此时消息队列将视频文件和图片文件异步上传到对象存储当中，上传结束后将视频信息写入数据库，在下次请求视频流的过程中就可以请求到这个视频了。</p>
+<p>其中使用RabbitMQ进行异步处理，在服务器带宽有限的情况下，上传视频对用户来说基本无感，增加了用户的体验。且上传到对象存储后视频和图片的展示和下载速度也会更快，方便用户查看视频。</p>
+<p>视频投稿流程：</p>
+<ol>
+<li>DY-api.PublishAction处理请求，将请求中的字段传递到服务端DY-srv.PublishAction</li>
+<li>服务端从Token中获取id信息，如果无法获取id，直接返回错误</li>
+<li>服务端根据id信息查询数据库，获取用户信息，如果id并不存在于数据库，则直接返回错误</li>
+<li>服务端判断本地存放视频与图片文件的文件夹是否存在，如果不存在则创建文件夹</li>
+<li>服务端将接收到的请求中的字节流写入文件，并调用ffmpeg对视频的第一帧进行截图作为封面，同样写入图片文件</li>
+<li>服务端将文件上传信息传递给消息队列，直接返回成功响应给客户端</li>
+<li>消息队列接收到消息后并行上传视频和图片文件，两者都上传成功后将视频信息写入数据库</li>
+</ol>
+<h4 id="3-2-3-点赞模块">3.2.3 点赞模块</h4>
+<h5 id="1-整体架构设计-3">1. 整体架构设计</h5>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ODFhZmQ0YmQ2NTZmZDEzZTA5ZjJmYWNlMTQ4YWQ5ZWFfU2ZCVEJwajA1QURYVHN4UVhJN2lyZXJCTE9mcWJrQ2VfVG9rZW46Ym94Y25Bb3NHcEhjV2twMk90dWxtYXFxMk5jXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-详细设计-3">2. 详细设计</h5>
+<h6 id="2-1-点赞操作">2.1 点赞操作</h6>
+<p>点赞操作分为对未点赞的视频点赞以及对已点赞的视频取消点赞。点赞操作接口的请求参数包括，用户token；视频id；操作类型(1–点赞，2–取消点赞)。通过解析用户token可获得用户id。构建一个redis集合，将用户已经点赞的视频将其按照k-v形式存入redis。</p>
+<p>2.1.1 对视频点赞</p>
+<p>当请求参数操作类型的值为1时，即为点赞操作，点赞操作是要对用户未点赞的视频进行点赞，首先在redis集合中查询该用户是否对此视频点赞过，若点赞过则返回视频已点赞，若未点赞，则将该条点赞记录先插入redis再插入数据库中，最后返回成功的响应码。</p>
+<p>2.1.2 对视频取消点赞</p>
+<p>当请求参数操作类型的值为2时，即为取消点赞操作，取消点赞操作是要对用户点赞的视频进行取消，首先在redis集合中查询该用户是否对此视频点赞过，若未点赞过则返回视频暂未点赞，若点赞了，则将该条点赞记录先从redis中删除再从数据库中删除，最后返回成功的响应码。</p>
+<h6 id="2-2-喜欢列表">2.2 喜欢列表</h6>
+<p>喜欢列表接口的请求参数为用户id和用户token，先根据token验证用户身份与登录状态，若成功，则根据用户id查询用户的喜欢列表，将喜欢列表封装进响应结构体中，返回参数中还需要视频相关信息，通过调用视频服务接口，获取视频相关信息，并封装到响应结构体中，最终将响应结构体返回。</p>
+<h4 id="3-2-4-评论模块">3.2.4 评论模块</h4>
+<h5 id="1-整体架构设计-4">1. 整体架构设计</h5>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=OWVhZDA3Yjg5OTE1YjUwYjNhMGNmNjVlMGU3NDJkNDNfY0tWYnp0UllzcUFlaGx1ZnJuT1hsQ3pZSmlZd3pUQnhfVG9rZW46Ym94Y255bFZuTHB0WUQzNTVUOFVPWDQxTHFoXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-详细设计-4">2. 详细设计</h5>
+<h6 id="2-1-评论操作">2.1 评论操作</h6>
+<p>评论操作分为发表评论和删除评论，评论操作接口的请求参数包括用户token，视频id，操作类型(1–发表评论，2–删除评论)，评论内容(发表评论时)，评论id(删除评论时)。首先根据token验证用户身份与登录状态，若成功，则解析token获取用户id。</p>
+<p>2.1.1 发表评论</p>
+<p>当操作类型等于1时，表示是发表评论，将对应评论内容，用户id，视频id，添加进数据库，并且将评论列表封装进响应结构体，同时调用社交服务，获取对应的用户信息，将用户信息也封装进响应结构体，最后将其返回。</p>
+<p>2.1.2 删除评论</p>
+<p>当操作类型等于2时，表示是删除评论，将评论id对应的数据从数据库中删除，并返回删除成功的信息。</p>
+<h6 id="2-2-评论列表">2.2 评论列表</h6>
+<p>评论列表接口的请求参数为视频id和用户token，先根据token验证用户身份与登录状态，若成功，则根据视频id查询视频的评论列表，将评论列表封装进响应结构体中，返回参数中还需要用户相关信息，通过调用社交服务接口，获取用户相关信息，并封装到响应结构体中，最终将响应结构体返回。</p>
+<h4 id="3-2-5-社交模块">3.2.5 社交模块</h4>
+<p>社交模块的整体设计如下图：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YThkZTI0YWE3OGJkNWUyN2QwYzEyMjIwZmY0YzljNzFfZktHVmZ5Q09tdkF6N2N4bGRsd3hCblhWZ3VXNGhhdVRfVG9rZW46Ym94Y24zRjZTcjVWeEpaZXl4WDdEUXptTkJlXzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其中 <code>social-api</code>程序是使用Gin框架搭建的Web服务。主要接受url请求，通过路由绑定handler处理函数，添加授权中间件。<code>social-api</code>部署了多个，并将自己注册在Consule服务上，支持负载均衡，并通过服务发现调用gRPC服务。</p>
+<p><code>social-srv</code>是业务处理代码，主要和MySQL数据库打交道。<code>social-srv</code>可以部署在多个不同服务器上，并将自己注册到Consul上来实现负载均衡，提供被其他服务发现。</p>
+<p><strong>详细设计：</strong></p>
+<ol>
+<li>关注模块</li>
+</ol>
+<p>关注接口的请求参数为用户ID和被关注的用户ID，先根据token验证用户身份与登录状态，若成功，则向数据库插入数据，同时互相关注的用户会成为朋友，在朋友界面显示朋友列表，并展现最近的一条消息。用户也可以在信息详情页面来查看关注的用户和粉丝。</p>
+<ol start="2">
+<li>消息模块</li>
+</ol>
+<p>通过用户ID和朋友ID可以新增一条消息。使用定时调用接口的方式来获取消息。</p>
+<h3 id="3-3-数据库设计">3.3 数据库设计</h3>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDk5OTA0ODM2OWMzZmE3ZWU0ZTQyMTIwMTNlMzNiMzlfeHFqb3kxVENUU2pQUEpLSkw4YzA0VEE5NUpjWmd3SWJfVG9rZW46Ym94Y25wbmU2V1hWaGZJREpkenRXb3FQTEI2XzE2NzgxOTgyMjM6MTY3ODIwMTgyM19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="3-3-1-videos表">3.3.1 videos表</h4>
+<p>字段如下：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>bigint</td>
+<td>视频唯一id，自增主键</td>
+</tr>
+<tr>
+<td><code>author_id</code></td>
+<td>bigint</td>
+<td>视频作者id</td>
+</tr>
+<tr>
+<td><code>file_name</code></td>
+<td>varchar</td>
+<td>文件名称</td>
+</tr>
+<tr>
+<td><code>publish_time</code></td>
+<td>bigint</td>
+<td>发布时间</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>varchar</td>
+<td>视频标题</td>
+</tr>
+</tbody>
+</table>
+<p>索引设置：</p>
+<ol>
+<li>视频唯一id的自增主键索引</li>
+<li>发布时间的索引，用户在数据库中查询指定时间范围的视频</li>
+<li>作者id的索引，用于查询指定作者的视频列表</li>
+</ol>
+<h4 id="3-3-2-users表">3.3.2 users表</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>bigint</td>
+<td>用户id，自增主键</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>varchar</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>varchar</td>
+<td>用户密码</td>
+</tr>
+</tbody>
+</table>
+<p>索引设置：</p>
+<ol>
+<li>用户id的自增主键索引</li>
+<li>用户名与密码的联合索引，用于在数据库中匹配用户</li>
+</ol>
+<h4 id="3-3-3-comments表">3.3.3 comments表</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>bigint</td>
+<td>评论唯一id，自增主键</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>bigint</td>
+<td>评论发布者的id</td>
+</tr>
+<tr>
+<td><code>video_id</code></td>
+<td>bigint</td>
+<td>评论发布位置的视频id</td>
+</tr>
+<tr>
+<td><code>comment_text</code></td>
+<td>varchar</td>
+<td>评论内容</td>
+</tr>
+<tr>
+<td><code>create_time</code></td>
+<td>datetime</td>
+<td>评论创建时间</td>
+</tr>
+</tbody>
+</table>
+<p>索引设置：</p>
+<ol>
+<li>评论id的自增主键索引</li>
+<li>视频id的索引，用于在数据库中查询某条视频对应的评论内容</li>
+</ol>
+<h4 id="3-3-4-follows表">3.3.4 follows表</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>bigint</td>
+<td>关注关系id，自增主键</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>bigint</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td><code>follower_id</code></td>
+<td>bigint</td>
+<td>关注的用户id</td>
+</tr>
+</tbody>
+</table>
+<p>索引设置：</p>
+<ol>
+<li>关注关系id的自增主键索引</li>
+<li>用户id和关注的用户id的联合索引，用于在数据库中查询两个用户之间的关注关系</li>
+<li>关注的用户id索引，用于在数据库中查询用户的关注关系</li>
+</ol>
+<h4 id="3-3-5-likes表">3.3.5 likes表</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>bigint</td>
+<td>喜欢关系id，自增主键</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>bigint</td>
+<td>点赞用户的id</td>
+</tr>
+<tr>
+<td><code>video_id</code></td>
+<td>bigint</td>
+<td>被点赞的视频id</td>
+</tr>
+</tbody>
+</table>
+<p>索引设置：</p>
+<ol>
+<li>喜欢关系id的自增主键索引</li>
+<li>用户和点赞视频的联合索引，用于在数据库中查询某个用户是否对某个视频点赞</li>
+<li>用户id索引，用于在数据库中查询某个用户的点赞的视频的id</li>
+<li>视频id索引，用于在数据库中查询某个视频的点赞用户的id</li>
+</ol>
+<h4 id="3-3-6-messages表">3.3.6 messages表</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>bigint</td>
+<td>消息唯一id，自增主键</td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>bigint</td>
+<td>发送消息的用户id</td>
+</tr>
+<tr>
+<td><code>to_user_id</code></td>
+<td>bigint</td>
+<td>接收消息的用户id</td>
+</tr>
+<tr>
+<td><code>sent_time</code></td>
+<td>datetime</td>
+<td>消息发送时间</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>varchar</td>
+<td>消息内容</td>
+</tr>
+</tbody>
+</table>
+<p>索引设置：</p>
+<ol>
+<li>消息id的自增主键索引</li>
+<li>发送用户id索引，用于查询数据库中指定的用户发送的消息</li>
+<li>接收用户id索引，用于查询数据库中指定的用户接收的消息</li>
+</ol>
+<h3 id="3-4-项目代码介绍">3.4 项目代码介绍</h3>
+<p>后端项目总体分为两个大部分：</p>
+<ol>
+<li>web项目（<code>simple-DY/DY-api/</code>）：使用Gin框架来获取用户请求，连接GRPC远程调用服务，最后返回数据。</li>
+<li>service项目（<code>simple-DY/DY-srvs/</code>）：GRPC编写的微服务。</li>
+</ol>
+<p>项目的总体结构如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">├── simple-DY
+│   ├── db.sql        // 数据库初始化文件
+│   ├── DY-api           // web项目
+│   │   ├── interact-web    // 互动模块
+│   │   ├── social-web      // 社交模块
+│   │   └── video-web       // 视频模块
+│   ├── DY-srvs          // service项目
+│   │   ├── interact-srv    // 互动模块
+│   │   ├── social-srv      // 社交模块
+│   │   └── video-srv       // 视频模块
+│   ├── go.mod
+│   ├── go.sum
+│   └── README.md</code></pre></div>
+<h4 id="3-4-1-video服务（包括视频模块和用户模块）">3.4.1 video服务（包括视频模块和用户模块）</h4>
+<ol>
+<li>api层</li>
+</ol>
+<p>代码结构：</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">video-web
+├── api
+│   ├── base.go
+│   ├── feed.go
+│   ├── info.go
+│   ├── otherapi.go
+│   ├── publishaction.go
+│   ├── publishlist.go
+│   ├── userinfo.go
+│   ├── userlogin.go
+│   └── userregister.go
+├── config
+│   └── config.go
+├── config-debug.yaml
+├── config-pro.yaml
+├── global
+│   └── global.go
+├── initialize
+│   ├── config.go
+│   ├── logger.go
+│   ├── router.go
+│   ├── srv_conn.go
+│   └── validator.go
+├── logs
+│   └── video-web.log
+├── main.go
+├── middlewares
+│   ├── cors.go
+│   └── jwt.go
+├── models
+│   ├── base.go
+│   ├── jwt.go
+│   ├── other.go
+│   ├── request.go
+│   └── response.go
+├── proto
+│   ├── simpledy_grpc.pb.go
+│   ├── simpledy.pb.go
+│   └── simpledy.proto
+├── README.md
+└── utils
+    └── consul
+        └── register.go</code></pre></div>
+<p>详细说明：</p>
+<ul>
+<li><code>api</code>：编写路由的Handler处理函数</li>
+<li><code>config</code>：读取yaml文件时的接收结构体</li>
+<li><code>*.yaml</code>：配置文件
+<ul>
+<li><code>config-debug.yaml</code>：线下开发使用的配置文件</li>
+<li><code>config-pro.yaml</code>: 线上配置文件</li>
+</ul>
+</li>
+<li><code>global</code>：存放全局变量，例如config信息，连接信息等</li>
+<li><code>initialize</code>：初始化程序代码
+<ul>
+<li><code>config.go</code>：读取配置文件</li>
+<li><code>logger.go</code>：日志配置</li>
+<li><code>router.go</code>：gin路由</li>
+<li><code>srv_conn.go</code>：连接微服务</li>
+<li><code>validator.go</code>：翻译器</li>
+</ul>
+</li>
+<li><code>logs</code>：日志文件</li>
+<li><code>main.go</code>：主程序入口</li>
+<li><code>middlewares</code>：gin的自定义中间件
+<ul>
+<li><code>cors.go</code>：跨域中间件</li>
+<li><code>jwt.go</code>：JWT中间件</li>
+</ul>
+</li>
+<li><code>models</code>：用户请求参数的结构体</li>
+<li><code>proto</code>：编写和生成proto文件</li>
+<li><code>README.md</code>：说明文件</li>
+<li><code>utils</code>：工具类
+<ul>
+<li><code>consul</code>：调用consul api进行服务注册发现等操作</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>srv层</li>
+</ol>
+<p>代码结构：</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">.
+├── config
+│   └── config.go
+├── config-debug.yaml
+├── config-pro.yaml
+├── global
+│   └── global.go
+├── handler
+│   ├── base.go
+│   ├── feed.go
+│   ├── publishaction.go
+│   ├── publishlist.go
+│   ├── userinfo.go
+│   ├── userlogin.go
+│   ├── userregister.go
+│   └── videoinfo.go
+├── initialize
+│   ├── config.go
+│   ├── db.go
+│   ├── handler.go
+│   └── logger.go
+├── logs
+│   └── video-srv.log
+├── main.go
+├── models
+│   ├── base.go
+│   └── db.go
+├── proto
+│   ├── simpledy_grpc.pb.go
+│   ├── simpledy.pb.go
+│   └── simpledy.proto
+├── README.md
+└── utils
+    ├── backup
+    │   └── backup.go
+    ├── consul
+    │   └── register.go
+    ├── dao
+    │   ├── followdao.go
+    │   ├── userdao.go
+    │   └── videodao.go
+    ├── ffmpeg
+    │   └── extractFirstFrame.go
+    ├── freeport
+    │   └── port.go
+    ├── jwt
+    │   └── token.go
+    ├── md5salt
+    │   └── md5.go
+    ├── oss
+    │   └── upload.go
+    └── rabbitmq
+        ├── base.go
+        ├── consumer.go
+        └── producer.go</code></pre></div>
+<p>详细说明：</p>
+<ul>
+<li><code>config</code>：读取yaml文件时的接收结构体</li>
+<li><code>*.yaml</code>：配置文件
+<ul>
+<li><code>config-debug.yaml</code>：线下开发使用的配置文件</li>
+<li><code>config-pro.yaml</code>: 线上配置文件</li>
+</ul>
+</li>
+<li><code>global</code>：存放全局变量，例如config信息，连接信息等</li>
+<li><code>handler</code>：主要的逻辑代码，proto的service的实现类</li>
+<li><code>initialize</code>：初始化程序代码
+<ul>
+<li><code>config.go</code>：读取配置文件</li>
+<li><code>db.go</code>：数据库全局连接</li>
+<li><code>handler.go</code>：监听客户端连接</li>
+<li><code>logger.go</code>：日志配置</li>
+</ul>
+</li>
+<li><code>logs</code>：日志文件</li>
+<li><code>main.go</code>：主程序入口</li>
+<li><code>models</code>：用户请求参数的结构体</li>
+<li><code>proto</code>：编写和生成proto文件</li>
+<li><code>README.md</code>：说明文件</li>
+<li><code>utils</code>：工具类
+<ul>
+<li><code>backup</code>：备份用户上传的视频和图片文件</li>
+<li><code>consul</code>：调用consul api进行服务注册发现等操作</li>
+<li><code>dao</code>：数据库相关操作</li>
+<li><code>ffmpeg</code>：视频首页截图</li>
+<li><code>freeport</code>：获取空闲网络端口</li>
+<li><code>jwt</code>：鉴权Token的生成与解析</li>
+<li><code>md5salt</code>：密码加密存储</li>
+<li><code>oss</code>：七牛云对象存储相关操作</li>
+<li><code>rabbitmq</code>：消息队列相关操作</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-4-2-interact服务（包括点赞模块和评论模块）">3.4.2 interact服务（包括点赞模块和评论模块）</h4>
+<ol>
+<li>api层</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Bash">interact-web
+├── api
+│   ├── base.go
+│   ├── comment.go
+│   └── like.go
+├── config
+│   └── config.go
+├── global
+│   └── global.go
+├── initialize
+│   ├── config.go
+│   ├── logger.go
+│   ├── router.go
+│   ├── srv_conn.go
+│   └── validator.go
+├── main.go
+├── middlewares
+│   ├── cors.go
+│   └── jwt.go
+├── models
+│   └── request.go
+├── proto
+│   ├── simpledy_grpc.pb.go
+│   ├── simpledy.pb.go
+│   └── simpledy.proto
+├── router
+│   ├── comment.go
+│   └── like.go
+└── utils
+    └── register
+        └── consul
+            └── register.go</code></pre></div>
+<ol start="2">
+<li>srv层</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Bash">interact-srv
+├── build.sh
+├── config
+│   └── config.go
+├── global
+│   └── global.go
+├── handler
+│   └── interact.go
+├── initalize
+│   ├── config.go
+│   ├── db.go
+│   ├── logger.go
+│   ├── rdb.go
+│   └── srvs_conn.go
+├── main.go
+├── model
+│   ├── base.go
+│   ├── comment.go
+│   ├── like.go
+│   └── video.go
+├── proto
+│   ├── simpledy_grpc.pb.go
+│   ├── simpledy.pb.go
+│   └── simpledy.proto
+└── utils
+    ├── addr.go
+    ├── jwt
+    │   └── token.go
+    ├── key
+    │   └── key.go
+    └── register
+        └── consul
+            └── register.go</code></pre></div>
+<h4 id="3-4-3-social服务（包括关注模块和消息模块）">3.4.3 social服务（包括关注模块和消息模块）</h4>
+<ol>
+<li>api层</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Bash">social-web
+├── api
+│   ├── base.go
+│   ├── message.go
+│   └── relation.go
+├── config
+│   └── config.go
+├── config-debug.yaml
+├── config-pro.yaml
+├── forms
+│   ├── message.go
+│   └── relation.go
+├── global
+│   └── global.go
+├── initialize
+│   ├── config.go
+│   ├── logger.go
+│   ├── router.go
+│   ├── srv_conn.go
+│   └── validator.go
+├── main.go
+├── middlewares
+│   ├── cors.go
+│   └── jwt.go
+├── models
+│   └── request.go
+├── proto
+│   ├── simpledy_grpc.pb.go
+│   ├── simpledy.pb.go
+│   └── simpledy.proto
+├── router
+│   ├── message.go
+│   └── relation.go
+└── utils
+    ├── addr.go
+    └── register
+        └── consul
+            └── register.go</code></pre></div>
+<ol start="2">
+<li>srv层</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Bash">social-srv
+├── build.sh
+├── config
+│   └── config.go
+├── config-debug.yaml
+├── config-pro.yaml
+├── global
+│   └── global.go
+├── handler
+│   └── social.go
+├── initialize
+│   ├── config.go
+│   ├── db.go
+│   └── logger.go
+├── main.go
+├── model
+│   └── base.go
+└── proto
+    ├── simpledy_grpc.pb.go
+    ├── simpledy.pb.go
+    └── simpledy.proto</code></pre></div>
+<h1>四、测试结果</h1>
+<h2 id="4-1-功能测试">4.1 功能测试</h2>
+<p>通过Apifox的自动化测试，构建不同实际使用中可能遇到的情况，对接口进行充分测试。</p>
+<h3 id="1-用户注册接口-douyin-user-register">1. 用户注册接口 <code>/douyin/user/register/</code></h3>
+<p>需要对如下的用例进行测试：</p>
+<ol>
+<li>注册不存在的用户名-返回成功响应</li>
+<li>注册已经存在的用户名-返回失败响应</li>
+</ol>
+<p>测试结果：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGY5NWVkMzk1MGQ3ZTczNTIyMTdkOTI2NjQ5YTU1MTVfa01vZmhlRExwQkVZcDQxRFd5VlNiRk85cjEyZkUxb2lfVG9rZW46Ym94Y24xMkg3QmU2NExQQm1wMlZnTG0za1ViXzE2NzgxOTg3OTQ6MTY3ODIwMjM5NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-用户登录接口-douyin-user-login">2. 用户登录接口 <code>/douyin/user/login/</code></h3>
+<p>需要对如下的用例进行测试：</p>
+<ol>
+<li>登录已经存在的用户名且密码正确-返回成功响应</li>
+<li>登录不存在的用户名-返回失败响应</li>
+<li>登录已经存在的用户名，但是密码错误-返回失败响应</li>
+</ol>
+<p>测试结果：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MTIyNWQ5MGQ5NzlhOWZjOWYxMDQzNjI4YmNkYjNkZmZfM2tIVFlEaEhIcGxwSGxRcndpNGpTc2JqSWNVMmszVGdfVG9rZW46Ym94Y25pcThzY0JSZmJDcW5KSEpnY3NVM2NlXzE2NzgxOTg3OTQ6MTY3ODIwMjM5NF9WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="3-用户信息接口-douyin-user">3. 用户信息接口 <code>/douyin/user/</code></h3>
+<p>需要对如下的用例进行测试：</p>
+<ol>
+<li>用户id存在且Token正确-返回成功响应</li>
+<li>用户id存在但Token为空或不正确-返回成功响应（但是没有是否关注与是否点赞等关系信息）</li>
+<li>用户id不存在-返回失败响应</li>
+</ol>
+<p>测试结果：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=MGEyOGM5ODc2NmRjM2EzZmEyNjA2Y2IzMGUxMmY3OGJfeXdiMXNPWTJTS2U1ZW83SVl3SlhTblFaeTgxWlZvSktfVG9rZW46Ym94Y24zTmJuak5MNVVNWW54ZGNScGl3UEdjXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="4-视频流接口-douyin-feed">4. 视频流接口 <code>/douyin/feed/</code></h3>
+<p>需要对如下的用例进行测试：</p>
+<ol>
+<li>未登录用户请求视频流（包括Token错误的情况）-返回成功响应（但是缺少是否对视频点赞等关系信息）</li>
+<li>登录用户请求视频流-返回完整的成功响应</li>
+</ol>
+<p>测试结果：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmM3ZTEyYmQ0ZmE5ZTg2ZTVhYWI5YjlhZjBiODZlZjJfOG84a29PMVp0a25Ga1ZXM0xXNnBMWEhkeXI5aGVGbExfVG9rZW46Ym94Y25tY1BlWUl5NGFwanpPY2dsd093cEdkXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="5-发布列表接口-douyin-publish-list">5. 发布列表接口 <code>/douyin/publish/list/</code></h3>
+<p>需要对如下的用例进行测试：</p>
+<ol>
+<li>用户id存在且Token正确-返回成功响应</li>
+<li>用户id存在但Token为空或不正确-返回成功响应（但是没有是否点赞等关系信息）</li>
+<li>用户id不存在-返回失败响应</li>
+</ol>
+<p>测试结果：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDg2MzMwYzNjNmY0MGE5ZmIzY2I0OWFiYjgwNjJiYTBfTXBwN29GQmlDVWRzVGNDSHFyaTBtdzdBeUVqZFNnbThfVG9rZW46Ym94Y25zTjJEN1l6dGtmQmpnNGJWOGp2M29kXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="6-视频投稿接口-douyin-publish-action">6. 视频投稿接口 <code>/douyin/publish/action/</code></h3>
+<p>需要对如下的用例进行测试：</p>
+<ol>
+<li>正常上传视频-返回成功响应</li>
+<li>Token为空或Token不正确-返回错误响应</li>
+</ol>
+<p>测试结果：</p>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=N2RlZDUwMDU0Y2FmMjFkZDgxYjU4MjU4NzY0YTkyMDRfRXRadFpVdE9xeDRmbUlqOEU5TVRteUpnWjU1Q0lGd3RfVG9rZW46Ym94Y25TVGR4QnQ0TkFuQ3ZneWZBWm1pYkxmXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="7-社交模块">7. 社交模块</h3>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2U5ZDc5NTBiNDczOWZlNTdlYmRlOTI3M2E5YzE0YThfMlV4V2ZURFU3dFdkTHNZdHZpT0VjSEZYamJxellGRkdfVG9rZW46Ym94Y252RzRrckJKUzMzZU1BdEE2QWM0YWxiXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="8-互动模块">8. 互动模块</h3>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YzJiMTkxNjM1NmE3ZTliZjdmMzMxMWIwMzNhOGM1N2ZfNWFFaTJUQjF0UFhkOGlacFhDMGg2R2hrYnB5VHlRRXZfVG9rZW46Ym94Y243U05qUVNtS3NWTFQ5WjJpRDRoa21QXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="4-2-性能测试">4.2 性能测试</h2>
+<p><img src="https://aobcmgpdn3.feishu.cn/space/api/box/stream/download/asynccode/?code=YjljYTUxYzBmOTIzMjBiOTBhMzFkMDJhNzQ1ZjBhMDBfaWo5WmFZN0lxZWFhYjRKN0t1VUZiVjI1QU9ud0xlR3JfVG9rZW46Ym94Y25JRVhvZGF5bE1iQ25FWUZmcHdtU0dqXzE2NzgxOTg4ODc6MTY3ODIwMjQ4N19WNA" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>五、其他资料</h1>
+<p><a target="_blank" rel="noopener" href="https://www.apifox.cn/apidoc/shared-09d88f32-0b6c-4157-9d07-a36d32d7a75c/api-50707523">接口文档（旧版）</a></p>
+<p><a target="_blank" rel="noopener" href="https://aobcmgpdn3.feishu.cn/docx/ObOndji8SoyABTxbRqRc9TpWnoe">汇报文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docx/HfjBdjnw8oWjUFxfD2Mcwq6bn8e">课程汇总</a></p>
+<p><a target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docs/doccnKrCsU5Iac6eftnFBdsXTof#">抖音项目方案说明</a></p>
+<p><a target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docs/doccnM9KkBAdyDhg8qaeGlIz7S7">极简抖音App使用说明</a></p>
+<p><a target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docx/TW70dNfR4oJx4KxfzkNc4Zg5n1b">青训营大项目答疑</a></p>
+<h1>六、项目总结与反思</h1>
+<h2 id="1-目前仍存在的问题">1. 目前仍存在的问题</h2>
+<ul>
+<li>在视频模块中，上传视频的大小有限制，如果超过了限制会返回网络错误，无法将视频字节流传递到服务器端。</li>
+<li>观看视频时，一个服务器的宽带顶不住，有点卡。</li>
+<li>获取消息的API由于是定时查询，消息会重叠。</li>
+<li>若出现对短时间内一个视频进行大量点赞操作，写入数据库操作会太频繁，可以考虑将点赞记录进行定期写入数据库。</li>
+</ul>
+<h2 id="2-已识别出的优化项">2. 已识别出的优化项</h2>
+<ul>
+<li>视频模块中可以对用户的视频习惯进行分类，每一次获取视频流的时候对用户进行视频推荐</li>
+<li>用户模块可以增加邮箱或手机号等验证方式，并添加密码找回的功能，增加安全性</li>
+<li>粉丝列表、用户的聊天记录、关注列表和朋友列表可以使用Redis的List数据结构来存储，来降低MySQL的压力</li>
+<li>用户聊天的消息推送可以使用websocket长连接来避免每次建立链接释放链接所消耗的资源。</li>
+<li>用户聊天的消息推送可以使用MQ消息队列来实现，不查表可以减低MySQL压力和消息的实时性。</li>
+<li>点赞功能将点赞记录存在redis中，减少数据库查询压力。</li>
+</ul>
+<h2 id="3-架构演进的可能性">3. 架构演进的可能性</h2>
+<ul>
+<li>微服务基本根据路由进行拆分，拆分不够合理，服务之间耦合的地方稍多。后续可以将微服务进行进一步拆分，真正做到将所有的功能打包成独立的单元。</li>
+<li>可以从微服务架构演进为Serverless。Serverless是一种构建和管理基于微服务架构的完整流程，允许你在服务部署级别而不是服务器部署级别来管理你的应用部署。它与传统架构的不同之处在于，完全由第三方管理，由事件触发，存在于无状态（Stateless）、暂存（可能只存在于一次调用的过程中）计算容器内。构建无服务器应用程序意味着开发者可以专注在产品代码上，而无须管理和操作云端或本地的服务器或运行时。Serverless真正做到了部署应用无需涉及基础设施的建设，自动构建、部署和启动服务。</li>
+</ul>
+<h2 id="4-项目过程中的反思与总结">4. 项目过程中的反思与总结</h2>
+<p>在参加青训营期间，官方提供了全面的课程，涵盖了创作技巧、内容制作、问题分析等多个方面。这些课程不仅提供了实用的知识和技能，还可以让我们更好地理解抖音平台和用户需求。抖音青训营项目还提供了多种资源支持，包括专业导师、团队合作等。这些资源可以帮助我们更好地实践和落地自己的创意。</p>
+<p>回顾整个项目的过程，我们团队做了如下总结：</p>
+<ul>
+<li>在代码编写的过程中，保持良好的编码规范不仅对自己以后复习代码节省时间，同事对代码的理解也会更方便。</li>
+<li>在实践中学习新的知识和技能。</li>
+<li>好记性不如烂笔头。伴学笔记的习惯值得我们继续保持。</li>
+<li>在协作开发中，团队的活力来源于不断的交流。通过交流和合作，我们学到了很多新的创作思路和理念。</li>
+</ul>
+<h1>七、参考资料</h1>
+<p><strong><a target="_blank" rel="noopener" href="https://grpc.io/">https://grpc.io/</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4e4ff6be6af9">https://www.jianshu.com/p/4e4ff6be6af9</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.apifox.cn/apidoc/shared-09d88f32-0b6c-4157-9d07-a36d32d7a75c/api-50707523">https://www.apifox.cn/apidoc/shared-09d88f32-0b6c-4157-9d07-a36d32d7a75c/api-50707523</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://juejin.cn/post/7174037539345399839">https://juejin.cn/post/7174037539345399839</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/cc18868876837/article/details/90672971">https://blog.csdn.net/cc18868876837/article/details/90672971</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.woshipm.com/evaluating/1552722.html">https://www.woshipm.com/evaluating/1552722.html</a></strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>字节跳动青训营-抖音项目</div>
+      <div>https://zhangzhao219.github.io/2023/03/03/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Project/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/03/Backend/Kafka/" title="Kafka简单示例">
+                        <span class="hidden-mobile">Kafka简单示例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

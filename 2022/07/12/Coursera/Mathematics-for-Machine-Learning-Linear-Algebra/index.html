@@ -1,0 +1,1301 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数学在机器学习领域的应用一：线性代数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mathematics for Machine Learning: Linear Algebra">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/07/12/Coursera/Mathematics-for-Machine-Learning-Linear-Algebra/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="数学在机器学习领域的应用一：线性代数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D2a%2B3b%3D8%5C%5C10a%2B1b%3D13%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%28%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%29%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Da%5C%5Cb%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D8%20%5C%5C%2013%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br%7D%5Ccdot%28%5Cvec%7Bs%7D%2B%5Cvec%7Bt%7D%29%3D%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%2B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bt%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br%7D%5Ccdot%28a%5Ccdot%5Cvec%7Bs%7D%29%3Da%5Ccdot(%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br%7D%5Ccdot%5Cvec%7Br%7D%3D%7C%5Cvec%7Br%7D%7C%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ccos%7B%5Ctheta%7D%3D%5Cfrac%20%7B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%7D%20%7B%7C%5Cvec%7Br%7D%7C%5Ccdot%7C%5Cvec%7Bs%7D%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bs%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%7D%20%7B%7C%5Cvec%7Br%7D%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bs%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%7D%20%7B%7C%5Cvec%7Br%7D%7C%7D%5Ccdot%5Cfrac%7B%5Cvec%7Br%7D%7D%7B%7C%5Cvec%7Br%7D%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-2%5C%5C4%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ccos%7B%5Ctheta%7D%3D%5Cfrac%20%7B%5Cvec%7Bb_1%7D%5Ccdot%5Cvec%7Bb_2%7D%7D%20%7B%7C%5Cvec%7Bb_1%7D%7C%5Ccdot%7C%5Cvec%7Bb_2%7D%7C%7D%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=r_e%3D3%5Cvec%7Be_1%7D%2B4%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C4%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cvec%7Br_e%7D%5Ccdot%5Cvec%7Bb_1%7D%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cvec%7Br_e%7D%5Ccdot%5Cvec%7Bb_1%7D%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D%5Ccdot%5Cfrac%7B1%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D%3D%5Cfrac%7B3*2%2B4*1%7D%7B2%5E2%2B1%5E2%7D%3D2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br_e%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%7C%5Cvec%7Bb_1%7D%7C">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br_e%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%7C%5Cvec%7Bb_2%7D%7C">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Br_e%7D%3D2%5Cvec%7Bb_1%7D%2B%5Cfrac%7B1%7D%7B2%7D%5Cvec%7Bb_2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=r_b%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C%5Cfrac%7B1%7D%7B2%7D%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_1%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_2%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C2%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C2%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5B3%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%2B2%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%3D3%28%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%2B2%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%3D3%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D%2B2%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D12%5C%5C32%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D1%260%5C%5C0%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dx%5C%5Cy%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dx%5C%5Cy%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=I%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D1%260%5C%5C0%261%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=A%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=r%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Da%5C%5Cb%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=s%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D8%5C%5C13%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=A%5E%7B-1%7DA%3DI">
+<meta property="og:image" content="https://math.now.sh/?inline=A%5E%7B-1%7DAr%3DA%5E%7B-1%7Ds">
+<meta property="og:image" content="https://math.now.sh/?inline=r%3DA%5E%7B-1%7Ds">
+<meta property="og:image" content="https://math.now.sh/?inline=%5BA%2CI%5D-%5BI%2CA%5E%7B-1%7D%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7Da%26b%5C%5Cc%26d%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B1%7D%7Bad-bc%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7Dd%26-b%5C%5C-c%26a%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=ad-bc%5Cneq0">
+<meta property="og:image" content="https://math.now.sh/?inline=ad-bc">
+<meta property="og:image" content="https://math.now.sh/?inline=A_%7Bij%7D%5ET%3DA_%7Bji%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=A%5ETA%3DI">
+<meta property="og:image" content="https://math.now.sh/?inline=A%5ET%3DA%5E%7B-1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=A%3D%5Cleft%5B%5Cbegin%7Bmatrix%7Da_%7B11%7D%26a_%7B12%7D%26%5Ccdots%26%20a_%7B1n%7D%5C%5Ca_%7B21%7D%26a_%7B22%7D%26%5Ccdots%26a_%7B2n%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5Ca_%7Bn1%7D%26a_%7Bn2%7D%26%20%5Ccdots%5C%20%26a_%7Bnn%7D%20%5Cend%7Bmatrix%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=B%3D%5Cleft%5B%5Cbegin%7Bmatrix%7Db_%7B11%7D%26b_%7B12%7D%26%5Ccdots%26%20b_%7B1n%7D%5C%5Cb_%7B21%7D%26b_%7B22%7D%26%5Ccdots%26b_%7B2n%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5Cb_%7Bn1%7D%26b_%7Bn2%7D%26%20%5Ccdots%5C%20%26b_%7Bnn%7D%20%5Cend%7Bmatrix%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=AB%3D%5Cleft%5B%5Cbegin%7Bmatrix%7D%28ab%29_%7B11%7D%26(ab)_%7B12%7D%26%5Ccdots%26(ab)_%7B1n%7D%5C%5C(ab)_%7B21%7D%26(ab)_%7B22%7D%26%5Ccdots%26(ab)_%7B2n%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5C(ab)_%7Bn1%7D%26(ab)_%7Bn2%7D%26%20%5Ccdots%5C%20%26(ab)_%7Bnn%7D%20%5Cend%7Bmatrix%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=A">
+<meta property="og:image" content="https://math.now.sh/?inline=B">
+<meta property="og:image" content="https://math.now.sh/?inline=%28ab%29_%7B23%7D%3Da_%7B21%7Db_%7B13%7D%2Ba_%7B22%7Db_%7B23%7D%2B%5Ccdots%2Ba_%7B2n%7Db_%7Bn3%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28ab%29_%7Bik%7D%3Da_%7Bi1%7Db_%7B1k%7D%2Ba_%7Bi2%7Db_%7B2k%7D%2B%5Ccdots%2Ba_%7Bin%7Db_%7Bnk%7D%3D%5Csum_%7Bj%3D0%7D%5En%7Ba_%7Bij%7Db_%7Bjk%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=a_%7Bij%7Db_%7Bjk%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1.5%5C%5C0.5%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D3%261%5C%5C1%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1.5%5C%5C0.5%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D5%5C%5C2%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D3%261%5C%5C1%260%5Cend%7Barray%7D%5Cright%5D%5E%7B-1%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D5%5C%5C2%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1.5%5C%5C0.5%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_1%7D%3D%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bb_2%7D%3D%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-1%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C3%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C3%5Cend%7Barray%7D%5Cright%5D%5Ccdot%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C3%5Cend%7Barray%7D%5Cright%5D%5Ccdot%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-1%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C1%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=V%3D%5C%7Bv_1%2Cv_2%2Cv_3%2C%5Ccdots%2Cv_n%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=u_1%3Dv_1%2Ce_1%3D%5Cfrac%7Bu_1%7D%7B%7Cu_1%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=u_2%3Dv_2-%28v_2%5Ccdot%20e_1%29%5Cfrac%7Be_1%7D%7B%7Ce_1%7C%7D%2Ce_2%3D%5Cfrac%7Bu_2%7D%7B%7Cu_2%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=u_3%3Dv_3-%28v_3%5Ccdot%20e_2%29%5Cfrac%7Be_2%7D%7B%7Ce_2%7C%7D-(v_3%5Ccdot%20e_1)%5Cfrac%7Be_1%7D%7B%7Ce_1%7C%7D%2Ce_3%3D%5Cfrac%7Bu_3%7D%7B%7Cu_3%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=Ax%3D%5Clambda%20x">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Clambda">
+<meta property="og:image" content="https://math.now.sh/?inline=A-%5Clambda%20I">
+<meta property="og:image" content="https://math.now.sh/?inline=T%5En%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bccc%7Da%5En%260%260%5C%5C0%26b%5En%260%5C%5C0%260%26c%5En%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=C%3D%5Cleft%5B%5Cbegin%7Bmatrix%7Dx_%7B1%7D%26x_%7B2%7D%26%20x_%7B3%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cvdots%5C%5C%20%5Cend%7Bmatrix%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bccc%7D%5Clambda_1%5En%260%260%5C%5C0%26%5Clambda_2%5En%260%5C%5C0%260%26%5Clambda_3%5En%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=T%3DCDC%5E%7B-1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=T%5E2%3DCDC%5E%7B-1%7DCDC%5E%7B-1%7D%3DCD%5E2C%5E%7B-1%7D">
+<meta property="og:image" content="https://s1.ax1x.com/2022/07/15/jhnVED.md.png">
+<meta property="article:published_time" content="2022-07-12T21:26:58.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.192Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Linear Algebra">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D2a%2B3b%3D8%5C%5C10a%2B1b%3D13%5Cend%7Barray%7D%5Cright.">
+  
+  
+  
+  <title>Mathematics for Machine Learning: Linear Algebra - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Mathematics for Machine Learning: Linear Algebra</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-12 21:26" pubdate>
+          2022年7月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mathematics for Machine Learning: Linear Algebra</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>数学在机器学习领域的应用一：线性代数</p>
+<span id="more"></span>
+<h1>开始学习</h1>
+<p>总是觉得自己数学有一点差，可能是因为上大学学习的时候题目做的比较少，我的脑子又不太灵光，因此一直不能很好的理解数学相关的一些公式、定理等，平时编程的时候尽量找简单的方法绕开复杂的数学公式。假期有时间了，试一下帝国理工的线性代数课程，注重记录，注重理解。这也是第一次看没有中文字幕的全英文课。加油！</p>
+<h1>课程简介</h1>
+<p>In this course on Linear Algebra we look at what linear algebra is and how it relates to vectors and matrices. Then we look through what vectors and matrices are and how to work with them, including the knotty problem of eigenvalues and eigenvectors, and how to use these to solve problems. Finally  we look at how to use these to do fun things with datasets - like how to rotate images of faces and how to extract eigenvectors to look at how the Pagerank algorithm works.</p>
+<p>Since we’re aiming at data-driven applications, we’ll be implementing some of these ideas in code, not just on pencil and paper. Towards the end of the course, you’ll write code blocks and encounter Jupyter notebooks in Python, but don’t worry, these will be quite short, focussed on the concepts, and will guide you through if you’ve not coded before.</p>
+<p>At the end of this course you will have an intuitive understanding of vectors and matrices that will help you bridge the gap into linear algebra problems, and how to apply these concepts to machine learning.</p>
+<h1>什么是线性代数</h1>
+<p>Linear algebra is a mathematical system for manipulating vectors in the spaces described by vectors.</p>
+<p>Linear algebra is linear, because it just takes input values, and multiplies them by constants, everything is linear.</p>
+<p>Linear algebra is algebra, that is it’s a notation describing mathematical objects and a system of manipulating those notations.</p>
+<p>How vectors are transformed by matrices is the heart of linear algebra.</p>
+<h1>为什么我们需要线性代数？</h1>
+<ol>
+<li>让计算机快速求解多元方程组<br>
+例如：多元方程组<img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D2a%2B3b%3D8%5C%5C10a%2B1b%3D13%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，可以转换为<img src="https://math.now.sh?inline=%5Cleft%28%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%29%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Da%5C%5Cb%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D8%20%5C%5C%2013%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，然后进行求解。</li>
+<li>为数据拟合方程<br>
+随着神经网络和机器学习的发展，并不仅仅是拟合方程，最好还能在已有方程曲线的前提下，找到最佳的拟合参数，从而更适用于当前的数据。描述一个方程的各种参数可以使用一个向量来表示，我们希望通过某种方式，数据科学或者机器学习的方式来找到最佳的拟合参数。</li>
+</ol>
+<h1>向量(Vector)</h1>
+<p><strong>在计算机科学中，向量被认为是描述一个物体的属性的集合。</strong></p>
+<h2 id="向量的基本操作">向量的基本操作</h2>
+<p>向量有两种操作：向量与向量之间的加法，以及向量与标量之间的乘法。</p>
+<p>向量与向量之间的加法满足结合律(associativity)。</p>
+<p>向量与标量之间的乘法，要将标量与向量中的每一个属性相乘</p>
+<h2 id="向量的其他运算">向量的其他运算</h2>
+<p>如果不以坐标系的角度去观察向量，那么一个向量由两个属性构成：<strong>向量的方向和向量的模长</strong></p>
+<p>向量的模长指的是向量各组成成分的平方和开根号</p>
+<p>向量的点乘指的是向量对应位置的数值相乘之和，满足交换律（commutative）</p>
+<p>同时满足向量的加法分配律（distributive over addition），即<img src="https://math.now.sh?inline=%5Cvec%7Br%7D%5Ccdot%28%5Cvec%7Bs%7D%2B%5Cvec%7Bt%7D%29%3D%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%2B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bt%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>向量与标量相乘满足结合律和交换律，即<img src="https://math.now.sh?inline=%5Cvec%7Br%7D%5Ccdot%28a%5Ccdot%5Cvec%7Bs%7D%29%3Da%5Ccdot(%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>向量模长与点乘之间的关系：向量自身的点乘与模长的平方相等，即 <img src="https://math.now.sh?inline=%5Cvec%7Br%7D%5Ccdot%5Cvec%7Br%7D%3D%7C%5Cvec%7Br%7D%7C%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>向量的余弦定理：<img src="https://math.now.sh?inline=%5Ccos%7B%5Ctheta%7D%3D%5Cfrac%20%7B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%7D%20%7B%7C%5Cvec%7Br%7D%7C%5Ccdot%7C%5Cvec%7Bs%7D%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>向量投影（projection）：</p>
+<p><img src="https://math.now.sh?inline=%5Cvec%7Bs%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=%5Cvec%7Br%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的投影标量（scalar projection）= <img src="https://math.now.sh?inline=%5Cfrac%7B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%7D%20%7B%7C%5Cvec%7Br%7D%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cvec%7Bs%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=%5Cvec%7Br%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的投影向量（vector projection）= scalar projection *  <img src="https://math.now.sh?inline=%5Cvec%7Br%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>单位向量 = <img src="https://math.now.sh?inline=%5Cfrac%7B%5Cvec%7Br%7D%5Ccdot%5Cvec%7Bs%7D%7D%20%7B%7C%5Cvec%7Br%7D%7C%7D%5Ccdot%5Cfrac%7B%5Cvec%7Br%7D%7D%7B%7C%5Cvec%7Br%7D%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>向量投影是一个标量，但是，如果需要投影向量的方向，直接与被投影的单位向量相乘即可。</p>
+<h2 id="向量的坐标系">向量的坐标系</h2>
+<p>两个不共线的向量可以确定一个坐标系(coordinate system)。要描述一个向量，首先要定义一个坐标系，决定坐标系的是<strong>基向量</strong>。</p>
+<p>基向量是<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维的向量集合，需要满足3个条件：</p>
+<ol>
+<li><img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维的向量彼此之间不线性相关，也就是线性独立的<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维向量。</li>
+<li>可以扩展到整个空间。</li>
+<li>空间是<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维的。</li>
+</ol>
+<p>虽然并不要求基向量正交，但是如果它们正交，会为解决数学问题带来很大的方便。</p>
+<p>如果二维的<strong>基向量互相垂直</strong>，转换坐标系只需将向量投影到转换后的基向量，计算数值即可。</p>
+<p>设原始坐标系<img src="https://math.now.sh?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，转换后的基向量<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Bb_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-2%5C%5C4%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>首先验证<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=%5Cvec%7Bb_2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是否垂直，<img src="https://math.now.sh?inline=%5Ccos%7B%5Ctheta%7D%3D%5Cfrac%20%7B%5Cvec%7Bb_1%7D%5Ccdot%5Cvec%7Bb_2%7D%7D%20%7B%7C%5Cvec%7Bb_1%7D%7C%5Ccdot%7C%5Cvec%7Bb_2%7D%7C%7D%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>然后将待转换的向量<img src="https://math.now.sh?inline=r_e%3D3%5Cvec%7Be_1%7D%2B4%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C4%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，对<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的投影为<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cvec%7Br_e%7D%5Ccdot%5Cvec%7Bb_1%7D%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，这个投影除以<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的模长<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cvec%7Br_e%7D%5Ccdot%5Cvec%7Bb_1%7D%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D%5Ccdot%5Cfrac%7B1%7D%7B%7C%5Cvec%7Bb_1%7D%7C%7D%3D%5Cfrac%7B3*2%2B4*1%7D%7B2%5E2%2B1%5E2%7D%3D2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即<img src="https://math.now.sh?inline=%5Cvec%7Br_e%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在<img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>方向的投影为2个<img src="https://math.now.sh?inline=%7C%5Cvec%7Bb_1%7D%7C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>长度。同理，即<img src="https://math.now.sh?inline=%5Cvec%7Br_e%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在<img src="https://math.now.sh?inline=%5Cvec%7Bb_2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>方向的投影为0.5个<img src="https://math.now.sh?inline=%7C%5Cvec%7Bb_2%7D%7C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>长度。</p>
+<p>从而得出<img src="https://math.now.sh?inline=%5Cvec%7Br_e%7D%3D2%5Cvec%7Bb_1%7D%2B%5Cfrac%7B1%7D%7B2%7D%5Cvec%7Bb_2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，最终计算得<img src="https://math.now.sh?inline=r_b%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C%5Cfrac%7B1%7D%7B2%7D%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p><strong>找到一个合适的坐标系，帮助我们解决数学问题，是非常重要的。</strong></p>
+<h1>矩阵(Matrices)</h1>
+<p>矩阵与向量相乘，相当于将向量转换到不同的坐标系。</p>
+<p>矩阵的乘法满足结合律，但是不满足交换律.</p>
+<p>如<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，相当于将<img src="https://math.now.sh?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>转换到了<img src="https://math.now.sh?inline=%5Cvec%7Be_1%5E%7B'%7D%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>如<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，相当于将<img src="https://math.now.sh?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>转换到了<img src="https://math.now.sh?inline=%5Cvec%7Be_2%5E%7B'%7D%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>通过矩阵的转换实际上可以看作不同转换向量之间的和。</p>
+<p>如果我们对<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C2%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>做这个矩阵的变换，则可以推导：</p>
+<p><img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C2%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5B3%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%2B2%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%3D3%28%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D%2B2%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%3D3%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C10%5Cend%7Barray%7D%5Cright%5D%2B2%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D12%5C%5C32%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>.</p>
+<p><strong>单位矩阵(identity matrix)不对向量做任何变换</strong></p>
+<p><img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D1%260%5C%5C0%261%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dx%5C%5Cy%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dx%5C%5Cy%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设单位矩阵<img src="https://math.now.sh?inline=I%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D1%260%5C%5C0%261%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=A%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D2%263%5C%5C10%261%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=r%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Da%5C%5Cb%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为待求根，<img src="https://math.now.sh?inline=s%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D8%5C%5C13%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>根据逆矩阵的定义，<img src="https://math.now.sh?inline=A%5E%7B-1%7DA%3DI" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此<img src="https://math.now.sh?inline=A%5E%7B-1%7DAr%3DA%5E%7B-1%7Ds" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即<img src="https://math.now.sh?inline=r%3DA%5E%7B-1%7Ds" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>通过初等行变换求解逆矩阵：<img src="https://math.now.sh?inline=%5BA%2CI%5D-%5BI%2CA%5E%7B-1%7D%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>对于二维矩阵<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7Da%26b%5C%5Cc%26d%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来说，它的逆矩阵是<img src="https://math.now.sh?inline=%5Cfrac%7B1%7D%7Bad-bc%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7Dd%26-b%5C%5C-c%26a%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=ad-bc%5Cneq0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>二维行列式(determinant)：<img src="https://math.now.sh?inline=ad-bc" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>行列式为0的矩阵，维度不满足当前矩阵的维度，因此在矩阵操作前要<strong>首先检查行列式</strong>。</p>
+<p>矩阵的转置：<img src="https://math.now.sh?inline=A_%7Bij%7D%5ET%3DA_%7Bji%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，正交矩阵<img src="https://math.now.sh?inline=A%5ETA%3DI" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=A%5ET%3DA%5E%7B-1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，且正交矩阵的行列式为-1或1。</p>
+<h2 id="爱因斯坦求和约定-Einstein-summation-convention">爱因斯坦求和约定(Einstein summation convention)</h2>
+<p>设<img src="https://math.now.sh?inline=A%3D%5Cleft%5B%5Cbegin%7Bmatrix%7Da_%7B11%7D%26a_%7B12%7D%26%5Ccdots%26%20a_%7B1n%7D%5C%5Ca_%7B21%7D%26a_%7B22%7D%26%5Ccdots%26a_%7B2n%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5Ca_%7Bn1%7D%26a_%7Bn2%7D%26%20%5Ccdots%5C%20%26a_%7Bnn%7D%20%5Cend%7Bmatrix%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=B%3D%5Cleft%5B%5Cbegin%7Bmatrix%7Db_%7B11%7D%26b_%7B12%7D%26%5Ccdots%26%20b_%7B1n%7D%5C%5Cb_%7B21%7D%26b_%7B22%7D%26%5Ccdots%26b_%7B2n%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5Cb_%7Bn1%7D%26b_%7Bn2%7D%26%20%5Ccdots%5C%20%26b_%7Bnn%7D%20%5Cend%7Bmatrix%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则</p>
+<p>则<img src="https://math.now.sh?inline=AB%3D%5Cleft%5B%5Cbegin%7Bmatrix%7D%28ab%29_%7B11%7D%26(ab)_%7B12%7D%26%5Ccdots%26(ab)_%7B1n%7D%5C%5C(ab)_%7B21%7D%26(ab)_%7B22%7D%26%5Ccdots%26(ab)_%7B2n%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5C(ab)_%7Bn1%7D%26(ab)_%7Bn2%7D%26%20%5Ccdots%5C%20%26(ab)_%7Bnn%7D%20%5Cend%7Bmatrix%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是由<img src="https://math.now.sh?inline=A" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中的某一行与<img src="https://math.now.sh?inline=B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中的某一列相乘求和后填充的矩阵。</p>
+<p>如<img src="https://math.now.sh?inline=%28ab%29_%7B23%7D%3Da_%7B21%7Db_%7B13%7D%2Ba_%7B22%7Db_%7B23%7D%2B%5Ccdots%2Ba_%7B2n%7Db_%7Bn3%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，</p>
+<p>因此<img src="https://math.now.sh?inline=%28ab%29_%7Bik%7D%3Da_%7Bi1%7Db_%7B1k%7D%2Ba_%7Bi2%7Db_%7B2k%7D%2B%5Ccdots%2Ba_%7Bin%7Db_%7Bnk%7D%3D%5Csum_%7Bj%3D0%7D%5En%7Ba_%7Bij%7Db_%7Bjk%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=a_%7Bij%7Db_%7Bjk%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>即为爱因斯坦求和约定的表示法。</p>
+<h2 id="矩阵坐标系的转换">矩阵坐标系的转换</h2>
+<p>设原始坐标系<img src="https://math.now.sh?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，现在有另外一个坐标系，<strong>坐标系在原始坐标系下基向量表示为</strong><img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D3%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Bb_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>如果将<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>坐标系下的向量<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1.5%5C%5C0.5%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>转换到原始坐标系中，则为<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D3%261%5C%5C1%260%5Cend%7Barray%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1.5%5C%5C0.5%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D5%5C%5C2%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>反之，将原始坐标系中的向量转换到<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>坐标系下，则<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D3%261%5C%5C1%260%5Cend%7Barray%7D%5Cright%5D%5E%7B-1%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D5%5C%5C2%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1.5%5C%5C0.5%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p><strong>如果基向量是正交的，可以使用投影来实现坐标系的转换：</strong></p>
+<p>设原始坐标系<img src="https://math.now.sh?inline=%5Cvec%7Be_1%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C0%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Be_2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，现在有另外一个坐标系，<strong>坐标系在原始坐标系下基向量表示为</strong><img src="https://math.now.sh?inline=%5Cvec%7Bb_1%7D%3D%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Bb_2%7D%3D%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-1%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>则将<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>坐标系下的向量<img src="https://math.now.sh?inline=%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C3%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>转换到原始坐标系中，通过投影实现：</p>
+<p><img src="https://math.now.sh?inline=%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C3%5Cend%7Barray%7D%5Cright%5D%5Ccdot%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D1%5C%5C3%5Cend%7Barray%7D%5Cright%5D%5Ccdot%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-1%5C%5C1%5Cend%7Barray%7D%5Cright%5D%3D1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，因此在原始坐标系下的向量为<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D2%5C%5C1%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<h2 id="施密特正交化-Gram–Schmidt-process">施密特正交化(Gram–Schmidt process)</h2>
+<p>正交的基向量会给我们解决问题带来很多的方便，需要一种方法将基向量转换为正交的基向量。</p>
+<p>设原始的<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维基向量为<img src="https://math.now.sh?inline=V%3D%5C%7Bv_1%2Cv_2%2Cv_3%2C%5Ccdots%2Cv_n%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，</p>
+<p><img src="https://math.now.sh?inline=u_1%3Dv_1%2Ce_1%3D%5Cfrac%7Bu_1%7D%7B%7Cu_1%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=u_2%3Dv_2-%28v_2%5Ccdot%20e_1%29%5Cfrac%7Be_1%7D%7B%7Ce_1%7C%7D%2Ce_2%3D%5Cfrac%7Bu_2%7D%7B%7Cu_2%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=u_3%3Dv_3-%28v_3%5Ccdot%20e_2%29%5Cfrac%7Be_2%7D%7B%7Ce_2%7C%7D-(v_3%5Ccdot%20e_1)%5Cfrac%7Be_1%7D%7B%7Ce_1%7C%7D%2Ce_3%3D%5Cfrac%7Bu_3%7D%7B%7Cu_3%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>特征问题(Eigenproblems)</h1>
+<p>对特征向量的直观感受：在进行变换的时候方向仍然保持不变的向量。</p>
+<p><img src="https://math.now.sh?inline=Ax%3D%5Clambda%20x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为特征向量，<img src="https://math.now.sh?inline=%5Clambda" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为特征值。</p>
+<p>求特征值，即<img src="https://math.now.sh?inline=A-%5Clambda%20I" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的行列式为0</p>
+<p>对角矩阵(diagonal matrix)会使矩阵的乘法变得更加容易，<img src="https://math.now.sh?inline=T%5En%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bccc%7Da%5En%260%260%5C%5C0%26b%5En%260%5C%5C0%260%26c%5En%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此可以通过特征值与特征向量的转换，将矩阵转化为对角矩阵，然后求矩阵的幂。</p>
+<p>设特征向量<img src="https://math.now.sh?inline=C%3D%5Cleft%5B%5Cbegin%7Bmatrix%7Dx_%7B1%7D%26x_%7B2%7D%26%20x_%7B3%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cvdots%5C%5C%20%5Cend%7Bmatrix%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，特征值的对角矩阵<img src="https://math.now.sh?inline=D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bccc%7D%5Clambda_1%5En%260%260%5C%5C0%26%5Clambda_2%5En%260%5C%5C0%260%26%5Clambda_3%5En%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，</p>
+<p>矩阵<img src="https://math.now.sh?inline=T%3DCDC%5E%7B-1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=T%5E2%3DCDC%5E%7B-1%7DCDC%5E%7B-1%7D%3DCD%5E2C%5E%7B-1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>编程练习</h1>
+<h2 id="判断一个矩阵是奇异矩阵-singular-还是非奇异矩阵">判断一个矩阵是奇异矩阵(singular)还是非奇异矩阵</h2>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># GRADED FUNCTION</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># Our function will go through the matrix replacing each row in order turning it into echelon form.</span>
+<span class="hljs-comment"># If at any point it fails because it can&#x27;t put a 1 in the leading diagonal,</span>
+<span class="hljs-comment"># we will return the value True, otherwise, we will return False.</span>
+<span class="hljs-comment"># There is no need to edit this function.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">isSingular</span>(<span class="hljs-params">A</span>) :
+    B = np.array(A, dtype=np.float_) <span class="hljs-comment"># Make B as a copy of A, since we&#x27;re going to alter it&#x27;s values.</span>
+    <span class="hljs-keyword">try</span>:
+        fixRowZero(B)
+        fixRowOne(B)
+        fixRowTwo(B)
+        fixRowThree(B)
+    <span class="hljs-keyword">except</span> MatrixIsSingular:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+
+<span class="hljs-comment"># This next line defines our error flag. For when things go wrong if the matrix is singular.</span>
+<span class="hljs-comment"># There is no need to edit this line.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MatrixIsSingular</span>(<span class="hljs-title class_ inherited__">Exception</span>): <span class="hljs-keyword">pass</span>
+
+<span class="hljs-comment"># For Row Zero, all we require is the first element is equal to 1.</span>
+<span class="hljs-comment"># We&#x27;ll divide the row by the value of A[0, 0].</span>
+<span class="hljs-comment"># This will get us in trouble though if A[0, 0] equals 0, so first we&#x27;ll test for that,</span>
+<span class="hljs-comment"># and if this is true, we&#x27;ll add one of the lower rows to the first one before the division.</span>
+<span class="hljs-comment"># We&#x27;ll repeat the test going down each lower row until we can do the division.</span>
+<span class="hljs-comment"># There is no need to edit this function.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fixRowZero</span>(<span class="hljs-params">A</span>) :
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> :
+        A[<span class="hljs-number">0</span>] = A[<span class="hljs-number">0</span>] + A[<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> :
+        A[<span class="hljs-number">0</span>] = A[<span class="hljs-number">0</span>] + A[<span class="hljs-number">2</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> :
+        A[<span class="hljs-number">0</span>] = A[<span class="hljs-number">0</span>] + A[<span class="hljs-number">3</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> :
+        <span class="hljs-keyword">raise</span> MatrixIsSingular()
+    A[<span class="hljs-number">0</span>] = A[<span class="hljs-number">0</span>] / A[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">return</span> A
+
+<span class="hljs-comment"># First we&#x27;ll set the sub-diagonal elements to zero, i.e. A[1,0].</span>
+<span class="hljs-comment"># Next we want the diagonal element to be equal to one.</span>
+<span class="hljs-comment"># We&#x27;ll divide the row by the value of A[1, 1].</span>
+<span class="hljs-comment"># Again, we need to test if this is zero.</span>
+<span class="hljs-comment"># If so, we&#x27;ll add a lower row and repeat setting the sub-diagonal elements to zero.</span>
+<span class="hljs-comment"># There is no need to edit this function.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fixRowOne</span>(<span class="hljs-params">A</span>) :
+    A[<span class="hljs-number">1</span>] = A[<span class="hljs-number">1</span>] - A[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>] * A[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>] == <span class="hljs-number">0</span> :
+        A[<span class="hljs-number">1</span>] = A[<span class="hljs-number">1</span>] + A[<span class="hljs-number">2</span>]
+        A[<span class="hljs-number">1</span>] = A[<span class="hljs-number">1</span>] - A[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>] * A[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>] == <span class="hljs-number">0</span> :
+        A[<span class="hljs-number">1</span>] = A[<span class="hljs-number">1</span>] + A[<span class="hljs-number">3</span>]
+        A[<span class="hljs-number">1</span>] = A[<span class="hljs-number">1</span>] - A[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>] * A[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>] == <span class="hljs-number">0</span> :
+        <span class="hljs-keyword">raise</span> MatrixIsSingular()
+    A[<span class="hljs-number">1</span>] = A[<span class="hljs-number">1</span>] / A[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">return</span> A
+
+<span class="hljs-comment"># This is the first function that you should complete.</span>
+<span class="hljs-comment"># Follow the instructions inside the function at each comment.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fixRowTwo</span>(<span class="hljs-params">A</span>) :
+    <span class="hljs-comment"># Insert code below to set the sub-diagonal elements of row two to zero (there are two of them).</span>
+    A[<span class="hljs-number">2</span>] = A[<span class="hljs-number">2</span>] - A[<span class="hljs-number">2</span>,<span class="hljs-number">0</span>] * A[<span class="hljs-number">0</span>]
+    A[<span class="hljs-number">2</span>] = A[<span class="hljs-number">2</span>] - A[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] * A[<span class="hljs-number">1</span>]
+    <span class="hljs-comment"># Next we&#x27;ll test that the diagonal element is not zero.</span>
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>] == <span class="hljs-number">0</span> :
+        <span class="hljs-comment"># Insert code below that adds a lower row to row 2.</span>
+        A[<span class="hljs-number">2</span>] = A[<span class="hljs-number">2</span>] + A[<span class="hljs-number">3</span>]
+        <span class="hljs-comment"># Now repeat your code which sets the sub-diagonal elements to zero.</span>
+        A[<span class="hljs-number">2</span>] = A[<span class="hljs-number">2</span>] - A[<span class="hljs-number">2</span>,<span class="hljs-number">0</span>] * A[<span class="hljs-number">0</span>]
+        A[<span class="hljs-number">2</span>] = A[<span class="hljs-number">2</span>] - A[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] * A[<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>] == <span class="hljs-number">0</span> :
+        <span class="hljs-keyword">raise</span> MatrixIsSingular()
+    <span class="hljs-comment"># Finally set the diagonal element to one by dividing the whole row by that element.</span>
+    A[<span class="hljs-number">2</span>] = A[<span class="hljs-number">2</span>] / A[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]
+    <span class="hljs-keyword">return</span> A
+
+<span class="hljs-comment"># You should also complete this function</span>
+<span class="hljs-comment"># Follow the instructions inside the function at each comment.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">fixRowThree</span>(<span class="hljs-params">A</span>) :
+    <span class="hljs-comment"># Insert code below to set the sub-diagonal elements of row three to zero.</span>
+    A[<span class="hljs-number">3</span>] = A[<span class="hljs-number">3</span>] - A[<span class="hljs-number">3</span>,<span class="hljs-number">0</span>] * A[<span class="hljs-number">0</span>]
+    A[<span class="hljs-number">3</span>] = A[<span class="hljs-number">3</span>] - A[<span class="hljs-number">3</span>,<span class="hljs-number">1</span>] * A[<span class="hljs-number">1</span>]
+    A[<span class="hljs-number">3</span>] = A[<span class="hljs-number">3</span>] - A[<span class="hljs-number">3</span>,<span class="hljs-number">2</span>] * A[<span class="hljs-number">2</span>]
+    <span class="hljs-comment"># Complete the if statement to test if the diagonal element is zero.</span>
+    <span class="hljs-keyword">if</span> A[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>] == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">raise</span> MatrixIsSingular()
+    <span class="hljs-comment"># Transform the row to set the diagonal element to one.</span>
+    A[<span class="hljs-number">3</span>] = A[<span class="hljs-number">3</span>] / A[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>]
+    <span class="hljs-keyword">return</span> A</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python">A = np.array([
+        [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+        [<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+        [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>],
+        [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>]
+    ], dtype=np.float_)
+isSingular(A)
+A = np.array([
+        [<span class="hljs-number">0</span>, <span class="hljs-number">7</span>, -<span class="hljs-number">5</span>, <span class="hljs-number">3</span>],
+        [<span class="hljs-number">2</span>, <span class="hljs-number">8</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>],
+        [<span class="hljs-number">3</span>, <span class="hljs-number">12</span>, <span class="hljs-number">0</span>, <span class="hljs-number">5</span>],
+        [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>]
+    ], dtype=np.float_)
+isSingular(A)
+fixRowZero(A)
+fixRowOne(A)
+fixRowTwo(A)
+fixRowThree(A)</code></pre></div>
+<h2 id="施密特正交化">施密特正交化</h2>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># GRADED FUNCTION</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> numpy.linalg <span class="hljs-keyword">as</span> la
+
+verySmallNumber = <span class="hljs-number">1e-14</span> <span class="hljs-comment"># That&#x27;s 1×10⁻¹⁴ = 0.00000000000001</span>
+
+<span class="hljs-comment"># Our first function will perform the Gram-Schmidt procedure for 4 basis vectors.</span>
+<span class="hljs-comment"># We&#x27;ll take this list of vectors as the columns of a matrix, A.</span>
+<span class="hljs-comment"># We&#x27;ll then go through the vectors one at a time and set them to be orthogonal</span>
+<span class="hljs-comment"># to all the vectors that came before it. Before normalising.</span>
+<span class="hljs-comment"># Follow the instructions inside the function at each comment.</span>
+<span class="hljs-comment"># You will be told where to add code to complete the function.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">gsBasis4</span>(<span class="hljs-params">A</span>) :
+    B = np.array(A, dtype=np.float_) <span class="hljs-comment"># Make B as a copy of A, since we&#x27;re going to alter it&#x27;s values.</span>
+    <span class="hljs-comment"># The zeroth column is easy, since it has no other vectors to make it normal to.</span>
+    <span class="hljs-comment"># All that needs to be done is to normalise it. I.e. divide by its modulus, or norm.</span>
+    B[:, <span class="hljs-number">0</span>] = B[:, <span class="hljs-number">0</span>] / la.norm(B[:, <span class="hljs-number">0</span>])
+    <span class="hljs-comment"># For the first column, we need to subtract any overlap with our new zeroth vector.</span>
+    B[:, <span class="hljs-number">1</span>] = B[:, <span class="hljs-number">1</span>] - B[:, <span class="hljs-number">1</span>] @ B[:, <span class="hljs-number">0</span>] * B[:, <span class="hljs-number">0</span>]
+    <span class="hljs-comment"># If there&#x27;s anything left after that subtraction, then B[:, 1] is linearly independant of B[:, 0]</span>
+    <span class="hljs-comment"># If this is the case, we can normalise it. Otherwise we&#x27;ll set that vector to zero.</span>
+    <span class="hljs-keyword">if</span> la.norm(B[:, <span class="hljs-number">1</span>]) &gt; verySmallNumber :
+        B[:, <span class="hljs-number">1</span>] = B[:, <span class="hljs-number">1</span>] / la.norm(B[:, <span class="hljs-number">1</span>])
+    <span class="hljs-keyword">else</span> :
+        B[:, <span class="hljs-number">1</span>] = np.zeros_like(B[:, <span class="hljs-number">1</span>])
+    <span class="hljs-comment"># Now we need to repeat the process for column 2.</span>
+    <span class="hljs-comment"># Insert two lines of code, the first to subtract the overlap with the zeroth vector,</span>
+    <span class="hljs-comment"># and the second to subtract the overlap with the first.</span>
+    B[:, <span class="hljs-number">2</span>] = B[:, <span class="hljs-number">2</span>] - B[:, <span class="hljs-number">2</span>] @ B[:, <span class="hljs-number">0</span>] * B[:, <span class="hljs-number">0</span>]
+    B[:, <span class="hljs-number">2</span>] = B[:, <span class="hljs-number">2</span>] - B[:, <span class="hljs-number">2</span>] @ B[:, <span class="hljs-number">1</span>] * B[:, <span class="hljs-number">1</span>]  
+    <span class="hljs-comment"># Again we&#x27;ll need to normalise our new vector.</span>
+    <span class="hljs-comment"># Copy and adapt the normalisation fragment from above to column 2.</span>
+    <span class="hljs-keyword">if</span> la.norm(B[:, <span class="hljs-number">2</span>]) &gt; verySmallNumber :
+        B[:, <span class="hljs-number">2</span>] = B[:, <span class="hljs-number">2</span>] / la.norm(B[:, <span class="hljs-number">2</span>])
+    <span class="hljs-keyword">else</span> :
+        B[:, <span class="hljs-number">2</span>] = np.zeros_like(B[:, <span class="hljs-number">2</span>])
+    <span class="hljs-comment"># Finally, column three:</span>
+    <span class="hljs-comment"># Insert code to subtract the overlap with the first three vectors.</span>
+    B[:, <span class="hljs-number">3</span>] = B[:, <span class="hljs-number">3</span>] - B[:, <span class="hljs-number">3</span>] @ B[:, <span class="hljs-number">0</span>] * B[:, <span class="hljs-number">0</span>]
+    B[:, <span class="hljs-number">3</span>] = B[:, <span class="hljs-number">3</span>] - B[:, <span class="hljs-number">3</span>] @ B[:, <span class="hljs-number">1</span>] * B[:, <span class="hljs-number">1</span>]   
+    B[:, <span class="hljs-number">3</span>] = B[:, <span class="hljs-number">3</span>] - B[:, <span class="hljs-number">3</span>] @ B[:, <span class="hljs-number">2</span>] * B[:, <span class="hljs-number">2</span>]  
+    <span class="hljs-comment"># Now normalise if possible</span>
+    <span class="hljs-keyword">if</span> la.norm(B[:, <span class="hljs-number">3</span>]) &gt; verySmallNumber :
+        B[:, <span class="hljs-number">3</span>] = B[:, <span class="hljs-number">3</span>] / la.norm(B[:, <span class="hljs-number">3</span>])
+    <span class="hljs-keyword">else</span> :
+        B[:, <span class="hljs-number">3</span>] = np.zeros_like(B[:, <span class="hljs-number">3</span>])
+    <span class="hljs-comment"># Finally, we return the result:</span>
+    <span class="hljs-keyword">return</span> B
+
+<span class="hljs-comment"># The second part of this exercise will generalise the procedure.</span>
+<span class="hljs-comment"># Previously, we could only have four vectors, and there was a lot of repeating in the code.</span>
+<span class="hljs-comment"># We&#x27;ll use a for-loop here to iterate the process for each vector.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">gsBasis</span>(<span class="hljs-params">A</span>) :
+    B = np.array(A, dtype=np.float_) <span class="hljs-comment"># Make B as a copy of A, since we&#x27;re going to alter it&#x27;s values.</span>
+    <span class="hljs-comment"># Loop over all vectors, starting with zero, label them with i</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(B.shape[<span class="hljs-number">1</span>]) :
+        <span class="hljs-comment"># Inside that loop, loop over all previous vectors, j, to subtract.</span>
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i) :
+            <span class="hljs-comment"># Complete the code to subtract the overlap with previous vectors.</span>
+            <span class="hljs-comment"># you&#x27;ll need the current vector B[:, i] and a previous vector B[:, j]</span>
+            B[:, i] = B[:, i] - B[:, i] @ B[:, j] * B[:, j]
+        <span class="hljs-comment"># Next insert code to do the normalisation test for B[:, i]</span>
+        <span class="hljs-keyword">if</span> la.norm(B[:, i]) &gt; verySmallNumber :
+            B[:, i] = B[:, i] / la.norm(B[:, i])
+        <span class="hljs-keyword">else</span> :
+                B[:, i] = np.zeros_like(B[:, i])
+    <span class="hljs-comment"># Finally, we return the result:</span>
+    <span class="hljs-keyword">return</span> B
+
+<span class="hljs-comment"># This function uses the Gram-schmidt process to calculate the dimension</span>
+<span class="hljs-comment"># spanned by a list of vectors.</span>
+<span class="hljs-comment"># Since each vector is normalised to one, or is zero,</span>
+<span class="hljs-comment"># the sum of all the norms will be the dimension.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">dimensions</span>(<span class="hljs-params">A</span>) :
+    <span class="hljs-keyword">return</span> np.<span class="hljs-built_in">sum</span>(la.norm(gsBasis(A), axis=<span class="hljs-number">0</span>))</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python">V = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>],
+              [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">8</span>,<span class="hljs-number">2</span>],
+              [<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>],
+              [<span class="hljs-number">1</span>,-<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]], dtype=np.float_)
+gsBasis4(V)
+<span class="hljs-comment"># Once you&#x27;ve done Gram-Schmidt once,</span>
+<span class="hljs-comment"># doing it again should give you the same result. Test this:</span>
+U = gsBasis4(V)
+gsBasis4(U)
+<span class="hljs-comment"># Try the general function too.</span>
+gsBasis(V)
+<span class="hljs-comment"># See what happens for non-square matrices</span>
+A = np.array([[<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
+              [<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,-<span class="hljs-number">1</span>],
+              [<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>],
+              [<span class="hljs-number">12</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]], dtype=np.float_)
+gsBasis(A)
+dimensions(A)
+B = np.array([[<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">7</span>,<span class="hljs-number">5</span>],
+              [<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">5</span>,-<span class="hljs-number">4</span>,<span class="hljs-number">1</span>],
+              [<span class="hljs-number">1</span>,-<span class="hljs-number">6</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>]], dtype=np.float_)
+gsBasis(B)
+dimensions(B)
+<span class="hljs-comment"># Now let&#x27;s see what happens when we have one vector that is a linear combination of the others.</span>
+C = np.array([[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>],
+              [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,-<span class="hljs-number">3</span>],
+              [<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]], dtype=np.float_)
+gsBasis(C)
+dimensions(C)</code></pre></div>
+<h2 id="镜面投影">镜面投影</h2>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># PACKAGE</span>
+<span class="hljs-comment"># Run this cell first once to load the dependancies.</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> numpy.linalg <span class="hljs-keyword">import</span> norm, inv
+<span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> transpose
+<span class="hljs-keyword">from</span> readonly.bearNecessities <span class="hljs-keyword">import</span> *
+<span class="hljs-comment"># GRADED FUNCTION</span>
+<span class="hljs-comment"># You should edit this cell.</span>
+
+<span class="hljs-comment"># In this function, you will return the transformation matrix T,</span>
+<span class="hljs-comment"># having built it out of an orthonormal basis set E that you create from Bear&#x27;s Basis</span>
+<span class="hljs-comment"># and a transformation matrix in the mirror&#x27;s coordinates TE.</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">build_reflection_matrix</span>(<span class="hljs-params">bearBasis</span>) : <span class="hljs-comment"># The parameter bearBasis is a 2×2 matrix that is passed to the function.</span>
+    <span class="hljs-comment"># Use the gsBasis function on bearBasis to get the mirror&#x27;s orthonormal basis.</span>
+    E = gsBasis(bearBasis)
+    <span class="hljs-comment"># Write a matrix in component form that performs the mirror&#x27;s reflection in the mirror&#x27;s basis.</span>
+    <span class="hljs-comment"># Recall, the mirror operates by negating the last component of a vector.</span>
+    <span class="hljs-comment"># Replace a,b,c,d with appropriate values</span>
+    TE = np.array([[<span class="hljs-number">1</span>, <span class="hljs-number">0</span>],
+                   [<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>]])
+    <span class="hljs-comment"># Combine the matrices E and TE to produce your transformation matrix.</span>
+    T = E @ TE @ inv(E)
+    <span class="hljs-comment"># Finally, we return the result. There is no need to change this line.</span>
+    <span class="hljs-keyword">return</span> T
+<span class="hljs-comment"># First load Pyplot, a graph plotting library.</span>
+%matplotlib inline
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-comment"># This is the matrix of Bear&#x27;s basis vectors.</span>
+<span class="hljs-comment"># (When you&#x27;ve done the exercise once, see what happns when you change Bear&#x27;s basis.)</span>
+bearBasis = np.array(
+    [[<span class="hljs-number">1</span>,   -<span class="hljs-number">1</span>],
+     [<span class="hljs-number">1.5</span>, <span class="hljs-number">2</span>]])
+<span class="hljs-comment"># This line uses your code to build a transformation matrix for us to use.</span>
+T = build_reflection_matrix(bearBasis)
+
+<span class="hljs-comment"># Bear is drawn as a set of polygons, the vertices of which are placed as a matrix list of column vectors.</span>
+<span class="hljs-comment"># We have three of these non-square matrix lists: bear_white_fur, bear_black_fur, and bear_face.</span>
+<span class="hljs-comment"># We&#x27;ll make new lists of vertices by applying the T matrix you&#x27;ve calculated.</span>
+reflected_bear_white_fur = T @ bear_white_fur
+reflected_bear_black_fur = T @ bear_black_fur
+reflected_bear_face = T @ bear_face
+
+<span class="hljs-comment"># This next line runs a code to set up the graphics environment.</span>
+ax = draw_mirror(bearBasis)
+
+<span class="hljs-comment"># We&#x27;ll first plot Bear, his white fur, his black fur, and his face.</span>
+ax.fill(bear_white_fur[<span class="hljs-number">0</span>], bear_white_fur[<span class="hljs-number">1</span>], color=bear_white, zorder=<span class="hljs-number">1</span>)
+ax.fill(bear_black_fur[<span class="hljs-number">0</span>], bear_black_fur[<span class="hljs-number">1</span>], color=bear_black, zorder=<span class="hljs-number">2</span>)
+ax.plot(bear_face[<span class="hljs-number">0</span>], bear_face[<span class="hljs-number">1</span>], color=bear_white, zorder=<span class="hljs-number">3</span>)
+
+<span class="hljs-comment"># Next we&#x27;ll plot Bear&#x27;s reflection.</span>
+ax.fill(reflected_bear_white_fur[<span class="hljs-number">0</span>], reflected_bear_white_fur[<span class="hljs-number">1</span>], color=bear_white, zorder=<span class="hljs-number">1</span>)
+ax.fill(reflected_bear_black_fur[<span class="hljs-number">0</span>], reflected_bear_black_fur[<span class="hljs-number">1</span>], color=bear_black, zorder=<span class="hljs-number">2</span>)
+ax.plot(reflected_bear_face[<span class="hljs-number">0</span>], reflected_bear_face[<span class="hljs-number">1</span>], color=bear_white, zorder=<span class="hljs-number">3</span>);
+</code></pre></div>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jhnVED"><img src="https://s1.ax1x.com/2022/07/15/jhnVED.md.png" srcset="/img/loading.gif" lazyload alt="jhnVED.md.png"></a></p>
+<h2 id="PageRank">PageRank</h2>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># PACKAGE</span>
+<span class="hljs-comment"># Here are the imports again, just in case you need them.</span>
+<span class="hljs-comment"># There is no need to edit or submit this cell.</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> numpy.linalg <span class="hljs-keyword">as</span> la
+<span class="hljs-keyword">from</span> readonly.PageRankFunctions <span class="hljs-keyword">import</span> *
+np.set_printoptions(suppress=<span class="hljs-literal">True</span>)
+<span class="hljs-comment"># GRADED FUNCTION</span>
+<span class="hljs-comment"># Complete this function to provide the PageRank for an arbitrarily sized internet.</span>
+<span class="hljs-comment"># I.e. the principal eigenvector of the damped system, using the power iteration method.</span>
+<span class="hljs-comment"># (Normalisation doesn&#x27;t matter here)</span>
+<span class="hljs-comment"># The functions inputs are the linkMatrix, and d the damping parameter - as defined in this worksheet.</span>
+<span class="hljs-comment"># (The damping parameter, d, will be set by the function - no need to set this yourself.)</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">pageRank</span>(<span class="hljs-params">linkMatrix, d</span>) :
+    n = linkMatrix.shape[<span class="hljs-number">0</span>]
+    M = d * linkMatrix + (<span class="hljs-number">1</span>-d)/n * np.ones([n, n])
+    r = <span class="hljs-number">100</span> * np.ones(n) / n
+    lastR = r
+    r = M @ r
+    i = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">while</span> la.norm(lastR - r) &gt; <span class="hljs-number">0.01</span> :
+        lastR = r
+        r = M @ r
+        i += <span class="hljs-number">1</span>  
+    <span class="hljs-keyword">return</span> r</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># Use the following function to generate internets of different sizes.</span>
+generate_internet(<span class="hljs-number">5</span>)
+<span class="hljs-comment"># Test your PageRank method against the built in &quot;eig&quot; method.</span>
+<span class="hljs-comment"># You should see yours is a lot faster for large internets</span>
+L = generate_internet(<span class="hljs-number">10</span>)
+pageRank(L, <span class="hljs-number">1</span>)
+<span class="hljs-comment"># Do note, this is calculating the eigenvalues of the link matrix, L,</span>
+<span class="hljs-comment"># without any damping. It may give different results that your pageRank function.</span>
+<span class="hljs-comment"># If you wish, you could modify this cell to include damping.</span>
+<span class="hljs-comment"># (There is no credit for this though)</span>
+eVals, eVecs = la.eig(L) <span class="hljs-comment"># Gets the eigenvalues and vectors</span>
+order = np.absolute(eVals).argsort()[::-<span class="hljs-number">1</span>] <span class="hljs-comment"># Orders them by their eigenvalues</span>
+eVals = eVals[order]
+eVecs = eVecs[:,order]
+
+r = eVecs[:, <span class="hljs-number">0</span>]
+<span class="hljs-number">100</span> * np.real(r / np.<span class="hljs-built_in">sum</span>(r))
+<span class="hljs-comment"># You may wish to view the PageRank graphically.</span>
+<span class="hljs-comment"># This code will draw a bar chart, for each (numbered) website on the generated internet,</span>
+<span class="hljs-comment"># The height of each bar will be the score in the PageRank.</span>
+<span class="hljs-comment"># Run this code to see the PageRank for each internet you generate.</span>
+<span class="hljs-comment"># Hopefully you should see what you might expect</span>
+<span class="hljs-comment"># - there are a few clusters of important websites, but most on the internet are rubbish!</span>
+%pylab notebook
+r = pageRank(generate_internet(<span class="hljs-number">100</span>), <span class="hljs-number">0.9</span>)
+plt.bar(arange(r.shape[<span class="hljs-number">0</span>]), r);</code></pre></div>
+<h1>资料</h1>
+<p>Formula Sheet: Sheet summarising all the formulae covered in this course.</p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/Coursera/Mathematics-for-Machine-Learning-Specialization/Mathematics-for-Machine-Learning-Linear-Algebra/Formula-Sheet.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Mathematics-for-Machine-Learning-Specialization/Mathematics-for-Machine-Learning-Linear-Algebra/Notebooks.zip" title="Code for Mathematics for Machine Learning: Linear Algebra">Code and Notebooks</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/Linear-Algebra/" class="print-no-link">#Linear Algebra</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mathematics for Machine Learning: Linear Algebra</div>
+      <div>https://zhangzhao219.github.io/2022/07/12/Coursera/Mathematics-for-Machine-Learning-Linear-Algebra/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/13/travel-list/" title="Travel List">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Travel List</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/11/trip-to-qingdao/" title="Trip To Qingdao">
+                        <span class="hidden-mobile">Trip To Qingdao</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

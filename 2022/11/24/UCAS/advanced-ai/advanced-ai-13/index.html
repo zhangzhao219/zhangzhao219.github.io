@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《高级人工智能》课程笔记：第13讲 群体智能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：高级人工智能-第13讲 群体智能">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/11/24/UCAS/advanced-ai/advanced-ai-13/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《高级人工智能》课程笔记：第13讲 群体智能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=x_n%5E%7B%28i%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=v_n%5E%7B%28i%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%96">
+<meta property="og:image" content="https://math.now.sh/?inline=g_%7Bbest%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A5_0%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A3_0%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=g_%7Bbest%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%93%28%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96%29%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A3_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%90_1%E2%88%97%F0%9D%91%9F_1%E2%88%97(%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%F0%9D%91%96%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%F0%9D%91%96)%2B%F0%9D%91%90_2%E2%88%97%F0%9D%91%9F_2%E2%88%97(%F0%9D%91%94_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A5_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B(i)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=c_i">
+<meta property="og:image" content="https://math.now.sh/?inline=r_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%94_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=c_1%3E0%2C%20c_2%20%3D%200">
+<meta property="og:image" content="https://math.now.sh/?inline=c_1%3D0%2C%20c_2%20%3E%200">
+<meta property="og:image" content="https://math.now.sh/?inline=c_1%3Dc_2%20%3E%200">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bp_g%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bp_i%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=c_2%3Ec_1">
+<meta property="og:image" content="https://math.now.sh/?inline=c_1%3E%20c_2">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="article:published_time" content="2022-11-24T17:53:26.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Advanced AI">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=i">
+  
+  
+  
+  <title>研究生课程：高级人工智能-第13讲 群体智能 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：高级人工智能-第13讲 群体智能</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-24 17:53" pubdate>
+          2022年11月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：高级人工智能-第13讲 群体智能</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《高级人工智能》课程笔记：第13讲 群体智能</p>
+<span id="more"></span>
+<h1>第13讲 群体智能</h1>
+<h2 id="群体智能">群体智能</h2>
+<ul>
+<li>群体智能指的是无智能或者仅具有相对简单智能的主体通过合作涌现出更高智能行为的特性
+<ul>
+<li>其中的个体并非绝对的无智能或只具有简单智能，而是相对于群体表现出来的智能而言是简单的。</li>
+</ul>
+</li>
+<li>单个复杂个体可以实现的功能，同样可以由大量简单的个体通过群体合作实现，后者的优势在于它更健壮、灵活和经济。</li>
+<li>群体智能利用群体优势，在没有中心控制的条件下，寻找解决复杂问题的新思路</li>
+</ul>
+<p>集群智能：众多无智能的个体，通过相互之间的简单合作所表现出来的智能行为</p>
+<p>博弈：具备一定智能的理性个体，按照某种机制行动，在群体层面体现出的智能</p>
+<p>众包：设计合适的机制，激励个体参与，从而实现单个个体不具备的社会智能</p>
+<h2 id="集群智能">集群智能</h2>
+<p>分布式 、 自组织的（自然/人造）系统表现出的一种群体智能</p>
+<p>集群智能系统一般由一群简单的智能体构成，智能体按照简单的规则彼此进行局部交互，智能体也可以环境交互</p>
+<p>灵感通常来自生物系统（蚁群、鸟群、兽群、粒子群）</p>
+<p>特点：</p>
+<ul>
+<li>分布式：无中心控制</li>
+<li>随机性：非确定性</li>
+<li>自适应：个体根据环境进行策略调整</li>
+<li>正反馈：个体好的尝试会对个体产生正反馈</li>
+<li>自发涌现：会在群体层面涌现出一种智能</li>
+</ul>
+<h3 id="蚁群优化算法">蚁群优化算法</h3>
+<p>一种解空间搜索方法，适用于在图上寻找最优路径</p>
+<p>算法形式化：</p>
+<ul>
+<li>每个蚂蚁对应一个计算智能体</li>
+<li>蚂蚁依概率选择候选位置进行移动</li>
+<li>在经过的路径上留下“信息素”</li>
+<li>“信息素”随时间挥发</li>
+<li>“信息素”浓度大的路径在后续的选择中会以更高的概率被选取</li>
+</ul>
+<p><strong>TSP问题蚁群算法流程</strong></p>
+<p>蚁群大小：一般情况下，蚁群中的蚂蚁个数不超过TSP图中节点的个数</p>
+<p>终止条件：</p>
+<ul>
+<li>设定迭代轮数</li>
+<li>设定最优解连续保持不变的迭代轮数</li>
+</ul>
+<p>思想：局部随机搜索+自增强</p>
+<p>缺点：</p>
+<ul>
+<li>收敛速度慢</li>
+<li>易于陷入局部最优</li>
+<li>对于解空间为连续的优化问题不适用</li>
+</ul>
+<h3 id="粒子群优化算法">粒子群优化算法</h3>
+<ul>
+<li>粒子群优化算法是一种基于种群寻优的启发式搜索算法 。在 1995年由Kennedy和Eberhart首先提出来的。</li>
+<li>它的主要启发来源于对鸟群群体运动行为的研究。我们经常可以观察到鸟群表现出来的同步性，虽然每只鸟的运动行为都是互相独立的，但是在整个鸟群的飞行过程中却表现出了高度一致性的复杂行为，并且可以自适应的调整飞行的状态和轨迹。</li>
+<li>鸟群具有这样的复杂飞行行为的原因，可能是因为每只鸟在飞行过程中都遵循了一定的行为规则，并能够掌握邻域内其它鸟的飞行信息。</li>
+<li>粒子群优化算法借鉴了这样的思想，每个粒子代表待求解问题搜索解空间中的一个潜在解，它相当于一只鸟，“飞行信息”包括粒子当前的位置和速度两个状态量。</li>
+<li>每个粒子都可以获得其邻域内其它个体的信息，对所经过的位置进行评价，并根据这些信息和位置速度更新规则，改变自身的两个状态量，在“飞行”过程中传递信息和互相学习，去更好地适应环境。</li>
+<li>随着这一过程的不断进行，粒子群最终能够找到问题的近似最优解。</li>
+</ul>
+<p><strong>是一种随机优化方法，通过粒子群在解空间中进行搜索，寻找最优解（适应度最大的解）</strong></p>
+<h3 id="构成要素">构成要素</h3>
+<ul>
+<li>粒子群：
+<ul>
+<li>每个粒子对应所求解问题的一个可行解</li>
+<li>粒子通过其位置和速度表示
+<ul>
+<li>粒子<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在第<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮的位置：<img src="https://math.now.sh?inline=x_n%5E%7B%28i%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>粒子<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在第<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮的速度：<img src="https://math.now.sh?inline=v_n%5E%7B%28i%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>记录：
+<ul>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：粒子<img src="https://math.now.sh?inline=%F0%9D%91%96" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的历史最好位置</li>
+<li><img src="https://math.now.sh?inline=g_%7Bbest%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：全局历史最好位置</li>
+</ul>
+</li>
+<li>计算适应度的函数-适应度：<img src="https://math.now.sh?inline=f%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<h3 id="算法过程描述">算法过程描述</h3>
+<ul>
+<li>初始化
+<ul>
+<li>初始化粒子群：每个粒子的位置和速度，即<img src="https://math.now.sh?inline=%F0%9D%91%A5_0%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%F0%9D%91%A3_0%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=g_%7Bbest%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+<li>循环执行如下三步直至满足结束条件
+<ul>
+<li>计算每个粒子的适应度：<img src="https://math.now.sh?inline=%F0%9D%91%93%28%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96%29%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>更新每个粒子历史最好适应度及其相应的位置，更新当前全局最好适应度及其相应的位置</li>
+<li>更新每个粒子的速度和位置
+<ul>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A3_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%90_1%E2%88%97%F0%9D%91%9F_1%E2%88%97(%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%F0%9D%91%96%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%F0%9D%91%96)%2B%F0%9D%91%90_2%E2%88%97%F0%9D%91%9F_2%E2%88%97(%F0%9D%91%94_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%A5_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B(i)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>粒子速度更新公式：</p>
+<ol>
+<li>惯性项：保持原速度不变的倾向</li>
+<li>记忆项：回到历史最好位置的倾向</li>
+<li>社会项：走向粒子群全局最好位置的倾向</li>
+<li><img src="https://math.now.sh?inline=c_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>权重参数：一般取值为2</li>
+<li><img src="https://math.now.sh?inline=r_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>随机参数：0和1之间的随机数</li>
+</ol>
+<p>算法终止条件：</p>
+<ul>
+<li>迭代的轮数</li>
+<li>最佳位置连续未更新的轮数</li>
+<li>适应度函数的值到达预期要求</li>
+</ul>
+<p>速度更新参数：又称加速度参数，用来控制粒子当前最优位置<img src="https://math.now.sh?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和粒子群当前最优位置<img src="https://math.now.sh?inline=%F0%9D%91%94_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对粒子飞行速度的影响</p>
+<ul>
+<li><img src="https://math.now.sh?inline=c_1%3E0%2C%20c_2%20%3D%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：每个微粒执行局部搜索；</li>
+<li><img src="https://math.now.sh?inline=c_1%3D0%2C%20c_2%20%3E%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：微粒群转化为一个随机爬山法</li>
+<li><img src="https://math.now.sh?inline=c_1%3Dc_2%20%3E%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：微粒逐渐移向<img src="https://math.now.sh?inline=%5Cvec%7Bp_g%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5Cvec%7Bp_i%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的加权均值</li>
+<li><img src="https://math.now.sh?inline=c_2%3Ec_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：算法比较适合于单峰优化问题</li>
+<li><img src="https://math.now.sh?inline=c_1%3E%20c_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：算法比较适合于多峰优化问题</li>
+</ul>
+<p>惯性权重：速度冲量导致微粒按照先前速度方向继续移动。提出一个惯性权重<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来控制先前微粒速度的影响</p>
+<h3 id="粒子群优化算法和遗传算法相比">粒子群优化算法和遗传算法相比</h3>
+<ul>
+<li>遗传算法强调“适者生存”，不好的个体在竞争中被淘汰； PSO 强调“协同合作”，不好的个体通过学习向好的方向转变。</li>
+<li>遗传算法中最好的个体通过产生更多的后代来传播基因；PSO 中的最好个体通过吸引其它个体向它靠近来施加影响。</li>
+<li>遗传算法的选择概率只与上一代群体相关，而与历史无关，群体的信息变化过程是一个Markov链过程；而PSO中的个体除了有位置和速度外，还有着过去的历史信息（pBest, gBest）。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>易于实现</li>
+<li>可调参数较少</li>
+<li>所需种群或微粒群规模较小</li>
+<li>计算效率高，收敛速度快</li>
+</ul>
+<p>缺点：和其它演化计算算法类似，不保证收敛到全局最优解</p>
+<h3 id="粒子群优化算法代码">粒子群优化算法代码</h3>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">cal</span>(<span class="hljs-params">x</span>):
+    <span class="hljs-keyword">return</span> x*x*x-<span class="hljs-number">5</span>*x*x-<span class="hljs-number">2</span>*x+<span class="hljs-number">3</span>
+
+x_min = -<span class="hljs-number">2</span>
+x_max = <span class="hljs-number">5</span>
+
+p_num = <span class="hljs-number">1000</span>
+
+g_best_max = <span class="hljs-number">1</span>
+g_best_max_i = <span class="hljs-number">0</span>
+
+g_best_min = <span class="hljs-number">1</span>
+g_best_min_i = <span class="hljs-number">0</span>
+
+x_MAX = (x_max - x_min) * np.random.random_sample((p_num,)) + x_min
+v_MAX = (x_max - x_min) * np.random.random_sample((p_num,)) + x_min
+
+x_MIN = (x_max - x_min) * np.random.random_sample((p_num,)) + x_min
+v_MIN = (x_max - x_min) * np.random.random_sample((p_num,)) + x_min
+
+p_best_max = np.ones_like(x_MAX)
+p_best_min = np.ones_like(x_MAX)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">10000</span>):
+
+    f_max = cal(x_MAX)
+    f_min = cal(x_MIN)
+
+    t_max = cal(p_best_max)
+    t_min = cal(p_best_min)
+
+    p_best_max = np.where(t_max &gt; f_max, p_best_max, x_MAX)
+    p_best_min = np.where(t_min &lt; f_min, p_best_min, x_MIN)
+
+
+    <span class="hljs-keyword">if</span> np.<span class="hljs-built_in">max</span>(f_max) &gt; g_best_max:
+        g_best_max = np.<span class="hljs-built_in">max</span>(f_max)
+        g_best_max_i = x_MAX[np.argmax(f_max)]
+
+    <span class="hljs-keyword">if</span> np.<span class="hljs-built_in">min</span>(f_min) &lt; g_best_min:
+        g_best_min = np.<span class="hljs-built_in">min</span>(f_min)
+        g_best_min_i = x_MIN[np.argmin(f_min)]
+
+    v_MAX = v_MAX + (p_best_max - x_MAX) + (g_best_max - x_MAX)
+    x_MAX = x_MAX + v_MAX
+
+    x_MAX = np.where(x_MAX &gt; x_max,x_max,x_MAX)
+    x_MAX = np.where(x_MAX &lt; x_min,x_min,x_MAX)
+
+    v_MIN = v_MIN + (p_best_min - x_MIN) + (g_best_min - x_MIN)
+    x_MIN = x_MIN + v_MIN
+
+    x_MIN = np.where(x_MIN &gt; x_max,x_max,x_MIN)
+    x_MIN = np.where(x_MIN &lt; x_min,x_min,x_MIN)
+
+<span class="hljs-built_in">print</span>(g_best_max_i)
+<span class="hljs-built_in">print</span>(g_best_min_i)</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Advanced-AI/" class="print-no-link">#Advanced AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：高级人工智能-第13讲 群体智能</div>
+      <div>https://zhangzhao219.github.io/2022/11/24/UCAS/advanced-ai/advanced-ai-13/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/01/UCAS/advanced-ai/advanced-ai-14/" title="研究生课程：高级人工智能-第14讲 强化学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：高级人工智能-第14讲 强化学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/21/Go/Go-Project-Gee/" title="Go项目-Gee Web框架">
+                        <span class="hidden-mobile">Go项目-Gee Web框架</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,862 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《现代信息检索》课程笔记：第2讲 索引构建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：现代信息检索-第2讲 索引构建">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/04/UCAS/information-retrieval/information-retrieval-2/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《现代信息检索》课程笔记：第2讲 索引构建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/05/vTB5VS.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/05/vTDP2R.png">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28T%5E2%29">
+<meta property="og:image" content="https://math.now.sh/?inline=T">
+<meta property="og:image" content="https://math.now.sh/?inline=Z_0">
+<meta property="og:image" content="https://math.now.sh/?inline=I_0%2C%20I_1%2C%20%5Ccdots">
+<meta property="og:image" content="https://math.now.sh/?inline=Z_0%3En">
+<meta property="og:image" content="https://math.now.sh/?inline=I_0">
+<meta property="og:image" content="https://math.now.sh/?inline=I_0">
+<meta property="og:image" content="https://math.now.sh/?inline=I_1">
+<meta property="og:image" content="https://math.now.sh/?inline=I_1">
+<meta property="og:image" content="https://math.now.sh/?inline=I_1">
+<meta property="og:image" content="https://math.now.sh/?inline=I_1">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28log%20T%29">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28log%20T%29">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28log%20T%29">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28T%20log%20T%29">
+<meta property="article:published_time" content="2022-09-04T10:18:47.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.197Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Information Retrieval">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/09/05/vTB5VS.png">
+  
+  
+  
+  <title>研究生课程：现代信息检索-第2讲 索引构建 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：现代信息检索-第2讲 索引构建</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-04 10:18" pubdate>
+          2022年9月4日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：现代信息检索-第2讲 索引构建</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《现代信息检索》课程笔记：第2讲 索引构建</p>
+<span id="more"></span>
+<p>语料通常很大，而服务器内存通常相对较小，因此需要在内存有限的情况下的索引构建策略。</p>
+<h1>第2讲 索引构建</h1>
+<p>词项：一个语料中不同的词的数量</p>
+<p>词条：一个语料中所有词的数量（包括重复的）</p>
+<h2 id="基于排序的索引构建方法存在的问题">基于排序的索引构建方法存在的问题</h2>
+<p>在构建索引时，每次解析一篇文档，因此对于每个词项而言，其倒排记录表不到最后一篇文档都是不完整的。</p>
+<p>如果每个 <code>(termID, docID)</code>对占用 <code>8</code>个字节, 那么处理大规模语料需要大量的空间。</p>
+<p>一般内存的容量比较小，没有办法将前面产生的倒排记录表全部放在内存中，需要在磁盘上存储中间结果。</p>
+<h2 id="内存和硬盘">内存和硬盘</h2>
+<p>内存的典型配置是几G ～ 几十G的内存或上百G或1-2T</p>
+<p>磁盘空间通常有几T（小型服务器）或10T以上（磁盘阵列）</p>
+<p>硬盘空间更大，但是在内存中访问数据会比从硬盘访问数据快很多（大概10倍以上的差距）</p>
+<p>硬盘寻道时间是闲置时间：磁头在定位时不发生数据传输（假设使用的是机械硬盘）</p>
+<p>因此一个大（连续）块的传输会比多个小块（非连续）的传输速度快</p>
+<p>硬盘 I/O是基于块的：读写时是整块进行的。块大小：8KB到256KB不等</p>
+<p><strong>不能在硬盘上对倒排索引表进行排序，因为寻道的时间很慢，导致排序的时间也很慢。</strong></p>
+<h2 id="BSBI算法">BSBI算法</h2>
+<p><strong>一种减少寻道操作的排序：Blocked sort-based Indexing</strong></p>
+<p>将所有记录划分为每个大小约为10M的块，收集每一块的倒排记录，排序，将倒排索引写入硬盘，最后将不同的分块合并为一个大的倒排索引。</p>
+<p><strong>关键决策：块的大小-块越大，最后的合并操作就越少</strong></p>
+<p>合并的过程中需要在磁盘中同时保存数据的两份拷贝（合并前与正在合并），因此磁盘空间要足够大。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vTB5VS"><img src="https://s1.ax1x.com/2022/09/05/vTB5VS.png" srcset="/img/loading.gif" lazyload alt="vTB5VS.png"></a></p>
+<p>词项字符串的占用空间比较大，因此维护一个全局词典来将字符串映射到唯一的全局ID</p>
+<p><strong>合并的过程中，将每一个小块的一点点数据放入内存中进行排序，排序好了就放在写缓冲区中，写缓冲区满了就写回硬盘，直到排序完成。</strong></p>
+<p>可以将两两合并的方式优化为多项合并(multi-way merge)：</p>
+<ul>
+<li>从所有块同时读取，并且为每块保持一个读缓冲区(read buffer)</li>
+<li>为输出文件（即合并后的索引）保持一个写缓冲区（write buffer）</li>
+<li>维护一个待处理 <code>termid</code>的优先级队列(priority queue)，每次迭代从队列中选取一个最小的未处理 <code>termid</code></li>
+<li>合并不同块中所有的该 <code>termid</code>的倒排记录，并写入磁盘。</li>
+<li>因此每次迭代均处理较小规模的数据（一个词项的倒排记录）。</li>
+</ul>
+<p>BSBI算法的问题：</p>
+<ul>
+<li>假定词典可以在内存中放下</li>
+<li>通常需要一部词典（动态增长）来将 <code>term</code>映射成 <code>termID</code>。实际上倒排记录表可以直接采用 <code>(term,docID)</code>方式而不是<br>
+<code>(termID,docID)</code>方式，但是此时中间文件（即待合并的倒排记录表）将会变得很大（字符串比整型数空间消耗更大）</li>
+</ul>
+<h2 id="SPIMI算法">SPIMI算法</h2>
+<p><strong>内存式单遍扫描索引构建算法：Single-pass in-memory indexing</strong></p>
+<p>关键思想：</p>
+<ul>
+<li>对每个块都产生一个独立的词典（不需要在块之间进行 <code>term-termID</code>的映射）</li>
+<li>对倒排记录表不排序，按照它们出现的先后顺序排列，只对词典排序（实际上由于指针的存在，倒排记录表没有排序的必要）。</li>
+</ul>
+<p><strong>在扫描文档的同时，直接在内存中维护一个不断更新的倒排索引</strong></p>
+<p>因此对每个块生成一个完整的倒排索引，这些独立的索引最后合并成一个大索引</p>
+<p>最终合并词典的过程中，需要进行词项字符串的比较，因为此时没有全局词典提供词项-整数ID的映射。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vTDP2R"><img src="https://s1.ax1x.com/2022/09/05/vTDP2R.png" srcset="/img/loading.gif" lazyload alt="vTDP2R.png"></a></p>
+<h3 id="BSBI算法和SPIMI算法的主要区别">BSBI算法和SPIMI算法的主要区别</h3>
+<p>BSBI算法：在分块索引阶段，BSBI算法维护一个全局Term (String) – Termid (int) 的映射表，局部索引为Termid及其倒排记录表，仍然按词典顺序排序。</p>
+<p>SPIMI算法：分块索引阶段与BSBI算法不同在于建立局部词典和索引，无需全局词典。在合并阶段，将局部索引两两合并，最后产生全局词典建立Term – Termid的映射。</p>
+<h2 id="动态索引构建">动态索引构建</h2>
+<p>实际中文档会增加、删除和修改，因此词典和倒排记录表必须要动态更新。</p>
+<p>最简单的方法：主索引(Main index)+辅助索引(Auxiliary index)</p>
+<ul>
+<li>在磁盘上维护一个大的主索引(Main index)</li>
+<li>新文档放入内存中较小的辅助索引中</li>
+<li>同时搜索两个索引，然后合并结果</li>
+<li>定期将辅助索引合并到主索引中</li>
+</ul>
+<p>删除的处理：</p>
+<ul>
+<li>采用无效位向量(Invalidation bit-vector)来表示删除的文档</li>
+<li>利用该维向量过滤返回的结果，以去掉已删除文档</li>
+</ul>
+<p>问题：</p>
+<ul>
+<li>合并过于频繁</li>
+<li>合并时如果正好在搜索，那么搜索的性能将很低</li>
+</ul>
+<p><strong>辅助索引方式： 每次合并都需要处理每个倒排记录，索引构建时间为<img src="https://math.now.sh?inline=O%28T%5E2%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></strong><em>，其中</em><img src="https://math.now.sh?inline=T" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是所有倒排记录的个数</p>
+<p>对数合并(Logarithmic merge)：</p>
+<p>对数合并算法能够缓解(随时间增长)索引合并的开销 → 用户并不感觉到响应时间上有明显延迟。</p>
+<ul>
+<li>维护一系列索引，其中每个索引是前一个索引的两倍大小</li>
+<li>将最小的索引<img src="https://math.now.sh?inline=Z_0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>置于内存</li>
+<li>将其他更大的索引 <img src="https://math.now.sh?inline=I_0%2C%20I_1%2C%20%5Ccdots" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 置于磁盘</li>
+<li>如果 <img src="https://math.now.sh?inline=Z_0%3En" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> ，则将它作为 $I_0 $写到磁盘中（如果 $I_0 $不存在）</li>
+<li>或者和<img src="https://math.now.sh?inline=I_0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>合并（如果<img src="https://math.now.sh?inline=I_0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>已经存在），并将合并结果作为<img src="https://math.now.sh?inline=I_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>写到磁盘中（如果<img src="https://math.now.sh?inline=I_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>不存在），或者和<img src="https://math.now.sh?inline=I_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>合并（如果<img src="https://math.now.sh?inline=I_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>已经存在），依此类推</li>
+</ul>
+<p><strong>因此每次两两合并中两个索引的大小相同</strong></p>
+<p>索引数目的上界为<img src="https://math.now.sh?inline=O%28log%20T%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> ，因此查询处理时需要合并<img src="https://math.now.sh?inline=O%28log%20T%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个索引，因此每个倒排记录需要合并<img src="https://math.now.sh?inline=O%28log%20T%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次，则索引构建时间为<img src="https://math.now.sh?inline=O%28T%20log%20T%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，时间复杂度相比较辅助索引方式小了一个数量级。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Information-Retrieval/" class="print-no-link">#Information Retrieval</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：现代信息检索-第2讲 索引构建</div>
+      <div>https://zhangzhao219.github.io/2022/09/04/UCAS/information-retrieval/information-retrieval-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/05/UCAS/information-retrieval/information-retrieval-3/" title="研究生课程：现代信息检索-第3讲 索引压缩">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第3讲 索引压缩</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/02/UCAS/machine-learning/machine-learning-2/" title="研究生课程：机器学习-第2章 贝叶斯学习">
+                        <span class="hidden-mobile">研究生课程：机器学习-第2章 贝叶斯学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

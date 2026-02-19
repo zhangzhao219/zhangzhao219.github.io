@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2025校园招聘（2024秋季）算法岗总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025校园招聘（2024秋季）算法岗总结">
+<meta property="og:url" content="https://zhangzhao219.github.io/2025/01/10/Interview/Interview-Campus-Recruitment-2024-Autumn-Summary/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="2025校园招聘（2024秋季）算法岗总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-10T21:38:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Interview">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>2025校园招聘（2024秋季）算法岗总结 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">2025校园招聘（2024秋季）算法岗总结</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-10 21:38" pubdate>
+          2025年1月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2025校园招聘（2024秋季）算法岗总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>2025校园招聘（2024秋季）算法岗总结</p>
+<span id="more"></span>
+<h1>背景</h1>
+<p>学历背景：末流985本科+中科院强所学硕，均为计算机相关专业</p>
+<p>论文情况：对口论文一作1B1在投A，其他非一作不对口论文若干</p>
+<p>实习情况：对口大厂实习1日常1暑期，此外还有小公司后端开发和中厂CV算法实习经历</p>
+<p>竞赛情况：取得名次的NLP相关竞赛5+项</p>
+<h1>投递情况</h1>
+<p>意向岗位：互联网算法技术岗，城市不限，若是自己投递则选择大模型岗位方向投递，也不排斥传统的NLP算法或者是搜广推相关，不太喜欢做研究，主要投递偏应用型的岗位。不太看好创业公司的前景，投递的都是有一定规模的知名企业。</p>
+<p>结果：秋招前筛选了大概有意向的企业共20家，其中10家企业基本拿到offer，开奖了的薪资基本为网上能查到的和周围了解到的真人的最高价SSP及以上，没有人才计划；4家企业面试挂；6家企业没有面试。</p>
+<h2 id="进入到谈薪阶段">进入到谈薪阶段</h2>
+<p>包括字节跳动、腾讯、阿里云、蚂蚁集团、美团、快手、百度、华为、滴滴、科大讯飞</p>
+<p>截至目前快手、华为和滴滴谈薪但是没有开奖，其他均已接/已拒</p>
+<p>利益相关，面经已有但是看情况公开吧，有想要的可以私戳~</p>
+<h2 id="面试挂">面试挂</h2>
+<h3 id="京东">京东</h3>
+<p>找了同学内推，和内推码没有太大区别</p>
+<p>8月初测评，8月上旬笔试</p>
+<p>9月初HR面后紧接技术一面，HR面介绍了一下部门，然后让我讲了一下性格和实习的体验。技术一面问了论文，八股考了微调方式，LoRA的相关问题，RoPE位置编码，deepspeed各种优化点，flash attention等，算法题是滑动窗口最大值</p>
+<p>9月下旬技术二面，问了论文，感觉他没听懂，后面讲的有些吵起来了…，八股问了tokenizer是怎么工作的，算法题出了一个巨难的通配符匹配，没做出来</p>
+<p>9月底线下HR面（太离谱了，亦庄也太远了），就问了一下实习的体验和感觉最迷茫的事情，15分钟就结束了</p>
+<p>12月中旬看官网时候发现挂了</p>
+<h3 id="拼多多">拼多多</h3>
+<p>随便找了一个内推码投递了算法工程师的大方向</p>
+<p>7月下旬个性测评，大概200道题左右，8月中旬笔试，难度很大</p>
+<p>8月底一面，问了论文，Transformer参数量的计算，算法题是两数和的最接近值，做的不太好</p>
+<p>9月中旬二面，问了论文和实习，DPO的基本假设，算法题是rand7如何转化为rand10，确定面试的部门是TEMU toB的部门</p>
+<p>10月中旬三面，问了实习，算法题是m个骰子n次求正面数字之和大于等于k的概率，面试太晚了很困没有做出来</p>
+<p>11月初HR电话面试，介绍项目和性格等，过几天后挂</p>
+<p>没走到谈薪的原因可能主要是HR面的时候我说不太能接受11126还打卡的企业内卷文化，然后前面的笔试面试表现也都没那么好。</p>
+<h3 id="小红书">小红书</h3>
+<p>7月中旬找部门领导内推RedStar</p>
+<p>7月下旬一面，问了比赛，算法题是力扣第三题</p>
+<p>8月上旬二面，问了实习和比赛，有一点点八股，没有算法题</p>
+<ul>
+<li>Transformer的Bert和GPT的结构</li>
+<li>大模型有哪些改进</li>
+<li>不同激活函数在不同任务上的区别</li>
+</ul>
+<p>面试聊的都不错，结果二面完下午直接挂，部门领导反馈挂的是RedStar，后面正式秋招开了再面我</p>
+<p>后面没再找过我了，我也没有再问过。</p>
+<h3 id="阿里国际">阿里国际</h3>
+<p>没有找内推</p>
+<p>8月中旬投递，9月初笔试</p>
+<p>第一志愿：算法工程师-自然语言处理 Lazada；第二志愿：算法工程师-LLM 阿里巴巴国际站</p>
+<p>第一志愿9月下旬约了一二面，上午二面后下午挂</p>
+<p>面试主要问了论文和实习，一面没有算法题，二面是最长回文子串，挂的主要原因是不匹配，部门是做推荐的，我这边的推荐经验比较少，面试时候也聊的很清楚。</p>
+<p>第二志愿一直没有任何消息</p>
+<h2 id="没有面试">没有面试</h2>
+<h3 id="淘天">淘天</h3>
+<p>没有找内推</p>
+<p>暑期实习笔试做的不太好，秋招不给机会重新做笔试了（或者是不是发一份给邮件也可以重新做一遍笔试？）</p>
+<p>第一志愿：用户平台&amp;阿里妈妈；第二志愿：算法技术</p>
+<p>第二志愿挂后自动流转：淘天集团-闲鱼-闲鱼技术</p>
+<p>时间线：八月中旬投递，9月上旬第一志愿挂，9月下旬第二志愿挂，10月上旬闲鱼约面，直接拒绝面试。</p>
+<h3 id="通义实验室">通义实验室</h3>
+<p>本来也不太想找研究型的岗位，随缘找了所内的师兄内推，但是师兄不太靠谱只告诉了HR，一直没有任何消息。11月中旬突然邀请我投递简历，太晚了直接拒绝。</p>
+<h3 id="网易雷火">网易雷火</h3>
+<p>找了一个北大做产品的特别内推（宣传说特别内推免笔试），文本大模型算法工程师岗位，确实免了笔试，不过面试也免了…直接简历就挂掉了。</p>
+<p>时间线：7月上旬特别内推完成，9月下旬查看雷火官网发现流程已结束，且官网上已经找不到任何技术类的岗位了。</p>
+<h3 id="达摩院">达摩院</h3>
+<p>没有找内推</p>
+<p>第一志愿投递了算法工程师-自然语言处理，简历评估不通过</p>
+<p>第二志愿投递了算法工程师-大模型，完成了测评和笔试，然后简历评估不通过</p>
+<p>时间线：8月中旬投递两个志愿，8月下旬第一志愿挂，8月底完成笔试，9月初第二志愿挂</p>
+<h3 id="B站">B站</h3>
+<p>官网开放岗位后找了认识的大佬内推，但是那个人不太建议投递…说没有什么卡并且我也不大可能会来，因此没有投递。</p>
+<h3 id="智能信息">智能信息</h3>
+<p>官网一直没有开放校园招聘的相关岗位，没有渠道投递</p>
+<h1>感想和建议</h1>
+<p>代表个人的一些想法，仅供参考</p>
+<ol>
+<li>对口经验很重要。虽然校招看经验听起来是很离谱的事情，但是没有办法，每一个岗位投递的人数都太多了，我了解到的某个还算偏小众的岗位，暑期实习有100+投递，筛选了好学校+2篇论文以上后面了30+左右，最后暑期实习收了5个。秋招投递超过500+，基本没有面（因为坑都被暑期实习生占满了）。在这种竞争下，一方面企业只能通过一些硬性条件去筛选一波再面试，如学历是否为双九、是否有论文等等。另一方面我们也要思考一下我们的核心竞争力在哪里，如何让自己的简历在海量的候选者中脱颖而出。这里不是说简历的美观和排版情况，主要是简历中能够体现出的与岗位匹配的点有多少，也就是过往的经验如何了。</li>
+<li>论文和实习很重要。经验只能是从论文和实习当中来，学校的项目基本都是没有任何含金量的（有含金量的就肯定有论文了）。论文重要还是实习重要这个不好说，研究型的岗位肯定是看论文，应用型的岗位论文和实习含金量应该是差不多的。一切的前提是得对口，不对口的论文或者实习都是没有任何作用的（人家又不懂咋和你聊呢）。人才计划的要求可能是成果非常多的博士或者经验非常非常对口的硕士，没有论文有一大堆实习或者比赛的硕士拿到了人才计划也是有一些的。至于比赛的含金量不太好说，本人的简历亮点在于比赛很多，且比赛基本都是与大模型相关并涉及到了很多的领域方向，在面试的时候如果部门正好是做这个方向的会比较感兴趣。没有特别对口的比赛还是会优先问实习和论文。</li>
+<li>面试重要性不高。本人感觉部门看简历的时候基本就已经给这些候选人排好序了，而且大家的时间精力都是很有限的，真的不存在什么KPI面。面试中只要简历的内容都能hold住，一场面试下来基本就是聊聊项目就结束了。算法岗也没什么八股，考八股要不就是项目中可能涉及到了一些基础知识而且面试官正好会的，要不就是实在没啥可以聊的但是时间还早（这一种情况可能就算八股都答出来了也是一样挂）</li>
+<li>算法题不太重要。本人大大小小实习+秋招面了五六十场，感觉上没有任何一场面试是因为算法题没有做出来而挂掉的。面试的表现（包括简历和岗位的匹配程度）与算法题的难度是基本正相关的。如果面试表现的好，即使算法题没做出来也可以换一个更简单的做；面试表现不好，算法题就算秒杀了也会出一个更难的或面试后也会挂掉。大家都是做技术的，都知道Leetcode那些东西平常也用不上，算法题基本就是走个过场。准备算法题的时候Leetcode HOT 100完全够用了，90%以上的算法题都是从这里来的。</li>
+<li>网上有一种说法“暑期实习转正都是白菜价”。这个说法我认为是有偏的。因为暑期实习一般就是按照秋招的HC来招的，站在部门的角度想，如果这个人在我们这里干的很好我为什么要把他放走换另一个不熟悉的再赌一把呢？大多数的人实习的时候应该是没有达到面试时候的预期的，所以可能部门感觉秋招重新招一个损失也不大，因此就开了白菜价劝退了。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Interview/" class="print-no-link">#Interview</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2025校园招聘（2024秋季）算法岗总结</div>
+      <div>https://zhangzhao219.github.io/2025/01/10/Interview/Interview-Campus-Recruitment-2024-Autumn-Summary/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

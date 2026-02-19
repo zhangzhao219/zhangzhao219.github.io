@@ -1,0 +1,1364 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CIickHouse - 你没有见过的列存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CIickHouse - 你没有见过的列存储">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/02/14/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day18/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="CIickHouse - 你没有见过的列存储">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90a99c748ea44d77b0d020bf4e453b00~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/06ebb2a9b53542039f48d606371d5c72~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/71027c9eb08c4235995a4157f890d1ed~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ce86c76aa4b94069a9e0566c4e90a700~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/652535fe26b4462aaaec624d07ee81a9~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5c1f870906ca44249631505e6701208f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d765fa26b5c74b28a81addf4bc92712a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5dc778102a6243b88bb09f7fd638e752~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/72c9663793a54274bc85f336396d3aed~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80e49afbeef141819fe7694d6b989a31~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ca237dcbd1164ed28eda5625eb28a4d0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ad333d1c8e0948bcbfdc570f5df8412f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b0d9767c0bf454ea304ddbca992d153~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d38beaad91c54cf3af4386d79f526d44~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b0887e17c3d44feb7f020a67940565a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35e2b0f14c0a48799afd87ac55d48d6f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4def4eb1ca0b498bb7bc18e792c29713~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cdd14b5fe7147b8a57dc7e8be722c02~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5146f2ff91cc44009f77d3d7032d6a2e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3f1a7d82804c411cbd94c1f7ef56d8a6~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3edc45c207e64b14aff68fe968c1ce7b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cae40687666d491f9ec00eac87ae3af8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e27fbd4782743cf8557b1d2cd8dbb6b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c34a95c8efe4c14b0238d728eb67733~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1aa0b14b1995429c85a2cd1fa486e9c6~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d688b3a48c1c464eb68a6ec90a0ca520~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24b20d3da955423c8b81d37b84b3718e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/03a8c03bbabc4adc819650ece574eb5f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e9c324d18fa4604b0927e85d6cdfb69~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/308928c0d5724c15a1dd661a79e236aa~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be6e773647b147b1a16758d2bd826320~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/34d5196db6ea45e18edb83dfbc28c93c~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e8d11eb319b49d593f13cefc7a23e2f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a434f63277eb40d1a64b2ea77d997d5e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e49c1eac5f914dc4b2ae2a376e19a85f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/243d0dfdcd3145babac66978b3ea4f35~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/67c2f06dcb514f158e015da591396532~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dee5814564b4342abee6df3b4dbd07f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b39e0a35dc2145b2ac695ebfc30ec476~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/535f009c745a4f8e9a05577bef56b10a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f37cfa3dba574396b2390057558cc71a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/db5a523be0654764ac7f6dd46bd2adca~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/948006a393ee406da6f1c3a47b3ec706~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bc3f565f6d2d44f48f75ce16e3dada1d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff7089af6bf74bc3a8cd251bb1153f74~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f6fe483136d481db157fba6acd3fcab~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c2162a81cbb428284ae85292e853028~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/839b029f2846429db8ff7efb6f2bcca0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ea0fcab8637f487d999070ae4f7f0a9e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/920ba1c69ad84920b9dca82813e37e24~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43db089db47a42debba7451e6e08c499~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7b46c67fb4194b688690bd78da273be5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="article:published_time" content="2023-02-14T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.191Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90a99c748ea44d77b0d020bf4e453b00~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+  
+  
+  
+  <title>CIickHouse - 你没有见过的列存储 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">CIickHouse - 你没有见过的列存储</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-14 14:00" pubdate>
+          2023年2月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CIickHouse - 你没有见过的列存储</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>CIickHouse - 你没有见过的列存储</p>
+<span id="more"></span>
+<h1>ClickHouse - 你没有见过的列存储</h1>
+<h2 id="概述">概述</h2>
+<p>本节课程分为四个部分</p>
+<ol>
+<li>数据库基本概念</li>
+<li>列式存储</li>
+<li>ClickHouse存储设计</li>
+<li>ClickHouse典型应用场景</li>
+</ol>
+<p>课前部分主要罗列课程中涉及到的概念。对于不熟悉的概念，同学们可以提前查询预习；课中部分主要罗列每一部分的关键思路，帮助同学们跟上课程的进度；课后部分是一些问题，帮助同学们在课后梳理本课程的重点。</p>
+<h2 id="课前-（必须）">课前 （必须）</h2>
+<h3 id="数据库基本概念">数据库基本概念</h3>
+<ol>
+<li>数据库</li>
+<li>DBMS：数据库管理系统</li>
+<li>OLTP 数据库 <strong>：</strong> OLTP（Online transactional processing）</li>
+<li>OLAP 数据库：OLAP (Online analytical processing)</li>
+<li>SQL (Structured Query Language)</li>
+<li>词法分析</li>
+<li>语法分析</li>
+<li>AST (Abstract syntax tree)</li>
+</ol>
+<h3 id="列式存储">列式存储</h3>
+<ol>
+<li>行式存储</li>
+<li>列式存储</li>
+<li>数据压缩<br>
+a.  LZ4<br>
+b.  Run-length encoding<br>
+c.  Delta encoding</li>
+<li>延迟物化<br>
+a.  物化<br>
+b.  Cpu cache<br>
+c.  内存带宽</li>
+<li>向量化<br>
+a.  SIMD （single instruction multiple data）<br>
+b.  SSE指令集<br>
+c.  AVX指令集</li>
+</ol>
+<h3 id="ClickHouse存储设计">ClickHouse存储设计</h3>
+<ol>
+<li>Shard key</li>
+<li>索引<br>
+a.  哈希索引<br>
+b.  B-Tree<br>
+c.  B+Tree<br>
+d.  LSM-Tree</li>
+</ol>
+<h3 id="ClickHouse典型应用场景">ClickHouse典型应用场景</h3>
+<ol>
+<li>Kafka</li>
+<li>Spark</li>
+<li>Hdfs</li>
+<li>Bitmap</li>
+<li>字典编码</li>
+</ol>
+<h2 id="课中">课中</h2>
+<h3 id="数据库基本概念-2">数据库基本概念</h3>
+<h4 id="数据库是什么">数据库是什么</h4>
+<p>数据库是结构化信息或数据的有序集合，一般以电子形式存储在计算机系统中。通常由<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.oracle.com%2Fcn%2Fdatabase%2Fwhat-is-database%2F%23WhatIsDBMS" title="https://www.oracle.com/cn/database/what-is-database/#WhatIsDBMS">数据库管理系统 (DBMS)</a> 来控制。在现实中，数据、DBMS 及关联应用一起被称为数据库系统，通常简称为数据库。</p>
+<h4 id="一个简单的例子">一个简单的例子</h4>
+<ol>
+<li>数据解析整理成有序集合</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90a99c748ea44d77b0d020bf4e453b00~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="2">
+<li>数据的写入和读取，可以通过查询语言获取想要的信息</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/06ebb2a9b53542039f48d606371d5c72~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="数据库的类型">数据库的类型</h4>
+<ol>
+<li>数据库有很多种，至于各种数据库孰优孰劣，主要取决于企业希望如何使用数据。</li>
+<li>关系数据库：关系型数据库是把数据以表的形式进行储存，然后再各个表之间建立关系，通过这些表之间的关系来操作不同表之间的数据。</li>
+<li>非关系数据库 <strong>：</strong> NoSQL 或非关系数据库，支持存储和操作非结构化及半结构化数据。相比于关系型数据库，NoSQL没有固定的表结构，且数据之间不存在表与表之间的关系，数据之间可以是独立的。NoSQL的关键是它们放弃了传统关系型数据库的强事务保证和关系模型，通过所谓最终一致性和非关系数据模型（例如键值对，图，文档）来提高Web应用所注重的高可用性和可扩展性。</li>
+<li>单机数据库：在一台计算机上完成数据的存储和查询的数据库系统。</li>
+<li>分布式数据库 <strong>：</strong> 分布式数据库由位于不同站点的两个或多个文件组成。数据库可以存储在多台计算机上，位于同一个物理位置，或分散在不同的网络上。</li>
+<li>OLTP 数据库 <strong>：</strong> OLTP（Online transactional processing）数据库是一种高速分析数据库，专为多个用户执行大量事务而设计。</li>
+<li>OLAP 数据库：OLAP (Online analytical processing) 数据库旨在同时分析多个数据维度，帮助团队更好地理解其数据中的复杂关系</li>
+</ol>
+<h4 id="OLAP数据库">OLAP数据库</h4>
+<ol>
+<li>大量数据的读写，PB级别的存储</li>
+<li>多维分析，复杂的聚合函数</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/71027c9eb08c4235995a4157f890d1ed~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ce86c76aa4b94069a9e0566c4e90a700~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>离线/实时分析，对查询速度有要求</li>
+</ol>
+<h4 id="SQL">SQL</h4>
+<ol>
+<li>一种编程语言，目前几乎所有的关系数据库都使用 SQL (<strong>Structured Query Language</strong> <strong>)</strong> 编程语言来查询、操作和定义数据，进行数据访问控制。</li>
+<li>SQL的结构</li>
+</ol>
+<p>查询包含一系列含有最终结果的字段, 紧跟 <code>SELECT</code>关键词。星号（“<code>*</code>”）也可以用来指定查询应当返回查询表所有字段，可选的关键词和子句包括：</p>
+<ul>
+<li><code>FROM</code>子句指定了选择的数据表。<code>FROM</code>子句也可以包含 <code>JOIN</code> 二层子句来为数据表的连接设置规则。</li>
+<li><code>WHERE</code>子句后接一个比较谓词以限制返回的行。<code>WHERE</code>子句仅保留返回结果里使得比较谓词的值为True的行。</li>
+<li><code>GROUP BY</code>子句用于将若干含有相同值的行合并。 <code>GROUP BY</code>通常与SQL聚合函数连用，或者用于清除数据重复的行。<code>GROUP BY</code>子句要用在 <code>WHERE</code>子句之后。</li>
+<li><code>HAVING</code>子句后接一个谓词来过滤从 <code>GROUP BY</code>子句中获得的结果，由于其作用于 <code>GROUP BY</code>子句之上，所以聚合函数也可以放到其谓词中。</li>
+<li><code>ORDER BY</code>子句指明将哪个字段用作排序关键字，以及排序顺序(升序/降序)，如果无此子句，那么返回结果的顺序不能保证有序。</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/652535fe26b4462aaaec624d07ee81a9~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>SQL的用途<br>
+a.  定义数据模型</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE TABLE</span> default.test_insert_local
+(
+   `p_date` <span class="hljs-type">Date</span>,
+   `id` Int32
+)
+ENGINE <span class="hljs-operator">=</span> MergeTree
+<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> p_date
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> id
+SETTINGS index_granularity <span class="hljs-operator">=</span> <span class="hljs-number">8192</span>
+复制代码</code></pre></div>
+<p>b.  读写数据库数据</p>
+<div class="code-wrapper"><pre><code class="hljs csharp">insert <span class="hljs-keyword">into</span> <span class="hljs-literal">default</span>.<span class="hljs-function">test_insert_local <span class="hljs-title">values</span> (<span class="hljs-params"><span class="hljs-string">&#x27;2022-01-01&#x27;</span>, <span class="hljs-number">1</span></span>)</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">count</span>() <span class="hljs-keyword">from</span> <span class="hljs-literal">default</span>.test_insert_local</span>;
+复制代码</code></pre></div>
+<ol start="4">
+<li>SQL的优点</li>
+</ol>
+<ul>
+<li>标准化，ISO和ANSI是长期建立使用的SQL数据库标准</li>
+<li>高度非过程化，用SQL进行数据操作，用户只需提出“做什么”，而不必指明“怎么做”，因此用户无须了解存取路径，存取路径的选择以及SQL语句的操作过程由系统自动完成。这不但大大减轻了用户负担，而且有利于提高数据独立性。</li>
+<li>以同一种语法结构提供两种使用方式，用户可以在终端上直接输入SQL命令对数据库进行操作。作为嵌入式语言，SQL语句能够嵌入到高级语言（如C、C#、JAVA）程序中，供程序员设计程序时使用。而在两种不同的使用方式下，SQL的语法结构基本上是一致的。</li>
+<li>语言简洁，易学易用：SQL功能极强，但由于设计巧妙，语言十分简洁，完成数据定义、数据操纵、数据控制的核心功能只用了9个动词：CREATE、ALTER、DROP、SELECT、INSERT、UPDATE、DELETE、GRANT、REVOKE。且SQL语言语法简单，接近英语口语，因此容易学习，也容易使用。</li>
+</ul>
+<h4 id="数据库的架构">数据库的架构</h4>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5c1f870906ca44249631505e6701208f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>Client</li>
+<li>Parser<br>
+词法分析，语法分析，生成AST树 (Abstract syntax tree)</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d765fa26b5c74b28a81addf4bc92712a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>Analyzer<br>
+变量绑定、类型推导、语义检查、安全、权限检查、完整性检查等，为生成计划做准备</li>
+<li>Analyzer<br>
+变量绑定、类型推导、语义检查、安全、权限检查、完整性检查等，为生成计划做准备</li>
+<li>Optimizer</li>
+</ol>
+<ul>
+<li>为查询生成性能最优的执行计划</li>
+<li>进行代价评估</li>
+<li>Executor 将执行计划翻译成可执行的物理计划</li>
+<li>Storage engine<br>
+a.  管理内存数据结构【index、内存数据、缓存（Query cache、Data cache、Index cache）】<br>
+b.  管理磁盘数据【磁盘数据的文件格式、磁盘数据的增删查改】<br>
+c.  读写算子【数据写入逻辑、数据读取逻辑】</li>
+</ul>
+<h4 id="一个sql的执行流程">一个sql的执行流程</h4>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5dc778102a6243b88bb09f7fd638e752~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/72c9663793a54274bc85f336396d3aed~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/80e49afbeef141819fe7694d6b989a31~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="设计数据库存储的要点">设计数据库存储的要点</h4>
+<ol>
+<li>性能瓶颈在哪里：数据选择、数据读取、构造内存数据、计算</li>
+<li>选择什么样的数据格式：是否可以并发处理、是否可以构建索引、行存，列存 或者 行列混合存储</li>
+<li>选择什么样的索引：读写的方式：读多写少、读少写多、点查场景、分析型场景</li>
+</ol>
+<h3 id="列式存储-2">列式存储</h3>
+<h4 id="什么是列存">什么是列存</h4>
+<ol>
+<li>行存的存储</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ca237dcbd1164ed28eda5625eb28a4d0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="2">
+<li>列存的存储</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ad333d1c8e0948bcbfdc570f5df8412f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="列存的优点">列存的优点</h4>
+<p><strong>a. 数据压缩</strong></p>
+<ul>
+<li>数据压缩可以使读的数据量更少，在IO密集型计算中获得大的性能优势</li>
+<li>相同类型压缩效率更高</li>
+<li>排序之后压缩效率更高</li>
+<li>可以针对不同类型使用不同的压缩算法</li>
+<li>几种常见的压缩算法</li>
+</ul>
+<p>【LZ4】</p>
+<div class="code-wrapper"><pre><code class="hljs scss">输入：abcde_bcdefgh_abcdefghxxxxxxx
+
+输出：<span class="hljs-built_in">abcde_</span>(<span class="hljs-number">5</span>,<span class="hljs-number">4</span>)<span class="hljs-built_in">fgh_</span>(<span class="hljs-number">14</span>,<span class="hljs-number">5</span>)fghxxxxxxx
+复制代码</code></pre></div>
+<p>(5,4) 代表向前5个byte，匹配到的内容长度有4，即&quot;bcde&quot;是一个重复</p>
+<p>重复项越多或者越长，压缩率就会越高</p>
+<p>【Run-length encoding】</p>
+<div class="code-wrapper"><pre><code class="hljs">输入：WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW
+
+输出：12W1B12W3B24W1B14W
+复制代码</code></pre></div>
+<blockquote>
+<p>压缩重复的数据</p>
+</blockquote>
+<p>【Delta encoding】</p>
+<div class="code-wrapper"><pre><code class="hljs csharp">输入：<span class="hljs-number">105</span>, <span class="hljs-number">135</span>, <span class="hljs-number">112</span>, <span class="hljs-number">135</span>, <span class="hljs-number">143</span>, <span class="hljs-number">147</span>
+
+输出：<span class="hljs-number">105</span>(<span class="hljs-keyword">base</span>),<span class="hljs-number">30</span>, <span class="hljs-number">-23</span>, <span class="hljs-number">23</span>, <span class="hljs-number">8</span>, <span class="hljs-number">4</span>
+复制代码</code></pre></div>
+<p>将数据存储为连续数据之间的差异，而不是直接存储数据本身</p>
+<p><strong>b.  数据处理</strong></p>
+<p>【查询优化】1.可以选择特定的列做计算而不是读所有列 2.对聚合计算友好</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5b0d9767c0bf454ea304ddbca992d153~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>【延迟物化】</p>
+<ul>
+<li>物化：将列数据转换为可以被计算或者输出的行数据或者内存数据结果的过程，物化后的数据通常可以用来做数据过滤，聚合计算，Join</li>
+</ul>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d38beaad91c54cf3af4386d79f526d44~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>延迟物化：尽可能推迟物化操作的发生</li>
+</ul>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b0887e17c3d44feb7f020a67940565a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>缓存友好</li>
+<li>CPU / 内存带宽友好</li>
+<li>可以利用到执行计划和算子的优化，例如filter</li>
+<li>保留直接在压缩列做计算的机会</li>
+</ul>
+<p>【向量化】</p>
+<ul>
+<li>SIMD<br>
+single instruction multiple data，对于现代多核CPU，其都有能力用一条指令执行多条数据<br>
+对于代码</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs css">for (size_t <span class="hljs-selector-tag">i</span> = <span class="hljs-number">0</span>; <span class="hljs-selector-tag">i</span> &lt; <span class="hljs-number">100</span>; ++<span class="hljs-selector-tag">i</span>) 
+ c<span class="hljs-selector-attr">[i]</span> = <span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[i]</span> + <span class="hljs-selector-tag">b</span><span class="hljs-selector-attr">[i]</span>;
+复制代码</code></pre></div>
+<p>非向量化执行</p>
+<div class="code-wrapper"><pre><code class="hljs css">c<span class="hljs-selector-attr">[0]</span> = <span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[0]</span> + <span class="hljs-selector-tag">b</span><span class="hljs-selector-attr">[0]</span>; 
+c<span class="hljs-selector-attr">[1]</span> = <span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[1]</span> + <span class="hljs-selector-tag">b</span><span class="hljs-selector-attr">[1]</span>;
+... ... 
+复制代码</code></pre></div>
+<p>如果这时候CPU也可以并行的计算我们写的代码，那么理论上我们的处理速度就会是之前代码的100倍，幸运的是SIMD指令就是完成这样的工作的，用SIMD指令完成这样代码设计和执行就叫做向量化</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35e2b0f14c0a48799afd87ac55d48d6f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<ul>
+<li>执行模型<br>
+数据需要按批读取<br>
+函数的调用需要明确数据类型</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4def4eb1ca0b498bb7bc18e792c29713~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>列存数据库适合设计出这样的执行模型，从而使用向量化技术</li>
+</ul>
+<h4 id="列存-VS-行存">列存 VS 行存</h4>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cdd14b5fe7147b8a57dc7e8be722c02~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="ClickHouse的存储设计">ClickHouse的存储设计</h3>
+<h4 id="ClickHouse的架构">ClickHouse的架构</h4>
+<ol>
+<li>架构图</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5146f2ff91cc44009f77d3d7032d6a2e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="2">
+<li>表定义和结构</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3f1a7d82804c411cbd94c1f7ef56d8a6~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>集群架构</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3edc45c207e64b14aff68fe968c1ce7b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="ClickHouse的存储架构">ClickHouse的存储架构</h4>
+<ol>
+<li>数据结构</li>
+</ol>
+<p>a.文件组织</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cae40687666d491f9ec00eac87ae3af8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>b.文件内容</p>
+<blockquote>
+<p>对于表</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE TABLE</span> test.test_insert_local
+(
+    `p_date` <span class="hljs-type">Date</span>,
+    `id` Int32
+)
+ENGINE <span class="hljs-operator">=</span> MergeTree
+<span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> p_date
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> id
+SETTINGS index_granularity <span class="hljs-operator">=</span> <span class="hljs-number">8192</span>
+复制代码</code></pre></div>
+<blockquote>
+<p>它的文件组织</p>
+</blockquote>
+<div class="code-wrapper"><pre><code class="hljs kotlin">├── <span class="hljs-number">20220101_1_1_0</span>
+│   ├── checksums.txt
+│   ├── columns.txt
+│   ├── count.txt
+│   ├── <span class="hljs-keyword">data</span>.bin
+│   ├── <span class="hljs-keyword">data</span>.mrk3
+│   ├── default_compression_codec.txt
+│   ├── minmax_p_date.idx
+│   ├── partition.dat
+│   ├── primary.idx
+│   └── versions.txt
+├── <span class="hljs-number">20220102_2_2_0</span>
+│   ├── checksums.txt
+│   ├── columns.txt
+│   ├── count.txt
+│   ├── <span class="hljs-keyword">data</span>.bin
+│   ├── <span class="hljs-keyword">data</span>.mrk3
+│   ├── default_compression_codec.txt
+│   ├── minmax_p_date.idx
+│   ├── partition.dat
+│   ├── primary.idx
+│   └── versions.txt
+├── detached
+└── format_version.txt
+复制代码</code></pre></div>
+<p>c. part和partition</p>
+<ul>
+<li>part是物理文件夹的名字</li>
+<li>partition是逻辑结构</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e27fbd4782743cf8557b1d2cd8dbb6b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>d. part和column</p>
+<ul>
+<li>每个column都是一个文件</li>
+<li>所有的column文件都在自己的part文件夹下</li>
+</ul>
+<p>e. column和index</p>
+<ul>
+<li>一个part有一个主键索引</li>
+<li>每个column都有列索引</li>
+</ul>
+<h4 id="索引设计">索引设计</h4>
+<ol>
+<li>主键索引</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs ini">CREATE TABLE hits_UserID_URL
+(
+    `UserID` UInt32,
+    `URL` String,
+    `EventTime` DateTime
+)
+<span class="hljs-attr">ENGINE</span> = MergeTree
+PRIMARY KEY (UserID, URL)
+ORDER BY (UserID, URL, EventTime)
+SETTINGS <span class="hljs-attr">index_granularity</span> = <span class="hljs-number">8192</span>, index_granularity_bytes = <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+复制代码</code></pre></div>
+<ol start="2">
+<li>数据按照主键顺序一次排序<br>
+UserID首先做排序,然后是URL,最后是EventTime</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4c34a95c8efe4c14b0238d728eb67733~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>数据被组织成granule</li>
+</ol>
+<ul>
+<li>granule是引擎做数据处理的最小数据单位，引擎读数据的时候不是按照一行一行读取的，而是最少读取一个granule</li>
+<li>方便构建稀疏索引</li>
+<li>方便并行计算</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1aa0b14b1995429c85a2cd1fa486e9c6~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="4">
+<li>每个granule都对应primary.idx里面的一行</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d688b3a48c1c464eb68a6ec90a0ca520~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="5">
+<li>默认每8192行记录主键的一行值，primary.idx需要被全部加载到内存里面</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24b20d3da955423c8b81d37b84b3718e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="6">
+<li>每个主键的一行数据被称为一个mark</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/03a8c03bbabc4adc819650ece574eb5f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="7">
+<li>每个列都有这样一个mark文件，mark文件存储所有granule在物理文件里面的地址，每一列都有一个mark文件</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5e9c324d18fa4604b0927e85d6cdfb69~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="8">
+<li>mark文件里面的每一行存储两个地址</li>
+</ol>
+<ul>
+<li>第一个地址称为block_offset，用于定位一个granule的压缩数据在物理文件中的位置，压缩数据会以一个block为单位解压到内存中。</li>
+<li>第二个地址称为granule_offset，用于定位一个granule在解压之后的block中的位置。</li>
+</ul>
+<h4 id="索引的缺陷和优化">索引的缺陷和优化</h4>
+<ol>
+<li>缺陷：数据按照key的顺序做排序，因此只有第一个key的过滤效果好，后面的key过滤效果依赖第一个key的基数大小</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/308928c0d5724c15a1dd661a79e236aa~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="2">
+<li>二级索引</li>
+</ol>
+<ul>
+<li>在URL列上构建二级索引</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be6e773647b147b1a16758d2bd826320~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>构建多个主键索引</li>
+</ol>
+<ul>
+<li>再建一个表(数据需要同步两份,查询需要用户判断查哪张表)</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/34d5196db6ea45e18edb83dfbc28c93c~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>建一个物化视图(数据自动同步到隐式表,查询需要用户判断查哪张表)</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e8d11eb319b49d593f13cefc7a23e2f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>使用Projection(数据自动同步到隐式表,查询自动路由到最优的表)</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a434f63277eb40d1a64b2ea77d997d5e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="数据合并">数据合并</h4>
+<ul>
+<li>一个part内的数据是有序的</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e49c1eac5f914dc4b2ae2a376e19a85f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>不同part之间的数据是无序的</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/243d0dfdcd3145babac66978b3ea4f35~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>数据合并是将多个part合并成一起的过程</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/67c2f06dcb514f158e015da591396532~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>part的合并发生在一个分区内</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dee5814564b4342abee6df3b4dbd07f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>数据的可见性<br>
+数据合并过程中，未被合并的数据对查询可见<br>
+数据合并完成后，新part可见，被合并的part被标记删除</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b39e0a35dc2145b2ac695ebfc30ec476~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="数据查询">数据查询</h4>
+<ol>
+<li>对于查询</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs vbnet"><span class="hljs-keyword">SELECT</span>
+    URL,
+    count(URL) <span class="hljs-keyword">AS</span> Count
+<span class="hljs-keyword">FROM</span> hits_UserID_URL
+<span class="hljs-keyword">WHERE</span> UserID = <span class="hljs-number">749927693</span>
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> URL
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Count DESC
+LIMIT <span class="hljs-number">10</span>
+复制代码</code></pre></div>
+<ol start="2">
+<li>通过主键找到需要读的mark</li>
+<li>切分marks，然后并发的调度reader</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/535f009c745a4f8e9a05577bef56b10a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="4">
+<li>Reader 通过mark block_offset得到需要读的数据文件的偏移量</li>
+<li>Reader 通过mark granule_offset得到解压之后数据的偏移量</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f37cfa3dba574396b2390057558cc71a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>构建列式filter做数据过滤</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/db5a523be0654764ac7f6dd46bd2adca~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="ClickHouse的典型使用场景">ClickHouse的典型使用场景</h3>
+<h4 id="大宽表存储和查询">大宽表存储和查询</h4>
+<ol>
+<li>动态表结构</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable constant_">CREATE</span> <span class="hljs-variable constant_">TABLE</span> <span class="hljs-title function_">test_multi_columns</span>
+(
+    <span class="hljs-string">`p_date`</span> <span class="hljs-title class_">Date</span>,
+    <span class="hljs-string">`id`</span> <span class="hljs-title class_">Int32</span>,
+    <span class="hljs-string">`map_a`</span> <span class="hljs-title class_">Map</span>(<span class="hljs-title class_">String</span>, <span class="hljs-title class_">Int32</span>)
+)
+<span class="hljs-variable constant_">ENGINE</span> = <span class="hljs-title class_">MergeTree</span>
+<span class="hljs-variable constant_">PARTITION</span> <span class="hljs-variable constant_">BY</span> p_date
+<span class="hljs-variable constant_">ORDER</span> <span class="hljs-variable constant_">BY</span> map_a
+复制代码</code></pre></div>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/948006a393ee406da6f1c3a47b3ec706~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>
+<p>map中的每个key都是一列</p>
+</li>
+<li>
+<p>map中的每一列都可以单独的查询</p>
+</li>
+<li>
+<p>使用方式同普通列，可以做任何计算</p>
+</li>
+<li>
+<p>大宽表查询</p>
+</li>
+</ol>
+<p>可以建非常多的列查询的时候引擎可以快速选择需要的列，查询的时候引擎可以快速选择需要的列</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bc3f565f6d2d44f48f75ce16e3dada1d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="离线数据分析">离线数据分析</h4>
+<ol>
+<li>数据导入</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff7089af6bf74bc3a8cd251bb1153f74~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>数据可以通过spark生成clickhouse格式的文件</p>
+<p>导入到hdfs上由hive2ch导入工具完成数据导入</p>
+<p>数据直接导入到各个物理节点</p>
+</blockquote>
+<ol start="2">
+<li>数据按列导入</li>
+</ol>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f6fe483136d481db157fba6acd3fcab~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>保证查询可以及时访问已有数据</p>
+<p>可以按需加载需要的列</p>
+<h4 id="实时数据分析">实时数据分析</h4>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8c2162a81cbb428284ae85292e853028~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol>
+<li>数据可以被立刻查询</li>
+<li>使用memory table减少parts数量</li>
+</ol>
+<ul>
+<li>数据先缓存在内存中</li>
+<li>到达一定阈值再写到磁盘</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/839b029f2846429db8ff7efb6f2bcca0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="复杂类型查询">复杂类型查询</h4>
+<ol>
+<li>bitmap索引</li>
+</ol>
+<ul>
+<li>构建</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ea0fcab8637f487d999070ae4f7f0a9e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>查询<br>
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/920ba1c69ad84920b9dca82813e37e24~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<ol start="2">
+<li>bitmap64类型</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">countDistinct</span>(<span class="hljs-params">uid</span>)</span>
+<span class="hljs-function"><span class="hljs-keyword">from</span> user_detial</span>
+<span class="hljs-function"><span class="hljs-keyword">where</span> tag_id</span> = <span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-function"><span class="hljs-keyword">and</span> uid <span class="hljs-title">in</span> </span>
+<span class="hljs-function">(<span class="hljs-params"></span></span>
+<span class="hljs-params"><span class="hljs-function">    <span class="hljs-keyword">select</span> uid <span class="hljs-keyword">from</span> user_detail</span></span>
+<span class="hljs-params"><span class="hljs-function">    wherer tag_id = <span class="hljs-string">&#x27;b&#x27;</span></span></span>
+<span class="hljs-params"><span class="hljs-function"></span>)  </span>
+<span class="hljs-function">复制代码</span></code></pre></div>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43db089db47a42debba7451e6e08c499~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ol start="3">
+<li>lowcardinality</li>
+</ol>
+<ul>
+<li>对于低基数列使用字典编码</li>
+<li>减少数据存储和读写的IO使用</li>
+<li>可以做运行时的压缩数据过滤</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7b46c67fb4194b688690bd78da273be5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="课后">课后</h2>
+<ol>
+<li>列存和行存的差别是什么，使用场景有什么不同</li>
+<li>列存的优点有哪些</li>
+<li>列存的缺点有哪些</li>
+<li>列存适合什么样的索引</li>
+<li>ClickHouse的列存是什么样的存储架构</li>
+<li>ClickHouse的索引是怎么设计的</li>
+<li>ClickHouse的查询是怎么使用索引的</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CIickHouse - 你没有见过的列存储</div>
+      <div>https://zhangzhao219.github.io/2023/02/14/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day18/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/13/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day17/" title="Redis - 大厂程序员是怎么用的">
+                        <span class="hidden-mobile">Redis - 大厂程序员是怎么用的</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Leetcode 刷题笔记-Leetcode 101 第5章 排序算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 刷题笔记-Leetcode 101 第5章 排序算法">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/08/29/Leetcode/Leetcode-101/Leetcode-101-5/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Leetcode 刷题笔记-Leetcode 101 第5章 排序算法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-29T14:16:24.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.195Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Leetcode 刷题笔记-Leetcode 101 第5章 排序算法 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Leetcode 刷题笔记-Leetcode 101 第5章 排序算法</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-29 14:16" pubdate>
+          2022年8月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Leetcode 刷题笔记-Leetcode 101 第5章 排序算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Leetcode 刷题笔记-Leetcode 101 第5章 排序算法</p>
+<span id="more"></span>
+<h1>排序算法</h1>
+<p>排序自然都有C++的STL搞定了，但是在实际中仍然需要这些排序算法，一方面夯实基础，另一方面有一些题目是从这些排序算法中引申出来的，掌握这些排序算法对于做题也会有很大的帮助。</p>
+<h2 id="常用排序算法">常用排序算法</h2>
+<h3 id="调用">调用</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>&#123;
+    vector&lt;<span class="hljs-type">int</span>&gt; nums = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>&#125;;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">temp</span><span class="hljs-params">(nums.size())</span></span>;
+    <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+    <span class="hljs-built_in">quick_sort</span>(nums, <span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>());
+    <span class="hljs-built_in">print</span>(nums);
+    <span class="hljs-built_in">merge_sort</span>(nums, <span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>(), temp);
+    <span class="hljs-built_in">print</span>(nums);
+    <span class="hljs-built_in">insertion_sort</span>(nums, nums.<span class="hljs-built_in">size</span>());
+    <span class="hljs-built_in">print</span>(nums);
+    <span class="hljs-built_in">bubble_sort</span>(nums, nums.<span class="hljs-built_in">size</span>());
+    <span class="hljs-built_in">print</span>(nums);
+    <span class="hljs-built_in">selection_sort</span>(nums, nums.<span class="hljs-built_in">size</span>());
+    <span class="hljs-built_in">print</span>(nums);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+<h3 id="快速排序">快速排序</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> right)</span></span>&#123;
+    <span class="hljs-type">int</span> l = left;
+    <span class="hljs-type">int</span> r = right;
+    <span class="hljs-keyword">if</span>(left<span class="hljs-number">+1</span> &gt;= right)&#123;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-type">int</span> k = nums[left];
+    <span class="hljs-keyword">while</span>(left<span class="hljs-number">+1</span> &lt; right)&#123;
+        <span class="hljs-keyword">while</span>(left<span class="hljs-number">+1</span> &lt; right &amp;&amp; nums[right<span class="hljs-number">-1</span>] &gt;= k)&#123;
+            --right;
+        &#125;
+        nums[left] = nums[right<span class="hljs-number">-1</span>];
+        <span class="hljs-keyword">while</span>(left<span class="hljs-number">+1</span> &lt; right &amp;&amp; nums[left] &lt; k)&#123;
+            ++left;
+        &#125;
+        nums[right<span class="hljs-number">-1</span>] = nums[left];
+    &#125;
+    nums[left] = k;
+    <span class="hljs-built_in">quick_sort</span>(nums,l,left);
+    <span class="hljs-built_in">quick_sort</span>(nums,left<span class="hljs-number">+1</span>,r);
+&#125;</code></pre></div>
+<p><strong>错误：<code>while</code>内部的 <code>left &lt; right</code>的条件没有加，导致内部会出问题，而且也是要+1的</strong></p>
+<h3 id="归并排序">归并排序</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> right,vector&lt;<span class="hljs-type">int</span>&gt; &amp;temp)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(left + <span class="hljs-number">1</span> &gt;= right)&#123;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-type">int</span> mid = (right - left) / <span class="hljs-number">2</span> + left;
+    <span class="hljs-built_in">merge_sort</span>(nums,left,mid,temp);
+    <span class="hljs-built_in">merge_sort</span>(nums,mid,right,temp);
+    <span class="hljs-type">int</span> p = left;
+    <span class="hljs-type">int</span> q = mid;
+    <span class="hljs-type">int</span> i = left;
+    <span class="hljs-keyword">while</span>(p &lt; mid &amp;&amp; q &lt; right)&#123;
+        <span class="hljs-keyword">if</span>(nums[p] &lt;= nums[q])&#123;
+            temp[i++] = nums[p++];
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
+            temp[i++] = nums[q++];
+        &#125;
+    &#125;
+    <span class="hljs-keyword">while</span>(p &lt; mid)&#123;
+        temp[i++] = nums[p++];
+    &#125;
+    <span class="hljs-keyword">while</span>(q &lt; right)&#123;
+        temp[i++] = nums[q++];
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=left;j&lt;right;++j)&#123;
+        nums[j] = temp[j];
+    &#125;
+&#125;</code></pre></div>
+<p><strong>错误：应该是 <code>left + 1 &gt;= right</code>，只剩下一个数字后就应该返回了。</strong></p>
+<h3 id="插入排序">插入排序</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insertion_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums,<span class="hljs-type">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;n;i++)&#123;
+        <span class="hljs-type">int</span> a = i;
+        <span class="hljs-keyword">while</span>(a - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; nums[a] &lt; nums[a<span class="hljs-number">-1</span>])&#123;
+            <span class="hljs-built_in">swap</span>(nums[a],nums[a<span class="hljs-number">-1</span>]);
+            --a;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span>;
+&#125;</code></pre></div>
+<h3 id="冒泡排序">冒泡排序</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums,<span class="hljs-type">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">-1</span>;i++)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n-i<span class="hljs-number">-1</span>;j++)&#123;
+            <span class="hljs-keyword">if</span>(nums[j] &gt; nums[j<span class="hljs-number">+1</span>])&#123;
+                <span class="hljs-built_in">swap</span>(nums[j],nums[j<span class="hljs-number">+1</span>]);
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span>;
+&#125;</code></pre></div>
+<h3 id="选择排序">选择排序</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">selection_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums,<span class="hljs-type">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+        <span class="hljs-type">int</span> minnum = nums[i];
+        <span class="hljs-type">int</span> minindex = i;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;n;j++)&#123;
+            <span class="hljs-keyword">if</span>(nums[j] &lt; minnum)&#123;
+                minnum = nums[j];
+                minindex = j;
+            &#125;
+        &#125;
+        <span class="hljs-built_in">swap</span>(nums[i],nums[minindex]);
+    &#125;
+    <span class="hljs-keyword">return</span>;
+&#125;</code></pre></div>
+<h2 id="快速排序-2">快速排序</h2>
+<h3 id="Leetcode-215">Leetcode 215</h3>
+<p>在一个未排序的数组中，找到第 <code>k</code>大的数字</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">quick_selection</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> right,<span class="hljs-type">int</span> k)</span></span>&#123;
+        <span class="hljs-type">int</span> l = left;
+        <span class="hljs-type">int</span> r = right;
+        <span class="hljs-type">int</span> k2 = nums[left];
+        <span class="hljs-keyword">if</span>(left + <span class="hljs-number">1</span> &gt; right)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">while</span>(left<span class="hljs-number">+1</span> &lt; right)&#123;
+            <span class="hljs-keyword">while</span>(left<span class="hljs-number">+1</span> &lt; right &amp;&amp; nums[right<span class="hljs-number">-1</span>] &lt; k2)&#123;
+                --right;
+            &#125;
+            nums[left] = nums[right<span class="hljs-number">-1</span>];
+            <span class="hljs-keyword">while</span>(left<span class="hljs-number">+1</span> &lt; right &amp;&amp; nums[left] &gt;= k2)&#123;
+                ++left;
+            &#125;
+            nums[right<span class="hljs-number">-1</span>] = nums[left];
+        &#125;
+        nums[left] = k2;
+        <span class="hljs-keyword">if</span>(k &lt;= left)&#123;
+            <span class="hljs-built_in">quick_selection</span>(nums,l,left,k);
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-built_in">quick_selection</span>(nums,left<span class="hljs-number">+1</span>,r,k);
+        &#125;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;
+        <span class="hljs-built_in">quick_selection</span>(nums,<span class="hljs-number">0</span>,nums.<span class="hljs-built_in">size</span>(),k<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">return</span> nums[k<span class="hljs-number">-1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：与快速排序相同的思路，但是不需要对没有用的一侧进行快速排序，只需要对<code>k</code>在的区间一侧进行快速排序即可。</p>
+<p>错误：开始快速排序有问题，然后<code>k</code>的值想不清楚造成错误。</p>
+<h2 id="桶排序">桶排序</h2>
+<h3 id="Leetcode-347">Leetcode 347</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;a,pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;b)</span></span>&#123;
+        <span class="hljs-keyword">return</span> a.first &gt; b.first;
+    &#125;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">topKFrequent</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;
+        map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mp1,mp2;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i : nums)&#123;
+            ++mp1[i];
+        &#125;
+        vector&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&gt; pr;
+        vector&lt;<span class="hljs-type">int</span>&gt; result;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i = mp<span class="hljs-number">1.</span><span class="hljs-built_in">cbegin</span>();i != mp<span class="hljs-number">1.</span><span class="hljs-built_in">cend</span>();++i)&#123;
+            pr.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">make_pair</span>(i-&gt;second,i-&gt;first));
+        &#125;
+        <span class="hljs-built_in">sort</span>(pr.<span class="hljs-built_in">begin</span>(),pr.<span class="hljs-built_in">end</span>(),cmp);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i = pr.<span class="hljs-built_in">cbegin</span>();i != pr.<span class="hljs-built_in">cend</span>();++i)&#123;
+            <span class="hljs-keyword">if</span>(k != <span class="hljs-number">0</span>)&#123;
+                result.<span class="hljs-built_in">push_back</span>(i-&gt;second);
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+            k--;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：也是比较简单的一道题，通过这道题可以复习一下各种 <code>STL</code>数据结构，总也不用生疏了。</p>
+<p>错误：<code>STL</code>有一些生疏，调了一段时间才调好。</p>
+<h2 id="练习">练习</h2>
+<h3 id="Leetcode-451">Leetcode 451</h3>
+<p>给定一个字符串 <code>s</code> ，根据字符出现的<strong>频率</strong>对其进行<strong>降序排序。<strong>一个字符出现的</strong>频率</strong>是它出现在字符串中的次数。返回<strong>已排序的字符串</strong>。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(pair&lt;<span class="hljs-type">char</span>,<span class="hljs-type">int</span>&gt; &amp;a,pair&lt;<span class="hljs-type">char</span>,<span class="hljs-type">int</span>&gt; &amp;b)</span></span>&#123;
+        <span class="hljs-keyword">return</span> a.second &gt; b.second;
+    &#125;
+    <span class="hljs-function">string <span class="hljs-title">frequencySort</span><span class="hljs-params">(string s)</span> </span>&#123;
+        string result = <span class="hljs-string">&quot;&quot;</span>;
+        map&lt;<span class="hljs-type">char</span>,<span class="hljs-type">int</span>&gt; mp;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i : s)&#123;
+            mp[i] += <span class="hljs-number">1</span>;
+        &#125;
+        vector&lt;pair&lt;<span class="hljs-type">char</span>,<span class="hljs-type">int</span>&gt;&gt; pr;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i = mp.<span class="hljs-built_in">cbegin</span>();i != mp.<span class="hljs-built_in">cend</span>();i++)&#123;
+            pr.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">make_pair</span>(i-&gt;first,i-&gt;second));
+        &#125;
+        <span class="hljs-built_in">sort</span>(pr.<span class="hljs-built_in">begin</span>(),pr.<span class="hljs-built_in">end</span>(),cmp);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i = pr.<span class="hljs-built_in">cbegin</span>();i != pr.<span class="hljs-built_in">cend</span>();i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;i-&gt;second;j++)&#123;
+                result += i-&gt;first;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：桶排序的变形题，没有什么新意，还是数据结构</p>
+<p><strong>一遍AC</strong></p>
+<h3 id="Leetcode-75">Leetcode 75</h3>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">sortColors</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+    <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+    <span class="hljs-type">int</span> p0 = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> p1 = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;++i)&#123;
+        <span class="hljs-keyword">if</span>(nums[i] == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-built_in">swap</span>(nums[i],nums[p1]);
+            ++p1;
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[i] == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-built_in">swap</span>(nums[i],nums[p0]);
+            <span class="hljs-keyword">if</span>(p0 &lt; p1)&#123;
+                <span class="hljs-built_in">swap</span>(nums[i],nums[p1]);
+            &#125;
+            ++p0;
+            ++p1;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>分析：荷兰国旗问题，双指针一次遍历就可以得到三个数字的排序。</p>
+<p>错误：想复杂了。</p>
+<h2 id="总结">总结</h2>
+<p>排序算法基本都可以写，就是变形的题目还是有些不太熟练。还是要多多练习。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Leetcode 刷题笔记-Leetcode 101 第5章 排序算法</div>
+      <div>https://zhangzhao219.github.io/2022/08/29/Leetcode/Leetcode-101/Leetcode-101-5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/29/UCAS/information-retrieval/information-retrieval-1/" title="研究生课程：现代信息检索-第1讲 布尔检索">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第1讲 布尔检索</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-4/" title="Leetcode 刷题笔记-Leetcode 101 第4章 二分查找">
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第4章 二分查找</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

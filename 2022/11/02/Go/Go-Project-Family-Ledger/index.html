@@ -1,0 +1,1280 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go项目-家庭收支记账软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go项目-家庭收支记账软件">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/11/02/Go/Go-Project-Family-Ledger/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go项目-家庭收支记账软件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/02/xHqQNd.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/02/xHOuYd.png">
+<meta property="article:published_time" content="2022-11-02T18:31:30.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/11/02/xHqQNd.md.png">
+  
+  
+  
+  <title>Go项目-家庭收支记账软件 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go项目-家庭收支记账软件</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-02 18:31" pubdate>
+          2022年11月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go项目-家庭收支记账软件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go项目-家庭收支记账软件</p>
+<span id="more"></span>
+<h1>项目开发流程</h1>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xHqQNd"><img src="https://s1.ax1x.com/2022/11/02/xHqQNd.md.png" srcset="/img/loading.gif" lazyload alt="xHqQNd.md.png"></a></p>
+<h1>项目需求说明</h1>
+<ol>
+<li>模拟实现基于文本界面的《家庭记账软件》</li>
+<li>软件能够记录家庭的收入、支出，并能够打印收支明细表</li>
+</ol>
+<h1>项目代码编写</h1>
+<h2 id="主菜单的设计">主菜单的设计</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// 声明一个变量保存用户的输入</span>
+	key := <span class="hljs-string">&quot;&quot;</span>
+
+	<span class="hljs-comment">// 声明一个变量，控制是否退出for循环</span>
+	loop := <span class="hljs-literal">true</span>
+
+	<span class="hljs-comment">// 显示主菜单</span>
+	<span class="hljs-keyword">for</span> loop &#123;
+		fmt.Println(<span class="hljs-string">&quot;---------------------家庭收支记账软件---------------------&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       1 收支明细&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       2 登记收入&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       3 登记输出&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       4 退出软件&quot;</span>)
+		fmt.Print(<span class="hljs-string">&quot;请选择(1-4)：&quot;</span>)
+		<span class="hljs-comment">// 接收用户的输入</span>
+		fmt.Scanln(&amp;key)
+		<span class="hljs-comment">// 对用户的输入进行判断</span>
+		<span class="hljs-keyword">switch</span> key &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:
+			fmt.Println(<span class="hljs-string">&quot;---------------------当前收支明细记录---------------------&quot;</span>)
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:
+			fmt.Println(<span class="hljs-string">&quot;登记支出------&quot;</span>)
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:
+			loop = <span class="hljs-literal">false</span>
+		<span class="hljs-keyword">default</span>:
+			fmt.Println(<span class="hljs-string">&quot;请输入正确的选项------&quot;</span>)
+		&#125;
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;-------------------退出家庭收支记账软件-------------------&quot;</span>)
+&#125;</code></pre></div>
+<p>没啥有意思的，基础编程，效果如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xHOuYd"><img src="https://s1.ax1x.com/2022/11/02/xHOuYd.png" srcset="/img/loading.gif" lazyload alt="xHOuYd.png"></a></p>
+<h2 id="显示明细与登记输入">显示明细与登记输入</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:
+	fmt.Println(<span class="hljs-string">&quot;---------------------当前收支明细记录---------------------&quot;</span>)
+	fmt.Println(details)
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:
+	fmt.Println(<span class="hljs-string">&quot;-------------------------登记收入-------------------------&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;本次收入金额：&quot;</span>)
+	fmt.Scanln(&amp;money)
+	fmt.Print(<span class="hljs-string">&quot;本次收入说明：&quot;</span>)
+	fmt.Scanln(&amp;note)
+	balance += money
+	details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\n&quot;</span>, balance, money, note)
+	fmt.Println(<span class="hljs-string">&quot;收入登记成功！&quot;</span>)</code></pre></div>
+<p>其中明细是用字符串拼接实现的，实际中应该是要操作数据库的</p>
+<h2 id="登记支出">登记支出</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:
+	fmt.Println(<span class="hljs-string">&quot;-------------------------登记支出-------------------------&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;本次支出金额：&quot;</span>)
+	fmt.Scanln(&amp;money)
+	<span class="hljs-keyword">if</span> money &gt; balance &#123;
+		fmt.Println(<span class="hljs-string">&quot;余额的金额不足！&quot;</span>)
+		<span class="hljs-keyword">break</span>
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> money &lt;= <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;支出金额应为正数！&quot;</span>)
+	&#125;
+	fmt.Print(<span class="hljs-string">&quot;本次支出说明：&quot;</span>)
+	fmt.Scanln(&amp;note)
+	balance -= money
+	details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, balance+money, money, balance, note)
+	fmt.Println(<span class="hljs-string">&quot;支出登记成功！&quot;</span>)</code></pre></div>
+<p>注意支出的金额要小于账户余额，也要注意收入和支出的时候用户输入的数字需要为正数。</p>
+<h2 id="完善代码">完善代码</h2>
+<h3 id="退出时增加确认条件">退出时增加确认条件</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:
+	<span class="hljs-keyword">var</span> choice <span class="hljs-type">byte</span>
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Print(<span class="hljs-string">&quot;确定退出？(y/n)：&quot;</span>)
+		fmt.Scanf(<span class="hljs-string">&quot;%c\n&quot;</span>, &amp;choice)
+		<span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;y&#x27;</span> &#123;
+			loop = <span class="hljs-literal">false</span>
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;n&#x27;</span> &#123;
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;输入有误！！请重新输入&quot;</span>)
+		&#125;
+	&#125;</code></pre></div>
+<p>注意scanf字符的时候与C语言是差不多的，需要考虑回车符号</p>
+<h3 id="没有记录时不输出收支详情字符串">没有记录时不输出收支详情字符串</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 判断当前是否有输入或者输出的记录</span>
+flag := <span class="hljs-literal">false</span></code></pre></div>
+<p>也没啥好说的，加个标志位，有记录的时候将这个标志位改掉就可以了</p>
+<h2 id="面向对象">面向对象</h2>
+<p>将上面的面向过程的代码修改成面向对象的代码</p>
+<p>主要思想：将记账软件的功能封装到结构体中，然后调用这个结构体的方法完成功能。</p>
+<h3 id="定义结构体">定义结构体</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 定义结构体</span>
+<span class="hljs-keyword">type</span> FamilyAccount <span class="hljs-keyword">struct</span> &#123;
+	<span class="hljs-comment">// 声明一个变量保存用户的输入</span>
+	key <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 声明一个变量，控制是否退出for循环</span>
+	loop <span class="hljs-type">bool</span>
+	<span class="hljs-comment">// 定义账户的初始值</span>
+	balance <span class="hljs-type">float64</span>
+	<span class="hljs-comment">// 定义每次收支的金额和说明</span>
+	money <span class="hljs-type">float64</span>
+	note  <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 收支的详情使用字符串来记录</span>
+	<span class="hljs-comment">// 当有记录时对这个字符串进行拼接</span>
+	details <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 判断当前是否有输入或者输出的记录</span>
+	flag <span class="hljs-type">bool</span>
+&#125;</code></pre></div>
+<p>注意定义结构体的时候不能进行初始化</p>
+<h3 id="工厂模式返回结构体的指针">工厂模式返回结构体的指针</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 编写一个工厂模式的构造方法，返回结构体的指针</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewFamilyAcount</span><span class="hljs-params">()</span></span> *FamilyAccount &#123;
+	<span class="hljs-keyword">return</span> &amp;FamilyAccount&#123;
+		key:     <span class="hljs-string">&quot;&quot;</span>,
+		loop:    <span class="hljs-literal">true</span>,
+		balance: <span class="hljs-number">10000.0</span>,
+		money:   <span class="hljs-number">0.0</span>,
+		note:    <span class="hljs-string">&quot;&quot;</span>,
+		details: <span class="hljs-string">&quot;收  支\t收支前账户余额\t收支金额\t收支后账户余额\t说  明\n&quot;</span>,
+		flag:    <span class="hljs-literal">false</span>,
+	&#125;
+&#125;</code></pre></div>
+<p>注意如果结构体是私有的是一定要有的，公开的也可以有，以后就要记得一定要有这样的一个方法</p>
+<h3 id="编写各种方法">编写各种方法</h3>
+<p>简单改造一下面向过程的代码即可完成面向对象的效果</p>
+<p>将显示明细写成一个方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> showDetails() &#123;
+	<span class="hljs-keyword">if</span> !fa.flag &#123;
+		fmt.Println(<span class="hljs-string">&quot;当前没有任何收支记录！&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;---------------------当前收支明细记录---------------------&quot;</span>)
+		fmt.Println(fa.details)
+	&#125;
+&#125;</code></pre></div>
+<p>将登记收入写成一个方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> income() &#123;
+	fmt.Println(<span class="hljs-string">&quot;-------------------------登记收入-------------------------&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;本次收入金额：&quot;</span>)
+	fmt.Scanln(&amp;fa.money)
+	<span class="hljs-comment">// 收入金额不能是负数</span>
+	<span class="hljs-keyword">if</span> fa.money &lt;= <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;收入金额应为正数！&quot;</span>)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	fmt.Print(<span class="hljs-string">&quot;本次收入说明：&quot;</span>)
+	fmt.Scanln(&amp;fa.note)
+	fa.balance += fa.money
+	fa.details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, fa.balance-fa.money, fa.money, fa.balance, fa.note)
+	fmt.Println(<span class="hljs-string">&quot;收入登记成功！&quot;</span>)
+	fa.flag = <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<p>将登记支出写成一个方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> pay() &#123;
+	fmt.Println(<span class="hljs-string">&quot;-------------------------登记支出-------------------------&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;本次支出金额：&quot;</span>)
+	fmt.Scanln(&amp;fa.money)
+	<span class="hljs-keyword">if</span> fa.money &gt; fa.balance &#123;
+		fmt.Println(<span class="hljs-string">&quot;余额的金额不足！&quot;</span>)
+		<span class="hljs-keyword">return</span>
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> fa.money &lt;= <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;支出金额应为正数！&quot;</span>)
+	&#125;
+	fmt.Print(<span class="hljs-string">&quot;本次支出说明：&quot;</span>)
+	fmt.Scanln(&amp;fa.note)
+	fa.balance -= fa.money
+	fa.details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, fa.balance+fa.money, fa.money, fa.balance, fa.note)
+	fmt.Println(<span class="hljs-string">&quot;支出登记成功！&quot;</span>)
+	fa.flag = <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<p>将退出系统写成一个方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> exit() &#123;
+	<span class="hljs-keyword">var</span> choice <span class="hljs-type">byte</span>
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Print(<span class="hljs-string">&quot;确定退出？(y/n)：&quot;</span>)
+		fmt.Scanf(<span class="hljs-string">&quot;%c\n&quot;</span>, &amp;choice)
+		<span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;y&#x27;</span> &#123;
+			fa.loop = <span class="hljs-literal">false</span>
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;n&#x27;</span> &#123;
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;输入有误！！请重新输入&quot;</span>)
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+<p>显示主菜单</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> MainMenu() &#123;
+	<span class="hljs-comment">// 显示主菜单</span>
+	<span class="hljs-keyword">for</span> fa.loop &#123;
+		fmt.Println(<span class="hljs-string">&quot;\n---------------------家庭收支记账软件---------------------&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       1 收支明细&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       2 登记收入&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       3 登记输出&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       4 退出软件&quot;</span>)
+		fmt.Print(<span class="hljs-string">&quot;请选择(1-4)：&quot;</span>)
+		<span class="hljs-comment">// 接收用户的输入</span>
+		fmt.Scanln(&amp;fa.key)
+		<span class="hljs-comment">// 对用户的输入进行判断</span>
+		<span class="hljs-keyword">switch</span> fa.key &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:
+			fa.showDetails()
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:
+			fa.income()
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:
+			fa.pay()
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:
+			fa.exit()
+		<span class="hljs-keyword">default</span>:
+			fmt.Println(<span class="hljs-string">&quot;请输入正确的选项------&quot;</span>)
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+<h3 id="主函数中进行调用">主函数中进行调用</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	utils.NewFamilyAcount().MainMenu()
+&#125;</code></pre></div>
+<h2 id="增加扩展功能">增加扩展功能</h2>
+<p>添加一个用户登录的功能，即只有将用户名和密码输入正确后才能打开软件，否则无法看到主界面</p>
+<p>实现：在显示菜单之前增加一个无限循环要求用户输入用户名和密码，只有输入正确才能退出循环</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">for</span> &#123;
+	<span class="hljs-keyword">var</span> username, password <span class="hljs-type">string</span>
+	fmt.Print(<span class="hljs-string">&quot;请输入用户名：&quot;</span>)
+	fmt.Scanln(&amp;username)
+	fmt.Print(<span class="hljs-string">&quot;请输入密码：&quot;</span>)
+	fmt.Scanln(&amp;password)
+	<span class="hljs-keyword">if</span> fa.login(username, password) &#123;
+		<span class="hljs-keyword">break</span>
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;用户名或密码错误！&quot;</span>)
+	&#125;
+&#125;</code></pre></div>
+<p>用户登录的方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> login(username <span class="hljs-type">string</span>, password <span class="hljs-type">string</span>) <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">if</span> (username == fa.username) &amp;&amp; (password == fa.password) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+&#125;</code></pre></div>
+<h1>完整源代码</h1>
+<h2 id="面向过程的代码">面向过程的代码</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// 声明一个变量保存用户的输入</span>
+	key := <span class="hljs-string">&quot;&quot;</span>
+
+	<span class="hljs-comment">// 声明一个变量，控制是否退出for循环</span>
+	loop := <span class="hljs-literal">true</span>
+
+	<span class="hljs-comment">// 定义账户的初始值</span>
+	balance := <span class="hljs-number">10000.0</span>
+
+	<span class="hljs-comment">// 定义每次收支的金额和说明</span>
+	<span class="hljs-keyword">var</span> money <span class="hljs-type">float64</span>
+	<span class="hljs-keyword">var</span> note <span class="hljs-type">string</span>
+
+	<span class="hljs-comment">// 收支的详情使用字符串来记录</span>
+	<span class="hljs-comment">// 当有记录时对这个字符串进行拼接</span>
+	details := <span class="hljs-string">&quot;收  支\t收支前账户余额\t收支金额\t收支后账户余额\t说  明\n&quot;</span>
+	<span class="hljs-comment">// 判断当前是否有输入或者输出的记录</span>
+	flag := <span class="hljs-literal">false</span>
+
+	<span class="hljs-comment">// 显示主菜单</span>
+	<span class="hljs-keyword">for</span> loop &#123;
+		fmt.Println(<span class="hljs-string">&quot;\n---------------------家庭收支记账软件---------------------&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       1 收支明细&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       2 登记收入&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       3 登记输出&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       4 退出软件&quot;</span>)
+		fmt.Print(<span class="hljs-string">&quot;请选择(1-4)：&quot;</span>)
+		<span class="hljs-comment">// 接收用户的输入</span>
+		fmt.Scanln(&amp;key)
+		<span class="hljs-comment">// 对用户的输入进行判断</span>
+		<span class="hljs-keyword">switch</span> key &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:
+			<span class="hljs-keyword">if</span> !flag &#123;
+				fmt.Println(<span class="hljs-string">&quot;当前没有任何收支记录！&quot;</span>)
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				fmt.Println(<span class="hljs-string">&quot;---------------------当前收支明细记录---------------------&quot;</span>)
+				fmt.Println(details)
+			&#125;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:
+			fmt.Println(<span class="hljs-string">&quot;-------------------------登记收入-------------------------&quot;</span>)
+			fmt.Print(<span class="hljs-string">&quot;本次收入金额：&quot;</span>)
+			fmt.Scanln(&amp;money)
+			<span class="hljs-comment">// 收入金额不能是负数</span>
+			<span class="hljs-keyword">if</span> money &lt;= <span class="hljs-number">0</span> &#123;
+				fmt.Println(<span class="hljs-string">&quot;收入金额应为正数！&quot;</span>)
+				<span class="hljs-keyword">break</span>
+			&#125;
+			fmt.Print(<span class="hljs-string">&quot;本次收入说明：&quot;</span>)
+			fmt.Scanln(&amp;note)
+			balance += money
+			details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, balance-money, money, balance, note)
+			fmt.Println(<span class="hljs-string">&quot;收入登记成功！&quot;</span>)
+			flag = <span class="hljs-literal">true</span>
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:
+			fmt.Println(<span class="hljs-string">&quot;-------------------------登记支出-------------------------&quot;</span>)
+			fmt.Print(<span class="hljs-string">&quot;本次支出金额：&quot;</span>)
+			fmt.Scanln(&amp;money)
+			<span class="hljs-keyword">if</span> money &gt; balance &#123;
+				fmt.Println(<span class="hljs-string">&quot;余额的金额不足！&quot;</span>)
+				<span class="hljs-keyword">break</span>
+			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> money &lt;= <span class="hljs-number">0</span> &#123;
+				fmt.Println(<span class="hljs-string">&quot;支出金额应为正数！&quot;</span>)
+			&#125;
+			fmt.Print(<span class="hljs-string">&quot;本次支出说明：&quot;</span>)
+			fmt.Scanln(&amp;note)
+			balance -= money
+			details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, balance+money, money, balance, note)
+			fmt.Println(<span class="hljs-string">&quot;支出登记成功！&quot;</span>)
+			flag = <span class="hljs-literal">true</span>
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:
+			<span class="hljs-keyword">var</span> choice <span class="hljs-type">byte</span>
+			<span class="hljs-keyword">for</span> &#123;
+				fmt.Print(<span class="hljs-string">&quot;确定退出？(y/n)：&quot;</span>)
+				fmt.Scanf(<span class="hljs-string">&quot;%c\n&quot;</span>, &amp;choice)
+				<span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;y&#x27;</span> &#123;
+					loop = <span class="hljs-literal">false</span>
+					<span class="hljs-keyword">break</span>
+				&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;n&#x27;</span> &#123;
+					<span class="hljs-keyword">break</span>
+				&#125; <span class="hljs-keyword">else</span> &#123;
+					fmt.Println(<span class="hljs-string">&quot;输入有误！！请重新输入&quot;</span>)
+				&#125;
+			&#125;
+		<span class="hljs-keyword">default</span>:
+			fmt.Println(<span class="hljs-string">&quot;请输入正确的选项------&quot;</span>)
+		&#125;
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;-------------------退出家庭收支记账软件-------------------&quot;</span>)
+&#125;
+</code></pre></div>
+<h2 id="面向对象的代码">面向对象的代码</h2>
+<p>.<br>
+├── Family-Ledger<br>
+│   ├── main<br>
+│   │   └── main.go<br>
+│   └── utils<br>
+│       └── familyAccount.go</p>
+<p>main.go</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/Family-Ledger/utils&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	utils.NewFamilyAcount().MainMenu()
+&#125;
+</code></pre></div>
+<p>familyAccount.go</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> utils
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-comment">// 定义结构体</span>
+<span class="hljs-keyword">type</span> FamilyAccount <span class="hljs-keyword">struct</span> &#123;
+	<span class="hljs-comment">// 用户名和密码</span>
+	username <span class="hljs-type">string</span>
+	password <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 声明一个变量保存用户的输入</span>
+	key <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 声明一个变量，控制是否退出for循环</span>
+	loop <span class="hljs-type">bool</span>
+	<span class="hljs-comment">// 定义账户的初始值</span>
+	balance <span class="hljs-type">float64</span>
+	<span class="hljs-comment">// 定义每次收支的金额和说明</span>
+	money <span class="hljs-type">float64</span>
+	note  <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 收支的详情使用字符串来记录</span>
+	<span class="hljs-comment">// 当有记录时对这个字符串进行拼接</span>
+	details <span class="hljs-type">string</span>
+	<span class="hljs-comment">// 判断当前是否有输入或者输出的记录</span>
+	flag <span class="hljs-type">bool</span>
+&#125;
+
+<span class="hljs-comment">// 编写一个工厂模式的构造方法，返回结构体的指针</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewFamilyAcount</span><span class="hljs-params">()</span></span> *FamilyAccount &#123;
+	<span class="hljs-keyword">return</span> &amp;FamilyAccount&#123;
+		username: <span class="hljs-string">&quot;admin&quot;</span>,
+		password: <span class="hljs-string">&quot;password&quot;</span>,
+		key:      <span class="hljs-string">&quot;&quot;</span>,
+		loop:     <span class="hljs-literal">true</span>,
+		balance:  <span class="hljs-number">10000.0</span>,
+		money:    <span class="hljs-number">0.0</span>,
+		note:     <span class="hljs-string">&quot;&quot;</span>,
+		details:  <span class="hljs-string">&quot;收  支\t收支前账户余额\t收支金额\t收支后账户余额\t说  明\n&quot;</span>,
+		flag:     <span class="hljs-literal">false</span>,
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 给结构体绑定相应的方法</span>
+
+<span class="hljs-comment">// 将显示明细写成一个方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> showDetails() &#123;
+	<span class="hljs-keyword">if</span> !fa.flag &#123;
+		fmt.Println(<span class="hljs-string">&quot;当前没有任何收支记录！&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;---------------------当前收支明细记录---------------------&quot;</span>)
+		fmt.Println(fa.details)
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 将登记收入写成一个方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> income() &#123;
+	fmt.Println(<span class="hljs-string">&quot;-------------------------登记收入-------------------------&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;本次收入金额：&quot;</span>)
+	fmt.Scanln(&amp;fa.money)
+	<span class="hljs-comment">// 收入金额不能是负数</span>
+	<span class="hljs-keyword">if</span> fa.money &lt;= <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;收入金额应为正数！&quot;</span>)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	fmt.Print(<span class="hljs-string">&quot;本次收入说明：&quot;</span>)
+	fmt.Scanln(&amp;fa.note)
+	fa.balance += fa.money
+	fa.details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, fa.balance-fa.money, fa.money, fa.balance, fa.note)
+	fmt.Println(<span class="hljs-string">&quot;收入登记成功！&quot;</span>)
+	fa.flag = <span class="hljs-literal">true</span>
+&#125;
+
+<span class="hljs-comment">// 将登记支出写成一个方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> pay() &#123;
+	fmt.Println(<span class="hljs-string">&quot;-------------------------登记支出-------------------------&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;本次支出金额：&quot;</span>)
+	fmt.Scanln(&amp;fa.money)
+	<span class="hljs-keyword">if</span> fa.money &gt; fa.balance &#123;
+		fmt.Println(<span class="hljs-string">&quot;余额的金额不足！&quot;</span>)
+		<span class="hljs-keyword">return</span>
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> fa.money &lt;= <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;支出金额应为正数！&quot;</span>)
+	&#125;
+	fmt.Print(<span class="hljs-string">&quot;本次支出说明：&quot;</span>)
+	fmt.Scanln(&amp;fa.note)
+	fa.balance -= fa.money
+	fa.details += fmt.Sprintf(<span class="hljs-string">&quot;收  入\t%v\t%v\t%v\t%v\n&quot;</span>, fa.balance+fa.money, fa.money, fa.balance, fa.note)
+	fmt.Println(<span class="hljs-string">&quot;支出登记成功！&quot;</span>)
+	fa.flag = <span class="hljs-literal">true</span>
+&#125;
+
+<span class="hljs-comment">// 将退出系统写成一个方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> exit() &#123;
+	<span class="hljs-keyword">var</span> choice <span class="hljs-type">byte</span>
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Print(<span class="hljs-string">&quot;确定退出？(y/n)：&quot;</span>)
+		fmt.Scanf(<span class="hljs-string">&quot;%c\n&quot;</span>, &amp;choice)
+		<span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;y&#x27;</span> &#123;
+			fa.loop = <span class="hljs-literal">false</span>
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> choice == <span class="hljs-string">&#x27;n&#x27;</span> &#123;
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;输入有误！！请重新输入&quot;</span>)
+		&#125;
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 用户登录的功能</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> login(username <span class="hljs-type">string</span>, password <span class="hljs-type">string</span>) <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">if</span> (username == fa.username) &amp;&amp; (password == fa.password) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+&#125;
+
+<span class="hljs-comment">// 显示主菜单</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(fa *FamilyAccount)</span></span> MainMenu() &#123;
+	<span class="hljs-keyword">for</span> &#123;
+		<span class="hljs-keyword">var</span> username, password <span class="hljs-type">string</span>
+		fmt.Print(<span class="hljs-string">&quot;请输入用户名：&quot;</span>)
+		fmt.Scanln(&amp;username)
+		fmt.Print(<span class="hljs-string">&quot;请输入密码：&quot;</span>)
+		fmt.Scanln(&amp;password)
+		<span class="hljs-keyword">if</span> fa.login(username, password) &#123;
+			<span class="hljs-keyword">break</span>
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;用户名或密码错误！&quot;</span>)
+		&#125;
+	&#125;
+	<span class="hljs-comment">// 显示主菜单</span>
+	<span class="hljs-keyword">for</span> fa.loop &#123;
+		fmt.Println(<span class="hljs-string">&quot;\n---------------------家庭收支记账软件---------------------&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       1 收支明细&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       2 登记收入&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       3 登记输出&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;                       4 退出软件&quot;</span>)
+		fmt.Print(<span class="hljs-string">&quot;请选择(1-4)：&quot;</span>)
+		<span class="hljs-comment">// 接收用户的输入</span>
+		fmt.Scanln(&amp;fa.key)
+		<span class="hljs-comment">// 对用户的输入进行判断</span>
+		<span class="hljs-keyword">switch</span> fa.key &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:
+			fa.showDetails()
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:
+			fa.income()
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:
+			fa.pay()
+		<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:
+			fa.exit()
+		<span class="hljs-keyword">default</span>:
+			fmt.Println(<span class="hljs-string">&quot;请输入正确的选项------&quot;</span>)
+		&#125;
+	&#125;
+&#125;
+</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/Project/" class="print-no-link">#Project</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go项目-家庭收支记账软件</div>
+      <div>https://zhangzhao219.github.io/2022/11/02/Go/Go-Project-Family-Ledger/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/03/Go/Go-Project-Customer-Management-System/" title="Go项目-客户信息管理系统">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go项目-客户信息管理系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/28/UCAS/information-retrieval/information-retrieval-18/" title="研究生课程：现代信息检索-第18讲 链接分析">
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第18讲 链接分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

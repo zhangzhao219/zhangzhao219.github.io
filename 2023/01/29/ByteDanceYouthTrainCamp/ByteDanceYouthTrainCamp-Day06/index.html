@@ -1,0 +1,1138 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="【实践课】规则引擎设计与实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【实践课】规则引擎设计与实现">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/29/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day06/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="【实践课】规则引擎设计与实现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be32c9bd4c234fecb66e183ba7bc83ac~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a98e9ce76f8a4b2384914f8ad088541f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7fb1507b67fb41d6860254c2266ab00e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/998b747d23e048abac8cdd225ba28461~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="article:published_time" content="2023-01-29T14:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be32c9bd4c234fecb66e183ba7bc83ac~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+  
+  
+  
+  <title>【实践课】规则引擎设计与实现 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【实践课】规则引擎设计与实现</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-29 14:00" pubdate>
+          2023年1月29日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【实践课】规则引擎设计与实现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>【实践课】规则引擎设计与实现</p>
+<span id="more"></span>
+<h1>【实践课】规则引擎设计与实现</h1>
+<h2 id="一、概述">一、概述</h2>
+<h3 id="1-1-前言">1.1 前言</h3>
+<p>规则引擎是一种嵌入在应用服务中的组件，可以将灵活多变的业务决策从服务代码中分离出来。通过使用预定义的语义模块来编写业务逻辑规则。在执行时接受数据输入、解释业务规则，并做出决策。规则引擎能大大提高系统的灵活性和扩展性。</p>
+<p>在字节跳动，规则引擎已经在风控识别、活动运营、配置下发等场景得到了广泛的应用。开发人员可以将业务逻辑与服务代码解耦，实现灵活、高效的业务策略发布。目前公司内部基于规则引擎的动态决策系统已经承接了千万级别QPS的决策请求。</p>
+<p>规则引擎的实现需要在满足大容量、高请求、低延迟的基础上尽可能做到简单易上手。本次课程将会带领大家实现一个简单版的规则引擎。</p>
+<h3 id="1-2-课程目标">1.2 课程目标</h3>
+<ul>
+<li>了解规则引擎的组成部分和应用场景。</li>
+<li>学习并掌握规则引擎的设计与实现原理。</li>
+<li>明确一个规则引擎的设计目标，并完成各部分的设计与实现步骤拆解。</li>
+<li>动手实现规则引擎项目，完成预定目标。</li>
+<li><em>[课外扩展] 结合其他课程，完成一个在线</em> <em>规则引擎</em> <em>服务。</em></li>
+</ul>
+<h3 id="1-3-课程重难点">1.3 课程重难点</h3>
+<p><strong>重点</strong></p>
+<ul>
+<li>规则引擎的设计 。明确设计目标、完成步骤拆解、完成各部分状态机的详细设计</li>
+<li>规则引擎的实现。基于项目工程完成词法分析、语法分析、抽象语法树的执行功能</li>
+</ul>
+<p><strong>难点</strong></p>
+<ul>
+<li>规则引擎的核心原理（理论）。词法分析、语法分析、类型检查、语法树执行</li>
+</ul>
+<p>主要涉及到编译原理的部分</p>
+<h2 id="二、课前预习">二、课前预习</h2>
+<p><strong>课前必看！！！</strong></p>
+<p>本部分是需要大家在上课之前了解的内容，主要是一些基本的概念和原理。</p>
+<p>在这门课程之前你可能根本没有听说过规则引擎这个东西，当然也可能是浅浅的大概知道这是个什么东西，或者是个规则引擎方面的资深专家（还没毕业，五年工作经验那种🐶，如果是这样请赶紧找我内推）。都没有关系，这门课包教包会！！！（学不会的下课后可以找我们运营人员联系我一对一教学）</p>
+<p>当然，这门课程还是有一定的门槛的，这也就是我为什么要说这么多一定要让你仔细看看这部分的原因。经过实验，课程的内容如果只依赖于课上老师的讲解，只能做到：能听懂，能跟上，来不及思考。要想能够理解掌握这部分内容，能跟别人battle下，再向自己的知识山峰上加那么一块小石头，得好好预习。</p>
+<p>开始之前先百度或者Google一下 “规则引擎”简单浏览下哈，📪📪📪另外掘金app上面也有许多不错的文章。可以先浏览看看。</p>
+<h3 id="2-1-数据结构基础">2.1 数据结构基础</h3>
+<p>数据结构得学过吧，考多少分？😁</p>
+<p>这块的预习目标呢，包括以下几个部分</p>
+<ul>
+<li>精通常用数据结构：数组、结构体、指针、队列、二叉树 等等等，课本上有的都得看看</li>
+<li>熟练掌握二叉树的各种遍历方式：前中后序遍历，层序遍历，打印二叉树，有时间可以自己写几个小demo，当然最基础的是需要知道各种遍历方式的区别</li>
+</ul>
+<h3 id="2-2-Go语言基础">2.2 Go语言基础</h3>
+<ul>
+<li>掌握Go语言的基础语法，能读懂项目代码</li>
+</ul>
+<p>是的，就这一个要求，其实学完青训营的前几节课就可以达到了</p>
+<h3 id="2-3-编译原理基础">2.3 编译原理基础</h3>
+<p>编译原理被誉为&quot;程序员的三大浪漫&quot;之一，足以可见这块知识的深度与广度，我们这次课程也是简单的介绍一下与规则引擎相关的概念。</p>
+<p>那么可能会有疑问了，不是讲规则引擎么？为啥还得学编译原理？</p>
+<p>规则引擎的本质呢就是我们自己定义一套语法，然后去解析用这套语法写的表达式，然后根据解析的内容执行表达式。这个过程其实就是编译和执行的过程。</p>
+<p>因此呢需要自行了解以下的内容</p>
+<ul>
+<li><strong>编译的概念:</strong>
+<ul>
+<li>编译的过程发生了什么？</li>
+<li>一般分为哪几个步骤，每个步骤的中间结果是什么？</li>
+</ul>
+</li>
+<li><strong>词法分析：</strong>
+<ul>
+<li>词法如何表示？| <em>正则文法</em></li>
+<li>词法分析阶段的输出是什么</li>
+<li>词法分析阶段是怎么做的？</li>
+<li>词法分析可能会产生什么问题？</li>
+<li>如何解决词法分析过程中产生的问题？| <em>左递归问题怎么解决</em></li>
+</ul>
+</li>
+<li><strong>语法分析</strong>
+<ul>
+<li>语法如何表示？上下文无关语法、巴克斯范式怎么理解</li>
+<li>语法分析阶段的输出是什么？ 一般怎么表示</li>
+<li>语法分析有哪些方式？什么是递归下降算法？</li>
+</ul>
+</li>
+<li><strong>抽象语法树</strong>
+<ul>
+<li>抽象语法树是什么？</li>
+<li>抽象语法树如何执行？</li>
+</ul>
+</li>
+<li><strong>类型检查</strong>
+<ul>
+<li>类型检查怎么做？有哪些方式？</li>
+<li>类型检查什么时候做？有什么区别？</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-环境搭建">2.4 环境搭建</h3>
+<p>课程之前，大家需要根据项目工程，来完成环境的搭建和Demo的运行</p>
+<p><strong>项目地址：</strong></p>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fqimengxingyuan%2Fyoung_engine" title="https://github.com/qimengxingyuan/young_engine">github.com/qimengxingy…</a></p>
+<p>相信大家已经完成了Go环境的搭建，项目工程依赖了hertz框架，如果在之前的课程中完成了项目环境搭建可以直接复用。</p>
+<p><strong>项目环境：</strong></p>
+<ul>
+<li>go语言环境搭建</li>
+</ul>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.runoob.com%2Fgo%2Fgo-environment.html" title="https://www.runoob.com/go/go-environment.html">www.runoob.com/go/go-envir…</a></p>
+<ul>
+<li>需要安装docker环境</li>
+</ul>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.runoob.com%2Fdocker%2Fwindows-docker-install.html" title="https://www.runoob.com/docker/windows-docker-install.html">www.runoob.com/docker/wind…</a></p>
+<ul>
+<li>安装docker-compose工具</li>
+</ul>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.runoob.com%2Fdocker%2Fdocker-compose.html" title="https://www.runoob.com/docker/docker-compose.html">www.runoob.com/docker/dock…</a></p>
+<p>项目clone到本地后，可以执行测试脚本来测试环境的可用性。如果有错误欢迎百度和Google解决</p>
+<div class="code-wrapper"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/qimengxingyuan/young_engine.git
+<span class="hljs-built_in">chmod</span> a+x ./setup.sh
+./setup.sh</code></pre></div>
+<p>脚本执行成功，则环境可以支持项目的执行</p>
+<p><strong>项目说明：</strong></p>
+<p>本项目是一个简单的规则引擎的实现，<a target="_blank" rel="noopener" href="http://xn--README-2x8i454aslat68gui8cpxt5vd928c.md">详细目录可以参考README.md</a></p>
+<p>项目实现时间有限，没有做比较完备的测试，如果在demo执行的过程中出现某些bug或者执行异常可以直接在github提交issue或者修复后提起PR</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7117987884937773086" title="https://juejin.cn/post/7117987884937773086">juejin.cn/post/711798…</a></p>
+<h2 id="三、课中知识点补充">三、课中知识点补充</h2>
+<h3 id="3-1-什么是编译">3.1 什么是编译</h3>
+<p>编译的过程就是 把某种语言的源程序， <strong>在不改变语义的条件下</strong> ，转换成另一种语言程序(目标语言程序)</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be32c9bd4c234fecb66e183ba7bc83ac~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>如果源代码编译后要在操作系统上运行，那目标代码就是汇编/机器代码。</li>
+<li>如果编译后是在虚拟机里执行，那目标代码就可以不是汇编代码，而是一种解释器可以理解的中间形式的代码即可。</li>
+</ul>
+<p><strong>解释型语言和编译型语言</strong></p>
+<ul>
+<li>有的语言提前把代码一次性转换完毕，这种就是编译型语言，用的转换工具就叫编译器，比如C、C++、Go。一次编译可重复执行
+<ul>
+<li>编译后产物不能跨平台，不同系统对可执行文件的要求不同。.exe</li>
+<li>特殊的，c、c++、汇编、源代码也不能跨平台</li>
+</ul>
+</li>
+<li>有的语言则可以一边执行一边转化，用到哪里了就转哪里，这种就是解释性语言，用的转化工具叫虚拟机或者解释器，比如java python、javascript</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a98e9ce76f8a4b2384914f8ad088541f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>关于</strong> <strong>Java</strong> <strong>和</strong> <strong>Python</strong> <strong>.</strong></p>
+<ul>
+<li>Java既有编译又有解释。但是编译并没有直接编译成机器码，而是编译成字节码，然后再放到虚拟机中执行。</li>
+<li>Python执行过程也是经过两个阶段，先编译成字节码 .pyc 再放到虚拟机中去执行</li>
+</ul>
+<p><a href="https://link.juejin.cn?target=https%3A%2F%2Fstackoverflow.com%2Fquestions%2F441824%2Fjava-virtual-machine-vs-python-interpreter-parlance%2F441973%23441973" title="https://stackoverflow.com/questions/441824/java-virtual-machine-vs-python-interpreter-parlance/441973#441973">JVM 和 Python解释器</a> | 为什么一个叫虚拟机一个叫解释器</p>
+<ol>
+<li>“虚拟机”对二进制字节码进行解释，而“解释器”是对程序文本进行解释。</li>
+<li>从历史上看，Java 是为解释二进制字节码而设计和实现的，而 Python 最初是为解释程序文本而设计和实现的。因此，“Java 虚拟机”这个术语在 Java 社区中具有历史意义并且非常成熟，“Python 解释器”这个术语在 Python 社区中具有历史意义并且非常成熟。人们倾向于延长传统并使用很久以前使用的相同术语。</li>
+<li>对于 Java，二进制字节码解释是程序执行的主要方式，而 JIT 编译只是一种可选的和透明的优化。而对于 Python，目前，程序文本解释是 Python 程序执行的主要方式，而编译成 Python VM 字节码只是一种可选的透明优化。</li>
+</ol>
+<h3 id="3-2-词法分析">3.2 词法分析</h3>
+<p>把源代码字符串转换为词法单元(Token)的这个过程。</p>
+<p><strong>确定的有限自动机 DFA |</strong> <strong>Deterministic Finite Automaton</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7fb1507b67fb41d6860254c2266ab00e~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>确定的有限自动机就是一个状态机，它的状态数量是有限的。该状态机在任何一个状态，基于输入的字符，都能做一个确定的状态转换。</p>
+<h3 id="3-3-语法分析">3.3 语法分析</h3>
+<p>词法分析是识别一个个的单词，而语法分析就是在词法分析的基础上识别出程序的语法结构。这个结构是一个树状结构。这棵树叫做抽象语法树（Abstract Syntax Tree，AST）。树的每个节点（子树）是一个语法单元，这个单元的构成规则就叫“语法”。每个节点还可以有下级节点。</p>
+<p>Token -&gt; AST</p>
+<p><strong>上下文无关语法 Context-Free Grammar</strong></p>
+<p>语言句子无需考虑上下文，就可以判断正确性</p>
+<blockquote>
+<div class="code-wrapper"><pre><code class="hljs ini">...
+<span class="hljs-attr">a</span> = <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+...
+这是一个赋值语句，无论此语句的前后是什么代码，此语句所代表的操作是确定的。即给变量a赋值等于0
+</code></pre></div>
+</blockquote>
+<p>编程语言为什么不用人类的语言（自然语言），而是用上下文无关的文法呢？ 因为</p>
+<ol>
+<li>便于设计编译器。 客观上技术目前无法实现，如果使用了上下文相关文法，那就是真正实现了人工智能，NLP领域将会有重大突破。</li>
+<li>便于代码开发维护。 如果开发出来的代码像高考的语文阅读理解一样，每个人都有不同的理解，那么，到底哪个才是作者真正想要表达的？如果人类都确定不了含义，那计算机同样也确定不了，最终结果就是错误执行或无法执行。</li>
+<li>汇编语言/机器语言是上下文无关的。CPU执行指令时，读到哪条执行哪条。如果CPU需要考虑上下文，来决定一个语句到底要做什么，那么CPU执行一条语句会比现在慢千倍万倍。考虑上下文的事情，完全可以用户在编程的时候用算法实现。既然机器语言是上下文无关的，那高级语言也基本上是上下文无关的，可能有某些个别语法为了方便使用，设计成了上下文相关的，比如脚本语言的弱类型。在便于使用的同时，增加了解析器的复杂度。</li>
+</ol>
+<p><strong>上下文无关语法G：终结符集合T + 非终结符集合N + 产生式集合P + 起始符号S</strong></p>
+<p>G由T、N、S和P组成，由语法G推导出来的所有句子的集合称为G语言！</p>
+<p><strong>终结符：</strong> 组成串的基本符号。可以理解为词法分析器产生的token集合。比如 <code>+</code> <code>Id</code> <code>(</code> <code>)</code> 等</p>
+<p><strong>非终结符：</strong> 表示token的的集合的语法变量。比如 <code>stmt</code> <code>varDecl</code> 等等</p>
+<div class="code-wrapper"><pre><code class="hljs scss">start：blockStmts ;               <span class="hljs-comment">//起始</span>
+block : <span class="hljs-string">&#x27;&#123;&#x27;</span> blockStmts <span class="hljs-string">&#x27;&#125;&#x27;</span> ;      <span class="hljs-comment">//语句块</span>
+blockStmts : stmt* ;              <span class="hljs-comment">//语句块中的语句</span>
+stmt = varDecl | expStmt | returnStmt | block;   <span class="hljs-comment">//语句</span>
+varDecl : type Id varInitializer？ <span class="hljs-string">&#x27;;&#x27;</span> ;         <span class="hljs-comment">//变量声明</span>
+type : Int | Long ;                              <span class="hljs-comment">//类型</span>
+varInitializer : <span class="hljs-string">&#x27;=&#x27;</span> exp ;                       <span class="hljs-comment">//变量初始化</span>
+expStmt : exp <span class="hljs-string">&#x27;;&#x27;</span> ;                              <span class="hljs-comment">//表达式语句</span>
+returnStmt : Return exp <span class="hljs-string">&#x27;;&#x27;</span> ;                    <span class="hljs-comment">//return语句</span>
+exp : add ;                                      <span class="hljs-comment">//表达式   </span>
+add : add <span class="hljs-string">&#x27;+&#x27;</span> mul | mul;                         <span class="hljs-comment">//加法表达式</span>
+mul : mul <span class="hljs-string">&#x27;*&#x27;</span> pri | pri;                         <span class="hljs-comment">//乘法表达式</span>
+pri : IntLiteral | Id | <span class="hljs-string">&#x27;(&#x27;</span> exp <span class="hljs-string">&#x27;)&#x27;</span> ;            <span class="hljs-comment">//基础表达式 </span></code></pre></div>
+<p>产生式：表示形式，S : AB ，就是说S的含义可以用语法AB进行表达</p>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">S :</span> <span class="hljs-string">AB</span>
+<span class="hljs-attr">A :</span> <span class="hljs-string">aA</span> <span class="hljs-string">|</span> <span class="hljs-string">ε</span>
+<span class="hljs-attr">B :</span> <span class="hljs-string">b</span> <span class="hljs-string">|</span> <span class="hljs-string">bB</span></code></pre></div>
+<p>展开(expand)：将P(A-&gt;<em>u</em> )应用到符号串vAw中，得到新串v<em>u</em> **w</p>
+<p>折叠(reduce)：将P(A-&gt;<em>uu</em> )应用到符号串v<em>uu</em> w中，得到新串vAw</p>
+<p>推导(derivate)：符号串<em>u</em> 应用一系列产生式，变成符号串<em>v</em> ，则<em>u</em> =&gt;<em>v：S =&gt; ab | b | bb</em></p>
+<p><strong>巴科斯范式</strong></p>
+<p>BNF是描述上下文无关理论的一种具体方法，通过BNF可以实现上下文无关文法的具体化、公式化、科学化，是实现代码解析的必要条件。</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">expr</span>&gt;</span> ::= <span class="hljs-tag">&lt;<span class="hljs-name">expr</span>&gt;</span> + <span class="hljs-tag">&lt;<span class="hljs-name">term</span>&gt;</span>
+         | <span class="hljs-tag">&lt;<span class="hljs-name">expr</span>&gt;</span> - <span class="hljs-tag">&lt;<span class="hljs-name">term</span>&gt;</span>
+         | <span class="hljs-tag">&lt;<span class="hljs-name">term</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">term</span>&gt;</span> ::= <span class="hljs-tag">&lt;<span class="hljs-name">term</span>&gt;</span> * <span class="hljs-tag">&lt;<span class="hljs-name">factor</span>&gt;</span>
+         | <span class="hljs-tag">&lt;<span class="hljs-name">term</span>&gt;</span> / <span class="hljs-tag">&lt;<span class="hljs-name">factor</span>&gt;</span>
+         | <span class="hljs-tag">&lt;<span class="hljs-name">factor</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">factor</span>&gt;</span> ::= ( <span class="hljs-tag">&lt;<span class="hljs-name">expr</span>&gt;</span> )
+           | Num</code></pre></div>
+<blockquote>
+<p>BNF本质上就是树形分解，分解成一棵抽象语法树</p>
+</blockquote>
+<ul>
+<li>每个产生式就是一个子树，在写编译器时，每个子树对应一个解析函数。</li>
+<li>叶子节点叫做  <strong>终结符</strong> ，非叶子节点叫做  <strong>非终结符</strong> 。</li>
+</ul>
+<p><strong>递归下降算法 Recursive Descent Parsing</strong></p>
+<p>基本思路就是按照语法规则去匹配 Token 串。比如说，变量声明语句的规则如下：</p>
+<div class="code-wrapper"><pre><code class="hljs scss">varDecl : types Id varInitializer？ <span class="hljs-string">&#x27;;&#x27;</span> ;        <span class="hljs-comment">//变量声明</span>
+varInitializer : <span class="hljs-string">&#x27;=&#x27;</span> exp ;                       <span class="hljs-comment">//变量初始化</span>
+exp : add ;                                      <span class="hljs-comment">//表达式   </span>
+add : add <span class="hljs-string">&#x27;+&#x27;</span> mul | mul;                         <span class="hljs-comment">//加法表达式</span>
+mul : mul <span class="hljs-string">&#x27;*&#x27;</span> pri | pri;                         <span class="hljs-comment">//乘法表达式</span>
+pri : IntLiteral | Id | <span class="hljs-string">&#x27;(&#x27;</span> exp <span class="hljs-string">&#x27;)&#x27;</span> ;            <span class="hljs-comment">//基础表达式</span></code></pre></div>
+<p>如果写成产生式格式，是下面这样：</p>
+<div class="code-wrapper"><pre><code class="hljs rust">varDecl <span class="hljs-punctuation">-&gt;</span> types Id varInitializer <span class="hljs-string">&#x27;;&#x27;</span> 
+varInitializer <span class="hljs-punctuation">-&gt;</span> <span class="hljs-string">&#x27;=&#x27;</span> exp      
+varInitializer <span class="hljs-punctuation">-&gt;</span> ε
+exp <span class="hljs-punctuation">-&gt;</span> add
+add <span class="hljs-punctuation">-&gt;</span> add + mul
+add <span class="hljs-punctuation">-&gt;</span> mul
+mul <span class="hljs-punctuation">-&gt;</span> mul * pri
+mul <span class="hljs-punctuation">-&gt;</span> pri
+pri <span class="hljs-punctuation">-&gt;</span> IntLiteral
+pri <span class="hljs-punctuation">-&gt;</span> Id
+pri <span class="hljs-punctuation">-&gt;</span> ( exp )</code></pre></div>
+<p>而基于这个规则做解析的算法如下：</p>
+<div class="code-wrapper"><pre><code class="hljs rust">匹配一个数据类型(types)
+匹配一个标识符(Id)，作为变量名称
+匹配初始化部分(varInitializer)，而这会导致下降一层，使用一个新的语法规则：
+   匹配一个等号
+   匹配一个表达式(在这个步骤会导致多层下降：exp<span class="hljs-punctuation">-&gt;</span>add<span class="hljs-punctuation">-&gt;</span>mul<span class="hljs-punctuation">-&gt;</span>pri<span class="hljs-punctuation">-&gt;</span>IntLiteral)
+   创建一个varInitializer对应的AST节点并返回
+如果没有成功地匹配初始化部分，则回溯，匹配ε，也就是没有初始化部分。
+匹配一个分号   
+创建一个varDecl对应的AST节点并返回</code></pre></div>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/998b747d23e048abac8cdd225ba28461~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt=""></p>
+<blockquote>
+<p>int a = 2</p>
+</blockquote>
+<ul>
+<li>对于一个非终结符，要从左到右依次匹配其产生式中的每个项，包括非终结符和终结符。</li>
+<li>在匹配产生式右边的非终结符时，要下降一层，继续匹配该非终结符的产生式。</li>
+<li>如果一个语法规则有多个可选的产生式，那么只要有一个产生式匹配成功就行。如果一个产生式匹配不成功，那就回退回来，尝试另一个产生式。这种回退过程，叫做回溯（Backtracking）。</li>
+</ul>
+<h2 id="四、课后作业">四、课后作业</h2>
+<h3 id="4-1-实现一个在线规则引擎">4.1 实现一个在线规则引擎</h3>
+<p>课上我们重点讲了规则引擎的设计和实现，结合前面课程的内容课后实现一个在线版本的规则引擎</p>
+<h4 id="4-1-1-项目要求">4.1.1 项目要求</h4>
+<p>使用Hertz框架开发一个HTTP服务，服务使用mysql，支持表达式的增删查改和编译执行。</p>
+<p>并实现以下接口</p>
+<h5 id="直接表达式执行">直接表达式执行</h5>
+<p>请求参数为待执行的表达式和表达式中参数的值，并输出编译结果</p>
+<p>实时编译并执行结果，不需要写入DB中</p>
+<ul>
+<li><code>POST api/engine/run</code></li>
+<li>Request</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;exp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;uid == 12345 &amp;&amp; did &gt; 0&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;params&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+        <span class="hljs-attr">&quot;uid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123456</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;did&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+<ul>
+<li>Response</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;success&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  <span class="hljs-comment">// 执行结果</span>
+        <span class="hljs-attr">&quot;result&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+<h5 id="新增表达式">新增表达式</h5>
+<p>新增一条表达式到DB中，并返回表达式在DB中的ID</p>
+<p>需要检测表达式 <strong>是否已经存在</strong> ，如果已经存在，直接返回表达式的ID</p>
+<p>需要检测表达式<strong>是否合法(编译是否通过)</strong> ，如果编译失败，返回错误码 <code>20001</code>和编译错误</p>
+<ul>
+<li><code>POST api/engine/exp/new</code></li>
+<li>Request</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;exp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;uid == 12345 &amp;&amp; did &gt; 0&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+<ul>
+<li>Response</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;success&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  <span class="hljs-comment">// 表达式ID</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span>
+
+<span class="hljs-comment">// 编译失败时</span>
+<span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">-1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;compile error: xxxxx&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 编译失败的信息</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  <span class="hljs-comment">// 表达式ID</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+<h5 id="查询表达式">查询表达式</h5>
+<p>查询数据库中所有的表达式</p>
+<ul>
+<li><code>GET api/engine/exp/list</code></li>
+<li>Response</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs css">&#123;
+    &quot;<span class="hljs-selector-tag">code</span>&quot;: <span class="hljs-number">0</span>,
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>,
+    <span class="hljs-string">&quot;data&quot;</span>: [  
+        &#123;
+            &quot;id&quot;: <span class="hljs-number">1</span>,
+            <span class="hljs-string">&quot;exp&quot;</span>: <span class="hljs-string">&quot;uid &gt; 0&quot;</span>
+        &#125;
+    ]
+&#125;</code></pre></div>
+<h5 id="删除表达式">删除表达式</h5>
+<p>根据ID删除表达式，表达式不存在时返回错误码 <code>20002</code> , 和错误信息</p>
+<p>删除成功返回被删除的表达式信息</p>
+<ul>
+<li><code>DELETE api/engine/exp/:id</code></li>
+<li>Response</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-comment">// 删除成功时</span>
+<span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;success&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  <span class="hljs-comment">// 表达式ID</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;exp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;uid &gt; 0&quot;</span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span>
+
+<span class="hljs-comment">// 删除失败时</span>
+<span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">-1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;exp id 1 not exist&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//查询失败的信息</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+<h5 id="执行表达式">执行表达式</h5>
+<p>根据表达式的ID，查询出表达式内容，并编译执行。表达式不存在时返回错误码 <code>20002</code> , 和错误信息</p>
+<ul>
+<li><code>POST api/engine/exp/run</code></li>
+<li>Request</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;exp_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;parmas&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+        <span class="hljs-attr">&quot;uid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123456</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;did&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+<ul>
+<li>Response</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;success&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  <span class="hljs-comment">// 执行结果</span>
+        <span class="hljs-attr">&quot;result&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span>
+
+<span class="hljs-comment">// 表达式不存在时</span>
+<span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">-1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;exp id 1 not exist&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//查询失败的信息</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【实践课】规则引擎设计与实现</div>
+      <div>https://zhangzhao219.github.io/2023/01/29/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day06/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/29/6.824/Distributed-Systems-MIT-6.824-Lab-2/" title="MIT-6.824 Distributed Systems-Lab 2 Raft">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-Lab 2 Raft</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/28/6.824/Distributed-Systems-MIT-6.824-LEC-7/" title="MIT-6.824 Distributed Systems-LEC 7 Fault Tolerance-Raft-2">
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-LEC 7 Fault Tolerance-Raft-2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

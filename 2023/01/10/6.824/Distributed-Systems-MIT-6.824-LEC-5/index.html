@@ -1,0 +1,1527 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MIT-6.824（Spring 2022）LEC 5 Fault Tolerance-Raft-1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT-6.824 Distributed Systems-LEC 5 Fault Tolerance-Raft-1">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/10/6.824/Distributed-Systems-MIT-6.824-LEC-5/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="MIT-6.824（Spring 2022）LEC 5 Fault Tolerance-Raft-1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-8b70c07436669ef9d2ff1854e0f7cdaf_720w.webp">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/11/pSn0Ve0.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/11/pSnwXLt.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-b37458496c3b52b1b92f3ca38dd7b5ee_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-292861fa0ecc898d223b59fafd239a04_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-6d1bfe856121e8b633625c2e4fb3e75f_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-4729931f5622ce01028d68169117ddaa_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-ff671ae206a55470d2814e77e5eaed12_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-387f6e83ddbeaadbe549a262bae5d166_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-526f64e7b228ef9c0d4a190450635511_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-b1ec6fef44bee3fb0132cd2dc1b0bbf6_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-fc71344c00549641181f094868590834_720w.webp">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/12/pSu1L80.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/28/pSUHKcd.md.png">
+<meta property="article:published_time" content="2023-01-10T22:14:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Distributed Systems">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-8b70c07436669ef9d2ff1854e0f7cdaf_720w.webp">
+  
+  
+  
+  <title>MIT-6.824 Distributed Systems-LEC 5 Fault Tolerance-Raft-1 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MIT-6.824 Distributed Systems-LEC 5 Fault Tolerance-Raft-1</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-10 22:14" pubdate>
+          2023年1月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          120 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MIT-6.824 Distributed Systems-LEC 5 Fault Tolerance-Raft-1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MIT-6.824（Spring 2022）LEC 5 Fault Tolerance-Raft-1</p>
+<span id="more"></span>
+<h1>In Search of an Understandable Consensus Algorithm (Raft) 论文阅读</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/524885008">参考翻译</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/514512060">参考总结</a></p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/6.824/raft-extended.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="摘要">摘要</h2>
+<p>一致性算法，或者说 <strong>共识算法</strong> ，让⼀组机器像⼀个整体⼀样工作，即使其中⼀些机器出现故障也能够继续工作。</p>
+<p>Raft 是⼀种为了管理复制日志的⼀致性算法。</p>
+<p>它将⼀致性算法分解成了几个关键模块：领导人选举、日志复制和安全性。同时它通过更强的⼀致性来 <strong>减少状态机的数量</strong> 。</p>
+<p>总之，对比传统的一致性算法 Paxos，Raft 更清晰易懂，易于实现。</p>
+<h2 id="1-简介">1. 简介</h2>
+<p>一致性算法允许多台机器作为一个集群协同工作，并且在其中的某几台机器出故障时集群仍然能正常工作。正因为如此，一致性算法在建立可靠的大规模软件系统方面发挥了重要作用。在过去十年中，Paxos 主导了关于一致性算法的讨论：大多数一致性的实现都是基于 Paxos 或受其影响，Paxos 已经成为教授学生关于一致性知识的主要工具。然而尽管很多人一直在努力尝试使 Paxos 更易懂，Paxos 还是太难理解了。此外，Paxos 的架构需要复杂的改变来支持实际系统。</p>
+<p>我们开始着手寻找一个新的一致性算法，希望可以为系统开发和教学提供更好的基础。 我们的方法是不寻常的，因为我们的主要目标是可理解性。在该算法的设计中，重要的不仅是如何让算法起作用，还要清晰地知道该算法为什么会起作用。这项工作的结果是一个称为 Raft 的一致性算法。在设计 Raft 时，我们使用了特定的技术来提高它的可理解性，包括：</p>
+<ul>
+<li>分解（Raft 分离出三个关键点：leader election、log replication、safety）</li>
+<li>减少状态空间（相比于 Paxos，Raft 降低了不确定性的程度和服务器之间的不一致）</li>
+</ul>
+<p>一项针对 2 所大学共 43 名学生的用户研究表明，Raft 比 Paxos 更容易理解：在学习两种算法后，其中 33 名学生能够更好地回答 Raft 的相关问题。</p>
+<p>Raft 在许多方面类似于现有的公式算法，但它有几个新特性：</p>
+<ul>
+<li><strong>Strong leader（强领导性）</strong>：相比于其他算法，Raft 使用了更强的领导形式。比如，日志条目只能从 leader 流向 follower（集群中除 leader 外其他的服务器）。这在使 Raft 更易懂的同时简化了日志复制的管理流程。</li>
+<li><strong>Leader election（领导选举）</strong>：Raft 使用随机计时器来进行领导选举。任何一致性算法都需要心跳机制，Raft 只需要在这个基础上，添加少量机制，就可以简单快速地解决冲突。</li>
+<li><strong>Membership changes（成员变更）</strong>：Raft 在更改集群中服务器集的机制中使用了 <strong>联合一致性</strong> 的方法。在联合一致性下，在集群配置的转换过程中，新旧两种配置大多数是重叠的，这使得集群在配置更改期间可以继续正常运行。</li>
+</ul>
+<p>我们认为 Raft 跟 Paxos 以及其他一致性算法相比是更优的，这不仅体现在教学方面，还体现在工程实现方面。</p>
+<ul>
+<li>它比其他算法更简单且更易于理解</li>
+<li>它被描述得十分详细足以满足实际系统的需要</li>
+<li>它有多个开源实现，并被多家公司使用</li>
+<li>它的安全性已被正式规定和验证</li>
+<li>它的效率与其他算法相当</li>
+</ul>
+<h2 id="2-复制状态机">2. 复制状态机</h2>
+<p><strong>一致性算法基于复制状态机</strong></p>
+<p>一致性算法一般都是在 <strong>复制状态机</strong> 的背景下实现的。在这种方法下，一组服务器在的状态机计算相同状态的相同副本，即使某些服务器崩溃，它们也可以继续运行。</p>
+<p>复制状态机是用来解决分布式系统中的各种容错问题。比如说，具有单个 leader 的大规模的系统，如 GFS，HDFS 和 RAMCloud ，他们通常都使用单独的复制状态机来管理 leader election 和保存 leader 崩溃后重新选举所需的配置信息。像 Chubby 和 ZooKeeper 都是复制状态机。</p>
+<p>复制状态机通常都是使用日志复制（log replication）来实现。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-8b70c07436669ef9d2ff1854e0f7cdaf_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如图：每个服务器都保存着一份拥有一系列命令的日志，然后服务器上的状态机会按顺序执行日志中的命令。每一份日志中命令相同并且顺序也相同，因此每个状态机可以处理相同的命令序列。所以状态机是可确定的，每个状态机都执行相同的状态和相同的输出序列。</p>
+<p><strong>一致性算法的主要工作就是保证复制日志（replicated log）的一致性</strong> 。每台服务器上的一致性模块接收来自客户端的命令，并将这些命令添加到其日志当中。一致性模块与其他服务器上的一致性模块进行通信，以确保每台服务器上最终以相同的顺序包含相同的命令，即使部分服务器崩溃了，这个条件也可以满足。一旦命令被正确复制，每台服务器上的状态机就会按日志顺序处理它们，并将输出返回给客户端。这样就形成了高可用的复制状态机。</p>
+<p>适用于实际系统的 <strong>一致性算法通常都包含以下几点特征</strong> ：</p>
+<ul>
+<li><strong>安全性</strong>：非拜占庭错误（出现故障（crash 或 fail-stop，即不响应）但不会伪造信息）情况下，绝不会返回错误的结果</li>
+<li><strong>可用性</strong>：只要大多数机器（过半）正常就可保证可用。假设服务器崩溃了，一小段时间后，它们很可能会根据已经稳定存储的状态来进行恢复，并重新加入集群。</li>
+<li><strong>不依赖时序保证一致性</strong>：错误的时钟和极端消息延迟在最坏的情况下会产生影响可用性的一系列问题。</li>
+<li>在通常情况下，只要集群中大部分（过半）服务器已经响应了单轮远程过程调用（RPC），命令就可以被视为完成， <strong>小部分慢节点不影响整体性能</strong> 。</li>
+</ul>
+<h2 id="3-Paxos-算法的问题">3. Paxos 算法的问题</h2>
+<p>在过去的十年间，Leslie Lamport 的 Paxos 协议 几乎成为一致性的同义词。它是课堂上被教授最多的一致性协议，大多数一致性的实现也是以它为起点。Paxos 首先定义了能在单个决策问题（例如单个复制日志条目）上达成一致性的协议。我们将这个子集称为  <em>single-decree Paxos</em> 。然后 Paxos 组合该协议的多个实例去实现一系列决策，比如日志（<em>multi-Paxos</em>）。Paxos 保证了安全性和活性，它也支持改变集群中的成员，它的安全性也已经被论证了，并且大多数情况下都是高效的。</p>
+<p>美中不足的是，Paxos 有两个严重的缺点：</p>
+<h3 id="Paxos-非常难理解">Paxos 非常难理解</h3>
+<p>众所周知，Paxos 非常晦涩难懂，除非下了很大的功夫，很少有人能够成功理解它。因此，尽管目前已经有几个尝试希望将 Paxos 解释得通俗易懂一些，而且这些解释都集中在 single-decree Paxos，但是它们还是很难懂。在对 NSDI 2012 参会者的非正式调查中，我们发现很少人会喜欢 Paxos，即使是经验丰富的研究人员。我们自己也一直在跟 Paxos 作斗争，我们也无法完全理解整个 Paxos 协议，直到阅读了几个更简单的描述和自己设计了替代 Paxos 的协议，我们才对 Paxos 有了比较深刻的理解。但这个过程，花了将近一年。我们推测 Paxos 这么晦涩难懂，主要是因为作者选择了 Single-decree Paxos 来作为基础。Single-decree Paxso 非常搞人：它分为两个阶段，但是并没有对这两个阶段进行简单直观的说明，而且这两个阶段也不能分开了单独理解，所以使用者将就很难理解为什么该算法能起作用。Multi-Paxos 的合成规则又增加了许多复杂性。我们相信，对多个决定（日志，并非单个日志条目）达成一致性的总体问题可以用其他更直接和更明显的方式进行分解。</p>
+<h3 id="Paxos-没有为实际实现提供一个良好的基础">Paxos 没有为实际实现提供一个良好的基础</h3>
+<p>其中一个原因是没有广泛认同的针对 Multi-Paxos 的算法。Lamport 的描述主要是针对 signle-decree Paxos 的，他描述了针对 multi-Paxos 的可能方法，但缺少了很多细节。目前已经有人在尝试具体化和优化 Paxos，但是这些尝试都互不相同并且它们跟 Lamport 描述的也不尽相同。虽然像 Chubby 这样的系统已经实现了类 Paxos 算法，但是他们并没有透露出很多的实现细节。</p>
+<p>此外，Paxos 的架构对于构建实际系统来说其实是一个糟糕的设计，这是 single-decree Paxos 分解的另一个结果。举个例子，这对于独立选择地日志条目的集合，然后再将它们合并到顺序日志当中没有任何好处，这只会增加复杂性。围绕日志来设计系统是更加简单和高效的方法，其中新条目按受约束的顺序依次附加。另外一个问题是 Paxos 在其核心使用了 <strong>对称对等方法</strong> （尽管它最终表明了这会被用作一种性能优化的弱领导模式）。这在只有一个决策的情况下是有意义的，但是尽管如此，还是很少有实际系统采用了这种方法。如果有一系列的决策需要制定，更简单和更快速的方法应该是首先选择一个 leader，然后由 leader 去协调这些决策。</p>
+<p>因此，按照 Paxos 来实现的实际系统往往跟 Paxos 相差很大。几乎所有的实现都是从 Paxos 开始，然后在实现的过程中发现了一系列的难题，在解决难题的过程中，开发出了跟 Paxos 完全不一样的架构。这样既费时又容易出错，而且 Paxos 本身的晦涩难懂又使得问题变得更加严重。Paxos 公式可能是证明其正确性的一个很好的公式，但真正的实现与 Paxos 又相差很大，这证明了它其实没有什么价值。来自 Chubby 作者的评论非常典型：在 Paxos 算法描述和现实实现系统之间有着巨大的鸿沟，如果一直按照 Paxos 算法走下去，最终的系统往往会建立在一个还未被证明的协议之上。</p>
+<p>综合上述问题，我们觉得 Paxos 在教学端和系统构建端都没有提供一个良好的基础。考虑到共识性在大规模软件系统中的重要性，我们决定去尝试一下看看能不能设计一个替代 Paxos 并且具有更好特性的共识算法。</p>
+<p>Raft 算法就是尝试克服以上缺点，替代 Paxos 的一致性算法。</p>
+<h2 id="4-为了可理解性的设计">4. 为了可理解性的设计</h2>
+<p>设计 Raft 的初衷：</p>
+<ul>
+<li>提供⼀个<strong>完整的实际的系统实现基础</strong>：大大减少开发者的工作</li>
+<li>任何情况下都是<strong>安全的</strong></li>
+<li>大多数的情况下都是<strong>可用的</strong></li>
+<li>大部分操作必须是<strong>高效的</strong></li>
+<li><strong>可理解性</strong>：（最重要、最大挑战）保证大多数人都可以容易理解。</li>
+<li>能够让人形成<strong>直观的认识</strong>：使系统的构建者能够在现实中进行必然的扩展。</li>
+</ul>
+<p>在设计 Raft 算法的过程中，很多情况下我们需要在多个备选方案下做出抉择。在这种情况下，我们往往会基于可理解性来进行抉择：</p>
+<ul>
+<li>解释各个备选方案的难度有多大？例如，它的状态空间有多复杂？它是否具有难以理解的含义？</li>
+<li>对于一个读者来说，完成理解这个方案和方案中的各种含义是否简单？</li>
+</ul>
+<p>我们意识到这一的分析具有高度的主观性。所以我们采取了两种通用的措施来解决这个问题。</p>
+<ol>
+<li>第一个措施就是众所周知的 <strong>问题分解</strong> ：只要有可能，我们就将问题划分成几个相对独立地解决、解释和理解的子问题。例如，Raft 算法被我们划分成 leader 选举、日志复制、安全性和成员变更几个部分。</li>
+<li>第二个措施是 <strong>通过减少状态的数量来简化状态空间</strong> ，尽可能地使系统变得更加连贯和尽可能地消除不确定性。很明显的一个例子就是，所有的日志都是不允许有空挡的，并且 Raft 限制了日志之间可能不一样的方式。尽管在大多数情况下我们都极力去消除不确定性，但是在某些情况下不确定性却可以提高可理解性。一个重要的例子就是随机化方法，它们虽然引入了不确定性，但是它们往往能够通过以类似的方式处理所有可能的选择来减少状态空间（随便选，没关系）。所以我们使用了随机化来简化 Raft 中的 leader election 算法。</li>
+</ol>
+<h2 id="5-Raft-一致性算法">5. Raft 一致性算法</h2>
+<p>Raft 是一种用来管理第2节中提到的复制日志（replicated log）的算法</p>
+<p>Raft算法的关键特性：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSn0Ve0"><img src="https://s1.ax1x.com/2023/01/11/pSn0Ve0.png" srcset="/img/loading.gif" lazyload alt="pSn0Ve0.png"></a></p>
+<p>Raft算法的简略版：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSnwXLt"><img src="https://s1.ax1x.com/2023/01/11/pSnwXLt.jpg" srcset="/img/loading.gif" lazyload alt="pSnwXLt.jpg"></a></p>
+<p>Raft 选举一个  <strong>Leader</strong> ，给予管理所有复制日志的权限，由此实现一致性。</p>
+<p>Leader 从客户接受指令，写入日志，复制到其他 Backup Server 上，在保证安全性时通知其他 Server 根据日志执行指令更新状态机。</p>
+<p>Leader 大大简化了对复制日志的管理。leader 可以自行决定新日志写入位置，数据都从 Leader 流向其他 Server。<strong>当 Leader 宕机，从其他 Server 中选举一个新 Leader。</strong></p>
+<p>Raft 将一致性问题分解为 <strong>三个子问题</strong> ：</p>
+<ul>
+<li><strong>Leader election（领导选举）</strong>：一个 leader 倒下之后，一定会有一个新的 leader 站起来。</li>
+<li><strong>Log replication（日志复制）</strong>：leader 必须接收来自客户端的日志条目然后复制到集群中的其他节点，并且强制其他节点的日志和自己的保持一致。</li>
+<li><strong>Safety（安全性）</strong>：Raft 中安全性的关键是状态机的安全性：只要有任何服务器节点将一个特定的日志条目应用到它的状态机中，那么其他服务器节点就不能在同一个日志索引位置上存储另外一条不同的指令。此处还涉及一个额外的选举机制上的限制。</li>
+</ul>
+<h3 id="5-0-Raft算法的关键特性与简略说明">5.0 Raft算法的关键特性与简略说明</h3>
+<h4 id="State（状态）">State（状态）</h4>
+<p><strong>所有服务器上持久存在的：</strong></p>
+<p>（在响应RPCs之前已在稳定存储上进行更新）</p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>currentTerm</td>
+<td>服务器最后⼀次知道的最新的任期号（初始化为 0，持续递增）</td>
+</tr>
+<tr>
+<td>votedFor</td>
+<td>在当前任期获得选票的候选人的id（如果没有则为 null）</td>
+</tr>
+<tr>
+<td>log[]</td>
+<td>日志条目集；每⼀个条目包含⼀个用户状态机执行的指令，和收到时的任期号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>所有服务器上经常变的：</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commitIndex</td>
+<td>已知的最大的已经被提交的日志条目的索引值</td>
+</tr>
+<tr>
+<td>lastApplied</td>
+<td>最后被应用到状态机的日志条目索引值（初始化为 0，持续递增）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>在leader里面经常改变的：</strong></p>
+<p>（选举后重新初始化）</p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nextIndex[]</td>
+<td>对于每⼀个服务器，需要发送给他的下⼀个日志条目的索引值（初始化为领导人最后索引值加1）</td>
+</tr>
+<tr>
+<td>matchIndex[]</td>
+<td>对于每⼀个服务器，已经复制给他的日志的最高索引值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="AppendEntries-RPC（追加待同步日志-RPC）">AppendEntries RPC（追加待同步日志 RPC）</h4>
+<p>由 Leader 负责调用来复制日志（5.3）；也会用作心跳机制（5.2）</p>
+<p><strong>传入参数：</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>term</td>
+<td>Leader的任期号</td>
+</tr>
+<tr>
+<td>leaderId</td>
+<td>Leader的 id，以便于跟随者重定向请求</td>
+</tr>
+<tr>
+<td>prevLogIndex</td>
+<td>新的日志条目紧随之前的索引值</td>
+</tr>
+<tr>
+<td>prevLogTerm</td>
+<td>prevLogIndex 条目的任期号</td>
+</tr>
+<tr>
+<td>entries[]</td>
+<td>准备存储的日志条目（表示心跳时为空；⼀次性发送多个是为了提高效率）</td>
+</tr>
+<tr>
+<td>leaderCommit</td>
+<td>Leader已经提交的日志的索引值</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值：</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>term</td>
+<td>当前的任期号，用于Leader去更新自己</td>
+</tr>
+<tr>
+<td>success</td>
+<td>跟随者包含了匹配上 prevLogIndex 和 prevLogTerm 的日志时为真</td>
+</tr>
+</tbody>
+</table>
+<p><strong>接收者实现：</strong></p>
+<ol>
+<li>如果 term &lt; currentTerm 就返回 <code>false</code> （5.1 节）</li>
+<li>如果日志在 <code>prevLogIndex</code> 位置处的日志条目的任期号和 <code>prevLogTerm</code> 不匹配，则返回 <code>false</code> （5.3 节）</li>
+<li>如果现有的日志条目和新的产⽣冲突（索引值相同但是任期号不同），删除现有的和之后所有的条目 （5.3 节）</li>
+<li>追加日志中尚未存在的任何新条目</li>
+<li>如果 <code>leaderCommit</code> &gt; <code>commitIndex</code> ，令 commitIndex = min(leaderCommit, 新日志条目索引)</li>
+</ol>
+<h4 id="RequestVote-RPC（请求投票-RPC）">RequestVote RPC（请求投票 RPC）</h4>
+<p>由候选人调用用来征集选票（5.2 节）</p>
+<p><strong>传入参数</strong> ：</p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>term</td>
+<td>候选人的任期号</td>
+</tr>
+<tr>
+<td>candidateId</td>
+<td>请求选票的候选人的 Id</td>
+</tr>
+<tr>
+<td>lastLogIndex</td>
+<td>候选人的最后日志条目的索引值</td>
+</tr>
+<tr>
+<td>lastLogTerm</td>
+<td>候选人最后日志条目的任期号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回值</strong> ：</p>
+<table>
+<thead>
+<tr>
+<th>状态变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>term</td>
+<td>当前任期号，以便于候选人去更新自己的任期号</td>
+</tr>
+<tr>
+<td>voteGranted</td>
+<td>候选人赢得了此张选票时为 true</td>
+</tr>
+</tbody>
+</table>
+<p><strong>接收者实现：</strong></p>
+<ol>
+<li>如果 term &lt; currentTerm 返回 <code>false</code> （5.2 节）</li>
+<li>如果 <code>votedFor</code> 为 <code>null</code> 或者为 <code>candidateId</code>，并且候选人的日志至少和接受者一样新，那么就给它投票（5.2 节，5.4 节）</li>
+</ol>
+<h4 id="Rules-for-Servers（服务器的规则）">Rules for Servers（服务器的规则）</h4>
+<p><strong>所有服务器</strong> ：</p>
+<ul>
+<li>如果 commitIndex &gt; lastApplied，那么就将 <code>lastApplied</code> 加一，并把 <code>log[lastApplied]</code> 应用到状态机中（5.3 节）</li>
+<li>如果接收到的 RPC 请求或响应中，任期号 T &gt; currentTerm，那么就令 <code>currentTerm</code> 等于 <code>T</code>，并切换状态为 Follower（5.1 节）</li>
+</ul>
+<p><strong>Followers（跟随者）（5.2 节）：</strong></p>
+<ul>
+<li>响应来自候选人和 Leader 的 RPC 请求</li>
+<li>如果选举超时，都没有收到现任 Leader 的 AppendEntries RPC，也没有给候选人投票：则自己转变成候选人。</li>
+</ul>
+<p><strong>Candidates（候选人）（5.2 节）：</strong></p>
+<ul>
+<li>在转变成候选人后就立即开始选举过程
+<ul>
+<li>自增当前的任期号（<code>currentTerm</code>）</li>
+<li>给自己投票</li>
+<li>重置选举超时计时器</li>
+<li>发送 RequestVote RPC 给其他所有服务器</li>
+</ul>
+</li>
+<li>如果接收到大多数服务器的选票，那么就变成 Leader</li>
+<li>如果接收到来自新的 Leader 的 AppendEntries RPC，转变成 follower</li>
+<li>如果选举过程超时，再次发起一轮选举</li>
+</ul>
+<p><strong>Leader（领导人）：</strong></p>
+<ul>
+<li>一旦成为Leader：发送初始的空 AppendEntries RPCs（心跳）给每个服务器；在空闲期间重复发送，防止选举超时（5.2 节）</li>
+<li>如果接收到来自客户端的请求：附加条目到本地日志中，在条目被应用到状态机后响应客户端（5.3 节）</li>
+<li>如果一个 follower 最后日志条目的索引值 index ≥ nextIndex，那么：使用 AppendEntries RPC 发送从 <code>nextIndex</code> 开始的所有日志条目：
+<ul>
+<li>如果成功：更新相应跟随者的 <code>nextIndex</code> 和 <code>matchIndex</code></li>
+<li>如果 AppendEntries 因为日志不一致而失败，减少 <code>nextIndex</code> 并重试</li>
+</ul>
+</li>
+<li>如果存在一个满足 N &gt; commitIndex 的 N，并且大多数的 matchIndex[i] ≥ N 成立，并且 log[N].term == currentTerm 成立，那么令 commitIndex = N （5.3 和 5.4 节）</li>
+</ul>
+<h4 id="关键特性">关键特性</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选举安全</td>
+<td>对于一个给定的任期号，最多只会有一个 Leader 被选举出来（5.2 节）</td>
+</tr>
+<tr>
+<td>Leader 只追加</td>
+<td>Leader 绝对不会删除或者覆盖自己的日志，只会增加（5.3 节）</td>
+</tr>
+<tr>
+<td>日志匹配特性</td>
+<td>如果两个日志在相同的索引位置的日志条目的任期号相同，那么我们就认为这个日志从头到这个索引位置之间全部完全相同（5.3 节）</td>
+</tr>
+<tr>
+<td>领导人完全特性</td>
+<td>如果某个日志条目在某个任期号中已经被提交，那么这个条目必然出现在更大任期号的所有领导人中（5.4 节）</td>
+</tr>
+<tr>
+<td>状态机安全特性</td>
+<td>如果一个 Leader 已经在给定的索引值位置的日志条目应用到状态机中，那么其他任何的服务器在这个索引位置不会提交一个不同的日志（5.4.3 节）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-1-Raft-基础">5.1 Raft 基础</h3>
+<p>一个 Raft 集群通常包含 5 个节点，能容忍 2 个节点宕机。</p>
+<p><strong>Raft 集群的服务器都处于三个状态之一：</strong></p>
+<ul>
+<li><strong>Leader</strong> <strong>：只有一个，响应所有客户端请求</strong></li>
+<li><strong>Follower</strong> <strong>：其余都是，不发送只响应 Leader 或 Candidate 的请求。若客户向其请求，会重定向到 Leader。</strong></li>
+<li><strong>Candidate</strong> <strong>：选举新 Leader 时使用（5.2）</strong></li>
+</ul>
+<p><img src="https://pic3.zhimg.com/80/v2-b37458496c3b52b1b92f3ca38dd7b5ee_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>服务器状态。Follower 只响应来自其他服务器的请求。如果 Follower 接收不到消息，那么他就会变成 Candidate 并发起一次选举。获得集群中大多数选票的 Candidate 将成为 Leader。在一个任期内，Leader 保持身份直到自己宕机。</p>
+<p>Raft 把时间分割成任意长度的 <strong>任期（term）</strong> ，用 <strong>连续递增整数编号</strong> ，任期开始即选举。Raft 保证一个任期只有一个 Leader。在某些情况下，一次选举无法选出 leader，这个时候这个任期会以没有 leader 而结束。同时一个新的任期（包含一次新的选举）会很快重新开始。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-292861fa0ecc898d223b59fafd239a04_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>时间被划分成一个个的任期（term），每个任期开始都是一次选举。在选举成功后，领导人会管理整个集群直到任期结束。有时候选举会失败，那么这个任期就会没有领导人而结束。任期之间的切换可以在不同的时间不同的服务器上观察到。</p>
+<p>任期编号在 Raft 算法中充当逻辑时钟，每个节点都储存当前任期号， <strong>节点之间通信会交换任期号</strong> ，当一个节点：</p>
+<ul>
+<li>当前任期号比其他节点小，更新自己的任期号</li>
+<li>Leader 或 Candidate 发现自己任期号过期，立即转为 Follower（也就是放弃成为Leader的机会）</li>
+<li>收到过期的任期号请求，拒绝请求。</li>
+</ul>
+<p><strong>节点之间通信使用远程过程调用（RPCs）</strong> ，包含两种（第7节还增加了<strong>第三种传送快照</strong>的）：</p>
+<ul>
+<li><strong>请求投票（RequestVote） RPCs</strong>：Candidate 在选举期间发起（5.2）</li>
+<li><strong>追加条目（AppendEntries）RPCs</strong>：Leader 发起，用于复制日志和心跳（5.3）</li>
+</ul>
+<p>当节点没有及时的收到 RPC 的响应时，会进行重试，而且节点之间都是以并行的方式发送 RPC 请求，以此来获得更好的性能。</p>
+<h3 id="5-2-Leader-选举">5.2 Leader 选举</h3>
+<ul>
+<li><strong>服务器启动时所有节点都是 Follower</strong> 。
+<ul>
+<li>Follower 一段时间没接收到消息即 <strong>选举超时</strong> ，发起新选举。</li>
+<li>Leader 周期性发送 <strong>心跳包（不含日志的 AE RPC）</strong> 给所有 Follower 来维持自己地位。</li>
+<li>Follower 只要能收到 Leader 或 Candidate 的 RPC 就保持当前状态。</li>
+</ul>
+</li>
+<li><strong>开始选举</strong> 。Follower 自增 <code>term</code>（任期号）并转为 Candidate，并行向其他节点发送 RV RPC 等待给自己投票。
+<ul>
+<li>等待时 <strong>收到 Leader 的心跳</strong> ，且心跳中的任期不小于自己的当前任期，则自己变为 Follower。若小于自己的任期，则拒绝并保持 Candidate。</li>
+<li>如果同时出现多个 Candidate，选票可能被瓜分， <strong>没有人得到多数选票</strong> 。则等待超时后重新选举。</li>
+<li>Raft 使用 <strong>随机选举超时时间</strong> （例如 150-300 毫秒）防止多次无人上任。每个节点 <strong>开始选举时重制超时时间</strong> 。可以让多数情况只有一个节点超时，进入下一轮赢得选举。</li>
+</ul>
+</li>
+<li><strong>获得多数选票的 Candidate 变为 Leader</strong> 。
+<ul>
+<li>每个节点在一个任期内，按先来先服务（5.4节还有额外限制） <strong>最多为一个 Candidate 投票</strong> 。</li>
+<li>成为 Leader 后向其他节点发送心跳建立权威。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-3-日志复制">5.3 日志复制</h3>
+<h4 id="5-3-1-Leader-日志复制流程">5.3.1 Leader 日志复制流程</h4>
+<ul>
+<li>把客户端请求指令追加到日志，然后并行发 AE RPC 给其他节点让其追加日志。</li>
+<li>在日志被其他节点<strong>安全复制</strong>后（多数节点已复制），Leader 应用该指令到状态机并返回结果给客户端。</li>
+<li>如果中途出现问题，Leader 会不断重复 AE RPC（甚至已回复客户端后）直到所有 Follower 都追加了该日志。</li>
+</ul>
+<h4 id="5-3-2-日志提交">5.3.2 日志提交</h4>
+<ul>
+<li>一条日志包含<strong>当前任期号</strong>和 <strong>一条指令</strong> ，也都有一个整数<strong>索引</strong>来表明它在日志中的位置。</li>
+<li>Leader 决定什么时候能把日志安全应用到状态机，这样的日志条目为 <strong>已提交</strong> （ <strong>committed</strong> ）。Raft 保证所有已提交日志都是持久化并最终被所有状态机执行。</li>
+<li>Leader 把日志设为已提交后，还需要 <strong>通知 Follower 应用日志到状态机</strong> ，这个通知通过下一次 AE RPC（也许是心跳）附加 <code>commitIndex</code>。</li>
+<li>日志条目<strong>复制到大多数节点上</strong>时，就是 <strong>已提交</strong> ，且 Leader 中当前条目 <strong>之前的日志也都已提交</strong> ，包括其他 Leader 创建的条目（5.4）。<strong>Leader 记录最大已提交索引</strong> <code>leaderCommit</code>，并放进所有 AE PRCs，其他节点由此得知 Leader 已提交位置，并按日志顺序应用到自己的状态机。</li>
+</ul>
+<p><img src="https://pic4.zhimg.com/80/v2-6d1bfe856121e8b633625c2e4fb3e75f_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>日志由序号标记的条目组成。每个条目都包含创建时的任期号和一个状态机需要执行的指令。一个条目当可以安全的被应用到状态机中去的时候，就认为是可以提交了。</p>
+<h4 id="5-3-3-日志一致性">5.3.3 日志一致性</h4>
+<p>这样 Raft 能维持 <strong>日志的一致性</strong> （<strong>日志匹配特性</strong>）：</p>
+<ul>
+<li>在不同的日志中的两个条目拥有 <strong>相同的索引和任期号</strong> ，那么他们 <strong>存储了相同的指令</strong> 。</li>
+<li>在不同的日志中的两个条目拥有 <strong>相同的索引和任期号</strong> ，那么他们 <strong>之前的所有日志条目也全部相同</strong> 。</li>
+<li><strong>追加日志的一致性检查</strong> ：每次新条目 AE RPC 给 Follower，如果上一条索引任期不一致，则拒收新条目。所以 <strong>一旦 AE RPC 返回成功，说明 Follower 所有日志和 Leader 相同</strong> 。</li>
+</ul>
+<h4 id="5-3-4-日志不一致情况">5.3.4 日志不一致情况</h4>
+<p>正常情况下一致性检查不会失败，能一直保持一致。 <strong>但是 Leader 在未完全复制日志时宕机会使日志不一致</strong> 。例如 Follower 可能没有新 Leader 有的条目，也可能有新 Leader 没有的条目，或者都有，如下图。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4729931f5622ce01028d68169117ddaa_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>当一个领导人成功当选时，跟随者可能是任何情况（a-f）。每一个盒子表示是一个日志条目；里面的数字表示任期号。跟随者可能会缺少一些日志条目（a-b），可能会有一些未被提交的日志条目（c-d），或者两种情况都存在（e-f）。</p>
+<p>例如，场景 f 可能会这样发生：f 对应的服务器在任期2的时候是 Leader，它追加了一些日志条目到自己的日志中，一条日志还没提交就宕机了，但是它很快就恢复重启了，然后再在任期3重新被选举为 Leader，又追加了一些日志条目到自己的日志中，在这些任期2和任期3的日志还没有被提交之前，该服务器又宕机了，并且在接下来的几个任期里一直处于宕机状态。</p>
+<h4 id="5-3-5-不一致的恢复">5.3.5 不一致的恢复</h4>
+<p>Raft 中处理这种不一致方法是， <strong>Leader 强制 Follower 复制自己的日志，即覆盖 Follower 中所有冲突日志</strong> （安全性在5.4）。</p>
+<p>Leader 找到最后和 Follower 一致的地方，删除 Follower 之后的冲突日志，发送自己的日志附加给 Follower。这些操作 <strong>在 AE RPCs 一致性检查时完成</strong> ：</p>
+<ul>
+<li>Leader 对每个 Follower 维护下一个需发送的条目索引 <code>nextIndex</code>，在刚上任时初始化为最新日志索引+1。</li>
+<li><strong>Follower 日志不一致则拒绝 AE PRC</strong> ，Leader <strong>减小</strong> <code>nextIndex</code> <strong>重试直到成功</strong> ，Follower 删除冲突日志并追加 Leader 日志。日志即保持一致。<br>
+这里可以优化，Follower 拒绝时返回冲突任期号的最早地址，Leader 下次就可以越过同任期号的冲突。但是此优化不一定有必要，因为实际很少发生。</li>
+</ul>
+<p>所以  <strong>Leader 无需特殊操作就能恢复一致性</strong> ，Leader 也从不会覆盖删除自己的日志（图3 Leader 只追加特性）。</p>
+<p>日志复制机制展示了一致性特征：</p>
+<ul>
+<li>只要<strong>大部分的机器是工作的</strong>就能正常复制日志和应用保证可用性；</li>
+<li>一条指令大多数节点可一轮 RPC 完成，<strong>小部分慢节点不影响整体性能</strong>。</li>
+</ul>
+<h3 id="5-4-安全性">5.4 安全性</h3>
+<p>目前为止所讨论的机制并不能充分地保证每一个状态机会按相同的顺序执行相同的指令。比如说，一个 follower 可能会进入不可用状态，在此期间，leader 可能提交了若干的日志条目， <strong>然后这个 follower 可能被选举为新的 leader 并且用新的日志条目去覆盖这些日志条目</strong> 。这样就会造成不同的状态机执行不同的指令的情况。</p>
+<p>故需 <strong>增加选举限制</strong> ，保证图 3 中的领导人完整性，即 <strong>Leader 一定包含所有已提交日志条目</strong> 。</p>
+<h4 id="5-4-1-选举限制">5.4.1 选举限制</h4>
+<p>某些一致性算法中需要额外复杂机制把缺少的日志传给 Leader。但是 Raft 保证 Leader 本来就有所有日志，所有日志都是单向从 Leader 传出去。</p>
+<p>Raft 在等待投票时，RV PRC 包含 Candidate 的日志信息， <strong>投票人会拒绝日志没有自己新的 Candidate 的投票请求</strong>。</p>
+<p>投票人 <strong>比较最后一条日志的索引值和任期号</strong> ：</p>
+<ul>
+<li>任期号不同，则任期号大的比较新</li>
+<li>任期号相同，索引值大的（日志较长的）比较新</li>
+</ul>
+<h4 id="5-4-2-提交之前任期内的日志条目">5.4.2 提交之前任期内的日志条目</h4>
+<p>（本小节是一种错误情况）</p>
+<p>前面介绍，一旦当前任期内的某个日志条目以及存储到过半的服务器节点上，Leader 就知道此日志在自己任期已提交。</p>
+<p>但  <strong>Leader 可能在提交之前崩溃</strong> ，新 Leader 不知道保存在多数节点的的条目是否提交。例如下图，存在多数节点的老日志仍可能被覆盖。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-ff671ae206a55470d2814e77e5eaed12_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>在(a)中，S1是Leader，复制了索引位置2的日志条目给S2，这时还没过半。</li>
+<li>在(b)中，S1宕机了，然后S5在任期3中通过S3、S4和它自己的投票赢得了选举，然后从客户端接收了一条不一样的日志条目放在了索引位置2上面。</li>
+<li>在©中，S5宕机了，S1重启，此时S1和S2都可能成为leader，假如 S1贏得选举，然后 S1继续复制它之前在任期2中放在索引2上的日志条目。此时，来自任期2的那条日志已经被复制到了集群中过半的节点上了，但是它还没被提交。</li>
+<li>情况一，在(d)中，假如S1在提交日志之前宕机了，然后S5重启，这个时候S5最后的日志条目上的任期号比S2、S3和S4都大，所以它可以获得到S2、S3、S4和自己的投票成功当选leader。S5当选leader后，它就继续复制在任期3期间存储在索引位置2上的日志条目，那么该日志条目就会覆盖之前引复制在节点S1、S2、S3索引2处的日志中 。</li>
+<li>情况二， 在(e)中，如果在宕机之前，S1在自己任期内复制了日志条目到人多数机器上。那么S5就不可能贏得选举，这种情况下，之前的所有日志也被提交了。</li>
+</ul>
+<p>所以 Raft 对日志提交条件增加一个<strong>额外限制</strong>： <strong>Leader 在当前任期至少有一条日志被提交</strong> （即超过半数节点复制），如图 8 中的(e)所示。而©中并没有提交4任期的日志。</p>
+<p>所以<strong>新上任的 Leader 在接受客户写入命令前先提交一个 no-op（空命令）</strong>，携带自己任期号的日志复制到多数节点，这样能保证选举限制成立。</p>
+<h4 id="5-4-3-安全性证明">5.4.3 安全性证明</h4>
+<p><img src="https://pic3.zhimg.com/80/v2-387f6e83ddbeaadbe549a262bae5d166_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>假设：</strong></p>
+<p>假设任期 T 的 leaderT 在任期内提交了一个日志条目，但是该日志条目没有存在未来某些任期的 leader 中，假设 U 是大于 T 的没有存储该日志条目的最小任期号，处在任期 U 的 leader 称为 leaderU。</p>
+<p><strong>反证法论证：</strong></p>
+<ol>
+<li>因为 leader 从来不删除或重写自己的日志条目，所以如果一个已提交的日志要做到不存在未来的 leaderU 中的话，那么它只可能在 leaderU 选举的过程中被丢失。</li>
+<li>leaderT 将该日志复制给了集群中过半的节点，leaderU 从集群中过半的节点得到了投票。因此，至少有一个节点（这里称它为 voter）同时接收了来自 leaderT 的日志条目并且给 leaderU 投票了。</li>
+<li>voter 必然在给 leaderU 投票之前就已经接收了这个已经提交的日志条目了。否则，它就会拒绝来自 leaderT 的 AppendEntries RPC 请求，因为如果它在给 leaderU 投票之后再接收条目的话，那么它的当前任期号会比 T 大。<br>
+译者注：因为要举行 Leader election 的话需要开一轮新的任期，这个时候前一轮任期已经结束了。我们这里假设了 T &lt; U，上述所说的已提交日志条目是在任期 T 中的，如果 voter 先投票的话，那么就说明它已经进入了任期 U 了，而 U &gt; T，voter 是不可能接受 leaderT 的 AppendEntries 请求的。</li>
+<li>而且，voter 在给 leaderU 投票的时候，它依旧保有该日志条目，因为任何 U、T 之间的 leader 都包含该日志条目（因为我们前面假设了 U 是大于 T 的没有存储该日志条目的最小任期号），而且 leader 从来不会删除条目，并且 follower 只有再跟 leader 冲突的时候才会删除条目。</li>
+<li>该投票者把自己的选票投给 leaderU 的时候，leaderU 的日志至少跟 voter 一样新（可以更新），这就导致了以下的两个矛盾之一了。</li>
+<li><strong>第一个矛盾：如果 voter 和 leaderU 最后一个日志条目的任期号相同的话，那么 leaderU 的日志至少和 voter 的一样长，所以 leaderU 的日志一定包含 voter 日志中的所有日志条目。 这是一个矛盾，因为 voter 包含了该已提交的日志条目，所以 leaderU 必定也包含该日志条目，而前面我们假设了 leaderU 是不包含的，这就产生了矛盾。</strong></li>
+<li><strong>第二个矛盾：如果不是上面描述的情况的话，那么 leaderU 最后一个日志条目的任期号必然需要比 voter 的更大。此外，它还比 T 要大，因为 voter 拥有在任期号为 T 提交的日志条目，所以 voter 最后一个日志条目的任期号至少为 T。创建了 leaderU 的最后一个日志条目的之前的 leader 一定已经包含了该已被提交的日志条目（因为我们上面假设了 leaderU 是第一个没有该日志条目的 leader）。所以，根据日志匹配特性，leaderU 一定也包含了该已被提交的日志条目，这样也产生了矛盾</strong> 。</li>
+<li>上述讨论就证明了假设是不成立的。因此，所有比 T 大的任期的 leader 一定包含了任期 T 中提交的所有日志条目。</li>
+<li>日志匹配特性保证了未来的 leader 也会包含被间接提交的日志条目，如图中的索引 2。</li>
+</ol>
+<p>通过 leader 的完整性特性，我们就可以证明状态机安全特性了，即如果某个节点已经将某个给定的索引处的日志条目应用到自己的状态机里了，那么其他的节点就不会在相同的索引处应用一个不同的日志条目。在一个节点应用一个日志条目到自己的状态机中时，它的日志和 leader 的日志从开始到该日志条目都是相同的，并且该日志条目必须被提交。现在考虑一个最小的任期号，在该任期中任意节点应用了一个给定的最小索引上面的日志条目，那么 Log 的完整性特性就会保证该任期之后的所有 leader 将存储相同的日志条目，因此在后面的任期中应用该索引上的日志条目的节点会应用相同的值。所以，状态机安全特性是可以得到保证的。</p>
+<p>因为 Raft 要求服务器节点按照日志索引顺序应用日志条目，再加上状态机安全特性，这样就意味着我们可以保证所有的服务器都会按照相同的顺序应用相同的日志条目到自己的状态机中了。</p>
+<h3 id="5-5-Follower-和-Candidate-崩溃">5.5 Follower 和 Candidate 崩溃</h3>
+<p>前面都是讨论 Leader 崩溃，Follower和 Candidate 崩溃后的处理方式简单的多，<strong>Raft 只需要不断重试发送 RPCs</strong> 即可，崩溃重启后再执行 RPC。</p>
+<p>Raft 的 RPCs 都是幂等的，重试不会产生问题。如果 Follower 发现 AE RPC 中的日志已经有了，它直接忽略这个请求。</p>
+<h3 id="5-6-时间和可用性">5.6 时间和可用性</h3>
+<p>Raft 的要求之一就是 <strong>安全性不能依赖时间</strong> ：整个系统不能因为某些事件运行的比预期快一点或者慢一点就产生了错误的结果。</p>
+<p>但可用性不可避免要依赖时间，最关键在于 Leader 选举，需要满足如下时间要求：</p>
+<p>broadcastTime&lt;&lt;electionTimeout&lt;&lt;MTB</p>
+<ul>
+<li><strong>广播时间（broadcastTime）</strong>：一个节点并行发送 RPCs 给其他节点并接收响应的平均时间
+<ul>
+<li>应比选举超时时间小一个数量级才能保证稳定的心跳。</li>
+<li>广播时间大约是 0.5 毫秒到 20 毫秒，取决于存储的技术</li>
+</ul>
+</li>
+<li><strong>选举超时时间（electionTimeout）</strong>：选举超时时间限制。随机化使之难以瓜分选票。
+<ul>
+<li><strong>只有选举超时时间是我们自己选择的</strong> 。可能需要在 10 毫秒到 500 毫秒之间。</li>
+<li>应比平均故障时间小几个数量级。Leader 崩溃后系统将在一个选举超时时间中不可用，此情况应很少出现。</li>
+</ul>
+</li>
+<li><strong>平均故障间隔时间（MTBF）</strong>：一个节点两次故障之间的平均时间。
+<ul>
+<li>大多数服务器平均故障时间在几个月甚至更长，很容易满足时间的需求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-集群成员变化">6. 集群成员变化</h2>
+<p>到目前为止，我们都假设集群的配置（参与共识算法的服务器节点集合）是固定不变的。但是在实际情况中，我们有时候是需要去改变集群配置的，比如说在服务器崩溃的时候去更换服务器或者是更改副本的数量。尽管可以通过下线整个集群，更新所有配置，然后重启整个集群的方式来实现这个需求，但是这会导致集群在更改过程中是不可用的。另外，如果这个过程中存在一些操作需要人工干预，那么就会有操作失误的风险。为了避免这些问题，我们决定将<strong>配置变更自动化</strong>并将其纳入到 Raft 的共识算法中来。</p>
+<h3 id="6-1-两阶段提交：Joint-Consensus">6.1 两阶段提交：Joint Consensus</h3>
+<p>为了让配置修改机制安全，在转换的过程中同一个任期里 <strong>不能够存在两个 Leader 同时当选</strong> 。问题在于， <strong>一次性自动的转换所有服务器是不可能的</strong> ，任何切换方法都是不安全的，所以在转换期间 <strong>整个集群可能分裂成两个独立的多数</strong> 。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-526f64e7b228ef9c0d4a190450635511_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>直接从一种配置转到新的配置是十分不安全的，因为各个机器可能在不同时候进行转换。在中间位置 Server1 可以通过自身和 Server2 的选票成为 leader（满足旧配置下收到大多数选票的原则）；Server3 可以通过自身和 Server4、Server5 的选票成为 leader（满足新配置线，即集群有 5 个节点的情况下的收到大多数选票的原则）；此时整个集群可能在同一任期中出现了两个 leader，这和 Raft 协议是违背的。</p>
+<p>为了保证安全性，配置更改必须使用 <strong>两阶段方法</strong> 。有些系统在第一阶段停掉旧的配置，集群就不能处理客户端请求；然后在第二阶段在启用新的配置。</p>
+<p>在 Raft 中，集群先切换到一个过渡性配置，我们称之为  <strong>Joint Consensus</strong> （ <strong>联合共识</strong> ）；一旦联合共识被提交，那么系统就切换到新的配置上。</p>
+<p><strong>Joint Consensus</strong> 是老配置和新配置的结合：</p>
+<ul>
+<li>日志条目被复制给集群中新、老配置的所有服务器。</li>
+<li>新、旧配置的服务器都可以成为领导人。</li>
+<li>达成一致（针对选举和提交）需要 <strong>分别在两种配置上获得大多数的支持</strong> 。</li>
+</ul>
+<p><strong>Joint Consensus</strong> 允许独立的服务器在不影响安全性的前提下，在不同的时间进行配置转换，还可以让集群在配置转换的过程中依然响应客户端的请求。</p>
+<h3 id="6-2-实现细节">6.2 实现细节</h3>
+<p>集群配置在复制日志中以特殊的日志条目来存储和通信。下图展示了配置转换的过程：</p>
+<ul>
+<li>当一个 Leader 接收到一个改变配置从 C-old 到 C-new 的请求，他将创建联合共识的配置（图中的 C-old,new）并存储为一个新日志条目。</li>
+<li>Leader 将 C-old,new 发给所有 Follower 进行复制。
+<ul>
+<li>如果 C-old,new 被半数以上节点同步，则此配置已提交，之后遵循 Raft 安全性机制， <strong>只有拥有 C-old,new 日志条目的服务器才有可能被选为新 Leader</strong> 。</li>
+<li>如果半数同步前 Leader 崩溃，新 Leader 可能有 C-old,new 也可能没有，若没有则退回老配置重试更新即可</li>
+<li>在这一时期，C-new 不会有任何影响。</li>
+</ul>
+</li>
+<li>C-old,new 已提交后，C-old 已不会产生影响，Leader 再创建和提交 C-new 就是安全的了。</li>
+</ul>
+<p>在整个过程中 <strong>没有哪个时候让 C-old 和 C-new 同时产生影响</strong> ，保证了安全性。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-b1ec6fef44bee3fb0132cd2dc1b0bbf6_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="6-3-问题讨论">6.3 问题讨论</h3>
+<ul>
+<li>没有存储任何的日志条目新节点加入，复制日志条目需要时间，此时无法作为提交和选举决策的节点。
+<ul>
+<li>新节点设置保护期，此期间<strong>以没有投票权身份加入到集群</strong>中来，不参加选举投票和日志提交决策，直到日志同步完毕。</li>
+</ul>
+</li>
+<li>Leader 不是新配置成员。
+<ul>
+<li>Leader 在 <strong>提交了 C-new 日志之后主动退位</strong> （回到 Follower 状态）。并且在 <strong>复制提交 C-new 时自己不算半数之一</strong> 。</li>
+</ul>
+</li>
+<li>被移除的服务器未关闭，可能会扰乱集群。因为它们不再收到心跳，就会一直超时发起带有新任期号的选举。
+<ul>
+<li>集群中节点在 <strong>未达到选举超时时间前，不响应 RV RPC</strong> 。即如果当前 Leader 能够在超时时间内发送心跳，Follwer 就能确认当前 Leader 存在而不响应新的投票请求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-日志压缩">7. 日志压缩</h2>
+<h3 id="7-1-快照基本思路">7.1 快照基本思路</h3>
+<p>日志不能无限增长， <strong>Snapshotting</strong> （ <strong>快照</strong> ）是最简单的压缩方法。在快照系统中，整个系统的状态都以快照的形式写入到稳定的持久化存储中，那个时间点之前的日志全部丢弃。</p>
+<p><strong>增量压缩</strong> ，例如<strong>日志清理</strong>或者<strong>日志结构合并树</strong>也可行，这些方法每次只对一小部分数据进行操作，分散了负载压力。首先，选择一个已经积累的大量已经被删除或者被覆盖对象的区域，然后重写那个区域还活跃的对象，之后释放那个区域。</p>
+<p>增量压缩需要增加复杂的机制来实现，而快照总是简单操作整个数据集合，简化了这个问题。日志清除方法需要修改 Raft，但是 <strong>状态机可以使用和快照相同的接口实现 LSM tree（日志结构合并树）</strong> 。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-fc71344c00549641181f094868590834_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>上图展示了 Raft 中快照的基本思路：</p>
+<ul>
+<li><strong>每个服务器独立的创建快照</strong> ，只包括已经被提交的日志。大部分由状态机将当前状态写入到快照中，也包括少量元数据：</li>
+<li><code>lastIncludedIndex</code>：被快照取代的最后的条目在日志中的索引值（状态机最后应用的日志）</li>
+<li><code>lastIncludedTerm</code>：该条目的任期号</li>
+</ul>
+<p>保留这些数据是为了支持快照后第一个 AE RPC 时的一致性检查，因为这个条目需要前一日志条目的索引值和任期号。</p>
+<ul>
+<li>为了支持集群成员更新（第 6 节），快照中也将 <strong>最后的集群配置作为最后一个状态条目存下来</strong> 。一旦服务器完成一次快照，他就可以删除最后索引位置之前的所有日志和快照了。</li>
+</ul>
+<h3 id="7-2-InstallSnapshot-RPC">7.2 InstallSnapshot RPC</h3>
+<p>Leader 必须偶尔 <strong>通过 RPC 发送快照给一些落后的 Follower</strong> 。一般发生于当 Leader 已经删除下一条需要发送给某 Follower 的日志条目的时候。例如一个运行非常缓慢的 Follower 或者新加入集群的服务器（第 6 节），这时让这个 Follower 更新到最新的状态的方式就是通过网络把快照发送给他们。</p>
+<p>当 Follower 接收到 IS RPC 时，自己决定对于已经存在的日志该如何处理。</p>
+<ul>
+<li>通常快照会 <strong>包含没有在接收者日志中存在的信息</strong> 。此时跟随者 <strong>丢弃其整个日志，全部被快照取代</strong> ，即使包含与快照冲突的未提交条目。</li>
+<li>如果接收到的 <strong>快照是自己日志的前面部分</strong> （由于网络重传或者错误），那么被快照包含的条目将会被全部删除，但是 <strong>快照后面的条目仍然有效，必须保留</strong> 。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSu1L80"><img src="https://s1.ax1x.com/2023/01/12/pSu1L80.png" srcset="/img/loading.gif" lazyload alt="pSu1L80.png"></a></p>
+<p>由 Leader 调用，将快照的分块发送给 Follower。Leader 总是按顺序发送分块。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>term</td>
+<td>领导人的任期号</td>
+</tr>
+<tr>
+<td>leaderId</td>
+<td>领导人的 Id，以便于跟随者重定向请求</td>
+</tr>
+<tr>
+<td>lastIncludedIndex</td>
+<td>快照中包含的最后日志条目的索引值</td>
+</tr>
+<tr>
+<td>lastIncludedTerm</td>
+<td>快照中包含的最后日志条目的任期号</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>分块在快照中的字节偏移量</td>
+</tr>
+<tr>
+<td>data[]</td>
+<td>原始数据</td>
+</tr>
+<tr>
+<td>done</td>
+<td>如果这是最后一个分块则为 true</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>返回结果</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>term</td>
+<td>当前任期号（currentTerm），便于领导人更新自己</td>
+</tr>
+</tbody>
+</table>
+<p><strong>接收者实现</strong> ：</p>
+<ol>
+<li>如果 term &lt; currentTerm 就立即回复</li>
+<li>如果是第一个分块（offset = 0）就创建一个新的快照</li>
+<li>在指定偏移量写入数据</li>
+<li>如果 done = false，则继续等待更多的数据</li>
+<li>保存快照文件，丢弃具有较小索引的任何现有或部分快照</li>
+<li>如果现存的日志条目与快照中最后包含的日志条目具有相同的索引值和任期号，则保留其后的日志条目并进行回复</li>
+<li>丢弃整个日志</li>
+<li>使用快照重置状态机（并加载快照的集群配置）</li>
+</ol>
+<h3 id="7-3-问题讨论">7.3 问题讨论</h3>
+<p>这种快照的方式背离了 Raft 的强 Leader 原则，因为 Follower 可以在 Leader 不知情情况下创建快照，但是这是值得的。Leader 的存在，是为了解决在达成一致性的时候的冲突，创建快照的时候一致性已经达成，不存在冲突了，所以没有 Leader 也是可以的。数据依然是从 Leader 传给 Follower，只是Follower 可以重新组织他们的数据。</p>
+<p>而只有 Leader 创建快照，发送给所有的 Follower 的方案有三个问题：</p>
+<ul>
+<li>浪费网络带宽并且延缓了快照处理的时间，Follower 已有快照所需信息显然更经济。</li>
+<li>Leader 的实现会更加复杂。例如需要发送快照的同时并行的将新的日志条目发送给跟随者，这样才不会阻塞新的客户端请求。</li>
+</ul>
+<p>还有两个问题影响快照性能：</p>
+<ul>
+<li>什么时候应该创建快照？过于频繁会浪费大量的磁盘带宽和其他资源；频率太低要承受耗尽存储容量的风险，也增加了从日志重建的时间。
+<ul>
+<li>当 <strong>日志大小达到一个固定大小的时候就创建一次快照</strong> 。如果这个阈值设置的显著大于期望的快照的大小，那么快照对磁盘压力的影响就会很小了。</li>
+</ul>
+</li>
+<li>写入快照需要花费显著的一段时间，并且我们还不希望影响到正常操作，如何处理？
+<ul>
+<li><strong>写时复制的技术</strong> ，这样新的更新就可以被接收而不影响到快照。具有函数式数据结构的状态机天然支持这样的功能。另外，操作系统的写时复制技术的支持（如 Linux 上的 fork）可以被用来创建完整的状态机的内存快照（我们的实现就是这样的）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-客户端交互">8. 客户端交互</h2>
+<p>这一节将介绍客户端是如何和 Raft 进行交互的，包括：</p>
+<ul>
+<li>客户端如何发现 Leader</li>
+<li>Raft 如何支持线性化语义</li>
+</ul>
+<p>这些问题对于所有基于一致性的系统都存在，并且 Raft 的解决方案和其他的也差不多。</p>
+<ul>
+<li><strong>客户端发送所有请求都要给 Leader</strong> 。
+<ul>
+<li>第一次通信会 <strong>随机联系一个节点</strong> ，如果不是 Leader ，会被拒绝并提供最近接收的 Leader 信息（AE RPC 包含 Leader 地址），即 <strong>重定向</strong> 。<br>
+如果 Leader 宕机，请求超时，客户重试即可。</li>
+</ul>
+</li>
+<li><strong>Raft 的目标是要实现线性化语义</strong> （每次操作立即执行，在调用和收到回复之间只执行一次）
+<ul>
+<li>若 Leader 提交了客户端的操作日志，在回复客户端之前宕机，客户端重试。此时该指令可能执行两次。<br>
+解决方案是 <strong>客户端对每条指令赋予唯一序列号，状态机接受的序列号被执行的指令直接返回结果</strong> 。</li>
+</ul>
+</li>
+<li><strong>只读操作</strong>可以不需要记录日志，但是旧 Leader 响应客户端时可能已经卸任，此时返回的是脏数据。需要两个额外机制 <strong>保证不返回脏数据</strong> ：</li>
+</ul>
+<ol>
+<li>Leader 必须有关于被提交日志的最新信息，<strong>刚上任时</strong>可能不知道哪些已提交，所以需要<strong>提交一个 no-op（空命令）</strong> 日志条目。</li>
+<li>Leader 在响应选举请求前，检查自己是否已被卸任。只需要和集群中大多数节点交换一次心跳信息即可。</li>
+</ol>
+<p>可选项： <strong>Leader 可以通过心跳机制实现租约机制</strong> ，但是这种方法依赖时间来保证安全性（假设时间误差是有界的）。</p>
+<h2 id="9-算法实现与评估">9. 算法实现与评估</h2>
+<h2 id="10-相关工作">10. 相关工作</h2>
+<h2 id="11-结论">11. 结论</h2>
+<p>算法的设计通常以<strong>正确性、效率和简洁性</strong>为主要目标。虽然这些都是有价值的目标，但我们相信<strong>可理解性</strong>同样重要。在开发人员将算法转化为实际实现之前，其他任何目标都不能实现，而实际实现将不可避免地偏离和扩展发布的形式。除非开发人员对算法有深刻的理解，并能对算法有直观的认识，否则他们很难在实现中保留算法理想的特性。</p>
+<p>在本文中，我们讨论了分布式共识的问题，在这个问题上，一个被广泛接受但难以理解的算法：Paxos，多年来一直让学生和开发人员非常挣扎。我们开发了一种新的算法：Raft，我们已经证明它比 Paxos 更容易理解。我们也相信 Raft 会为系统建设提供更好的基础。将可理解性作为主要设计目标改变了我们处理 Raft 设计的方式。随着设计的进展，我们发现自己反复使用了一些技术，比如分解问题和简化状态空间。这些技术不仅提高了 Raft 的可理解性，而且使我们更容易证实它的正确性。</p>
+<h1>LEC 5</h1>
+<h2 id="模式">模式</h2>
+<p>前面的系统都有单点故障：例如Coordinator、Master等等。因为要避免脑裂问题，因此并不设计成分布式的。</p>
+<p>这种在一般情况下是没有问题的，出错的概率很小，即使出错了也可以在很短的时间内恢复回来。</p>
+<p>Raft协议就是处理这种类型的问题，不允许单点故障产生，即使产生了也会更快恢复。</p>
+<p>客户端访问两台服务器，一台得到了响应，另一台没有得到响应，如果另一台服务器挂掉了最好，但是如果仅仅是网络不通，会造成网络分区的问题，也就是脑裂，导致服务器不一致。因此前面的方案中都使用单点服务器的方式。</p>
+<h2 id="网络分区问题">网络分区问题</h2>
+<p>处理原则：少数服从多数</p>
+<p>客户端的操作需要在大多数服务器都成功，否则一直等待恢复，这样可以实现强一致性</p>
+<p>大多数：全部服务器，无论是开机的还是停机的，需要获得一半以上的服务器同意</p>
+<p>两种前协议：Paxos和View-stamped replication</p>
+<h2 id="Raft">Raft</h2>
+<h3 id="构建复制状态机">构建复制状态机</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSUHKcd"><img src="https://s1.ax1x.com/2023/01/28/pSUHKcd.md.png" srcset="/img/loading.gif" lazyload alt="pSUHKcd.md.png"></a></p>
+<p>步骤：</p>
+<ol>
+<li>客户端发送操作给Leader的K/V服务器</li>
+<li>K/V服务器将操作传递给Raft</li>
+<li>Raft写入日志</li>
+<li>Raft与其他服务器通信传送日志</li>
+<li>其他服务器发送响应给Leader</li>
+<li>Leader提交操作（其他的Followers需要等到下一次交互才确认前面的操作并提交）</li>
+<li>操作按照顺序传送到K/V服务器</li>
+<li>K/V服务器执行操作</li>
+<li>Leader返回操作结果给客户端</li>
+</ol>
+<p>如果失败，需要选举新的Leader，重试操作</p>
+<h3 id="日志">日志</h3>
+<h4 id="为什么需要日志？">为什么需要日志？</h4>
+<p>K/V服务器是保留操作表的，为什么还需要日志呢？</p>
+<ul>
+<li>重传：Leader发送的时候可能会丢失，因此Leader必须保留所有的日志条目从而具有重传的能力</li>
+<li>顺序：每一个操作需要按照顺序传送，日志可以非常方便做到</li>
+<li>持久化：服务器都有可能挂掉，因此需要持久化保留所有的操作</li>
+<li>空间：需要空间进行一些试探性的操作，日志可以很方便做到</li>
+</ul>
+<p>最终需要保证日志在所有的服务器上都是相同的</p>
+<h4 id="日志基本结构">日志基本结构</h4>
+<p>日志条目包括序号、操作和Leader的任期（隐含表示了这个日志条目是哪个Leader追加的）</p>
+<h3 id="选举Leader">选举Leader</h3>
+<p>Follower如果接收不到Leader发送的周期性的心跳信号，就认为Leader挂掉了，开始选举Leader</p>
+<p>具体实施：Follower自己有计时器，如果在一段的时间之内既没有接收到新的日志条目，也没有接收到Leader的心跳信号，则认为选举超时，开始进行选举。</p>
+<ol>
+<li>增加任期号，并给自己投票</li>
+<li>联系其他的服务器（包括Follower和Leader）</li>
+<li>收到大多数的选票，成为Leader</li>
+</ol>
+<p>此时新的Leader的任期号要大于原来的Leader的任期号，如果此时客户端与旧的Leader进行交互，Leader给新的Leader发送了增加日志的请求，会被拒绝，发送给旧的Leader自己的任期号。旧的Leader发现任期号比自己大，不会再成为Leader。从而避免了脑裂的问题。</p>
+<p>挑战：两个Follower几乎同时发起选举，选不出Leader（分裂选举）</p>
+<p>因此设置<strong>选举超时时间</strong>，但是是随机的，如果选不出Leader，经过一段时间后就不会同时开始选举Leader，就可以最终选出Leader了。</p>
+<h4 id="选举超时时间">选举超时时间</h4>
+<ul>
+<li>不能小于心跳信号的间隔时间</li>
+<li>三到四次RPC的时间</li>
+<li>随机值越大停机的时间越长，越小可能仍然会选举失败</li>
+<li>250-300ms</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Distributed-Systems/" class="print-no-link">#Distributed Systems</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MIT-6.824 Distributed Systems-LEC 5 Fault Tolerance-Raft-1</div>
+      <div>https://zhangzhao219.github.io/2023/01/10/6.824/Distributed-Systems-MIT-6.824-LEC-5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/13/Software-Commands/" title="常用软件常用命令">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">常用软件常用命令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/31/diary/diary20221231/" title="2022年终总结">
+                        <span class="hidden-mobile">2022年终总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

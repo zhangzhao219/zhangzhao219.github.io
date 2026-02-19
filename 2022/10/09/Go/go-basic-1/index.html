@@ -1,0 +1,1137 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go语言圣经-入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言圣经-入门">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/10/09/Go/go-basic-1/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go语言圣经-入门">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-09T14:44:20.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Go语言圣经-入门 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go语言圣经-入门</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-09 14:44" pubdate>
+          2022年10月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go语言圣经-入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go语言圣经-入门</p>
+<span id="more"></span>
+<h1>命令行参数</h1>
+<p><code>os</code> 包以跨平台的方式，提供了一些与操作系统交互的函数和变量。程序的命令行参数可从 <code>os</code> 包的 <code>Args</code> 变量获取；<code>os</code> 包外部使用 <code>os.Args</code> 访问该变量。</p>
+<p><code>os.Args</code> 的第一个元素：<code>os.Args[0]</code>，是命令本身的名字；其它的元素则是程序启动时传给它的参数。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> s, sep <span class="hljs-type">string</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">len</span>(os.Args); i++ &#123;
+		s += sep + os.Args[i]
+		sep = <span class="hljs-string">&quot; &quot;</span>
+	&#125;
+	fmt.Println(s)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs tap">&gt; go run main.go<span class="hljs-number"> 4 </span>2<span class="hljs-number"> 5 </span>4 1
+4<span class="hljs-number"> 2 </span>5<span class="hljs-number"> 4 </span>1</code></pre></div>
+<p><code>for</code> 循环的另一种形式，在某种数据类型的区间（range）上遍历</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> s, sep <span class="hljs-type">string</span>
+	<span class="hljs-keyword">for</span> _, j := <span class="hljs-keyword">range</span> os.Args[<span class="hljs-number">1</span>:] &#123;
+		s += sep + j
+		sep = <span class="hljs-string">&quot; &quot;</span>
+	&#125;
+	fmt.Println(s)
+&#125;</code></pre></div>
+<p>使用 <code>strings</code> 包的 <code>Join</code> 函数：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(strings.Join(os.Args[<span class="hljs-number">1</span>:], <span class="hljs-string">&quot; &quot;</span>))
+&#125;</code></pre></div>
+<h1>查找重复的行</h1>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Dup1 prints the text of each line that appears more than</span>
+<span class="hljs-comment">// once in the standard input, preceded by its count.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;bufio&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	counts := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	input := bufio.NewScanner(os.Stdin)
+	<span class="hljs-keyword">for</span> input.Scan() &#123;
+		counts[input.Text()]++
+	&#125;
+	<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> ignoring potential errors from input.Err()</span>
+	<span class="hljs-keyword">for</span> line, n := <span class="hljs-keyword">range</span> counts &#123;
+		<span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">1</span> &#123;
+			fmt.Printf(<span class="hljs-string">&quot;%d\t%s\n&quot;</span>, n, line)
+		&#125;
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs node-repl"><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">abc</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">abc</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">def</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">efd</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">efd</span>
+2       abc
+2       efd</code></pre></div>
+<p>Printf的多种转换形式：</p>
+<div class="code-wrapper"><pre><code class="hljs haml"><span class="hljs-tag">%<span class="hljs-selector-tag">d</span></span>          十进制整数
+<span class="hljs-tag">%<span class="hljs-selector-tag">x</span></span>, %o, %b  十六进制，八进制，二进制整数。
+<span class="hljs-tag">%<span class="hljs-selector-tag">f</span></span>, %g, %e  浮点数： 3.141593 3.141592653589793 3.141593e+00
+<span class="hljs-tag">%<span class="hljs-selector-tag">t</span></span>          布尔：true或false
+<span class="hljs-tag">%<span class="hljs-selector-tag">c</span></span>          字符（rune） (Unicode码点)
+<span class="hljs-tag">%<span class="hljs-selector-tag">s</span></span>          字符串
+<span class="hljs-tag">%<span class="hljs-selector-tag">q</span></span>          带双引号的字符串&quot;abc&quot;或带单引号的字符&#x27;c&#x27;
+<span class="hljs-tag">%<span class="hljs-selector-tag">v</span></span>          变量的自然形式（natural format）
+<span class="hljs-tag">%<span class="hljs-selector-tag">T</span></span>          变量的类型
+<span class="hljs-tag">%</span>%          字面上的百分号标志（无操作数）</code></pre></div>
+<p>以 <code>ln</code> 结尾的格式化函数，则遵循 <code>Println</code> 的方式，以跟 <code>%v</code> 差不多的方式格式化参数，并在最后添加一个换行符。</p>
+<p>第二个版本，可以接收文件并判断重复行</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Dup2 prints the count and text of lines that appear more than once</span>
+<span class="hljs-comment">// in the input.  It reads from stdin or from a list of named files.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;bufio&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	counts := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	files := os.Args[<span class="hljs-number">1</span>:]
+	<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(files) == <span class="hljs-number">0</span> &#123;
+		countLines(os.Stdin, counts)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-keyword">for</span> _, arg := <span class="hljs-keyword">range</span> files &#123;
+			f, err := os.Open(arg)
+			<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+				fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;dup2: %v\n&quot;</span>, err)
+				<span class="hljs-keyword">continue</span>
+			&#125;
+			countLines(f, counts)
+			f.Close()
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span> line, n := <span class="hljs-keyword">range</span> counts &#123;
+		<span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">1</span> &#123;
+			fmt.Printf(<span class="hljs-string">&quot;%d\t%s\n&quot;</span>, n, line)
+		&#125;
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">countLines</span><span class="hljs-params">(f *os.File, counts <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)</span></span> &#123;
+	input := bufio.NewScanner(f)
+	<span class="hljs-keyword">for</span> input.Scan() &#123;
+		counts[input.Text()]++
+	&#125;
+	<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> ignoring potential errors from input.Err()</span>
+&#125;
+</code></pre></div>
+<p><code>map</code> 是一个由 <code>make</code> 函数创建的数据结构的引用。<code>map</code> 作为参数传递给某函数时，该函数接收这个引用的一份拷贝（copy，或译为副本），被调用函数对 <code>map</code> 底层数据结构的任何修改，调用者函数都可以通过持有的 <code>map</code> 引用看到。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;strings&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	counts := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	<span class="hljs-keyword">for</span> _, filename := <span class="hljs-keyword">range</span> os.Args[<span class="hljs-number">1</span>:] &#123;
+		data, err := os.ReadFile(filename)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;dup3: %v\n&quot;</span>, err)
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		<span class="hljs-keyword">for</span> _, line := <span class="hljs-keyword">range</span> strings.Split(<span class="hljs-type">string</span>(data), <span class="hljs-string">&quot;\n&quot;</span>) &#123;
+			counts[line]++
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span> line, n := <span class="hljs-keyword">range</span> counts &#123;
+		<span class="hljs-keyword">if</span> n &gt; <span class="hljs-number">1</span> &#123;
+			fmt.Printf(<span class="hljs-string">&quot;%d\t%s\n&quot;</span>, n, line)
+		&#125;
+	&#125;
+&#125;
+</code></pre></div>
+<p>引入了 <code>ReadFile</code> 函数（来自于 <code>os</code>包），其读取指定文件的全部内容，<code>strings.Split</code> 函数把字符串分割成子串的切片。</p>
+<h1>GIF动画</h1>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Lissajous generates GIF animations of random Lissajous figures.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;image&quot;</span>
+	<span class="hljs-string">&quot;image/color&quot;</span>
+	<span class="hljs-string">&quot;image/gif&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;math&quot;</span>
+	<span class="hljs-string">&quot;math/rand&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-keyword">var</span> palette = []color.Color&#123;color.White, color.Black&#125;
+
+<span class="hljs-keyword">const</span> (
+	whiteIndex = <span class="hljs-number">0</span> <span class="hljs-comment">// first color in palette</span>
+	blackIndex = <span class="hljs-number">1</span> <span class="hljs-comment">// next color in palette</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// The sequence of images is deterministic unless we seed</span>
+	<span class="hljs-comment">// the pseudo-random number generator using the current time.</span>
+	<span class="hljs-comment">// Thanks to Randall McPherson for pointing out the omission.</span>
+	rand.Seed(time.Now().UTC().UnixNano())
+	lissajous(os.Stdout)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">lissajous</span><span class="hljs-params">(out io.Writer)</span></span> &#123;
+	<span class="hljs-keyword">const</span> (
+		cycles  = <span class="hljs-number">5</span>     <span class="hljs-comment">// number of complete x oscillator revolutions</span>
+		res     = <span class="hljs-number">0.001</span> <span class="hljs-comment">// angular resolution</span>
+		size    = <span class="hljs-number">100</span>   <span class="hljs-comment">// image canvas covers [-size..+size]</span>
+		nframes = <span class="hljs-number">64</span>    <span class="hljs-comment">// number of animation frames</span>
+		delay   = <span class="hljs-number">8</span>     <span class="hljs-comment">// delay between frames in 10ms units</span>
+	)
+
+	freq := rand.Float64() * <span class="hljs-number">3.0</span> <span class="hljs-comment">// relative frequency of y oscillator</span>
+	anim := gif.GIF&#123;LoopCount: nframes&#125;
+	phase := <span class="hljs-number">0.0</span> <span class="hljs-comment">// phase difference</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; nframes; i++ &#123;
+		rect := image.Rect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>*size+<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*size+<span class="hljs-number">1</span>)
+		img := image.NewPaletted(rect, palette)
+		<span class="hljs-keyword">for</span> t := <span class="hljs-number">0.0</span>; t &lt; cycles*<span class="hljs-number">2</span>*math.Pi; t += res &#123;
+			x := math.Sin(t)
+			y := math.Sin(t*freq + phase)
+			img.SetColorIndex(size+<span class="hljs-type">int</span>(x*size+<span class="hljs-number">0.5</span>), size+<span class="hljs-type">int</span>(y*size+<span class="hljs-number">0.5</span>),
+				blackIndex)
+		&#125;
+		phase += <span class="hljs-number">0.1</span>
+		anim.Delay = <span class="hljs-built_in">append</span>(anim.Delay, delay)
+		anim.Image = <span class="hljs-built_in">append</span>(anim.Image, img)
+	&#125;
+	gif.EncodeAll(out, &amp;anim) <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> ignoring encoding errors</span>
+&#125;
+</code></pre></div>
+<h1>获取URL</h1>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Fetch prints the content found at a URL.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">for</span> _, url := <span class="hljs-keyword">range</span> os.Args[<span class="hljs-number">1</span>:] &#123;
+		resp, err := http.Get(url)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;fetch: %v\n&quot;</span>, err)
+			os.Exit(<span class="hljs-number">1</span>)
+		&#125;
+		b, err := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;fetch: reading %s: %v\n&quot;</span>, url, err)
+			os.Exit(<span class="hljs-number">1</span>)
+		&#125;
+		fmt.Printf(<span class="hljs-string">&quot;%s&quot;</span>, b)
+	&#125;
+&#125;
+</code></pre></div>
+<p>改进：</p>
+<p>避免申请缓冲区、url参数没有 <code>http://</code> 前缀、打印出HTTP协议的状态码</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Fetch prints the content found at a URL.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;strings&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">for</span> _, url := <span class="hljs-keyword">range</span> os.Args[<span class="hljs-number">1</span>:] &#123;
+		<span class="hljs-keyword">if</span> !strings.HasPrefix(url, <span class="hljs-string">&quot;http://&quot;</span>) &#123;
+			url = <span class="hljs-string">&quot;http://&quot;</span> + url
+		&#125;
+		resp, err := http.Get(url)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;fetch: %v\n&quot;</span>, err)
+			os.Exit(<span class="hljs-number">1</span>)
+		&#125;
+		_, err = io.Copy(os.Stdout, resp.Body)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;fetch: reading %s: %v\n&quot;</span>, url, err)
+			os.Exit(<span class="hljs-number">1</span>)
+		&#125;
+		fmt.Println(resp.Status)
+		resp.Body.Close()
+	&#125;
+&#125;
+</code></pre></div>
+<h1>并发获取多个URL</h1>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Fetchall fetches URLs in parallel and reports their times and sizes.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	start := time.Now()
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)
+	<span class="hljs-keyword">for</span> _, url := <span class="hljs-keyword">range</span> os.Args[<span class="hljs-number">1</span>:] &#123;
+		<span class="hljs-keyword">go</span> fetch(url, ch) <span class="hljs-comment">// start a goroutine</span>
+	&#125;
+	<span class="hljs-keyword">for</span> <span class="hljs-keyword">range</span> os.Args[<span class="hljs-number">1</span>:] &#123;
+		fmt.Println(&lt;-ch) <span class="hljs-comment">// receive from channel ch</span>
+	&#125;
+	fmt.Printf(<span class="hljs-string">&quot;%.2fs elapsed\n&quot;</span>, time.Since(start).Seconds())
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fetch</span><span class="hljs-params">(url <span class="hljs-type">string</span>, ch <span class="hljs-keyword">chan</span>&lt;- <span class="hljs-type">string</span>)</span></span> &#123;
+	start := time.Now()
+	resp, err := http.Get(url)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		ch &lt;- fmt.Sprint(err) <span class="hljs-comment">// send to channel ch</span>
+		<span class="hljs-keyword">return</span>
+	&#125;
+	nbytes, err := io.Copy(io.Discard, resp.Body)
+	resp.Body.Close() <span class="hljs-comment">// don&#x27;t leak resources</span>
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;while reading %s: %v&quot;</span>, url, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	secs := time.Since(start).Seconds()
+	ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;%.2fs  %7d  %s&quot;</span>, secs, nbytes, url)
+&#125;
+</code></pre></div>
+<p>goroutine是一种函数的并发执行方式，而channel是用来在goroutine之间进行参数传递。main函数本身也运行在一个goroutine中，而go function则表示创建一个新的goroutine，并在这个新的goroutine中执行这个函数。</p>
+<h1>Web服务</h1>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Server1 is a minimal &quot;echo&quot; server.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;fmt&quot;</span>
+    <span class="hljs-string">&quot;log&quot;</span>
+    <span class="hljs-string">&quot;net/http&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+    http.HandleFunc(<span class="hljs-string">&quot;/&quot;</span>, handler) <span class="hljs-comment">// each request calls handler</span>
+    log.Fatal(http.ListenAndServe(<span class="hljs-string">&quot;localhost:8000&quot;</span>, <span class="hljs-literal">nil</span>))
+&#125;
+
+<span class="hljs-comment">// handler echoes the Path component of the request URL r.</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;
+    fmt.Fprintf(w, <span class="hljs-string">&quot;URL.Path = %q\n&quot;</span>, r.URL.Path)
+&#125;</code></pre></div>
+<p>为访问的url添加某种状态。比如，下面这个版本输出了同样的内容，但是会对请求的次数进行计算</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Server2 is a minimal &quot;echo&quot; and counter server.</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;log&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;sync&quot;</span>
+)
+
+<span class="hljs-keyword">var</span> mu sync.Mutex
+<span class="hljs-keyword">var</span> count <span class="hljs-type">int</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	http.HandleFunc(<span class="hljs-string">&quot;/&quot;</span>, handler)
+	http.HandleFunc(<span class="hljs-string">&quot;/count&quot;</span>, counter)
+	log.Fatal(http.ListenAndServe(<span class="hljs-string">&quot;localhost:8000&quot;</span>, <span class="hljs-literal">nil</span>))
+&#125;
+
+<span class="hljs-comment">// handler echoes the Path component of the requested URL.</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;
+	mu.Lock()
+	count++
+	mu.Unlock()
+	fmt.Fprintf(w, <span class="hljs-string">&quot;URL.Path = %q\n&quot;</span>, r.URL.Path)
+&#125;
+
+<span class="hljs-comment">// counter echoes the number of calls so far.</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">counter</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;
+	mu.Lock()
+	fmt.Fprintf(w, <span class="hljs-string">&quot;Count %d\n&quot;</span>, count)
+	mu.Unlock()
+&#125;
+</code></pre></div>
+<p>handler函数会把请求的http头和请求的form数据都打印出来，这样可以使检查和调试这个服务更为方便</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// handler echoes the HTTP request.</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;
+    fmt.Fprintf(w, <span class="hljs-string">&quot;%s %s %s\n&quot;</span>, r.Method, r.URL, r.Proto)
+    <span class="hljs-keyword">for</span> k, v := <span class="hljs-keyword">range</span> r.Header &#123;
+        fmt.Fprintf(w, <span class="hljs-string">&quot;Header[%q] = %q\n&quot;</span>, k, v)
+    &#125;
+    fmt.Fprintf(w, <span class="hljs-string">&quot;Host = %q\n&quot;</span>, r.Host)
+    fmt.Fprintf(w, <span class="hljs-string">&quot;RemoteAddr = %q\n&quot;</span>, r.RemoteAddr)
+    <span class="hljs-keyword">if</span> err := r.ParseForm(); err != <span class="hljs-literal">nil</span> &#123;
+        log.Print(err)
+    &#125;
+    <span class="hljs-keyword">for</span> k, v := <span class="hljs-keyword">range</span> r.Form &#123;
+        fmt.Fprintf(w, <span class="hljs-string">&quot;Form[%q] = %q\n&quot;</span>, k, v)
+    &#125;
+&#125;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go语言圣经-入门</div>
+      <div>https://zhangzhao219.github.io/2022/10/09/Go/go-basic-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/10/Go/go-basic-2-3/" title="Go语言圣经-程序结构-基础数据类型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go语言圣经-程序结构-基础数据类型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/07/UCAS/information-retrieval/information-retrieval-13/" title="研究生课程：现代信息检索-第13讲 决策树与面向文档的机器学习">
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第13讲 决策树与面向文档的机器学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

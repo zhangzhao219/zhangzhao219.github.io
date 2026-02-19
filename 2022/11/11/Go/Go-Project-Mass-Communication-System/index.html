@@ -1,0 +1,1501 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go项目-海量用户通讯系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go项目-海量用户通讯系统">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/11/11/Go/Go-Project-Mass-Communication-System/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go项目-海量用户通讯系统">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/15/zESgG6.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/15/zEDSBt.png">
+<meta property="article:published_time" content="2022-11-11T10:35:30.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Project">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/11/15/zESgG6.md.png">
+  
+  
+  
+  <title>Go项目-海量用户通讯系统 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go项目-海量用户通讯系统</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-11 10:35" pubdate>
+          2022年11月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go项目-海量用户通讯系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go项目-海量用户通讯系统</p>
+<span id="more"></span>
+<h1>项目开发流程</h1>
+<ol>
+<li>实现客户端登录菜单以及简单的用户登录逻辑</li>
+<li>实现用户登录（与服务器端进行通信验证用户的信息）</li>
+<li>客户端可以发送消息的长度，服务器端可以接收消息的长度</li>
+<li>客户端可以发送消息本身，服务器端可以接收消息</li>
+<li>改进服务器端和客户端的结构，更易读</li>
+<li>增加数据库验证，增加一层models，同时实现用户的注册和登录</li>
+<li>维护用户在线列表</li>
+<li>客户端发送消息</li>
+<li>服务器端转发消息</li>
+</ol>
+<h1>项目需求说明</h1>
+<p>用户注册、用户登录、显示在线用户列表、群聊（广播）、点对点聊天、离线留言</p>
+<h1>项目代码编写</h1>
+<h2 id="实现客户端登录菜单以及简单的用户登录逻辑">实现客户端登录菜单以及简单的用户登录逻辑</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-comment">// 定义两个变量，一个表示用户ID，一个表示用户密码</span>
+<span class="hljs-keyword">var</span> userId <span class="hljs-type">int</span>
+<span class="hljs-keyword">var</span> userPwd <span class="hljs-type">string</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	<span class="hljs-comment">// 接收用户的选择</span>
+	<span class="hljs-keyword">var</span> key <span class="hljs-type">int</span>
+	<span class="hljs-comment">// 判断是否还能继续显示菜单</span>
+	<span class="hljs-keyword">var</span> loop = <span class="hljs-literal">true</span>
+	<span class="hljs-comment">// 循环展示菜单</span>
+	<span class="hljs-keyword">for</span> loop &#123;
+		fmt.Println(<span class="hljs-string">&quot;---------------欢迎登录多人聊天系统---------------&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;---------------   1 登录聊天室&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;---------------    2 注册用户&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;---------------    3 退出系统&quot;</span>)
+		fmt.Println(<span class="hljs-string">&quot;请选择（1-3）：&quot;</span>)
+		fmt.Scanln(&amp;key)
+		<span class="hljs-keyword">switch</span> key &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+			fmt.Println(<span class="hljs-string">&quot;登录聊天室&quot;</span>)
+			loop = <span class="hljs-literal">false</span>
+		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+			fmt.Println(<span class="hljs-string">&quot;注册用户&quot;</span>)
+		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+			fmt.Println(<span class="hljs-string">&quot;退出系统&quot;</span>)
+			loop = <span class="hljs-literal">false</span>
+		<span class="hljs-keyword">default</span>:
+			fmt.Println(<span class="hljs-string">&quot;输入有误，请重新输入&quot;</span>)
+		&#125;
+	&#125;
+	<span class="hljs-keyword">if</span> key == <span class="hljs-number">1</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;请输入用户ID&quot;</span>)
+		fmt.Scanln(&amp;userId)
+		fmt.Println(<span class="hljs-string">&quot;请输入用户密码&quot;</span>)
+		fmt.Scanln(&amp;userPwd)
+		<span class="hljs-comment">// 先把登录的函数写在另外一个文件</span>
+		err := login(userId, userPwd)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;登录失败&quot;</span>)
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;登录成功&quot;</span>)
+		&#125;
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> key == <span class="hljs-number">2</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;进行用户注册的逻辑&quot;</span>)
+	&#125;
+&#125;</code></pre></div>
+<p>登录逻辑的判断首先写在另外的文件中，后续再进行修改</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">login</span><span class="hljs-params">(userId <span class="hljs-type">int</span>, userPwd <span class="hljs-type">string</span>)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	fmt.Printf(<span class="hljs-string">&quot;userId=%d, userPed=%s\n&quot;</span>, userId, userPwd)
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+&#125;</code></pre></div>
+<p>注意这种在同一个包下引用函数的方式需要在src文件夹之外进行编译，然后手动运行</p>
+<h2 id="实现用户登录（与服务器端进行通信验证用户的信息）">实现用户登录（与服务器端进行通信验证用户的信息）</h2>
+<p>重点是如何发送包以及如何对包进行校验，同时要保证多线程</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zESgG6"><img src="https://s1.ax1x.com/2022/11/15/zESgG6.md.png" srcset="/img/loading.gif" lazyload alt="zESgG6.md.png"></a></p>
+<h3 id="消息长度的发送与接收">消息长度的发送与接收</h3>
+<p>要对发送的消息进行序列化等操作，首先定义好处理这些数据的结构体</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> message
+
+<span class="hljs-comment">// 确定消息类型</span>
+<span class="hljs-keyword">const</span> (
+	LoginMesType    = <span class="hljs-string">&quot;LoginMes&quot;</span>
+	LoginResMesType = <span class="hljs-string">&quot;LoginResMes&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> Message <span class="hljs-keyword">struct</span> &#123;
+	Type <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;type&quot;`</span> <span class="hljs-comment">// 消息类型</span>
+	Data <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;data&quot;`</span> <span class="hljs-comment">// 消息内容</span>
+&#125;
+
+<span class="hljs-comment">// 定义两个消息，后面需要再增加</span>
+<span class="hljs-keyword">type</span> LoginMes <span class="hljs-keyword">struct</span> &#123;
+	UserId   <span class="hljs-type">int</span>    <span class="hljs-string">`json:&quot;userId&quot;`</span>   <span class="hljs-comment">// 用户Id</span>
+	UserPwd  <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;userPwd&quot;`</span>  <span class="hljs-comment">// 用户密码</span>
+	UserName <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;userName&quot;`</span> <span class="hljs-comment">// 用户名</span>
+&#125;
+
+<span class="hljs-keyword">type</span> LoginResMes <span class="hljs-keyword">struct</span> &#123;
+	Code  <span class="hljs-type">int</span>    <span class="hljs-string">`json:&quot;code&quot;`</span>  <span class="hljs-comment">// 返回的状态码 500 表示用户未注册，200 表示成功</span>
+	Error <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;error&quot;`</span> <span class="hljs-comment">// 返回错误信息</span>
+&#125;</code></pre></div>
+<p>客户端发送消息（消息的长度）</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/common/message&quot;</span>
+	<span class="hljs-string">&quot;encoding/binary&quot;</span>
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;net&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">login</span><span class="hljs-params">(userId <span class="hljs-type">int</span>, userPwd <span class="hljs-type">string</span>)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// fmt.Printf(&quot;userId=%d, userPed=%s\n&quot;, userId, userPwd)</span>
+	<span class="hljs-comment">// return nil</span>
+	<span class="hljs-comment">// 连接到服务器端</span>
+	conn, err := net.Dial(<span class="hljs-string">&quot;tcp&quot;</span>, <span class="hljs-string">&quot;localhost:8889&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;net.Dial err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">defer</span> conn.Close()
+	<span class="hljs-comment">// 准备通过conn发送消息给服务</span>
+	<span class="hljs-keyword">var</span> mes message.Message
+	mes.Type = message.LoginMesType
+	<span class="hljs-comment">// 创建一个LoginMes结构体</span>
+	<span class="hljs-keyword">var</span> loginMes message.LoginMes
+	loginMes.UserId = userId
+	loginMes.UserPwd = userPwd
+	<span class="hljs-comment">// 将loginMes序列化</span>
+	data, err := json.Marshal(loginMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	mes.Data = <span class="hljs-type">string</span>(data)
+	<span class="hljs-comment">// 将mes进行序列化</span>
+	data, err = json.Marshal(mes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// data为发送的消息</span>
+	<span class="hljs-comment">// 先把data的长度发送给服务器</span>
+	<span class="hljs-keyword">var</span> pkgLen = <span class="hljs-type">uint32</span>(<span class="hljs-built_in">len</span>(data))
+	<span class="hljs-keyword">var</span> buf [<span class="hljs-number">4</span>]<span class="hljs-type">byte</span>
+	binary.BigEndian.PutUint32(buf[<span class="hljs-number">0</span>:<span class="hljs-number">4</span>], pkgLen)
+	<span class="hljs-comment">//  发送长度</span>
+	n, err := conn.Write(buf[:<span class="hljs-number">4</span>])
+	<span class="hljs-keyword">if</span> n != <span class="hljs-number">4</span> || err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;conn.Write err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;客户端发送的消息长度为&quot;</span>, <span class="hljs-built_in">len</span>(data))
+	fmt.Println(<span class="hljs-string">&quot;客户端发送的消息内容为&quot;</span>, <span class="hljs-type">string</span>(data))
+	<span class="hljs-keyword">return</span>
+&#125;
+</code></pre></div>
+<p>服务器端接收消息</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;net&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">process</span><span class="hljs-params">(conn net.Conn)</span></span> &#123;
+	<span class="hljs-comment">// 延时关闭连接</span>
+	<span class="hljs-keyword">defer</span> conn.Close()
+	<span class="hljs-comment">// 读取客户端发送的信息</span>
+	<span class="hljs-keyword">for</span> &#123;
+		buf := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-number">1024</span>*<span class="hljs-number">4</span>)
+		fmt.Println(<span class="hljs-string">&quot;等待读取客户端发送的数据.....&quot;</span>)
+		n, err := conn.Read(buf[:<span class="hljs-number">4</span>])
+		<span class="hljs-keyword">if</span> n != <span class="hljs-number">4</span> || err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;conn.Read err=&quot;</span>, err)
+			<span class="hljs-keyword">return</span>
+		&#125;
+		fmt.Println(<span class="hljs-string">&quot;读到的长度为&quot;</span>, buf[:<span class="hljs-number">4</span>])
+	&#125;
+
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;服务器在8889端口监听.....&quot;</span>)
+	listen, err := net.Listen(<span class="hljs-string">&quot;tcp&quot;</span>, <span class="hljs-string">&quot;localhost:8889&quot;</span>)
+	<span class="hljs-keyword">defer</span> listen.Close()
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;net.Listen err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 一旦监听成功，等待客户端连接服务器</span>
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;等待客户端连接服务器.....&quot;</span>)
+		conn, err := listen.Accept()
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;listen.Accept err=&quot;</span>, err)
+		&#125;
+		<span class="hljs-comment">// 一旦连接成功，则启动一个协程和客户端保持通讯</span>
+		<span class="hljs-keyword">go</span> process(conn)
+	&#125;
+&#125;
+</code></pre></div>
+<h3 id="客户端发送消息本身，服务器端进行接收">客户端发送消息本身，服务器端进行接收</h3>
+<p>将服务器端的消息接收封装成一个函数</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">readPkg</span><span class="hljs-params">(conn net.Conn)</span></span> (mes message.Message, err <span class="hljs-type">error</span>) &#123;
+	buf := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-number">1024</span>*<span class="hljs-number">4</span>)
+	fmt.Println(<span class="hljs-string">&quot;等待读取客户端发送的数据.....&quot;</span>)
+	_, err = conn.Read(buf[:<span class="hljs-number">4</span>])
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;conn.Read err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// fmt.Println(&quot;读到的长度为&quot;, buf[:4])</span>
+	<span class="hljs-comment">// 转换为一个uint32类型</span>
+	<span class="hljs-keyword">var</span> pkgLen = binary.BigEndian.Uint32(buf[<span class="hljs-number">0</span>:<span class="hljs-number">4</span>])
+	<span class="hljs-comment">//  发送长度</span>
+	n, err := conn.Read(buf[:pkgLen])
+	<span class="hljs-keyword">if</span> n != <span class="hljs-type">int</span>(pkgLen) || err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;conn.Read err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 把pkgLen反序列化成message</span>
+	err = json.Unmarshal(buf[:pkgLen], &amp;mes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Unmarshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<p>客户端发送消息</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 发送消息本身</span>
+_, err = conn.Write(data)
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;conn.Write err=&quot;</span>, err)
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<h3 id="完成登录的验证功能（相当于服务器发送消息-客户端接收）">完成登录的验证功能（相当于服务器发送消息,客户端接收）</h3>
+<p>服务器端封装一个发送消息的函数</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">writePkg</span><span class="hljs-params">(conn net.Conn, data []<span class="hljs-type">byte</span>)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// 先发送一个长度</span>
+	<span class="hljs-keyword">var</span> pkgLen = <span class="hljs-type">uint32</span>(<span class="hljs-built_in">len</span>(data))
+	<span class="hljs-keyword">var</span> buf [<span class="hljs-number">4</span>]<span class="hljs-type">byte</span>
+	binary.BigEndian.PutUint32(buf[<span class="hljs-number">0</span>:<span class="hljs-number">4</span>], pkgLen)
+	<span class="hljs-comment">//  发送长度</span>
+	_, err = conn.Write(buf[:<span class="hljs-number">4</span>])
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;conn.Write err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	<span class="hljs-comment">//发送data本身</span>
+	n, err := conn.Write(data)
+	<span class="hljs-keyword">if</span> n != <span class="hljs-type">int</span>(pkgLen) || err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;conn.Write err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<p>将这种请求通用化，为后面的其他消息做准备</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 编写serverProcessLogin函数，专门处理登录的请求</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">serverProcessLogin</span><span class="hljs-params">(conn net.Conn, mes *message.Message)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// 从mes中取出data，并反序列化</span>
+	<span class="hljs-keyword">var</span> loginMes message.LoginMes
+	err = json.Unmarshal([]<span class="hljs-type">byte</span>(mes.Data), &amp;loginMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Unmarshal error, err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 先声明一个resMes</span>
+	<span class="hljs-keyword">var</span> resMes message.Message
+	resMes.Type = message.LoginResMesType
+	<span class="hljs-comment">// 声明一个LoginResMes</span>
+	<span class="hljs-keyword">var</span> loginResMes message.LoginResMes
+	<span class="hljs-comment">// 如果用户的id为100，密码为123456，认为合法，否则不合法</span>
+	<span class="hljs-keyword">if</span> loginMes.UserId == <span class="hljs-number">100</span> &amp;&amp; loginMes.UserPwd == <span class="hljs-string">&quot;123456&quot;</span> &#123;
+		<span class="hljs-comment">//合法</span>
+		loginResMes.Code = <span class="hljs-number">200</span>
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-comment">//不合法</span>
+		loginResMes.Code = <span class="hljs-number">500</span>
+		loginResMes.Error = <span class="hljs-string">&quot;该用户不存在，请注册再使用...&quot;</span>
+	&#125;
+	<span class="hljs-comment">// 将loginResMes序列化</span>
+	data, err := json.Marshal(loginResMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal error, err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 将data赋值给resMes</span>
+	resMes.Data = <span class="hljs-type">string</span>(data)
+	<span class="hljs-comment">// 对resMes进行序列化，准备发送</span>
+	data, err = json.Marshal(resMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal error, err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 发送data，封装到writePkg函数</span>
+	err = writePkg(conn, data)
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-comment">// 根据客户端发送消息种类不同，决定调用哪个函数来实现</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">serverProcessMes</span><span class="hljs-params">(conn net.Conn, mes *message.Message)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">switch</span> mes.Type &#123;
+	<span class="hljs-keyword">case</span> message.LoginMesType:
+		<span class="hljs-comment">// 处理登录的逻辑</span>
+		err = serverProcessLogin(conn, mes)
+	<span class="hljs-keyword">case</span> message.RegisterMesType:
+		<span class="hljs-comment">// 处理注册的逻辑</span>
+	<span class="hljs-keyword">default</span>:
+		fmt.Println(<span class="hljs-string">&quot;消息类型不存在，无法处理&quot;</span>)
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<p>客户端对消息进行处理</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 处理服务器端返回的消息</span>
+mes, err = readPkg(conn)
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;readPkg(conn) error, err=&quot;</span>, err)
+	<span class="hljs-keyword">return</span>
+&#125;
+<span class="hljs-comment">// 将mes的data部分反序列化</span>
+<span class="hljs-keyword">var</span> loginResMes message.LoginResMes
+err = json.Unmarshal([]<span class="hljs-type">byte</span>(mes.Data), &amp;loginResMes)
+<span class="hljs-keyword">if</span> loginResMes.Code == <span class="hljs-number">200</span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;登录成功&quot;</span>)
+&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> loginResMes.Code == <span class="hljs-number">500</span> &#123;
+	fmt.Println(loginResMes.Error)
+&#125;</code></pre></div>
+<h3 id="改进服务器端和客户端的结构，更易读">改进服务器端和客户端的结构，更易读</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zEDSBt"><img src="https://s1.ax1x.com/2022/11/15/zEDSBt.png" srcset="/img/loading.gif" lazyload alt="zEDSBt.png"></a></p>
+<p>改进主要是将前面编写的函数封装进方法之中，减少不同函数之间参数的传递，通过结构体直接调用即可</p>
+<p>客户端的改进增加了一个与服务器端保持联系的函数</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 和服务器端保持通讯</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">serverProcessMes</span><span class="hljs-params">(conn net.Conn)</span></span> &#123;
+	tf := &amp;utils.Transfer&#123;
+		Conn: conn,
+	&#125;
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;客户端正在等待读取服务器发送的消息&quot;</span>)
+		mes, err := tf.ReadPkg()
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;tf.ReadPkg err=&quot;</span>, err)
+			<span class="hljs-keyword">return</span>
+		&#125;
+		<span class="hljs-comment">// 如果读取到消息,下一步进行处理</span>
+		fmt.Println(mes)
+	&#125;
+&#125;</code></pre></div>
+<h3 id="增加数据库验证，增加一层models，同时实现用户的注册和登录">增加数据库验证，增加一层models，同时实现用户的注册和登录</h3>
+<p>MVC开发模式，增加models，从而从数据库中进行读取和接收，验证用户的有效性</p>
+<p>models层</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> model
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/common/message&quot;</span>
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+
+	<span class="hljs-string">&quot;github.com/gomodule/redigo/redis&quot;</span>
+)
+
+<span class="hljs-comment">// 使用工厂模式创建一个UserDao的实例</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewUserDao</span><span class="hljs-params">(pool *redis.Pool)</span></span> (userDao *UserDao) &#123;
+	userDao = &amp;UserDao&#123;
+		pool: pool,
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-comment">// 在服务器启动后初始化一个userDao实例</span>
+<span class="hljs-keyword">var</span> (
+	MyUserDao *UserDao
+)
+
+<span class="hljs-comment">// 定义一个userDao的结构体</span>
+<span class="hljs-keyword">type</span> UserDao <span class="hljs-keyword">struct</span> &#123;
+	pool *redis.Pool
+&#125;
+
+<span class="hljs-comment">// 根据用户id返回user实例</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(ud *UserDao)</span></span> getUserById(conn redis.Conn, id <span class="hljs-type">int</span>) (user *User, err <span class="hljs-type">error</span>) &#123;
+	res, err := redis.String(conn.Do(<span class="hljs-string">&quot;HGET&quot;</span>, <span class="hljs-string">&quot;users&quot;</span>, id))
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">if</span> err == redis.ErrNil &#123;
+			err = ERROR_USER_NOTEXISTS
+		&#125;
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	user = &amp;User&#123;&#125;
+
+	<span class="hljs-comment">// 把res反序列化成User实例</span>
+	err = json.Unmarshal([]<span class="hljs-type">byte</span>(res), user)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Unmarshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-comment">// 完成登录的校验</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(ud *UserDao)</span></span> Login(userId <span class="hljs-type">int</span>, userPwd <span class="hljs-type">string</span>) (user *User, err <span class="hljs-type">error</span>) &#123;
+	conn := ud.pool.Get()
+	<span class="hljs-keyword">defer</span> conn.Close()
+	user, err = ud.getUserById(conn, userId)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">if</span> user.UserPwd != userPwd &#123;
+		err = ERROR_USER_PWD
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-comment">// 注册</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(ud *UserDao)</span></span> Register(user *message.User) (err <span class="hljs-type">error</span>) &#123;
+	conn := ud.pool.Get()
+	<span class="hljs-keyword">defer</span> conn.Close()
+	_, err = ud.getUserById(conn, user.UserId)
+	<span class="hljs-keyword">if</span> err == <span class="hljs-literal">nil</span> &#123;
+		err = ERROR_USER_EXISTS
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 说明该用户还没有注册过，则可以完成注册</span>
+	data, err := json.Marshal(user)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+	_, err = conn.Do(<span class="hljs-string">&quot;HSET&quot;</span>, <span class="hljs-string">&quot;users&quot;</span>, user.UserId, <span class="hljs-type">string</span>(data))
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;保存注册用户错误，err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+</code></pre></div>
+<p>处理注册的请求</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 编写ServerProcessRegister函数，专门处理注册的请求</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(u *UserProcess)</span></span> ServerProcessRegister(mes *message.Message) (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// 从mes中取出data，并反序列化</span>
+	<span class="hljs-keyword">var</span> registerMes message.RegisterMes
+	err = json.Unmarshal([]<span class="hljs-type">byte</span>(mes.Data), &amp;registerMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Unmarshal error, err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 先声明一个resMes</span>
+	<span class="hljs-keyword">var</span> resMes message.Message
+	resMes.Type = message.RegisterResMesType
+	<span class="hljs-comment">// 声明一个RegisterResMes</span>
+	<span class="hljs-keyword">var</span> registerResMes message.RegisterResMes
+
+	err = model.MyUserDao.Register(&amp;registerMes.User)
+
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">if</span> err == model.ERROR_USER_EXISTS &#123;
+			registerResMes.Code = <span class="hljs-number">505</span>
+			registerResMes.Error = err.Error()
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			registerResMes.Code = <span class="hljs-number">506</span>
+			registerResMes.Error = <span class="hljs-string">&quot;注册发生未知错误&quot;</span>
+		&#125;
+
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		registerResMes.Code = <span class="hljs-number">200</span>
+	&#125;
+
+	<span class="hljs-comment">// 将loginResMes序列化</span>
+	data, err := json.Marshal(registerResMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal error, err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 将data赋值给resMes</span>
+	resMes.Data = <span class="hljs-type">string</span>(data)
+	<span class="hljs-comment">// 对resMes进行序列化，准备发送</span>
+	data, err = json.Marshal(resMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal error, err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-comment">// 发送data，封装到writePkg函数</span>
+	tf := &amp;utils.Transfer&#123;
+		Conn: u.Conn,
+	&#125;
+	err = tf.WritePkg(data)
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<h3 id="维护用户在线列表">维护用户在线列表</h3>
+<p>完成对当前在线用户的增删改查</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> process2
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-comment">// 在服务器端实例只有一个，在很多的地方都会使用到</span>
+
+<span class="hljs-keyword">var</span> (
+	userMgr *UserMgr
+)
+
+<span class="hljs-keyword">type</span> UserMgr <span class="hljs-keyword">struct</span> &#123;
+	onlineUsers <span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]*UserProcess
+&#125;
+
+<span class="hljs-comment">// 完成对userMgr初始化工作</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> &#123;
+	userMgr = &amp;UserMgr&#123;
+		onlineUsers: <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]*UserProcess, <span class="hljs-number">1024</span>),
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 完成对onlineUsers的增删改查</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(um *UserMgr)</span></span> AddOnlineUser(up *UserProcess) &#123;
+	um.onlineUsers[up.UserId] = up
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(um *UserMgr)</span></span> DelOnlineUser(userId <span class="hljs-type">int</span>) &#123;
+	<span class="hljs-built_in">delete</span>(um.onlineUsers, userId)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(um *UserMgr)</span></span> GetAllOnlineUser() <span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]*UserProcess &#123;
+	<span class="hljs-keyword">return</span> um.onlineUsers
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(um *UserMgr)</span></span> GetOnlineUserById(userId <span class="hljs-type">int</span>) (up *UserProcess, err <span class="hljs-type">error</span>) &#123;
+	up, ok := um.onlineUsers[userId]
+	<span class="hljs-keyword">if</span> !ok &#123;
+		err = fmt.Errorf(<span class="hljs-string">&quot;用户%d不存在&quot;</span>, userId)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+</code></pre></div>
+<p>显示当前在线用户列表</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 因为用户登录成功，要将用户放入全局变量中以返回列表</span>
+u.UserId = loginMes.UserId
+userMgr.AddOnlineUser(u)
+<span class="hljs-comment">// 将当前在线用户的id放入到loginResMes.UsersIds</span>
+<span class="hljs-keyword">for</span> id := <span class="hljs-keyword">range</span> userMgr.onlineUsers &#123;
+	loginResMes.UsersIds = <span class="hljs-built_in">append</span>(loginResMes.UsersIds, id)
+&#125;
+fmt.Println(user, <span class="hljs-string">&quot;登录成功&quot;</span>)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 显示当前在线用户列表</span>
+fmt.Println(<span class="hljs-string">&quot;当前在线用户列表如下：&quot;</span>)
+<span class="hljs-keyword">for</span> _, v := <span class="hljs-keyword">range</span> loginResMes.UsersIds &#123;
+	fmt.Println(<span class="hljs-string">&quot;用户id,\t&quot;</span>, v)
+&#125;</code></pre></div>
+<p>服务器端对用户列表进行处理</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 通知所有用户在线</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(u *UserProcess)</span></span> NotifyOthersOnlineUser(userId <span class="hljs-type">int</span>) &#123;
+	<span class="hljs-keyword">for</span> id, up := <span class="hljs-keyword">range</span> userMgr.onlineUsers &#123;
+		<span class="hljs-keyword">if</span> id == userId &#123;
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		up.NotifyMeOnline(userId)
+	&#125;
+
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(u *UserProcess)</span></span> NotifyMeOnline(userId <span class="hljs-type">int</span>) &#123;
+	<span class="hljs-keyword">var</span> mes message.Message
+	mes.Type = message.NotifyUserStatusMesType
+	<span class="hljs-keyword">var</span> notifyUserStatusMes message.NotifyUserStatusMes
+	notifyUserStatusMes.UserId = userId
+	notifyUserStatusMes.Status = message.UserOnline
+
+	data, err := json.Marshal(notifyUserStatusMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	mes.Data = <span class="hljs-type">string</span>(data)
+
+	data, err = json.Marshal(mes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	tf := &amp;utils.Transfer&#123;
+		Conn: u.Conn,
+	&#125;
+	err = tf.WritePkg(data)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;NotifyMeOnline err=&quot;</span>, err)
+	&#125;
+&#125;</code></pre></div>
+<p>客户端对用户列表进行处理</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> process
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/common/message&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-comment">// 客户端要维护的map</span>
+<span class="hljs-keyword">var</span> onlineUsers <span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]*message.User = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]*message.User, <span class="hljs-number">10</span>)
+
+<span class="hljs-comment">// 在客户端显示当前在线的用户</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">outputOnlineUser</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;当前在线用户列表&quot;</span>)
+	<span class="hljs-keyword">for</span> id, user := <span class="hljs-keyword">range</span> onlineUsers &#123;
+		fmt.Println(id, user)
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 处理返回的NotifyUserStatusMes</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">updateUserStatus</span><span class="hljs-params">(notifyUserStatusMes *message.NotifyUserStatusMes)</span></span> &#123;
+
+	user, ok := onlineUsers[notifyUserStatusMes.UserId]
+	<span class="hljs-keyword">if</span> !ok &#123;
+		user = &amp;message.User&#123;
+			UserId: notifyUserStatusMes.UserId,
+		&#125;
+	&#125;
+	user.UserStatus = notifyUserStatusMes.Status
+	onlineUsers[notifyUserStatusMes.UserId] = user
+	outputOnlineUser()
+&#125;
+</code></pre></div>
+<p>客户端显示用户列表</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 显示当前在线用户列表</span>
+fmt.Println(<span class="hljs-string">&quot;当前在线用户列表如下：&quot;</span>)
+<span class="hljs-keyword">for</span> _, v := <span class="hljs-keyword">range</span> loginResMes.UsersIds &#123;
+	fmt.Println(<span class="hljs-string">&quot;用户id,\t&quot;</span>, v)
+	user := &amp;message.User&#123;
+		UserId:     v,
+		UserStatus: message.UserOnline,
+	&#125;
+	onlineUsers[v] = user
+&#125;</code></pre></div>
+<h3 id="客户端发送消息">客户端发送消息</h3>
+<p>直接调用前面写好的就行，代码很少了</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> process
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/client/utils&quot;</span>
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/common/message&quot;</span>
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> SmsProecss <span class="hljs-keyword">struct</span> &#123;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(sp *SmsProecss)</span></span> SendGroupSms(content <span class="hljs-type">string</span>) (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">var</span> mes message.Message
+	mes.Type = message.SmsMesType
+
+	<span class="hljs-keyword">var</span> smsMes message.SmsMes
+	smsMes.Content = content
+	smsMes.UserId = CurUser.UserId
+	smsMes.UserStatus = CurUser.UserStatus
+
+	data, err := json.Marshal(smsMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	mes.Data = <span class="hljs-type">string</span>(data)
+	data, err = json.Marshal(mes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	tf := &amp;utils.Transfer&#123;
+		Conn: CurUser.Conn,
+	&#125;
+	err = tf.WritePkg(data)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;tf.WritePkg err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+</code></pre></div>
+<h3 id="服务器端转发消息">服务器端转发消息</h3>
+<p>也是和上面的差不多</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> process2
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/common/message&quot;</span>
+	<span class="hljs-string">&quot;Go-Projects/Mass-Communication-System/server/utils&quot;</span>
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;net&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> SmsProecss <span class="hljs-keyword">struct</span> &#123;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(sp *SmsProecss)</span></span> SendGroupSms(mes *message.Message) (err <span class="hljs-type">error</span>) &#123;
+
+	<span class="hljs-keyword">var</span> smsMes message.SmsMes
+	err = json.Unmarshal([]<span class="hljs-type">byte</span>(mes.Data), &amp;smsMes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Unmarshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	data, err := json.Marshal(mes)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;json.Marshal err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	<span class="hljs-keyword">for</span> id, up := <span class="hljs-keyword">range</span> userMgr.onlineUsers &#123;
+		<span class="hljs-keyword">if</span> id == smsMes.UserId &#123;
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		sp.SendMesToEachOnlineUser(data, up.Conn)
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(sp *SmsProecss)</span></span> SendMesToEachOnlineUser(data []<span class="hljs-type">byte</span>, conn net.Conn) (err <span class="hljs-type">error</span>) &#123;
+
+	tf := &amp;utils.Transfer&#123;
+		Conn: conn,
+	&#125;
+	err = tf.WritePkg(data)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;tf.WritePkg err=&quot;</span>, err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/Project/" class="print-no-link">#Project</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go项目-海量用户通讯系统</div>
+      <div>https://zhangzhao219.github.io/2022/11/11/Go/Go-Project-Mass-Communication-System/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/21/Go/Go-Project-Gee/" title="Go项目-Gee Web框架">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go项目-Gee Web框架</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/09/UCAS/information-retrieval/information-retrieval-final/" title="研究生课程：现代信息检索-期末复习">
+                        <span class="hidden-mobile">研究生课程：现代信息检索-期末复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

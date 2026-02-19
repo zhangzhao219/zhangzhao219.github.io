@@ -1,0 +1,1131 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《高级人工智能》课程笔记：第3讲 人工神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：高级人工智能-第3讲 人工神经网络">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/13/UCAS/advanced-ai/advanced-ai-3/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《高级人工智能》课程笔记：第3讲 人工神经网络">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vxtgc4.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Df%28%5Cxi%29%3Df(g(X))">
+<meta property="og:image" content="https://math.now.sh/?inline=f">
+<meta property="og:image" content="https://math.now.sh/?inline=g">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cxi%3Dg%28X%29%3D%5Csum_%7Bi%3D1%7D%5En%20%5Comega_i%20x_i-%5Ctheta">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Df%28%5Cxi%29%3Df(%5Csum_%7Bi%3D1%7D%5En%20%5Comega_i%20x_i-%5Ctheta)">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Df%28%5Cxi%29%3Df(%5Csum_%7Bi%3D0%7D%5En%20%5Comega_i%20x_i)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cxi%3D%5C%7C%5Cboldsymbol%7BX%7D-%5Cboldsymbol%7BC%7D%5C%7C%3D%5Csqrt%7B%5Csum_%7Bi%3D1%7D%5En%5Cleft%28x_i-c_i%5Cright%29%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Df%28%5Cxi%29%3Df%5Cleft(%5Csqrt%7B%5Csum_%7Bi%3D1%7D%5En%5Cleft(x_i-c%5Cright)%5E2%7D%5Cright)">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vxtH3D.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzp70x.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=v%3D%5Csum_i%7B%5Comega_i%5Ccdot%20x_i%7D%2Cy%3Df%28v%29">
+<meta property="og:image" content="https://math.now.sh/?inline=Y%3D1">
+<meta property="og:image" content="https://math.now.sh/?inline=Y%3D-1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega%3D%5Comega%2By%5E*%20%5Ccdot%20x%2Cy%5E*%20%5Cin%20%5C%7B-1%2C1%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=y_j%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=y_j%3D%5Csigma%7B%28%5Csum%5Comega_%7Bji%7Dy_j%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=e%28%5Comega%29%3D%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%5Cleft%5Bd_%7Bi%7D-y_%7Bi%7D%5E%7B%5Cprime%7D%5Cright%5D%5E%7B2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega%3D%5Comega-%5Ceta%20%5Cfrac%7B%5Cpartial%20e%7D%7B%5Cpartial%20%5Comega%7D">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzCYi8.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzCtJS.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzCdMj.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzCwss.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzC0Ln.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=x%28k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=h%281%29(k)">
+<meta property="og:image" content="https://math.now.sh/?inline=h%282%29(k)">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/15/vzFHYV.png">
+<meta property="og:image" content="https://math.now.sh/?from=E%3D-%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%20%5Csum_%7Bj%3D0%7D%5E%7Bn%7D%20%5Comega_%7Bi%20j%7D%20s_%7Bi%7D%20s_%7Bj%7D%3D-%5Cfrac%7B1%7D%7B2%7D%20%5Cboldsymbol%7BS%7D%5E%7BT%7D%20%5Cboldsymbol%7B%5Comega%7D%20%5Cboldsymbol%7BS%7D%0A">
+<meta property="og:image" content="https://math.now.sh/?from=p%5Cleft%28s_%7Bi%7D%3D1%5Cright%29%3D%5Cfrac%7B1%7D%7B1%2B%5Cexp%20%5Cleft(%5Cleft(-b_%7Bi%7D-%5Csum_%7Bj%7D%20s_%7Bj%7D%20w_%7Bj%20i%7D%5Cright)%20%2F%20T%5Cright)%7D%0A">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7BP_%7B%5Calpha%7D%7D%7BP_%7B%5Cbeta%7D%7D%3D%5Cexp%20%5Cleft%28-%5Cleft(E%5Cleft(S%5E%7B%5Calpha%7D%5Cright%29-E%5Cleft(S%5E%7B%5Cbeta%7D%5Cright)%5Cright)%20%2F%20T%5Cright)">
+<meta property="article:published_time" content="2022-09-13T19:53:32.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Advanced AI">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/09/15/vxtgc4.md.png">
+  
+  
+  
+  <title>研究生课程：高级人工智能-第3讲 人工神经网络 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：高级人工智能-第3讲 人工神经网络</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-13 19:53" pubdate>
+          2022年9月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：高级人工智能-第3讲 人工神经网络</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《高级人工智能》课程笔记：第3讲 人工神经网络</p>
+<span id="more"></span>
+<h1>第3讲 人工神经网络</h1>
+<p>联结主义学派：又称仿生学派或生理学派</p>
+<ul>
+<li>认为人的思维基元是神经元，而不是符号处理过程</li>
+<li>认为人脑不同于电脑</li>
+</ul>
+<p>核心：智能的本质是联接机制。</p>
+<p>原理：神经网络及神经网络间的连接机制和学习算法</p>
+<h2 id="什么是神经网络">什么是神经网络</h2>
+<ul>
+<li>所谓的人工神经网络就是基于模仿生物大脑的结构和功能而构成的一种信息处理系统（计算机）。</li>
+<li>个体单元相互连接形成多种类型结构的图
+<ul>
+<li>循环、非循环</li>
+<li>有向、无向</li>
+</ul>
+</li>
+<li>自底向上（Bottom-Up）AI
+<ul>
+<li>起源于生物神经系统</li>
+<li>从结构模拟到功能模拟</li>
+</ul>
+</li>
+</ul>
+<h2 id="发展历史">发展历史</h2>
+<ul>
+<li>1940年代
+<ul>
+<li>心理学家McCulloch和数学家Pitts建立了阈值加权和模型(1943)</li>
+<li>心理学家Hebb提出神经元之间突触联系是可变(可学习)的假说——Hebb学习律(1949)</li>
+</ul>
+</li>
+<li>1950年代、1960年代
+<ul>
+<li>提出并完善了单级感知器(Perceptron)</li>
+<li>代表性人物：Marvin Minsky，Frank Rosenblatt，Bernard Widrow</li>
+</ul>
+</li>
+<li>1980年代
+<ul>
+<li>J.Hopfield提出Hopfield网络(1984)</li>
+<li>Hinton、Sejnowsky、Rumelhart等人提出了著名的Boltzmann机(1985)</li>
+<li>Rumelhart等提出多层网络的学习算法—BP算法(1986)</li>
+</ul>
+</li>
+<li>2000年代
+<ul>
+<li>Hinton et al. Deep Neural Networks (2007)</li>
+</ul>
+</li>
+</ul>
+<h2 id="生物学启示">生物学启示</h2>
+<p>生物神经元</p>
+<ul>
+<li>神经元组成：细胞体，轴突，树突，突触</li>
+<li>神经元之间通过突触两两相连。信息的传递发生在突触。</li>
+<li>突触记录了神经元间联系的强弱。</li>
+<li>只有达到一定的兴奋程度，神经元才向外界传输信息。</li>
+</ul>
+<p>神经元特性</p>
+<ul>
+<li>信息以预知的确定方向传递：一个神经元的树突－细胞体－轴突－突触－另一个神经元树突</li>
+<li>时空整合性
+<ul>
+<li>对不同时间通过同一突触传入的信息具有时间整合功能</li>
+<li>对同一时间通过不同突触传入的信息具有空间整合功能</li>
+</ul>
+</li>
+</ul>
+<p>工作状态</p>
+<ul>
+<li>兴奋状态，对输入信息整合后使细胞膜电位升高，当高于动作电位的阈值时，产生神经冲动，并由轴突输出。</li>
+<li>抑制状态，对输入信息整合后使细胞膜电位降低，当低于动作电位的阈值时，无神经冲动产生。</li>
+</ul>
+<p>结构的可塑性：神经元之间的柔性连接：突触的信息传递特性是可变的——<strong>学习记忆的基础</strong></p>
+<h3 id="神经元模型">神经元模型</h3>
+<p>从生物学结构到数学模型</p>
+<p>人工神经元</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vxtgc4"><img src="https://s1.ax1x.com/2022/09/15/vxtgc4.md.png" srcset="/img/loading.gif" lazyload alt="vxtgc4.md.png"></a></p>
+<p><img src="https://math.now.sh?inline=y%3Df%28%5Cxi%29%3Df(g(X))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=f" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为激活函数，<img src="https://math.now.sh?inline=g" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为组合函数</p>
+<p>组合函数：</p>
+<p>权重和：<img src="https://math.now.sh?inline=%5Cxi%3Dg%28X%29%3D%5Csum_%7Bi%3D1%7D%5En%20%5Comega_i%20x_i-%5Ctheta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=y%3Df%28%5Cxi%29%3Df(%5Csum_%7Bi%3D1%7D%5En%20%5Comega_i%20x_i-%5Ctheta)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>➡<img src="https://math.now.sh?inline=y%3Df%28%5Cxi%29%3Df(%5Csum_%7Bi%3D0%7D%5En%20%5Comega_i%20x_i)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>径向距离：<img src="https://math.now.sh?inline=%5Cxi%3D%5C%7C%5Cboldsymbol%7BX%7D-%5Cboldsymbol%7BC%7D%5C%7C%3D%5Csqrt%7B%5Csum_%7Bi%3D1%7D%5En%5Cleft%28x_i-c_i%5Cright%29%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=y%3Df%28%5Cxi%29%3Df%5Cleft(%5Csqrt%7B%5Csum_%7Bi%3D1%7D%5En%5Cleft(x_i-c%5Cright)%5E2%7D%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>激活函数</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vxtH3D"><img src="https://s1.ax1x.com/2022/09/15/vxtH3D.md.png" srcset="/img/loading.gif" lazyload alt="vxtH3D.md.png"></a></p>
+<h2 id="人工神经网络（ANN）">人工神经网络（ANN）</h2>
+<ul>
+<li>多个人工神经元按照特定的网络结构联接在一起，就构成了一个人工神经网络。</li>
+<li>神经网络的目标就是将输入转换成有意义的输出。</li>
+</ul>
+<p>生物系统中的学习：</p>
+<ul>
+<li>自适应学习：适应的目标是基于对环境信息的响应获得更好的状态</li>
+<li>在神经层面上，通过突触强度的改变实现学习：消除某些突触，建立一些新的突触</li>
+<li>Hebb学习律：神经元同时激活，突触强度增加，异步激活，突触强度减弱</li>
+<li>学习律符合能量最小原则：保持突触强度需要能量，所以在需要的地方保持，在不需要的地方不保持。</li>
+</ul>
+<p>ANN的学习规则：<strong>能量最小</strong></p>
+<p>对人工神经网络，需要确定合适的能量定义；可以使用数学上的优化技术来发现如何改变神经元间的联接权重。</p>
+<p><strong>两个主要问题：结构和学习方法</strong></p>
+<p>ANN结构</p>
+<ul>
+<li>前馈结构：没有循环，静态的</li>
+<li>反馈/循环结构：有循环，动态的</li>
+</ul>
+<p>ANN的学习方法：通过神经网络所在环境的模拟过程，调整网络中的自由参数。</p>
+<p>学习策略：Error Correction：最小化实际输出与期望输出之间的误差，属于监督学习。</p>
+<h2 id="多层感知机">多层感知机</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzp70x"><img src="https://s1.ax1x.com/2022/09/15/vzp70x.md.png" srcset="/img/loading.gif" lazyload alt="vzp70x.md.png"></a></p>
+<p>感知机实质上是一种神经元模型</p>
+<p>阈值激活函数：<img src="https://math.now.sh?inline=v%3D%5Csum_i%7B%5Comega_i%5Ccdot%20x_i%7D%2Cy%3Df%28v%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>判别规则：</p>
+<p>输入空间中</p>
+<ul>
+<li>样本是空间中的一个点</li>
+<li>权向量是一个超平面</li>
+<li>超平面一边对应<img src="https://math.now.sh?inline=Y%3D1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，另一边对应<img src="https://math.now.sh?inline=Y%3D-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>单层感知机学习：用现在的权重进行分类，如果分类正确，权重不改变；如果分类错误，用分类错误的样本调整权重<img src="https://math.now.sh?inline=%5Comega%3D%5Comega%2By%5E*%20%5Ccdot%20x%2Cy%5E*%20%5Cin%20%5C%7B-1%2C1%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>感知机收敛定理：若训练数据集是线性可分的，则感知机模型收敛。</p>
+<p>感知机存在的问题：如果存在噪声，或样本不是线性可分的，不会收敛。（例如不能处理异或操作），且泛化性比较差。</p>
+<p>多层感知机：三层可以学习全部连续的函数，四层就可以学习全部的函数。层间神经元全连接，层内神经元不连接。</p>
+<p>学习方法：反向传播</p>
+<ul>
+<li>输入数据从输入层经过隐藏层传递到输出层<img src="https://math.now.sh?inline=y_j%5E%7B'%7D%3D%5Csigma%7B%28%5Csum%5Comega_%7Bkj%7Dx_k%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>误差信息从输出层反向传播，通过隐藏层传递到输入层<img src="https://math.now.sh?inline=y_j%3D%5Csigma%7B%28%5Csum%5Comega_%7Bji%7Dy_j%5E%7B'%7D%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>全局误差度量：（最小平方误差）<img src="https://math.now.sh?inline=e%28%5Comega%29%3D%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%5Cleft%5Bd_%7Bi%7D-y_%7Bi%7D%5E%7B%5Cprime%7D%5Cright%5D%5E%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>权值更新规则采用梯度下降的方法：<img src="https://math.now.sh?inline=%5Comega%3D%5Comega-%5Ceta%20%5Cfrac%7B%5Cpartial%20e%7D%7B%5Cpartial%20%5Comega%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzCYi8"><img src="https://s1.ax1x.com/2022/09/15/vzCYi8.md.png" srcset="/img/loading.gif" lazyload alt="vzCYi8.md.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzCtJS"><img src="https://s1.ax1x.com/2022/09/15/vzCtJS.md.png" srcset="/img/loading.gif" lazyload alt="vzCtJS.md.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzCdMj"><img src="https://s1.ax1x.com/2022/09/15/vzCdMj.md.png" srcset="/img/loading.gif" lazyload alt="vzCdMj.md.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzCwss"><img src="https://s1.ax1x.com/2022/09/15/vzCwss.md.png" srcset="/img/loading.gif" lazyload alt="vzCwss.md.png"></a></p>
+<p>误差反向传播：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzC0Ln"><img src="https://s1.ax1x.com/2022/09/15/vzC0Ln.md.png" srcset="/img/loading.gif" lazyload alt="vzC0Ln.md.png"></a></p>
+<p>实际应用中要对数据进行归一化，并且选择合适的学习率</p>
+<p>优点：</p>
+<ul>
+<li>很强的表达能力</li>
+<li>容易执行</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>收敛速度慢（采用Newton法）</li>
+<li>过拟合（Over-fitting）（加正则化项，约束权值的平滑性；采用更少（但足够数量）的隐层神经元）</li>
+<li>局部极小（尝试不同的初始化，增加扰动）</li>
+</ul>
+<p>多层感知机解决了一般性学习问题，并且与生物系统相联系。</p>
+<p>层数增加使用BP算法会存在<strong>梯度消失</strong>的问题：在后面的几层，误差反向传播后可能变得非常小，权重不太好更新。</p>
+<p>采用sigmoid函数，多个相乘使得传递过来的残差会越来越小。</p>
+<h2 id="深度学习">深度学习</h2>
+<p>时代背景：数据爆炸、计算性能提升</p>
+<p>传统机器学习解决问题的思路：</p>
+<ul>
+<li>良好的特征表达，对最终算法的准确性起了非常关键的作用，而且系统主要的计算和测试工作都耗在这一大部分。</li>
+<li>但实际中一般都是人工完成的。</li>
+</ul>
+<p>使用深度学习去自动学习特征！</p>
+<p>人脑视觉机理</p>
+<ul>
+<li>“视觉系统的信息处理”：可视皮层是分级的</li>
+<li>神经-中枢-大脑的工作过程，或许是一个不断迭代、不断抽象的过程。</li>
+<li><strong>关键词：一个是抽象，一个是迭代。</strong></li>
+<li>从原始信号，做低级抽象，逐渐向高级抽象迭代。人类的逻辑思维，经常使用高度抽象的概念。</li>
+</ul>
+<p>为什么使用深度学习？</p>
+<ul>
+<li>深层结构能够有效被表达
+<ul>
+<li>对相同的函数需要更少的计算单元</li>
+<li>深层网络结构中，高层可以综合应用低层信息</li>
+</ul>
+</li>
+<li>深层结构可产生层次化特征表达
+<ul>
+<li>可解释性，更具有语义化信息</li>
+</ul>
+</li>
+<li>多层隐变量允许统计上的组合共享</li>
+<li>深层结构有效（vision, audio, NLP等）！</li>
+</ul>
+<p>深层 vs 浅层神经网络</p>
+<ul>
+<li>多隐层的人工神经网络具有优异的特征学习能力，学习得到的特征对数据有更本质的刻画，从而有利于可视化或分类
+<ul>
+<li>深层网络结构中，高层可以综合应用低层信息</li>
+<li>低层关注“局部”，高层关注“全局”、更具有语义化</li>
+</ul>
+</li>
+<li>“深度模型”是手段，“特征学习”是目的。
+<ul>
+<li>强调了模型结构的深度，通常有5层、6层，甚至10多层的隐层节点；</li>
+<li>明确突出了特征学习的重要性，也就是说，通过逐层特征变换，将样本在原空间的特征表示变换到一个新特征空间，从而使分类或预测更加容易。</li>
+</ul>
+</li>
+<li>与人工规则构造特征的方法相比，利用大数据来学习特征，更能够刻画数据的丰富内在信息。</li>
+</ul>
+<p>BP算法的问题：</p>
+<ul>
+<li>需要带标签训练数据
+<ul>
+<li>几乎所有的数据是无标签的</li>
+<li>人脑可以从无标签数据中学习</li>
+</ul>
+</li>
+<li>局部极小
+<ul>
+<li>对深层网络远离了最优解</li>
+</ul>
+</li>
+<li>梯度消失</li>
+</ul>
+<p>Deep learning训练：</p>
+<p>自下向上的非监督学习（greedy layer-wise training）</p>
+<ul>
+<li>把网络逐层进行预训练，或者找一个足够好的初始权重。</li>
+</ul>
+<p>自顶向下的监督学习</p>
+<ul>
+<li>就是通过带标签的数据去训练，误差自顶向下传输，对网络进行微调</li>
+<li>微调特征（中间层），使得与问题更相关。</li>
+</ul>
+<p>对输入的结构建模：建立产生输入的生成式模型，调整参数使得生成式模型的概率最大。</p>
+<h2 id="Deep-Learning的常用模型">Deep Learning的常用模型</h2>
+<h3 id="AutoEncoder自动编码器">AutoEncoder自动编码器</h3>
+<p>学习过程：无标签数据，用非监督学习学习特征</p>
+<ul>
+<li>将input输入一个encoder编码器，就会得到一个code，这个code也就是输入的一个表示</li>
+<li>增加一个decoder解码器</li>
+<li>通过调整encoder和decoder的参数，使得重构误差最小，这样就得到输入input信号的一个表示了，也就是编码code。</li>
+<li>输入无标签数据，误差的来源就是直接重构后与原输入相比得到。</li>
+</ul>
+<p>利用人工神经网络本身的层次结构特点</p>
+<ul>
+<li>如果给定一个神经网络，假设其输出与输入是相同的，然后训练调整其参数，得到每一层中的权重。</li>
+<li>自然地，就得到了输入I的几种不同表示（每一层代表一种表示），这些表示就是特征。</li>
+</ul>
+<p>自动编码器就是一种尽可能复现输入信号的神经网络。</p>
+<p>为了实现这种复现，自动编码器就必须捕捉可以代表输入数据的最重要的因素</p>
+<p>网络结构</p>
+<ul>
+<li>三层结构：输入层，隐藏层，输出层</li>
+<li>限定神经元的数量
+<ul>
+<li>输入层神经元数=输出层神经元数</li>
+<li>隐层神经元数量&lt;输入层神经元数量</li>
+<li>意义：迫使隐藏层节点学习得到输入数据的压缩表示方法</li>
+</ul>
+</li>
+</ul>
+<p>自动编码器可以只训练单组参数，不需要关心另一半的参数。</p>
+<p>Deep结构——逐层训练</p>
+<ul>
+<li>自编码器“栈化”</li>
+<li>通过编码器产生特征，然后训练下一层。得到第一层的code，重构误差最小让我们相信这个code就是原输入信号的良好表达了，或者牵<br>
+强点说，它和原信号是一模一样的（表达不一样，反映的是一个东西）。将第一层输出的code当成第二层的输入信号，同样最小化重构误差，就会得到第二层的参数，并且得到第二层输入的code，也就是原输入信息的第二个表达了。其他层也以同样的方法进行。</li>
+</ul>
+<p>监督学习</p>
+<ul>
+<li>Deep结构，每一层都会得到原始输入的不同层次的表达。</li>
+<li>有监督微调
+<ul>
+<li>为了实现分类，可以在AutoEncoder的最顶的编码层添加一个分类器（例如Logistic回归、SVM等），然后通过标准的多层神经网络的监督训练方法（梯度下降法）去训练。</li>
+</ul>
+</li>
+<li>最后层的特征code输入到分类器中，基于有标签样本，通过监督学习对网络进行微调
+<ul>
+<li>只调整分类器</li>
+<li>通过有标签样本，微调整个系统</li>
+</ul>
+</li>
+</ul>
+<p>两隐层自编码网络MNIST手写数字识别：</p>
+<p>训练一个包含两个隐含层的栈式自编码网络，用来进行MNIST手写数字分类</p>
+<ol>
+<li>用原始输入<img src="https://math.now.sh?inline=x%28k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>训练第一个自编码器，学习得到原始输入的一阶特征表示<img src="https://math.now.sh?inline=h%281%29(k)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>把上一层的一阶特征作为另一个稀疏自编码器的输入，使用它们来学习二阶特征<img src="https://math.now.sh?inline=h%282%29(k)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>将二阶特征作为softmax分类器的输入，训练得到一个能将二阶特征映射到数字标签的模型</li>
+<li>将这三层结合起来构成一个栈式自编码网络，通过反向传播算法(BP)同时调整所有层的参数以改善学习结果(称为整体微调finetuning)</li>
+</ol>
+<p>栈式自编码器神经网络</p>
+<ul>
+<li>栈式自编码神经网络具有强大的表达能力及深度神经网络的所有优点。</li>
+<li>通常能够获取到输入的“层次型分组”或者“部分-整体分解”结构。
+<ul>
+<li>学习方式：前层的输出作为下一层输入的方式依次训练。</li>
+<li>如果网络的输入数据是图像，网络的第一层会学习如何去识别边，第二层一般会学习如何去组合边，从而构成轮廓、角等。更高层会学习如何去组合更形象且有意义的特征。</li>
+<li>如果输入数据集包含人脸图像，更高层会学习如何识别或组合眼睛、鼻子、嘴等人脸器官。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Deep-Belief-Networks-DBN-和Deep-Boltzmann-Machine-DBM">Deep Belief Networks(DBN)和Deep Boltzmann Machine(DBM)</h3>
+<p>Hopfield Network</p>
+<p>结构：</p>
+<ul>
+<li>单层全互连、对称权值的反馈网络</li>
+<li>状态：-1(0)，+1</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vzFHYV"><img src="https://s1.ax1x.com/2022/09/15/vzFHYV.png" srcset="/img/loading.gif" lazyload alt="vzFHYV.png"></a></p>
+<p>Hopfield网络按动力学方式运行，其工作过程为状态的演化过程，即从初始状态按能量减小的方向进行演化，直到达到稳定状态。稳定状态即为网络的输出。</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=E%3D-%5Cfrac%7B1%7D%7B2%7D%20%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%20%5Csum_%7Bj%3D0%7D%5E%7Bn%7D%20%5Comega_%7Bi%20j%7D%20s_%7Bi%7D%20s_%7Bj%7D%3D-%5Cfrac%7B1%7D%7B2%7D%20%5Cboldsymbol%7BS%7D%5E%7BT%7D%20%5Cboldsymbol%7B%5Comega%7D%20%5Cboldsymbol%7BS%7D%0A" srcset="/img/loading.gif" lazyload /></p><p>二值随机神经元(Bernoulli variables)：以一定的概率产生1</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=p%5Cleft%28s_%7Bi%7D%3D1%5Cright%29%3D%5Cfrac%7B1%7D%7B1%2B%5Cexp%20%5Cleft(%5Cleft(-b_%7Bi%7D-%5Csum_%7Bj%7D%20s_%7Bj%7D%20w_%7Bj%20i%7D%5Cright)%20%2F%20T%5Cright)%7D%0A" srcset="/img/loading.gif" lazyload /></p><p>波尔兹曼机(Boltzmann Machine)：</p>
+<ul>
+<li>结构类似于Hopfield 网络，但它是具有隐单元的反馈互联网络</li>
+<li>遵循波尔兹曼分布，学习数据的固有内在表示。</li>
+<li>结构：一个可见层+一个隐层，<strong>层内有连接</strong></li>
+</ul>
+<p>BM基本原理：<img src="https://math.now.sh?inline=%5Cfrac%7BP_%7B%5Calpha%7D%7D%7BP_%7B%5Cbeta%7D%7D%3D%5Cexp%20%5Cleft%28-%5Cleft(E%5Cleft(S%5E%7B%5Calpha%7D%5Cright%29-E%5Cleft(S%5E%7B%5Cbeta%7D%5Cright)%5Cright)%20%2F%20T%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ol>
+<li>Hopfield网络的神经元的结构功能及其在网络中的地位是一样的。但BM中一部分神经元与外部相连,可以起到网络的输入、输出功能,或者严格地说可以受到外部条件的约束。另一部分神经元则不与外部相连，因而属于隐单元</li>
+<li>每个神经元只取1或0这两种状态：状态1代表该神经元处于接通状态，状态0代表该神经元处于断开状态</li>
+</ol>
+<p>缺点：网络结构复杂、训练代价大、局部极小</p>
+<p>受限波尔兹曼机(Restricted Boltzmann Machines)：</p>
+<ul>
+<li>通过输入数据集学习概率分布的随机生成神经网络</li>
+<li>结构：一个可见层+一个隐层，<strong>层内无连接</strong></li>
+<li>RBM中，隐单元在给定可视单元情况下，条件独立</li>
+</ul>
+<p>Deep Belief Networks：</p>
+<ul>
+<li>概率生成模型</li>
+<li>深层结构——多层</li>
+<li>非监督的预学习提供了网络好的初始化</li>
+<li>监督微调(fine-tuning)</li>
+</ul>
+<p>Deep Boltzmann Machines：</p>
+<ul>
+<li>所有层间无向连接
+<ul>
+<li>同层神经元间无连接</li>
+</ul>
+</li>
+<li>高层表示由无标注数据建立</li>
+<li>标注数据仅用来微调网络</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Advanced-AI/" class="print-no-link">#Advanced AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：高级人工智能-第3讲 人工神经网络</div>
+      <div>https://zhangzhao219.github.io/2022/09/13/UCAS/advanced-ai/advanced-ai-3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/14/UCAS/information-retrieval/information-retrieval-6/" title="研究生课程：现代信息检索-第6讲 概率检索模型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第6讲 概率检索模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/13/Leetcode/Leetcode-101/Leetcode-101-12/" title="Leetcode 刷题笔记-Leetcode 101 第12章 字符串">
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第12章 字符串</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,3157 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go基础学习（微软教程）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go基础学习（微软教程）">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/10/03/Go/go-basic-ms/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go基础学习（微软教程）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/03/xQJIts.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/03/xQUdgI.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/05/xlDdl4.png">
+<meta property="article:published_time" content="2022-10-03T18:17:30.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/10/03/xQJIts.png">
+  
+  
+  
+  <title>Go基础学习（微软教程） - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go基础学习（微软教程）</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-03 18:17" pubdate>
+          2022年10月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          170 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go基础学习（微软教程）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go基础学习（微软教程）</p>
+<span id="more"></span>
+<h1>什么是 Go？</h1>
+<p>Go 语言表现力强，且简单明了。 它在设计时考虑了惯用语言，这使程序员能够高效地编写高效且可靠的代码。 以 Go 语言编写的程序可以在 Unix 系统上运行，例如 Linux 和 macOS，还有 Windows。 Go 语言之所以值得注意，部分原因在于它独特的并发机制，使得编写可同时利用多个内核的程序非常容易。 它主要是一种强化静态类型的语言，这意味着变量类型在编译时是已知的。 不过，它确实具有一些动态类型化功能。</p>
+<p>下面是 Go 编程语言的基本原理优势：</p>
+<ul>
+<li>Go 许可证是完全开放源代码的。</li>
+<li>Go 程序编译为单独的二进制文件，这样更易于共享和分发。</li>
+<li>交叉编译到各种平台和操作系统</li>
+<li>Go 语言致力于使语言变得简单，并用更少的代码行执行更多操作。</li>
+<li>并发是头等概念，使任何函数可以作为轻量级线程运行，而程序员只需少量工作。</li>
+<li>Go 语言提供自动内存管理，包括垃圾回收。</li>
+<li>编译和执行速度很快。</li>
+<li>Go 语言需要使用所有代码，否则会引发错误。</li>
+<li>有一种官方格式设置可帮助保持项目之间的一致性。</li>
+<li>Go 语言具有大量全面标准库，并且可以在不使用第三方依赖项的情况下生成多个应用程序。</li>
+<li>Go 保证语言与以前版本的后向兼容性。</li>
+</ul>
+<h1>安装Go</h1>
+<p>如果不想在本地安装 Go，可以使用 <a target="_blank" rel="noopener" href="https://play.golang.org/">Go Playground</a>。 Go Playground 是一款 Web 服务，可在浏览器中运行 Go 应用程序。</p>
+<p>本地安装包<a target="_blank" rel="noopener" href="https://go.dev/dl/">下载地址</a></p>
+<div class="code-wrapper"><pre><code class="hljs bash">wget https://go.dev/dl/go1.19.1.linux-amd64.tar.gz // 版本号可能改变</code></pre></div>
+<p>提取本地安装包</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> tar -C /usr/local -xzf go1.19.1.linux-amd64.tar.gz</code></pre></div>
+<p>编辑配置文件，添加到环境变量：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">vim ~/.bashrc
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:/usr/local/go/bin
+<span class="hljs-built_in">source</span> ~/.bashrc</code></pre></div>
+<p>确认是否已经安装好：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">go version</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">go</span> version go1.<span class="hljs-number">19</span>.<span class="hljs-number">1</span> linux/amd64</code></pre></div>
+<h2 id="配置Go工作区">配置Go工作区</h2>
+<p>Go 在组织项目文件方面与其他编程语言不同。 首先，Go 是在工作区的概念下工作的。 工作区就是应用程序源代码所在的位置。 所有 Go 项目共享同一个工作区。 不过，从版本 1.11 开始，Go 已开始更改此方法。 你尚且不必担心，因为我们将在下一个模块中介绍工作区。 现在，Go 工作区位于 $HOME/go，但如果需要，可以为所有项目设置其他位置。</p>
+<p>若要将工作区设置为其他位置，可以使用 $GOPATH 环境变量。 在处理更复杂的项目时，此环境变量有助于避免将来出现问题。</p>
+<div class="code-wrapper"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">GOPATH</span>=/mnt/d/Programming_Design/Go</code></pre></div>
+<h2 id="Go-工作区文件夹">Go 工作区文件夹</h2>
+<p>每个 Go 工作区都包含三个基本文件夹：</p>
+<ul>
+<li><em>bin</em> ：包含应用程序中的可执行文件。</li>
+<li><em>src</em> ：包括位于工作站中的所有应用程序源代码。</li>
+<li><em>pkg</em> ：包含可用库的已编译版本。 编译器可以链接这些库，而无需重新编译它们。</li>
+</ul>
+<p>例如，工作站文件夹结构树可能与下面的示例类似：</p>
+<div class="code-wrapper"><pre><code class="hljs nix">bin<span class="hljs-symbol">/</span>
+    hello
+    coolapp
+pkg<span class="hljs-symbol">/</span>
+    github.com<span class="hljs-operator">/</span>gorilla<span class="hljs-symbol">/</span>
+        mux.a
+src<span class="hljs-symbol">/</span>
+    github.com<span class="hljs-operator">/</span>golang<span class="hljs-operator">/</span>example<span class="hljs-symbol">/</span>
+        .git<span class="hljs-symbol">/</span>
+    hello<span class="hljs-symbol">/</span>
+        hello.go</code></pre></div>
+<h2 id="VSCode-Go-插件">VSCode Go 插件</h2>
+<p>在安装插件之前要先更改go的源</p>
+<div class="code-wrapper"><pre><code class="hljs bash">The <span class="hljs-string">&quot;gopls&quot;</span> <span class="hljs-built_in">command</span> is not available. Run <span class="hljs-string">&quot;go install -v golang.org/x/tools/gopls@latest&quot;</span> to install.</code></pre></div>
+<p>然后点击上边的窗口的install All，即可完成插件的安装</p>
+<h2 id="第一个Go应用">第一个Go应用</h2>
+<p>文件夹组织形式：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xQJIts"><img src="https://s1.ax1x.com/2022/10/03/xQJIts.png" srcset="/img/loading.gif" lazyload alt="xQJIts.png"></a></p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;Hello World!&quot;</span>)
+&#125;
+</code></pre></div>
+<p>运行：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">go run main.go</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs erlang-repl">Hello World!</code></pre></div>
+<p>只生成二进制文件但是不运行：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">go build main.go</code></pre></div>
+<h3 id="代码解释">代码解释</h3>
+<p>我们在 <code>package main</code> 语句中告诉 Go，我们将要创建的应用是一个可执行程序（可以运行的文件）。 我们的“Hello World!”应用是 <code>main</code> 包的一部分。</p>
+<p>包是一组常用的源代码文件。 每个可执行应用都具有此第一行，即使项目或文件具有不同的名称。</p>
+<p><code>import</code> 语句使你的程序可以访问其他包中的其他代码。 在本例中，fmt 为标准库包。</p>
+<p>你需要此 <code>import</code> 语句，因为你将在此程序的稍后部分使用此包中的函数将消息打印到屏幕上。 可以在程序中包含你想要或需要的任意数量的 <code>import</code> 语句。 但是，Go 在这方面是惯用的。 <strong>如果导入包，但不使用包中的相应函数，应用将不会进行编译</strong>。 <strong>Visual Studio Code 的一大功能是，当你保存文件时，它会自动删除程序中未使用的导入</strong>。</p>
+<p>VSCode 是自动帮助我们删除的，但是和Python什么的不一样，<strong>如果多了冗余的包程序是无法运行的</strong>。</p>
+<div class="code-wrapper"><pre><code class="hljs vim"># <span class="hljs-keyword">command</span>-<span class="hljs-built_in">line</span>-arguments
+./main.<span class="hljs-keyword">go</span>:<span class="hljs-number">4</span>:<span class="hljs-number">8</span>: imported <span class="hljs-built_in">and</span> not used: <span class="hljs-string">&quot;math&quot;</span></code></pre></div>
+<p><code>func</code> 语句是用于声明函数的保留字。 第一个函数名为“main”，因为它是程序的起始点。 整个 <code>package main</code> 中只能有一个 <code>main()</code> 函数（在第一行中定义的那个）。 在 <code>main()</code> 函数中，你调用了 <code>fmt</code> 包中的 <code>Println</code> 函数。 你发送了你希望在屏幕上看到的文本消息。</p>
+<h1>声明和使用变量</h1>
+<h2 id="声明变量">声明变量</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> firstName <span class="hljs-type">string</span>            <span class="hljs-comment">// 声明单一变量</span>
+<span class="hljs-keyword">var</span> secondName, lastName <span class="hljs-type">string</span> <span class="hljs-comment">// 如果多个变量的类型相同，可以用逗号分隔一起声明多个变量</span>
+<span class="hljs-keyword">var</span> age <span class="hljs-type">int</span>
+
+<span class="hljs-comment">// 也可以在一个括号内批量声明变量</span>
+<span class="hljs-keyword">var</span> (
+	thirdName, fourthName <span class="hljs-type">string</span>
+	secondage             <span class="hljs-type">int</span>
+)</code></pre></div>
+<p>（VSCode会自动进行格式化，完全不用担心格式的问题）</p>
+<h2 id="初始化变量">初始化变量</h2>
+<p>可以在声明的时候直接对变量进行初始化，会自动对变量的类型进行推断，不用显式指定类型</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> (
+    firstName <span class="hljs-type">string</span> = <span class="hljs-string">&quot;John&quot;</span>
+    lastName  <span class="hljs-type">string</span> = <span class="hljs-string">&quot;Doe&quot;</span>
+    age       <span class="hljs-type">int</span>    = <span class="hljs-number">32</span>
+)</code></pre></div>
+<p>等价于下面的写法：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> (
+    firstName, lastName, age = <span class="hljs-string">&quot;John&quot;</span>, <span class="hljs-string">&quot;Doe&quot;</span>, <span class="hljs-number">32</span>
+)</code></pre></div>
+<h2 id="在main函数内部声明-初始化（更加常用）">在main函数内部声明+初始化（更加常用）</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	firstName, lastName := <span class="hljs-string">&quot;John&quot;</span>, <span class="hljs-string">&quot;Doe&quot;</span>
+	age := <span class="hljs-number">32</span>
+	fmt.Println(firstName, lastName, age)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">John</span> Doe <span class="hljs-number">32</span></code></pre></div>
+<p>请注意，在定义变量名称后，需要在此处加入一个冒号等于号 (<code>:=</code>) 和相应的值。 使用冒号等于号时， <em>要声明的变量必须是新变量</em> 。 如果使用冒号等于号并已经声明该变量，将不会对程序进行编译。</p>
+<h2 id="声明常量">声明常量</h2>
+<p>用于声明常量的关键字是 <code>const</code></p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">const</span> HTTPStatusOK = <span class="hljs-number">200</span>
+
+<span class="hljs-keyword">const</span> (
+	StatusOK              = <span class="hljs-number">0</span>
+	StatusConnectionReset = <span class="hljs-number">1</span>
+	StatusOtherError      = <span class="hljs-number">2</span>
+)</code></pre></div>
+<p>常量和变量之间既有相似之处，也有一些重要差异。 例如，你可以在不使用常量的情况下声明常量。 你不会收到错误消息。 不能使用冒号等于号来声明常量。 如果采用这种方式，Go 会发出警告。</p>
+<p>在 Go 中，当你（在函数内部）声明一个变量但不使用它时，Go 会抛出错误，而不是像某些其他编程语言一样抛出警告。</p>
+<h1>基本数据类型</h1>
+<h2 id="整数数字">整数数字</h2>
+<p>一般来说，定义整数类型的关键字是 <code>int</code>。 但 Go 还提供了 <code>int8</code>、<code>int16</code>、<code>int32</code> 和 <code>int64</code> 类型，其大小分别为 8、16、32 或 64 位的整数。 使用 32 位操作系统时，如果只是使用 <code>int</code>，则大小通常为 32 位。 在 64 位系统上，<code>int</code> 大小通常为 64 位。 但是，此行为可能因计算机而不同。 可以使用 <code>uint</code>。 但是，只有在出于某种原因需要将值表示为无符号数字的情况下，才使用此类型。 此外，Go 还提供 <code>uint8</code>、<code>uint16</code>、<code>uint32</code> 和 <code>uint64</code> 类型。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> integer8 <span class="hljs-type">int8</span> = <span class="hljs-number">127</span>
+<span class="hljs-keyword">var</span> integer16 <span class="hljs-type">int16</span> = <span class="hljs-number">32767</span>
+<span class="hljs-keyword">var</span> integer32 <span class="hljs-type">int32</span> = <span class="hljs-number">2147483647</span>
+<span class="hljs-keyword">var</span> integer64 <span class="hljs-type">int64</span> = <span class="hljs-number">9223372036854775807</span></code></pre></div>
+<p>不能进行隐式转换，如果两个变量的类型不同，需要进行强制转换，否则编译不能通过。</p>
+<h2 id="浮点数字">浮点数字</h2>
+<p>Go 提供两种浮点数大小的数据类型：<code>float32</code> 和 <code>float64</code>。 如果需要存储较大的数字，则可以使用这些类型，这些类型无法适应前面提到的任何一个整数类型。 这两种类型的区别是它们可以容纳的最大位数。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> <span class="hljs-type">float32</span> <span class="hljs-type">float32</span> = <span class="hljs-number">2147483647</span>
+<span class="hljs-keyword">var</span> <span class="hljs-type">float64</span> <span class="hljs-type">float64</span> = <span class="hljs-number">9223372036854775807</span>
+fmt.Println(<span class="hljs-type">float32</span>, <span class="hljs-type">float64</span>)</code></pre></div>
+<p>可以使用 <code>math</code> 包中提供的 <code>math.MaxFloat32</code> 和 <code>math.MaxFloat64</code> 常量来查找这两种类型的限制。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(math.MaxFloat32, math.MaxFloat64)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">3</span>.<span class="hljs-number">4028234663852886</span>e+<span class="hljs-number">38</span> <span class="hljs-number">1</span>.<span class="hljs-number">7976931348623157</span>e+<span class="hljs-number">308</span></code></pre></div>
+<h2 id="布尔型">布尔型</h2>
+<p>布尔类型仅可能有两个值：<code>true</code> 和 <code>false</code>。 你可以使用关键字 <code>bool</code> 声明布尔类型。 Go 不同于其他编程语言，在 Go 中，你不能将布尔类型隐式转换为 0 或 1。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> featureFlag <span class="hljs-type">bool</span> = <span class="hljs-literal">true</span></code></pre></div>
+<h2 id="字符串">字符串</h2>
+<p>最后，让我们看一下编程语言中最常见的数据类型：string。 在 Go 中，关键字 <code>string</code> 用于表示字符串数据类型。 若要初始化字符串变量，你需要在双引号（<code>&quot;</code>）中定义值。 单引号（<code>'</code>）用于单个字符（以及 runes，正如我们在上一节所述）。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> firstName <span class="hljs-type">string</span> = <span class="hljs-string">&quot;John&quot;</span>
+lastName := <span class="hljs-string">&quot;Doe&quot;</span>
+fmt.Println(firstName, lastName)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs ebnf"><span class="hljs-attribute">John Doe</span></code></pre></div>
+<h2 id="默认值">默认值</h2>
+<p>到目前为止，几乎每次声明变量时，都使用值对其进行了初始化。 但与在其他编程语言中不同的是，在 Go 中，如果你不对变量初始化，所有数据类型都有默认值。 此功能非常方便，因为在使用之前，你无需检查变量是否已初始化。</p>
+<p>下面列出了我们目前浏览过类型的几个默认值：</p>
+<ul>
+<li><code>int</code> 类型的 <code>0</code>（及其所有子类型，如 <code>int64</code>）</li>
+<li><code>float32</code> 和 <code>float64</code> 类型的 <code>+0.000000e+000</code></li>
+<li><code>bool</code> 类型的 <code>false</code></li>
+<li><code>string</code> 类型的空值</li>
+</ul>
+<h2 id="类型转换">类型转换</h2>
+<p>Go 中隐式强制转换不起作用。 接下来，需要显式强制转换。 Go 提供了将一种数据类型转换为另一种数据类型的一些本机方法。</p>
+<p>一种方法是对每个类型使用内置函数，如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> integer16 <span class="hljs-type">int16</span> = <span class="hljs-number">127</span>
+<span class="hljs-keyword">var</span> integer32 <span class="hljs-type">int32</span> = <span class="hljs-number">32767</span>
+fmt.Println(<span class="hljs-type">int32</span>(integer16) + integer32)</code></pre></div>
+<p>Go 的另一种转换方法是使用 <a target="_blank" rel="noopener" href="https://golang.org/pkg/strconv/">strconv 包</a>。 将 <code>string</code> 与 <code>int</code></p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	i, _ := strconv.Atoi(<span class="hljs-string">&quot;-42&quot;</span>)
+	s := strconv.Itoa(<span class="hljs-number">-42</span>)
+	fmt.Println(i, s)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs subunit"><span class="hljs-string">-42</span> <span class="hljs-string">-42</span></code></pre></div>
+<p>有一个下划线 (<code>_</code>) 用作变量的名称。 在 Go 中（或Python中），这意味着我们不会使用该变量的值，而是要将其忽略。</p>
+<h1>创建函数</h1>
+<p>在 Go 中，函数允许你将一组可以从应用程序的其他部分调用的语句组合在一起。 你可以使用函数来组织代码并使其更易于阅读，而不是创建包含许多语句的程序。 更具可读性的代码也更易于维护。</p>
+<p>与之交互的函数是 <code>main()</code> 函数。 Go 中的所有可执行程序都具有此函数，因为它是程序的起点。 你的程序中只能有一个 <code>main()</code> 函数。</p>
+<h2 id="命令行参数">命令行参数</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	number1, _ := strconv.Atoi(os.Args[<span class="hljs-number">1</span>])
+	number2, _ := strconv.Atoi(os.Args[<span class="hljs-number">2</span>])
+	fmt.Println(<span class="hljs-string">&quot;Sum:&quot;</span>, number1+number2)
+&#125;</code></pre></div>
+<p>os.Args 变量包含传递给程序的每个命令行参数。 由于这些值的类型为 string，因此需要将它们转换为 int 以进行求和。</p>
+<div class="code-wrapper"><pre><code class="hljs go">&gt; <span class="hljs-keyword">go</span> run main.<span class="hljs-keyword">go</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span>
+Sum: <span class="hljs-number">8</span></code></pre></div>
+<h2 id="自定义函数">自定义函数</h2>
+<p>使用 <code>func</code> 关键字来定义函数，然后为其指定名称。 在命名后，指定函数的参数列表。 你可以指定零个或多个参数。 你还可以定义函数的返回类型，该函数也可以是零个或多个。 （我们将在下一节中讨论如何返回多个值）。在定义所有这些值之后，你可以编写函数的正文内容。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	sum := sum(os.Args[<span class="hljs-number">1</span>], os.Args[<span class="hljs-number">2</span>])
+	fmt.Println(<span class="hljs-string">&quot;Sum:&quot;</span>, sum)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sum</span><span class="hljs-params">(number1 <span class="hljs-type">string</span>, number2 <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+	int1, _ := strconv.Atoi(number1)
+	int2, _ := strconv.Atoi(number2)
+	<span class="hljs-keyword">return</span> int1 + int2
+&#125;</code></pre></div>
+<p>此代码创建一个名为 <code>sum</code> 的函数，该函数采用两个 <code>string</code> 参数，并将它们强制转换为 <code>int</code>，然后返回求和所得的结果。 定义返回类型时，函数需要返回该类型的值。</p>
+<p>在 Go 中，你还可以为函数的返回值设置名称，将其当作一个变量。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sum</span><span class="hljs-params">(number1 <span class="hljs-type">string</span>, number2 <span class="hljs-type">string</span>)</span></span> (result <span class="hljs-type">int</span>) &#123;
+	int1, _ := strconv.Atoi(number1)
+	int2, _ := strconv.Atoi(number2)
+	result = int1 + int2
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<h3 id="返回多个值">返回多个值</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	sum, mul := calc(os.Args[<span class="hljs-number">1</span>], os.Args[<span class="hljs-number">2</span>])
+	fmt.Println(<span class="hljs-string">&quot;Sum:&quot;</span>, sum)
+	fmt.Println(<span class="hljs-string">&quot;Mul:&quot;</span>, mul)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">calc</span><span class="hljs-params">(number1 <span class="hljs-type">string</span>, number2 <span class="hljs-type">string</span>)</span></span> (sum <span class="hljs-type">int</span>, mul <span class="hljs-type">int</span>) &#123;
+	int1, _ := strconv.Atoi(number1)
+	int2, _ := strconv.Atoi(number2)
+	sum = int1 + int2
+	mul = int1 * int2
+	<span class="hljs-keyword">return</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs nestedtext"><span class="hljs-punctuation">&gt;</span> <span class="hljs-string">go run main.go 3 5</span>
+<span class="hljs-attribute">Sum</span><span class="hljs-punctuation">:</span> <span class="hljs-string">8</span>
+<span class="hljs-attribute">Mul</span><span class="hljs-punctuation">:</span> <span class="hljs-string">15</span></code></pre></div>
+<h2 id="更改函数参数值（指针）">更改函数参数值（指针）</h2>
+<p>将值传递给函数时，该函数中的每个更改都不会影响调用方。 Go 是“按值传递”编程语言。 每次向函数传递值时，Go 都会使用该值并创建本地副本（内存中的新变量）。 在函数中对该变量所做的更改都不会影响你向函数发送的更改。</p>
+<p><em>指针</em>是包含另一个变量的内存地址的变量。 当你发送指向某个函数的指针时，不会传递值，而是传递地址内存。 因此，对该变量所做的每个更改都会影响调用方。</p>
+<p>在 Go 中，有两个运算符可用于处理指针：</p>
+<ul>
+<li><code>&amp;</code> 运算符使用其后对象的地址。</li>
+<li><code>*</code> 运算符取消引用指针。 也就是说，你可以前往指针中包含的地址访问其中的对象。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	firstName := <span class="hljs-string">&quot;John&quot;</span>
+	updateName(&amp;firstName)
+	fmt.Println(firstName)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">updateName</span><span class="hljs-params">(name *<span class="hljs-type">string</span>)</span></span> &#123;
+	*name = <span class="hljs-string">&quot;David&quot;</span>
+&#125;
+</code></pre></div>
+<p>首先要做的就是修改函数的签名，以指明你要接收指针。 为此，请将参数类型从 <code>string</code> 更改为 <code>*string</code>。 （后者仍是字符串，但现在它是指向字符串 的 指针。）然后，将新值分配给该变量时，需要在该变量的左侧添加星号 (<code>*</code>) 以暂停该变量的值。 调用 <code>updateName</code> 函数时，系统不会发送值，而是发送变量的内存地址。 这就是前面的代码在变量左侧带有 <code>&amp;</code> 符号的原因。</p>
+<h1>了解包</h1>
+<p>Go 包与其他编程语言中的库或模块类似。 你可以打包代码，并在其他位置重复使用它。 包的源代码可以分布在多个 <code>.go</code> 文件中。 到目前为止，我们已编写 <code>main</code> 包，并对其他本地包进行了一些引用。</p>
+<h2 id="main-包">main 包</h2>
+<p>你可能注意到，在 Go 中，甚至最直接的程序都是包的一部分。 通常情况下，默认包是 <code>main</code> 包，即目前为止一直使用的包。 如果程序是 <code>main</code> 包的一部分，Go 会生成二进制文件。 运行该文件时，它将调用 <code>main()</code> 函数。</p>
+<p>换句话说，当你使用 <code>main</code> 包时，程序将生成独立的可执行文件。 但当程序非是 <code>main</code> 包的一部分时，Go 不会生成二进制文件。 它生成包存档文件（扩展名为“.a”的文件）。</p>
+<p>在 Go 中，包名称需遵循约定。 包使用其导入路径的最后一部分作为名称。 例如，Go 标准库包含名为 <code>math/cmplx</code> 的包，该包提供用于处理复数的有用代码。 此包的导入路径为 <code>math/cmplx</code>，导入包的方式如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;math/cmplx&quot;</span></code></pre></div>
+<h2 id="创建包">创建包</h2>
+<p>在名为 <code>calculator</code> 的目录中 创建名为 <code>sum.go</code> 的文件。 树目录应如下列目录所示：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xQUdgI"><img src="https://s1.ax1x.com/2022/10/03/xQUdgI.png" srcset="/img/loading.gif" lazyload alt="xQUdgI.png"></a></p>
+<p>用包的名称初始化 <code>sum.go</code> 文件：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> calculator</code></pre></div>
+<p>你现在可以开始编写包的函数和变量。 不同于其他编程语言，Go 不会提供 <code>public</code> 或 <code>private</code> 关键字，以指示是否可以从包的内外部调用变量或函数。 但 Go 须遵循以下两个简单规则：</p>
+<ul>
+<li>如需将某些内容设为专用内容，请以小写字母开始。</li>
+<li>如需将某些内容设为公共内容，请以大写字母开始。</li>
+</ul>
+<p>接下来，让我们将以下代码添加到我们要创建的计算器包：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> calculator
+
+<span class="hljs-keyword">var</span> logMessage = <span class="hljs-string">&quot;[LOG]&quot;</span>
+
+<span class="hljs-comment">// Version of the calculator</span>
+<span class="hljs-keyword">var</span> Version = <span class="hljs-string">&quot;1.0&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">internalSum</span><span class="hljs-params">(number <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">return</span> number - <span class="hljs-number">1</span>
+&#125;
+
+<span class="hljs-comment">// Sum two integer numbers</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Sum</span><span class="hljs-params">(number1, number2 <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">return</span> number1 + number2
+&#125;</code></pre></div>
+<p>让我们看一下该代码中的一些事项：</p>
+<ul>
+<li>只能从包内调用 <code>logMessage</code> 变量。</li>
+<li>可以从任何位置访问 <code>Version</code> 变量。 建议你添加注释来描述此变量的用途。 （此描述适用于包的任何用户。）</li>
+<li>只能从包内调用 <code>internalSum</code> 函数。</li>
+<li>可以从任何位置访问 <code>Sum</code> 函数。 建议你添加注释来描述此函数的用途。</li>
+</ul>
+<p>若要确认一切正常，可在 <code>calculator</code> 目录中运行 <code>go build</code> 命令。 如果执行此操作，请注意系统不会生成可执行的二进制文件。</p>
+<h2 id="创建模块">创建模块</h2>
+<p>你已将计算器功能放入包中。 现在可以将包放到模块中。 Go 模块通常包含可提供相关功能的包。 包的模块还指定了 Go 运行你组合在一起的代码所需的上下文。 此上下文信息包括编写代码时所用的 Go 版本。</p>
+<p>此外，模块还有助于其他开发人员引用代码的特定版本，并更轻松地处理依赖项。 另一个优点是，我们的程序源代码无需严格存在于 <code>$GOPATH/src</code> 目录中。 如果释放该限制，则可以更方便地在其他项目中同时使用不同包版本。</p>
+<p><strong>（下面与教程不同，自己探索出了一个可用不报错的方法）</strong></p>
+<p>VSCode GOPATH设置：<code>&quot;go.gopath&quot;: &quot;/mnt/d/Programming_Design/Go&quot;</code></p>
+<p>首先设置 <code>go env -w GO111MODULE=on</code></p>
+<p>如果 <code>helloworld</code>要引用 <code>calculator</code>，则文件夹的组织形式如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xlDdl4"><img src="https://s1.ax1x.com/2022/10/05/xlDdl4.png" srcset="/img/loading.gif" lazyload alt="xlDdl4.png"></a></p>
+<p>在 <code>$GOPATH/src/calculator</code>创建 <code>go.mod</code>文件，其中文件第一行与文件夹同名</p>
+<div class="code-wrapper"><pre><code class="hljs go">module calculator
+
+<span class="hljs-keyword">go</span> <span class="hljs-number">1.19</span></code></pre></div>
+<p>在 <code>$GOPATH/src/helloworld</code>创建 <code>go.mod</code>文件，其中文件第一行与文件夹同名，下面要写好版本号和包的路径</p>
+<div class="code-wrapper"><pre><code class="hljs go">module helloworld
+
+<span class="hljs-keyword">go</span> <span class="hljs-number">1.19</span>
+
+require <span class="hljs-string">&quot;calculator&quot;</span> v1<span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+replace <span class="hljs-string">&quot;calculator&quot;</span> =&gt; <span class="hljs-string">&quot;../calculator&quot;</span></code></pre></div>
+<p>然后可以导入这个包并运行主文件</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;calculator&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	total := calculator.Sum(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
+	fmt.Println(total)
+	fmt.Println(<span class="hljs-string">&quot;Version: &quot;</span>, calculator.Version)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">8</span>
+<span class="hljs-attribute">Version</span>:  <span class="hljs-number">1</span>.<span class="hljs-number">0</span></code></pre></div>
+<h2 id="引用外部（第三方）包">引用外部（第三方）包</h2>
+<p>有时，程序需要引用其他开发人员编写的包。</p>
+<p>测试后不是很明白，基本上是在主文件和 <code>.mod</code>文件中写入包的名称和版本即可。然后根据控制台的输出将包安装好即可使用</p>
+<p><code>main.go</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;calculator&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+
+	<span class="hljs-string">&quot;rsc.io/quote&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	total := calculator.Sum(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)
+	fmt.Println(total)
+	fmt.Println(<span class="hljs-string">&quot;Version: &quot;</span>, calculator.Version)
+	fmt.Println(quote.Hello())
+&#125;</code></pre></div>
+<p><code>go.mod</code>：</p>
+<div class="code-wrapper"><pre><code class="hljs go">module helloworld
+
+<span class="hljs-keyword">go</span> <span class="hljs-number">1.19</span>
+
+require (
+	calculator v1<span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+	rsc.io/quote v1<span class="hljs-number">.5</span><span class="hljs-number">.2</span>
+)
+
+require (
+	golang.org/x/text v0<span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-number">-20170915032832</span><span class="hljs-number">-14</span>c0d48ead0c <span class="hljs-comment">// indirect</span>
+	rsc.io/sampler v1<span class="hljs-number">.3</span><span class="hljs-number">.0</span> <span class="hljs-comment">// indirect</span>
+)
+
+replace calculator =&gt; ../calculator</code></pre></div>
+<p>输出：</p>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">8</span>
+<span class="hljs-attribute">Version</span>:  <span class="hljs-number">1</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">Ahoy</span>, world!</code></pre></div>
+<h1>使用控制流</h1>
+<h2 id="if-语句的语法">if 语句的语法</h2>
+<p>与其他编程语言不同的是，在 Go 中，你不需要在条件中使用括号。 <code>else</code> 子句可选。 但是，大括号仍然是必需的。 此外，为了减少行，Go 不支持<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/%3F:">三元 <code>if</code> 语句</a>，因此每次都需要编写完整的 <code>if</code> 语句。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">givemeanumber</span><span class="hljs-params">()</span></span> <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">if</span> num := givemeanumber(); num &lt; <span class="hljs-number">0</span> &#123;
+		fmt.Println(num, <span class="hljs-string">&quot;is negative&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> num &lt; <span class="hljs-number">10</span> &#123;
+		fmt.Println(num, <span class="hljs-string">&quot;has only one digit&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(num, <span class="hljs-string">&quot;has multiple digits&quot;</span>)
+	&#125;
+&#125;</code></pre></div>
+<p>其中，有一个在 Go 中常见的约定进行高效编程的方式 <code>if num := givemeanumber(); num &lt; 0</code>，同时接收函数的返回值，但是不重复进行接收，然后使用到if语句中进行判断。当然这个 <code>num</code>变量在 <code>if</code>的外部是无法使用的。</p>
+<h2 id="使用-switch-语句控制流">使用 switch 语句控制流</h2>
+<p>像其他编程语言一样，Go 支持 <code>switch</code> 语句。 可以使用 <code>switch</code> 语句来避免链接多个 <code>if</code> 语句。 使用 <code>switch</code> 语句，就不需维护和读取包含多个 <code>if</code> 语句的代码。 这些语句还可以让复杂的条件更易于构造。 请参阅以下部分的 <code>switch</code> 语句。</p>
+<p>普通的switch语句：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math/rand&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	sec := time.Now().Unix()
+	rand.Seed(sec)
+	i := rand.Int31n(<span class="hljs-number">10</span>)
+
+	<span class="hljs-keyword">switch</span> i &#123;
+	<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+		fmt.Print(<span class="hljs-string">&quot;zero...&quot;</span>)
+	<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+		fmt.Print(<span class="hljs-string">&quot;one...&quot;</span>)
+	<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+		fmt.Print(<span class="hljs-string">&quot;two...&quot;</span>)
+	<span class="hljs-keyword">default</span>:
+		fmt.Print(<span class="hljs-string">&quot;no match...&quot;</span>)
+	&#125;
+
+	fmt.Println(<span class="hljs-string">&quot;ok&quot;</span>)
+&#125;</code></pre></div>
+<p>有时，多个表达式仅与一个 <code>case</code> 语句匹配。 在 Go 中，如果希望 <code>case</code> 语句包含多个表达式，请使用逗号 (<code>,</code>) 来分隔表达式。 此方法可避免代码重复。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">location</span><span class="hljs-params">(city <span class="hljs-type">string</span>)</span></span> (<span class="hljs-type">string</span>, <span class="hljs-type">string</span>) &#123;
+	<span class="hljs-keyword">var</span> region <span class="hljs-type">string</span>
+	<span class="hljs-keyword">var</span> continent <span class="hljs-type">string</span>
+	<span class="hljs-keyword">switch</span> city &#123;
+	<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Delhi&quot;</span>, <span class="hljs-string">&quot;Hyderabad&quot;</span>, <span class="hljs-string">&quot;Mumbai&quot;</span>, <span class="hljs-string">&quot;Chennai&quot;</span>, <span class="hljs-string">&quot;Kochi&quot;</span>:
+		region, continent = <span class="hljs-string">&quot;India&quot;</span>, <span class="hljs-string">&quot;Asia&quot;</span>
+	<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Lafayette&quot;</span>, <span class="hljs-string">&quot;Louisville&quot;</span>, <span class="hljs-string">&quot;Boulder&quot;</span>:
+		region, continent = <span class="hljs-string">&quot;Colorado&quot;</span>, <span class="hljs-string">&quot;USA&quot;</span>
+	<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Irvine&quot;</span>, <span class="hljs-string">&quot;Los Angeles&quot;</span>, <span class="hljs-string">&quot;San Diego&quot;</span>:
+		region, continent = <span class="hljs-string">&quot;California&quot;</span>, <span class="hljs-string">&quot;USA&quot;</span>
+	<span class="hljs-keyword">default</span>:
+		region, continent = <span class="hljs-string">&quot;Unknown&quot;</span>, <span class="hljs-string">&quot;Unknown&quot;</span>
+	&#125;
+	<span class="hljs-keyword">return</span> region, continent
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	region, continent := location(<span class="hljs-string">&quot;Irvine&quot;</span>)
+	fmt.Printf(<span class="hljs-string">&quot;John works in %s, %s\n&quot;</span>, region, continent)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mipsasm"><span class="hljs-keyword">John </span>works in California, USA</code></pre></div>
+<p>在 <code>case</code> 语句的表达式中包含的值对应于 <code>switch</code> 语句验证的变量的数据类型。</p>
+<h3 id="调用函数">调用函数</h3>
+<p><code>switch</code> 还可以调用函数。 在该函数中，可以针对可能的返回值编写 <code>case</code> 语句。</p>
+<p>第一种是在switch上调用函数，对返回值进行判断</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">switch</span> time.Now().Weekday().String() &#123;
+	<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;Monday&quot;</span>, <span class="hljs-string">&quot;Tuesday&quot;</span>, <span class="hljs-string">&quot;Wednesday&quot;</span>, <span class="hljs-string">&quot;Thursday&quot;</span>, <span class="hljs-string">&quot;Friday&quot;</span>:
+		fmt.Println(<span class="hljs-string">&quot;It&#x27;s time to learn some Go.&quot;</span>)
+	<span class="hljs-keyword">default</span>:
+		fmt.Println(<span class="hljs-string">&quot;It&#x27;s weekend, time to rest!&quot;</span>)
+	&#125;
+
+	fmt.Println(time.Now().Weekday().String())
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs applescript">It&#x27;s <span class="hljs-built_in">time</span> <span class="hljs-keyword">to</span> learn <span class="hljs-keyword">some</span> Go.
+Wednesday</code></pre></div>
+<p>第二种是在case上调用函数</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;regexp&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> email = regexp.MustCompile(<span class="hljs-string">`^[^@]+@[^@.]+\.[^@.]+`</span>)
+	<span class="hljs-keyword">var</span> phone = regexp.MustCompile(<span class="hljs-string">`^[(]?[0-9][0-9][0-9][). \-]*[0-9][0-9][0-9][.\-]?[0-9][0-9][0-9][0-9]`</span>)
+
+	contact := <span class="hljs-string">&quot;foo@bar.com&quot;</span>
+
+	<span class="hljs-keyword">switch</span> &#123;
+	<span class="hljs-keyword">case</span> email.MatchString(contact):
+		fmt.Println(contact, <span class="hljs-string">&quot;is an email&quot;</span>)
+	<span class="hljs-keyword">case</span> phone.MatchString(contact):
+		fmt.Println(contact, <span class="hljs-string">&quot;is a phone number&quot;</span>)
+	<span class="hljs-keyword">default</span>:
+		fmt.Println(contact, <span class="hljs-string">&quot;is not recognized&quot;</span>)
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs angelscript"><span class="hljs-symbol">foo@</span>bar.com <span class="hljs-keyword">is</span> an email</code></pre></div>
+<p>上面的 <code>switch</code> 语句中省略了条件，就像在 <code>if</code> 语句中那样。 此模式类似于比较 <code>true</code> 值，就像强制 <code>switch</code> 语句一直运行一样。</p>
+<p><strong>一个条件 <code>switch</code> 块比一长串的 <code>if</code> 和 <code>else if</code> 语句更易于维护。</strong></p>
+<h3 id="使逻辑进入到下一个-case">使逻辑进入到下一个 case</h3>
+<p>在某些编程语言中，你会在每个 <code>case</code> 语句末尾写一个 <code>break</code> 关键字。 但在 Go 中，当逻辑进入某个 case 时，它会退出 <code>switch</code> 块，除非你显式停止它。 若要使逻辑进入到下一个紧邻的 case，请使用 <code>fallthrough</code> 关键字。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">switch</span> num := <span class="hljs-number">15</span>; &#123;
+	<span class="hljs-keyword">case</span> num &lt; <span class="hljs-number">50</span>:
+		fmt.Printf(<span class="hljs-string">&quot;%d is less than 50\n&quot;</span>, num)
+		<span class="hljs-keyword">fallthrough</span>
+	<span class="hljs-keyword">case</span> num &gt; <span class="hljs-number">100</span>:
+		fmt.Printf(<span class="hljs-string">&quot;%d is greater than 100\n&quot;</span>, num)
+		<span class="hljs-keyword">fallthrough</span>
+	<span class="hljs-keyword">case</span> num &lt; <span class="hljs-number">200</span>:
+		fmt.Printf(<span class="hljs-string">&quot;%d is less than 200\n&quot;</span>, num)
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">15 </span>is less than <span class="hljs-number">50</span>
+<span class="hljs-symbol">15 </span>is greater than <span class="hljs-number">100</span>
+<span class="hljs-symbol">15 </span>is less than <span class="hljs-number">200</span></code></pre></div>
+<p>请注意，由于 <code>num</code> 为 15（小于 50），因此它与第一个 case 匹配。 但是，<code>num</code> 不大于 100。 由于第一个 <code>case</code> 语句包含 <code>fallthrough</code> 关键字，因此逻辑会立即转到下一个 <code>case</code> 语句，而不会对该 case 进行验证。 因此，在使用 <code>fallthrough</code> 关键字时必须谨慎。 该代码产生的行为可能不是你想要的。</p>
+<h2 id="for-表达式">for 表达式</h2>
+<p>另一个常用控制流是循环。 Go 只使用一个循环构造，即 <code>for</code> 循环。 但是，你可以通过多种方式表示循环。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	sum := <span class="hljs-number">0</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100</span>; i++ &#123;
+		sum += i
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;sum of 1..100 is&quot;</span>, sum)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">sum</span> of <span class="hljs-number">1</span>..<span class="hljs-number">100</span> is <span class="hljs-number">5050</span></code></pre></div>
+<h3 id="空预处理语句和后处理语句">空预处理语句和后处理语句</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math/rand&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> num <span class="hljs-type">int64</span>
+	rand.Seed(time.Now().Unix())
+	<span class="hljs-keyword">for</span> num != <span class="hljs-number">5</span> &#123;
+		num = rand.Int63n(<span class="hljs-number">15</span>)
+		fmt.Println(num)
+	&#125;
+&#125;</code></pre></div>
+<p>只要 <code>num</code> 变量保存的值与 <code>5</code> 不同，程序就会输出一个随机数。</p>
+<h3 id="无限循环和-break-语句">无限循环和 break 语句</h3>
+<p>可以在 Go 中编写的另一种循环模式是无限循环。 在这种情况下，你不编写条件表达式，也不编写预处理语句或后处理语句， 而是采取退出循环的方式进行编写。 否则，逻辑永远都不会退出。 若要使逻辑退出循环，请使用 <code>break</code> 关键字。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math/rand&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> num <span class="hljs-type">int32</span>
+	sec := time.Now().Unix()
+	rand.Seed(sec)
+
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Print(<span class="hljs-string">&quot;Writing inside the loop...&quot;</span>)
+		<span class="hljs-keyword">if</span> num = rand.Int31n(<span class="hljs-number">10</span>); num == <span class="hljs-number">5</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;finish!&quot;</span>)
+			<span class="hljs-keyword">break</span>
+		&#125;
+		fmt.Println(num)
+	&#125;
+&#125;
+</code></pre></div>
+<p>在 Go 中，可以使用 <code>continue</code> 关键字跳过循环的当前迭代。 例如，可以使用此关键字在循环继续之前运行验证。 也可以在编写无限循环并需要等待资源变得可用时使用它。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	sum := <span class="hljs-number">0</span>
+	<span class="hljs-keyword">for</span> num := <span class="hljs-number">1</span>; num &lt;= <span class="hljs-number">100</span>; num++ &#123;
+		<span class="hljs-keyword">if</span> num%<span class="hljs-number">5</span> == <span class="hljs-number">0</span> &#123;
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		sum += num
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;The sum of 1 to 100, but excluding numbers divisible by 5, is&quot;</span>, sum)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">The</span> sum of <span class="hljs-number">1</span> to <span class="hljs-number">100</span>, but excluding numbers divisible by <span class="hljs-number">5</span>, is <span class="hljs-number">4000</span></code></pre></div>
+<h2 id="使用-defer、panic-和-recover-函数进行控制">使用 defer、panic 和 recover 函数进行控制</h2>
+<h3 id="defer-函数">defer 函数</h3>
+<p>在 Go 中，<code>defer</code> 语句会推迟函数（包括任何参数）的运行，直到包含 <code>defer</code> 语句的函数完成。 通常情况下，当你想要避免忘记任务（例如关闭文件或运行清理进程）时，可以推迟某个函数的运行。</p>
+<p>可以根据需要推迟任意多个函数。 <code>defer</code> 语句按逆序运行，先运行最后一个，最后运行第一个。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">4</span>; i++ &#123;
+		<span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;deferred&quot;</span>, -i)
+		fmt.Println(<span class="hljs-string">&quot;regular&quot;</span>, i)
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">regular</span> <span class="hljs-number">1</span>
+<span class="hljs-attribute">regular</span> <span class="hljs-number">2</span>
+<span class="hljs-attribute">regular</span> <span class="hljs-number">3</span>
+<span class="hljs-attribute">regular</span> <span class="hljs-number">4</span>
+<span class="hljs-attribute">deferred</span> -<span class="hljs-number">4</span>
+<span class="hljs-attribute">deferred</span> -<span class="hljs-number">3</span>
+<span class="hljs-attribute">deferred</span> -<span class="hljs-number">2</span>
+<span class="hljs-attribute">deferred</span> -<span class="hljs-number">1</span></code></pre></div>
+<p>在此示例中，请注意，每次推迟 <code>fmt.Println(&quot;deferred&quot;, -i)</code> 时，都会存储 <code>i</code> 的值，并会将其运行任务添加到队列中。 在 <code>main()</code> 函数输出完 <code>regular</code> 值后，所有推迟的调用都会运行。 这就是你看到输出采用逆序（后进先出）的原因。</p>
+<p><code>defer</code> 函数的一个典型用例是在使用完文件后将其关闭。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	newfile, <span class="hljs-type">error</span> := os.Create(<span class="hljs-string">&quot;learnGo.txt&quot;</span>)
+	<span class="hljs-keyword">if</span> <span class="hljs-type">error</span> != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Error: Could not create file.&quot;</span>)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">defer</span> newfile.Close()
+
+	<span class="hljs-keyword">if</span> _, <span class="hljs-type">error</span> = io.WriteString(newfile, <span class="hljs-string">&quot;Learning Go!&quot;</span>); <span class="hljs-type">error</span> != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Error: Could not write to file.&quot;</span>)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	newfile.Sync()
+&#125;
+</code></pre></div>
+<p>创建或打开某个文件后，可以推迟 <code>.Close()</code> 函数的执行，以免在你完成后忘记关闭该文件。</p>
+<h3 id="panic-函数">panic 函数</h3>
+<p>运行时错误会使 Go 程序崩溃，例如尝试通过使用超出范围的索引或取消引用 nil 指针来访问数组。 你也可以强制程序崩溃。</p>
+<p>内置 <code>panic()</code> 函数可以停止 Go 程序中的正常控制流。 当你使用 <code>panic</code> 调用时，任何延迟的函数调用都将正常运行。 进程会在堆栈中继续，直到所有函数都返回。 然后，程序会崩溃并记录日志消息。 此消息包含错误信息和堆栈跟踪，有助于诊断问题的根本原因。</p>
+<p>调用 <code>panic()</code> 函数时，可以添加任何值作为参数。 通常，你会发送一条错误消息，说明为什么会进入紧急状态。</p>
+<p>例如，下面的代码将 <code>panic</code> 和 <code>defer</code> 函数组合在一起。 尝试运行此代码以了解控制流的中断。 请注意，清理过程仍会运行。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">highlow</span><span class="hljs-params">(high <span class="hljs-type">int</span>, low <span class="hljs-type">int</span>)</span></span> &#123;
+	<span class="hljs-keyword">if</span> high &lt; low &#123;
+		fmt.Println(<span class="hljs-string">&quot;Panic!&quot;</span>)
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;highlow() low greater than high&quot;</span>)
+	&#125;
+	<span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;Deferred: highlow(&quot;</span>, high, <span class="hljs-string">&quot;,&quot;</span>, low, <span class="hljs-string">&quot;)&quot;</span>)
+	fmt.Println(<span class="hljs-string">&quot;Call: highlow(&quot;</span>, high, <span class="hljs-string">&quot;,&quot;</span>, low, <span class="hljs-string">&quot;)&quot;</span>)
+
+	highlow(high, low+<span class="hljs-number">1</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	highlow(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>)
+	fmt.Println(<span class="hljs-string">&quot;Program finished successfully!&quot;</span>)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs awk">Call: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">0</span> )
+Call: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">1</span> )
+Call: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">2</span> )
+Panic!
+Deferred: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">2</span> )
+Deferred: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">1</span> )
+Deferred: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">0</span> )
+panic: highlow() low greater than high
+
+goroutine <span class="hljs-number">1</span> [running]:
+main.highlow(<span class="hljs-number">0</span>x4b8018?, <span class="hljs-number">0</span>xc000012018?)
+        <span class="hljs-regexp">/mnt/</span>d<span class="hljs-regexp">/Programming_Design/</span>Go<span class="hljs-regexp">/src/</span>helloworld/main.go:<span class="hljs-number">8</span> +<span class="hljs-number">0</span>x285
+main.highlow(<span class="hljs-number">0</span>x2, <span class="hljs-number">0</span>x2)
+        <span class="hljs-regexp">/mnt/</span>d<span class="hljs-regexp">/Programming_Design/</span>Go<span class="hljs-regexp">/src/</span>helloworld/main.go:<span class="hljs-number">13</span> +<span class="hljs-number">0</span>x211
+main.highlow(<span class="hljs-number">0</span>x2, <span class="hljs-number">0</span>x1)
+        <span class="hljs-regexp">/mnt/</span>d<span class="hljs-regexp">/Programming_Design/</span>Go<span class="hljs-regexp">/src/</span>helloworld/main.go:<span class="hljs-number">13</span> +<span class="hljs-number">0</span>x211
+main.highlow(<span class="hljs-number">0</span>x2, <span class="hljs-number">0</span>x0)
+        <span class="hljs-regexp">/mnt/</span>d<span class="hljs-regexp">/Programming_Design/</span>Go<span class="hljs-regexp">/src/</span>helloworld/main.go:<span class="hljs-number">13</span> +<span class="hljs-number">0</span>x211
+main.main()
+        <span class="hljs-regexp">/mnt/</span>d<span class="hljs-regexp">/Programming_Design/</span>Go<span class="hljs-regexp">/src/</span>helloworld/main.go:<span class="hljs-number">17</span> +<span class="hljs-number">0</span>x25
+<span class="hljs-keyword">exit</span> status <span class="hljs-number">2</span></code></pre></div>
+<p>下面是运行代码时会发生的情况：</p>
+<ol>
+<li>一切正常运行。 程序将输出传递到 <code>highlow()</code> 函数中的高值和低值。</li>
+<li>如果 <code>low</code> 的值大于 <code>high</code> 的值，则程序会崩溃。 会显示“<code>Panic!</code>”消息。 此时，控制流中断，所有推迟的函数都开始输出“<code>Deferred...</code>”消息。</li>
+<li>程序崩溃，并显示完整的堆栈跟踪。 不会显示“<code>Program finished successfully!</code>”消息。</li>
+</ol>
+<h3 id="recover-函数">recover 函数</h3>
+<p>有时，你可能想要避免程序崩溃，改为在内部报告错误。 或者，你可能想要先清理混乱情况，然后再让程序崩溃。 例如，你可能想要关闭与某个资源的连接，以免出现更多问题。</p>
+<p>Go 提供内置 <code>recover()</code> 函数，让你可以在程序崩溃之后重新获得控制权。 你只会在你同时调用 <code>defer</code> 的函数中调用 <code>recover</code>。 如果调用 <code>recover()</code> 函数，则在正常运行的情况下，它会返回 <code>nil</code>，没有任何其他作用。</p>
+<p>尝试修改前面的代码中的 <code>main</code> 函数，以添加对 <code>recover()</code> 的调用，如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">highlow</span><span class="hljs-params">(high <span class="hljs-type">int</span>, low <span class="hljs-type">int</span>)</span></span> &#123;
+	<span class="hljs-keyword">if</span> high &lt; low &#123;
+		fmt.Println(<span class="hljs-string">&quot;Panic!&quot;</span>)
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;highlow() low greater than high&quot;</span>)
+	&#125;
+	<span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;Deferred: highlow(&quot;</span>, high, <span class="hljs-string">&quot;,&quot;</span>, low, <span class="hljs-string">&quot;)&quot;</span>)
+	fmt.Println(<span class="hljs-string">&quot;Call: highlow(&quot;</span>, high, <span class="hljs-string">&quot;,&quot;</span>, low, <span class="hljs-string">&quot;)&quot;</span>)
+
+	highlow(high, low+<span class="hljs-number">1</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+		handler := <span class="hljs-built_in">recover</span>()
+		<span class="hljs-keyword">if</span> handler != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;main(): recover&quot;</span>, handler)
+		&#125;
+	&#125;()
+
+	highlow(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>)
+	fmt.Println(<span class="hljs-string">&quot;Program finished successfully!&quot;</span>)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">Call</span>: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">0</span> )
+<span class="hljs-attribute">Call</span>: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">1</span> )
+<span class="hljs-attribute">Call</span>: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">2</span> )
+<span class="hljs-attribute">Panic</span>!
+<span class="hljs-attribute">Deferred</span>: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">2</span> )
+<span class="hljs-attribute">Deferred</span>: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">1</span> )
+<span class="hljs-attribute">Deferred</span>: highlow( <span class="hljs-number">2</span> , <span class="hljs-number">0</span> )
+<span class="hljs-attribute">main</span>(): recover highlow() low greater than high</code></pre></div>
+<p>在 <code>main()</code> 函数中，你会将一个可以调用 <code>recover()</code> 函数的匿名函数推迟。 当程序处于紧急状态时，对 <code>recover()</code> 的调用无法返回 <code>nil</code>。 你可以在此处执行一些操作来清理混乱，但在本例中，你只是简单地输出一些内容。</p>
+<p><code>panic</code> 和 <code>recover</code> 函数的组合是 Go 处理异常的惯用方式。 其他编程语言使用 <code>try/catch</code> 块。 Go 首选此处所述的方法。</p>
+<h2 id="练习-在-Go-中使用控制流">练习 - 在 Go 中使用控制流</h2>
+<h3 id="编写-FizzBuzz-程序">编写 FizzBuzz 程序</h3>
+<p>首先，编写一个用于输出数字（1 到 100）的程序，其中有以下变化：</p>
+<ul>
+<li>如果数字可被 3 整除，则输出 <code>Fizz</code>。</li>
+<li>如果数字可被 5 整除，则输出 <code>Buzz</code>。</li>
+<li>如果数字可同时被 3 和 5 整除，则输出 <code>FizzBuzz</code>。</li>
+<li>如果前面的情况都不符合，则输出该数字。</li>
+</ul>
+<p>尝试使用 <code>switch</code> 语句。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;fmt&quot;</span>
+    <span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fizzbuzz</span><span class="hljs-params">(num <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">string</span> &#123;
+    <span class="hljs-keyword">switch</span> &#123;
+    <span class="hljs-keyword">case</span> num%<span class="hljs-number">15</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;FizzBuzz&quot;</span>
+    <span class="hljs-keyword">case</span> num%<span class="hljs-number">3</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Fizz&quot;</span>
+    <span class="hljs-keyword">case</span> num%<span class="hljs-number">5</span> == <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Buzz&quot;</span>
+    &#125;
+    <span class="hljs-keyword">return</span> strconv.Itoa(num)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+    <span class="hljs-keyword">for</span> num := <span class="hljs-number">1</span>; num &lt;= <span class="hljs-number">100</span>; num++ &#123;
+        fmt.Println(fizzbuzz(num))
+    &#125;
+&#125;</code></pre></div>
+<h3 id="查找质数">查找质数</h3>
+<p>编写一个程序来查找小于 20 的所有质数。 质数是大于 1 的任意数字，只能被它自己和 1 整除。 “整除”表示经过除法运算后没有余数。 与大多数编程语言一样，Go 还提供了一种方法来检查除法运算是否产生余数。 我们可以使用模数 <code>%</code>（百分号）运算符。</p>
+<p>在本练习中，你将更新一个名为 <code>findprimes</code> 的函数，以检查数值是否为质数。 该函数有一个整数参数，并返回一个布尔值。 函数通过检查是否有余数来测试输入数字是否为质数。 如果数字为质数，则该函数返回 true。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findprimes</span><span class="hljs-params">(number <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">2</span>; i &lt; number; i++ &#123;
+		<span class="hljs-keyword">if</span> number%i == <span class="hljs-number">0</span> &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+		&#125;
+	&#125;
+
+	<span class="hljs-keyword">if</span> number &gt; <span class="hljs-number">1</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;Prime numbers less than 20:&quot;</span>)
+
+	<span class="hljs-keyword">for</span> number := <span class="hljs-number">1</span>; number &lt; <span class="hljs-number">20</span>; number++ &#123;
+		<span class="hljs-keyword">if</span> findprimes(number) &#123;
+			fmt.Printf(<span class="hljs-string">&quot;%v &quot;</span>, number)
+		&#125;
+	&#125;
+	fmt.Println()
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">Prime</span> numbers less than <span class="hljs-number">20</span>:
+<span class="hljs-attribute">2</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">7</span> <span class="hljs-number">11</span> <span class="hljs-number">13</span> <span class="hljs-number">17</span> <span class="hljs-number">19</span></code></pre></div>
+<h3 id="要求用户输入一个数字，如果该数字为负数，则进入紧急状态">要求用户输入一个数字，如果该数字为负数，则进入紧急状态</h3>
+<p>编写一个要求用户输入一个数字的程序。 在开始时使用以下代码片段：</p>
+<p>此程序要求用户输入一个数字，然后将其输出。 修改示例代码，使之符合以下要求：</p>
+<ul>
+<li>持续要求用户输入一个整数。 此循环的退出条件应该是用户输入了一个负数。</li>
+<li>当用户输入负数时，让程序崩溃。 然后输出堆栈跟踪错误。</li>
+<li>如果数字为 0，则输出“<code>0 is neither negative nor positive</code>”。 继续要求用户输入数字。</li>
+<li>如果数字为正数，则输出“<code>You entered: X</code>”（其中的 <code>X</code> 为输入的数字）。 继续要求用户输入数字。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	val := <span class="hljs-number">0</span>
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Print(<span class="hljs-string">&quot;Enter number: &quot;</span>)
+		fmt.Scanf(<span class="hljs-string">&quot;%d&quot;</span>, &amp;val)
+		<span class="hljs-keyword">if</span> val &lt; <span class="hljs-number">0</span> &#123;
+			<span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;Negative!&quot;</span>)
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> val == <span class="hljs-number">0</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;0 is neither negative nor positive&quot;</span>)
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Printf(<span class="hljs-string">&quot;You entered: %d\n&quot;</span>, val)
+		&#125;
+	&#125;
+&#125;</code></pre></div>
+<h1>使用数组</h1>
+<p>Go 中的数组是一种特定类型且长度固定的数据结构。 它们可具有零个或多个元素，你必须在声明或初始化它们时定义大小。 此外，它们一旦创建，就无法调整大小。 鉴于这些原因，数组在 Go 程序中并不常用，但它们是切片和映射的基础。</p>
+<h2 id="声明数组">声明数组</h2>
+<p>要在 Go 中声明数组，必须定义其元素的数据类型以及该数组可容纳的元素数目。 然后，可采用下标表示法访问数组中的每个元素，其中第一个元素是 0，最后一个元素是数组长度减去 1（长度 - 1）。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> a [<span class="hljs-number">3</span>]<span class="hljs-type">int</span>
+	a[<span class="hljs-number">1</span>] = <span class="hljs-number">10</span>
+	fmt.Println(a[<span class="hljs-number">0</span>])
+	fmt.Println(a[<span class="hljs-number">1</span>])
+	fmt.Println(a[<span class="hljs-built_in">len</span>(a)<span class="hljs-number">-1</span>])
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs">0
+10
+0</code></pre></div>
+<p>已声明的数组访问其元素时不会遇到错误。 默认情况下，Go 会用默认数据类型初始化每个元素。 这样的话，<code>int</code> 的默认值为零。 不过，你可为特定位置分配值。 这就是为什么你会看到 <code>a[1] = 10</code>。 你可采用上述表示法来访问该元素。 另请注意，为了打印出第一个元素，我们使用了 <code>a[0]</code>。 为了打印出最后一个元素，我们使用了 <code>a[len(a)-1]</code>。 <code>len</code> 函数是 Go 中的内置函数，用于获取数组、切片或映射中的元素数。</p>
+<h2 id="初始化数组">初始化数组</h2>
+<p>声明数组时，还可使用非默认值来初始化数组。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	cities := [<span class="hljs-number">5</span>]<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;New York&quot;</span>, <span class="hljs-string">&quot;Paris&quot;</span>, <span class="hljs-string">&quot;Berlin&quot;</span>, <span class="hljs-string">&quot;Madrid&quot;</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Cities:&quot;</span>, cities)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs vbnet"><span class="hljs-symbol">Cities:</span> [<span class="hljs-built_in">New</span> York Paris Berlin Madrid ]</code></pre></div>
+<h2 id="数组中的省略号">数组中的省略号</h2>
+<p>如果你不知道你将需要多少个位置，但知道你将具有多少数据，那么还有一种声明和初始化数组的方法是使用省略号 (<code>...</code>)</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	cities := [...]<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;New York&quot;</span>, <span class="hljs-string">&quot;Paris&quot;</span>, <span class="hljs-string">&quot;Berlin&quot;</span>, <span class="hljs-string">&quot;Madrid&quot;</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Cities:&quot;</span>, cities)
+&#125;</code></pre></div>
+<p>另一种有趣的数组初始化方法是使用省略号并仅为最新的位置指定值。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	numbers := [...]<span class="hljs-type">int</span>&#123;<span class="hljs-number">99</span>: <span class="hljs-number">-1</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;First Position:&quot;</span>, numbers[<span class="hljs-number">0</span>])
+	fmt.Println(<span class="hljs-string">&quot;Last Position:&quot;</span>, numbers[<span class="hljs-number">99</span>])
+	fmt.Println(<span class="hljs-string">&quot;Length:&quot;</span>, <span class="hljs-built_in">len</span>(numbers))
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mathematica"><span class="hljs-built_in">First</span> <span class="hljs-built_in">Position</span><span class="hljs-operator">:</span> <span class="hljs-number">0</span>
+<span class="hljs-built_in">Last</span> <span class="hljs-built_in">Position</span><span class="hljs-operator">:</span> <span class="hljs-operator">-</span><span class="hljs-number">1</span>
+<span class="hljs-built_in">Length</span><span class="hljs-operator">:</span> <span class="hljs-number">100</span></code></pre></div>
+<p>注意数组的长度是 100，因为你为第 99 个位置指定了一个值。</p>
+<h2 id="多维数组">多维数组</h2>
+<p>如果需要处理复杂数据结构，请记住 Go 支持多维数组。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> twoD [<span class="hljs-number">3</span>][<span class="hljs-number">5</span>]<span class="hljs-type">int</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++ &#123;
+		<span class="hljs-keyword">for</span> j := <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">5</span>; j++ &#123;
+			twoD[i][j] = (i + <span class="hljs-number">1</span>) * (j + <span class="hljs-number">1</span>)
+		&#125;
+		fmt.Println(<span class="hljs-string">&quot;Row&quot;</span>, i, twoD[i])
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;\nAll at once:&quot;</span>, twoD)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs tap">Row<span class="hljs-number"> 0 </span>[1<span class="hljs-number"> 2 </span>3<span class="hljs-number"> 4 </span>5]
+Row<span class="hljs-number"> 1 </span>[2<span class="hljs-number"> 4 </span>6<span class="hljs-number"> 8 </span>10]
+Row<span class="hljs-number"> 2 </span>[3<span class="hljs-number"> 6 </span>9<span class="hljs-number"> 12 </span>15]
+
+All at once: [[1<span class="hljs-number"> 2 </span>3<span class="hljs-number"> 4 </span>5] [2<span class="hljs-number"> 4 </span>6<span class="hljs-number"> 8 </span>10] [3<span class="hljs-number"> 6 </span>9<span class="hljs-number"> 12 </span>15]]</code></pre></div>
+<h1>了解切片</h1>
+<p>与数组一样，切片也是 Go 中的一种数据类型，它表示一系列类型相同的元素。 不过，与数组更重要的区别是切片的大小是动态的，不是固定的。</p>
+<p>切片是数组或另一个切片之上的数据结构。 我们将源数组或切片称为基础数组。 通过切片，可访问整个基础数组，也可仅访问部分元素。</p>
+<p>切片只有 3 个组件：</p>
+<ul>
+<li><strong>指向基础数组中第一个可访问元素的指针</strong> 。 此元素不一定是数组的第一个元素 <code>array[0]</code>。</li>
+<li><strong>切片的长度</strong> 。 切片中的元素数目。</li>
+<li><strong>切片的容量</strong> 。 切片开头与基础数组结束之间的元素数目。</li>
+</ul>
+<h2 id="声明和初始化切片">声明和初始化切片</h2>
+<p>要声明切片，可采用与声明数组相同的方式操作。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	months := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;January&quot;</span>, <span class="hljs-string">&quot;February&quot;</span>, <span class="hljs-string">&quot;March&quot;</span>, <span class="hljs-string">&quot;April&quot;</span>, <span class="hljs-string">&quot;May&quot;</span>, <span class="hljs-string">&quot;June&quot;</span>, <span class="hljs-string">&quot;July&quot;</span>, <span class="hljs-string">&quot;August&quot;</span>, <span class="hljs-string">&quot;September&quot;</span>, <span class="hljs-string">&quot;October&quot;</span>, <span class="hljs-string">&quot;November&quot;</span>, <span class="hljs-string">&quot;December&quot;</span>&#125;
+	fmt.Println(months)
+	fmt.Println(<span class="hljs-string">&quot;Length:&quot;</span>, <span class="hljs-built_in">len</span>(months))
+	fmt.Println(<span class="hljs-string">&quot;Capacity:&quot;</span>, <span class="hljs-built_in">cap</span>(months))
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mipsasm">[<span class="hljs-keyword">January </span>February March April May <span class="hljs-keyword">June </span><span class="hljs-keyword">July </span>August September October November December]
+<span class="hljs-symbol">Length:</span> <span class="hljs-number">12</span>
+<span class="hljs-symbol">Capacity:</span> <span class="hljs-number">12</span></code></pre></div>
+<h2 id="切片项">切片项</h2>
+<p>Go 支持切片运算符 <code>s[i:p]</code>，其中：</p>
+<ul>
+<li><code>s</code> 表示数组。</li>
+<li><code>i</code> 表示指向要添加到新切片的基础数组（或另一个切片）的第一个元素的指针。 变量 <code>i</code> 对应于数组 <code>array[i]</code> 中索引位置 <code>i</code> 处的元素。 请记住，此元素不一定是基础数组的第一个元素 <code>array[0]</code>。</li>
+<li><code>p</code> 表示创建新切片时要使用的基础数组中的元素数目。 变量 <code>p</code> 对应于可用于新切片的基础数组中的最后一个元素。 可在位置 <code>array[i+1]</code> 找到基础数组中位置 <code>p</code> 处的元素。 请注意，此元素不一定是基础数组的最后一个元素 <code>array[len(array)-1]</code>。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	months := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;January&quot;</span>, <span class="hljs-string">&quot;February&quot;</span>, <span class="hljs-string">&quot;March&quot;</span>, <span class="hljs-string">&quot;April&quot;</span>, <span class="hljs-string">&quot;May&quot;</span>, <span class="hljs-string">&quot;June&quot;</span>, <span class="hljs-string">&quot;July&quot;</span>, <span class="hljs-string">&quot;August&quot;</span>, <span class="hljs-string">&quot;September&quot;</span>, <span class="hljs-string">&quot;October&quot;</span>, <span class="hljs-string">&quot;November&quot;</span>, <span class="hljs-string">&quot;December&quot;</span>&#125;
+	quarter1 := months[<span class="hljs-number">0</span>:<span class="hljs-number">3</span>]
+	quarter2 := months[<span class="hljs-number">3</span>:<span class="hljs-number">6</span>]
+	quarter3 := months[<span class="hljs-number">6</span>:<span class="hljs-number">9</span>]
+	quarter4 := months[<span class="hljs-number">9</span>:<span class="hljs-number">12</span>]
+	fmt.Println(quarter1, <span class="hljs-built_in">len</span>(quarter1), <span class="hljs-built_in">cap</span>(quarter1))
+	fmt.Println(quarter2, <span class="hljs-built_in">len</span>(quarter2), <span class="hljs-built_in">cap</span>(quarter2))
+	fmt.Println(quarter3, <span class="hljs-built_in">len</span>(quarter3), <span class="hljs-built_in">cap</span>(quarter3))
+	fmt.Println(quarter4, <span class="hljs-built_in">len</span>(quarter4), <span class="hljs-built_in">cap</span>(quarter4))
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs angelscript"><span class="hljs-string">[January February March]</span> <span class="hljs-number">3</span> <span class="hljs-number">12</span>
+<span class="hljs-string">[April May June]</span> <span class="hljs-number">3</span> <span class="hljs-number">9</span>
+<span class="hljs-string">[July August September]</span> <span class="hljs-number">3</span> <span class="hljs-number">6</span>
+<span class="hljs-string">[October November December]</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span></code></pre></div>
+<p>注意，切片的长度不变，但容量不同。 我们来了解 <code>quarter2</code> 切片。 声明此切片时，你指出希望切片从位置编号 3 开始，最后一个元素位于位置编号 6。 切片长度为 3 个元素，但容量为 9，原因是基础数组有更多元素或位置可供使用，但对切片而言不可见。</p>
+<p>切片容量仅指出切片可扩展的程度。 因此可从 <code>quarter2</code> 创建扩展切片</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	months := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;January&quot;</span>, <span class="hljs-string">&quot;February&quot;</span>, <span class="hljs-string">&quot;March&quot;</span>, <span class="hljs-string">&quot;April&quot;</span>, <span class="hljs-string">&quot;May&quot;</span>, <span class="hljs-string">&quot;June&quot;</span>, <span class="hljs-string">&quot;July&quot;</span>, <span class="hljs-string">&quot;August&quot;</span>, <span class="hljs-string">&quot;September&quot;</span>, <span class="hljs-string">&quot;October&quot;</span>, <span class="hljs-string">&quot;November&quot;</span>, <span class="hljs-string">&quot;December&quot;</span>&#125;
+	quarter2 := months[<span class="hljs-number">3</span>:<span class="hljs-number">6</span>]
+	quarter2Extended := quarter2[:<span class="hljs-number">4</span>]
+	fmt.Println(quarter2, <span class="hljs-built_in">len</span>(quarter2), <span class="hljs-built_in">cap</span>(quarter2))
+	fmt.Println(quarter2Extended, <span class="hljs-built_in">len</span>(quarter2Extended), <span class="hljs-built_in">cap</span>(quarter2Extended))
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mipsasm">[April May <span class="hljs-keyword">June] </span><span class="hljs-number">3</span> <span class="hljs-number">9</span>
+[April May <span class="hljs-keyword">June </span><span class="hljs-keyword">July] </span><span class="hljs-number">4</span> <span class="hljs-number">9</span></code></pre></div>
+<h2 id="追加项">追加项</h2>
+<p>切片与数组之间有何不同？ 第一个区别是切片的大小不是固定的，而是动态的。 创建切片后，可向其添加更多元素，这样切片就会扩展。</p>
+<p>Go 提供了内置函数 <code>append(slice, element)</code>，便于你向切片添加元素。 将要修改的切片和要追加的元素作为值发送给该函数。 然后，<code>append</code> 函数会返回一个新的切片，将其存储在变量中。 对于要更改的切片，变量可能相同。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> numbers []<span class="hljs-type">int</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;
+		numbers = <span class="hljs-built_in">append</span>(numbers, i)
+		fmt.Printf(<span class="hljs-string">&quot;%d\tcap=%d\t%v\n&quot;</span>, i, <span class="hljs-built_in">cap</span>(numbers), numbers)
+	&#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs basic"><span class="hljs-symbol">0 </span>      cap=<span class="hljs-number">1</span>   [<span class="hljs-number">0</span>]
+<span class="hljs-symbol">1 </span>      cap=<span class="hljs-number">2</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span>]
+<span class="hljs-symbol">2 </span>      cap=<span class="hljs-number">4</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span>]
+<span class="hljs-symbol">3 </span>      cap=<span class="hljs-number">4</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span>]
+<span class="hljs-symbol">4 </span>      cap=<span class="hljs-number">8</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>]
+<span class="hljs-symbol">5 </span>      cap=<span class="hljs-number">8</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>]
+<span class="hljs-symbol">6 </span>      cap=<span class="hljs-number">8</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>]
+<span class="hljs-symbol">7 </span>      cap=<span class="hljs-number">8</span>   [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span>]
+<span class="hljs-symbol">8 </span>      cap=<span class="hljs-number">16</span>  [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span>]
+<span class="hljs-symbol">9 </span>      cap=<span class="hljs-number">16</span>  [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span>]</code></pre></div>
+<p>当切片容量不足以容纳更多元素时，Go 的容量将翻倍。 它将新建一个具有新容量的基础数组。 无需执行任何操作即可使容量增加。 Go 会自动扩充容量。</p>
+<h2 id="删除项">删除项</h2>
+<p>Go 没有内置函数用于从切片中删除元素。 可使用上述切片运算符 <code>s[i:p]</code> 来新建一个仅包含所需元素的切片。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	letters := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>&#125;
+	remove := <span class="hljs-number">2</span>
+
+	<span class="hljs-keyword">if</span> remove &lt; <span class="hljs-built_in">len</span>(letters) &#123;
+
+		fmt.Println(<span class="hljs-string">&quot;Before&quot;</span>, letters, <span class="hljs-string">&quot;Remove &quot;</span>, letters[remove])
+
+		letters = <span class="hljs-built_in">append</span>(letters[:remove], letters[remove+<span class="hljs-number">1</span>:]...)
+
+		fmt.Println(<span class="hljs-string">&quot;After&quot;</span>, letters)
+	&#125;
+
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mathematica"><span class="hljs-built_in">Before</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">A</span> <span class="hljs-variable">B</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span> <span class="hljs-built_in">E</span><span class="hljs-punctuation">]</span> <span class="hljs-built_in">Remove</span>  <span class="hljs-built_in">C</span>
+<span class="hljs-built_in">After</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">A</span> <span class="hljs-variable">B</span> <span class="hljs-built_in">D</span> <span class="hljs-built_in">E</span><span class="hljs-punctuation">]</span></code></pre></div>
+<h2 id="创建切片的副本">创建切片的副本</h2>
+<p>Go 具有内置函数 <code>copy(dst, src []Type)</code> 用于创建切片的副本。</p>
+<p>更改切片中的元素时，基础数组将随之更改。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	letters := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Before&quot;</span>, letters)
+
+	slice1 := letters[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>]
+	slice2 := letters[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>]
+
+	slice1[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;Z&quot;</span>
+
+	fmt.Println(<span class="hljs-string">&quot;After&quot;</span>, letters)
+	fmt.Println(<span class="hljs-string">&quot;Slice2&quot;</span>, slice2)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mathematica"><span class="hljs-built_in">Before</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">A</span> <span class="hljs-variable">B</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span> <span class="hljs-built_in">E</span><span class="hljs-punctuation">]</span>
+<span class="hljs-built_in">After</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">A</span> <span class="hljs-variable">Z</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span> <span class="hljs-built_in">E</span><span class="hljs-punctuation">]</span>
+<span class="hljs-variable">Slice2</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">Z</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span><span class="hljs-punctuation">]</span></code></pre></div>
+<p>创建副本则不会产生影响</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	letters := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Before&quot;</span>, letters)
+
+	slice1 := letters[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>]
+
+	slice2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>, <span class="hljs-number">3</span>)
+	<span class="hljs-built_in">copy</span>(slice2, letters[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>])
+
+	slice1[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;Z&quot;</span>
+
+	fmt.Println(<span class="hljs-string">&quot;After&quot;</span>, letters)
+	fmt.Println(<span class="hljs-string">&quot;Slice2&quot;</span>, slice2)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mathematica"><span class="hljs-built_in">Before</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">A</span> <span class="hljs-variable">B</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span> <span class="hljs-built_in">E</span><span class="hljs-punctuation">]</span>
+<span class="hljs-built_in">After</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">A</span> <span class="hljs-variable">Z</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span> <span class="hljs-built_in">E</span><span class="hljs-punctuation">]</span>
+<span class="hljs-variable">Slice2</span> <span class="hljs-punctuation">[</span><span class="hljs-variable">B</span> <span class="hljs-built_in">C</span> <span class="hljs-built_in">D</span><span class="hljs-punctuation">]</span></code></pre></div>
+<h1>使用映射</h1>
+<p>Go 中的映射是一个哈希表，是键值对的集合。 映射中所有的键都必须具有相同的类型，它们的值也是如此。 不过，可对键和值使用不同的类型。 例如，键可以是数字，值可以是字符串。 若要访问映射中的特定项，可引用该项的键。</p>
+<h2 id="声明和初始化映射">声明和初始化映射</h2>
+<p>若要声明映射，需要使用 <code>map</code> 关键字。 然后，定义键和值类型，如下所示：<code>map[T]T</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	studentsAge := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>&#123;
+		<span class="hljs-string">&quot;john&quot;</span>: <span class="hljs-number">32</span>,
+		<span class="hljs-string">&quot;bob&quot;</span>:  <span class="hljs-number">31</span>,
+	&#125;
+	fmt.Println(studentsAge)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs vim"><span class="hljs-keyword">map</span>[<span class="hljs-keyword">bo</span><span class="hljs-variable">b:31</span> john:<span class="hljs-number">32</span>]</code></pre></div>
+<p>如果不想使用项来初始化映射，可使用内置函数 <code>make()</code> 在上一部分创建切片。</p>
+<h2 id="添加项">添加项</h2>
+<p>要添加项，无需像对切片一样使用内置函数。 映射更加简单。 你只需定义键和值即可。 如果没有键值对，则该项会添加到映射中。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	studentsAge := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	studentsAge[<span class="hljs-string">&quot;john&quot;</span>] = <span class="hljs-number">32</span>
+	studentsAge[<span class="hljs-string">&quot;bob&quot;</span>] = <span class="hljs-number">31</span>
+	fmt.Println(studentsAge)
+&#125;</code></pre></div>
+<h2 id="访问项">访问项</h2>
+<p>若要访问映射中的项，可使用常用的下标表示法 <code>m[key]</code></p>
+<p>在映射中使用下标表示法时，即使映射中没有键，你也总会获得默认值的响应。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	studentsAge := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	studentsAge[<span class="hljs-string">&quot;john&quot;</span>] = <span class="hljs-number">32</span>
+	studentsAge[<span class="hljs-string">&quot;bob&quot;</span>] = <span class="hljs-number">31</span>
+	fmt.Println(<span class="hljs-string">&quot;Bob&#x27;s age is&quot;</span>, studentsAge[<span class="hljs-string">&quot;bob&quot;</span>])
+	fmt.Println(<span class="hljs-string">&quot;Christy&#x27;s age is&quot;</span>, studentsAge[<span class="hljs-string">&quot;christy&quot;</span>])
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs ada">Bob<span class="hljs-symbol">&#x27;s</span> age <span class="hljs-keyword">is</span> <span class="hljs-number">31</span>
+Christy<span class="hljs-symbol">&#x27;s</span> age <span class="hljs-keyword">is</span> <span class="hljs-number">0</span></code></pre></div>
+<p>在很多情况下，访问映射中没有的项时 Go 不会返回错误，这是正常的。 但有时需要知道某个项是否存在。 在 Go 中，映射的下标表示法可生成两个值。 第一个是项的值。 第二个是指示键是否存在的布尔型标志。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	studentsAge := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	studentsAge[<span class="hljs-string">&quot;john&quot;</span>] = <span class="hljs-number">32</span>
+	studentsAge[<span class="hljs-string">&quot;bob&quot;</span>] = <span class="hljs-number">31</span>
+
+	age, exist := studentsAge[<span class="hljs-string">&quot;christy&quot;</span>]
+	<span class="hljs-keyword">if</span> exist &#123;
+		fmt.Println(<span class="hljs-string">&quot;Christy&#x27;s age is&quot;</span>, age)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Christy&#x27;s age couldn&#x27;t be found&quot;</span>)
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs ada">Christy<span class="hljs-symbol">&#x27;s</span> age couldn<span class="hljs-symbol">&#x27;t</span> be found</code></pre></div>
+<h2 id="删除项-2">删除项</h2>
+<p>若要从映射中删除项，请使用内置函数 <code>delete()</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	studentsAge := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	studentsAge[<span class="hljs-string">&quot;john&quot;</span>] = <span class="hljs-number">32</span>
+	studentsAge[<span class="hljs-string">&quot;bob&quot;</span>] = <span class="hljs-number">31</span>
+	<span class="hljs-built_in">delete</span>(studentsAge, <span class="hljs-string">&quot;bob&quot;</span>)
+	<span class="hljs-built_in">delete</span>(studentsAge, <span class="hljs-string">&quot;christy&quot;</span>)
+	fmt.Println(studentsAge)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">map</span>[john:<span class="hljs-number">32</span>]</code></pre></div>
+<p>如果你尝试删除不存在的项，Go 不会执行 panic</p>
+<h2 id="映射中的循环">映射中的循环</h2>
+<p>最后，让我们看看如何在映射中进行循环来以编程方式访问其所有的项。 为此，可使用基于范围的循环</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	studentsAge := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	studentsAge[<span class="hljs-string">&quot;john&quot;</span>] = <span class="hljs-number">32</span>
+	studentsAge[<span class="hljs-string">&quot;bob&quot;</span>] = <span class="hljs-number">31</span>
+	<span class="hljs-keyword">for</span> name, age := <span class="hljs-keyword">range</span> studentsAge &#123;
+		fmt.Printf(<span class="hljs-string">&quot;%s\t%d\n&quot;</span>, name, age)
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">john</span>    <span class="hljs-number">32</span>
+<span class="hljs-attribute">bob</span>     <span class="hljs-number">31</span></code></pre></div>
+<p><code>range</code> 会首先生成项的键，然后再生成该项的值。 可使用 <code>_</code> 变量忽略其中任何一个</p>
+<h1>使用结构</h1>
+<p>有时，你需要在一个结构中表示字段的集合。在 Go 中，可使用结构将可能构成记录的不同字段组合在一起。Go 中的结构也是一种数据结构，它可包含零个或多个任意类型的字段，并将它们表示为单个实体。</p>
+<h2 id="声明和初始化结构">声明和初始化结构</h2>
+<p>若要声明结构，需要使用 <code>struct</code> 关键字，还要使用希望新的数据类型具有的字段及其类型的列表。</p>
+<p>若要访问结构的各个字段，可使用点表示法 (<code>.</code>) 做到这一点</p>
+<p>可使用 <code>&amp;</code> 运算符生成指向结构的指针以修改结构中的项</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> Employee <span class="hljs-keyword">struct</span> &#123;
+	ID        <span class="hljs-type">int</span>
+	FirstName <span class="hljs-type">string</span>
+	LastName  <span class="hljs-type">string</span>
+	Address   <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	employee := Employee&#123;LastName: <span class="hljs-string">&quot;Doe&quot;</span>, FirstName: <span class="hljs-string">&quot;John&quot;</span>&#125;
+	fmt.Println(employee)
+	employeeCopy := &amp;employee
+	employeeCopy.FirstName = <span class="hljs-string">&quot;David&quot;</span>
+	fmt.Println(employee)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs dust"><span class="hljs-template-variable">&#123;0 John Doe &#125;</span><span class="language-xml"></span>
+<span class="language-xml"></span><span class="hljs-template-variable">&#123;0 David Doe &#125;</span></code></pre></div>
+<h2 id="结构嵌入">结构嵌入</h2>
+<p>通过 Go 中的结构，可将某结构嵌入到另一结构中。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> Person <span class="hljs-keyword">struct</span> &#123;
+	ID        <span class="hljs-type">int</span>
+	FirstName <span class="hljs-type">string</span>
+	LastName  <span class="hljs-type">string</span>
+	Address   <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-keyword">type</span> Employee <span class="hljs-keyword">struct</span> &#123;
+	Person
+	ManagerID <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-keyword">type</span> Contractor <span class="hljs-keyword">struct</span> &#123;
+	Person
+	CompanyID <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	employee := Employee&#123;
+		Person: Person&#123;
+			FirstName: <span class="hljs-string">&quot;John&quot;</span>,
+		&#125;,
+	&#125;
+	employee.LastName = <span class="hljs-string">&quot;Doe&quot;</span>
+	employee.ManagerID = <span class="hljs-number">2</span>
+	fmt.Println(employee)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs handlebars"><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">0</span> John Doe &#125; <span class="hljs-number">2</span>&#125;</span></code></pre></div>
+<h2 id="用-JSON-编码和解码结构">用 JSON 编码和解码结构</h2>
+<p>最后，可使用结构来对 JSON 中的数据进行编码和解码。 Go 对 JSON 格式提供很好的支持，该格式已包含在标准库包中。</p>
+<p>你还可执行一些操作，例如重命名结构中字段的名称。 例如，假设你不希望 JSON 输出显示 <code>FirstName</code> 而只显示 <code>name</code>，或者忽略空字段， 可使用如下例所示的字段标记：</p>
+<p>然后，若要将结构编码为 JSON，请使用 <code>json.Marshal</code> 函数。 若要将 JSON 字符串解码为数据结构，请使用 <code>json.Unmarshal</code> 函数。 下例将所有内容组合在一起，将员工数组编码为 JSON，并将输出解码为新的变量：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> Person <span class="hljs-keyword">struct</span> &#123;
+	ID        <span class="hljs-type">int</span>
+	FirstName <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;name&quot;`</span>
+	LastName  <span class="hljs-type">string</span>
+	Address   <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;address,omitempty&quot;`</span>
+&#125;
+
+<span class="hljs-keyword">type</span> Employee <span class="hljs-keyword">struct</span> &#123;
+	Person
+	ManagerID <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-keyword">type</span> Contractor <span class="hljs-keyword">struct</span> &#123;
+	Person
+	CompanyID <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	employees := []Employee&#123;
+		&#123;
+			Person: Person&#123;
+				LastName: <span class="hljs-string">&quot;Doe&quot;</span>, FirstName: <span class="hljs-string">&quot;John&quot;</span>,
+			&#125;,
+		&#125;,
+		&#123;
+			Person: Person&#123;
+				LastName: <span class="hljs-string">&quot;Campbell&quot;</span>, FirstName: <span class="hljs-string">&quot;David&quot;</span>,
+			&#125;,
+		&#125;,
+	&#125;
+
+	data, _ := json.Marshal(employees)
+	fmt.Printf(<span class="hljs-string">&quot;%s\n&quot;</span>, data)
+
+	<span class="hljs-keyword">var</span> decoded []Employee
+	json.Unmarshal(data, &amp;decoded)
+	fmt.Printf(<span class="hljs-string">&quot;%v\n&quot;</span>, decoded)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs css"><span class="hljs-selector-attr">[&#123;<span class="hljs-string">&quot;ID&quot;</span>:0,<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;John&quot;</span>,<span class="hljs-string">&quot;LastName&quot;</span>:<span class="hljs-string">&quot;Doe&quot;</span>,<span class="hljs-string">&quot;ManagerID&quot;</span>:0&#125;,&#123;<span class="hljs-string">&quot;ID&quot;</span>:0,<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;David&quot;</span>,<span class="hljs-string">&quot;LastName&quot;</span>:<span class="hljs-string">&quot;Campbell&quot;</span>,<span class="hljs-string">&quot;ManagerID&quot;</span>:0&#125;]</span>
+<span class="hljs-selector-attr">[&#123;&#123;0 John Doe &#125; 0&#125; &#123;&#123;0 David Campbell &#125; 0&#125;]</span></code></pre></div>
+<h1>练习 - 数据类型</h1>
+<h2 id="编写一个程序来计算斐波纳契数列">编写一个程序来计算斐波纳契数列</h2>
+<p>在这第一个挑战中，你将编写一个程序来计算某个数字的斐波纳契数列。 这是在学习新语言时要编码的一个典型的编程练习。 你将编写一个函数，它返回一个包含按斐波纳契数列排列的所有数字的切片，而这些数字是通过根据用户输入的大于 2 的数字计算得到的。 让我们假设小于 <code>2</code> 的数字会导致错误，并返回一个 nil 切片。</p>
+<p>请记住，斐波那契数列是一个数字列表，其中每个数字是前两个斐波那契数字之和。 例如，数字 <code>6</code> 的序列是 <code>1,1,2,3,5,8</code>，数字 <code>7</code> 的序列是 <code>1,1,2,3,5,8,13</code>，数字 <code>8</code> 的序列是 <code>1,1,2,3,5,8,13,21</code>，以此类推。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fibonacci</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-number">0</span>)
+	&#125;
+
+	nums := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n)
+	nums[<span class="hljs-number">0</span>], nums[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">2</span>; i &lt; n; i++ &#123;
+		nums[i] = nums[i<span class="hljs-number">-1</span>] + nums[i<span class="hljs-number">-2</span>]
+	&#125;
+
+	<span class="hljs-keyword">return</span> nums
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> num <span class="hljs-type">int</span>
+
+	fmt.Print(<span class="hljs-string">&quot;What&#x27;s the Fibonacci sequence you want? &quot;</span>)
+	fmt.Scanln(&amp;num)
+	fmt.Println(<span class="hljs-string">&quot;The Fibonacci sequence is:&quot;</span>, fibonacci(num))
+&#125;
+</code></pre></div>
+<h2 id="创建罗马数字转换器">创建罗马数字转换器</h2>
+<p>编写一个程序来转换罗马数字（例如将 <code>MCLX</code> 转换成 <code>1,160</code>）。 使用映射加载要用于将字符串字符转换为数字的基本罗马数字。 例如，<code>M</code> 将是映射中的键，其值将为 <code>1000</code>。 使用以下字符串字符映射表列表：</p>
+<ul>
+<li><code>M</code> =&gt; 1000</li>
+<li><code>D</code> =&gt; 500</li>
+<li><code>C</code> =&gt; 100</li>
+<li><code>L</code> =&gt; 50</li>
+<li><code>X</code> =&gt; 10</li>
+<li><code>V</code> =&gt; 5</li>
+<li><code>I</code> =&gt; 1</li>
+</ul>
+<p>如果用户输入的字母与上述列表中的不同，则打印一个错误。</p>
+<p>请记住在有些情况下，较小的数字会排在较大的数字前面，因此不能仅仅将数字相加。 例如，数字 <code>MCM</code> 应打印为 <code>1,900</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">romanToArabic</span><span class="hljs-params">(numeral <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+	romanMap := <span class="hljs-keyword">map</span>[<span class="hljs-type">rune</span>]<span class="hljs-type">int</span>&#123;
+		<span class="hljs-string">&#x27;M&#x27;</span>: <span class="hljs-number">1000</span>,
+		<span class="hljs-string">&#x27;D&#x27;</span>: <span class="hljs-number">500</span>,
+		<span class="hljs-string">&#x27;C&#x27;</span>: <span class="hljs-number">100</span>,
+		<span class="hljs-string">&#x27;L&#x27;</span>: <span class="hljs-number">50</span>,
+		<span class="hljs-string">&#x27;X&#x27;</span>: <span class="hljs-number">10</span>,
+		<span class="hljs-string">&#x27;V&#x27;</span>: <span class="hljs-number">5</span>,
+		<span class="hljs-string">&#x27;I&#x27;</span>: <span class="hljs-number">1</span>,
+	&#125;
+
+	arabicVals := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-built_in">len</span>(numeral)+<span class="hljs-number">1</span>)
+
+	<span class="hljs-keyword">for</span> index, digit := <span class="hljs-keyword">range</span> numeral &#123;
+		<span class="hljs-keyword">if</span> val, present := romanMap[digit]; present &#123;
+			arabicVals[index] = val
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Printf(<span class="hljs-string">&quot;Error: The roman numeral %s has a bad digit: %c\n&quot;</span>, numeral, digit)
+			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+		&#125;
+	&#125;
+
+	total := <span class="hljs-number">0</span>
+
+	<span class="hljs-keyword">for</span> index := <span class="hljs-number">0</span>; index &lt; <span class="hljs-built_in">len</span>(numeral); index++ &#123;
+		<span class="hljs-keyword">if</span> arabicVals[index] &lt; arabicVals[index+<span class="hljs-number">1</span>] &#123;
+			arabicVals[index] = -arabicVals[index]
+		&#125;
+		total += arabicVals[index]
+	&#125;
+
+	<span class="hljs-keyword">return</span> total
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;MCLX is&quot;</span>, romanToArabic(<span class="hljs-string">&quot;MCLX&quot;</span>))
+	fmt.Println(<span class="hljs-string">&quot;MCMXCIX is &quot;</span>, romanToArabic(<span class="hljs-string">&quot;MCMXCIX&quot;</span>))
+	fmt.Println(<span class="hljs-string">&quot;MCMZ is&quot;</span>, romanToArabic(<span class="hljs-string">&quot;MCMZ&quot;</span>))
+&#125;
+</code></pre></div>
+<h1>如何在 Go 中处理错误</h1>
+<p>编写程序时，需要考虑程序失败的各种方式，并且需要管理失败。 无需让用户看到冗长而混乱的堆栈跟踪错误。 让他们看到有关错误的有意义的信息更好。 正如你所看到的，Go 具有 <code>panic</code> 和 <code>recover</code> 之类的内置函数来管理程序中的异常或意外行为。 但错误是已知的失败，你的程序应该可以处理它们。</p>
+<p>Go 的错误处理方法只是一种只需要 <code>if</code> 和 <code>return</code> 语句的控制流机制。 例如，在调用函数以从 <code>employee</code> 对象获取信息时，可能需要了解该员工是否存在。 Go 处理此类预期错误的一贯方法如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go">employee, err := getInformation(<span class="hljs-number">1000</span>)
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+    <span class="hljs-comment">// Something is wrong. Do something.</span>
+&#125;</code></pre></div>
+<p>注意 <code>getInformation</code> 函数返回了 <code>employee</code> 结构，还返回了错误作为第二个值。 该错误可能为 <code>nil</code>。 如果错误为 <code>nil</code>，则表示成功。 如果错误不是 <code>nil</code>，则表示失败。 非 <code>nil</code> 错误附带一条错误消息，你可以打印该错误消息，也可以记录该消息（更可取）。</p>
+<h2 id="错误处理策略">错误处理策略</h2>
+<p>当函数返回错误时，该错误通常是最后一个返回值。 正如上一部分所介绍的那样，调用方负责检查是否存在错误并处理错误。</p>
+<p>你可能还需要在传播错误之前添加更多信息。 为此，可以使用 <code>fmt.Errorf()</code> 函数，该函数与我们之前看到的函数类似，但它返回一个错误。 例如，你可以向错误添加更多上下文，但仍返回原始错误，如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getInformation</span><span class="hljs-params">(id <span class="hljs-type">int</span>)</span></span> (*Employee, <span class="hljs-type">error</span>) &#123;
+    employee, err := apiCallEmployee(<span class="hljs-number">1000</span>)
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;got an error when getting the employee information: %v&quot;</span>, err)
+    &#125;
+    <span class="hljs-keyword">return</span> employee, <span class="hljs-literal">nil</span>
+&#125;</code></pre></div>
+<p>另一种策略是在错误为暂时性错误时运行重试逻辑。 例如，可以使用重试策略调用函数三次并等待两秒钟</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getInformation</span><span class="hljs-params">(id <span class="hljs-type">int</span>)</span></span> (*Employee, <span class="hljs-type">error</span>) &#123;
+    <span class="hljs-keyword">for</span> tries := <span class="hljs-number">0</span>; tries &lt; <span class="hljs-number">3</span>; tries++ &#123;
+        employee, err := apiCallEmployee(<span class="hljs-number">1000</span>)
+        <span class="hljs-keyword">if</span> err == <span class="hljs-literal">nil</span> &#123;
+            <span class="hljs-keyword">return</span> employee, <span class="hljs-literal">nil</span>
+        &#125;
+
+        fmt.Println(<span class="hljs-string">&quot;Server is not responding, retrying ...&quot;</span>)
+        time.Sleep(time.Second * <span class="hljs-number">2</span>)
+    &#125;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;server has failed to respond to get the employee information&quot;</span>)
+&#125;</code></pre></div>
+<h2 id="创建可重用的错误">创建可重用的错误</h2>
+<p>有时错误消息数会增加，你需要维持秩序。 或者，你可能需要为要重用的常见错误消息创建一个库。 在 Go 中，你可以使用 <code>errors.New()</code> 函数创建错误并在若干部分中重复使用这些错误，如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> ErrNotFound = errors.New(<span class="hljs-string">&quot;Employee not found!&quot;</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getInformation</span><span class="hljs-params">(id <span class="hljs-type">int</span>)</span></span> (*Employee, <span class="hljs-type">error</span>) &#123;
+    <span class="hljs-keyword">if</span> id != <span class="hljs-number">1001</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, ErrNotFound
+    &#125;
+
+    employee := Employee&#123;LastName: <span class="hljs-string">&quot;Doe&quot;</span>, FirstName: <span class="hljs-string">&quot;John&quot;</span>&#125;
+    <span class="hljs-keyword">return</span> &amp;employee, <span class="hljs-literal">nil</span>
+&#125;</code></pre></div>
+<p>最后，如果你具有错误变量，则在处理调用方函数中的错误时可以更具体。 <code>errors.Is()</code> 函数允许你比较获得的错误的类型</p>
+<div class="code-wrapper"><pre><code class="hljs go">employee, err := getInformation(<span class="hljs-number">1000</span>)
+<span class="hljs-keyword">if</span> errors.Is(err, ErrNotFound) &#123;
+    fmt.Printf(<span class="hljs-string">&quot;NOT FOUND: %v\n&quot;</span>, err)
+&#125; <span class="hljs-keyword">else</span> &#123;
+    fmt.Print(employee)
+&#125;</code></pre></div>
+<h2 id="用于错误处理的推荐做法">用于错误处理的推荐做法</h2>
+<p>在 Go 中处理错误时，请记住下面一些推荐做法：</p>
+<ul>
+<li>始终检查是否存在错误，即使预期不存在。 然后正确处理它们，以免向最终用户公开不必要的信息。</li>
+<li>在错误消息中包含一个前缀，以便了解错误的来源。 例如，可以包含包和函数的名称。</li>
+<li>创建尽可能多的可重用错误变量。</li>
+<li>了解使用返回错误和 panic 之间的差异。 不能执行其他操作时再使用 panic。 例如，如果某个依赖项未准备就绪，则程序运行无意义（除非你想要运行默认行为）。</li>
+<li>在记录错误时记录尽可能多的详细信息（我们将在下一部分介绍记录方法），并打印出最终用户能够理解的错误。</li>
+</ul>
+<h1>如何在 Go 中记录</h1>
+<p>日志在程序中发挥着重要作用，因为它们是在出现问题时你可以检查的信息源。 通常，发生错误时，最终用户只会看到一条消息，指示程序出现问题。 从开发人员的角度来看，我们需要简单错误消息以外的更多信息。 这主要是因为我们想要再现该问题以编写适当的修补程序。</p>
+<h2 id="log-包"><code>log</code> 包</h2>
+<p>对于初学者，Go 提供了一个用于处理日志的简单标准包。 可以像使用 <code>fmt</code> 包一样使用此包。 该标准包不提供日志级别，且不允许为每个包配置单独的记录器。 如果需要编写更复杂的日志记录配置，可以使用记录框架执行此操作。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;log&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	log.Print(<span class="hljs-string">&quot;Hey, I&#x27;m a log!&quot;</span>)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">2022</span>/<span class="hljs-number">10</span>/<span class="hljs-number">05</span> <span class="hljs-number">15</span>:<span class="hljs-number">37</span>:<span class="hljs-number">16</span> Hey, I&#x27;m a log!</code></pre></div>
+<p>默认情况下，<code>log.Print()</code> 函数将日期和时间添加为日志消息的前缀。 你可以通过使用 <code>fmt.Print()</code> 获得相同的行为，但使用 <code>log</code> 包还能执行其他操作，例如将日志发送到文件。 稍后我们将详细介绍 <code>log</code> 包功能。</p>
+<p>你可以使用 <code>log.Fatal()</code> 函数记录错误并结束程序，就像使用 <code>os.Exit(1)</code> 一样。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;log&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	log.Fatal(<span class="hljs-string">&quot;Hey, I&#x27;m an error log!&quot;</span>)
+	fmt.Print(<span class="hljs-string">&quot;Can you see me?&quot;</span>)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">2022</span>/<span class="hljs-number">10</span>/<span class="hljs-number">05</span> <span class="hljs-number">15</span>:<span class="hljs-number">38</span>:<span class="hljs-number">56</span> Hey, I&#x27;m an error log!
+<span class="hljs-attribute">exit</span> status <span class="hljs-number">1</span></code></pre></div>
+<p>使用 <code>log.Panic()</code> 函数时会出现类似行为，但是还会获取错误堆栈跟踪。</p>
+<p>另一重要函数是 <code>log.SetPrefix()</code>。 可使用它向程序的日志消息添加前缀。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;log&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	log.SetPrefix(<span class="hljs-string">&quot;main(): &quot;</span>)
+	log.Print(<span class="hljs-string">&quot;Hey, I&#x27;m a log!&quot;</span>)
+	log.Fatal(<span class="hljs-string">&quot;Hey, I&#x27;m an error log!&quot;</span>)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">main</span>(): <span class="hljs-number">2022</span>/<span class="hljs-number">10</span>/<span class="hljs-number">05</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">36</span> Hey, I&#x27;m a log!
+<span class="hljs-attribute">main</span>(): <span class="hljs-number">2022</span>/<span class="hljs-number">10</span>/<span class="hljs-number">05</span> <span class="hljs-number">15</span>:<span class="hljs-number">40</span>:<span class="hljs-number">36</span> Hey, I&#x27;m an error log!
+<span class="hljs-attribute">exit</span> status <span class="hljs-number">1</span></code></pre></div>
+<h2 id="记录到文件">记录到文件</h2>
+<p>除了将日志打印到控制台之外，你可能还希望将日志发送到文件，以便稍后或实时处理这些日志。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;log&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	file, err := os.OpenFile(<span class="hljs-string">&quot;info.log&quot;</span>, os.O_CREATE|os.O_APPEND|os.O_WRONLY, <span class="hljs-number">0644</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(err)
+	&#125;
+
+	<span class="hljs-keyword">defer</span> file.Close()
+
+	log.SetOutput(file)
+	log.Print(<span class="hljs-string">&quot;Hey, I&#x27;m a log!&quot;</span>)
+&#125;</code></pre></div>
+<p>最后，可能有 <code>log</code> 包中的函数不足以处理问题的情况。 你可能会发现，使用记录框架而不编写自己的库很有用。 Go 的几个记录框架有 <a target="_blank" rel="noopener" href="https://github.com/sirupsen/logrus">Logrus</a>、<a target="_blank" rel="noopener" href="https://github.com/rs/zerolog">zerolog</a>、<a target="_blank" rel="noopener" href="https://github.com/uber-go/zap">zap</a> 和 <a target="_blank" rel="noopener" href="https://github.com/apex/log">Apex</a>。</p>
+<h1>在 Go 中使用方法</h1>
+<p>面向对象编程 (OOP) 是一种广受欢迎的编程模式，大部分编程语言都支持（至少部分支持）。 Go 是其中一种语言，但它并不完全支持所有 OOP 原则。</p>
+<p>Go 中的方法是一种特殊类型的函数，但存在一个简单的区别：你必须在函数名称之前加入一个额外的参数。 此附加参数称为 <em>接收方</em> 。</p>
+<p>如你希望分组函数并将其绑定到自定义类型，则方法非常有用。 Go 中的这一方法类似于在其他编程语言中创建类，因为它允许你实现面向对象编程 (OOP) 模型中的某些功能，例如嵌入、重载和封装。</p>
+<h2 id="声明方法">声明方法</h2>
+<p>到目前为止，你仅将结构用作可在 Go 中创建的另一种自定义类型。 在此模块中你将了解到，通过添加方法你可以将行为添加到你所创建的结构中。</p>
+<p>在声明方法之前，必须先创建结构。 假设你想要创建一个几何包，并决定创建一个名为 <code>triangle</code> 的三角形结构作为此程序包的一个组成部分。 然后，你需要使用一种方法来计算此三角形的周长。 你可以在 Go 中将其表示为：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> triangle <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t triangle)</span></span> perimeter() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> t.size * <span class="hljs-number">3</span>
+&#125;</code></pre></div>
+<p>结构看起来像普通结构，但 <code>perimeter()</code> 函数在函数名称之前有一个类型 <code>triangle</code> 的额外参数。 也就是说，在使用结构时，你可以按如下方式调用函数：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	t := triangle&#123;<span class="hljs-number">3</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Perimeter:&quot;</span>, t.perimeter())
+&#125;</code></pre></div>
+<p>如果尝试按平常的方式调用 <code>perimeter()</code> 函数，则此函数将无法正常工作，因为此函数的签名表明它需要接收方。 正因如此，调用此方法的唯一方式是先声明一个结构，获取此方法的访问权限。 这也意味着，只要此方法属于不同的结构，你甚至可以为其指定相同的名称。 例如，你可以使用 <code>perimeter()</code> 函数声明一个 <code>square</code> 结构，具体如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> triangle <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-keyword">type</span> square <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t triangle)</span></span> perimeter() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> t.size * <span class="hljs-number">3</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s square)</span></span> perimeter() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> s.size * <span class="hljs-number">4</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	t := triangle&#123;<span class="hljs-number">3</span>&#125;
+	s := square&#123;<span class="hljs-number">4</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Perimeter (triangle):&quot;</span>, t.perimeter())
+	fmt.Println(<span class="hljs-string">&quot;Perimeter (square):&quot;</span>, s.perimeter())
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">Perimeter</span> (triangle): <span class="hljs-number">9</span>
+<span class="hljs-attribute">Perimeter</span> (square): <span class="hljs-number">16</span></code></pre></div>
+<p>通过对 <code>perimeter()</code> 函数的两次调用，编译器将根据接收方类型来确定要调用的函数。 这有助于在各程序包之间保持函数的一致性和名称的简短，并避免将包名称作为前缀。</p>
+<h2 id="方法中的指针">方法中的指针</h2>
+<p>有时，方法需要更新变量，或者，如果参数太大，则可能需要避免复制它。 在遇到此类情况时，你需要使用指针传递变量的地址。 在之前的模块中，当我们在讨论指针时提到，每次在 Go 中调用函数时，Go 都会复制每个参数值以便使用。</p>
+<p>如果你需要更新方法中的接收方变量，也会执行相同的行为。 例如，假设你要创建一个新方法以使三角形的大小增加一倍。 你需要在接收方变量中使用指针，具体如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *triangle)</span></span> doubleSize() &#123;
+	t.size *= <span class="hljs-number">2</span>
+&#125;</code></pre></div>
+<p>如果方法仅可访问接收方的信息，则不需要在接收方变量中使用指针。 但是，依据 Go 的约定，如果结构的任何方法具有指针接收方，则此结构的所有方法都必须具有指针接收方，即使某个方法不需要也是如此。</p>
+<h2 id="声明其他类型的方法">声明其他类型的方法</h2>
+<p>方法的一个关键方面在于，需要为任何类型定义方法，而不只是针对自定义类型（如结构）进行定义。 但是，你不能通过属于其他包的类型来定义结构。 因此，不能在基本类型（如 <code>string</code>）上创建方法。</p>
+<p>尽管如此，你仍然可以利用一点技巧，基于基本类型创建自定义类型，然后将其用作基本类型。 例如，假设你要创建一个方法，以将字符串从小写字母转换为大写字母。 你可以按如下所示写入方法：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;strings&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> upperstring <span class="hljs-type">string</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s upperstring)</span></span> Upper() <span class="hljs-type">string</span> &#123;
+	<span class="hljs-keyword">return</span> strings.ToUpper(<span class="hljs-type">string</span>(s))
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	s := upperstring(<span class="hljs-string">&quot;Learning Go!&quot;</span>)
+	fmt.Println(s)
+	fmt.Println(s.Upper())
+&#125;
+</code></pre></div>
+<h2 id="嵌入方法">嵌入方法</h2>
+<p>在之前的模块中，您已了解到可以在一个结构中使用属性，并将同一属性嵌入另一个结构中。 也就是说，可以重用来自一个结构的属性，以避免出现重复并保持代码库的一致性。 类似的观点也适用于方法。 即使接收方不同，也可以调用已嵌入结构的方法。</p>
+<p>例如，假设你想要创建一个带有逻辑的新三角形结构，以加入颜色。 此外，你还希望继续使用之前声明的三角形结构。 然后，你可以初始化 <code>coloredTriangle</code> 结构，并从 <code>triangle</code> 结构调用 <code>perimeter()</code> 方法（甚至访问其字段）</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> triangle <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-keyword">type</span> coloredTriangle <span class="hljs-keyword">struct</span> &#123;
+	triangle
+	color <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t triangle)</span></span> perimeter() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> t.size * <span class="hljs-number">3</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	t := coloredTriangle&#123;triangle&#123;<span class="hljs-number">3</span>&#125;, <span class="hljs-string">&quot;blue&quot;</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Size:&quot;</span>, t.size)
+	fmt.Println(<span class="hljs-string">&quot;Perimeter&quot;</span>, t.perimeter())
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">Size</span>: <span class="hljs-number">3</span>
+<span class="hljs-attribute">Perimeter</span> <span class="hljs-number">9</span></code></pre></div>
+<h2 id="重载方法">重载方法</h2>
+<p>让我们回到之前讨论过的 <code>triangle</code> 示例。 如果要在 <code>coloredTriangle</code> 结构中更改 <code>perimeter()</code> 方法的实现，会发生什么情况？ 不能存在两个同名的函数。 但是，因为方法需要额外参数（接收方），所以，你可以使用一个同名的方法，只要此方法专门用于要使用的接收方即可。 这就是重载方法的方式。</p>
+<p>如果你仍需要从 <code>triangle</code> 结构调用 <code>perimeter()</code> 方法，则可通过对其进行显示访问来执行此操作</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> triangle <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-keyword">type</span> coloredTriangle <span class="hljs-keyword">struct</span> &#123;
+	triangle
+	color <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t coloredTriangle)</span></span> perimeter() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> t.size * <span class="hljs-number">3</span> * <span class="hljs-number">2</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t triangle)</span></span> perimeter() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> t.size * <span class="hljs-number">3</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	t := coloredTriangle&#123;triangle&#123;<span class="hljs-number">3</span>&#125;, <span class="hljs-string">&quot;blue&quot;</span>&#125;
+	fmt.Println(<span class="hljs-string">&quot;Size:&quot;</span>, t.size)
+	fmt.Println(<span class="hljs-string">&quot;Perimeter (colored)&quot;</span>, t.perimeter())
+	fmt.Println(<span class="hljs-string">&quot;Perimeter (normal)&quot;</span>, t.triangle.perimeter())
+&#125;
+</code></pre></div>
+<h2 id="方法中的封装">方法中的封装</h2>
+<p>“封装”表示对象的发送方（客户端）无法访问某个方法。 通常，在其他编程语言中，你会将 <code>private</code> 或 <code>public</code> 关键字放在方法名称之前。 <strong>在 Go 中，只需使用大写标识符，即可公开方法，使用非大写的标识符将方法设为私有方法</strong>。</p>
+<p>Go 中的封装仅在程序包之间有效。 换句话说，你只能隐藏来自其他程序包的实现详细信息，而不能隐藏程序包本身。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> geometry
+
+<span class="hljs-keyword">type</span> Triangle <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *Triangle)</span></span> doubleSize() &#123;
+	t.size *= <span class="hljs-number">2</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *Triangle)</span></span> SetSize(size <span class="hljs-type">int</span>) &#123;
+	t.size = size
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(t *Triangle)</span></span> Perimeter() <span class="hljs-type">int</span> &#123;
+	t.doubleSize()
+	<span class="hljs-keyword">return</span> t.size * <span class="hljs-number">3</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;geometry&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	t := geometry.Triangle&#123;&#125;
+	t.SetSize(<span class="hljs-number">3</span>)
+	fmt.Println(<span class="hljs-string">&quot;Perimeter&quot;</span>, t.Perimeter())
+&#125;
+</code></pre></div>
+<h1>在 Go 中使用接口</h1>
+<p>Go 中的接口是一种用于表示其他类型的行为的数据类型。 接口类似于对象应满足的蓝图或协定。 在你使用接口时，你的基本代码将变得更加灵活、适应性更强，因为你编写的代码未绑定到特定的实现。 因此，你可以快速扩展程序的功能。</p>
+<p>与其他编程语言中的接口不同，Go 中的接口是满足隐式实现的。 Go 并不提供用于实现接口的关键字，因此，如果你之前使用的是其他编程语言中的接口，但不熟悉 Go，那么此概念可能会造成混淆。</p>
+<h2 id="声明接口">声明接口</h2>
+<p>Go 中的接口是一种抽象类型，只包括具体类型必须拥有或实现的方法。 正因如此，我们说接口类似于蓝图。</p>
+<p>假设你希望在几何包中创建一个接口来指示形状必须实现的方法。 你可以按如下所示定义接口：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Shape <span class="hljs-keyword">interface</span> &#123;
+    Perimeter() <span class="hljs-type">float64</span>
+    Area() <span class="hljs-type">float64</span>
+&#125;</code></pre></div>
+<p><code>Shape</code> 接口表示你想要考虑 <code>Shape</code> 的任何类型都需要同时具有 <code>Perimeter()</code> 和 <code>Area()</code> 方法。 例如，在创建 <code>Square</code> 结构时，它必须实现两种方法，而不是仅实现一种。 另外，请注意接口不包含这些方法的实现细节（例如，用于计算某个形状的周长和面积）。 接口仅表示一种协定。 三角形、圆圈和正方形等形状有不同的计算面积和周长方式。</p>
+<h2 id="实现接口">实现接口</h2>
+<p>正如上文所讨论的内容，你没有用于实现接口的关键字。 当 Go 中的接口具有接口所需的所有方法时，则满足按类型的隐式实现。</p>
+<p>让我们创建一个 <code>Square</code> 结构，此结构具有 <code>Shape</code> 接口中的两个方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Square <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">float64</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s Square)</span></span> Area() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> s.size * s.size
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s Square)</span></span> Perimeter() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> s.size * <span class="hljs-number">4</span>
+&#125;</code></pre></div>
+<p>请注意 <code>Square</code> 结构的方法签名与 <code>Shape</code> 接口的签名的匹配方式。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> s Shape = Square&#123;<span class="hljs-number">3</span>&#125;
+	fmt.Printf(<span class="hljs-string">&quot;%T\n&quot;</span>, s)
+	fmt.Println(<span class="hljs-string">&quot;Area: &quot;</span>, s.Area())
+	fmt.Println(<span class="hljs-string">&quot;Perimeter:&quot;</span>, s.Perimeter())
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs mathematica"><span class="hljs-variable">main</span><span class="hljs-operator">.</span><span class="hljs-built_in">Square</span>
+<span class="hljs-built_in">Area</span><span class="hljs-operator">:</span>  <span class="hljs-number">9</span>
+<span class="hljs-built_in">Perimeter</span><span class="hljs-operator">:</span> <span class="hljs-number">12</span></code></pre></div>
+<p>此时，无论你是否使用接口，都没有任何区别。 接下来，让我们创建另一种类型，如 <code>Circle</code>，然后进行相同的操作：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> Shape <span class="hljs-keyword">interface</span> &#123;
+	Perimeter() <span class="hljs-type">float64</span>
+	Area() <span class="hljs-type">float64</span>
+&#125;
+
+<span class="hljs-keyword">type</span> Square <span class="hljs-keyword">struct</span> &#123;
+	size <span class="hljs-type">float64</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s Square)</span></span> Area() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> s.size * s.size
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(s Square)</span></span> Perimeter() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> s.size * <span class="hljs-number">4</span>
+&#125;
+
+<span class="hljs-keyword">type</span> Circle <span class="hljs-keyword">struct</span> &#123;
+	radius <span class="hljs-type">float64</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c Circle)</span></span> Area() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> math.Pi * c.radius * c.radius
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c Circle)</span></span> Perimeter() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * math.Pi * c.radius
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">printInformation</span><span class="hljs-params">(s Shape)</span></span> &#123;
+	fmt.Printf(<span class="hljs-string">&quot;%T\n&quot;</span>, s)
+	fmt.Println(<span class="hljs-string">&quot;Area: &quot;</span>, s.Area())
+	fmt.Println(<span class="hljs-string">&quot;Perimeter:&quot;</span>, s.Perimeter())
+	fmt.Println()
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">var</span> s Shape = Square&#123;<span class="hljs-number">3</span>&#125;
+	printInformation(s)
+
+	c := Circle&#123;<span class="hljs-number">6</span>&#125;
+	printInformation(c)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">main</span>.Square
+<span class="hljs-attribute">Area</span>:  <span class="hljs-number">9</span>
+<span class="hljs-attribute">Perimeter</span>: <span class="hljs-number">12</span>
+
+<span class="hljs-attribute">main</span>.Circle
+<span class="hljs-attribute">Area</span>:  <span class="hljs-number">113</span>.<span class="hljs-number">09733552923255</span>
+<span class="hljs-attribute">Perimeter</span>: <span class="hljs-number">37</span>.<span class="hljs-number">69911184307752</span></code></pre></div>
+<p>使用接口的优点在于，对于 <code>Shape</code>的每个新类型或实现，<code>printInformation</code> 函数都不需要更改。 正如之前所述，当你使用接口时，代码会变得更灵活、更容易扩展。</p>
+<h2 id="扩展现有实现">扩展现有实现</h2>
+<p>假设你具有以下代码，并且希望通过编写负责处理某些数据的 <code>Writer</code> 方法的自定义实现来扩展其功能。</p>
+<p>通过使用以下代码，你可以创建一个程序，此程序使用 GitHub API 从 Microsoft 获取三个存储库：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	resp, err := http.Get(<span class="hljs-string">&quot;https://api.github.com/users/microsoft/repos?page=15&amp;per_page=5&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Error:&quot;</span>, err)
+		os.Exit(<span class="hljs-number">1</span>)
+	&#125;
+
+	io.Copy(os.Stdout, resp.Body)
+&#125;</code></pre></div>
+<p>改写后：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> GitHubResponse []<span class="hljs-keyword">struct</span> &#123;
+	FullName <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;full_name&quot;`</span>
+&#125;
+
+<span class="hljs-keyword">type</span> customWriter <span class="hljs-keyword">struct</span>&#123;&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(w customWriter)</span></span> Write(p []<span class="hljs-type">byte</span>) (n <span class="hljs-type">int</span>, err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">var</span> resp GitHubResponse
+	json.Unmarshal(p, &amp;resp)
+	<span class="hljs-keyword">for</span> _, r := <span class="hljs-keyword">range</span> resp &#123;
+		fmt.Println(r.FullName)
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(p), <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	resp, err := http.Get(<span class="hljs-string">&quot;https://api.github.com/users/microsoft/repos?page=15&amp;per_page=5&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Error:&quot;</span>, err)
+		os.Exit(<span class="hljs-number">1</span>)
+	&#125;
+
+	writer := customWriter&#123;&#125;
+	io.Copy(writer, resp.Body)
+&#125;
+</code></pre></div>
+<h2 id="编写自定义服务器-API">编写自定义服务器 API</h2>
+<p>最后，我们一起来探讨接口的另一种用例，如果你要创建服务器 API，你可能会发现此用例非常实用。 编写 Web 服务器的常用方式是使用 <code>net/http</code> 程序包中的 <code>http.Handler</code> 接口</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;log&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+)
+
+<span class="hljs-comment">// 创建 float32 类型的自定义类型，然后编写 String() 方法的自定义实现</span>
+<span class="hljs-keyword">type</span> dollars <span class="hljs-type">float32</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(d dollars)</span></span> String() <span class="hljs-type">string</span> &#123;
+	<span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;$%.2f&quot;</span>, d)
+&#125;
+
+<span class="hljs-comment">// 写入 http.Handler 可使用的 ServeHTTP 方法的实现。</span>
+
+<span class="hljs-keyword">type</span> database <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]dollars
+
+<span class="hljs-comment">// 通过使用 database 类型作为接收方来写入 ServeHTTP 方法。</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(db database)</span></span> ServeHTTP(w http.ResponseWriter, req *http.Request) &#123;
+	<span class="hljs-keyword">for</span> item, price := <span class="hljs-keyword">range</span> db &#123;
+		fmt.Fprintf(w, <span class="hljs-string">&quot;%s: %s\n&quot;</span>, item, price)
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 在 main() 函数中，我们将 database 类型实例化，并使用一些值对其进行初始化。 我们使用 http.ListenAndServe 函数启动了 HTTP 服务器，在其中定义了服务器地址，包括要使用的端口和实现 ServerHTTP 方法自定义版本的 db 对象。</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	db := database&#123;<span class="hljs-string">&quot;Go T-Shirt&quot;</span>: <span class="hljs-number">25</span>, <span class="hljs-string">&quot;Go Jacket&quot;</span>: <span class="hljs-number">55</span>&#125;
+	log.Fatal(http.ListenAndServe(<span class="hljs-string">&quot;localhost:8000&quot;</span>, db))
+&#125;</code></pre></div>
+<h1>练习 - 方法和接口</h1>
+<h2 id="创建用于管理在线商店的程序包">创建用于管理在线商店的程序包</h2>
+<p>编写一个程序，此程序使用自定义程序包来管理在线商店的帐户。 你的挑战包括以下四个要素：</p>
+<ol>
+<li>创建一个名为 <code>Account</code> 的自定义类型，此类型包含帐户所有者的名字和姓氏。 此类型还必须加入 <code>ChangeName</code> 的功能。</li>
+<li>创建另一个名为 <code>Employee</code> 的自定义类型，此类型包含用于将贷方数额存储为类型 <code>float64</code> 并嵌入 <code>Account</code> 对象的变量。 类型还必须包含 <code>AddCredits</code>、<code>RemoveCredits</code> 和 <code>CheckCredits</code> 的功能。 你需要展示你可以通过 <code>Employee</code> 对象更改帐户名称。</li>
+<li>将字符串方法写入 <code>Account</code> 对象，以便按包含名字和姓氏的格式打印 <code>Employee</code> 名称。</li>
+<li>最后，编写使用已创建程序包的程序，并测试此挑战中列出的所有功能。 也就是说，主程序应更改名称、打印名称、添加贷方、删除贷方以及检查余额。</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;errors&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> Account <span class="hljs-keyword">struct</span> &#123;
+	firstname <span class="hljs-type">string</span>
+	lastname  <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(a *Account)</span></span> ChangeName(afterfirstname <span class="hljs-type">string</span>) &#123;
+	a.firstname = afterfirstname
+&#125;
+
+<span class="hljs-keyword">type</span> Employee <span class="hljs-keyword">struct</span> &#123;
+	Account
+	credit <span class="hljs-type">float64</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(e Employee)</span></span> String() <span class="hljs-type">string</span> &#123;
+	<span class="hljs-keyword">return</span> fmt.Sprintf(<span class="hljs-string">&quot;Firstname:%s,Lastname:%s,Credit:%.2f\n&quot;</span>, e.firstname, e.lastname, e.credit)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">CreateEmployee</span><span class="hljs-params">(firstname, lastname <span class="hljs-type">string</span>, credit <span class="hljs-type">float64</span>)</span></span> (*Employee, <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">return</span> &amp;Employee&#123;Account&#123;firstname, lastname&#125;, credit&#125;, <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(e *Employee)</span></span> AddCredits(amount <span class="hljs-type">float64</span>) (<span class="hljs-type">float64</span>, <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">if</span> amount &gt; <span class="hljs-number">0.0</span> &#123;
+		e.credit += amount
+		<span class="hljs-keyword">return</span> e.credit, <span class="hljs-literal">nil</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>, errors.New(<span class="hljs-string">&quot;invalid amount&quot;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(e *Employee)</span></span> RemoveCredits(amount <span class="hljs-type">float64</span>) (<span class="hljs-type">float64</span>, <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">if</span> e.credit-amount &lt; <span class="hljs-number">0</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>, errors.New(<span class="hljs-string">&quot;too much&quot;</span>)
+	&#125;
+	<span class="hljs-keyword">if</span> amount &lt; <span class="hljs-number">0</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>, errors.New(<span class="hljs-string">&quot;invalid amount&quot;</span>)
+	&#125;
+	e.credit -= amount
+	<span class="hljs-keyword">return</span> e.credit, <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(e Employee)</span></span> CheckCredits() <span class="hljs-type">float64</span> &#123;
+	<span class="hljs-keyword">return</span> e.credit
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	bruce, _ := CreateEmployee(<span class="hljs-string">&quot;Bruce&quot;</span>, <span class="hljs-string">&quot;Lee&quot;</span>, <span class="hljs-number">500</span>)
+	fmt.Println(bruce.CheckCredits())
+	credits, err := bruce.AddCredits(<span class="hljs-number">250</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Error:&quot;</span>, err)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;New Credits Balance = &quot;</span>, credits)
+	&#125;
+
+	_, err = bruce.RemoveCredits(<span class="hljs-number">2500</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;Can&#x27;t withdraw or overdrawn!&quot;</span>, err)
+	&#125;
+
+	bruce.ChangeName(<span class="hljs-string">&quot;Mark&quot;</span>)
+
+	fmt.Println(bruce)
+&#125;
+</code></pre></div>
+<h1>goroutine（轻量线程）</h1>
+<p>并发是独立活动的组合，就像 Web 服务器虽然同时处理多个用户请求，但它是自主运行的。 并发在当今的许多程序中都存在。 Web 服务器就是一个例子，但你也能看到，在批量处理大量数据时也需要使用并发。</p>
+<p>Go 有两种编写并发程序的样式。 一种是在其他语言中通过线程实现的传统样式。</p>
+<h2 id="Go-实现并发的方法">Go 实现并发的方法</h2>
+<p>通常，编写并发程序时最大的问题是在进程之间共享数据。 Go 采用不同于其他编程语言的通信方式，因为 Go 是通过 channel 来回传递数据的。 这意味着只有一个活动 (goroutine) 有权访问数据，设计上不存在争用条件。 学完本模块中的 goroutine 和 channel 之后，你将更好地理解 Go 的并发方法。</p>
+<p>可以使用下面的标语来概括 Go 的方法：“不是通过共享内存通信，而是通过通信共享内存。”</p>
+<h2 id="Goroutine">Goroutine</h2>
+<p>goroutine 是轻量线程中的并发活动，而不是在操作系统中进行的传统活动。 假设你有一个写入输出的程序和另一个计算两个数字相加的函数。 一个并发程序可以有数个 goroutine 同时调用这两个函数。</p>
+<p>我们可以说，程序执行的第一个 goroutine 是 <code>main()</code> 函数。 如果要创建其他 goroutine，则必须在调用该函数之前使用 <code>go</code> 关键字</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    login()
+    <span class="hljs-keyword">go</span> launch()
+&#125;</code></pre></div>
+<p>许多程序喜欢使用匿名函数来创建 goroutine</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    login()
+    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+        launch()
+    &#125;()
+&#125;</code></pre></div>
+<h2 id="编写并发程序">编写并发程序</h2>
+<p>由于我们只想将重点放在并发部分，因此我们使用现有程序来检查 API 终结点是否响应。</p>
+<p>串行程序：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	start := time.Now()
+
+	apis := []<span class="hljs-type">string</span>&#123;
+		<span class="hljs-string">&quot;https://management.azure.com&quot;</span>,
+		<span class="hljs-string">&quot;https://dev.azure.com&quot;</span>,
+		<span class="hljs-string">&quot;https://api.github.com&quot;</span>,
+		<span class="hljs-string">&quot;https://outlook.office.com/&quot;</span>,
+		<span class="hljs-string">&quot;https://api.somewhereintheinternet.com/&quot;</span>,
+		<span class="hljs-string">&quot;https://graph.microsoft.com&quot;</span>,
+	&#125;
+
+	<span class="hljs-keyword">for</span> _, api := <span class="hljs-keyword">range</span> apis &#123;
+		_, err := http.Get(api)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Printf(<span class="hljs-string">&quot;ERROR: %s is down!\n&quot;</span>, api)
+			<span class="hljs-keyword">continue</span>
+		&#125;
+
+		fmt.Printf(<span class="hljs-string">&quot;SUCCESS: %s is up and running!\n&quot;</span>, api)
+	&#125;
+
+	elapsed := time.Since(start)
+	fmt.Printf(<span class="hljs-string">&quot;Done! It took %v seconds!\n&quot;</span>, elapsed.Seconds())
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs subunit"><span class="hljs-keyword">SUCCESS: </span>https://management.azure.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://dev.azure.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://api.github.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://outlook.office.com/ is up and running!
+<span class="hljs-keyword">ERROR: </span>https://api.somewhereintheinternet.com/ is down!
+<span class="hljs-keyword">SUCCESS: </span>https://graph.microsoft.com is up and running!
+Done! It took 5.163787068 seconds!</code></pre></div>
+<p>同时检查所有站点？我们需要并发运行的代码部分是向站点进行 HTTP 调用的部分。 换句话说，我们需要为程序要检查的每个 API 创建一个 goroutine。为了创建 goroutine，我们需要在调用函数前使用 <code>go</code> 关键字。</p>
+<p>首先创建一个新函数：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">checkAPI</span><span class="hljs-params">(api <span class="hljs-type">string</span>)</span></span> &#123;
+    _, err := http.Get(api)
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+        fmt.Printf(<span class="hljs-string">&quot;ERROR: %s is down!\n&quot;</span>, api)
+        <span class="hljs-keyword">return</span>
+    &#125;
+
+    fmt.Printf(<span class="hljs-string">&quot;SUCCESS: %s is up and running!\n&quot;</span>, api)
+&#125;</code></pre></div>
+<p>修改 <code>main()</code> 函数中的代码，为每个 API 创建一个 goroutine</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">for</span> _, api := <span class="hljs-keyword">range</span> apis &#123;
+	<span class="hljs-keyword">go</span> checkAPI(api)
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">Done</span>! It took <span class="hljs-number">3</span>.<span class="hljs-number">42</span>e-<span class="hljs-number">05</span> seconds!</code></pre></div>
+<p>即使看起来 <code>checkAPI</code> 函数没有运行，它实际上是在运行。 它只是没有时间完成。</p>
+<p>添加 <code>time.Sleep(3 * time.Second)</code></p>
+<div class="code-wrapper"><pre><code class="hljs subunit"><span class="hljs-keyword">ERROR: </span>https://api.somewhereintheinternet.com/ is down!
+<span class="hljs-keyword">SUCCESS: </span>https://api.github.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://management.azure.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://dev.azure.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://outlook.office.com/ is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://graph.microsoft.com is up and running!
+Done! It took 3.001536063 seconds!</code></pre></div>
+<h1>将 channel 用作通信机制</h1>
+<p>Go 中的 channel 是 goroutine 之间的通信机制。 这就是为什么我们之前说过 Go 实现并发的方式是：“不是通过共享内存通信，而是通过通信共享内存。”需要将值从一个 goroutine 发送到另一个时，可以使用通道。</p>
+<h2 id="Channel-语法">Channel 语法</h2>
+<p>由于 channel 是发送和接收数据的通信机制，因此它也有类型之分。 这意味着你只能发送 channel 支持的数据类型。 除使用关键字 <code>chan</code> 作为 channel 的数据类型外，还需指定将通过 channel 传递的数据类型，如 <code>int</code> 类型。</p>
+<p>每次声明一个 channel 或希望在函数中指定一个 channel 作为参数时，都需要使用 <code>chan &lt;type&gt;</code>，如 <code>chan int</code>。 要创建 channel，需使用内置的 <code>make()</code> 函数，如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go">ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>)</code></pre></div>
+<p>一个 channel 可以执行两项操作：发送数据和接收数据。 若要指定 channel 具有的操作类型，需要使用 channel 运算符 <code>&lt;-</code>。 此外，在 channel 中发送数据和接收数据属于阻止操作。</p>
+<p>如果希望 channel 仅发送数据，则必须在 channel 之后使用 <code>&lt;-</code> 运算符。 如果希望 channel 接收数据，则必须在 channel 之前使用 <code>&lt;-</code> 运算符</p>
+<div class="code-wrapper"><pre><code class="hljs go">ch &lt;- x <span class="hljs-comment">// sends (or write) x through channel ch</span>
+x = &lt;-ch <span class="hljs-comment">// x receives (or reads) data sent to the channel ch</span>
+&lt;-ch <span class="hljs-comment">// receives data, but the result is discarded</span></code></pre></div>
+<p>可在 channel 中执行的另一项操作是关闭 channel</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-built_in">close</span>(ch)</code></pre></div>
+<p>关闭 channel 时，你希望数据将不再在该 channel 中发送。 如果试图将数据发送到已关闭的 channel，则程序将发生严重错误。 如果试图通过已关闭的 channel 接收数据，则可以读取发送的所有数据。 随后的每次“读取”都将返回一个零值。</p>
+<p>使用 channel 来删除睡眠功能并稍做清理：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-comment">// 通过 channel 发送该消息，而不是在 checkAPI 函数中打印结果</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">checkAPI</span><span class="hljs-params">(api <span class="hljs-type">string</span>, ch <span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+	_, err := http.Get(api)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;ERROR: %s is down!\n&quot;</span>, api)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;SUCCESS: %s is up and running!\n&quot;</span>, api)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// 创建channel</span>
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)
+
+	start := time.Now()
+
+	apis := []<span class="hljs-type">string</span>&#123;
+		<span class="hljs-string">&quot;https://management.azure.com&quot;</span>,
+		<span class="hljs-string">&quot;https://dev.azure.com&quot;</span>,
+		<span class="hljs-string">&quot;https://api.github.com&quot;</span>,
+		<span class="hljs-string">&quot;https://outlook.office.com/&quot;</span>,
+		<span class="hljs-string">&quot;https://api.somewhereintheinternet.com/&quot;</span>,
+		<span class="hljs-string">&quot;https://graph.microsoft.com&quot;</span>,
+	&#125;
+
+	<span class="hljs-keyword">for</span> _, api := <span class="hljs-keyword">range</span> apis &#123;
+		<span class="hljs-keyword">go</span> checkAPI(api, ch)
+	&#125;
+	fmt.Print(&lt;-ch)
+
+	elapsed := time.Since(start)
+	fmt.Printf(<span class="hljs-string">&quot;Done! It took %v seconds!\n&quot;</span>, elapsed.Seconds())
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs subunit"><span class="hljs-keyword">ERROR: </span>https://api.somewhereintheinternet.com/ is down!
+Done! It took 0.088759104 seconds!</code></pre></div>
+<p>但是事实上并没有实现功能</p>
+<h2 id="无缓冲-channel">无缓冲 channel</h2>
+<p>使用 <code>make()</code> 函数创建 channel 时，会创建一个无缓冲 channel，这是默认行为。 无缓冲 channel 会阻止发送操作，直到有人准备好接收数据。 这就是为什么我们之前说发送和接收都属于阻止操作。 这也是上面的程序在收到第一条消息后立即停止的原因。</p>
+<p>我们可以说 <code>fmt.Print(&lt;-ch)</code> 会阻止程序，因为它从 channel 读取，并等待一些数据到达。 一旦有任何数据到达，它就会继续下一行，然后程序完成。</p>
+<p>其他 goroutine 发生了什么？ 它们仍在运行，但都没有在侦听。 而且，由于程序提前完成，一些 goroutine 无法发送数据。</p>
+<p><strong>读取数据和接收数据都属于阻止操作</strong></p>
+<p>要解决此问题，只需更改循环的代码，然后只接收确定要发送的数据</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-comment">// 通过 channel 发送该消息，而不是在 checkAPI 函数中打印结果</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">checkAPI</span><span class="hljs-params">(api <span class="hljs-type">string</span>, ch <span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+	_, err := http.Get(api)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;ERROR: %s is down!\n&quot;</span>, api)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;SUCCESS: %s is up and running!\n&quot;</span>, api)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// 创建channel</span>
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)
+
+	start := time.Now()
+
+	apis := []<span class="hljs-type">string</span>&#123;
+		<span class="hljs-string">&quot;https://management.azure.com&quot;</span>,
+		<span class="hljs-string">&quot;https://dev.azure.com&quot;</span>,
+		<span class="hljs-string">&quot;https://api.github.com&quot;</span>,
+		<span class="hljs-string">&quot;https://outlook.office.com/&quot;</span>,
+		<span class="hljs-string">&quot;https://api.somewhereintheinternet.com/&quot;</span>,
+		<span class="hljs-string">&quot;https://graph.microsoft.com&quot;</span>,
+	&#125;
+
+	<span class="hljs-keyword">for</span> _, api := <span class="hljs-keyword">range</span> apis &#123;
+		<span class="hljs-keyword">go</span> checkAPI(api, ch)
+	&#125;
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(apis); i++ &#123;
+		fmt.Print(&lt;-ch)
+	&#125;
+
+	elapsed := time.Since(start)
+	fmt.Printf(<span class="hljs-string">&quot;Done! It took %v seconds!\n&quot;</span>, elapsed.Seconds())
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs subunit"><span class="hljs-keyword">ERROR: </span>https://api.somewhereintheinternet.com/ is down!
+<span class="hljs-keyword">SUCCESS: </span>https://api.github.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://management.azure.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://graph.microsoft.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://dev.azure.com is up and running!
+<span class="hljs-keyword">SUCCESS: </span>https://outlook.office.com/ is up and running!
+Done! It took 1.029620196 seconds!</code></pre></div>
+<p>无缓冲 channel 在同步发送和接收操作。 即使使用并发，通信也是同步的。</p>
+<h1>有缓冲 channel</h1>
+<p>默认情况下 channel 是无缓冲行为。 这意味着只有存在接收操作时，它们才接受发送操作。 否则，程序将永久被阻止等待。</p>
+<p>有时需要在 goroutine 之间进行此类同步。 但是，有时你可能只需要实现并发，而不需要限制 goroutine 之间的通信方式。</p>
+<p>有缓冲 channel 在不阻止程序的情况下发送和接收数据，因为有缓冲 channel 的行为类似于队列。 创建 channel 时，可以限制此队列的大小</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">send</span><span class="hljs-params">(ch <span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, message <span class="hljs-type">string</span>)</span></span> &#123;
+	ch &lt;- message
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	size := <span class="hljs-number">4</span>
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, size)
+	send(ch, <span class="hljs-string">&quot;one&quot;</span>)
+	send(ch, <span class="hljs-string">&quot;two&quot;</span>)
+	send(ch, <span class="hljs-string">&quot;three&quot;</span>)
+	send(ch, <span class="hljs-string">&quot;four&quot;</span>)
+	fmt.Println(<span class="hljs-string">&quot;All data sent to the channel ...&quot;</span>)
+
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; size; i++ &#123;
+		fmt.Println(&lt;-ch)
+	&#125;
+
+	fmt.Println(<span class="hljs-string">&quot;Done!&quot;</span>)
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs livecodeserver">All data sent <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> channel ...
+<span class="hljs-literal">one</span>
+<span class="hljs-literal">two</span>
+<span class="hljs-literal">three</span>
+<span class="hljs-literal">four</span>
+Done!</code></pre></div>
+<p>channel 与 goroutine 有着紧密的联系。 如果没有另一个 goroutine 从 channel 接收数据，则整个程序可能会永久处于被阻止状态。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+    size := <span class="hljs-number">2</span>
+    ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, size)
+    send(ch, <span class="hljs-string">&quot;one&quot;</span>)
+    send(ch, <span class="hljs-string">&quot;two&quot;</span>)
+    <span class="hljs-keyword">go</span> send(ch, <span class="hljs-string">&quot;three&quot;</span>)
+    <span class="hljs-keyword">go</span> send(ch, <span class="hljs-string">&quot;four&quot;</span>)
+    fmt.Println(<span class="hljs-string">&quot;All data sent to the channel ...&quot;</span>)
+
+    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++ &#123;
+        fmt.Println(&lt;-ch)
+    &#125;
+
+    fmt.Println(<span class="hljs-string">&quot;Done!&quot;</span>)
+&#125;</code></pre></div>
+<h2 id="无缓冲-channel-与有缓冲-channel">无缓冲 channel 与有缓冲 channel</h2>
+<p>现在，你可能想知道何时使用这两种类型。 这完全取决于你希望 goroutine 之间的通信如何进行。 无缓冲 channel 同步通信。 它们保证每次发送数据时，程序都会被阻止，直到有人从 channel 中读取数据。</p>
+<p>相反，有缓冲 channel 将发送和接收操作解耦。 它们不会阻止程序，但你必须小心使用，因为可能最终会导致死锁（如前文所述）。 使用无缓冲 channel 时，可以控制可并发运行的 goroutine 的数量。 例如，你可能要对 API 进行调用，并且想要控制每秒执行的调用次数。 否则，你可能会被阻止。</p>
+<h2 id="Channel-方向">Channel 方向</h2>
+<p>Go 中 channel 的一个有趣特性是，在使用 channel 作为函数的参数时，可以指定 channel 是要发送数据还是接收数据。 随着程序的增长，可能会使用大量的函数，这时候，最好记录每个 channel 的意图，以便正确使用它们。 或者，你要编写一个库，并希望将 channel 公开为只读，以保持数据一致性。</p>
+<p>要定义 channel 的方向，可以使用与读取或接收数据时类似的方式进行定义。 但是你在函数参数中声明 channel 时执行此操作。 将 channel 类型定义为函数中的参数的语法如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">chan</span>&lt;- <span class="hljs-type">int</span> <span class="hljs-comment">// it&#x27;s a channel to only send data</span>
+&lt;-<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span> <span class="hljs-comment">// it&#x27;s a channel to only receive data</span></code></pre></div>
+<p>通过仅接收的 channel 发送数据时，在编译程序时会出现错误。</p>
+<p>让我们使用以下程序作为两个函数的示例，一个函数用于读取数据，另一个函数用于发送数据：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">send</span><span class="hljs-params">(ch <span class="hljs-keyword">chan</span>&lt;- <span class="hljs-type">string</span>, message <span class="hljs-type">string</span>)</span></span> &#123;
+    fmt.Printf(<span class="hljs-string">&quot;Sending: %#v\n&quot;</span>, message)
+    ch &lt;- message
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">read</span><span class="hljs-params">(ch &lt;-<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+    fmt.Printf(<span class="hljs-string">&quot;Receiving: %#v\n&quot;</span>, &lt;-ch)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+    ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, <span class="hljs-number">1</span>)
+    send(ch, <span class="hljs-string">&quot;Hello World!&quot;</span>)
+    read(ch)
+&#125;</code></pre></div>
+<p>运行程序时，将看到以下输出：</p>
+<div class="code-wrapper"><pre><code class="hljs avrasm"><span class="hljs-symbol">Sending:</span> <span class="hljs-string">&quot;Hello World!&quot;</span>
+<span class="hljs-symbol">Receiving:</span> <span class="hljs-string">&quot;Hello World!&quot;</span></code></pre></div>
+<p>程序阐明每个函数中每个 channel 的意图。 如果试图使用一个 channel 在一个仅用于接收数据的 channel 中发送数据，将会出现编译错误。 例如，尝试执行如下所示的操作：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">read</span><span class="hljs-params">(ch &lt;-<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+    fmt.Printf(<span class="hljs-string">&quot;Receiving: %#v\n&quot;</span>, &lt;-ch)
+    ch &lt;- <span class="hljs-string">&quot;Bye!&quot;</span>
+&#125;</code></pre></div>
+<p>运行程序时，将看到以下错误：</p>
+<div class="code-wrapper"><pre><code class="hljs vim"># <span class="hljs-keyword">command</span>-<span class="hljs-built_in">line</span>-arguments
+./main.<span class="hljs-keyword">go</span>:<span class="hljs-number">12</span>:<span class="hljs-number">5</span>: invalid operation: ch &lt;- <span class="hljs-string">&quot;Bye!&quot;</span> (send <span class="hljs-keyword">to</span> receive-<span class="hljs-keyword">only</span> <span class="hljs-built_in">type</span> &lt;-chan <span class="hljs-built_in">string</span>)</code></pre></div>
+<p><strong>编译错误总比误用 channel 好。</strong></p>
+<h2 id="多路复用">多路复用</h2>
+<p>最后，让我们讨论一个关于如何在使用 <code>select</code> 关键字的同时与多个 channel 交互的简短主题。 有时，在使用多个 channel 时，需要等待事件发生。 例如，当程序正在处理的数据中出现异常时，可以包含一些逻辑来取消操作。</p>
+<p><code>select</code> 语句的工作方式类似于 <code>switch</code> 语句，但它适用于 channel。 它会阻止程序的执行，直到它收到要处理的事件。 如果它收到多个事件，则会随机选择一个。</p>
+<p><code>select</code> 语句的一个重要方面是，它在处理事件后完成执行。 如果要等待更多事件发生，则可能需要使用循环。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">process</span><span class="hljs-params">(ch <span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+	time.Sleep(<span class="hljs-number">3</span> * time.Second)
+	ch &lt;- <span class="hljs-string">&quot;Done processing!&quot;</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">replicate</span><span class="hljs-params">(ch <span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+	time.Sleep(<span class="hljs-number">1</span> * time.Second)
+	ch &lt;- <span class="hljs-string">&quot;Done replicating!&quot;</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	ch1 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)
+	ch2 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)
+	<span class="hljs-keyword">go</span> process(ch1)
+	<span class="hljs-keyword">go</span> replicate(ch2)
+
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++ &#123;
+		<span class="hljs-keyword">select</span> &#123;
+		<span class="hljs-keyword">case</span> process := &lt;-ch1:
+			fmt.Println(process)
+		<span class="hljs-keyword">case</span> replicate := &lt;-ch2:
+			fmt.Println(replicate)
+		&#125;
+	&#125;
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs erlang-repl">Done replicating!
+Done processing!</code></pre></div>
+<p>请注意，<code>replicate</code> 函数先完成。 这就是你在终端中先看到其输出的原因。 main 函数存在一个循环，因为 <code>select</code> 语句在收到事件后立即结束，但我们仍在等待 <code>process</code> 函数完成。</p>
+<h1>练习 - 利用并发方法更快地计算斐波纳契数</h1>
+<p>实现并发的改进版本。 完成此操作需要几秒钟的时间（不超过 15 秒），应使用有缓冲 channel。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math/rand&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fib</span><span class="hljs-params">(number <span class="hljs-type">float64</span>, ch <span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)</span></span> &#123;
+	x, y := <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-type">int</span>(number); i++ &#123;
+		x, y = y, x+y
+	&#125;
+
+	r := rand.Intn(<span class="hljs-number">3</span>)
+	time.Sleep(time.Duration(r) * time.Second)
+
+	ch &lt;- fmt.Sprintf(<span class="hljs-string">&quot;Fib(%v): %v\n&quot;</span>, number, x)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, <span class="hljs-number">15</span>)
+
+	start := time.Now()
+
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">15</span>; i++ &#123;
+		<span class="hljs-keyword">go</span> fib(<span class="hljs-type">float64</span>(i), ch)
+	&#125;
+
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">15</span>; i++ &#123;
+		fmt.Printf(&lt;-ch)
+	&#125;
+
+	elapsed := time.Since(start)
+	fmt.Printf(<span class="hljs-string">&quot;Done! It took %v seconds!\n&quot;</span>, elapsed.Seconds())
+&#125;
+</code></pre></div>
+<p>编写一个新版本以计算斐波纳契数，直到用户使用 fmt.Scanf() 函数在终端中输入 quit。 如果用户按 Enter，则应计算新的斐波纳契数。</p>
+<p>使用两个无缓冲 channel：一个用于计算斐波纳契数，另一个用于等待用户的“退出”消息。 你需要使用 select 语句。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-keyword">var</span> quit = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">bool</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">fib</span><span class="hljs-params">(c <span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>)</span></span> &#123;
+	x, y := <span class="hljs-number">1</span>, <span class="hljs-number">1</span>
+
+	<span class="hljs-keyword">for</span> &#123;
+		<span class="hljs-keyword">select</span> &#123;
+		<span class="hljs-keyword">case</span> c &lt;- x:
+			x, y = y, x+y
+		<span class="hljs-keyword">case</span> &lt;-quit:
+			fmt.Println(<span class="hljs-string">&quot;Done calculating Fibonacci!&quot;</span>)
+			<span class="hljs-keyword">return</span>
+		&#125;
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	start := time.Now()
+
+	command := <span class="hljs-string">&quot;&quot;</span>
+	data := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>)
+
+	<span class="hljs-keyword">go</span> fib(data)
+
+	<span class="hljs-keyword">for</span> &#123;
+		num := &lt;-data
+		fmt.Println(num)
+		fmt.Scanf(<span class="hljs-string">&quot;%s&quot;</span>, &amp;command)
+		<span class="hljs-keyword">if</span> command == <span class="hljs-string">&quot;quit&quot;</span> &#123;
+			quit &lt;- <span class="hljs-literal">true</span>
+			<span class="hljs-keyword">break</span>
+		&#125;
+	&#125;
+
+	time.Sleep(<span class="hljs-number">1</span> * time.Second)
+
+	elapsed := time.Since(start)
+	fmt.Printf(<span class="hljs-string">&quot;Done! It took %v seconds!\n&quot;</span>, elapsed.Seconds())
+&#125;
+</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go基础学习（微软教程）</div>
+      <div>https://zhangzhao219.github.io/2022/10/03/Go/go-basic-ms/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/05/UCAS/machine-learning/machine-learning-8/" title="研究生课程：机器学习-第8章 信息论模型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：机器学习-第8章 信息论模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

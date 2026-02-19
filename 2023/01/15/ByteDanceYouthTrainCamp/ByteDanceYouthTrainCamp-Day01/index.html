@@ -1,0 +1,1735 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go 语言基础 - 基础语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 语言基础 - 基础语法">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/15/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day01/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go 语言基础 - 基础语法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-15T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Go 语言基础 - 基础语法 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go 语言基础 - 基础语法</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-15 10:00" pubdate>
+          2023年1月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go 语言基础 - 基础语法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go 语言基础 - 基础语法</p>
+<span id="more"></span>
+<h1>Go 语言基础 - 基础语法</h1>
+<h2 id="概述">概述</h2>
+<p>本节课程主要分为四个方面：</p>
+<ol>
+<li>Go 语言简介</li>
+<li>Go 语言开发入门，包括开发环境配置、基础语法、标准库</li>
+<li>Go 实战，包括三个实战项目</li>
+</ol>
+<p>课前部分主要罗列课程中涉及到的概念。对于不熟悉的概念，同学们可以提前查询预习；课中部分主要罗列每一部分的关键思路，帮助同学们跟上课程的进度；课后部分是一些问题，帮助同学们在课后梳理本课程的重点。</p>
+<h2 id="课前">课前</h2>
+<h3 id="安装-Go-语言">安装 Go 语言</h3>
+<ol>
+<li>访问 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgo.dev%2F" title="https://go.dev/">go.dev/</a> ，点击 Download ，下载对应平台安装包，安装即可</li>
+<li>如果无法访问上述网址，可以改为访问 <a href="https://link.juejin.cn?target=https%3A%2F%2Fstudygolang.com%2Fdl" title="https://studygolang.com/dl">studygolang.com/dl</a> 下载安装</li>
+<li>如果访问 github 速度比较慢，建议配置 go mod proxy，参考 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgoproxy.cn%2F" title="https://goproxy.cn/">goproxy.cn/</a> 里面的描述配置，下载第三方依赖包的速度可以大大加快</li>
+</ol>
+<h3 id="配置-Go-语言开发环境">配置 Go 语言开发环境</h3>
+<p>可以选择安装 <a href="https://link.juejin.cn?target=https%3A%2F%2Fcode.visualstudio.com%2F" title="https://code.visualstudio.com/">VS Code</a> ， 或者 <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.jetbrains.com%2Fzh-cn%2Fgo%2F" title="https://www.jetbrains.com/zh-cn/go/">Goland</a> ，对于 VS Code，需要安装 <a href="https://link.juejin.cn?target=https%3A%2F%2Fmarketplace.visualstudio.com%2Fitems%3FitemName%3Dgolang.go" title="https://marketplace.visualstudio.com/items?itemName=golang.go">Go 插件</a></p>
+<h3 id="下载课程示例代码">下载课程示例代码</h3>
+<ol>
+<li>Windows 平台建议安装 git，其它系统自带，<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.liaoxuefeng.com%2Fwiki%2F896043488029600%2F896067074338496" title="https://www.liaoxuefeng.com/wiki/896043488029600/896067074338496">安装教程</a></li>
+<li>打开 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fwangkechun%2Fgo-by-example" title="https://github.com/wangkechun/go-by-example">github.com/wangkechun/…</a> 克隆课程示例项目</li>
+<li>进入课程示例项目代码目录，运行 <code>go run example/01-hello/main.go</code> 如果正确输出 hello world，则说明环境配置正确</li>
+</ol>
+<h3 id="学习-Go-语言基础语法">学习 Go 语言基础语法</h3>
+<p>空余时间阅读 <a href="https://link.juejin.cn?target=https%3A%2F%2Fbooks.studygolang.com%2Fgopl-zh%2F" title="https://books.studygolang.com/gopl-zh/">Go语言圣经（中文版）</a></p>
+<h2 id="课程笔记">课程笔记</h2>
+<p>课程链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/course/bytetech/7140987981803814919/section/7140988735222448165">https://juejin.cn/course/bytetech/7140987981803814919/section/7140988735222448165</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/course/bytetech/7140987981803814919/section/7141265019756675103">https://juejin.cn/course/bytetech/7140987981803814919/section/7141265019756675103</a></li>
+</ul>
+<h3 id="Go语言的优势">Go语言的优势</h3>
+<ol>
+<li>高性能、高并发：不需要另外的库对并发进行支持</li>
+<li>语法简单、学习曲线平缓：一周时间即可上手</li>
+<li>丰富的标准库：与Python一样有大量的标准库，非常稳定</li>
+<li>完善的工具链：保证代码正确稳定运行</li>
+<li>静态链接：只需要编译后的一个文件就可以运行</li>
+<li>快速编译：静态语言几乎最快的编译速度</li>
+<li>跨平台：几乎支持所有设备</li>
+<li>垃圾回收：无需考虑内存的分配释放</li>
+</ol>
+<h3 id="基础语法">基础语法</h3>
+<h4 id="1-Hello-World">1. Hello World</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Println(<span class="hljs-string">&quot;hello world&quot;</span>)
+&#125;
+</code></pre></div>
+<h4 id="2-变量">2. 变量</h4>
+<p>注意常量没有类型，会根据使用的上下文自动推断类型</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	<span class="hljs-keyword">var</span> a = <span class="hljs-string">&quot;initial&quot;</span>
+
+	<span class="hljs-keyword">var</span> b, c <span class="hljs-type">int</span> = <span class="hljs-number">1</span>, <span class="hljs-number">2</span>
+
+	<span class="hljs-keyword">var</span> d = <span class="hljs-literal">true</span>
+
+	<span class="hljs-keyword">var</span> e <span class="hljs-type">float64</span>
+
+	f := <span class="hljs-type">float32</span>(e)
+
+	g := a + <span class="hljs-string">&quot;foo&quot;</span>
+	fmt.Println(a, b, c, d, e, f) <span class="hljs-comment">// initial 1 2 true 0 0</span>
+	fmt.Println(g)                <span class="hljs-comment">// initialapple</span>
+
+	<span class="hljs-keyword">const</span> s <span class="hljs-type">string</span> = <span class="hljs-string">&quot;constant&quot;</span>
+	<span class="hljs-keyword">const</span> h = <span class="hljs-number">500000000</span>
+	<span class="hljs-keyword">const</span> i = <span class="hljs-number">3e20</span> / h
+	fmt.Println(s, h, i, math.Sin(h), math.Sin(i))
+&#125;
+</code></pre></div>
+<h4 id="3-循环">3. 循环</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	i := <span class="hljs-number">1</span>
+	<span class="hljs-keyword">for</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;loop&quot;</span>)
+		<span class="hljs-keyword">break</span>
+	&#125;
+	<span class="hljs-keyword">for</span> j := <span class="hljs-number">7</span>; j &lt; <span class="hljs-number">9</span>; j++ &#123;
+		fmt.Println(j)
+	&#125;
+
+	<span class="hljs-keyword">for</span> n := <span class="hljs-number">0</span>; n &lt; <span class="hljs-number">5</span>; n++ &#123;
+		<span class="hljs-keyword">if</span> n%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> &#123;
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		fmt.Println(n)
+	&#125;
+	<span class="hljs-keyword">for</span> i &lt;= <span class="hljs-number">3</span> &#123;
+		fmt.Println(i)
+		i = i + <span class="hljs-number">1</span>
+	&#125;
+&#125;
+</code></pre></div>
+<h4 id="4-if-else">4. if else</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	<span class="hljs-keyword">if</span> <span class="hljs-number">7</span>%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;7 is even&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;7 is odd&quot;</span>)
+	&#125;
+
+	<span class="hljs-keyword">if</span> <span class="hljs-number">8</span>%<span class="hljs-number">4</span> == <span class="hljs-number">0</span> &#123;
+		fmt.Println(<span class="hljs-string">&quot;8 is divisible by 4&quot;</span>)
+	&#125;
+
+	<span class="hljs-keyword">if</span> num := <span class="hljs-number">9</span>; num &lt; <span class="hljs-number">0</span> &#123;
+		fmt.Println(num, <span class="hljs-string">&quot;is negative&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> num &lt; <span class="hljs-number">10</span> &#123;
+		fmt.Println(num, <span class="hljs-string">&quot;has 1 digit&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(num, <span class="hljs-string">&quot;has multiple digits&quot;</span>)
+	&#125;
+&#125;
+</code></pre></div>
+<h4 id="5-switch">5. switch</h4>
+<p>默认不需要添加break</p>
+<p>可以使用任意的变量类型</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	a := <span class="hljs-number">2</span>
+	<span class="hljs-keyword">switch</span> a &#123;
+	<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+		fmt.Println(<span class="hljs-string">&quot;one&quot;</span>)
+	<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+		fmt.Println(<span class="hljs-string">&quot;two&quot;</span>)
+	<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+		fmt.Println(<span class="hljs-string">&quot;three&quot;</span>)
+	<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>, <span class="hljs-number">5</span>:
+		fmt.Println(<span class="hljs-string">&quot;four or five&quot;</span>)
+	<span class="hljs-keyword">default</span>:
+		fmt.Println(<span class="hljs-string">&quot;other&quot;</span>)
+	&#125;
+
+	t := time.Now()
+	<span class="hljs-keyword">switch</span> &#123;
+	<span class="hljs-keyword">case</span> t.Hour() &lt; <span class="hljs-number">12</span>:
+		fmt.Println(<span class="hljs-string">&quot;It&#x27;s before noon&quot;</span>)
+	<span class="hljs-keyword">default</span>:
+		fmt.Println(<span class="hljs-string">&quot;It&#x27;s after noon&quot;</span>)
+	&#125;
+&#125;
+</code></pre></div>
+<h4 id="6-数组">6. 数组</h4>
+<p>真实场景下很少用，一般使用切片</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	<span class="hljs-keyword">var</span> a [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>
+	a[<span class="hljs-number">4</span>] = <span class="hljs-number">100</span>
+	fmt.Println(<span class="hljs-string">&quot;get:&quot;</span>, a[<span class="hljs-number">2</span>])
+	fmt.Println(<span class="hljs-string">&quot;len:&quot;</span>, <span class="hljs-built_in">len</span>(a))
+
+	b := [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;
+	fmt.Println(b)
+
+	<span class="hljs-keyword">var</span> twoD [<span class="hljs-number">2</span>][<span class="hljs-number">3</span>]<span class="hljs-type">int</span>
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++ &#123;
+		<span class="hljs-keyword">for</span> j := <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++ &#123;
+			twoD[i][j] = i + j
+		&#125;
+	&#125;
+	fmt.Println(<span class="hljs-string">&quot;2d: &quot;</span>, twoD)
+&#125;
+</code></pre></div>
+<h4 id="7-切片">7. 切片</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+
+	s := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>, <span class="hljs-number">3</span>)
+	s[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;a&quot;</span>
+	s[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;b&quot;</span>
+	s[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;c&quot;</span>
+	fmt.Println(<span class="hljs-string">&quot;get:&quot;</span>, s[<span class="hljs-number">2</span>])   <span class="hljs-comment">// c</span>
+	fmt.Println(<span class="hljs-string">&quot;len:&quot;</span>, <span class="hljs-built_in">len</span>(s)) <span class="hljs-comment">// 3</span>
+
+	s = <span class="hljs-built_in">append</span>(s, <span class="hljs-string">&quot;d&quot;</span>)
+	s = <span class="hljs-built_in">append</span>(s, <span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-string">&quot;f&quot;</span>)
+	fmt.Println(s) <span class="hljs-comment">// [a b c d e f]</span>
+
+	c := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>, <span class="hljs-built_in">len</span>(s))
+	<span class="hljs-built_in">copy</span>(c, s)
+	fmt.Println(c) <span class="hljs-comment">// [a b c d e f]</span>
+
+	fmt.Println(s[<span class="hljs-number">2</span>:<span class="hljs-number">5</span>]) <span class="hljs-comment">// [c d e]</span>
+	fmt.Println(s[:<span class="hljs-number">5</span>])  <span class="hljs-comment">// [a b c d e]</span>
+	fmt.Println(s[<span class="hljs-number">2</span>:])  <span class="hljs-comment">// [c d e f]</span>
+
+	good := []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;g&quot;</span>, <span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>&#125;
+	fmt.Println(good) <span class="hljs-comment">// [g o o d]</span>
+&#125;
+</code></pre></div>
+<h4 id="8-map">8. map</h4>
+<p>实际中使用最频繁，完全无序</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	m := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)
+	m[<span class="hljs-string">&quot;one&quot;</span>] = <span class="hljs-number">1</span>
+	m[<span class="hljs-string">&quot;two&quot;</span>] = <span class="hljs-number">2</span>
+	fmt.Println(m)           <span class="hljs-comment">// map[one:1 two:2]</span>
+	fmt.Println(<span class="hljs-built_in">len</span>(m))      <span class="hljs-comment">// 2</span>
+	fmt.Println(m[<span class="hljs-string">&quot;one&quot;</span>])    <span class="hljs-comment">// 1</span>
+	fmt.Println(m[<span class="hljs-string">&quot;unknow&quot;</span>]) <span class="hljs-comment">// 0</span>
+
+	r, ok := m[<span class="hljs-string">&quot;unknow&quot;</span>]
+	fmt.Println(r, ok) <span class="hljs-comment">// 0 false</span>
+
+	<span class="hljs-built_in">delete</span>(m, <span class="hljs-string">&quot;one&quot;</span>)
+
+	m2 := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-string">&quot;one&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&quot;two&quot;</span>: <span class="hljs-number">2</span>&#125;
+	<span class="hljs-keyword">var</span> m3 = <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-string">&quot;one&quot;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&quot;two&quot;</span>: <span class="hljs-number">2</span>&#125;
+	fmt.Println(m2, m3)
+&#125;
+</code></pre></div>
+<h4 id="9-range">9. range</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	nums := []<span class="hljs-type">int</span>&#123;<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;
+	sum := <span class="hljs-number">0</span>
+	<span class="hljs-keyword">for</span> i, num := <span class="hljs-keyword">range</span> nums &#123;
+		sum += num
+		<span class="hljs-keyword">if</span> num == <span class="hljs-number">2</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;index:&quot;</span>, i, <span class="hljs-string">&quot;num:&quot;</span>, num) <span class="hljs-comment">// index: 0 num: 2</span>
+		&#125;
+	&#125;
+	fmt.Println(sum) <span class="hljs-comment">// 9</span>
+
+	m := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-string">&quot;B&quot;</span>&#125;
+	<span class="hljs-keyword">for</span> k, v := <span class="hljs-keyword">range</span> m &#123;
+		fmt.Println(k, v) <span class="hljs-comment">// b 8; a A</span>
+	&#125;
+	<span class="hljs-keyword">for</span> k := <span class="hljs-keyword">range</span> m &#123;
+		fmt.Println(<span class="hljs-string">&quot;key&quot;</span>, k) <span class="hljs-comment">// key a; key b</span>
+	&#125;
+&#125;
+</code></pre></div>
+<h4 id="10-函数">10. 函数</h4>
+<p>一般返回两个值，第一个值是真正需要的，第二个值是错误信息</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">add</span><span class="hljs-params">(a <span class="hljs-type">int</span>, b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> a + b
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">add2</span><span class="hljs-params">(a, b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> a + b
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">exists</span><span class="hljs-params">(m <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>, k <span class="hljs-type">string</span>)</span></span> (v <span class="hljs-type">string</span>, ok <span class="hljs-type">bool</span>) &#123;
+	v, ok = m[k]
+	<span class="hljs-keyword">return</span> v, ok
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	res := add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+	fmt.Println(res) <span class="hljs-comment">// 3</span>
+
+	v, ok := exists(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-string">&quot;A&quot;</span>&#125;, <span class="hljs-string">&quot;a&quot;</span>)
+	fmt.Println(v, ok) <span class="hljs-comment">// A True</span>
+&#125;
+</code></pre></div>
+<h4 id="11-指针">11. 指针</h4>
+<p>对传入的参数进行修改</p>
+<p>功能比较有限，不如C++丰富</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">add2</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> &#123;
+	n += <span class="hljs-number">2</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">add2ptr</span><span class="hljs-params">(n *<span class="hljs-type">int</span>)</span></span> &#123;
+	*n += <span class="hljs-number">2</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	n := <span class="hljs-number">5</span>
+	add2(n)
+	fmt.Println(n) <span class="hljs-comment">// 5</span>
+	add2ptr(&amp;n)
+	fmt.Println(n) <span class="hljs-comment">// 7</span>
+&#125;
+</code></pre></div>
+<h4 id="12-结构体">12. 结构体</h4>
+<p>传入指针避免传递的开销过大，同时也可以对结构体进行修改</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> user <span class="hljs-keyword">struct</span> &#123;
+	name     <span class="hljs-type">string</span>
+	password <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	a := user&#123;name: <span class="hljs-string">&quot;wang&quot;</span>, password: <span class="hljs-string">&quot;1024&quot;</span>&#125;
+	b := user&#123;<span class="hljs-string">&quot;wang&quot;</span>, <span class="hljs-string">&quot;1024&quot;</span>&#125;
+	c := user&#123;name: <span class="hljs-string">&quot;wang&quot;</span>&#125;
+	c.password = <span class="hljs-string">&quot;1024&quot;</span>
+	<span class="hljs-keyword">var</span> d user
+	d.name = <span class="hljs-string">&quot;wang&quot;</span>
+	d.password = <span class="hljs-string">&quot;1024&quot;</span>
+
+	fmt.Println(a, b, c, d)                 <span class="hljs-comment">// &#123;wang 1024&#125; &#123;wang 1024&#125; &#123;wang 1024&#125; &#123;wang 1024&#125;</span>
+	fmt.Println(checkPassword(a, <span class="hljs-string">&quot;haha&quot;</span>))   <span class="hljs-comment">// false</span>
+	fmt.Println(checkPassword2(&amp;a, <span class="hljs-string">&quot;haha&quot;</span>)) <span class="hljs-comment">// false</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">checkPassword</span><span class="hljs-params">(u user, password <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">return</span> u.password == password
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">checkPassword2</span><span class="hljs-params">(u *user, password <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">return</span> u.password == password
+&#125;
+</code></pre></div>
+<h4 id="13-结构体方法">13. 结构体方法</h4>
+<p>相当于一个类成员函数</p>
+<p>带指针就能对结构体进行修改</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> user <span class="hljs-keyword">struct</span> &#123;
+	name     <span class="hljs-type">string</span>
+	password <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(u user)</span></span> checkPassword(password <span class="hljs-type">string</span>) <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">return</span> u.password == password
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(u *user)</span></span> resetPassword(password <span class="hljs-type">string</span>) &#123;
+	u.password = password
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	a := user&#123;name: <span class="hljs-string">&quot;wang&quot;</span>, password: <span class="hljs-string">&quot;1024&quot;</span>&#125;
+	a.resetPassword(<span class="hljs-string">&quot;2048&quot;</span>)
+	fmt.Println(a.checkPassword(<span class="hljs-string">&quot;2048&quot;</span>)) <span class="hljs-comment">// true</span>
+&#125;
+</code></pre></div>
+<h4 id="14-错误处理">14. 错误处理</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;errors&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> user <span class="hljs-keyword">struct</span> &#123;
+	name     <span class="hljs-type">string</span>
+	password <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findUser</span><span class="hljs-params">(users []user, name <span class="hljs-type">string</span>)</span></span> (v *user, err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">for</span> _, u := <span class="hljs-keyword">range</span> users &#123;
+		<span class="hljs-keyword">if</span> u.name == name &#123;
+			<span class="hljs-keyword">return</span> &amp;u, <span class="hljs-literal">nil</span>
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, errors.New(<span class="hljs-string">&quot;not found&quot;</span>)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	u, err := findUser([]user&#123;&#123;<span class="hljs-string">&quot;wang&quot;</span>, <span class="hljs-string">&quot;1024&quot;</span>&#125;&#125;, <span class="hljs-string">&quot;wang&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	fmt.Println(u.name) <span class="hljs-comment">// wang</span>
+
+	<span class="hljs-keyword">if</span> u, err := findUser([]user&#123;&#123;<span class="hljs-string">&quot;wang&quot;</span>, <span class="hljs-string">&quot;1024&quot;</span>&#125;&#125;, <span class="hljs-string">&quot;li&quot;</span>); err != <span class="hljs-literal">nil</span> &#123;
+		fmt.Println(err) <span class="hljs-comment">// not found</span>
+		<span class="hljs-keyword">return</span>
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		fmt.Println(u.name)
+	&#125;
+&#125;
+</code></pre></div>
+<h4 id="15-字符串操作">15. 字符串操作</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;strings&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	a := <span class="hljs-string">&quot;hello&quot;</span>
+	fmt.Println(strings.Contains(a, <span class="hljs-string">&quot;ll&quot;</span>))                <span class="hljs-comment">// true</span>
+	fmt.Println(strings.Count(a, <span class="hljs-string">&quot;l&quot;</span>))                    <span class="hljs-comment">// 2</span>
+	fmt.Println(strings.HasPrefix(a, <span class="hljs-string">&quot;he&quot;</span>))               <span class="hljs-comment">// true</span>
+	fmt.Println(strings.HasSuffix(a, <span class="hljs-string">&quot;llo&quot;</span>))              <span class="hljs-comment">// true</span>
+	fmt.Println(strings.Index(a, <span class="hljs-string">&quot;ll&quot;</span>))                   <span class="hljs-comment">// 2</span>
+	fmt.Println(strings.Join([]<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;he&quot;</span>, <span class="hljs-string">&quot;llo&quot;</span>&#125;, <span class="hljs-string">&quot;-&quot;</span>)) <span class="hljs-comment">// he-llo</span>
+	fmt.Println(strings.Repeat(a, <span class="hljs-number">2</span>))                     <span class="hljs-comment">// hellohello</span>
+	fmt.Println(strings.Replace(a, <span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>, <span class="hljs-number">-1</span>))         <span class="hljs-comment">// hEllo</span>
+	fmt.Println(strings.Split(<span class="hljs-string">&quot;a-b-c&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>))              <span class="hljs-comment">// [a b c]</span>
+	fmt.Println(strings.ToLower(a))                       <span class="hljs-comment">// hello</span>
+	fmt.Println(strings.ToUpper(a))                       <span class="hljs-comment">// HELLO</span>
+	fmt.Println(<span class="hljs-built_in">len</span>(a))                                   <span class="hljs-comment">// 5</span>
+	b := <span class="hljs-string">&quot;你好&quot;</span>
+	fmt.Println(<span class="hljs-built_in">len</span>(b)) <span class="hljs-comment">// 6</span>
+&#125;
+</code></pre></div>
+<h4 id="16-字符串格式化">16. 字符串格式化</h4>
+<p>+和#号可以打印更为详细的信息</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span>
+
+<span class="hljs-keyword">type</span> point <span class="hljs-keyword">struct</span> &#123;
+	x, y <span class="hljs-type">int</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	s := <span class="hljs-string">&quot;hello&quot;</span>
+	n := <span class="hljs-number">123</span>
+	p := point&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&#125;
+	fmt.Println(s, n) <span class="hljs-comment">// hello 123</span>
+	fmt.Println(p)    <span class="hljs-comment">// &#123;1 2&#125;</span>
+
+	fmt.Printf(<span class="hljs-string">&quot;s=%v\n&quot;</span>, s)  <span class="hljs-comment">// s=hello</span>
+	fmt.Printf(<span class="hljs-string">&quot;n=%v\n&quot;</span>, n)  <span class="hljs-comment">// n=123</span>
+	fmt.Printf(<span class="hljs-string">&quot;p=%v\n&quot;</span>, p)  <span class="hljs-comment">// p=&#123;1 2&#125;</span>
+	fmt.Printf(<span class="hljs-string">&quot;p=%+v\n&quot;</span>, p) <span class="hljs-comment">// p=&#123;x:1 y:2&#125;</span>
+	fmt.Printf(<span class="hljs-string">&quot;p=%#v\n&quot;</span>, p) <span class="hljs-comment">// p=main.point&#123;x:1, y:2&#125;</span>
+
+	f := <span class="hljs-number">3.141592653</span>
+	fmt.Println(f)          <span class="hljs-comment">// 3.141592653</span>
+	fmt.Printf(<span class="hljs-string">&quot;%.2f\n&quot;</span>, f) <span class="hljs-comment">// 3.14</span>
+&#125;
+</code></pre></div>
+<h4 id="17-json">17. json</h4>
+<p>注意结构体要保证大写，小写传参的问题使用反射解决</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> userInfo <span class="hljs-keyword">struct</span> &#123;
+	Name  <span class="hljs-type">string</span>
+	Age   <span class="hljs-type">int</span> <span class="hljs-string">`json:&quot;age&quot;`</span>
+	Hobby []<span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	a := userInfo&#123;Name: <span class="hljs-string">&quot;wang&quot;</span>, Age: <span class="hljs-number">18</span>, Hobby: []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;Golang&quot;</span>, <span class="hljs-string">&quot;TypeScript&quot;</span>&#125;&#125;
+	buf, err := json.Marshal(a)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(err)
+	&#125;
+	fmt.Println(buf)         <span class="hljs-comment">// [123 34 78 97...]</span>
+	fmt.Println(<span class="hljs-type">string</span>(buf)) <span class="hljs-comment">// &#123;&quot;Name&quot;:&quot;wang&quot;,&quot;age&quot;:18,&quot;Hobby&quot;:[&quot;Golang&quot;,&quot;TypeScript&quot;]&#125;</span>
+
+	buf, err = json.MarshalIndent(a, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;\t&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(err)
+	&#125;
+	fmt.Println(<span class="hljs-type">string</span>(buf))
+
+	<span class="hljs-keyword">var</span> b userInfo
+	err = json.Unmarshal(buf, &amp;b)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(err)
+	&#125;
+	fmt.Printf(<span class="hljs-string">&quot;%#v\n&quot;</span>, b) <span class="hljs-comment">// main.userInfo&#123;Name:&quot;wang&quot;, Age:18, Hobby:[]string&#123;&quot;Golang&quot;, &quot;TypeScript&quot;&#125;&#125;</span>
+&#125;
+</code></pre></div>
+<h4 id="18-时间处理">18. 时间处理</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	now := time.Now()
+	fmt.Println(now) <span class="hljs-comment">// 2022-03-27 18:04:59.433297 +0800 CST m=+0.000087933</span>
+	t := time.Date(<span class="hljs-number">2022</span>, <span class="hljs-number">3</span>, <span class="hljs-number">27</span>, <span class="hljs-number">1</span>, <span class="hljs-number">25</span>, <span class="hljs-number">36</span>, <span class="hljs-number">0</span>, time.UTC)
+	t2 := time.Date(<span class="hljs-number">2022</span>, <span class="hljs-number">3</span>, <span class="hljs-number">27</span>, <span class="hljs-number">2</span>, <span class="hljs-number">30</span>, <span class="hljs-number">36</span>, <span class="hljs-number">0</span>, time.UTC)
+	fmt.Println(t)                                                  <span class="hljs-comment">// 2022-03-27 01:25:36 +0000 UTC</span>
+	fmt.Println(t.Year(), t.Month(), t.Day(), t.Hour(), t.Minute()) <span class="hljs-comment">// 2022 March 27 1 25</span>
+	fmt.Println(t.Format(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>))                    <span class="hljs-comment">// 2022-03-27 01:25:36</span>
+	diff := t2.Sub(t)
+	fmt.Println(diff)                           <span class="hljs-comment">// 1h5m0s</span>
+	fmt.Println(diff.Minutes(), diff.Seconds()) <span class="hljs-comment">// 65 3900</span>
+	t3, err := time.Parse(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>, <span class="hljs-string">&quot;2022-03-27 01:25:36&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(err)
+	&#125;
+	fmt.Println(t3 == t)    <span class="hljs-comment">// true</span>
+	fmt.Println(now.Unix()) <span class="hljs-comment">// 1648738080</span>
+&#125;
+</code></pre></div>
+<h4 id="19-数字解析">19. 数字解析</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	f, _ := strconv.ParseFloat(<span class="hljs-string">&quot;1.234&quot;</span>, <span class="hljs-number">64</span>)
+	fmt.Println(f) <span class="hljs-comment">// 1.234</span>
+
+	n, _ := strconv.ParseInt(<span class="hljs-string">&quot;111&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-number">64</span>)
+	fmt.Println(n) <span class="hljs-comment">// 111</span>
+
+	n, _ = strconv.ParseInt(<span class="hljs-string">&quot;0x1000&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">64</span>)
+	fmt.Println(n) <span class="hljs-comment">// 4096</span>
+
+	n2, _ := strconv.Atoi(<span class="hljs-string">&quot;123&quot;</span>)
+	fmt.Println(n2) <span class="hljs-comment">// 123</span>
+
+	n2, err := strconv.Atoi(<span class="hljs-string">&quot;AAA&quot;</span>)
+	fmt.Println(n2, err) <span class="hljs-comment">// 0 strconv.Atoi: parsing &quot;AAA&quot;: invalid syntax</span>
+&#125;
+</code></pre></div>
+<h4 id="20-进程信息">20. 进程信息</h4>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;os/exec&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// go run example/20-env/main.go a b c d</span>
+	fmt.Println(os.Args)           <span class="hljs-comment">// [/var/folders/8p/n34xxfnx38dg8bv_x8l62t_m0000gn/T/go-build3406981276/b001/exe/main a b c d]</span>
+	fmt.Println(os.Getenv(<span class="hljs-string">&quot;PATH&quot;</span>)) <span class="hljs-comment">// /usr/local/go/bin...</span>
+	fmt.Println(os.Setenv(<span class="hljs-string">&quot;AA&quot;</span>, <span class="hljs-string">&quot;BB&quot;</span>))
+
+	buf, err := exec.Command(<span class="hljs-string">&quot;grep&quot;</span>, <span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-string">&quot;/etc/hosts&quot;</span>).CombinedOutput()
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(err)
+	&#125;
+	fmt.Println(<span class="hljs-type">string</span>(buf)) <span class="hljs-comment">// 127.0.0.1       localhost</span>
+&#125;
+</code></pre></div>
+<h3 id="实战案例">实战案例</h3>
+<h4 id="猜谜游戏">猜谜游戏</h4>
+<ol>
+<li>生成随机数之前需要生成不同的随机种子，否则每一次运行都会输出相同的数字，一般使用时间戳来初始化</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs go">rand.Seed(time.Now().UnixNano())
+secretNumber := rand.Intn(maxNum)</code></pre></div>
+<ol start="2">
+<li>bufio.NewReader读取输入并对输入进行处理，是工程中比较常用的做法。注意读取后需要对字符串进行处理</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs go">reader := bufio.NewReader(os.Stdin)
+input, err := reader.ReadString(<span class="hljs-string">&#x27;\n&#x27;</span>)
+input = strings.Trim(input, <span class="hljs-string">&quot;\r\n&quot;</span>)</code></pre></div>
+<p>最终代码：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;bufio&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;math/rand&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+	<span class="hljs-string">&quot;strings&quot;</span>
+	<span class="hljs-string">&quot;time&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	maxNum := <span class="hljs-number">100</span>
+	rand.Seed(time.Now().UnixNano())
+	secretNumber := rand.Intn(maxNum)
+	<span class="hljs-comment">// fmt.Println(&quot;The secret number is &quot;, secretNumber)</span>
+
+	fmt.Println(<span class="hljs-string">&quot;Please input your guess&quot;</span>)
+	reader := bufio.NewReader(os.Stdin)
+	<span class="hljs-keyword">for</span> &#123;
+		input, err := reader.ReadString(<span class="hljs-string">&#x27;\n&#x27;</span>)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;An error occured while reading input. Please try again&quot;</span>, err)
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		input = strings.Trim(input, <span class="hljs-string">&quot;\r\n&quot;</span>)
+
+		guess, err := strconv.Atoi(input)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;Invalid input. Please enter an integer value&quot;</span>)
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		fmt.Println(<span class="hljs-string">&quot;You guess is&quot;</span>, guess)
+		<span class="hljs-keyword">if</span> guess &gt; secretNumber &#123;
+			fmt.Println(<span class="hljs-string">&quot;Your guess is bigger than the secret number. Please try again&quot;</span>)
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> guess &lt; secretNumber &#123;
+			fmt.Println(<span class="hljs-string">&quot;Your guess is smaller than the secret number. Please try again&quot;</span>)
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			fmt.Println(<span class="hljs-string">&quot;Correct, you Legend!&quot;</span>)
+			<span class="hljs-keyword">break</span>
+		&#125;
+	&#125;
+&#125;
+</code></pre></div>
+<h4 id="命令行在线词典">命令行在线词典</h4>
+<p>抓包：找到<a target="_blank" rel="noopener" href="https://fanyi.caiyunapp.com/#/">翻译网站</a>，提交一个翻译后去控制台抓包，然后copy as cURL，可以将这个请求转到本地进行运行</p>
+<p>为了方便，可以将这个请求copy到一些在线将请求转换为Go代码的网站，最终得到可以直接运行的代码，运行代码获得与网页返回相同的结果。</p>
+<p>将请求的部分单独提取出来，通过用户的输入进行序列化</p>
+<p>解析返回的响应，进行反序列化提取真正需要的部分</p>
+<p>返回的响应也使用<a target="_blank" rel="noopener" href="https://oktools.net/json2go">在线工具</a>转换为go代码，减少工作量</p>
+<p>最后通过命令行读入即可</p>
+<p>最终代码：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;bytes&quot;</span>
+	<span class="hljs-string">&quot;encoding/json&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;log&quot;</span>
+	<span class="hljs-string">&quot;net/http&quot;</span>
+	<span class="hljs-string">&quot;os&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> DictRequest <span class="hljs-keyword">struct</span> &#123;
+	TransType <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;trans_type&quot;`</span>
+	Source    <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;source&quot;`</span>
+	UserID    <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;user_id&quot;`</span>
+&#125;
+
+<span class="hljs-keyword">type</span> DictResponse <span class="hljs-keyword">struct</span> &#123;
+	Rc   <span class="hljs-type">int</span> <span class="hljs-string">`json:&quot;rc&quot;`</span>
+	Wiki <span class="hljs-keyword">struct</span> &#123;
+		KnownInLaguages <span class="hljs-type">int</span> <span class="hljs-string">`json:&quot;known_in_laguages&quot;`</span>
+		Description     <span class="hljs-keyword">struct</span> &#123;
+			Source <span class="hljs-type">string</span>      <span class="hljs-string">`json:&quot;source&quot;`</span>
+			Target <span class="hljs-keyword">interface</span>&#123;&#125; <span class="hljs-string">`json:&quot;target&quot;`</span>
+		&#125; <span class="hljs-string">`json:&quot;description&quot;`</span>
+		ID   <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;id&quot;`</span>
+		Item <span class="hljs-keyword">struct</span> &#123;
+			Source <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;source&quot;`</span>
+			Target <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;target&quot;`</span>
+		&#125; <span class="hljs-string">`json:&quot;item&quot;`</span>
+		ImageURL  <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;image_url&quot;`</span>
+		IsSubject <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;is_subject&quot;`</span>
+		Sitelink  <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;sitelink&quot;`</span>
+	&#125; <span class="hljs-string">`json:&quot;wiki&quot;`</span>
+	Dictionary <span class="hljs-keyword">struct</span> &#123;
+		Prons <span class="hljs-keyword">struct</span> &#123;
+			EnUs <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;en-us&quot;`</span>
+			En   <span class="hljs-type">string</span> <span class="hljs-string">`json:&quot;en&quot;`</span>
+		&#125; <span class="hljs-string">`json:&quot;prons&quot;`</span>
+		Explanations []<span class="hljs-type">string</span>      <span class="hljs-string">`json:&quot;explanations&quot;`</span>
+		Synonym      []<span class="hljs-type">string</span>      <span class="hljs-string">`json:&quot;synonym&quot;`</span>
+		Antonym      []<span class="hljs-type">string</span>      <span class="hljs-string">`json:&quot;antonym&quot;`</span>
+		WqxExample   [][]<span class="hljs-type">string</span>    <span class="hljs-string">`json:&quot;wqx_example&quot;`</span>
+		Entry        <span class="hljs-type">string</span>        <span class="hljs-string">`json:&quot;entry&quot;`</span>
+		Type         <span class="hljs-type">string</span>        <span class="hljs-string">`json:&quot;type&quot;`</span>
+		Related      []<span class="hljs-keyword">interface</span>&#123;&#125; <span class="hljs-string">`json:&quot;related&quot;`</span>
+		Source       <span class="hljs-type">string</span>        <span class="hljs-string">`json:&quot;source&quot;`</span>
+	&#125; <span class="hljs-string">`json:&quot;dictionary&quot;`</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">query</span><span class="hljs-params">(word <span class="hljs-type">string</span>)</span></span> &#123;
+	client := &amp;http.Client&#123;&#125;
+	request := DictRequest&#123;TransType: <span class="hljs-string">&quot;en2zh&quot;</span>, Source: word&#125;
+	buf, err := json.Marshal(request)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(err)
+	&#125;
+	<span class="hljs-keyword">var</span> data = bytes.NewReader(buf)
+	req, err := http.NewRequest(<span class="hljs-string">&quot;POST&quot;</span>, <span class="hljs-string">&quot;https://api.interpreter.caiyunai.com/v1/dict&quot;</span>, data)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(err)
+	&#125;
+	req.Header.Set(<span class="hljs-string">&quot;Authority&quot;</span>, <span class="hljs-string">&quot;api.interpreter.caiyunai.com&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Accept&quot;</span>, <span class="hljs-string">&quot;application/json, text/plain, */*&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Accept-Language&quot;</span>, <span class="hljs-string">&quot;zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;App-Name&quot;</span>, <span class="hljs-string">&quot;xy&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Origin&quot;</span>, <span class="hljs-string">&quot;https://fanyi.caiyunapp.com&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Os-Type&quot;</span>, <span class="hljs-string">&quot;web&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Referer&quot;</span>, <span class="hljs-string">&quot;https://fanyi.caiyunapp.com/&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Sec-Ch-Ua&quot;</span>, <span class="hljs-string">&quot;\&quot;Not?A_Brand\&quot;;v=\&quot;8\&quot;, \&quot;Chromium\&quot;;v=\&quot;108\&quot;, \&quot;Microsoft Edge\&quot;;v=\&quot;108\&quot;&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Sec-Ch-Ua-Mobile&quot;</span>, <span class="hljs-string">&quot;?0&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Sec-Ch-Ua-Platform&quot;</span>, <span class="hljs-string">&quot;\&quot;Windows\&quot;&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Sec-Fetch-Dest&quot;</span>, <span class="hljs-string">&quot;empty&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Sec-Fetch-Mode&quot;</span>, <span class="hljs-string">&quot;cors&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;Sec-Fetch-Site&quot;</span>, <span class="hljs-string">&quot;cross-site&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;User-Agent&quot;</span>, <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76&quot;</span>)
+	req.Header.Set(<span class="hljs-string">&quot;X-Authorization&quot;</span>, <span class="hljs-string">&quot;token:qgemv4jr1y38jyq6vhvi&quot;</span>)
+	resp, err := client.Do(req)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(err)
+	&#125;
+	<span class="hljs-keyword">defer</span> resp.Body.Close()
+	bodyText, err := io.ReadAll(resp.Body)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(err)
+	&#125;
+	<span class="hljs-keyword">if</span> resp.StatusCode != <span class="hljs-number">200</span> &#123;
+		log.Fatal(<span class="hljs-string">&quot;bad StatusCode:&quot;</span>, resp.StatusCode, <span class="hljs-string">&quot;body&quot;</span>, <span class="hljs-type">string</span>(bodyText))
+	&#125;
+	<span class="hljs-keyword">var</span> dictResponse DictResponse
+	err = json.Unmarshal(bodyText, &amp;dictResponse)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(err)
+	&#125;
+	fmt.Println(word, <span class="hljs-string">&quot;UK:&quot;</span>, dictResponse.Dictionary.Prons.En, <span class="hljs-string">&quot;US:&quot;</span>, dictResponse.Dictionary.Prons.EnUs)
+	<span class="hljs-keyword">for</span> _, item := <span class="hljs-keyword">range</span> dictResponse.Dictionary.Explanations &#123;
+		fmt.Println(item)
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(os.Args) != <span class="hljs-number">2</span> &#123;
+		fmt.Fprintf(os.Stderr, <span class="hljs-string">`usage: simpleDict WORD</span>
+<span class="hljs-string">example: simpleDict hello</span>
+<span class="hljs-string">		`</span>)
+		os.Exit(<span class="hljs-number">1</span>)
+	&#125;
+	word := os.Args[<span class="hljs-number">1</span>]
+	query(word)
+&#125;
+</code></pre></div>
+<h4 id="Socks5代理服务器">Socks5代理服务器</h4>
+<p>正常浏览器访问一个网站，先和对方的网站建立TCP连接，然后正常发起HTTP请求，服务器返回响应</p>
+<p>如果设置了代理服务器，浏览器要先和代理服务器建立TCP连接，然后代理服务器再去和真正的网站建立TCP连接，可以分为4个阶段：</p>
+<ol>
+<li>协商（握手）：用户的浏览器会向Socks5服务器发起请求，发送一个报文，这个报文里面包括协议版本号，支持的认证的种类等，代理服务器会从里面选择一个它自己支持的认证方式，返回给浏览器，如果返回00表示不需要认证。</li>
+<li>认证：（这个代理不加密，认证步骤跳过）</li>
+<li>请求：认证通过之后，浏览器会向Socks5服务器发送下一个报文，包括协议的版本号，请求的类型，一般是Connection请求，代表浏览器命令代理服务器要和某个域名，某个端口建立连接。代理服务器收到后会去和真正的网站后端服务器建立TCP连接，然后返回一个报文告诉用户浏览器已经成功建立连接了。</li>
+<li>Relay：浏览器正常发送请求，代理服务器收到请求后将请求转发到真正的服务器上，将返回的响应转发到浏览器。代理服务器并不关注流量的类别，可以是TCP或者HTTP</li>
+</ol>
+<p>实现流程：</p>
+<ol>
+<li>实现TCP echo server，就是发送什么就回复什么，用来测试server写的是否正确（使用 <code>nc 127.0.0.1 1080</code>）进行测试</li>
+<li>实现协商阶段：测试时可以使用 <code>curl --socks5 127.0.0.1:1080 -v http://www.qq.com</code>进行测试，但是仅为协商，因此不会成功，但是服务器端会有正确的输出。</li>
+<li>实现请求阶段</li>
+<li>实现Relay阶段</li>
+</ol>
+<p>最终代码：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;bufio&quot;</span>
+	<span class="hljs-string">&quot;context&quot;</span>
+	<span class="hljs-string">&quot;encoding/binary&quot;</span>
+	<span class="hljs-string">&quot;errors&quot;</span>
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;io&quot;</span>
+	<span class="hljs-string">&quot;log&quot;</span>
+	<span class="hljs-string">&quot;net&quot;</span>
+)
+
+<span class="hljs-keyword">const</span> socks5Ver = <span class="hljs-number">0x05</span>
+<span class="hljs-keyword">const</span> cmdBind = <span class="hljs-number">0x01</span>
+<span class="hljs-keyword">const</span> atypIPV4 = <span class="hljs-number">0x01</span>
+<span class="hljs-keyword">const</span> atypeHOST = <span class="hljs-number">0x03</span>
+<span class="hljs-keyword">const</span> atypeIPV6 = <span class="hljs-number">0x04</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	server, err := net.Listen(<span class="hljs-string">&quot;tcp&quot;</span>, <span class="hljs-string">&quot;127.0.0.1:1080&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(err)
+	&#125;
+	<span class="hljs-keyword">for</span> &#123;
+		client, err := server.Accept()
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			log.Printf(<span class="hljs-string">&quot;Accept failed %v&quot;</span>, err)
+			<span class="hljs-keyword">continue</span>
+		&#125;
+		<span class="hljs-keyword">go</span> process(client)
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">process</span><span class="hljs-params">(conn net.Conn)</span></span> &#123;
+	<span class="hljs-keyword">defer</span> conn.Close()
+	reader := bufio.NewReader(conn)
+	err := auth(reader, conn)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Printf(<span class="hljs-string">&quot;client %v auth failed:%v&quot;</span>, conn.RemoteAddr(), err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+	err = connect(reader, conn)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Printf(<span class="hljs-string">&quot;client %v auth failed:%v&quot;</span>, conn.RemoteAddr(), err)
+		<span class="hljs-keyword">return</span>
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">auth</span><span class="hljs-params">(reader *bufio.Reader, conn net.Conn)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// +----+----------+----------+</span>
+	<span class="hljs-comment">// |VER | NMETHODS | METHODS  |</span>
+	<span class="hljs-comment">// +----+----------+----------+</span>
+	<span class="hljs-comment">// | 1  |    1     | 1 to 255 |</span>
+	<span class="hljs-comment">// +----+----------+----------+</span>
+	<span class="hljs-comment">// VER: 协议版本，socks5为0x05</span>
+	<span class="hljs-comment">// NMETHODS: 支持认证的方法数量</span>
+	<span class="hljs-comment">// METHODS: 对应NMETHODS，NMETHODS的值为多少，METHODS就有多少个字节。RFC预定义了一些值的含义，内容如下:</span>
+	<span class="hljs-comment">// X’00’ NO AUTHENTICATION REQUIRED</span>
+	<span class="hljs-comment">// X’02’ USERNAME/PASSWORD</span>
+
+	ver, err := reader.ReadByte()
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read ver failed:%w&quot;</span>, err)
+	&#125;
+	<span class="hljs-keyword">if</span> ver != socks5Ver &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;not supported ver:%v&quot;</span>, ver)
+	&#125;
+	methodSize, err := reader.ReadByte()
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read methodSize failed:%w&quot;</span>, err)
+	&#125;
+	method := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, methodSize)
+	_, err = io.ReadFull(reader, method)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read method failed:%w&quot;</span>, err)
+	&#125;
+
+	<span class="hljs-comment">// +----+--------+</span>
+	<span class="hljs-comment">// |VER | METHOD |</span>
+	<span class="hljs-comment">// +----+--------+</span>
+	<span class="hljs-comment">// | 1  |   1    |</span>
+	<span class="hljs-comment">// +----+--------+</span>
+	_, err = conn.Write([]<span class="hljs-type">byte</span>&#123;socks5Ver, <span class="hljs-number">0x00</span>&#125;)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;write failed:%w&quot;</span>, err)
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">connect</span><span class="hljs-params">(reader *bufio.Reader, conn net.Conn)</span></span> (err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// +----+-----+-------+------+----------+----------+</span>
+	<span class="hljs-comment">// |VER | CMD |  RSV  | ATYP | DST.ADDR | DST.PORT |</span>
+	<span class="hljs-comment">// +----+-----+-------+------+----------+----------+</span>
+	<span class="hljs-comment">// | 1  |  1  | X&#x27;00&#x27; |  1   | Variable |    2     |</span>
+	<span class="hljs-comment">// +----+-----+-------+------+----------+----------+</span>
+	<span class="hljs-comment">// VER 版本号，socks5的值为0x05</span>
+	<span class="hljs-comment">// CMD 0x01表示CONNECT请求</span>
+	<span class="hljs-comment">// RSV 保留字段，值为0x00</span>
+	<span class="hljs-comment">// ATYP 目标地址类型，DST.ADDR的数据对应这个字段的类型。</span>
+	<span class="hljs-comment">//   0x01表示IPv4地址，DST.ADDR为4个字节</span>
+	<span class="hljs-comment">//   0x03表示域名，DST.ADDR是一个可变长度的域名</span>
+	<span class="hljs-comment">// DST.ADDR 一个可变长度的值</span>
+	<span class="hljs-comment">// DST.PORT 目标端口，固定2个字节</span>
+
+	buf := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-number">4</span>)
+	_, err = io.ReadFull(reader, buf)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read header failed:%w&quot;</span>, err)
+	&#125;
+	ver, cmd, atyp := buf[<span class="hljs-number">0</span>], buf[<span class="hljs-number">1</span>], buf[<span class="hljs-number">3</span>]
+	<span class="hljs-keyword">if</span> ver != socks5Ver &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;not supported ver:%v&quot;</span>, ver)
+	&#125;
+	<span class="hljs-keyword">if</span> cmd != cmdBind &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;not supported cmd:%v&quot;</span>, ver)
+	&#125;
+	addr := <span class="hljs-string">&quot;&quot;</span>
+	<span class="hljs-keyword">switch</span> atyp &#123;
+	<span class="hljs-keyword">case</span> atypIPV4:
+		_, err = io.ReadFull(reader, buf)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read atyp failed:%w&quot;</span>, err)
+		&#125;
+		addr = fmt.Sprintf(<span class="hljs-string">&quot;%d.%d.%d.%d&quot;</span>, buf[<span class="hljs-number">0</span>], buf[<span class="hljs-number">1</span>], buf[<span class="hljs-number">2</span>], buf[<span class="hljs-number">3</span>])
+	<span class="hljs-keyword">case</span> atypeHOST:
+		hostSize, err := reader.ReadByte()
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read hostSize failed:%w&quot;</span>, err)
+		&#125;
+		host := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, hostSize)
+		_, err = io.ReadFull(reader, host)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+			<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read host failed:%w&quot;</span>, err)
+		&#125;
+		addr = <span class="hljs-type">string</span>(host)
+	<span class="hljs-keyword">case</span> atypeIPV6:
+		<span class="hljs-keyword">return</span> errors.New(<span class="hljs-string">&quot;IPv6: no supported yet&quot;</span>)
+	<span class="hljs-keyword">default</span>:
+		<span class="hljs-keyword">return</span> errors.New(<span class="hljs-string">&quot;invalid atyp&quot;</span>)
+	&#125;
+	_, err = io.ReadFull(reader, buf[:<span class="hljs-number">2</span>])
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;read port failed:%w&quot;</span>, err)
+	&#125;
+	port := binary.BigEndian.Uint16(buf[:<span class="hljs-number">2</span>])
+
+	dest, err := net.Dial(<span class="hljs-string">&quot;tcp&quot;</span>, fmt.Sprintf(<span class="hljs-string">&quot;%v:%v&quot;</span>, addr, port))
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;dial dst failed:%w&quot;</span>, err)
+	&#125;
+	<span class="hljs-keyword">defer</span> dest.Close()
+	log.Println(<span class="hljs-string">&quot;dial&quot;</span>, addr, port)
+
+	<span class="hljs-comment">// +----+-----+-------+------+----------+----------+</span>
+	<span class="hljs-comment">// |VER | REP |  RSV  | ATYP | BND.ADDR | BND.PORT |</span>
+	<span class="hljs-comment">// +----+-----+-------+------+----------+----------+</span>
+	<span class="hljs-comment">// | 1  |  1  | X&#x27;00&#x27; |  1   | Variable |    2     |</span>
+	<span class="hljs-comment">// +----+-----+-------+------+----------+----------+</span>
+	<span class="hljs-comment">// VER socks版本，这里为0x05</span>
+	<span class="hljs-comment">// REP Relay field,内容取值如下 X’00’ succeeded</span>
+	<span class="hljs-comment">// RSV 保留字段</span>
+	<span class="hljs-comment">// ATYPE 地址类型</span>
+	<span class="hljs-comment">// BND.ADDR 服务绑定的地址</span>
+	<span class="hljs-comment">// BND.PORT 服务绑定的端口DST.PORT</span>
+	_, err = conn.Write([]<span class="hljs-type">byte</span>&#123;<span class="hljs-number">0x05</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x01</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;write failed: %w&quot;</span>, err)
+	&#125;
+	ctx, cancel := context.WithCancel(context.Background())
+	<span class="hljs-keyword">defer</span> cancel()
+
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+		_, _ = io.Copy(dest, reader)
+		cancel()
+	&#125;()
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+		_, _ = io.Copy(conn, dest)
+		cancel()
+	&#125;()
+
+	&lt;-ctx.Done()
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+&#125;
+</code></pre></div>
+<h2 id="课后">课后</h2>
+<p><a target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docs/doccn3SFTuFIAVr4CDZGx48KKdd" title="https://bytedance.feishu.cn/docs/doccn3SFTuFIAVr4CDZGx48KKdd">Go 语言学习路线图</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go 语言基础 - 基础语法</div>
+      <div>https://zhangzhao219.github.io/2023/01/15/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day01/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/16/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day02/" title="Go 语言进阶 - 工程进阶">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go 语言进阶 - 工程进阶</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/13/Software-Commands/" title="常用软件常用命令">
+                        <span class="hidden-mobile">常用软件常用命令</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

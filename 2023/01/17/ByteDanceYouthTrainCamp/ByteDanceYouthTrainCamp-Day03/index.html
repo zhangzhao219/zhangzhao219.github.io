@@ -1,0 +1,855 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go 框架三件套详解(Web&#x2F;RPC&#x2F;ORM)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 框架三件套详解(Web&#x2F;RPC&#x2F;ORM)">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/17/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day03/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go 框架三件套详解(Web&#x2F;RPC&#x2F;ORM)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1dwvD.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1wJsg.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS10Mm4.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS10sht.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1bm36.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1bDEj.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1bo5R.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1bb26.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/17/pS1qixf.png">
+<meta property="article:published_time" content="2023-01-17T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2023/01/17/pS1dwvD.png">
+  
+  
+  
+  <title>Go 框架三件套详解(Web/RPC/ORM) - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go 框架三件套详解(Web/RPC/ORM)</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-17 10:00" pubdate>
+          2023年1月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          969 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go 框架三件套详解(Web/RPC/ORM)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go 框架三件套详解(Web/RPC/ORM)</p>
+<span id="more"></span>
+<h1>Go 框架三件套详解(Web/RPC/ORM)</h1>
+<h2 id="环境搭建部分">环境搭建部分</h2>
+<p>搭建课程所需要的开发环境以及安装需要用到的软件。</p>
+<h3 id="学习如何安装-Docker-Postman-Git-Golang">学习如何安装 Docker/Postman/Git/Golang</h3>
+<ul>
+<li>安装 Minikube 或 Docker Desktop 用于使用 Docker <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.runoob.com%2Fdocker%2Fwindows-docker-install.html" title="https://www.runoob.com/docker/windows-docker-install.html">安装教程</a>
+<ul>
+<li>可以使用 Minikube 或者使用 Docker Desktop 启动 Docker</li>
+</ul>
+</li>
+<li>安装 Postman（使用更新的Apifox替代）</li>
+<li>安装 Git <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.liaoxuefeng.com%2Fwiki%2F896043488029600%2F896067074338496" title="https://www.liaoxuefeng.com/wiki/896043488029600/896067074338496">安装教程</a></li>
+<li>安装 Go(Golang &gt;= 1.15) <a href="https://link.juejin.cn?target=https%3A%2F%2Fgo.dev%2Fdoc%2Finstall" title="https://go.dev/doc/install">安装教程</a></li>
+</ul>
+<h2 id="框架体验部分">框架体验部分</h2>
+<p>提前体验一下课程涉及的 HTTP/RPC/ORM 框架</p>
+<h3 id="HTTP-框架-Hertz-初体验">HTTP 框架 Hertz 初体验</h3>
+<p>通过阅读 <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cloudwego.io%2Fzh%2Fdocs%2Fhertz%2Fgetting-started%2F" title="https://www.cloudwego.io/zh/docs/hertz/getting-started/">www.cloudwego.io/zh/docs/her…</a> 尝试运行 Hertz 的示例代码（Hertz 框架地址: <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fcloudwego%2Fhertz" title="https://github.com/cloudwego/hertz">github.com/cloudwego/h…</a>）</p>
+<ol>
+<li>首先安装命令行工具hz：<code>go install github.com/cloudwego/hertz/cmd/hz@latest</code></li>
+<li>生成代码 <code>hz new -module github.com/cloudwego/hertz-examples</code></li>
+<li>整理 &amp; 拉取依赖 <code>go mod tidy</code></li>
+<li>编译并启动 <code>go build -o hertz_demo &amp;&amp; ./hertz_demo</code></li>
+</ol>
+<h3 id="RPC-框架-Kitex-初体验">RPC 框架 Kitex 初体验</h3>
+<p>通过阅读 <a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cloudwego.io%2Fzh%2Fdocs%2Fkitex%2Fgetting-started%2F" title="https://www.cloudwego.io/zh/docs/kitex/getting-started/">www.cloudwego.io/zh/docs/kit…</a> 尝试运行 Kitex 的示例代码（KItex 框架地址: <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fcloudwego%2Fkitex%2F" title="https://github.com/cloudwego/kitex/">github.com/cloudwego/k…</a>）</p>
+<ol>
+<li>安装 kitex：<code>go install github.com/cloudwego/kitex/tool/cmd/kitex@latest</code></li>
+<li>安装 thriftgo：<code>go install github.com/cloudwego/thriftgo@latest</code></li>
+<li>克隆该示例仓库到本地 <code>git clone https://github.com/cloudwego/kitex-examples.git</code></li>
+<li>进入示例仓库的 <code>hello</code> 目录 <code>cd kitex-examples/hello</code></li>
+<li>运行 server <code>go run .</code></li>
+<li>运行 client 另起一个终端后，<code>go run ./client</code></li>
+</ol>
+<h3 id="ORM-框架-Gorm-初体验">ORM 框架 Gorm 初体验</h3>
+<p>通过阅读 <a href="https://link.juejin.cn?target=https%3A%2F%2Fgorm.cn%2Fdocs%2F%23Install" title="https://gorm.cn/docs/#Install">gorm.cn/docs/#Insta…</a> 尝试运行 Gorm 的示例代码（Gorm 框架地址: <a href="https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fgo-gorm%2Fgorm" title="https://github.com/go-gorm/gorm">github.com/go-gorm/gor…</a>）</p>
+<div class="code-wrapper"><pre><code class="hljs bash">go get -u gorm.io/gorm
+go get -u gorm.io/driver/sqlite</code></pre></div>
+<h2 id="其它知识">其它知识</h2>
+<ul>
+<li>了解一下什么IDL以及IDL的语法</li>
+<li>了解一下什么是 opentracing 以及 etcd</li>
+</ul>
+<h3 id="Etcd-与-Opentracing-是什么">Etcd 与 Opentracing 是什么</h3>
+<ul>
+<li>了解 etcd 是什么 <a href="https://link.juejin.cn?target=https%3A%2F%2Fetcd.io%2F" title="https://etcd.io/">参考文档</a>
+<ul>
+<li>etcd是一种高度一致的分布式键值存储，它提供了一种可靠的方式来存储需要由分布式系统或机器集群访问的数据。它可以在网络分区期间优雅地处理领导人选举，并且可以容忍机器故障，即使在领导人节点中也是如此。</li>
+</ul>
+</li>
+<li>了解 opentracing 是什么 <a href="https://link.juejin.cn?target=https%3A%2F%2Fopentracing.io%2F" title="https://opentracing.io/">参考文档</a>
+<ul>
+<li>OpenTracing是一种分布式系统链路跟踪的设计原则、规范、标准。</li>
+</ul>
+</li>
+</ul>
+<h3 id="IDL-是什么">IDL 是什么</h3>
+<ul>
+<li>了解 IDL 是什么 <a href="https://link.juejin.cn?target=https%3A%2F%2Fzh.m.wikipedia.org%2Fzh-hans%2F%25E6%258E%25A5%25E5%258F%25A3%25E6%258F%258F%25E8%25BF%25B0%25E8%25AF%25AD%25E8%25A8%2580" title="https://zh.m.wikipedia.org/zh-hans/%E6%8E%A5%E5%8F%A3%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80">zh.m.wikipedia.org/zh-hans/%E6…</a>
+<ul>
+<li><strong>接口描述语言</strong> （Interface description language，缩写 <strong>IDL</strong> ），是用来描述<a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6%E7%BB%84%E4%BB%B6" title="软件组件">软件组件</a><a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/wiki/%E4%BB%8B%E9%9D%A2_(%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88)">介面</a> “介面 (程式设计)”)的一种<a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80" title="计算机语言">计算机语言</a>。IDL通过一种独立于编程语言的方式来描述接口，使得在不同平台上运行的对象和用不同语言编写的程序可以相互通信交流；比如，一个组件用<a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/wiki/C%2B%2B" title="C++">C++</a>写成，另一个组件用<a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/wiki/Java" title="Java">Java</a>写成。</li>
+<li>IDL通常用于<a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/wiki/%E9%81%A0%E7%A8%8B%E8%AA%BF%E7%94%A8" title="远程调用">远程调用</a>软件。在这种情况下，一般是由远程客户终端调用不同操作系统上的对象组件，并且这些对象组件可能是由不同计算机语言编写的。IDL建立起了两个不同操作系统间通信的桥梁。</li>
+</ul>
+</li>
+<li>Thrift IDL 语法 <a href="https://link.juejin.cn?target=https%3A%2F%2Fthrift.apache.org%2Fdocs%2Fidl" title="https://thrift.apache.org/docs/idl">thrift.apache.org/docs/idl</a></li>
+<li>proto3 IDL 语法 <a href="https://link.juejin.cn?target=https%3A%2F%2Fdevelopers.google.com%2Fprotocol-buffers%2Fdocs%2Fproto3" title="https://developers.google.com/protocol-buffers/docs/proto3">developers.google.com/protocol-bu…</a></li>
+</ul>
+<h2 id="课程笔记">课程笔记</h2>
+<p>直播链接：<a target="_blank" rel="noopener" href="https://live.juejin.cn/4354/9899243">https://live.juejin.cn/4354/9899243</a></p>
+<h3 id="课程目标">课程目标</h3>
+<ol>
+<li>将前面几节课所学到的知识应用到项目中。</li>
+<li>掌握 Hertz/Kitex/Gorm 的基本用法。</li>
+<li>通过学习实战案例，可以使用 Hertz/Kitex/Gorm 完成日常后端开发任务</li>
+</ol>
+<h3 id="三件套介绍">三件套介绍</h3>
+<p>Gorm是一个已经迭代了10年+的功能强大的ORM框架，在字节内部被广泛使用并且拥有非常丰富的开源扩展。</p>
+<p>Kitex是字节内部的Golang微服务RPC框架，具有高性能、强可扩展的主要特点，支持多协议并且拥有丰富的开源扩展。</p>
+<p>Hertz是字节内部的HTTP框架，参考了其他开源框架的优势，结合字节跳动内部的需求，具有高易用性、高性能、高扩展性特点。</p>
+<h3 id="Gorm的基本使用">Gorm的基本使用</h3>
+<h4 id="CRUD">CRUD</h4>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1dwvD"><img src="https://s1.ax1x.com/2023/01/17/pS1dwvD.png" srcset="/img/loading.gif" lazyload alt="pS1dwvD.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1wJsg"><img src="https://s1.ax1x.com/2023/01/17/pS1wJsg.png" srcset="/img/loading.gif" lazyload alt="pS1wJsg.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS10Mm4"><img src="https://s1.ax1x.com/2023/01/17/pS10Mm4.png" srcset="/img/loading.gif" lazyload alt="pS10Mm4.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS10sht"><img src="https://s1.ax1x.com/2023/01/17/pS10sht.png" srcset="/img/loading.gif" lazyload alt="pS10sht.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1bm36"><img src="https://s1.ax1x.com/2023/01/17/pS1bm36.png" srcset="/img/loading.gif" lazyload alt="pS1bm36.png"></a></p>
+<h4 id="其他操作">其他操作</h4>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1bDEj"><img src="https://s1.ax1x.com/2023/01/17/pS1bDEj.png" srcset="/img/loading.gif" lazyload alt="pS1bDEj.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1bo5R"><img src="https://s1.ax1x.com/2023/01/17/pS1bo5R.png" srcset="/img/loading.gif" lazyload alt="pS1bo5R.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1bb26"><img src="https://s1.ax1x.com/2023/01/17/pS1bb26.png" srcset="/img/loading.gif" lazyload alt="pS1bb26.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pS1qixf"><img src="https://s1.ax1x.com/2023/01/17/pS1qixf.png" srcset="/img/loading.gif" lazyload alt="pS1qixf.png"></a></p>
+<p>Gorm拥有丰富的扩展生态，可以使用代码生成工具、分片库方案、手动索引、乐观锁、读写分离、OpenTelemetry 扩展等等</p>
+<h3 id="Kitex">Kitex</h3>
+<h3 id="Hertz">Hertz</h3>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go 框架三件套详解(Web/RPC/ORM)</div>
+      <div>https://zhangzhao219.github.io/2023/01/17/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day03/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/19/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day04/" title="Go 高质量编程与性能调优">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go 高质量编程与性能调优</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/16/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day02/" title="Go 语言进阶 - 工程进阶">
+                        <span class="hidden-mobile">Go 语言进阶 - 工程进阶</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

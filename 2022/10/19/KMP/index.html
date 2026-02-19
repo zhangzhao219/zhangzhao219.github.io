@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="KMP算法详解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP算法详解">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/10/19/KMP/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="KMP算法详解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28mn%29">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28mn%29">
+<meta property="og:image" content="https://math.now.sh/?inline=O%28n%29">
+<meta property="og:image" content="https://math.now.sh/?inline=O%282n%29">
+<meta property="article:published_time" content="2022-10-19T16:03:30.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=O%28mn%29">
+  
+  
+  
+  <title>KMP算法详解 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">KMP算法详解</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-19 16:03" pubdate>
+          2022年10月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">KMP算法详解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>KMP算法详解</p>
+<span id="more"></span>
+<h1>KMP算法详解</h1>
+<p>一直都没弄明白，也没下决心去弄明白。昨天感觉基本上差不多了，整理一下，再加深一下印象。</p>
+<h2 id="问题">问题</h2>
+<p>给你两个字符串 <code>haystack</code>和 <code>needle</code>，请你在 <code>haystack</code>字符串中找出 <code>needle</code>字符串的第一个匹配项的下标（下标从 <code>0</code>开始）。如果 <code>needle</code>不是 <code>haystack</code>的一部分，则返回 <code>-1</code> 。</p>
+<p>AC代码：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">strStr</span><span class="hljs-params">(haystack <span class="hljs-type">string</span>, needle <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    needlelen := <span class="hljs-built_in">len</span>(needle)
+    haystacklen := <span class="hljs-built_in">len</span>(haystack)
+    next := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,needlelen)
+    next[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>
+    j := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;needlelen;i++&#123;
+        <span class="hljs-keyword">for</span> j &gt; <span class="hljs-number">0</span> &amp;&amp; needle[i] != needle[j]&#123;
+            j = next[j<span class="hljs-number">-1</span>]
+        &#125;
+        <span class="hljs-keyword">if</span> needle[i] == needle[j]&#123;
+            j++
+        &#125;
+        next[i] = j
+    &#125;
+    j = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;haystacklen;i++&#123;
+        <span class="hljs-keyword">for</span> j &gt; <span class="hljs-number">0</span> &amp;&amp; needle[j] != haystack[i]&#123;
+            j = next[j<span class="hljs-number">-1</span>]
+        &#125;
+        <span class="hljs-keyword">if</span> needle[j] == haystack[i]&#123;
+            j++
+        &#125;
+        <span class="hljs-keyword">if</span> j == needlelen&#123;
+            <span class="hljs-keyword">return</span> i-j+<span class="hljs-number">1</span>;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
+&#125;</code></pre></div>
+<h2 id="简介">简介</h2>
+<p>判断一个字符串（模式串）是不是另外一个字符串（文本串）的子串，怎么做？</p>
+<p>最容易想到的：暴力匹配。</p>
+<p>比如有下面的两个字符串：</p>
+<p><code>abacac</code>和 <code>ac</code></p>
+<p>开始肯定是第一个 <code>a</code>开始和 <code>ac</code>进行匹配，匹配失败了，然后从 <code>b</code>再开始匹配。最坏情况，每一个都要判断到匹配字符串的最后一个字符，两层循环，时间复杂度很容易想到就是<img src="https://math.now.sh?inline=O%28mn%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>但是事实上，如果从人工匹配的角度来看，我们都知道 <code>b</code>不可能匹配成功，让你用肉眼匹配，傻子才会去看 <code>b</code>。但是计算机程序为了全部判断还是要去尝试一下。</p>
+<p>那么怎么把这种无效的匹配让开呢？直观上可能想到，我判断第一个能不能匹配上不就行了，应该能降低时间复杂度？</p>
+<p>那么再举一个例子：<code>aaaaaaaaaa</code>和 <code>ab</code>，时间复杂度一样是<img src="https://math.now.sh?inline=O%28mn%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>所以不仅仅要看第一个，看第一个也无法完全抹去无效的匹配。这时候需要一种高效的匹配算法，核心思想就是在匹配的过程中要记录，匹配失败后从第一个可能成功的地方开始即可，不要做无效工作。</p>
+<p>因此就有了超难理解的KMP算法以及各种比KMP还要复杂的算法。这里就先好好的讲一下KMP，希望以后可以真正理解，抬手就来。</p>
+<h2 id="概念">概念</h2>
+<p>前缀表：<strong>记录下标 <code>i</code>之前（包括 <code>i</code>）的字符串中，有多大长度的相同前缀后缀。</strong></p>
+<p><strong>前缀是指不包含最后一个字符的所有以第一个字符开头的连续子串</strong> 。</p>
+<p><strong>后缀是指不包含第一个字符的所有以最后一个字符结尾的连续子串</strong> 。</p>
+<p>啥意思？举例子就好了</p>
+<table>
+<thead>
+<tr>
+<th>模式串下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr>
+<td>前缀表</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>怎么算的？</p>
+<p>下标为 <code>0</code>，字符串为 <code>a</code>，前缀为空（因为不包含最后一个字符，因此字符就没了），后缀为空（因为不包含第一个字符，因此字符就没了），因此相同前缀后缀长度为0（因为都是空串）</p>
+<p>下标为 <code>1</code>，字符串为 <code>ab</code>，前缀为 <code>a</code>，后缀为 <code>b</code>，因此相同前缀后缀长度为 <code>0</code></p>
+<p>下标为 <code>2</code>，字符串为 <code>abc</code>，前缀为 <code>ab</code>，后缀为 <code>bc</code>，因此相同前缀后缀长度为 <code>0</code></p>
+<p>下标为 <code>3</code>，字符串为 <code>abcd</code>，前缀为 <code>abc</code>，后缀为 <code>bcd</code>，因此相同前缀后缀长度为 <code>0</code></p>
+<p><strong>下标为 <code>4</code>，字符串为 <code>abcda</code>，前缀为 <code>abcd</code>，后缀为 <code>bcda</code>，因此相同前缀后缀长度为 <code>1</code>，也就是 <code>a</code></strong></p>
+<p>下标为 <code>5</code>，字符串为 <code>abcdab</code>，前缀为 <code>abcda</code>，后缀为 <code>bcdab</code>，因此相同前缀后缀长度为 <code>2</code>，也就是 <code>ab</code></p>
+<p>下标为 <code>6</code>，字符串为 <code>abcdabc</code>，前缀为 <code>abcdab</code>，后缀为 <code>bcdabc</code>，因此相同前缀后缀长度为 <code>3</code>，也就是 <code>abc</code></p>
+<p><strong>下标为 <code>7</code>，字符串为 <code>abcdabca</code>，前缀为 <code>abcdabc</code>，后缀为 <code>bcdabca</code>，因此相同前缀后缀长度为 <code>1</code>，也就是 <code>a</code></strong></p>
+<p>…</p>
+<p>下标为 <code>12</code>，字符串为 <code>abcdabcabcdab</code>，前缀为 <code>abcdabcabcda</code>，后缀为 <code>bcdabcabcdab</code>，因此相同前缀后缀长度为 <code>6</code>，也就是 <code>abcdab</code></p>
+<p>人工计算还是挺好算的，用眼睛看看简单算算就行了。网上有些资料是从 <code>-1</code>开始，然后右移一位，我认为不好理解，不如保留前缀表的本意</p>
+<p><strong>所以算来算去，前缀表有什么用处呢？</strong></p>
+<p>前缀表可以帮助我们在匹配不成功的时候找到前面最佳的重新开始的位置，从而保证我们只遍历文本串一次就能判断模式串与文本串是否匹配。（废话）</p>
+<p>先举例：后面的 <code>i</code>指文本串的下标，<code>j</code>指模式串的下标。（文本串下标保证递增，绝对不回退）</p>
+<table>
+<thead>
+<tr>
+<th>文本串下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>a</td>
+<td>c</td>
+<td>b</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>模式串下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>a</td>
+<td>c</td>
+<td>b</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>前缀表</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>开始匹配，<code>i</code>和 <code>j</code>匹配的很顺利，转眼就到了 <code>i=j=4</code>，然后发现糟了，匹配不上了，现在 <code>j</code>要回退，找到重新开始匹配的位置。</p>
+<p><code>j</code>退到哪里呢？因为 <code>j</code>是没有匹配上的，而 <code>j-1</code>如果有意义（<code>j≠0</code>），一定是能匹配上的！（为什么？因为只有匹配上了 <code>j</code>才会移动，<code>j</code>移动过的位置一定是之前匹配好了的）</p>
+<p>那么 <code>j-1</code>是匹配上的又说明了什么呢？<strong>说明对于 <code>0~j-1</code>的字符串，如果有相同的前缀后缀，一定也是能和i-1匹配的上的，因此就不需要回退超过前缀的位置！</strong></p>
+<p>还是上面的例子，模式串的 <code>j-1</code>前缀表的值是 <code>1</code>，说明 <code>j-1</code>位置的 <code>a</code>在模式串的前面也出现过，就是模式串 <code>0</code>位置的 <code>a</code>。由于 <code>j-1</code>是和 <code>i-1</code>匹配上了的，因此 <code>j=0</code>和 <code>i-1</code>也是匹配上了的，不需要再去看模式串 <code>0</code>的位置，只需要看0的后一个位置 <code>1</code>和 <code>i</code>是否能匹配上就好了！</p>
+<p>流程步骤：</p>
+<ol>
+<li><code>i</code>和 <code>j</code>匹配不上了，<strong>隐含条件是 <code>i-1</code>和 <code>j-1</code>是可以匹配的</strong></li>
+<li>看一下 <code>j-1</code>后缀的相同长度的前缀长度，也就是 <code>next[j-1]</code>的值</li>
+<li>回退 <code>j</code>到 <code>next[j-1]</code>的位置，<strong>隐含了这一步将相同长度的前缀绕过</strong></li>
+</ol>
+<p>然后 <code>j=next[j-1]</code>后就去判断 <code>j</code>和 <code>i</code>是不是相同就好了，很不幸的是，还是不相同，<code>i</code>指向的是 <code>b</code>，<code>j</code>指向的是 <code>c</code>。</p>
+<p>那么没办法，留着这个前缀也无法匹配了，只好再次回退，这一退就退到 <code>j=0</code>了，但是还是不相等。</p>
+<p><code>j=0</code>就没有办法再次回退了，只好 <code>i++</code>，舍弃这一个部分的文本串，开始新的文本串。</p>
+<p>到这里应该明白了前缀表的作用了，字面上很难理解，跟着流程走一遍就明白它的思想了，确实精妙</p>
+<h2 id="字符串匹配">字符串匹配</h2>
+<p>所以在已知 <code>next</code>数组的前提下，这个字符串匹配的代码就很简单了。虽然简单，但是结构一点都不可以修改，循环和顺序都是精心设计的。</p>
+<div class="code-wrapper"><pre><code class="hljs go">j = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;haystacklen;i++&#123;
+    <span class="hljs-keyword">for</span> j &gt; <span class="hljs-number">0</span> &amp;&amp; needle[j] != haystack[i]&#123; <span class="hljs-comment">// 匹配不上就一直回退，j=0说明真的匹配不上了，跳出来i++</span>
+        j = next[j<span class="hljs-number">-1</span>]
+    &#125;
+    <span class="hljs-comment">// j=0也会跳到这里尝试一下</span>
+    <span class="hljs-keyword">if</span> needle[j] == haystack[i]&#123; <span class="hljs-comment">// 匹配上的就能j++去看模式串的下一个字符了，然后进入下一个循环i++，判断文本串的下一个字符能不能和模式串的这个字符匹配上</span>
+        j++
+    &#125;
+&#125;</code></pre></div>
+<p><strong>还有一个问题，<code>next</code>数组怎么求？</strong></p>
+<h2 id="next数组"><code>next</code>数组</h2>
+<p>首先要明确一点，<code>next</code>数组是针对模式串而言的，与文本串半毛钱关系没有</p>
+<table>
+<thead>
+<tr>
+<th>模式串下标</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+<td>a</td>
+<td>b</td>
+<td>a</td>
+<td>e</td>
+</tr>
+<tr>
+<td>前缀表</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>其实思想和匹配是相同的，不同的地方在于上面的是用模式串和文本串进行匹配，这里是用自己和自己进行匹配，匹配的过程中看看能匹配上多少，就能得出 <code>next</code>数组的数值了</p>
+<p><code>next[0]=0</code>，初始化毫无争议，因为空串一定是<code>0</code></p>
+<p>指针 <code>i</code>同样一直向前，指针 <code>j</code>会进行回退，因为 <code>next[0]</code>确定了，因此直接初始化<code>i=1</code></p>
+<p>最开始，<code>j</code>指向的是 <code>0</code>的位置，就在这里等着到底哪个 <code>i</code>能和我这个可爱的 <code>j</code>匹配上</p>
+<p>到了 <code>i=2</code>，匹配上了！这时候 <code>j</code>不满足了，是不是 <code>i+1</code>也能和 <code>j+1</code>匹配上呢？所以就 <code>j++</code>，尝试匹配下一个</p>
+<p>要是匹配不上了怎么办呢？比如 <code>j=3</code>,<code>i=6</code>匹配不上了，也隐含了条件，就是 <code>j=2</code>是能和 <code>i-1</code>匹配上的（要是匹配不上<code>j</code>也不可能不等于<code>0</code>）</p>
+<p>那么j=2时候的相同长度的前后缀在哪里呢？因为如果相同也不需要去看了，所以更新<code>j=next[j-1]</code>就可以了，和上面的字符串的匹配思想是完全相同的。</p>
+<p>如果还是匹配不上，那么<code>j</code>只好乖乖变为<code>0</code>，等待着下一个能匹配上的将<code>j+1</code>了</p>
+<p>代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs go">next[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span> <span class="hljs-comment">// 初始化</span>
+j := <span class="hljs-number">0</span> <span class="hljs-comment">// j指向首位</span>
+<span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;needlelen;i++&#123; <span class="hljs-comment">// 遍历模式串，不回退</span>
+    <span class="hljs-keyword">for</span> j &gt; <span class="hljs-number">0</span> &amp;&amp; needle[i] != needle[j]&#123;
+        j = next[j<span class="hljs-number">-1</span>] <span class="hljs-comment">// 匹配不上了，绕过已知的相同长度的前后缀，直到变为j=0的初始状态</span>
+    &#125;
+    <span class="hljs-comment">// 如果j=0还是有一次判断的机会的</span>
+    <span class="hljs-keyword">if</span> needle[i] == needle[j]&#123; <span class="hljs-comment">// 匹配上了将j解放出来，+1再试试</span>
+        j++
+    &#125;
+    next[i] = j <span class="hljs-comment">// 赋值next数组</span>
+&#125;</code></pre></div>
+<h2 id="时间复杂度分析">时间复杂度分析</h2>
+<p>设 <code>n</code>为文本串长度，<code>m</code>为模式串长度</p>
+<p>在匹配的过程中，根据前缀表不断调整匹配的位置，如果没有一个字符能匹配的上，时间复杂度就是文本串的指针从头移到尾，也就是<img src="https://math.now.sh?inline=O%28n%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>如果能匹配上一些字符，回退的次数也不可能超过 <code>n</code>次。因此时间复杂度是<img src="https://math.now.sh?inline=O%282n%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>生成 <code>next</code>数组，不会比匹配的时间复杂度高（因为如果模式串比文本串还要长，根本就不需要匹配了）</p>
+<p>所以从平方级别的时间复杂度直接降到了线性的时间复杂度。</p>
+<h2 id="总结">总结</h2>
+<p>看过很多遍，应该也曾经懂过，就是从来没有整理过，因此可能也没有真正懂过。</p>
+<p>希望这次能真真正正懂了，后面忘记了再来看看这篇文章，希望能快一些想起来。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>KMP算法详解</div>
+      <div>https://zhangzhao219.github.io/2022/10/19/KMP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/20/UCAS/advanced-ai/advanced-ai-8/" title="研究生课程：高级人工智能-第8讲 逻辑">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：高级人工智能-第8讲 逻辑</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/18/UCAS/machine-learning/machine-learning-10/" title="研究生课程：机器学习-第10章 神经网络与深度学习">
+                        <span class="hidden-mobile">研究生课程：机器学习-第10章 神经网络与深度学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

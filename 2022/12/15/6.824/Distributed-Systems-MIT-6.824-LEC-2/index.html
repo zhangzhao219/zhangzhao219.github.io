@@ -1,0 +1,1215 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MIT-6.824（Spring 2022）LEC 2 RPC and Threads">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT-6.824 Distributed Systems-LEC 2 RPC and Threads">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/15/6.824/Distributed-Systems-MIT-6.824-LEC-2/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="MIT-6.824（Spring 2022）LEC 2 RPC and Threads">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-15T21:29:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Distributed Systems">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MIT-6.824 Distributed Systems-LEC 2 RPC and Threads - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">MIT-6.824 Distributed Systems-LEC 2 RPC and Threads</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-15 21:29" pubdate>
+          2022年12月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MIT-6.824 Distributed Systems-LEC 2 RPC and Threads</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>MIT-6.824（Spring 2022）LEC 2 RPC and Threads</p>
+<span id="more"></span>
+<h1><a target="_blank" rel="noopener" href="http://tour.golang.org/">Go快速入门</a></h1>
+<p>How do Go channels work? How does Go make sure they are synchronized between the many possible goroutines?</p>
+<p><a target="_blank" rel="noopener" href="https://golang.org/src/runtime/chan.go">https://golang.org/src/runtime/chan.go</a></p>
+<p>At a high level, a chan is a struct holding a buffer and a lock. Sending on a channel involves acquiring the lock, waiting (perhaps releasing the CPU) until some thread is receiving, and handing off the message. Receiving involves acquiring the lock and waiting for a sender. You could implement your own channels with Go sync.Mutex and sync.Cond.</p>
+<h1>LEC 2</h1>
+<h2 id="为什么使用Go？">为什么使用Go？</h2>
+<ul>
+<li>对线程和RPC有很好的支持（更适合分布式编程）</li>
+<li>垃圾收集器，不需要用户自己释放内存</li>
+<li>简单易学</li>
+<li>自带编译器，不是 Python 那样的解释型语言</li>
+</ul>
+<h2 id="线程">线程</h2>
+<p>在一个进程中并行运行多个线程</p>
+<p>线程原语：开启线程、退出线程（隐式）、停止线程（挂在一边不懂）、恢复线程</p>
+<h3 id="为什么需要线程？">为什么需要线程？</h3>
+<p>支持并发</p>
+<ul>
+<li>输入/输出并发</li>
+<li>多核并行</li>
+<li>方便（例如定期执行后台活动等）</li>
+</ul>
+<p>数量可以不考虑，按照需求创建线程即可</p>
+<h3 id="线程编程挑战">线程编程挑战</h3>
+<ul>
+<li>竞争情况（同时对某一个变量进行写操作）
+<ul>
+<li>可能大多数情况运行都很好，但是确实在某些条件下得不到想要的结果</li>
+<li>解决的两种方法
+<ul>
+<li>避免共享变量（channels）go推荐使用</li>
+<li>使用锁（mutex）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>协调问题：一个线程必须等待另一个线程完成后才能继续进行
+<ul>
+<li>channels</li>
+<li>condition variables</li>
+</ul>
+</li>
+<li>死锁问题：两边都在等待对方</li>
+</ul>
+<h3 id="Go应对挑战的机制">Go应对挑战的机制</h3>
+<p>channels和condition variables</p>
+<ul>
+<li>如果不共享内存，只想让线程互相进行通信，则应该使用channels</li>
+<li>如果需要共享内存，应该使用锁和condition variables</li>
+</ul>
+<h3 id="条件变量和channel实例">条件变量和channel实例</h3>
+<p>分配条件变量并且和锁关联，不满足条件进入睡眠状态，并释放关联的锁。</p>
+<p>在goroutine运行的最后唤醒睡眠状态的线程，重新进行判断</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;sync&quot;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;time&quot;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;math/rand&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	rand.Seed(time.Now().UnixNano())
+
+	count := <span class="hljs-number">0</span>
+	finished := <span class="hljs-number">0</span>
+	<span class="hljs-keyword">var</span> mu sync.Mutex
+	cond := sync.NewCond(&amp;mu)
+
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;
+		<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+			vote := requestVote()
+			mu.Lock()
+			<span class="hljs-keyword">defer</span> mu.Unlock()
+			<span class="hljs-keyword">if</span> vote &#123;
+				count++
+			&#125;
+			finished++
+			cond.Broadcast()
+		&#125;()
+	&#125;
+
+	mu.Lock()
+	<span class="hljs-keyword">for</span> count &lt; <span class="hljs-number">5</span> &amp;&amp; finished != <span class="hljs-number">10</span> &#123;
+		cond.Wait()
+	&#125;
+	<span class="hljs-keyword">if</span> count &gt;= <span class="hljs-number">5</span> &#123;
+		<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;received 5+ votes!&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;lost&quot;</span>)
+	&#125;
+	mu.Unlock()
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">requestVote</span><span class="hljs-params">()</span></span> <span class="hljs-type">bool</span> &#123;
+	time.Sleep(time.Duration(rand.Intn(<span class="hljs-number">100</span>)) * time.Millisecond)
+	<span class="hljs-keyword">return</span> rand.Int() % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+&#125;
+</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;time&quot;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;math/rand&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	rand.Seed(time.Now().UnixNano())
+
+	count := <span class="hljs-number">0</span>
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">bool</span>)
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;
+		<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+			ch &lt;- requestVote()
+		&#125;()
+	&#125;
+	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;
+		v := &lt;-ch
+		<span class="hljs-keyword">if</span> v &#123;
+			count += <span class="hljs-number">1</span>
+		&#125;
+	&#125;
+	<span class="hljs-keyword">if</span> count &gt;= <span class="hljs-number">5</span> &#123;
+		<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;received 5+ votes!&quot;</span>)
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;lost&quot;</span>)
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">requestVote</span><span class="hljs-params">()</span></span> <span class="hljs-type">bool</span> &#123;
+	time.Sleep(time.Duration(rand.Intn(<span class="hljs-number">100</span>)) * time.Millisecond)
+	<span class="hljs-keyword">return</span> rand.Int()%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>
+&#125;
+</code></pre></div>
+<h3 id="go-tour-爬虫练习">go tour 爬虫练习</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;sync&quot;</span>
+)
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Several solutions to the crawler exercise from the Go tutorial</span>
+<span class="hljs-comment">// https://tour.golang.org/concurrency/10</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Serial crawler</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Serial</span><span class="hljs-params">(url <span class="hljs-type">string</span>, fetcher Fetcher, fetched <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">bool</span>)</span></span> &#123;
+	<span class="hljs-keyword">if</span> fetched[url] &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+	fetched[url] = <span class="hljs-literal">true</span>
+	urls, err := fetcher.Fetch(url)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">for</span> _, u := <span class="hljs-keyword">range</span> urls &#123;
+		Serial(u, fetcher, fetched)
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Concurrent crawler with shared state and Mutex</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-keyword">type</span> fetchState <span class="hljs-keyword">struct</span> &#123;
+	mu      sync.Mutex
+	fetched <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">bool</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ConcurrentMutex</span><span class="hljs-params">(url <span class="hljs-type">string</span>, fetcher Fetcher, f *fetchState)</span></span> &#123;
+	f.mu.Lock()
+	already := f.fetched[url]
+	f.fetched[url] = <span class="hljs-literal">true</span>
+	f.mu.Unlock()
+
+	<span class="hljs-keyword">if</span> already &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	urls, err := fetcher.Fetch(url)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+	<span class="hljs-keyword">var</span> done sync.WaitGroup
+	<span class="hljs-keyword">for</span> _, u := <span class="hljs-keyword">range</span> urls &#123;
+		done.Add(<span class="hljs-number">1</span>)
+		<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(u <span class="hljs-type">string</span>)</span></span> &#123;
+			<span class="hljs-keyword">defer</span> done.Done()
+			ConcurrentMutex(u, fetcher, f)
+		&#125;(u)
+	&#125;
+	done.Wait()
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">makeState</span><span class="hljs-params">()</span></span> *fetchState &#123;
+	f := &amp;fetchState&#123;&#125;
+	f.fetched = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">bool</span>)
+	<span class="hljs-keyword">return</span> f
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Concurrent crawler with channels</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">worker</span><span class="hljs-params">(url <span class="hljs-type">string</span>, ch <span class="hljs-keyword">chan</span> []<span class="hljs-type">string</span>, fetcher Fetcher)</span></span> &#123;
+	urls, err := fetcher.Fetch(url)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		ch &lt;- []<span class="hljs-type">string</span>&#123;&#125;
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		ch &lt;- urls
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">coordinator</span><span class="hljs-params">(ch <span class="hljs-keyword">chan</span> []<span class="hljs-type">string</span>, fetcher Fetcher)</span></span> &#123;
+	n := <span class="hljs-number">1</span>
+	fetched := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">bool</span>)
+	<span class="hljs-keyword">for</span> urls := <span class="hljs-keyword">range</span> ch &#123;
+		<span class="hljs-keyword">for</span> _, u := <span class="hljs-keyword">range</span> urls &#123;
+			<span class="hljs-keyword">if</span> fetched[u] == <span class="hljs-literal">false</span> &#123;
+				fetched[u] = <span class="hljs-literal">true</span>
+				n += <span class="hljs-number">1</span>
+				<span class="hljs-keyword">go</span> worker(u, ch, fetcher)
+			&#125;
+		&#125;
+		n -= <span class="hljs-number">1</span>
+		<span class="hljs-keyword">if</span> n == <span class="hljs-number">0</span> &#123;
+			<span class="hljs-keyword">break</span>
+		&#125;
+	&#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ConcurrentChannel</span><span class="hljs-params">(url <span class="hljs-type">string</span>, fetcher Fetcher)</span></span> &#123;
+	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> []<span class="hljs-type">string</span>)
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+		ch &lt;- []<span class="hljs-type">string</span>&#123;url&#125;
+	&#125;()
+	coordinator(ch, fetcher)
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// main</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	fmt.Printf(<span class="hljs-string">&quot;=== Serial===\n&quot;</span>)
+	Serial(<span class="hljs-string">&quot;http://golang.org/&quot;</span>, fetcher, <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">bool</span>))
+
+	fmt.Printf(<span class="hljs-string">&quot;=== ConcurrentMutex ===\n&quot;</span>)
+	ConcurrentMutex(<span class="hljs-string">&quot;http://golang.org/&quot;</span>, fetcher, makeState())
+
+	fmt.Printf(<span class="hljs-string">&quot;=== ConcurrentChannel ===\n&quot;</span>)
+	ConcurrentChannel(<span class="hljs-string">&quot;http://golang.org/&quot;</span>, fetcher)
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Fetcher</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-keyword">type</span> Fetcher <span class="hljs-keyword">interface</span> &#123;
+	<span class="hljs-comment">// Fetch returns a slice of URLs found on the page.</span>
+	Fetch(url <span class="hljs-type">string</span>) (urls []<span class="hljs-type">string</span>, err <span class="hljs-type">error</span>)
+&#125;
+
+<span class="hljs-comment">// fakeFetcher is Fetcher that returns canned results.</span>
+<span class="hljs-keyword">type</span> fakeFetcher <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*fakeResult
+
+<span class="hljs-keyword">type</span> fakeResult <span class="hljs-keyword">struct</span> &#123;
+	body <span class="hljs-type">string</span>
+	urls []<span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(f fakeFetcher)</span></span> Fetch(url <span class="hljs-type">string</span>) ([]<span class="hljs-type">string</span>, <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">if</span> res, ok := f[url]; ok &#123;
+		fmt.Printf(<span class="hljs-string">&quot;found:   %s\n&quot;</span>, url)
+		<span class="hljs-keyword">return</span> res.urls, <span class="hljs-literal">nil</span>
+	&#125;
+	fmt.Printf(<span class="hljs-string">&quot;missing: %s\n&quot;</span>, url)
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;not found: %s&quot;</span>, url)
+&#125;
+
+<span class="hljs-comment">// fetcher is a populated fakeFetcher.</span>
+<span class="hljs-keyword">var</span> fetcher = fakeFetcher&#123;
+	<span class="hljs-string">&quot;http://golang.org/&quot;</span>: &amp;fakeResult&#123;
+		<span class="hljs-string">&quot;The Go Programming Language&quot;</span>,
+		[]<span class="hljs-type">string</span>&#123;
+			<span class="hljs-string">&quot;http://golang.org/pkg/&quot;</span>,
+			<span class="hljs-string">&quot;http://golang.org/cmd/&quot;</span>,
+		&#125;,
+	&#125;,
+	<span class="hljs-string">&quot;http://golang.org/pkg/&quot;</span>: &amp;fakeResult&#123;
+		<span class="hljs-string">&quot;Packages&quot;</span>,
+		[]<span class="hljs-type">string</span>&#123;
+			<span class="hljs-string">&quot;http://golang.org/&quot;</span>,
+			<span class="hljs-string">&quot;http://golang.org/cmd/&quot;</span>,
+			<span class="hljs-string">&quot;http://golang.org/pkg/fmt/&quot;</span>,
+			<span class="hljs-string">&quot;http://golang.org/pkg/os/&quot;</span>,
+		&#125;,
+	&#125;,
+	<span class="hljs-string">&quot;http://golang.org/pkg/fmt/&quot;</span>: &amp;fakeResult&#123;
+		<span class="hljs-string">&quot;Package fmt&quot;</span>,
+		[]<span class="hljs-type">string</span>&#123;
+			<span class="hljs-string">&quot;http://golang.org/&quot;</span>,
+			<span class="hljs-string">&quot;http://golang.org/pkg/&quot;</span>,
+		&#125;,
+	&#125;,
+	<span class="hljs-string">&quot;http://golang.org/pkg/os/&quot;</span>: &amp;fakeResult&#123;
+		<span class="hljs-string">&quot;Package os&quot;</span>,
+		[]<span class="hljs-type">string</span>&#123;
+			<span class="hljs-string">&quot;http://golang.org/&quot;</span>,
+			<span class="hljs-string">&quot;http://golang.org/pkg/&quot;</span>,
+		&#125;,
+	&#125;,
+&#125;</code></pre></div>
+<h2 id="RPC-远程过程调用">RPC-远程过程调用</h2>
+<p>RPC：在客户端上调用在服务器端实现的函数-传递参数并返回结果</p>
+<p>实际过程：</p>
+<ul>
+<li>在客户端上调用stub过程：构建一个消息，包括调用哪个函数，函数的参数，参数类型等等。</li>
+<li>通过网络发送给服务器上对应的stub</li>
+<li>在服务器上调用函数</li>
+<li>返回给服务器的stub</li>
+<li>返回给客户端的stub（这个期间一直在等待）</li>
+<li>返回结果</li>
+</ul>
+<h3 id="示例">示例</h3>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;fmt&quot;</span>
+	<span class="hljs-string">&quot;log&quot;</span>
+	<span class="hljs-string">&quot;net&quot;</span>
+	<span class="hljs-string">&quot;net/rpc&quot;</span>
+	<span class="hljs-string">&quot;sync&quot;</span>
+)
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Common RPC request/reply definitions</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-keyword">type</span> PutArgs <span class="hljs-keyword">struct</span> &#123;
+	Key   <span class="hljs-type">string</span>
+	Value <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-keyword">type</span> PutReply <span class="hljs-keyword">struct</span> &#123;
+&#125;
+
+<span class="hljs-keyword">type</span> GetArgs <span class="hljs-keyword">struct</span> &#123;
+	Key <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-keyword">type</span> GetReply <span class="hljs-keyword">struct</span> &#123;
+	Value <span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Client</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">connect</span><span class="hljs-params">()</span></span> *rpc.Client &#123;
+	client, err := rpc.Dial(<span class="hljs-string">&quot;tcp&quot;</span>, <span class="hljs-string">&quot;:1234&quot;</span>)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(<span class="hljs-string">&quot;dialing:&quot;</span>, err)
+	&#125;
+	<span class="hljs-keyword">return</span> client
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">get</span><span class="hljs-params">(key <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span> &#123;
+	client := connect()
+	args := GetArgs&#123;<span class="hljs-string">&quot;subject&quot;</span>&#125;
+	reply := GetReply&#123;&#125;
+	err := client.Call(<span class="hljs-string">&quot;KV.Get&quot;</span>, &amp;args, &amp;reply)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(<span class="hljs-string">&quot;error:&quot;</span>, err)
+	&#125;
+	client.Close()
+	<span class="hljs-keyword">return</span> reply.Value
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">put</span><span class="hljs-params">(key <span class="hljs-type">string</span>, val <span class="hljs-type">string</span>)</span></span> &#123;
+	client := connect()
+	args := PutArgs&#123;<span class="hljs-string">&quot;subject&quot;</span>, <span class="hljs-string">&quot;6.824&quot;</span>&#125;
+	reply := PutReply&#123;&#125;
+	err := client.Call(<span class="hljs-string">&quot;KV.Put&quot;</span>, &amp;args, &amp;reply)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(<span class="hljs-string">&quot;error:&quot;</span>, err)
+	&#125;
+	client.Close()
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Server</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-keyword">type</span> KV <span class="hljs-keyword">struct</span> &#123;
+	mu   sync.Mutex
+	data <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">server</span><span class="hljs-params">()</span></span> &#123;
+	kv := <span class="hljs-built_in">new</span>(KV)
+	kv.data = <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;&#125;
+	rpcs := rpc.NewServer()
+	rpcs.Register(kv)
+	l, e := net.Listen(<span class="hljs-string">&quot;tcp&quot;</span>, <span class="hljs-string">&quot;:1234&quot;</span>)
+	<span class="hljs-keyword">if</span> e != <span class="hljs-literal">nil</span> &#123;
+		log.Fatal(<span class="hljs-string">&quot;listen error:&quot;</span>, e)
+	&#125;
+	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;
+		<span class="hljs-keyword">for</span> &#123;
+			conn, err := l.Accept()
+			<span class="hljs-keyword">if</span> err == <span class="hljs-literal">nil</span> &#123;
+				<span class="hljs-keyword">go</span> rpcs.ServeConn(conn)
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				<span class="hljs-keyword">break</span>
+			&#125;
+		&#125;
+		l.Close()
+	&#125;()
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(kv *KV)</span></span> Get(args *GetArgs, reply *GetReply) <span class="hljs-type">error</span> &#123;
+	kv.mu.Lock()
+	<span class="hljs-keyword">defer</span> kv.mu.Unlock()
+
+	reply.Value = kv.data[args.Key]
+
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(kv *KV)</span></span> Put(args *PutArgs, reply *PutReply) <span class="hljs-type">error</span> &#123;
+	kv.mu.Lock()
+	<span class="hljs-keyword">defer</span> kv.mu.Unlock()
+
+	kv.data[args.Key] = args.Value
+
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// main</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	server()
+
+	put(<span class="hljs-string">&quot;subject&quot;</span>, <span class="hljs-string">&quot;6.824&quot;</span>)
+	fmt.Printf(<span class="hljs-string">&quot;Put(subject, 6.824) done\n&quot;</span>)
+	fmt.Printf(<span class="hljs-string">&quot;get(subject) -&gt; %s\n&quot;</span>, get(<span class="hljs-string">&quot;subject&quot;</span>))
+&#125;</code></pre></div>
+<h3 id="RPC失败">RPC失败</h3>
+<ul>
+<li>至少一次：失败后（没有接到服务器的响应）会自动重试
+<ul>
+<li>有可能多次执行</li>
+</ul>
+</li>
+<li>最多一次：服务器端实现过滤重复，确保最多只能执行一次（Go的RPC实现）</li>
+<li>正好一次：很难实现</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Distributed-Systems/" class="print-no-link">#Distributed Systems</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MIT-6.824 Distributed Systems-LEC 2 RPC and Threads</div>
+      <div>https://zhangzhao219.github.io/2022/12/15/6.824/Distributed-Systems-MIT-6.824-LEC-2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/15/6.824/Distributed-Systems-MIT-6.824-Lab-1/" title="MIT-6.824 Distributed Systems-Lab 1 MapReduce">
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-Lab 1 MapReduce</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

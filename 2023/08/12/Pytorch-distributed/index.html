@@ -1,0 +1,1431 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Pytorch分布式训练学习整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch分布式训练">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/08/12/Pytorch-distributed/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Pytorch分布式训练学习整理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-8db7ffbb378266ad68cac5401664a471_1440w.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%82%28%F0%9D%91%81%E2%88%97%5Cfrac%7BL%7D%7BK%7D%E2%88%97%F0%9D%91%91%29">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-accf297316558a8a0328a0defadcf00c_1440w.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%82%28%5Cfrac%7B%F0%9D%90%BE%E2%88%921%7D%7B%F0%9D%90%BE%2B%F0%9D%91%80%E2%88%921%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%80%3E%3D4%F0%9D%90%BE">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%82%28%F0%9D%91%81%2B%5Cfrac%7BN%7D%7BM%7D%E2%88%97%5Cfrac%7BL%7D%7BK%7D%E2%88%97%F0%9D%91%91%29">
+<meta property="og:image" content="https://d2l.ai/_images/ps.svg">
+<meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1000/1*FpDHkWJhkLL7KxU01Lf9Lw.png">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=k-1">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-4590aeb5fd981b1e6f926cc68605884a_b.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-c9df34575d7d95ec87d85575d25d6f37_b.webp">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=p">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bp%7D%7Bb%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=T%3D2%28k-1%29%5Cfrac%7B%5Cfrac%7Bp%7D%7Bb%7D%7D%7Bk%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=T">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/70c4363340b64ae382905d479cfe7931.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb3JhbmdlcmZ1bg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-2fa670488fcc2408bd27bdcfec283d33_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-6a314b96490b51cffc5aa4b693ea32c1_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-0b986b52eea0a5299dfab509a6a9323c_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-29290e0e77d330b6e0e4d7d3fb417a73_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-3dd79addc9cbe6eb3d22a49037f6e087_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-3909bd74a4ed407a71be0c146a174b86_720w.webp">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-2444902f73d6be616d72067826beb3b9_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-e9a588a403fe5e0b1f266faf47b6d31a_720w.webp">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-a3219941a23cdd2ce1a3c352516e68fa_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c7e117053154a79a281d4e9c313f0898_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-f23a9da7560340314fe42aff3a90709f_720w.webp">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-b97f58d7420ec2cce8561158fe55681c_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-4540e7bcea664717f17e0ad217f4fc23_720w.webp">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-0d097babc07ab0846b46c75254152703_720w.webp">
+<meta property="article:published_time" content="2023-08-12T21:31:39.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-8db7ffbb378266ad68cac5401664a471_1440w.webp">
+  
+  
+  
+  <title>Pytorch分布式训练 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Pytorch分布式训练</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-12 21:31" pubdate>
+          2023年8月12日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Pytorch分布式训练</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Pytorch分布式训练学习整理</p>
+<span id="more"></span>
+<h1>参考资料</h1>
+<p>源码解析：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/343951042">PyTorch 源码解读之 DP &amp; DDP：模型并行和分布式训练解析</a></p>
+<p>简单小模型示例：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43579015/article/details/131811657">pytorch中分布式训练DDP教程（新手快速入门！）</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lgzlgz3102/article/details/124418378">Pytorch - 弹性训练极简实现(附源码)</a></p>
+<p>系列文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72939003">【分布式训练】单机多卡的正确打开方式（一）：理论基础</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ARPOSPF/article/details/131805949">【分布式训练】基于PyTorch进行多GPU分布式模型训练（补充）</a></p>
+<p>较新较详细的教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/orangerfun/article/details/123887725">torch分布式训练</a></p>
+<p>博客：<a target="_blank" rel="noopener" href="https://qiankunli.github.io/2021/11/27/pytorch_elastic.html#%E5%A6%82%E4%BD%95%E5%90%AF%E5%8A%A8-train_script">pytorch弹性分布式训练</a></p>
+<h1>模型并行（流水线）</h1>
+<p>把模型隔成不同的层，每一层都放到一块GPU上</p>
+<p><strong>（1）GPU利用度不够。</strong></p>
+<p><img src="https://pic2.zhimg.com/80/v2-8db7ffbb378266ad68cac5401664a471_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如图，阴影部分所表示的时间段里，总有GPU在空转。<strong>GPU的数量越多时，空置的比例接近1</strong></p>
+<p><strong>（2）中间结果占据大量内存</strong></p>
+<p>在做backward计算梯度的过程中，我们需要用到每一层的中间结果z。假设我们的模型有L层，每一层的宽度为d，则对于每块GPU，不考虑其参数本身的存储，额外的空间复杂度为<img src="https://math.now.sh?inline=%F0%9D%91%82%28%F0%9D%91%81%E2%88%97%5Cfrac%7BL%7D%7BK%7D%E2%88%97%F0%9D%91%91%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 。从这个复杂度可以看出，随着模型的增大，N，L，d三者的增加可能会平滑掉K增加带来的GPU内存收益。因此，这也是需要优化的地方。</p>
+<h1>Gpipe</h1>
+<p>流水线并行的核心思想是： <strong>在模型并行的基础上，进一步引入数据并行的办法，即把原先的数据再划分成若干个batch，送入GPU进行训练</strong> 。未划分前的数据，叫 <strong>mini-batch</strong> 。在mini-batch上再划分的数据，叫 <strong>micro-batch</strong> 。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-accf297316558a8a0328a0defadcf00c_1440w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其中，第一个下标表示GPU编号，第二个下标表示micro-batch编号。假设我们将mini-batch划分为M个，则流水线并行下，bubble的时间复杂度为：<img src="https://math.now.sh?inline=%F0%9D%91%82%28%5Cfrac%7B%F0%9D%90%BE%E2%88%921%7D%7B%F0%9D%90%BE%2B%F0%9D%91%80%E2%88%921%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 。Gpipe通过实验证明，当<img src="https://math.now.sh?inline=%F0%9D%91%80%3E%3D4%F0%9D%90%BE" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，bubble产生的空转时间占比对最终训练时长影响是微小的，可以忽略不计。</p>
+<p>将batch切好，并逐一送入GPU的过程，就像一个流水生产线一样（类似于CPU里的流水线），因此也被称为Pipeline Parallelism。</p>
+<p>Gpipe采用<strong>用时间换空间的方法，几乎不存中间结果，等到backward的时候，再重新算一遍forward</strong></p>
+<p>每块GPU上只保存来自上一块的最后一层输入z，其余的中间结果我们算完就废。等到backward的时候再由保存下来的z重新进行forward来算出。</p>
+<p>空间复杂度为<img src="https://math.now.sh?inline=%F0%9D%91%82%28%F0%9D%91%81%2B%5Cfrac%7BN%7D%7BM%7D%E2%88%97%5Cfrac%7BL%7D%7BK%7D%E2%88%97%F0%9D%91%91%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 。</p>
+<p>在实际应用中，流水线并行并不特别流行，主要原因是模型能否均匀切割，影响了整体计算效率，这就需要算法工程师做手调。</p>
+<h1>数据并行</h1>
+<p>数据并行的核心思想是： <strong>在各个GPU上都拷贝一份完整模型，各自吃一份数据，算一份梯度，最后对梯度进行累加来更新整体模型</strong> 。理念不复杂，但到了大模型场景， <strong>巨大的存储和GPU间的通讯量，</strong> 就是系统设计要考虑的重点了。在本文中，我们将递进介绍三种主流数据并行的实现方式：</p>
+<ul>
+<li><strong>DP（Data Parallelism）</strong> ：最早的数据并行模式，一般采用参数服务器(Parameters Server)这一编程框架。实际中多用于单机多卡</li>
+<li><strong>DDP（Distributed Data Parallelism）</strong> ：分布式数据并行，采用Ring AllReduce的通讯方式，实际中多用于多机场景</li>
+<li><strong>ZeRO：</strong> 零冗余优化器。由微软推出并应用于其DeepSpeed框架中。严格来讲ZeRO采用数据并行+张量并行的方式，旨在降低存储。</li>
+</ul>
+<h2 id="DP">DP</h2>
+<p>一个经典数据并行的过程如下：</p>
+<ul>
+<li>若干块 <strong>计算GPU</strong> ，如图中GPU0~GPU2；1块 <strong>梯度收集GPU</strong> ，如图中AllReduce操作所在GPU。</li>
+<li>在每块计算GPU上都拷贝一份完整的模型参数。</li>
+<li>把一份数据X（例如一个batch）均匀分给不同的计算GPU。</li>
+<li>每块计算GPU做一轮FWD和BWD后，算得一份梯度G。</li>
+<li>每块计算GPU将自己的梯度<strong>push</strong>给梯度收集GPU，做聚合操作。这里的聚合操作一般指 <strong>梯度累加</strong> 。当然也支持用户自定义。</li>
+<li>梯度收集GPU聚合完毕后，计算GPU从它那<strong>pull</strong>下完整的梯度结果，用于更新模型参数W。更新完毕后，计算GPU上的模型参数依然保持一致。</li>
+<li><strong>聚合再下发梯度的操作，称为AllReduce</strong> 。</li>
+</ul>
+<h3 id="流程">流程</h3>
+<p><img src="https://d2l.ai/_images/ps.svg" srcset="/img/loading.gif" lazyload alt="../_images/ps.svg"></p>
+<p>DP 基于单机多卡，所有设备都负责计算和训练网络，除此之外， device[0] (并非 GPU 真实标号而是输入参数 device_ids 首位) 还要负责整合梯度，更新参数。从图中我们可以看出，有三个主要过程：</p>
+<ul>
+<li>过程一（图中红色部分）：各卡分别计算损失和梯度</li>
+<li>过程二（图中蓝色部分）：所有梯度整合到 device[0]</li>
+<li>过程三（图中绿色部分）：device[0] 进行参数更新，其他卡拉取 device[0] 的参数进行更新</li>
+</ul>
+<p>所有卡都并行运算（图中红色），将梯度收集到 device[0]（图中浅蓝色）和 device[0] 分享模型参数给其他 GPU（图中绿色）三个主要过程。</p>
+<p>更详细的流程如下图所示：</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1000/1*FpDHkWJhkLL7KxU01Lf9Lw.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="分析">分析</h3>
+<ul>
+<li><strong>存储开销大</strong> 。每块GPU上都存了一份完整的模型，造成冗余。</li>
+<li><strong>通讯开销大</strong> 。Server需要和每一个Worker进行梯度传输。当Server和Worker不在一台机器上时，Server的带宽将会成为整个系统的计算效率瓶颈。</li>
+</ul>
+<p>梯度异步更新：Worker并不会实际等到把聚合梯度拿回来，更新完参数W后再做计算。而是直接拿旧的W，吃新的数据，继续第11轮的计算。这样就保证在通讯的时间里，Worker也在马不停蹄做计算，提升计算通讯比。</p>
+<p>但是模型收敛的速度不会变快，只是多用了一些数据</p>
+<p>受通讯负载不均的影响， <strong>DP一般用于单机多卡场景</strong> 。</p>
+<h2 id="DDP">DDP</h2>
+<p>DDP作为一种更通用的解决方案出现了，既能多机，也能单机。<strong>DDP首先要解决的就是通讯问题：将Server上的通讯压力均衡转到各个Worker上。实现这一点后，可以进一步去Server，留Worker。</strong></p>
+<h3 id="简介">简介</h3>
+<p>随着大模型的出现，简单的数据并行已经无法满足需求，毕竟一个模型的大小就有可能超过显卡的显存，更不可能将其复制多份。因此需要让每一张卡仅负责模型的一部分计算，承载模型的一小部分。</p>
+<p>使用DDP进行分布式训练有以下几个优势：</p>
+<ol>
+<li>加速训练：通过数据并行，DDP能够在多个设备或节点上同时处理不同批次的数据，从而加快训练速度。</li>
+<li>内存效率：DDP在每个设备上只保存模型的局部副本和相应的梯度，而不是整个模型的副本，这样可以节省内存。</li>
+<li>不需要额外的代码：在PyTorch中，使用DDP进行分布式训练几乎不需要修改您的原始模型和训练代码。</li>
+</ol>
+<h3 id="流程：Ring-All-Reduce">流程：Ring All Reduce</h3>
+<p>Scatter Reduce过程：首先将参数分为<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>份，相邻的GPU传递不同的参数，在传递<img src="https://math.now.sh?inline=k-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次之后，可以得到每一份参数的累积（在不同的GPU上）。</p>
+<p><img src="https://pic3.zhimg.com/v2-4590aeb5fd981b1e6f926cc68605884a_b.webp" srcset="/img/loading.gif" lazyload alt="动图"></p>
+<p>All Gather：得到每一份参数的累积之后，再做一次传递，同步到所有的GPU上。</p>
+<p><img src="https://pic4.zhimg.com/v2-c9df34575d7d95ec87d85575d25d6f37_b.webp" srcset="/img/loading.gif" lazyload alt="动图"></p>
+<p>假设有<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个GPU， 传输总量是<img src="https://math.now.sh?inline=p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，每一次的通信上限是<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则完成一次通信需要时间<img src="https://math.now.sh?inline=%5Cfrac%7Bp%7D%7Bb%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，那么总共需要花费时间<img src="https://math.now.sh?inline=T%3D2%28k-1%29%5Cfrac%7B%5Cfrac%7Bp%7D%7Bb%7D%7D%7Bk%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，可以看到通信成本<img src="https://math.now.sh?inline=T" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与GPU数量无关。</p>
+<p>DP和DDP的总通讯量相同，但因负载不均的原因，DP需要耗费更多的时间搬运数据，但是DP不一定就比DDP差</p>
+<h3 id="代码">代码</h3>
+<h4 id="分析-2">分析</h4>
+<p>DDP采用<strong>多进程控制</strong>多GPU，共同训练模型，一份代码会被pytorch自动分配到n个进程并在n个GPU上运行。 DDP运用Ring-Reduce通信算法在每个GPU间对梯度进行通讯，交换彼此的梯度，从而获得所有GPU的梯度。对比DP，不需要在进行模型本体的通信，因此可以加速训练。</p>
+<p>需要注意以下几点：</p>
+<ol>
+<li>设置DistributedSampler来打乱数据，因为一个batch被分配到了好几个进程中，要确保不同的GPU拿到的不是同一份数据。</li>
+<li>要告诉每个进程自己的id，即使用哪一块GPU。</li>
+<li>如果需要做BatchNormalization，需要对数据进行同步。</li>
+</ol>
+<h4 id="Torchrun使用及参数详解">Torchrun使用及参数详解</h4>
+<h5 id="核心概念">核心概念</h5>
+<ul>
+<li>rank：进程号，在多进程上下文中，我们通常假定rank 0是第一个进程或者主进程，其它进程分别具有1，2，3不同rank号，这样总共具有4个进程。</li>
+<li>node：物理节点，可以是一个容器也可以是一台机器，节点内部可以有多个GPU；nnodes指物理节点数量， nproc_per_node指每个物理节点上面进程的数量</li>
+<li>local_rank：指在一个node上进程的相对序号，local_rank在node之间相互独立</li>
+<li>WORLD_SIZE：全局进程总个数，即在一个分布式任务中rank的数量</li>
+<li>Group：进程组，一个分布式任务对应了一个进程组。只有用户需要创立多个进程组时才会用到group来管理，默认情况下只有一个group</li>
+<li>backend：通信后端，可选的包括：nccl（NVIDIA推出）、gloo（Facebook推出）、mpi（OpenMPI）。一般建议GPU训练选择nccl，CPU训练选择gloo</li>
+<li>master_addr与master_port：主节点的地址以及端口，供init_method 的tcp方式使用。 因为pytorch中网络通信建立是从机去连接主机，运行ddp只需要指定主节点的IP与端口，其它节点的IP不需要填写。</li>
+</ul>
+<p>如下图所示，共有3个节点(机器)，每个节点上有4个GPU，每台机器上起4个进程，每个进程占一块GPU，那么图中一共有12个rank，nproc_per_node=4，nnodes=3，每个节点都有一个对应的node_rank</p>
+<p><img src="https://img-blog.csdnimg.cn/70c4363340b64ae382905d479cfe7931.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAb3JhbmdlcmZ1bg==,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>rank与GPU之间没有必然的对应关系，一个rank可以包含多个GPU；一个GPU也可以为多个rank服务（多进程共享GPU），在torch的分布式训练中习惯默认一个rank对应着一个GPU，因此local_rank可以当作GPU号</p>
+<h5 id="简介-2">简介</h5>
+<p>torchrun相当于原来的torch.distributed.launch，有一些额外增加的功能：</p>
+<ul>
+<li>通过重启优雅处理某一个worker运行过程中的错误</li>
+<li>worker的RANK和WORLD_SIZE都是被自动分配的</li>
+<li>Node的数量允许从最小值到最大值中间弹性伸缩</li>
+</ul>
+<p><code>torchrun</code>命令与 <code>python -m torch.distributed.run</code>命令完全等同，为命令行命令</p>
+<h5 id="从旧版本迁移-use-env">从旧版本迁移 --use_env</h5>
+<p>有一个参数 <code>--use_env</code>在目前版本的torchrun中是不存在的，因此需要做一点处理</p>
+<ol>
+<li>将原始指定的–local-rank参数修改为从环境变量中读取</li>
+<li>命令行不需要再次指定 <code>--use_env</code>参数</li>
+</ol>
+<p>旧版本代码：</p>
+<div class="code-wrapper"><pre><code class="hljs python">$ python -m torch.distributed.launch --use-env train_script.py
+<span class="hljs-keyword">import</span> argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(<span class="hljs-string">&quot;--local-rank&quot;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>)
+args = parser.parse_args()
+
+local_rank = args.local_rank</code></pre></div>
+<p>新版本代码：</p>
+<div class="code-wrapper"><pre><code class="hljs python">$ torchrun train_script.py
+<span class="hljs-keyword">import</span> os
+local_rank = <span class="hljs-built_in">int</span>(os.environ[<span class="hljs-string">&quot;LOCAL_RANK&quot;</span>])</code></pre></div>
+<h5 id="命令行参数">命令行参数</h5>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–nnodes</td>
+<td>节点数量，一个节点对应一个主机</td>
+<td>1或MIN_SIZE:MAX_SIZE（弹性训练）</td>
+</tr>
+<tr>
+<td>–nproc-per-node</td>
+<td>一个节点中的进程数量，一般一个进程使用一个显卡，故也通常表述为一个节点中显卡的数量</td>
+<td>[auto, cpu, gpu, int]</td>
+</tr>
+<tr>
+<td>–rdzv-backend</td>
+<td>rendezvous 后端</td>
+<td>c10d etcd</td>
+</tr>
+<tr>
+<td>–rdzv-endpoint</td>
+<td>rendezvous 后端地址</td>
+<td><code>&lt;host&gt;</code>:<code>&lt;port&gt;</code></td>
+</tr>
+<tr>
+<td>–rdzv-id</td>
+<td>用户可以指定当前rendezvous的id，所有的node都要使用这同一个id</td>
+<td></td>
+</tr>
+<tr>
+<td>–rdzv-conf</td>
+<td>希望传入rendezvous的其他参数</td>
+<td><code>&lt;key1&gt;</code>=<code>&lt;value1&gt;</code></td>
+</tr>
+<tr>
+<td>–standalone</td>
+<td>单节点多卡的默认配置，不需要再传入上述的rendezvous参数，默认为C10d TCP 29400（–master-addr等也会失效）</td>
+<td>选项</td>
+</tr>
+<tr>
+<td>–max-restarts</td>
+<td>worker group重启的最大次数</td>
+<td></td>
+</tr>
+<tr>
+<td>–monitor-interval</td>
+<td>检测worker状态的时间间隔（以秒为单位）</td>
+<td></td>
+</tr>
+<tr>
+<td>–start-method</td>
+<td>创建子进程的方式</td>
+<td>{spawn,fork,forkserver}</td>
+</tr>
+<tr>
+<td>–role</td>
+<td>User-defined role for the workers.</td>
+<td></td>
+</tr>
+<tr>
+<td>-m</td>
+<td>与python -m相同，将模块当作脚本运行</td>
+<td>选项</td>
+</tr>
+<tr>
+<td>–no-python</td>
+<td>不使用python命令而是直接执行（如果这个文件并不是一个py文件会使用这个）</td>
+<td></td>
+</tr>
+<tr>
+<td>–run-path</td>
+<td>使用runpy.run_path执行文件</td>
+<td></td>
+</tr>
+<tr>
+<td>–log-dir</td>
+<td>日志文件存放目录</td>
+<td></td>
+</tr>
+<tr>
+<td>–redirects</td>
+<td>将控制台输出的日志信息重定向到日志目录中的文件</td>
+<td>[-r 3] 将所有worker的标准输出和标准错误进行重定向，[-r 0:1,1:2] 将rank 0的标准输出重定向，将rank 1的标准错误重定向</td>
+</tr>
+<tr>
+<td>–tee</td>
+<td>除将日志输出到控制台外也输出到日志文件</td>
+<td>日志文件流</td>
+</tr>
+<tr>
+<td>–node-rank</td>
+<td>多节点分布式训练的时候该节点的Rank</td>
+<td></td>
+</tr>
+<tr>
+<td>–master-addr</td>
+<td>master 节点的 IP 地址，也就是 rank=0 对应的主机地址</td>
+<td></td>
+</tr>
+<tr>
+<td>–master-port</td>
+<td>master 节点的端口号，用于通信</td>
+<td></td>
+</tr>
+<tr>
+<td>–local-addr</td>
+<td>本地节点的IP地址</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>torchrun主要是对多节点作了分布式的优化，从而可以满足容错性和弹性伸缩。如果是单节点就不需要很复杂。</p>
+<h5 id="环境变量">环境变量</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th>含义</th>
+<th>示例</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">LOCAL_RANK</td>
+<td>GPU在单节点中的序号</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">RANK</td>
+<td>GPU在全部节点的序号</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">GROUP_RANK</td>
+<td>worker组的rank</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:left">ROLE_RANK</td>
+<td>相同ROLE的worker的rank</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td style="text-align:left">LOCAL_WORLD_SIZE</td>
+<td>与–nproc-per-node相同</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">WORLD_SIZE</td>
+<td>job中worker的总数</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">ROLE_WORLD_SIZE</td>
+<td>相同角色的worker的数量</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td style="text-align:left">MASTER_ADDR</td>
+<td>rank为0的worker的地址</td>
+<td>127.0.0.1</td>
+<td>127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:left">MASTER_PORT</td>
+<td>rank为0的worker的端口</td>
+<td>29500</td>
+<td>29500</td>
+</tr>
+<tr>
+<td style="text-align:left">TORCHELASTIC_RESTART_COUNT</td>
+<td>最近重启的worker组的数量</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:left">TORCHELASTIC_MAX_RESTARTS</td>
+<td>配置的最大重启次数</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td style="text-align:left">TORCHELASTIC_RUN_ID</td>
+<td>与–rdzv-id相同</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr>
+<td style="text-align:left">PYTHON_EXEC</td>
+<td>执行这个脚本的python的位置</td>
+<td>没有</td>
+<td>没有</td>
+</tr>
+</tbody>
+</table>
+<h3 id="代码示例">代码示例</h3>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+<span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F
+<span class="hljs-keyword">from</span> torch.utils.data <span class="hljs-keyword">import</span> Dataset, DataLoader
+<span class="hljs-keyword">from</span> torch.utils.data.distributed <span class="hljs-keyword">import</span> DistributedSampler
+<span class="hljs-keyword">from</span> torch.nn.parallel <span class="hljs-keyword">import</span> DistributedDataParallel
+<span class="hljs-keyword">from</span> torch.distributed <span class="hljs-keyword">import</span> init_process_group, destroy_process_group
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> time
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ToyModel</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(ToyModel, <span class="hljs-variable language_">self</span>).__init__()
+        <span class="hljs-variable language_">self</span>.net1 = nn.Linear(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)
+        <span class="hljs-variable language_">self</span>.relu = nn.ReLU()
+        <span class="hljs-variable language_">self</span>.net2 = nn.Linear(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.net2(<span class="hljs-variable language_">self</span>.relu(<span class="hljs-variable language_">self</span>.net1(x)))
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyTrainDataset</span>(<span class="hljs-title class_ inherited__">Dataset</span>):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, size</span>):
+        <span class="hljs-variable language_">self</span>.size = size
+        <span class="hljs-variable language_">self</span>.data = [(torch.rand(<span class="hljs-number">10</span>), <span class="hljs-number">0</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(size)]
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__len__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.size
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__getitem__</span>(<span class="hljs-params">self, index</span>):
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">self</span>.data[index]
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Trainer</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params"></span>
+<span class="hljs-params">        self,</span>
+<span class="hljs-params">        model: torch.nn.Module,</span>
+<span class="hljs-params">        train_data: DataLoader,</span>
+<span class="hljs-params">        optimizer: torch.optim.Optimizer,</span>
+<span class="hljs-params">        save_every: <span class="hljs-built_in">int</span>,</span>
+<span class="hljs-params">        snapshot_path: <span class="hljs-built_in">str</span>,</span>
+<span class="hljs-params">    </span>) -&gt; <span class="hljs-literal">None</span>:
+        <span class="hljs-variable language_">self</span>.gpu_id = <span class="hljs-built_in">int</span>(os.environ[<span class="hljs-string">&quot;LOCAL_RANK&quot;</span>])
+        <span class="hljs-variable language_">self</span>.model = model.to(<span class="hljs-variable language_">self</span>.gpu_id)
+        <span class="hljs-variable language_">self</span>.train_data = train_data
+        <span class="hljs-variable language_">self</span>.optimizer = optimizer
+        <span class="hljs-variable language_">self</span>.save_every = save_every
+        <span class="hljs-variable language_">self</span>.epochs_run = <span class="hljs-number">0</span>
+        <span class="hljs-variable language_">self</span>.snapshot_path = snapshot_path
+        <span class="hljs-keyword">if</span> os.path.exists(snapshot_path):
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Loading snapshot&quot;</span>)
+            <span class="hljs-variable language_">self</span>._load_snapshot(snapshot_path)
+
+        <span class="hljs-variable language_">self</span>.model = DistributedDataParallel(<span class="hljs-variable language_">self</span>.model, device_ids=[<span class="hljs-variable language_">self</span>.gpu_id])
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_load_snapshot</span>(<span class="hljs-params">self, snapshot_path</span>):
+        loc = <span class="hljs-string">f&quot;cuda:<span class="hljs-subst">&#123;self.gpu_id&#125;</span>&quot;</span>
+        snapshot = torch.load(snapshot_path, map_location=loc)
+        <span class="hljs-variable language_">self</span>.model.load_state_dict(snapshot[<span class="hljs-string">&quot;MODEL_STATE&quot;</span>])
+        <span class="hljs-variable language_">self</span>.epochs_run = snapshot[<span class="hljs-string">&quot;EPOCHS_RUN&quot;</span>]
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Resuming training from snapshot at Epoch <span class="hljs-subst">&#123;self.epochs_run&#125;</span>&quot;</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_run_batch</span>(<span class="hljs-params">self, source, targets</span>):
+        <span class="hljs-variable language_">self</span>.optimizer.zero_grad()
+        output = <span class="hljs-variable language_">self</span>.model(source)
+        <span class="hljs-comment"># print(output,targets)</span>
+        loss = F.cross_entropy(output, targets)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[GPU<span class="hljs-subst">&#123;self.gpu_id&#125;</span>] Loss <span class="hljs-subst">&#123;loss.item()&#125;</span>&quot;</span>)
+        loss.backward()
+        <span class="hljs-variable language_">self</span>.optimizer.step()
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_run_epoch</span>(<span class="hljs-params">self, epoch</span>):
+        b_sz = <span class="hljs-built_in">len</span>(<span class="hljs-built_in">next</span>(<span class="hljs-built_in">iter</span>(<span class="hljs-variable language_">self</span>.train_data))[<span class="hljs-number">0</span>])
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[GPU<span class="hljs-subst">&#123;self.gpu_id&#125;</span>] Epoch <span class="hljs-subst">&#123;epoch&#125;</span> | Batchsize: <span class="hljs-subst">&#123;b_sz&#125;</span> | Steps: <span class="hljs-subst">&#123;<span class="hljs-built_in">len</span>(self.train_data)&#125;</span>&quot;</span>)
+        <span class="hljs-variable language_">self</span>.train_data.sampler.set_epoch(epoch)
+        <span class="hljs-keyword">for</span> source, targets <span class="hljs-keyword">in</span> <span class="hljs-variable language_">self</span>.train_data:
+            source = source.to(<span class="hljs-variable language_">self</span>.gpu_id)
+            targets = targets.to(<span class="hljs-variable language_">self</span>.gpu_id)
+            <span class="hljs-variable language_">self</span>._run_batch(source, targets)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_save_snapshot</span>(<span class="hljs-params">self, epoch</span>):
+        snapshot = &#123;
+            <span class="hljs-string">&quot;MODEL_STATE&quot;</span>: <span class="hljs-variable language_">self</span>.model.module.state_dict(),
+            <span class="hljs-string">&quot;EPOCHS_RUN&quot;</span>: epoch,
+        &#125;
+        torch.save(snapshot, <span class="hljs-variable language_">self</span>.snapshot_path)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Epoch <span class="hljs-subst">&#123;epoch&#125;</span> | Training snapshot saved at <span class="hljs-subst">&#123;self.snapshot_path&#125;</span>&quot;</span>)
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">train</span>(<span class="hljs-params">self, max_epochs: <span class="hljs-built_in">int</span></span>):
+        <span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-variable language_">self</span>.epochs_run, max_epochs):
+            <span class="hljs-variable language_">self</span>._run_epoch(epoch)
+            <span class="hljs-keyword">if</span> <span class="hljs-variable language_">self</span>.gpu_id == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> epoch % <span class="hljs-variable language_">self</span>.save_every == <span class="hljs-number">0</span>:
+                <span class="hljs-variable language_">self</span>._save_snapshot(epoch)
+            time.sleep(<span class="hljs-number">1</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">ddp_setup</span>():
+    init_process_group(backend=<span class="hljs-string">&quot;nccl&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Parameters&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;LOCAL_RANK:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;LOCAL_RANK&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;RANK:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;RANK&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;GROUP_RANK:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;GROUP_RANK&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;ROLE_RANK:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;ROLE_RANK&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;LOCAL_WORLD_SIZE:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;LOCAL_WORLD_SIZE&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;WORLD_SIZE:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;WORLD_SIZE&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;ROLE_WORLD_SIZE:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;ROLE_WORLD_SIZE&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;MASTER_ADDR:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;MASTER_ADDR&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;MASTER_PORT:<span class="hljs-subst">&#123;os.environ[<span class="hljs-string">&#x27;MASTER_PORT&#x27;</span>]&#125;</span>&quot;</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&quot;</span>)
+    torch.cuda.set_device(<span class="hljs-built_in">int</span>(os.environ[<span class="hljs-string">&quot;LOCAL_RANK&quot;</span>]))
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load_train_objs</span>():
+    train_set = MyTrainDataset(<span class="hljs-number">2048</span>)  <span class="hljs-comment"># load your dataset</span>
+    model = ToyModel()
+    optimizer = torch.optim.SGD(model.parameters(), lr=<span class="hljs-number">1e-3</span>)
+    <span class="hljs-keyword">return</span> train_set, model, optimizer
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">prepare_dataloader</span>(<span class="hljs-params">dataset: Dataset, batch_size: <span class="hljs-built_in">int</span></span>):
+    <span class="hljs-keyword">return</span> DataLoader(
+        dataset,
+        batch_size=batch_size,
+        pin_memory=<span class="hljs-literal">True</span>,
+        shuffle=<span class="hljs-literal">False</span>,
+        sampler=DistributedSampler(dataset)
+    )
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>(<span class="hljs-params">save_every: <span class="hljs-built_in">int</span>, total_epochs: <span class="hljs-built_in">int</span>, batch_size: <span class="hljs-built_in">int</span>, snapshot_path: <span class="hljs-built_in">str</span> = <span class="hljs-string">&quot;snapshot.pt&quot;</span></span>):
+    ddp_setup()
+    dataset, model, optimizer = load_train_objs()
+    train_data = prepare_dataloader(dataset, batch_size)
+    trainer = Trainer(model, train_data, optimizer, save_every, snapshot_path)
+    trainer.train(total_epochs)
+    destroy_process_group()
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    <span class="hljs-keyword">import</span> argparse
+    parser = argparse.ArgumentParser(description=<span class="hljs-string">&#x27;simple distributed training job&#x27;</span>)
+    parser.add_argument(<span class="hljs-string">&#x27;--total_epochs&#x27;</span>, default=<span class="hljs-number">10</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;Total epochs to train the model&#x27;</span>)
+    parser.add_argument(<span class="hljs-string">&#x27;--save_every&#x27;</span>, default=<span class="hljs-number">2</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;How often to save a snapshot&#x27;</span>)
+    parser.add_argument(<span class="hljs-string">&#x27;--batch_size&#x27;</span>, default=<span class="hljs-number">512</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">int</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;Input batch size on each device (default: 32)&#x27;</span>)
+    args = parser.parse_args()
+  
+    main(args.save_every, args.total_epochs, args.batch_size)</code></pre></div>
+<p>与单卡有几点不同：</p>
+<ol>
+<li>初始化进程组：<code>init_process_group(backend=&quot;nccl&quot;)</code>，后端一般选择nccl</li>
+<li>分布式数据采样器：<code>sampler=DistributedSampler(dataset)</code></li>
+<li>封装模型：<code>self.model = DistributedDataParallel(self.model, device_ids=[self.gpu_id])</code></li>
+<li>启动torchrun脚本进行训练</li>
+</ol>
+<p>训练脚本：</p>
+<ol>
+<li>单机多卡</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs bash">torchrun \
+    --nnodes=1 \
+    --nproc_per_node=2 \
+	--master-addr=127.0.0.1 \
+	--master-port=29500 \
+	main.py</code></pre></div>
+<ol start="2">
+<li>多机多卡</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> NCCL_DEBUG=info
+<span class="hljs-built_in">export</span> NCCL_SOCKET_IFNAME=bond0
+<span class="hljs-built_in">export</span> NCCL_IB_DISABLE=1
+
+torchrun \
+    --nnodes=2 \
+    --nproc_per_node=2 \
+	--master-addr=10.208.58.27 \
+	--master-port=29602 \
+	--node-rank=0 \
+	main.py</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> NCCL_DEBUG=info
+<span class="hljs-built_in">export</span> NCCL_SOCKET_IFNAME=bond0
+<span class="hljs-built_in">export</span> NCCL_IB_DISABLE=1
+
+torchrun \
+    --nnodes=2 \
+    --nproc_per_node=1 \
+	--master-addr=10.208.58.27 \
+	--master-port=29602 \
+	--node-rank=1 \
+	main.py</code></pre></div>
+<p>注意事项：</p>
+<ol>
+<li>多进程训练，也就是会同时运行多份代码，因此训练时候要想好GPU的序号等需要自己指定的变量</li>
+<li>数据是按照进程数量分的，比如总共2048条，如果三个进程就每一个进程683</li>
+</ol>
+<p>测试环境：</p>
+<p>master：10.208.58.27 2*V100</p>
+<div class="code-wrapper"><pre><code class="hljs bash">Parameters
+LOCAL_RANK:0
+RANK:0
+GROUP_RANK:0
+ROLE_RANK:0
+LOCAL_WORLD_SIZE:2
+WORLD_SIZE:3
+ROLE_WORLD_SIZE:3
+MASTER_ADDR:10.208.58.27
+MASTER_PORT:29602
+
+Parameters
+LOCAL_RANK:1
+RANK:1
+GROUP_RANK:0
+ROLE_RANK:1
+LOCAL_WORLD_SIZE:2
+WORLD_SIZE:3
+ROLE_WORLD_SIZE:3
+MASTER_ADDR:10.208.58.27
+MASTER_PORT:29602</code></pre></div>
+<p>worker：1*A100</p>
+<div class="code-wrapper"><pre><code class="hljs bash">Parameters
+LOCAL_RANK:0
+RANK:2
+GROUP_RANK:1
+ROLE_RANK:2
+LOCAL_WORLD_SIZE:1
+WORLD_SIZE:3
+ROLE_WORLD_SIZE:3
+MASTER_ADDR:10.208.58.27
+MASTER_PORT:29602</code></pre></div>
+<h2 id="ZeRO（零冗余优化）">ZeRO（零冗余优化）</h2>
+<p>数据并行中，每个GPU上都复制了一份完整模型，当模型变大时，很容易打爆GPU的显存</p>
+<h3 id="存储消耗">存储消耗</h3>
+<p>存储主要分为两大块：Model States和Residual States</p>
+<p><strong>Model States</strong>指和模型本身息息相关的，必须存储的内容，具体包括：</p>
+<ul>
+<li><strong>optimizer states</strong> ：Adam优化算法中的momentum和variance</li>
+<li><strong>gradients</strong> ：模型梯度</li>
+<li><strong>parameters</strong> ：模型参数W</li>
+</ul>
+<p><strong>Residual States</strong>指并非模型必须的，但在训练过程中会额外产生的内容，具体包括：</p>
+<ul>
+<li><strong>activation</strong> ：激活值。在流水线并行中我们曾详细介绍过。在backward过程中使用链式法则计算梯度时会用到。有了它算梯度会更快，但它不是必须存储的，因为可以通过重新做Forward来算它。</li>
+<li><strong>temporary buffers:</strong> 临时存储。例如把梯度发送到某块GPU上做加总聚合时产生的存储。</li>
+<li><strong>unusable fragment memory</strong> ：碎片化的存储空间。虽然总存储空间是够的，但是如果取不到连续的存储空间，相关的请求也会被fail掉。对这类空间浪费可以通过内存整理来解决。</li>
+</ul>
+<h3 id="精度混合训练">精度混合训练</h3>
+<ul>
+<li>存储一份fp32的parameter，momentum和variance（统称model states）</li>
+<li>在forward开始之前，额外开辟一块存储空间，将fp32 parameter减半到fp16 parameter。</li>
+<li>正常做forward和backward，在此之间产生的activation和gradients，都用fp16进行存储。</li>
+<li>用fp16 gradients去更新fp32下的model states。</li>
+<li>当模型收敛后，fp32的parameter就是最终的参数输出。</li>
+</ul>
+<h3 id="存储大小">存储大小</h3>
+<p><img src="https://pic4.zhimg.com/80/v2-2fa670488fcc2408bd27bdcfec283d33_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其中很大的momentum和variance是Adam保存的，首先就优化他们</p>
+<h3 id="ZeRO-DP">ZeRO-DP</h3>
+<h4 id="优化状态分割">优化状态分割</h4>
+<p>将optimizer state分成若干份，每块GPU上各自维护一份。这样就减少了相当一部分的显存开销。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-6a314b96490b51cffc5aa4b693ea32c1_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>得到G是与DP一样的通信，然后还要聚合W</p>
+<p>显存和通讯量的情况如下：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-0b986b52eea0a5299dfab509a6a9323c_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="优化状态与梯度分割">优化状态与梯度分割</h4>
+<p>把梯度也拆开，每个GPU格子维护一块梯度。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-29290e0e77d330b6e0e4d7d3fb417a73_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>此时，数据并行的整体流程如下：</p>
+<p>对梯度做一次 <strong>Reduce-Scatter</strong> ，保证每个GPU上所维持的那块梯度是聚合梯度。例如对GPU1，它负责维护G1，因此其他的GPU只需要把G1对应位置的梯度发给GPU1做加总就可。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-3dd79addc9cbe6eb3d22a49037f6e087_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>每块GPU用自己对应的O和G去更新相应的W。更新完毕后， <strong>每块GPU维持了一块更新完毕的W</strong> 。同理，对W做一次 <strong>All-Gather</strong> ，将别的GPU算好的W同步到自己这来。单卡通讯量 Φ <strong>。</strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-3909bd74a4ed407a71be0c146a174b86_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4 id="优化状态、梯度与参数分割">优化状态、梯度与参数分割</h4>
+<p>每块GPU只维持对应的optimizer states，gradients和parameters</p>
+<ul>
+<li>做forward时，对W做一次 <strong>All-Gather</strong> ，取回分布在别的GPU上的W，得到一份完整的W，立刻把不是自己维护的W抛弃。</li>
+<li>做backward时，对W做一次 <strong>All-Gather</strong> ，取回完整的W，**backward做完，立刻把不是自己维护的W抛弃。</li>
+<li>做完backward，算得一份完整的梯度G，对G做一次 <strong>Reduce-Scatter</strong> ，从别的GPU上聚合自己维护的那部分梯度，<strong>聚合操作结束后，立刻把不是自己维护的G抛弃</strong> 。</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-2444902f73d6be616d72067826beb3b9_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>到这一步， <strong>我们用1.5倍的通讯开销，换回近120倍的显存</strong> 。只要梯度计算和异步更新做的好，通讯时间大部分可以被计算时间隐藏，因此这样的额外通讯开销，也是划算的。</p>
+<h3 id="ZeRO-VS-模型并行">ZeRO VS 模型并行</h3>
+<p><strong>ZeRO是模型并行的形式，数据并行的实质</strong> 。</p>
+<p>模型并行，是指在forward和backward的过程中，我只需要用自己维护的那块W来计算就行。即 <strong>同样的输入X，每块GPU上各算模型的一部分，最后通过某些方式聚合结果</strong> 。</p>
+<p>对ZeRO来说，它做forward和backward的时候，是需要把各GPU上维护的W聚合起来的，即本质上还是用完整的W进行计算。 <strong>它是不同的输入X，完整的参数W，最终再做聚合</strong> 。</p>
+<h3 id="ZeRO-Offload与ZeRO-Infinity">ZeRO-Offload与ZeRO-Infinity</h3>
+<p>核心思想是： <strong>显存不够，内存来凑</strong></p>
+<p>把要存储的大头卸载(offload)到CPU上，而把计算部分放到GPU上</p>
+<p>ZeRO-Offload的做法是：</p>
+<ul>
+<li><strong>forward和backward计算量高</strong> ，因此和它们相关的部分，例如参数W（fp16），activation，就全放入GPU。</li>
+<li><strong>update的部分计算量低</strong> ，因此和它相关的部分，全部放入CPU中。例如W(fp32)，optimizer states（fp32）和gradients(fp16)等。</li>
+</ul>
+<p>具体切分如下图：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-e9a588a403fe5e0b1f266faf47b6d31a_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>ZeRO-infinity也是同理，它们在解决的事情都是：找个除GPU之外的地方，存数据。感兴趣的朋友可以深入研究，这里就不展开了。</p>
+<h1>张量模型并行</h1>
+<p>把模型的参数纵向切开，放到不同的GPU上进行独立计算，然后再做聚合。</p>
+<p>假设现在W太大，导致单卡装不下。我们需要把W切开放到不同的卡上，则我们面临三个主要问题：</p>
+<ul>
+<li>怎么切分W。</li>
+<li>切完W后，怎么做forward。</li>
+<li>做完forward后，怎么做backward，进而求出梯度，更新权重。</li>
+</ul>
+<h2 id="按行切分权重">按行切分权重</h2>
+<p><strong>forward</strong></p>
+<p>我们用N来表示GPU的数量。有几块GPU，就把W按行维度切成几份。下图展示了N=2时的切割方式：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-a3219941a23cdd2ce1a3c352516e68fa_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>W按照行维度切开后，X的维度和它不对齐了，这可怎么做矩阵乘法呢？很简单，再把X“按列切开”就行了，如下图所示：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-c7e117053154a79a281d4e9c313f0898_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>backward</strong></p>
+<p>做完forward，取得预测值Y，进而可计算出损失L，接下来就能做backward了。我们重画一下forward的过程，并在其中加入backward的部分，整体流程图如下：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-f23a9da7560340314fe42aff3a90709f_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="按列切分权重">按列切分权重</h2>
+<p><strong>forward</strong></p>
+<p>按列切分权重后，forward计算图如下：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-b97f58d7420ec2cce8561158fe55681c_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>backward</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-4540e7bcea664717f17e0ad217f4fc23_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/622212228">具体模型拆分方式：https://zhuanlan.zhihu.com/p/622212228</a></p>
+<p>在实际应用中，对Transformer类的模型，采用最经典方法是张量模型并行 + 数据并行，并在数据并行中引入ZeRO做显存优化。具体的架构如下：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-0d097babc07ab0846b46c75254152703_720w.webp" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>其中，node表示一台机器， <strong>一般我们在同一台机器的GPU间做张量模型并行。在不同的机器上做数据并行</strong> 。图中颜色相同的部分，为一个数据并行组。凭直觉，我们可以知道这么设计大概率和两种并行方式的通讯量有关。具体来说， <strong>它与TP和DP模式下每一层的通讯量有关，也与TP和DP的backward计算方式有关</strong>。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/Pytorch/" class="print-no-link">#Pytorch</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Pytorch分布式训练</div>
+      <div>https://zhangzhao219.github.io/2023/08/12/Pytorch-distributed/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年8月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

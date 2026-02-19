@@ -1,0 +1,1509 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《高级人工智能》课程笔记：第8讲 逻辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：高级人工智能-第8讲 逻辑">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/10/20/UCAS/advanced-ai/advanced-ai-8/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《高级人工智能》课程笔记：第8讲 逻辑">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/20/x6PrGD.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmodels">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvdash">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=M%28%5Calpha%29">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=M%28KB%29%5Csubseteq%20M(%5Calpha)">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5CRightarrow%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5Cland%20%5Cneg%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=True%2CFalse%2CP%2CQ%2CR%5Ccdots">
+<meta property="og:image" content="https://math.now.sh/?inline=P">
+<meta property="og:image" content="https://math.now.sh/?inline=Q">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cneg%20P">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5Cland%20Q">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5Clor%20Q">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5CRightarrow%20Q">
+<meta property="og:image" content="https://math.now.sh/?inline=P%5CLeftrightarrow%20Q">
+<meta property="og:image" content="https://math.now.sh/?inline=M%28P%5Cland%20Q%29%3DM(P)%5Ccap%20M(Q)">
+<meta property="og:image" content="https://math.now.sh/?inline=M%28P%5Clor%20Q%29%3DM(P)%5Ccup%20M(Q)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha%20%5Cequiv%20%5Cbeta">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha%20%5CvDash%20%5Cbeta">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cbeta%20%5CvDash%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cbegin%7Baligned%7D%28%5Calpha%20%5Cwedge%20%5Cbeta%29%20%26%20%5Cequiv(%5Cbeta%20%5Cwedge%20%5Calpha)%20%5Cquad%20%20%5C%5C(%5Calpha%20%5Cvee%20%5Cbeta)%20%26%20%5Cequiv(%5Cbeta%20%5Cvee%20%5Calpha)%20%5Cquad%20%20%5C%5C((%5Calpha%20%5Cwedge%20%5Cbeta)%20%5Cwedge%20%5Cgamma)%20%26%20%5Cequiv(%5Calpha%20%5Cwedge(%5Cbeta%20%5Cwedge%20%5Cgamma))%20%5Cquad%20%20%5C%5C((%5Calpha%20%5Cvee%20%5Cbeta)%20%5Cvee%20%5Cgamma)%20%26%20%5Cequiv(%5Calpha%20%5Cvee(%5Cbeta%20%5Cvee%20%5Cgamma))%20%5Cquad%20%20%5C%5C%20%5Cneg(%5Cneg%20%5Calpha)%20%26%20%5Cequiv%20%5Calpha%20%5Cquad%20%20%5C%5C(%5Calpha%20%5CRightarrow%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%5Cbeta%20%5CRightarrow%20%5Cneg%20%5Calpha)%20%20%5C%5C(%5Calpha%20%5CRightarrow%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%20%5Calpha%20%5Cvee%20%5Cbeta)%20%5Cquad%20%20%5C%5C(%5Calpha%20%5CLeftrightarrow%20%5Cbeta)%20%26%20%5Cequiv((%5Calpha%20%5CRightarrow%20%5Cbeta)%20%5Cwedge(%5Cbeta%20%5CRightarrow%20%5Calpha))%5C%5C%20%5Cneg(%5Calpha%20%5Cwedge%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%5Calpha%20%5Cvee%20%5Cneg%20%5Cbeta)%20%5Cquad%20%20%5C%5C%20%5Cneg(%5Calpha%20%5Cvee%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%5Calpha%20%5Cwedge%20%5Cneg%20%5Cbeta)%20%5Cquad%20%20%5C%5C(%5Calpha%20%5Cwedge(%5Cbeta%20%5Cvee%20%5Cgamma))%20%26%20%5Cequiv((%5Calpha%20%5Cwedge%20%5Cbeta)%20%5Cvee(%5Calpha%20%5Cwedge%20%5Cgamma))%20%5C%5C(%5Calpha%20%5Cvee(%5Cbeta%20%5Cwedge%20%5Cgamma))%20%26%20%5Cequiv((%5Calpha%20%5Cvee%20%5Cbeta)%20%5Cwedge(%5Calpha%20%5Cvee%20%5Cgamma))%20%5Cend%7Baligned%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=2%5En">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5CRightarrow%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5Cland%20%5Cneg%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5CRightarrow%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvdash">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CSigma">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CSigma%20%5Cvdash%20A">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CSigma%20%5Cvdash%20A">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5Cvdash_i%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5Cvdash_i%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%20%5Cvdash_i%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cnvdash%5Cemptyset">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cvdash%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7BKB%2C%5Cneg%5Calpha%5C%7D%20%5Cvdash%5Cemptyset">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvdash">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/03/xqkuwj.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cvdash%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cland%5Cneg%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=S%3D%5C%7BKB%2C%5Cneg%5Calpha%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cvdash%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cland%5Cneg%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=S%3D%5C%7BKB%2C%5Cneg%5Calpha%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=S%3D%5C%7BKB%2C%5Cneg%5Calpha%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%85_1%2C%F0%9D%91%85_2%2C%E2%8B%AF%2C%F0%9D%91%85_%F0%9D%91%99">
+<meta property="og:image" content="https://math.now.sh/?inline=i%3D1">
+<meta property="og:image" content="https://math.now.sh/?inline=l">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%85_1%2C%F0%9D%91%85_2%2C%E2%8B%AF%2C%F0%9D%91%85_%F0%9D%91%99">
+<meta property="og:image" content="https://math.now.sh/?inline=%C2%AC%F0%9D%91%85_%F0%9D%91%96">
+<meta property="og:image" content="https://math.now.sh/?inline=R_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%85_%F0%9D%91%96">
+<meta property="og:image" content="https://math.now.sh/?inline=R_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%E2%8B%AF%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%F0%9D%91%85_%F0%9D%91%96">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%E2%8B%AF%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%C2%AC%F0%9D%91%85_%F0%9D%91%96">
+<meta property="og:image" content="https://s1.ax1x.com/2022/11/03/xq1HJS.png">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CRightarrow">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha_1%5Cland%5Ccdots%5Cland%5Calpha_n%5Cland%28%5Calpha_1%5Cland%5Ccdots%5Cland%5Calpha_n%5CRightarrow%5Cbeta%29%5Cmodels%5Cbeta">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cvdash%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvdash">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha%5Cin%20RC%28KB%29">
+<meta property="og:image" content="https://math.now.sh/?inline=RC%28KB%29">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=KB">
+<meta property="og:image" content="https://math.now.sh/?inline=KB">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha_1%5Cland%5Ccdots%5Cland%5Calpha_k%5CRightarrow%20b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha_1%2C%5Ccdots%5Calpha_k">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha_i%20%5Cin%20RC%28KB%29(i%3D1%2C%5Ccdots%2Ck)">
+<meta property="og:image" content="https://math.now.sh/?inline=b%5Cin%20RC%28KB%29">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=b%5Cnotin%20RC%28KB%29">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cmodels%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha%5Cin%20RC%28KB%29">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cvdash%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%3D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%3D%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cforall">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cexists">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9D%F0%9D%91%9F%F0%9D%91%92%F0%9D%91%91%F0%9D%91%96%F0%9D%91%90%F0%9D%91%8E%F0%9D%91%A1%F0%9D%91%92%28%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%2C%E2%80%A6%2C%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_%F0%9D%91%9B%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%3D%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_2">
+<meta property="og:image" content="https://math.now.sh/?inline=Term%20%3D%F0%9D%91%93%F0%9D%91%A2%F0%9D%91%9B%F0%9D%91%90%F0%9D%91%A1%F0%9D%91%96%F0%9D%91%9C%F0%9D%91%9B%28%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%2C%E2%80%A6%2C%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_%F0%9D%91%9B%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cforall%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%90%B5%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%98%F0%9D%91%92%F0%9D%91%99%F0%9D%91%92%F0%9D%91%A6%29%20%5CRightarrow%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cforall%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%90%B5%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%98%F0%9D%91%92%F0%9D%91%99%F0%9D%91%92%F0%9D%91%A6%29%20%5Cland%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cexists%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%91%86%F0%9D%91%A1%F0%9D%91%8E%F0%9D%91%9B%F0%9D%91%93%F0%9D%91%9C%F0%9D%91%9F%F0%9D%91%91%29%20%5Cland%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cexists%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%91%86%F0%9D%91%A1%F0%9D%91%8E%F0%9D%91%9B%F0%9D%91%93%F0%9D%91%9C%F0%9D%91%9F%F0%9D%91%91%29%20%5CRightarrow%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))">
+<meta property="og:image" content="https://math.now.sh/?from=%5Cforall%20x%20%5Cforall%20y%3D%5Cforall%20y%20%5Cforall%20x%0A">
+<meta property="og:image" content="https://math.now.sh/?from=%5Cexists%20x%20%5Cexists%20y%3D%5Cexists%20y%20%5Cexists%20x%0A">
+<meta property="og:image" content="https://math.now.sh/?from=%5Cexists%20x%20%5Cforall%20y%20%5Cneq%20%5Cforall%20y%20%5Cexists%20x%0A">
+<meta property="og:image" content="https://math.now.sh/?from=%5Cforall%20x%20%28A%29%20%3D%20%5Cneg%20%5Cexists%20x%20(%5Cneg%20A)%0A">
+<meta property="og:image" content="https://math.now.sh/?from=%5Cexists%20x%20%28A%29%20%3D%20%5Cneg%20%5Cforall%20x%20(%5Cneg%20A)%0A">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bl_1%E2%88%A8%E2%80%A6%E2%88%A8l_k%2C%20%20%20%20%20%20%20%20%20m_1%E2%88%A8%E2%80%A6%E2%88%A8m_n%7D%7B%28l_1%E2%88%A8%E2%80%A6%E2%88%A8l_%7B(i-1%29%7D%E2%88%A8l_%7B(i%2B1)%7D%E2%88%A8%E2%80%A6%E2%88%A8l_k%E2%88%A8m_1%E2%88%A8%E2%80%A6%E2%88%A8m_%7B(j-1)%7D%E2%88%A8m_%7B(j%2B1)%7D%E2%88%A8%E2%80%A6%E2%88%A8m_n)%CE%B8%7D%2CUNIFY(%F0%9D%91%99_%F0%9D%91%96%2C%5Cneg%20%F0%9D%91%9A_%F0%9D%91%97)%3D%5Ctheta">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctheta">
+<meta property="og:image" content="https://math.now.sh/?inline=L">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cneg%20L">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cneg%20%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bp_1%5E%E2%80%B2%2Cp_2%5E%E2%80%B2%2C%E2%80%A6%2Cp_n%5E%E2%80%B2%2C%20%20%28p_1%E2%88%A7p_2%E2%88%A7%E2%80%A6%E2%88%A7p_n%E2%87%92q%29%7D%7Bq%CE%B8%7D%2C%5Cforall%20i%EF%BC%8C%F0%9D%91%9D_%F0%9D%91%96%5E%E2%80%B2%5Ctheta%3D%F0%9D%91%9D_%F0%9D%91%96%20%5Ctheta">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctheta">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F">
+<meta property="og:image" content="https://math.now.sh/?inline=u%E2%88%88U">
+<meta property="og:image" content="https://math.now.sh/?inline=%5B0%2C1%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%20%20%20%EF%BC%9AU%E2%86%92%5B0%2C1%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29">
+<meta property="og:image" content="https://math.now.sh/?inline=u%E2%88%88U">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29">
+<meta property="og:image" content="https://math.now.sh/?inline=u">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=u">
+<meta property="og:image" content="https://math.now.sh/?inline=%5B0%2C1%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29">
+<meta property="og:image" content="https://math.now.sh/?inline=u">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=u">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29">
+<meta property="og:image" content="https://math.now.sh/?inline=0">
+<meta property="og:image" content="https://math.now.sh/?inline=1">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=U%3D%5C%7Bu_1%2C%20u_2%2C%5Ccdots%2C%20u_n%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=F%3D%5C%7B%CE%BC_F%28u_1%29%2C%CE%BC_F(u_2)%2C%E2%80%A6%20%2C%CE%BC_F(u_n)%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=F%3D%5Csum_%7Bi%3D1%7D%5En%20%CE%BC_F%28u_i%29%2Fu_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=u_i">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u_i%29%2Fu_i">
+<meta property="og:image" content="https://math.now.sh/?inline=F%2C%20G">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=u%E2%88%88U">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29%3D%CE%BC_G%20(u)">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=F%3DG">
+<meta property="og:image" content="https://math.now.sh/?inline=F%2CG">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=u%E2%88%88U">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_F%28u%29%E2%89%A4%CE%BC_G%20(u)">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=F%20%E2%8A%86G">
+<meta property="og:image" content="https://math.now.sh/?inline=F%2CG">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=F%5Ccup%20G">
+<meta property="og:image" content="https://math.now.sh/?inline=F%E2%88%A9G">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=F%E2%88%AAG%3A%CE%BC_%7BF%E2%88%AAG%7D%28u%29%3Dmax%5C%7B%CE%BC_F%20(u)%2C%CE%BC_G%20(u)%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=F%E2%88%A9G%3A%CE%BC_%7BF%E2%88%A9G%7D%28u%29%3Dmin%5C%7B%CE%BC_F%20(u)%2C%CE%BC_G%20(u)%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=%EF%B9%81F">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=%C2%ACF%3A%CE%BC_%7B%C2%ACF%7D%28u%29%3D1-%CE%BC_F%20(u)">
+<meta property="og:image" content="https://math.now.sh/?inline=V">
+<meta property="og:image" content="https://math.now.sh/?inline=W">
+<meta property="og:image" content="https://math.now.sh/?inline=V">
+<meta property="og:image" content="https://math.now.sh/?inline=W">
+<meta property="og:image" content="https://math.now.sh/?inline=V%C3%97W%3D%5C%7B%28v%2Cw%29%7C%5Cforall%20v%E2%88%88V%EF%BC%8C%5Cforall%20w%E2%88%88W%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=V">
+<meta property="og:image" content="https://math.now.sh/?inline=W">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=V%C3%97W">
+<meta property="og:image" content="https://math.now.sh/?inline=R%20%E2%8A%86%20V%C3%97W">
+<meta property="og:image" content="https://math.now.sh/?inline=V%20%5Cstackrel%7BR%7D%7B%5Crightarrow%7D%20W">
+<meta property="og:image" content="https://math.now.sh/?inline=V%C3%97W">
+<meta property="og:image" content="https://math.now.sh/?inline=%28v%2Cw%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28v%2Cw%29%E2%88%88R">
+<meta property="og:image" content="https://math.now.sh/?inline=v">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=%28v%2Cw%29%E2%88%89R">
+<meta property="og:image" content="https://math.now.sh/?inline=v">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=F_i">
+<meta property="og:image" content="https://math.now.sh/?inline=U_i%28i%3D1%2C2%2C%E2%80%A6%2Cn%29">
+<meta property="og:image" content="https://math.now.sh/?inline=F_1%20%5Ctimes%20F_2%20%5Ctimes%20%5Ccdots%20%5Ctimes%20F_n%3D%5Cint_%7Bu_1%20%5Ctimes%20u_2%20%5Ctimes%20%5Ccdots%20%5Ctimes%20u_n%7D%5Cleft%28%5Cmu_%7BF_1%7D%5Cleft(u_1%5Cright%29%20%5Cwedge%20%5Cmu_%7BF_2%7D%5Cleft(u_2%5Cright)%20%5Cwedge%20%5Ccdots%20%5Cwedge%20%5Cmu_%7BF_n%7D%5Cleft(u_n%5Cright)%5Cright)%20%2F%5Cleft(u_1%2C%20u_2%2C%20%5Ccdots%2C%20u_n%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=F_1%2CF_2%2C%E2%80%A6%2CF_n">
+<meta property="og:image" content="https://math.now.sh/?inline=U_1%C3%97U_2%C3%97%E2%80%A6%C3%97U_n">
+<meta property="og:image" content="https://math.now.sh/?inline=U_1%C3%97U_2%C3%97%E2%80%A6%C3%97U_n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=R">
+<meta property="og:image" content="https://math.now.sh/?inline=U_1%C3%97U_2%C3%97%E2%80%A6%C3%97U_n">
+<meta property="og:image" content="https://math.now.sh/?inline=R%3D%5Cint_%7BU_1%20%5Ctimes%20U_2%20%5Ctimes%20%5Ccdots%20%5Ctimes%20U_n%7D%20%5Cmu_R%5Cleft%28u_1%2C%20u_2%2C%20%5Ccdots%2C%20u_n%5Cright%29%20%2F%5Cleft(u_1%2C%20u_2%2C%20%5Ccdots%2C%20u_n%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1">
+<meta property="og:image" content="https://math.now.sh/?inline=R_2">
+<meta property="og:image" content="https://math.now.sh/?inline=U%C3%97V">
+<meta property="og:image" content="https://math.now.sh/?inline=V%C3%97W">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1">
+<meta property="og:image" content="https://math.now.sh/?inline=R_2">
+<meta property="og:image" content="https://math.now.sh/?inline=U">
+<meta property="og:image" content="https://math.now.sh/?inline=W">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1%CE%BFR_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmu_%7BR_1%20%5Ccirc%20R_2%7D%28u%2C%20w%29%3D%5Cvee%5Cleft%5C%7B%5Cmu_%7BR_1%7D(u%2C%20v)%20%5Cwedge%20%5Cmu_%7BR_2%7D(v%2C%20w)%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%E2%88%A7">
+<meta property="og:image" content="https://math.now.sh/?inline=%E2%88%A8">
+<meta property="og:image" content="https://math.now.sh/?inline=x%E2%88%88U">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5C%20is%5C%20%20F">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=F">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5C%20is%5C%20%20mF">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_%7B%E9%9D%9EF%7D%28u%29%3D1-%CE%BC_F%20(u)%2Cu%5Cin%20%5B0%2C1%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_%7B%E9%9D%9E%E5%B8%B8F%7D%28u%29%3D%CE%BC_F%5E2%20(u)%2Cu%5Cin%20%5B0%2C1%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%BC_%7B%E6%9C%89%E4%BA%9BF%7D%28u%29%3D%CE%BC_F%5E%7B%5Cfrac%7B1%7D%7B2%7D%7D%20(u)%2Cu%5Cin%20%5B0%2C1%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmu_%7B%E7%A1%AE%E5%AE%9E%20F%7D%28u%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D2%20%5Cmu_F%5E2(u)%20%26%2C0%20%5Cleq%20%5Cmu_F(u)%20%5Cleq%200.5%20%5C%5C%201-2%5Cleft(1-%5Cmu_F(u)%5Cright)%5E2%20%26%20%2C0.5%3C%5Cmu_F(u)%20%5Cleq%201%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=%5BA%EF%BC%8CB%5D%EF%BC%8CA%3CB">
+<meta property="og:image" content="https://math.now.sh/?inline=L">
+<meta property="og:image" content="https://math.now.sh/?inline=%5BA%EF%BC%8CB%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=2%5EL-1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CE%B4">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=max_%7Bx%20%5Cin%20%5Ba%2Cb%5D%7Df%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7BNormal%7D%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28x_i%29%3D%5Cfrac%7Bf(x_i)%7D%7B%5Csum_%7Bj%3D1%7D%5EN%20f(x_j)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28x_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x_i">
+<meta property="og:image" content="https://math.now.sh/?inline=x_i">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B1%7D%7B2%7D">
+<meta property="article:published_time" content="2022-10-20T17:48:20.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Advanced AI">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/10/20/x6PrGD.md.png">
+  
+  
+  
+  <title>研究生课程：高级人工智能-第8讲 逻辑 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：高级人工智能-第8讲 逻辑</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-20 17:48" pubdate>
+          2022年10月20日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：高级人工智能-第8讲 逻辑</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《高级人工智能》课程笔记：第8讲 逻辑</p>
+<span id="more"></span>
+<h1>第8讲 逻辑</h1>
+<p>什么是“数理逻辑”？</p>
+<ul>
+<li>一种“算法”：输入+输出，不仅要得到算法，还要证明是正确的</li>
+<li>一种“关于证明、推理等思考活动”的算法</li>
+</ul>
+<p>一个算法，以任何作为输入，输出的都是正确答案</p>
+<p>输入：</p>
+<ul>
+<li>知识库：任意的问题假设，前提条件等</li>
+<li>查询：想要解决的问题</li>
+</ul>
+<p>输出答案：该查询在此知识库上的正确答案</p>
+<p>如果有上面的算法，那么所有难题都能得到解决</p>
+<p>如果有这样的一种“终极算法”，首先要将<strong>自然语言表达的知识库和查询</strong>表示成<strong>形式语言表达的知识库和查询</strong>，然后通过<strong>自动的知识推理</strong>，得到<strong>形式语言表达的答案</strong></p>
+<h2 id="逻辑的研究内容">逻辑的研究内容</h2>
+<p>解决如下问题：</p>
+<ul>
+<li>关于逻辑的形式语言是什么</li>
+<li>在形式语言上的自动推理的算法是什么
+<ul>
+<li>该算法复杂度如何，是否可以更高效</li>
+</ul>
+</li>
+<li>自动推理的算法是否正确
+<ul>
+<li>算法正确性的严格证明</li>
+</ul>
+</li>
+</ul>
+<p>研究形式化定义的sentences之间的关系</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/x6PrGD"><img src="https://s1.ax1x.com/2022/10/20/x6PrGD.md.png" srcset="/img/loading.gif" lazyload alt="x6PrGD.md.png"></a></p>
+<p>左侧是语义的蕴含关系（逻辑推导），<img src="https://math.now.sh?inline=%5Cmodels" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，从知识库出发一定正确的知识</p>
+<p>右侧是语法的演绎关系（形式推演），<img src="https://math.now.sh?inline=%5Cvdash" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，通过算法可以从知识库推出的</p>
+<p>如果左侧的是右侧的子集，说明正确的结论都在算法推导的里面，那么说明这个算法是完备的，但是有一些结论可能算法计算出来是错误的</p>
+<p>如果右侧的是左侧的子集，说明算法推出来的结论都是正确的，因此算法是可靠的，但是有可能有一些正确的结论算法算不出来</p>
+<p>如果兼具完备性和可靠性，那么证明这个算法是正确的。</p>
+<h2 id="语义">语义</h2>
+<p>如果<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的条件下是 <code>true</code>，那么称<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是句子<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的一个 <code>model</code>，句子<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的所有model的集合是<img src="https://math.now.sh?inline=M%28%5Calpha%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><code>KB</code>指的是一些句子的集合</p>
+<p><img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：在任意的条件下（一个真值指派）只要<img src="https://math.now.sh?inline=KB" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>成立，<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>一定成立，称为 <code>KB</code>蕴含<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此<img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=M%28KB%29%5Csubseteq%20M(%5Calpha)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>完全等价（当且仅当）（<img src="https://math.now.sh?inline=KB%20%5CRightarrow%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=KB%20%5Cland%20%5Cneg%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是不可满足的）</p>
+<h2 id="命题逻辑">命题逻辑</h2>
+<h3 id="语法（逻辑推导）">语法（逻辑推导）</h3>
+<p>命题是一种声明，要么是真的，要么是假的，不存在第三种可能</p>
+<p>命题逻辑通常不考虑时间</p>
+<p>原子命题指的是最小的命题，用大写字母表达</p>
+<p>文字是原子命题，或者是原子命题的否</p>
+<p>一个句子是一个原子句或者复杂句</p>
+<p>一个原子句表示为：<img src="https://math.now.sh?inline=True%2CFalse%2CP%2CQ%2CR%5Ccdots" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>复杂句有五种表示形式，与复杂句之间的真值表：</p>
+<table>
+<thead>
+<tr>
+<th><img src="https://math.now.sh?inline=P" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th><img src="https://math.now.sh?inline=Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th><img src="https://math.now.sh?inline=%5Cneg%20P" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th><img src="https://math.now.sh?inline=P%5Cland%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th><img src="https://math.now.sh?inline=P%5Clor%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th><img src="https://math.now.sh?inline=P%5CRightarrow%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th><img src="https://math.now.sh?inline=P%5CLeftrightarrow%20Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>连接词和集合之间的联系：</p>
+<p><img src="https://math.now.sh?inline=M%28P%5Cland%20Q%29%3DM(P)%5Ccap%20M(Q)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=M%28P%5Clor%20Q%29%3DM(P)%5Ccup%20M(Q)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>两个句子是逻辑等价的-两个句子的model相同：<img src="https://math.now.sh?inline=%5Calpha%20%5Cequiv%20%5Cbeta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 当且仅当 <img src="https://math.now.sh?inline=%5Calpha%20%5CvDash%20%5Cbeta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 且 <img src="https://math.now.sh?inline=%5Cbeta%20%5CvDash%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>定理：</p>
+<p><img src="https://math.now.sh?inline=%5Cbegin%7Baligned%7D%28%5Calpha%20%5Cwedge%20%5Cbeta%29%20%26%20%5Cequiv(%5Cbeta%20%5Cwedge%20%5Calpha)%20%5Cquad%20%20%5C%5C(%5Calpha%20%5Cvee%20%5Cbeta)%20%26%20%5Cequiv(%5Cbeta%20%5Cvee%20%5Calpha)%20%5Cquad%20%20%5C%5C((%5Calpha%20%5Cwedge%20%5Cbeta)%20%5Cwedge%20%5Cgamma)%20%26%20%5Cequiv(%5Calpha%20%5Cwedge(%5Cbeta%20%5Cwedge%20%5Cgamma))%20%5Cquad%20%20%5C%5C((%5Calpha%20%5Cvee%20%5Cbeta)%20%5Cvee%20%5Cgamma)%20%26%20%5Cequiv(%5Calpha%20%5Cvee(%5Cbeta%20%5Cvee%20%5Cgamma))%20%5Cquad%20%20%5C%5C%20%5Cneg(%5Cneg%20%5Calpha)%20%26%20%5Cequiv%20%5Calpha%20%5Cquad%20%20%5C%5C(%5Calpha%20%5CRightarrow%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%5Cbeta%20%5CRightarrow%20%5Cneg%20%5Calpha)%20%20%5C%5C(%5Calpha%20%5CRightarrow%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%20%5Calpha%20%5Cvee%20%5Cbeta)%20%5Cquad%20%20%5C%5C(%5Calpha%20%5CLeftrightarrow%20%5Cbeta)%20%26%20%5Cequiv((%5Calpha%20%5CRightarrow%20%5Cbeta)%20%5Cwedge(%5Cbeta%20%5CRightarrow%20%5Calpha))%5C%5C%20%5Cneg(%5Calpha%20%5Cwedge%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%5Calpha%20%5Cvee%20%5Cneg%20%5Cbeta)%20%5Cquad%20%20%5C%5C%20%5Cneg(%5Calpha%20%5Cvee%20%5Cbeta)%20%26%20%5Cequiv(%5Cneg%20%5Calpha%20%5Cwedge%20%5Cneg%20%5Cbeta)%20%5Cquad%20%20%5C%5C(%5Calpha%20%5Cwedge(%5Cbeta%20%5Cvee%20%5Cgamma))%20%26%20%5Cequiv((%5Calpha%20%5Cwedge%20%5Cbeta)%20%5Cvee(%5Calpha%20%5Cwedge%20%5Cgamma))%20%5C%5C(%5Calpha%20%5Cvee(%5Cbeta%20%5Cwedge%20%5Cgamma))%20%26%20%5Cequiv((%5Calpha%20%5Cvee%20%5Cbeta)%20%5Cwedge(%5Calpha%20%5Cvee%20%5Cgamma))%20%5Cend%7Baligned%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>KB: 满足命题逻辑语法的sentence的集合</p>
+<p>假设：这组sentence中，一共有n个原子命题</p>
+<p>真值指派（truth assignment）：对每个原子名字赋值</p>
+<p>一共有<img src="https://math.now.sh?inline=2%5En" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>种真值指派，其中：使得KB中的每个sentence都为真的真值指派，就是KB的model</p>
+<p>在此基础上，在命题逻辑中，我们可以明确的定义<img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ul>
+<li>如果一个句子在任意的model下面都为true，则这个句子是永真的</li>
+<li>演绎定理： <img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>当且仅当<img src="https://math.now.sh?inline=KB%20%5CRightarrow%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是永真的</li>
+<li>如果一个句子在某些model下为真，则称这个句子是可满足的</li>
+<li>如果一个句子在任何model下都为假，则称这个句子是不可满足的</li>
+<li><img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>当且仅当<img src="https://math.now.sh?inline=KB%20%5Cland%20%5Cneg%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是不可满足的</li>
+</ul>
+<p><img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>蕴含，不是连接词：描述的是蕴含的一种关系，有了知识表示后，额外推出其他的知识</p>
+<p><img src="https://math.now.sh?inline=KB%20%5CRightarrow%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>命题逻辑里面的连接词，用于知识表示（实际上是可以替代的，但是引入这个符号进行知识表示比较方便）</p>
+<h3 id="形式推演">形式推演</h3>
+<p>推出：<img src="https://math.now.sh?inline=%5Cvdash" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，通过算法可以从知识库推出的</p>
+<p>共有两套规则（11条规则和归结原理）</p>
+<p>11条形式推演规则：（不需要背诵）</p>
+<p>形式可推演性：A在命题逻辑中由<img src="https://math.now.sh?inline=%5CSigma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>形式可推演的，记作<img src="https://math.now.sh?inline=%5CSigma%20%5Cvdash%20A" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，当且仅当<img src="https://math.now.sh?inline=%5CSigma%20%5Cvdash%20A" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>能由（有限次使用）命题逻辑的形式推演规则生成</p>
+<p>句子<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>可以通过规则<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>从KB中得出，记作<img src="https://math.now.sh?inline=KB%20%5Cvdash_i%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><strong>可靠性：任意时刻当<img src="https://math.now.sh?inline=KB%20%5Cvdash_i%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，<img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>同时成立，那么说<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是可靠的</strong></p>
+<p><strong>完备性：任意时刻当<img src="https://math.now.sh?inline=KB%5Cmodels%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，<img src="https://math.now.sh?inline=KB%20%5Cvdash_i%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>同时成立，那么说<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是完备的</strong></p>
+<h4 id="归结原理">归结原理</h4>
+<p>合取范式：子句（文字和析取符号）的合取形式，子句内部是没有合取的（CNF）转换为合取范式是多项式时间复杂度的</p>
+<p>归结原理：互补文字可以互相消去（但是每一次只能消去一对）</p>
+<p><strong>归结原理是既可靠又完备的</strong></p>
+<p>证明：若<img src="https://math.now.sh?inline=KB%5Cnvdash%5Cemptyset" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=KB%5Cvdash%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>当且仅当<img src="https://math.now.sh?inline=%5C%7BKB%2C%5Cneg%5Calpha%5C%7D%20%5Cvdash%5Cemptyset" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cvdash" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>仅使用归结法则获得新子句</p>
+<p>使用上述证明来证明知识库可以推出某个子句</p>
+<h4 id="证明：归结原理既可靠又完备">证明：归结原理既可靠又完备</h4>
+<p>在研究可靠性与完备性问题时，应当把语法层面的知识理解为Groundtruth</p>
+<p>因此可靠性可以大概表述为：语义上推演得到的知识在语法上正确。因此要证明归结原理的可靠性，即证明</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xqkuwj"><img src="https://s1.ax1x.com/2022/11/03/xqkuwj.md.png" srcset="/img/loading.gif" lazyload alt="xqkuwj.md.png"></a></p>
+<p>使用真值表进行证明即可</p>
+<p>完备性可以大概表述为：如果语法上能够推理得到的，那么语义上正确。</p>
+<p>即证明：如果<img src="https://math.now.sh?inline=KB%5Cmodels%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=KB%5Cvdash%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>RC(S)：对S内部的全部子句进行归结后的集合。</p>
+<p>完备性证明</p>
+<p><img src="https://math.now.sh?inline=KB%5Cmodels%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>等价于<img src="https://math.now.sh?inline=KB%5Cland%5Cneg%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>永假，等价于<img src="https://math.now.sh?inline=S%3D%5C%7BKB%2C%5Cneg%5Calpha%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是不可满足的。</p>
+<p><img src="https://math.now.sh?inline=KB%5Cvdash%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>等价于<img src="https://math.now.sh?inline=KB%5Cland%5Cneg%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>可以归结出空子句，即RC(S)包含空子句</p>
+<p>则只需要证明：如果<img src="https://math.now.sh?inline=S%3D%5C%7BKB%2C%5Cneg%5Calpha%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是不可满足的，则RC(S)包含空子句</p>
+<p>等价于证明逆否命题：如果RC(S)不包含空子句，则<img src="https://math.now.sh?inline=S%3D%5C%7BKB%2C%5Cneg%5Calpha%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是可满足的</p>
+<p>证明：针对S中的原子命题<img src="https://math.now.sh?inline=%F0%9D%91%85_1%2C%F0%9D%91%85_2%2C%E2%8B%AF%2C%F0%9D%91%85_%F0%9D%91%99" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，我们构造如下的model：</p>
+<p>首先，因为RC(S)中不包含空集，即RC(S)中不包含永假的子句。</p>
+<p>从<img src="https://math.now.sh?inline=i%3D1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=l" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> , 顺序指派<img src="https://math.now.sh?inline=%F0%9D%91%85_1%2C%F0%9D%91%85_2%2C%E2%8B%AF%2C%F0%9D%91%85_%F0%9D%91%99" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的真值：</p>
+<p>如果RC(S)中包含一个子句，此子句包含<img src="https://math.now.sh?inline=%C2%AC%F0%9D%91%85_%F0%9D%91%96" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，且此子句的其它文字都已经被指派为False（在之前的步骤中进行的）或不包含其它文字，则把<img src="https://math.now.sh?inline=R_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>指派为False；否则，把<img src="https://math.now.sh?inline=%F0%9D%91%85_%F0%9D%91%96" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>指派为True</p>
+<p>我们用反证法证明：<strong>这个真值指派使得RC(S)中的子句都为真</strong>。</p>
+<p>假设，在此过程的第i步，我们这样来指派<img src="https://math.now.sh?inline=R_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>使得某个子句C为False，且假设这是首次出现False的子句；此时，子句C只能是如下两种形式之一：<img src="https://math.now.sh?inline=%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%E2%8B%AF%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%F0%9D%91%85_%F0%9D%91%96" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>或者 <img src="https://math.now.sh?inline=%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%E2%8B%AF%5Clor%F0%9D%90%B9%F0%9D%91%8E%F0%9D%91%99%F0%9D%91%A0%F0%9D%91%92%5Clor%C2%AC%F0%9D%91%85_%F0%9D%91%96" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>显然，如果RC(S)中只包含以上两个子句之一，子句C是不会在此真值指派中为False的。因此， RC(S)此时应该同时包含了以上两个子句。</p>
+<p>以上两个子句显然是满足归结条件的，也就是说，它归结后的子句也应该在RC(S)中；同时，该子句已经被指派为False了；这与我们之前的假设矛盾。</p>
+<p>因此这个真值指派使得RC(S)中的子句都为真，进而S是可满足的。</p>
+<p>可以转换为搜索问题，<strong>如何使用A*搜索实现呢？</strong></p>
+<h4 id="Modus-Ponens规则">Modus Ponens规则</h4>
+<p>以限制知识库里面的句子形式为代价，获得时间复杂度上的提升</p>
+<p>上述提到的归结原理具有完备性，这是很好的性质，对于许多现实世界的应用，如果添加一些限制，可以实现更高效的推理。为了换取更好的inference的时间效率，缩小命题逻辑的表达范围，得到适用于Horn Form的Modus Ponens规则，是另外一种形式的归结原理。</p>
+<p>KB为Definite clause的合取形式：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/xq1HJS"><img src="https://s1.ax1x.com/2022/11/03/xq1HJS.png" srcset="/img/loading.gif" lazyload alt="xq1HJS.png"></a></p>
+<p>Definite clause: 每一个句子有且只有一个文字是正文字的析取形式</p>
+<p>只有两种形式：①原子命题②命题的合取<img src="https://math.now.sh?inline=%5CRightarrow" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>另外一个命题</p>
+<p>Horn clause: 每一个句子最多一个文字是正文字的析取形式</p>
+<p>PPT例子：KB是全部句子的情况下是否能推出Q</p>
+<p>前向推理：从条件出发去推结论</p>
+<p>前向推理是数据驱动的，可能推出一些结论与我们要推出的结论是无关的</p>
+<p>后向推理：从结论返回推出条件</p>
+<p>后向推理是目的驱动的，找为了推出这个结论所需要的条件，因此通常情况下后向推理比前向推理好，<strong>但是也存在某种情况前向推理比后向推理好</strong></p>
+<p>（全连接神经网络）</p>
+<h5 id="Modus-Ponens规则证明">Modus Ponens规则证明</h5>
+<p>证明是可靠的，即证明<img src="https://math.now.sh?inline=%5Calpha_1%5Cland%5Ccdots%5Cland%5Calpha_n%5Cland%28%5Calpha_1%5Cland%5Ccdots%5Cland%5Calpha_n%5CRightarrow%5Cbeta%29%5Cmodels%5Cbeta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>通过真值表进行证明即可</p>
+<p>证明是完备的：</p>
+<p>若<img src="https://math.now.sh?inline=KB%5Cmodels%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=KB%5Cvdash%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。此时，<img src="https://math.now.sh?inline=KB" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中仅包含definite子句，<img src="https://math.now.sh?inline=%5Cvdash" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>仅使用Modus Ponens规则，且<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是一个正文字</p>
+<p>证明：RC(KB)是KB中原始的句子和通过Modus Ponens推出的句子的全部集合</p>
+<ol>
+<li>构造如下的真值指派<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：对于任意的symbol a，a指派为True当且仅当<img src="https://math.now.sh?inline=%5Calpha%5Cin%20RC%28KB%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<p>（如果一个正文字在<img src="https://math.now.sh?inline=RC%28KB%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中，就设为True，不在就设置为False）</p>
+<ol start="2">
+<li>接下来证明：在<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>下，<img src="https://math.now.sh?inline=KB" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为真。</li>
+</ol>
+<p>反证：若此时<img src="https://math.now.sh?inline=KB" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为False，那么：必存在一个definite子句，在<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>下为False。</p>
+<p>若该子句为<img src="https://math.now.sh?inline=%5Calpha_1%5Cland%5Ccdots%5Cland%5Calpha_k%5CRightarrow%20b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 也就是说，在m中，<img src="https://math.now.sh?inline=%5Calpha_1%2C%5Ccdots%5Calpha_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>均为True，且<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为False。根据1中的定义， <img src="https://math.now.sh?inline=%5Calpha_i%20%5Cin%20RC%28KB%29(i%3D1%2C%5Ccdots%2Ck)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，又根据Modus Ponens规则，<img src="https://math.now.sh?inline=b%5Cin%20RC%28KB%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>根据1中的定义，在<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中， <img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为True。推出矛盾。</p>
+<p>若该子句为<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，在<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>下为<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为False，则<img src="https://math.now.sh?inline=b%5Cnotin%20RC%28KB%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，矛盾</p>
+<ol start="3">
+<li>若<img src="https://math.now.sh?inline=KB%5Cmodels%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，根据蕴含的定义：在<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中，<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为真；则根据1中的定义，<img src="https://math.now.sh?inline=%5Calpha%5Cin%20RC%28KB%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，也就是说：<img src="https://math.now.sh?inline=KB%5Cvdash%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<p><strong>命题逻辑的缺点：能表达的东西比较有限。</strong></p>
+<h2 id="一阶谓词逻辑">一阶谓词逻辑</h2>
+<h3 id="语法和语义">语法和语义</h3>
+<p>命题逻辑假设世界上都是事实(fact)，一阶谓词逻辑认为世界上还包括对象、关系和函数等等。</p>
+<p>基本元素：</p>
+<ol>
+<li>常量和变量</li>
+<li>谓词（哥哥、大于等）Predicates</li>
+<li>函数</li>
+<li>连接词（与命题逻辑的连接词完全相同）</li>
+<li><img src="https://math.now.sh?inline=%3D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%3D%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为真当且仅当<img src="https://math.now.sh?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>指向现实世界中的同一个对象</li>
+<li>量词：全称量词<img src="https://math.now.sh?inline=%5Cforall" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和存在量词<img src="https://math.now.sh?inline=%5Cexists" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<h4 id="简单句与复杂句">简单句与复杂句</h4>
+<p>简单句：<img src="https://math.now.sh?inline=%F0%9D%91%9D%F0%9D%91%9F%F0%9D%91%92%F0%9D%91%91%F0%9D%91%96%F0%9D%91%90%F0%9D%91%8E%F0%9D%91%A1%F0%9D%91%92%28%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%2C%E2%80%A6%2C%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_%F0%9D%91%9B%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>或<img src="https://math.now.sh?inline=%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%3D%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=Term%20%3D%F0%9D%91%93%F0%9D%91%A2%F0%9D%91%9B%F0%9D%91%90%F0%9D%91%A1%F0%9D%91%96%F0%9D%91%9C%F0%9D%91%9B%28%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_1%2C%E2%80%A6%2C%F0%9D%91%A1%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%9A_%F0%9D%91%9B%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>或常量或变量</p>
+<p>嵌套函数会造成很大的问题。命题逻辑的算法一定会停止(decidable可判定的)，但是由于嵌套函数的存在，谓词逻辑只是半可判定的。</p>
+<p>复杂句：使用连接词对简单句进行连接构成复杂句</p>
+<h4 id="量词">量词</h4>
+<p>在谓词逻辑中，要将每一个符号指派到现实世界中，将常量转化为对象、将谓词转化为关系、将函数符号转化为真正的函数</p>
+<p>量词与变量是对应的，有变量一定要有量词来量化</p>
+<p>全称量词：变量所有实例的合取形式</p>
+<p><img src="https://math.now.sh?inline=%5Cforall%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%90%B5%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%98%F0%9D%91%92%F0%9D%91%99%F0%9D%91%92%F0%9D%91%A6%29%20%5CRightarrow%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>错误的形式：<img src="https://math.now.sh?inline=%5Cforall%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%90%B5%F0%9D%91%92%F0%9D%91%9F%F0%9D%91%98%F0%9D%91%92%F0%9D%91%99%F0%9D%91%92%F0%9D%91%A6%29%20%5Cland%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>存在量词：变量所有实例的析取形式</p>
+<p><img src="https://math.now.sh?inline=%5Cexists%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%91%86%F0%9D%91%A1%F0%9D%91%8E%F0%9D%91%9B%F0%9D%91%93%F0%9D%91%9C%F0%9D%91%9F%F0%9D%91%91%29%20%5Cland%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>错误的形式：<img src="https://math.now.sh?inline=%5Cexists%20x%20%28%F0%9D%90%B4%F0%9D%91%A1(%F0%9D%91%A5%2C%20%F0%9D%91%86%F0%9D%91%A1%F0%9D%91%8E%F0%9D%91%9B%F0%9D%91%93%F0%9D%91%9C%F0%9D%91%9F%F0%9D%91%91%29%20%5CRightarrow%20%F0%9D%91%86%F0%9D%91%9A%F0%9D%91%8E%F0%9D%91%9F%F0%9D%91%A1(%F0%9D%91%A5))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>量词的属性关系</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=%5Cforall%20x%20%5Cforall%20y%3D%5Cforall%20y%20%5Cforall%20x%0A" srcset="/img/loading.gif" lazyload /></p><p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=%5Cexists%20x%20%5Cexists%20y%3D%5Cexists%20y%20%5Cexists%20x%0A" srcset="/img/loading.gif" lazyload /></p><p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=%5Cexists%20x%20%5Cforall%20y%20%5Cneq%20%5Cforall%20y%20%5Cexists%20x%0A" srcset="/img/loading.gif" lazyload /></p><p>两种量词之间可以相互转换</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=%5Cforall%20x%20%28A%29%20%3D%20%5Cneg%20%5Cexists%20x%20(%5Cneg%20A)%0A" srcset="/img/loading.gif" lazyload /></p><p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=%5Cexists%20x%20%28A%29%20%3D%20%5Cneg%20%5Cforall%20x%20(%5Cneg%20A)%0A" srcset="/img/loading.gif" lazyload /></p><h3 id="一阶谓词的形式推演（命题化）">一阶谓词的形式推演（命题化）</h3>
+<p>全称实例化：实例化全称量词蕴含的每一个实例</p>
+<p>注意在实例化的过程中，第n次循环只能嵌套n次函数</p>
+<p>因此算法可能不会停止，为semi-decidable的</p>
+<p>存在实例化：赋予一个新的常量符号</p>
+<h3 id="一阶谓词逻辑的归结原理">一阶谓词逻辑的归结原理</h3>
+<p><strong>去掉存在量词和存在量词修饰的变量，使得句子里面的每一个变量都是全称量词修饰的变量，且为合取范式</strong></p>
+<p>合一算子：替换后等价的替换方式（只能将常量赋值给变量）</p>
+<p>归结原理：<img src="https://math.now.sh?inline=%5Cfrac%7Bl_1%E2%88%A8%E2%80%A6%E2%88%A8l_k%2C%20%20%20%20%20%20%20%20%20m_1%E2%88%A8%E2%80%A6%E2%88%A8m_n%7D%7B%28l_1%E2%88%A8%E2%80%A6%E2%88%A8l_%7B(i-1%29%7D%E2%88%A8l_%7B(i%2B1)%7D%E2%88%A8%E2%80%A6%E2%88%A8l_k%E2%88%A8m_1%E2%88%A8%E2%80%A6%E2%88%A8m_%7B(j-1)%7D%E2%88%A8m_%7B(j%2B1)%7D%E2%88%A8%E2%80%A6%E2%88%A8m_n)%CE%B8%7D%2CUNIFY(%F0%9D%91%99_%F0%9D%91%96%2C%5Cneg%20%F0%9D%91%9A_%F0%9D%91%97)%3D%5Ctheta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>尤其注意要赋值<img src="https://math.now.sh?inline=%5Ctheta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>归结原理既完备又可靠，证明比较复杂不讲</p>
+<h4 id="归结策略">归结策略</h4>
+<p>可能有很多的归结策略，选择哪种方式进行归结呢？</p>
+<p><strong>没有一种归结策略适用于全部情况</strong></p>
+<p>广度优先策略：扩展所有可能的情况然后归结</p>
+<p>优点：</p>
+<ul>
+<li>当问题有解时保证能找到最短归结路径。</li>
+<li>是一种完备的归结策略。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>归结出了许多无用的子句</li>
+<li>既浪费时间，又浪费空间</li>
+</ul>
+<p>广度优先对大问题的归结容易产生组合爆炸，但对小问题却仍是一种比较好的归结策略。</p>
+<p>常用的归结策略可分为两大类：</p>
+<ul>
+<li>删除策略是通过删除某些无用的子句来缩小归结范围</li>
+<li>限制策略是通过对参加归结的子句进行某些限制，来减少归结的盲目性，以尽快得到空子句。</li>
+</ul>
+<h5 id="删除策略">删除策略</h5>
+<p>删除法主要想法是：把子句集中无用的子句删除掉，这就会缩小搜索范围，减少比较次数，从而提高归结效率。</p>
+<p>删除纯文字：</p>
+<ul>
+<li>如果某文字<img src="https://math.now.sh?inline=L" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在子句集中不存在可与其互补的文字<img src="https://math.now.sh?inline=%5Cneg%20L" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则称该文字为纯文字。</li>
+<li>在归结过程中，纯文字不可能被消除，用包含纯文字的子句进行归结也不可能得到空子句</li>
+<li>对子句集而言，删除包含纯文字的子句，是不影响其不可满足性的。</li>
+</ul>
+<p>重言式删除法：</p>
+<ul>
+<li>如果一个子句中包含有互补的文字对，则称该子句为重言式。</li>
+<li>重言式是真值为真的子句。对一个子句集来说，不管是增加还是删除一个真值为真的子句，都不会影响该子句集的不可满足性。</li>
+<li>因此，可从子句集中删去重言式。</li>
+</ul>
+<h5 id="限制策略">限制策略</h5>
+<p>限制策略要慎重，防止可以得到空子句但是限制后就得不到空子句了</p>
+<p>支持集策略：每一次参加归结的两个亲本子句中，至少应该有一个是由目标公式的否定所得到的子句或它们的后裔。（就是别自己本身进行归结，带上<img src="https://math.now.sh?inline=%5Cneg%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>一起归结）</p>
+<p><strong>支持集策略是完备的，即当子句集为不可满足时，则由支持集策略一定能够归结出一个空子句。</strong></p>
+<ul>
+<li>可以把支持集策略看成是在广度优先策略中引入了某种限制条件，这种限制条件代表一种启发信息，因而有较高的效率</li>
+<li>支持集策略限制了子句集元素的剧增，但会增加空子句所在的深度（结果可能不是最优）。</li>
+<li>支持集策略具有逆向推理的含义，由于进行归结的亲本子句中至少有一个与目标子句有关，因此推理过程可以看作是沿目标、子目标的方向前进的。</li>
+</ul>
+<p>单文字子句策略：每次参加归结的两个亲本子句中至少有一个子句是单文字子句</p>
+<p>采用单文字子句策略，归结式包含的文字数将少于其非单文字亲本子句中的文字数，这将有利于向空子句的方向发展，因此会有较高的归结效率。</p>
+<p><strong>单文字子句策略是不完备的，即当子句集为不可满足时，用这种策略不一定能归结出空子句。原因： 没有可用的单文字字句</strong></p>
+<p>祖先过滤策略：满足以下两个条件中的任意一个就可进行归结：</p>
+<ul>
+<li>两个亲本子句中至少有一个是初始子句集中的子句。</li>
+<li>如果两个亲本子句都不是初始子句集中的子句，则一个子句应该是另一个子句的先辈子句。</li>
+</ul>
+<p><strong>祖先过滤策略是完备的</strong></p>
+<h3 id="Generalized-Modus-Ponens（前见推理）">Generalized Modus Ponens（前见推理）</h3>
+<p><img src="https://math.now.sh?inline=%5Cfrac%7Bp_1%5E%E2%80%B2%2Cp_2%5E%E2%80%B2%2C%E2%80%A6%2Cp_n%5E%E2%80%B2%2C%20%20%28p_1%E2%88%A7p_2%E2%88%A7%E2%80%A6%E2%88%A7p_n%E2%87%92q%29%7D%7Bq%CE%B8%7D%2C%5Cforall%20i%EF%BC%8C%F0%9D%91%9D_%F0%9D%91%96%5E%E2%80%B2%5Ctheta%3D%F0%9D%91%9D_%F0%9D%91%96%20%5Ctheta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>GMP的可靠性证明：将量词去掉变量替换为<img src="https://math.now.sh?inline=%5Ctheta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，使用命题逻辑的Modus Ponens证明即可</p>
+<p>同样有前向推理和后向推理，同样是半可判定的</p>
+<p>但是，如果仅包含一阶谓词的definite子句且没有函数，那么是decidable的（也叫Datalog）</p>
+<h2 id="模糊计算">模糊计算</h2>
+<p>清晰的概念：对象是否属于这个概念是明确的。</p>
+<p>模糊性的概念：对象从属的界限是模糊的，随判断人的思维而定</p>
+<p>取得精确数据不可能或很困难，也没有必要获取精确数据</p>
+<p>要使计算机能够模仿人脑，对复杂系统进行识别和判断，出路何在？</p>
+<p>1965年扎德(Zadeh)教授开创了对“模糊数学”的研究。他认为数学是可以模糊的，主张从精度方面“后退”一步。他提出用隶属函数使模糊概念数学化。</p>
+<h3 id="模糊集的定义">模糊集的定义</h3>
+<p>设<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是给定论域，<img src="https://math.now.sh?inline=%CE%BC_F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是把任意<img src="https://math.now.sh?inline=u%E2%88%88U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>映射为<img src="https://math.now.sh?inline=%5B0%2C1%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上某个实值的函数，即<img src="https://math.now.sh?inline=%CE%BC_F%20%20%20%EF%BC%9AU%E2%86%92%5B0%2C1%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则称<img src="https://math.now.sh?inline=%CE%BC_F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为定义在<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的一个隶属函数，由<img src="https://math.now.sh?inline=%CE%BC_F%28u%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（对所有<img src="https://math.now.sh?inline=u%E2%88%88U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>）所构成的集合<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>称为<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的一个模糊集，<img src="https://math.now.sh?inline=%CE%BC_F%28u%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>称为<img src="https://math.now.sh?inline=u" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的隶属度。</p>
+<p>模糊集<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>完全是由隶属函数<img src="https://math.now.sh?inline=%CE%BC_F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来刻画的，<img src="https://math.now.sh?inline=%CE%BC_F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>把<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中的每一个元素<img src="https://math.now.sh?inline=u" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>都映射为<img src="https://math.now.sh?inline=%5B0%2C1%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的一个值<img src="https://math.now.sh?inline=%CE%BC_F%28u%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%CE%BC_F%28u%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的值表示<img src="https://math.now.sh?inline=u" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>隶属于<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的程度，其值越大，表示<img src="https://math.now.sh?inline=u" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>隶属于<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的程度越高。当<img src="https://math.now.sh?inline=%CE%BC_F%28u%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>仅取<img src="https://math.now.sh?inline=0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，模糊集<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>便退化为一个普通集合。</p>
+<p>模糊性：事件发生的程度，而不是一个事件是否发生</p>
+<p>随机性：描述事件发生的不确定性，即一个事件发生与否</p>
+<h3 id="模糊集的表示">模糊集的表示</h3>
+<p>离散且为有限论域的表示方法</p>
+<p>设论域<img src="https://math.now.sh?inline=U%3D%5C%7Bu_1%2C%20u_2%2C%5Ccdots%2C%20u_n%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为离散论域，则其模糊集可表示为：<img src="https://math.now.sh?inline=F%3D%5C%7B%CE%BC_F%28u_1%29%2C%CE%BC_F(u_2)%2C%E2%80%A6%20%2C%CE%BC_F(u_n)%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>为了能够表示出论域中的元素与其隶属度之间的对应关系，扎德引入了一种模糊集的表示方式：先为论域中的每个元素都标上其隶属度，然后再用“+”号把它们连接起来，即<img src="https://math.now.sh?inline=F%3D%5Csum_%7Bi%3D1%7D%5En%20%CE%BC_F%28u_i%29%2Fu_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%CE%BC_F%28u_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=u_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的隶属度；“<img src="https://math.now.sh?inline=%CE%BC_F%28u_i%29%2Fu_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>”不是相除关系，只是一个记号；“+”也不是算术意义上的加，只是一个连接符号。</p>
+<p>连续论域的表示方法：如果论域是连续的，则其模糊集可用一个实函数来表示。</p>
+<h3 id="模糊集的运算">模糊集的运算</h3>
+<p>设<img src="https://math.now.sh?inline=F%2C%20G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分别是<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的两个模糊集，对任意<img src="https://math.now.sh?inline=u%E2%88%88U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，都有<img src="https://math.now.sh?inline=%CE%BC_F%28u%29%3D%CE%BC_G%20(u)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>成立，则称<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>等于<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，记为<img src="https://math.now.sh?inline=F%3DG" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设<img src="https://math.now.sh?inline=F%2CG" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分别是<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的两个模糊集，对任意<img src="https://math.now.sh?inline=u%E2%88%88U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，都有<img src="https://math.now.sh?inline=%CE%BC_F%28u%29%E2%89%A4%CE%BC_G%20(u)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>成立，则称<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>包含<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，记为<img src="https://math.now.sh?inline=F%20%E2%8A%86G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设<img src="https://math.now.sh?inline=F%2CG" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分别是<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的两个模糊集，则<img src="https://math.now.sh?inline=F%5Ccup%20G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>、<img src="https://math.now.sh?inline=F%E2%88%A9G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分别称为<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的并集、交集，它们的隶属函数分别为：</p>
+<p><img src="https://math.now.sh?inline=F%E2%88%AAG%3A%CE%BC_%7BF%E2%88%AAG%7D%28u%29%3Dmax%5C%7B%CE%BC_F%20(u)%2C%CE%BC_G%20(u)%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=F%E2%88%A9G%3A%CE%BC_%7BF%E2%88%A9G%7D%28u%29%3Dmin%5C%7B%CE%BC_F%20(u)%2C%CE%BC_G%20(u)%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的模糊集，称<img src="https://math.now.sh?inline=%EF%B9%81F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的补集，其隶属函数为：<img src="https://math.now.sh?inline=%C2%ACF%3A%CE%BC_%7B%C2%ACF%7D%28u%29%3D1-%CE%BC_F%20(u)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>两个模糊集之间的运算实际上就是逐点对隶属函数作相应的运算</p>
+<h3 id="模糊关系">模糊关系</h3>
+<p>经典集合的关系：</p>
+<p>笛卡尔积：设<img src="https://math.now.sh?inline=V" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是两个普通集合，<img src="https://math.now.sh?inline=V" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的笛卡尔乘积为<img src="https://math.now.sh?inline=V%C3%97W%3D%5C%7B%28v%2Cw%29%7C%5Cforall%20v%E2%88%88V%EF%BC%8C%5Cforall%20w%E2%88%88W%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>从<img src="https://math.now.sh?inline=V" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的关系<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>：<img src="https://math.now.sh?inline=V%C3%97W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的一个子集，即<img src="https://math.now.sh?inline=R%20%E2%8A%86%20V%C3%97W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，记为<img src="https://math.now.sh?inline=V%20%5Cstackrel%7BR%7D%7B%5Crightarrow%7D%20W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>对于<img src="https://math.now.sh?inline=V%C3%97W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中的元素<img src="https://math.now.sh?inline=%28v%2Cw%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若<img src="https://math.now.sh?inline=%28v%2Cw%29%E2%88%88R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则称<img src="https://math.now.sh?inline=v" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>有关系<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；若<img src="https://math.now.sh?inline=%28v%2Cw%29%E2%88%89R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则称<img src="https://math.now.sh?inline=v" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>没有关系</p>
+<p>模糊集合的关系：在二元关系上定义隶属度函数</p>
+<p>设<img src="https://math.now.sh?inline=F_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<img src="https://math.now.sh?inline=U_i%28i%3D1%2C2%2C%E2%80%A6%2Cn%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的模糊集，则称</p>
+<p><img src="https://math.now.sh?inline=F_1%20%5Ctimes%20F_2%20%5Ctimes%20%5Ccdots%20%5Ctimes%20F_n%3D%5Cint_%7Bu_1%20%5Ctimes%20u_2%20%5Ctimes%20%5Ccdots%20%5Ctimes%20u_n%7D%5Cleft%28%5Cmu_%7BF_1%7D%5Cleft(u_1%5Cright%29%20%5Cwedge%20%5Cmu_%7BF_2%7D%5Cleft(u_2%5Cright)%20%5Cwedge%20%5Ccdots%20%5Cwedge%20%5Cmu_%7BF_n%7D%5Cleft(u_n%5Cright)%5Cright)%20%2F%5Cleft(u_1%2C%20u_2%2C%20%5Ccdots%2C%20u_n%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>为<img src="https://math.now.sh?inline=F_1%2CF_2%2C%E2%80%A6%2CF_n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的笛卡尔乘积，它是<img src="https://math.now.sh?inline=U_1%C3%97U_2%C3%97%E2%80%A6%C3%97U_n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的一个模糊集</p>
+<p>在<img src="https://math.now.sh?inline=U_1%C3%97U_2%C3%97%E2%80%A6%C3%97U_n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的一个<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>元模糊关系<img src="https://math.now.sh?inline=R" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是指以<img src="https://math.now.sh?inline=U_1%C3%97U_2%C3%97%E2%80%A6%C3%97U_n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为论域的一个模糊集，记为</p>
+<p><img src="https://math.now.sh?inline=R%3D%5Cint_%7BU_1%20%5Ctimes%20U_2%20%5Ctimes%20%5Ccdots%20%5Ctimes%20U_n%7D%20%5Cmu_R%5Cleft%28u_1%2C%20u_2%2C%20%5Ccdots%2C%20u_n%5Cright%29%20%2F%5Cleft(u_1%2C%20u_2%2C%20%5Ccdots%2C%20u_n%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设<img src="https://math.now.sh?inline=R_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=R_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分别是<img src="https://math.now.sh?inline=U%C3%97V" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=V%C3%97W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的两个模糊关系，则<img src="https://math.now.sh?inline=R_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=R_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的合成是从<img src="https://math.now.sh?inline=U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=W" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的一个模糊关系，记为<img src="https://math.now.sh?inline=R_1%CE%BFR_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。其隶属函数为<img src="https://math.now.sh?inline=%5Cmu_%7BR_1%20%5Ccirc%20R_2%7D%28u%2C%20w%29%3D%5Cvee%5Cleft%5C%7B%5Cmu_%7BR_1%7D(u%2C%20v)%20%5Cwedge%20%5Cmu_%7BR_2%7D(v%2C%20w)%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中其中，<img src="https://math.now.sh?inline=%E2%88%A7" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%E2%88%A8" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>分别表示取最小和取最大</p>
+<h3 id="模糊逻辑">模糊逻辑</h3>
+<p>模糊逻辑：定义模糊谓词、模糊量词、模糊修饰语等</p>
+<p>模糊谓词：设<img src="https://math.now.sh?inline=x%E2%88%88U" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为模糊谓词，即U中的一个模糊关系，则模糊命题可表示为<img src="https://math.now.sh?inline=x%5C%20is%5C%20%20F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中的模糊谓词<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>可以是大、小、年轻、年老、冷、暖、长、短等。</p>
+<p>模糊量词：模糊逻辑中使用的模糊量词，如极少、很少、几个、少数、多数、大多数、几乎所有等。</p>
+<p>模糊修饰语：</p>
+<p>设<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是模糊修饰语，<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是变量，<img src="https://math.now.sh?inline=F" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是模糊谓词，则模糊命题可表示为为<img src="https://math.now.sh?inline=x%5C%20is%5C%20%20mF" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，模糊修饰语也称为程度词，常用的程度词有“很”、“非常”、“有些”、“绝对”等。</p>
+<p>模糊修饰语的四种主要运算：</p>
+<ol>
+<li>求补：表示否定，如“不”、“非”等，其隶属函数的表示为：<img src="https://math.now.sh?inline=%CE%BC_%7B%E9%9D%9EF%7D%28u%29%3D1-%CE%BC_F%20(u)%2Cu%5Cin%20%5B0%2C1%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>集中：表示“很”、“非常”等，其效果是减少隶属函数的值：<img src="https://math.now.sh?inline=%CE%BC_%7B%E9%9D%9E%E5%B8%B8F%7D%28u%29%3D%CE%BC_F%5E2%20(u)%2Cu%5Cin%20%5B0%2C1%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>扩张：表示“有些”、“稍微”等，其效果是增加隶属函数的值：<img src="https://math.now.sh?inline=%CE%BC_%7B%E6%9C%89%E4%BA%9BF%7D%28u%29%3D%CE%BC_F%5E%7B%5Cfrac%7B1%7D%7B2%7D%7D%20(u)%2Cu%5Cin%20%5B0%2C1%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>加强对比：表示“明确”、“确定”等，其效果是增加0.5以上隶属函数的值，减少0.5以下隶属函数的值：<img src="https://math.now.sh?inline=%5Cmu_%7B%E7%A1%AE%E5%AE%9E%20F%7D%28u%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D2%20%5Cmu_F%5E2(u)%20%26%2C0%20%5Cleq%20%5Cmu_F(u)%20%5Cleq%200.5%20%5C%5C%201-2%5Cleft(1-%5Cmu_F(u)%5Cright)%5E2%20%26%20%2C0.5%3C%5Cmu_F(u)%20%5Cleq%201%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<h2 id="演化计算">演化计算</h2>
+<p>演化计算（Evolutionary Computation, EC）：</p>
+<ul>
+<li>在基因和种群层次上模拟自然界生物进化过程与机制的问题求解技术和计算模型。</li>
+<li>思想源于生物遗传学和适者生存的自然规律</li>
+<li>基于达尔文（Darwin）的进化论和孟德尔（Mendel）的遗传变异理论
+<ul>
+<li>达尔文的自然选择学说是一种被人们广泛接受的生物进化学说：
+<ul>
+<li>生物要生存下去，就必须进行生存斗争。</li>
+<li>具有有利变异的个体容易存活下来，并且有更多的机会将有利变异传给后代；具有不利变异的个体就容易被淘汰，产生后代的机会也少的多。</li>
+<li>适者生存，不适者淘汰：自然选择。</li>
+<li>遗传和变异是决定生物进化的内在因素。（相对稳定+新的物种）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>典型代表：</p>
+<ul>
+<li>遗传算法（Genetic Algorithm, GA）</li>
+<li>进化策略（Evolutionary Strategy, ES）</li>
+<li>进化规划（Evolutionary Programming, EP）</li>
+<li>遗传规划（Genetic Programming, GP）</li>
+</ul>
+<p><strong>演化计算：一种模拟自然界生物进化过程与机制进行问题求解的自组织、自适应的随机搜索技术。</strong></p>
+<p>演化规则：“物竞天择、适者生存”</p>
+<p>演化操作：繁殖（Reproduction）、变异（Mutation）、竞争（Competition）、选择（Selection）</p>
+<h3 id="遗传算法">遗传算法</h3>
+<p>遗传算法的基本思想是从初始种群出发，采用优胜劣汰、适者生存的自然法则选择个体，并通过杂交、变异来产生新一代种群，如此逐代进化，直到满足目标为止</p>
+<p>基本概念：</p>
+<ul>
+<li>种群（Population）：多个备选解的集合。</li>
+<li>个体（Individual）：种群中的单个元素，通常由一个用于描述其基本遗传结构的数据结构来表示。例如，长度为L的0、1串。</li>
+<li>适应度（Fitness）函数：用来对种群中各个个体的环境适应性进行度量的函数，函数值是遗传算法实现优胜劣汰的主要依据</li>
+<li>遗传操作（Genetic Operator）：作用于种群而产生新的种群的操作。选择（Selection）、交叉（Cross-over）、变异（Mutation）</li>
+</ul>
+<p>遗传算法主要由染色体编码、初始种群设定、适应度函数设定、遗传操作设计等几大部分所组成，</p>
+<p>算法基本步骤：</p>
+<ol>
+<li>选择编码策略，将问题搜索空间中每个可能的点用相应的编码策略表示出来，即形成染色体；</li>
+<li>定义遗传策略，包括种群规模N，交叉、变异方法，以及选择概率Pr、交叉概率Pc、变异概率Pm等遗传参数；</li>
+<li>令t=0，随机选择N个染色体初始化种群P(0)；</li>
+<li>定义适应度函数f；</li>
+<li>计算P(t)中每个染色体的适应值；</li>
+<li>t=t+1；</li>
+<li>运用选择算子，从P(t-1)中得到P(t)；</li>
+<li>对P(t)中的每个染色体，按概率Pc参与交叉；</li>
+<li>对染色体中的基因，以概率Pm参与变异运算；</li>
+<li>判断群体性能是否满足预先设定的终止标准，若不满足返回(5)。</li>
+</ol>
+<h3 id="遗传编码">遗传编码</h3>
+<h4 id="二进制编码">二进制编码</h4>
+<p>二进制编码是将原问题的结构变换为染色体的位串结构。假设某一参数的取值范围是<img src="https://math.now.sh?inline=%5BA%EF%BC%8CB%5D%EF%BC%8CA%3CB" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。用长度为<img src="https://math.now.sh?inline=L" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的二进制编码串来表示该参数，将<img src="https://math.now.sh?inline=%5BA%EF%BC%8CB%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>等分成<img src="https://math.now.sh?inline=2%5EL-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个子部分，记每一个等分的长度为<img src="https://math.now.sh?inline=%CE%B4" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>优点：易于理解和实现，可表示的模式数最多</p>
+<p>缺点：海明悬崖。当算法从7改进到8时，就必须改变所有的位</p>
+<h4 id="格雷编码">格雷编码</h4>
+<p>要求两个连续整数的编码之间只能有一个码位不同，其余码位都是完全相同的。有效地解决了海明悬崖问题。</p>
+<p>基本原理：</p>
+<ul>
+<li>二进制码-&gt;格雷码（编码）：从最右边一位起，依次将每一位与左边一位异或，作为对应格雷码该位的值，最左边一位不变；</li>
+<li>格雷码-&gt;二进制码（解码）：从左边第二位起，将每位与左边一位解码后的值异或，作为该位解码后的值，最左边一位依然不变。</li>
+</ul>
+<h4 id="符号编码">符号编码</h4>
+<p>个体染色体编码串中的基因值取自一个无数值含义，而只有代码含义的符号集。</p>
+<h3 id="适应度函数">适应度函数</h3>
+<p>适应度函数是一个用于对个体的适应性进行度量的函数。个体的适应度值越大，它被遗传到下一代种群中的概率越大</p>
+<p>常用的适应度函数</p>
+<ul>
+<li>原始适应度函数：直接将待求解问题的目标函数<img src="https://math.now.sh?inline=f%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>定义为遗传算法的适应度函数。
+<ul>
+<li>例如：求最大值<img src="https://math.now.sh?inline=max_%7Bx%20%5Cin%20%5Ba%2Cb%5D%7Df%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，<img src="https://math.now.sh?inline=f%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>即为<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的原始适应度函数。</li>
+<li>优点：能够直接反映出待求解问题的最初求解目标</li>
+<li>缺点：有可能出现适应度值为负的情况</li>
+</ul>
+</li>
+<li>标准适应度函数
+<ul>
+<li>在遗传算法中，一般要求适应度函数非负，并其适应度值越大越好。这就往往需要对原始适应函数进行某种变换，将其转换为标准的度量方式，以满足进化操作的要求，这样所得到的适应度函数被称为标准适应度函数<img src="https://math.now.sh?inline=f_%7BNormal%7D%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+</ul>
+<h3 id="基本遗传操作">基本遗传操作</h3>
+<p>选择(selection)操作：根据选择概率按某种策略从当前种群中挑选出一定数目的个体，使它们能够有更多的机会被遗传到下一代中</p>
+<ul>
+<li>比例选择：各个个体被选中的概率与其适应度大小成正比。</li>
+<li>轮盘赌选择：个体被选中的概率取决于该个体的相对适应度。<img src="https://math.now.sh?inline=P%28x_i%29%3D%5Cfrac%7Bf(x_i)%7D%7B%5Csum_%7Bj%3D1%7D%5EN%20f(x_j)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中，<img src="https://math.now.sh?inline=P%28x_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是个体<img src="https://math.now.sh?inline=x_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的相对适应度，即个体<img src="https://math.now.sh?inline=x_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>被选中的概率，<img src="https://math.now.sh?inline=f%28x_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是个体<img src="https://math.now.sh?inline=x_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的原始适应度。</li>
+</ul>
+<p>交叉(crossover)操作：按照某种方式对选择的父代个体的染色体的部分基因进行交配重组，从而形成新的个体。</p>
+<p>二进制交叉：二进制编码情况下所采用的交叉操作</p>
+<ul>
+<li>单点交叉：先在两个父代个体的编码串中随机设定一个交叉点，然后对这两个父代个体交叉点前面或后面部分的基因进行交换，并生成子代中的两个新的个体。</li>
+<li>两点交叉：先在两个父代个体的编码串中随机设定两个交叉点，然后再按这两个交叉点进行部分基因交换，生成子代中的两个新的个体。</li>
+<li>均匀交叉：先随机生成一个与父串具有相同长度的二进制串（交叉模版），然后再利用该模版对两个父串进行交叉，即将模版中1对应的位进行交换，而0对应的位不交换，依此生成子代中的两个新的个体。</li>
+</ul>
+<p>实值交叉：在实数编码情况下所采用的交叉操作，主要包括离散交叉和算术交叉</p>
+<ul>
+<li>部分离散交叉：先在两个父代个体的编码向量中随机选择一部分分量，然后对这部分分量进行交换，生成子代中的两个新的个体。</li>
+<li>整体交叉：对两个父代个体的编码向量中的所有分量，都以<img src="https://math.now.sh?inline=%5Cfrac%7B1%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的概率进行交换，从而生成子代中的两个新的个体。</li>
+</ul>
+<p>变异(Mutation)操作：对选中个体的染色体中的某些基因进行变动，以形成新的个体。遗传算法中的变异操作增加了算法的局部随机搜索能力，从而可以维持种群的多样性。</p>
+<ul>
+<li>二进制变异：先随机地产生一个变异位，然后将该变异位置上的基因值由“0”变为“1”，或由“1”变为“0”，产生一个新的个体。</li>
+<li>实值变异：用另外一个在规定范围内的随机实数去替换原变异位置上的基因值，产生一个新的个体。
+<ul>
+<li>基于次序的变异：先随机地产生两个变异位置，然后交换这两个变异位置上的基因。</li>
+</ul>
+</li>
+</ul>
+<p>精英主义 （Elitism）</p>
+<p>仅仅从产生的子代中选择基因去构造新的种群可能会丢失掉上一代种群中的很多信息。也就是说当利用交叉和变异产生新的一代时，我们有很大的可能把在某个中间步骤中得到的最优解丢失。</p>
+<p>使用精英主义（Elitism）方法，在每一次产生新的一代时，我们首先把当前最优解原封不动的复制到新的一代中，其他步骤不变。这样任何时刻产生的一个最优解都可以存活到遗传算法结束。</p>
+<h3 id="遗传算法特点">遗传算法特点</h3>
+<ul>
+<li>自组织、自适应和自学习性—概率转移准则，非确定性规则
+<ul>
+<li>确定进化方案后，算法将利用进化过程中得到的信息自行组织搜索；基于自然的选择策略，优胜劣汰；</li>
+<li>遗传算法很快就能找到良好的解，即使是在很复杂的解空间中
+<ul>
+<li>采用随机方法进行最优解搜索，选择体现了向最优解迫近</li>
+<li>交叉体现了最优解的产生，变异体现了全局最优解的复盖</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>本质并行性—群体搜索
+<ul>
+<li>算法本身非常适合大规模并行，各种群分别独立进化，不需要相互间交换信息</li>
+<li>可以同时搜索解空间的多个区域并相互间交流信息，使得演化计算能以较少的计算获得较大的收益。</li>
+</ul>
+</li>
+<li>不需要其他知识，只需要影响搜索方向的目标函数和相应的适应度函数
+<ul>
+<li>对待求解问题的指标函数没有什么特殊的要求，如不要求连续性、导数存在、单峰值等假设</li>
+<li>容易形成通用算法程序</li>
+<li>遗传算法不能解决那些“大海捞针”的问题，所谓“大海捞针”问题就是没有一个确切的适应度函数表征个体好坏的问题，遗传算法对这类问题无法找到收敛的路径。</li>
+</ul>
+</li>
+<li>理论上证明算法的收敛性很困难</li>
+<li>多用于解决实际问题</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Advanced-AI/" class="print-no-link">#Advanced AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：高级人工智能-第8讲 逻辑</div>
+      <div>https://zhangzhao219.github.io/2022/10/20/UCAS/advanced-ai/advanced-ai-8/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/22/UCAS/information-retrieval/information-retrieval-16/" title="研究生课程：现代信息检索-第16讲 Web搜索">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第16讲 Web搜索</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/19/KMP/" title="KMP算法详解">
+                        <span class="hidden-mobile">KMP算法详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

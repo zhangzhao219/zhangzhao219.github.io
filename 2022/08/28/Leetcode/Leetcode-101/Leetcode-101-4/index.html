@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Leetcode 刷题笔记-Leetcode 101 第4章 二分查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 刷题笔记-Leetcode 101 第4章 二分查找">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-4/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Leetcode 刷题笔记-Leetcode 101 第4章 二分查找">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-28T13:08:26.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.195Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Leetcode 刷题笔记-Leetcode 101 第4章 二分查找 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Leetcode 刷题笔记-Leetcode 101 第4章 二分查找</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-28 13:08" pubdate>
+          2022年8月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Leetcode 刷题笔记-Leetcode 101 第4章 二分查找</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Leetcode 刷题笔记-Leetcode 101 第4章 二分查找</p>
+<span id="more"></span>
+<h1>二分查找</h1>
+<p>二分查找也常被称为二分法或者折半查找，每次查找时通过将待查找区间分成两部分并只取一部分继续查找，将查找的复杂度大大减少。</p>
+<p>二分查找也可以看作双指针的一种特殊情况，但我们一般会将二者区分。双指针类型的题，指针通常是一步一步移动的，而在二分查找里，指针每次移动半个区间长度。</p>
+<h2 id="一点点细节小笔记">一点点细节小笔记</h2>
+<ol>
+<li>最基本的二分查找算法：</li>
+</ol>
+<p>因为我们初始化 <code>right = nums.length - 1</code>，所以决定了我们的「搜索区间」是 <code>[left, right]</code>，所以决定了 <code>while (left &lt;= right)</code>，同时也决定了 <code>left = mid+1</code> 和 <code>right = mid-1</code>，因为我们只需找到一个 <code>target</code> 的索引即可，所以当 <code>nums[mid] == target</code> 时可以立即返回。</p>
+<ol start="2">
+<li>寻找左侧边界的二分查找：</li>
+</ol>
+<p>因为我们初始化 <code>right = nums.length</code>，所以决定了我们的「搜索区间」是 <code>[left, right)</code>，所以决定了 <code>while (left &lt; right)</code>，同时也决定了 <code>left = mid + 1</code> 和 <code>right = mid</code>，因为我们需找到 <code>target</code> 的最左侧索引，所以当 <code>nums[mid] == target</code> 时不要立即返回，而要收紧右侧边界以锁定左侧边界。</p>
+<ol start="3">
+<li>寻找右侧边界的二分查找：</li>
+</ol>
+<p>因为我们初始化 <code>right = nums.length</code>，所以决定了我们的「搜索区间」是 <code>[left, right)</code>，所以决定了 <code>while (left &lt; right)</code>，同时也决定了 <code>left = mid + 1</code> 和 <code>right = mid</code>，因为我们需找到 <code>target</code> 的最右侧索引，所以当 <code>nums[mid] == target</code> 时不要立即返回，而要收紧左侧边界以锁定右侧边界，又因为收紧左侧边界时必须 <code>left = mid + 1</code>，所以最后无论返回 <code>left</code> 还是 <code>right</code>，必须减一。</p>
+<h2 id="求开方">求开方</h2>
+<h3 id="Leetcode-69">Leetcode 69</h3>
+<p>给定一个非负整数，求它的开方，向下取整。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;
+        <span class="hljs-type">long</span> <span class="hljs-type">long</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">long</span> <span class="hljs-type">long</span> right = <span class="hljs-built_in">sqrt</span>(x) + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
+            <span class="hljs-type">long</span> <span class="hljs-type">long</span> mid = (right - left) / <span class="hljs-number">2</span> + left;
+            <span class="hljs-keyword">if</span>(mid * mid &lt; x)&#123;
+                left = mid + <span class="hljs-number">1</span>;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(mid * mid &gt; x)&#123;
+                right = mid - <span class="hljs-number">1</span>;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">return</span> mid;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> left - <span class="hljs-number">1</span>;
+    &#125;
+&#125;;</code></pre></div>
+<p>思路很简单，主要是细节问题，已经整理了笔记。</p>
+<h2 id="查找区间">查找区间</h2>
+<h3 id="Leetcode-34">Leetcode 34</h3>
+<p>给定一个增序的整数数组和一个值，查找该值第一次和最后一次出现的位置。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">searchRange</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;
+        vector&lt;<span class="hljs-type">int</span>&gt; result;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span> vector&lt;<span class="hljs-type">int</span>&gt;&#123;<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;;
+        &#125;
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = n;
+        <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+            <span class="hljs-type">int</span> mid = (right - left) / <span class="hljs-number">2</span> + left;
+            <span class="hljs-keyword">if</span>(nums[mid] &gt;= target)&#123;
+                right = mid;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &lt; target)&#123;
+                left = mid + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(right &gt;= n || nums[right] != target)&#123;
+            <span class="hljs-keyword">return</span> vector&lt;<span class="hljs-type">int</span>&gt;&#123;<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;;
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
+            result.<span class="hljs-built_in">push_back</span>(right);
+        &#125;
+        left = <span class="hljs-number">0</span>;
+        right = n;
+        <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+            <span class="hljs-type">int</span> mid = (right - left) / <span class="hljs-number">2</span> + left;
+            <span class="hljs-keyword">if</span>(nums[mid] &gt; target)&#123;
+                right = mid;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &lt;= target)&#123;
+                left = mid + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        result.<span class="hljs-built_in">push_back</span>(left - <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：也是最基础的二分查找，实现了 <code>upper_bound</code>和 <code>lower_bound</code>两个函数。</p>
+<p>错误：判断的时候忘记判断是否越界。</p>
+<h2 id="旋转数组查找数字">旋转数组查找数字</h2>
+<h3 id="Leetcode-81">Leetcode 81</h3>
+<p>一个原本增序的数组被首尾相连后按某个位置断开（如[1,2,2,3,4,5] - [2,3,4,5,1,2]，在第一位和第二位断开），我们称其为旋转数组。给定一个值，判断这个值是否存在于这个旋转数组中。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">search</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = n;
+        <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+            <span class="hljs-type">int</span> mid = (right - left) / <span class="hljs-number">2</span> + left;
+            <span class="hljs-keyword">if</span>(nums[mid] == target)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &lt; nums[right<span class="hljs-number">-1</span>])&#123;
+                <span class="hljs-comment">// 说明右端是排好序的</span>
+                <span class="hljs-keyword">if</span>(target &gt;= nums[mid] &amp;&amp; target &lt;= nums[right<span class="hljs-number">-1</span>])&#123;
+                    left = mid + <span class="hljs-number">1</span>;
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    right = mid;
+                &#125;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &gt; nums[right<span class="hljs-number">-1</span>])&#123;
+                <span class="hljs-comment">// 说明左端是排好序的</span>
+                <span class="hljs-keyword">if</span>(target &lt;= nums[mid] &amp;&amp; target &gt;= nums[left])&#123;
+                    right = mid;
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    left = mid + <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                --right;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：旋转数组是一类经典题目，需要抓住旋转后二分会有一个区间是单调的性质进行判断，从而对所查找的数字进行区间的锁定。</p>
+<p>错误：条件考虑不全面，没有对旋转数组充分理解。</p>
+<h2 id="练习">练习</h2>
+<h3 id="Leetcode-154">Leetcode 154</h3>
+<p>寻找旋转排序数组中的最小值</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findMin</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = n;
+        <span class="hljs-type">int</span> minnum = <span class="hljs-number">10000</span>;
+        <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+            <span class="hljs-type">int</span> mid = (right - left) / <span class="hljs-number">2</span> + left;
+            <span class="hljs-keyword">if</span>(nums[mid] &gt; nums[left])&#123;
+                <span class="hljs-comment">// 左边一定有序</span>
+                minnum = <span class="hljs-built_in">min</span>(minnum,nums[left]);
+                left = mid + <span class="hljs-number">1</span>;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &lt; nums[left])&#123;
+                <span class="hljs-comment">// 右边一定有序</span>
+                minnum = <span class="hljs-built_in">min</span>(minnum,nums[mid]);
+                right = mid;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                minnum = <span class="hljs-built_in">min</span>(minnum,nums[mid]);
+                ++left;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> minnum;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：比查找还要稍稍简单一点，只需要想好最小值可能出现的位置即可。</p>
+<p>错误：相等的时候没有判断，会导致漏掉元素。</p>
+<h3 id="Leetcode-540">Leetcode 540</h3>
+<p>给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。请你找出并返回只出现一次的那个数。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">singleNonDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = n;
+        <span class="hljs-keyword">if</span>(nums.<span class="hljs-built_in">size</span>()==<span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>];
+        &#125;
+        <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+            <span class="hljs-type">int</span> mid  = (right - left) / <span class="hljs-number">2</span> + left;
+            <span class="hljs-keyword">if</span>(mid % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;
+                <span class="hljs-keyword">if</span>(nums[mid] == nums[mid<span class="hljs-number">+1</span>])&#123;
+                    left = mid + <span class="hljs-number">2</span>;
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    right = mid;
+                &#125;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">if</span>(nums[mid] == nums[mid<span class="hljs-number">-1</span>])&#123;
+                    left = mid + <span class="hljs-number">1</span>;
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    right = mid;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> nums[left];
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：如果mid是偶数，则比较nums[mid]和nums[mid+1]是否相等；如果mid是奇数，则比较nums[mid−1]和nums[mid]是否相等。</p>
+<p>错误：感觉需要判断很多条件？其实不用，只需要考虑长度为1的数组，然后根据下标寻找规律就可以。</p>
+<h3 id="Leetcode-4">Leetcode 4</h3>
+<p>给定两个大小分别为 <code>m</code> 和 <code>n</code> 的正序（从小到大）数组 <code>nums1</code> 和 <code>nums2</code>。请你找出并返回这两个正序数组的<strong>中位数</strong> 。</p>
+<p>分析：二分的解法太难了。。后续补充吧</p>
+<p>错误：没有思路。。。</p>
+<h2 id="总结">总结</h2>
+<p>二分查找是非常好的降低时间复杂度的方法之一，整体的思想不是很难，但是细节的部分需要多多注意。当然也有难题，还要多练习。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Leetcode 刷题笔记-Leetcode 101 第4章 二分查找</div>
+      <div>https://zhangzhao219.github.io/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/29/Leetcode/Leetcode-101/Leetcode-101-5/" title="Leetcode 刷题笔记-Leetcode 101 第5章 排序算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第5章 排序算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-3/" title="Leetcode 刷题笔记-Leetcode 101 第3章 双指针">
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第3章 双指针</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

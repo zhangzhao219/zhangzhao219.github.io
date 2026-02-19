@@ -1,0 +1,907 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go面试题准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go面试题准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/02/Interview/Interview-Questions-go/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go面试题准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-02T20:26:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Internship">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Go面试题准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go面试题准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-02 20:26" pubdate>
+          2022年12月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go面试题准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go面试题准备</p>
+<span id="more"></span>
+<h2 id="使用Go的好处">使用Go的好处</h2>
+<ol>
+<li>针对并发进行了优化，并且在规模上运行良好</li>
+<li>具有单一的标准代码格式与自带的代码格式化工具，比其他语言更具可读性。</li>
+<li>垃圾收集比其他语言更有效。</li>
+</ol>
+<h2 id="make和new关键字">make和new关键字</h2>
+<p>make 关键字的主要作用是创建 slice、map 和 Channel 等内置的数据结构</p>
+<p>new 的主要作用是为类型申请一片内存空间，并返回指向这片内存的指针</p>
+<h2 id="Go的GC机制">Go的GC机制</h2>
+<h3 id="垃圾回收算法">垃圾回收算法</h3>
+<p>最常见的垃圾回收算法有标记清除(Mark-Sweep) 和引用计数(Reference Count)，Go 语言采用的是标记清除算法。并在此基础上使用了三色标记法和写屏障技术，提高了效率。</p>
+<p>标记清除的执行过程可以分成标记和清除两个阶段：</p>
+<ul>
+<li>标记阶段 — 从根对象出发查找并标记堆中所有存活的对象；</li>
+<li>清除阶段 — 遍历堆中的全部对象，回收未被标记的垃圾对象并将回收的内存加入空闲链表。</li>
+</ul>
+<p>标记清除算法的一大问题是在标记期间，需要暂停程序（Stop the world，STW），标记结束之后，用户程序才可以继续执行。为了能够异步执行，减少 STW 的时间，Go 语言采用了三色标记法。</p>
+<h3 id="三色标记法">三色标记法</h3>
+<p>三色标记算法将程序中的对象分成白色、黑色和灰色三类。</p>
+<ul>
+<li>白色：不确定对象。</li>
+<li>灰色：存活对象，子对象待处理。</li>
+<li>黑色：存活对象。</li>
+</ul>
+<p>标记开始时，所有对象加入白色集合（这一步需 STW）。首先将根对象标记为灰色，加入灰色集合，垃圾搜集器取出一个灰色对象，将其标记为黑色，并将其指向的对象标记为灰色，加入灰色集合。重复这个过程，直到灰色集合为空为止</p>
+<p>标记阶段结束。那么白色对象即可需要清理的对象，而黑色对象均为根可达的对象，不能被清理。</p>
+<h3 id="问题">问题</h3>
+<p>三色标记法因为多了一个白色的状态来存放不确定对象，所以后续的标记阶段可以并发地执行。当然并发执行的代价是可能会造成一些遗漏，因为那些早先被标记为黑色的对象可能目前已经是不可达的了。所以三色标记法是一个 false negative（假阴性）的算法。</p>
+<p>三色标记法并发执行仍存在一个问题，此时用户从已经被标记成黑色的对象新建了引用指向了白色对象，白色不可达对象将被收集</p>
+<p>为了解决这个问题，Go 使用了内存屏障技术，当对象新增或更新时，会将其着色为灰色。这样即使与用户程序并发执行，对象的引用发生改变时，垃圾收集器也能正确处理。</p>
+<h3 id="总结">总结</h3>
+<p>一次完整的 GC 分为四个阶段：</p>
+<ul>
+<li>1）标记准备(Mark Setup，需 STW)，打开写屏障(Write Barrier)</li>
+<li>2）使用三色标记法标记（Marking, 并发）</li>
+<li>3）标记结束(Mark Termination，需 STW)，关闭写屏障。</li>
+<li>4）清理(Sweeping, 并发)</li>
+</ul>
+<h2 id="GMP模型（实习-百度-Go后端开发-2023-02-09）">GMP模型（实习-百度-Go后端开发-2023.02.09）</h2>
+<p>进程：进程是系统进行资源分配的基本单位，有独立的内存空间。</p>
+<p>线程：线程是CPU调度的基本单位，线程依附于进程存在，每个线程会共享父进程的资源。</p>
+<p>协程： <strong>协程是一种用户态的轻量级线程，</strong> 协程的调度完全由用户控制，协程间切换只需要保存任务的上下文，没有内核的开销。</p>
+<h3 id="Goroutine-非常轻量">Goroutine 非常轻量</h3>
+<ul>
+<li><strong>上下文切换代价小</strong>： Goroutine 上下文切换只涉及到三个寄存器（PC / SP / DX）的值修改；而对比线程的上下文切换则需要涉及模式切换（从用户态切换到内核态）、以及 16 个寄存器的刷新；</li>
+<li><strong>内存占用少：</strong> 线程栈空间通常是 2M，Goroutine 栈空间最小 2K；</li>
+<li><strong>创建和销毁小</strong>：goroutine的创建和销毁是由运行环境(runtime)完成的</li>
+</ul>
+<p>Goroutine的并发编程模型基于GMP模型：</p>
+<p><strong>G:</strong> 表示goroutine，每个goroutine都有自己的栈空间，定时器，初始化的栈空间在2k左右，空间会随着需求增长。</p>
+<p><strong>M:</strong> 内核线程，每个m对象对应一个内核线程，p对象需要挂载到m上才能运行，每个m都有一个g0协程负责进行调度</p>
+<p><strong>P:</strong> 代表调度器，表示执行 Go 代码所需的资源，负责调度goroutine，维护一个本地goroutine队列，M从P上获得goroutine并执行。</p>
+<ul>
+<li>全局队列（Global Queue）：存放等待运行的 G。</li>
+<li>P 的本地队列：同全局队列类似，存放的也是等待运行的 G，存的数量有限，不超过 256 个。新建 G’时，G’优先加入到 P 的本地队列，如果队列满了，则会把本地队列中一半的 G 移动到全局队列。</li>
+<li>P 列表：所有的 P 都在程序启动时创建，并保存在数组中，最多有 GOMAXPROCS(可配置) 个。</li>
+</ul>
+<p>线程想运行任务就得获取 P，从 P 的本地队列获取 G，P 队列为空时，M 也会尝试从全局队列拿一批 G 放到 P 的本地队列，或从其他 P 的本地队列偷一半放到自己 P 的本地队列。M 运行 G，G 执行之后，M 会从 P 获取下一个 G，不断重复下去。</p>
+<h3 id="调度器的设计策略">调度器的设计策略</h3>
+<p>复用线程：避免频繁的创建、销毁线程，而是对线程的复用。</p>
+<p>1）work stealing 机制</p>
+<p>当本线程无可运行的 G 时，尝试从其他线程绑定的 P 偷取 G，或者从全局队列中获取G。</p>
+<p>2）hand off 机制</p>
+<ul>
+<li>由于channel、原子、互斥量操作调用导致的阻塞：调度器将把当前阻塞的goroutine切换出去，重新调度其它goroutine</li>
+<li>由于网络请求和IO操作导致goroutine阻塞：Go提供了网络轮询器（NetPoller）来处理网络请求和IO操作的问题，后台通过epoll(Linux)实现IO多路复用，G被移到了NetPoller上进行异步的网络系统调用，M可以执行P中其它的goroutine，网络系统调用完成后，G被移回到了P的本地队列中</li>
+<li>调用一些系统方法时发生阻塞：goroutine导致M阻塞，此时调度器将M和P分离，分离后的P和新的M绑定，继续调度全局队列中的goroutine，阻塞的系统调用完成后，可以移回本地队列并再次由P执行</li>
+<li>goroutine中执行sleep操作导致M被阻塞：go程序后台有一个监控线程sysmon，它监控哪些长时间运行的G任务，然后设置可以抢占的标识符，别的goroutine可以抢先进来执行</li>
+</ul>
+<h4 id="多个P同时去全局队列中请求Goroutine（实习-百度-Go后端开发-2023-02-09）">多个P同时去全局队列中请求Goroutine（实习-百度-Go后端开发-2023.02.09）</h4>
+<p>为了保证多个P之间任务的平衡，所有M共享P全局队列，为保证数据竞争问题，需要加锁处理</p>
+<h2 id="锁相关">锁相关</h2>
+<h3 id="基本概念">基本概念</h3>
+<p>Go的代码库中为开发人员提供了一下两种锁：</p>
+<ol>
+<li>互斥锁 sync.Mutex</li>
+<li>读写锁 sync.RWMutex</li>
+</ol>
+<p>第一个互斥锁指的是在Go编程中，同一资源的锁定对各个协程是相互排斥的，当其中一个协程获取到该锁时，其它协程只能等待，直到这个获取锁的协程释放锁之后，其它的协程才能获取。</p>
+<p>第二个读写锁依赖于互斥锁的实现，这个指的是当多个协程对某一个资源都是只读操作，那么多个协程可以获取该资源的读锁，并且互相不影响，但当有协程要修改该资源时就必须获取写锁，如果获取写锁时，已经有其它协程获取了读写或者写锁，那么此次获取失败，也就是说读写互斥，读读共享，写写互斥。</p>
+<h3 id="乐观锁与悲观锁">乐观锁与悲观锁</h3>
+<p>乐观锁和悲观锁是两种思想，用于解决并发场景下的数据竞争问题。</p>
+<p>乐观锁：乐观锁在操作数据时非常乐观，认为别人不会同时修改数据。因此乐观锁不会上锁，只是在执行更新的时候判断一下在此期间别人是否修改了数据：如果别人修改了数据则放弃操作，否则执行操作。</p>
+<p>悲观锁：悲观锁在操作数据时比较悲观，认为别人会同时修改数据。因此操作数据时直接把数据锁住，直到操作完成后才会释放锁；上锁期间其他人不能修改数据。</p>
+<h3 id="实现方式">实现方式</h3>
+<p>乐观锁的实现方式主要有两种：CAS机制和版本号机制</p>
+<p>如果内存位置V的值等于预期的A值，则将该位置更新为新值B，否则不进行任何操作。</p>
+<p>许多CAS的操作是自旋的：如果操作不成功，会一直重试，直到操作成功为止。</p>
+<p>atomic 包可以在不形成临界区和创建互斥量的情况下完成并发安全的值替换操作，这个包应用的便是乐观锁的原理。</p>
+<p>版本号机制的基本思路是在数据中增加一个字段version，表示该数据的版本号，每当数据被修改，版本号加1。</p>
+<ul>
+<li>当某个线程查询数据时，将该数据的版本号一起查出来；</li>
+<li>当该线程更新数据时，判断当前版本号与之前读取的版本号是否一致，如果一致才进行操作。</li>
+</ul>
+<p>Golang中的sync包，提供了各种锁，如果使用了这个包，基本上就以悲观锁的工作模式了。</p>
+<h4 id="CAS的缺点"><strong>CAS的缺点</strong></h4>
+<ol>
+<li>ABA问题：已经更改过但是无法检测出来</li>
+<li>高竞争下的开销问题 在并发冲突概率大的高竞争环境下，如果CAS一直失败，会一直重试，CPU开销较大。</li>
+<li>CAS只能保证单个变量（或者说单个内存值）操作的原子性</li>
+</ol>
+<h4 id="乐观锁与悲观锁对比">乐观锁与悲观锁对比</h4>
+<p>乐观锁没有加锁和解除锁的步骤，直觉上会快一些；但是乐观锁这么做的前提是总认为不会发生并发，如果并发发生的概率很大，重试的次数会增加，这种情况下乐观锁的性能就差很多了。</p>
+<p>悲观锁有加锁和解除锁的步骤，直觉上会慢一些；但是当有很多进程或者线程对同一个数值进行修改时，能避免大量的重试过程，这种情况下悲观锁的性能相对就很高了。</p>
+<ul>
+<li><strong>功能限制：与悲观锁相比，乐观锁适用的场景受到了更多的限制，无论是CAS还是版本号机制。</strong></li>
+</ul>
+<p>例如，CAS只能保证单个变量操作的原子性，当涉及到多个变量时，CAS是无能为力的，而synchronized则可以通过对整个代码块加锁来处理。</p>
+<p>再比如版本号机制，如果query的时候是针对表1，而update的时候是针对表2，也很难通过简单的版本号来实现乐观锁。</p>
+<ul>
+<li><strong>竞争激烈程度：如果悲观锁和乐观锁都可以使用，那么选择就要考虑竞争的激烈程度：</strong></li>
+</ul>
+<p>当竞争不激烈 (出现并发冲突的概率小)时，乐观锁更有优势，因为悲观锁会锁住代码块或数据，其他线程无法同时访问，影响并发，而且加锁和释放锁都需要消耗额外的资源。</p>
+<p>当竞争激烈(出现并发冲突的概率大)时，悲观锁更有优势，因为乐观锁在执行更新时频繁失败，需要不断重试，浪费CPU资源。</p>
+<h1>Channel</h1>
+<p>channel 是一个通道，用于<strong>端到端</strong>的数据传输，这有点像我们平常使用的消息队列，只不过 channel 的发送方和接受方是 <strong>goroutine</strong> 对象，属于<strong>内存级别</strong>的通信。</p>
+<p><strong>无缓冲</strong>的 channel，一旦有 goroutine 往 channel 发送数据，那么当前的 goroutine 会被阻塞住，直到有其他的 goroutine 消费了 channel 里的数据，才能继续运行。</p>
+<p>有缓冲的 channel，第二个参数表示 channel 可缓冲数据的容量。只要当前 channel 里的元素总数不大于这个可缓冲容量，则当前的 goroutine 就不会被阻塞住。</p>
+<h2 id="底层">底层</h2>
+<p>channel 创建后返回了 <strong>hchan</strong> 结构体，包括：</p>
+<div class="code-wrapper"><pre><code class="hljs go">qcount   <span class="hljs-type">uint</span>   <span class="hljs-comment">// channel 里的元素计数</span>
+ dataqsiz <span class="hljs-type">uint</span>   <span class="hljs-comment">// 可以缓冲的数量，如 ch := make(chan int, 10)。 此处的 10 即 dataqsiz</span>
+ elemsize <span class="hljs-type">uint16</span> <span class="hljs-comment">// 要发送或接收的数据类型大小</span>
+ buf      unsafe.Pointer <span class="hljs-comment">// 当 channel 设置了缓冲数量时，该 buf 指向一个存储缓冲数据的区域，该区域是一个循环队列的数据结构</span>
+ closed   <span class="hljs-type">uint32</span> <span class="hljs-comment">// 关闭状态</span>
+ sendx    <span class="hljs-type">uint</span>  <span class="hljs-comment">// 当 channel 设置了缓冲数量时，数据区域即循环队列此时已发送数据的索引位置</span>
+ recvx    <span class="hljs-type">uint</span>  <span class="hljs-comment">// 当 channel 设置了缓冲数量时，数据区域即循环队列此时已接收数据的索引位置</span>
+ recvq    waitq <span class="hljs-comment">// 想读取数据但又被阻塞住的 goroutine 队列</span>
+ sendq    waitq <span class="hljs-comment">// 想发送数据但又被阻塞住的 goroutine 队列</span>
+
+ lock mutex
+ ...</code></pre></div>
+<h3 id="channel-先写再读">channel 先写再读</h3>
+<p>G1往channel写数据，G1 暂时被挂在 sendq 队列里，然后 G1 调用了 gopark 休眠了起来</p>
+<p>G2从channel读数据，发现 sendq 等待队列里有 goroutine 存在，于是直接从 G1 copy 数据过来，并且会对 G1 设置 goready 函数，这样下次调度发生时， G1 就可以继续运行，并且会从等待队列里移除掉。</p>
+<h3 id="channel-先读再写">channel 先读再写</h3>
+<p>G1 暂时被挂在了 recvq 队列，然后休眠起来。</p>
+<p>G2 在写数据时，发现 recvq 队列有 goroutine 存在，于是直接将数据发送给 G1。同时设置 G1 goready 函数，等待下次调度运行。</p>
+<h1>channel和mutex的选择</h1>
+<p>面对一个并发问题的时候，应当选择合适的并发方式：channel还是mutex。 <strong>选择的依据是他们的能力/特性：channel的能力是让数据流动起来，擅长的是数据流动的场景：</strong></p>
+<ol>
+<li>传递数据的所有权，即把某个数据发送给其他协程</li>
+<li>分发任务，每个任务都是一个数据</li>
+<li>交流异步结果，结果是一个数据</li>
+</ol>
+<p><strong>mutex的能力是数据不动，某段时间只给一个协程访问数据的权限擅长数据位置固定的场景：</strong></p>
+<ol>
+<li>缓存</li>
+<li>状态，我们银行例子中的 <code>map</code>就是一种状态</li>
+</ol>
+<h2 id="Go-内存逃逸，栈和堆是否都进行垃圾回收（实习-百度-Go后端开发-2023-02-09）">Go 内存逃逸，栈和堆是否都进行垃圾回收（实习-百度-Go后端开发-2023.02.09）</h2>
+<p>内存逃逸：在一段程序中，每一个函数都会有自己的内存区域存放自己的局部变量、返回地址等，这些内存会由编译器在栈中进行分配，每一个函数都会分配一个栈桢，在函数运行结束后进行销毁，但是有些变量我们想在函数运行结束后仍然使用它，那么就需要把这个变量在堆上分配，这种从&quot;栈&quot;上逃逸到&quot;堆&quot;上的现象就成为内存逃逸。</p>
+<p>在 <code>Go</code>语言中堆内存的分配与释放完全不需要我们去管了，<code>Go</code>语言引入了 <code>GC</code>机制，<code>GC</code>机制会对位于堆上的对象进行自动管理，当某个对象不可达时(即没有其对象引用它时)，他将会被回收并被重用。</p>
+<p>为了减少 <code>GC</code>造成的压力，<code>Go</code>语言引入了逃逸分析，也就是想法设法尽量减少在堆上的内存分配，可以在栈中分配的变量尽量留在栈中。</p>
+<p>逃逸分析就是指程序在编译阶段根据代码中的数据流，对代码中哪些变量需要在栈中分配，哪些变量需要在堆上分配进行静态分析的方法。堆和栈相比，堆适合不可预知大小的内存分配。但是为此付出的代价是分配速度较慢，而且会形成内存碎片。栈内存分配则会非常快。栈分配内存只需要两个CPU指令：“PUSH”和“RELEASE”，分配和释放；而堆分配内存首先需要去找到一块大小合适的内存块，之后要通过垃圾回收才能释放。所以逃逸分析更做到更好内存分配，提高程序的运行速度。</p>
+<p>逃逸分析原理：</p>
+<ul>
+<li>指向栈对象的指针不能存储在堆中</li>
+<li>指向栈对象的指针不能超过该对象的存活期，也就说指针不能在栈对象被销毁后依旧存活。（例子：声明的函数返回并销毁了对象的栈帧，或者它在循环迭代中被重复用于逻辑上不同的变量）</li>
+</ul>
+<p>对逃逸做一个总结：</p>
+<ul>
+<li>逃逸分析在编译阶段确定哪些变量可以分配在栈中，哪些变量分配在堆上</li>
+<li>逃逸分析减轻了 <code>GC</code>压力，提高程序的运行速度</li>
+<li>栈上内存使用完毕不需要 <code>GC</code>处理，堆上内存使用完毕会交给 <code>GC</code>处理</li>
+<li>函数传参时对于需要修改原对象值，或占用内存比较大的结构体，选择传指针。对于只读的占用内存较小的结构体，直接传值能够获得更好的性能</li>
+<li>根据代码具体分析，尽量减少逃逸代码，减轻 <code>GC</code>压力，提高性能</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Internship/" class="print-no-link">#Internship</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go面试题准备</div>
+      <div>https://zhangzhao219.github.io/2022/12/02/Interview/Interview-Questions-go/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Hertz和Thrift简单示例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hertz和Thrift简单示例">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/02/24/Backend/HertzAndThrift/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Hertz和Thrift简单示例">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-24T16:01:30.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Hertz">
+<meta property="article:tag" content="Thrift">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hertz和Thrift简单示例 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Hertz和Thrift简单示例</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-24 16:01" pubdate>
+          2023年2月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Hertz和Thrift简单示例</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Hertz和Thrift简单示例</p>
+<span id="more"></span>
+<h1>Hertz</h1>
+<p>Hertz 是字节跳动服务框架团队研发的超大规模的企业级微服务 HTTP 框架，具有高易用性、易扩展、低时延等特点。</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://www.cloudwego.io/zh/docs/hertz/">https://www.cloudwego.io/zh/docs/hertz/</a></p>
+<p>基本使用：</p>
+<p>定义路由：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	h := server.Default(server.WithHostPorts(<span class="hljs-string">&quot;127.0.0.1:50000&quot;</span>))
+	h.GET(<span class="hljs-string">&quot;/ping&quot;</span>, router.Deal)
+	h.Spin()
+&#125;</code></pre></div>
+<p>路由的Handler：</p>
+<p>其中与其他框架最大的不同点是将Context分成了两个部分：</p>
+<p>两个上下文主要有两点区别：</p>
+<ol>
+<li>生命周期不同。RequestContext 的生命周期局限于一次 http 请求之内，而 context.Context 会在 RPC Client 或者日志、Tracing 等组件间传递，其生命周期可能是链路级别的；</li>
+<li>协程安全性。RequestContext 协程不安全，不适合异步传递，但可以通过 <code>Copy()</code>方法获取一个协程安全的副本，而 context.Context 本身就是协程安全的。</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Deal</span><span class="hljs-params">(c context.Context, ctx *app.RequestContext)</span></span> &#123;
+	ctx.JSON(consts.StatusOK, utils.H&#123;<span class="hljs-string">&quot;message&quot;</span>: res&#125;)
+&#125;</code></pre></div>
+<h1>Thrift</h1>
+<p><code>Thrift</code>是一个 <strong>轻量级</strong> 、<strong>跨语言</strong>的<strong>远程服务调用</strong>框架，最初由 <code>Facebook</code>开发，后面进入 <code>Apache</code>开源项目。它通过自身的 <code>IDL</code> <strong>中间语言</strong> , 并借助<strong>代码生成引擎</strong>生成各种主流语言的 <code>RPC</code> <strong>服务端</strong> /<strong>客户端</strong>模板代码。</p>
+<p>官方安装：<a target="_blank" rel="noopener" href="https://thrift.apache.org/docs/BuildingFromSource.html">https://thrift.apache.org/docs/BuildingFromSource.html</a></p>
+<p>网上资料：</p>
+<p>注意安装的thrift的版本与go的插件版本一定要相同！</p>
+<p>安装go插件：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">go get github.com/apache/thrift/lib/go/thrift</code></pre></div>
+<p>首先安装依赖：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">apt install libboost-dev libboost-test-dev libboost-program-options-dev libboost-filesystem-dev libboost-thread-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev</code></pre></div>
+<p>安装Thrift：</p>
+<div class="code-wrapper"><pre><code class="hljs go">git clone https:<span class="hljs-comment">//github.com/apache/thrift</span>
+cd thrift
+./bootstrap.sh
+./configure --without-qt4 --wihout-qt5
+<span class="hljs-built_in">make</span>
+<span class="hljs-built_in">make</span> install</code></pre></div>
+<p>编译使用：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">thrift -r --gen go compute.thrift</code></pre></div>
+<h2 id="Thrift文件定义">Thrift文件定义</h2>
+<div class="code-wrapper"><pre><code class="hljs bash">namespace go compute
+
+service MulRange &#123;
+    string BigRange(1:i64 max)
+&#125;</code></pre></div>
+<h2 id="客户端">客户端</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Deal</span><span class="hljs-params">(c context.Context, ctx *app.RequestContext)</span></span> &#123;
+
+	transportFactory := thrift.NewTTransportFactory()
+
+	protocolFactory := thrift.NewTBinaryProtocolFactoryConf(<span class="hljs-literal">nil</span>)
+	addr := <span class="hljs-string">&quot;127.0.0.1:9999&quot;</span>
+
+	cfg := &amp;thrift.TConfiguration&#123;&#125;
+
+	<span class="hljs-comment">// 建立和服务器的连接socket，通过socket建立Transport</span>
+	<span class="hljs-keyword">var</span> transport thrift.TTransport
+	transport = thrift.NewTSocketConf(addr, cfg)
+	transport, _ = transportFactory.GetTransport(transport)
+	<span class="hljs-keyword">defer</span> transport.Close()
+
+	<span class="hljs-comment">// 打开Transport，与服务器进行连接</span>
+	transport.Open()
+
+	iprot := protocolFactory.GetProtocol(transport)
+	oprot := protocolFactory.GetProtocol(transport)
+
+	client := compute.NewMulRangeClient(thrift.NewTStandardClient(iprot, oprot))
+
+	num, _ := client.BigRange(context.Background(), <span class="hljs-number">10</span>)
+	fmt.Println(num)
+
+	ctx.JSON(consts.StatusOK, utils.H&#123;<span class="hljs-string">&quot;message&quot;</span>: num&#125;)
+&#125;</code></pre></div>
+<h2 id="服务端">服务端</h2>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 尽量一个struct对应一个service</span>
+<span class="hljs-keyword">type</span> mulrangeThrift <span class="hljs-keyword">struct</span> &#123;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(m *mulrangeThrift)</span></span> BigRange(_ context.Context, max <span class="hljs-type">int64</span>) (<span class="hljs-type">string</span>, <span class="hljs-type">error</span>) &#123;
+
+	result := max + <span class="hljs-number">1253</span>
+	<span class="hljs-keyword">return</span> strconv.FormatInt(result, <span class="hljs-number">10</span>), <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+	<span class="hljs-comment">// 创建服务器</span>
+	serverTransport, _ := thrift.NewTServerSocket(net.JoinHostPort(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-string">&quot;9999&quot;</span>))
+
+	<span class="hljs-comment">// 创建二进制协议</span>
+	transportFactory := thrift.NewTTransportFactory()
+	protocolFactory := thrift.NewTBinaryProtocolFactoryConf(<span class="hljs-literal">nil</span>)
+
+	mulrangeProcessor := compute.NewMulRangeProcessor(<span class="hljs-built_in">new</span>(mulrangeThrift))
+
+	<span class="hljs-comment">// 启动服务器</span>
+	server := thrift.NewTSimpleServer4(mulrangeProcessor, serverTransport, transportFactory, protocolFactory)
+	server.Serve()
+
+	<span class="hljs-comment">// 退出时停止服务器</span>
+	<span class="hljs-keyword">defer</span> server.Stop()
+&#125;</code></pre></div>
+<h2 id="Thrift深入学习">Thrift深入学习</h2>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903622380093447">https://juejin.cn/post/6844903622380093447</a></p>
+<p><code>Thrift</code>是一个 <strong>轻量级</strong> 、<strong>跨语言</strong>的<strong>远程服务调用</strong>框架，最初由 <code>Facebook</code>开发，后面进入 <code>Apache</code>开源项目。它通过自身的 <code>IDL</code> <strong>中间语言</strong> , 并借助<strong>代码生成引擎</strong>生成各种主流语言的 <code>RPC</code> <strong>服务端</strong> /<strong>客户端</strong>模板代码。</p>
+<h3 id="Thrift的特性">Thrift的特性</h3>
+<h4 id="一-开发速度快">(一) 开发速度快</h4>
+<p>通过编写 <code>RPC</code>接口 <code>Thrift IDL</code>文件，利用<strong>编译生成器</strong>自动生成 <strong>服务端骨架</strong> (<code>Skeletons</code>)和 <strong>客户端桩</strong> (<code>Stubs</code>)。从而省去开发者<strong>自定义</strong>和 <strong>维护接口编解码</strong> 、 <strong>消息传输</strong> 、<strong>服务器多线程模型</strong>等基础工作。</p>
+<ul>
+<li>服务端：只需要按照<strong>服务骨架</strong>即 <strong>接口</strong> ，编写好具体的 <strong>业务处理程序</strong> (<code>Handler</code>)即<strong>实现类</strong>即可。</li>
+<li>客户端：只需要拷贝 <code>IDL</code>定义好的<strong>客户端桩</strong>和 <strong>服务对象</strong> ，然后就像调用本地对象的方法一样调用远端服务。</li>
+</ul>
+<h4 id="二-接口维护简单">(二) 接口维护简单</h4>
+<p>通过维护 <code>Thrift</code>格式的IDL（ <strong>接口描述语言</strong> ）文件（注意写好注释），即可作为给 <code>Client</code>使用的接口文档使用，也<strong>自动生成</strong>接口代码，始终保持代码和文档的一致性。且 <code>Thrift</code>协议可灵活支持<strong>接口</strong>的 <strong>可扩展性</strong> 。</p>
+<h4 id="三-学习成本低">(三) 学习成本低</h4>
+<p>因为其来自 <code>Google Protobuf</code>开发团队，所以其 <code>IDL</code>文件风格类似 <code>Google Protobuf</code>，且更加 <strong>易读易懂</strong> ；特别是 <code>RPC</code><strong>服务接口</strong>的风格就像写一个<strong>面向对象</strong>的 <code>Class</code>一样简单。</p>
+<p>初学者只需参照：<a target="_blank" rel="noopener" href="https://thrift.apache.org/">thrift.apache.org/</a>，一个多小时就可以理解 <code>Thrift IDL</code>文件的语法使用。</p>
+<h4 id="四-多语言-跨语言支持">(四) 多语言/跨语言支持</h4>
+<p><code>Thrift</code>支持 <code>C++</code>、 <code>Java</code>、<code>Python</code>、<code>PHP</code>、<code>Ruby</code>、<code>Erlang</code>、<code>Perl</code>、<code>Haskell</code>、<code>C#</code>、<code>Cocoa</code>、<code>JavaScript</code>、<code>Node.js</code>、<code>Smalltalk</code>等多种语言，即可生成上述语言的<strong>服务器端</strong>和 <strong>客户端程序</strong> 。</p>
+<p>对于我们经常使用的 <code>Java</code>、<code>PHP</code>、<code>Python</code>、<code>C++</code>支持良好，虽然对 <code>iOS</code>环境的 <code>Objective-C</code>(<code>Cocoa</code>)支持稍逊，但也完全满足我们的使用要求。</p>
+<h4 id="五-稳定-广泛使用">(五) 稳定/广泛使用</h4>
+<p><code>Thrift</code>在很多开源项目中已经被验证是<strong>稳定</strong>和<strong>高效</strong>的，例如 <code>Cassandra</code>、<code>Hadoop</code>、<code>HBase</code>等；国外在 <code>Facebook</code>中有广泛使用，国内包括百度、美团小米、和饿了么等公司。</p>
+<h3 id="数据类型">数据类型</h3>
+<ul>
+<li><strong>基本类型</strong>
+<ul>
+<li><strong>bool</strong> : 布尔值</li>
+<li><strong>byte</strong> : 8位有符号整数</li>
+<li><strong>i16</strong> : 16位有符号整数</li>
+<li><strong>i32</strong> : 32位有符号整数</li>
+<li><strong>i64</strong> : 64位有符号整数</li>
+<li><strong>double</strong> : 64位浮点数</li>
+<li><strong>string</strong> : UTF-8编码的字符串</li>
+<li><strong>binary</strong> : 二进制串</li>
+</ul>
+</li>
+<li><strong>结构体类型</strong>
+<ul>
+<li><strong>struct</strong> : 定义的结构体对象</li>
+</ul>
+</li>
+<li><strong>容器类型</strong>
+<ul>
+<li><strong>list</strong> : 有序元素列表</li>
+<li><strong>set</strong> : 无序无重复元素集合</li>
+<li><strong>map</strong> : 有序的key/value集合</li>
+</ul>
+</li>
+<li><strong>异常类型</strong>
+<ul>
+<li><strong>exception</strong> : 异常类型</li>
+</ul>
+</li>
+<li><strong>服务类型</strong>
+<ul>
+<li><strong>service</strong> : 具体对应服务的类</li>
+</ul>
+</li>
+</ul>
+<h3 id="Thrift协议">Thrift协议</h3>
+<p><code>Thrift</code>可以让用户选择<strong>客户端</strong>与<strong>服务端</strong>之间<strong>传输通信协议</strong>的类别，在<strong>传输协议</strong>上总体划分为 <strong>文本</strong> (<code>text</code>)和 <strong>二进制</strong> (<code>binary</code>)传输协议。为 <strong>节约带宽</strong> ， <strong>提高传输效率</strong> ，一般情况下使用<strong>二进制</strong>类型的传输协议为多数，有时还会使用基于<strong>文本类型</strong>的协议，这需要根据项目/产品中的实际需求。常用协议有以下几种：</p>
+<ul>
+<li>TBinaryProtocol：<strong>二进制</strong>编码格式进行数据传输</li>
+<li>TCompactProtocol：<strong>高效率</strong>的、<strong>密集</strong>的<strong>二进制</strong>编码格式进行数据传输</li>
+<li>TJSONProtocol： 使用 <code>JSON</code><strong>文本</strong>的数据编码协议进行数据传输</li>
+<li>TSimpleJSONProtocol：只提供 <code>JSON</code><strong>只写</strong>的协议，适用于通过<strong>脚本语言解析</strong></li>
+</ul>
+<h3 id="Thrift与Protobuf的区别">Thrift与Protobuf的区别</h3>
+<p>Thrift和Protobuf的最大不同，在于Thrift提供了完整的RPC支持，包含了Server/Client，而Protobuf只包括了stub的生成器和格式定义。</p>
+<h3 id="Thrift示例">Thrift示例</h3>
+<h4 id="thrift语法">thrift语法</h4>
+<p>User.thrift</p>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-keyword">namespace</span> go Sample
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">User</span> </span>&#123;
+    <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> id;
+    <span class="hljs-number">2</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> name;
+    <span class="hljs-number">3</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> avatar;
+    <span class="hljs-number">4</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> address;
+    <span class="hljs-number">5</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> mobile;
+&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">UserList</span> </span>&#123;
+    <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">list</span>&lt;User&gt; userList;
+    <span class="hljs-number">2</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> page;
+    <span class="hljs-number">3</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> limit;
+&#125;</code></pre></div>
+<p>Service.thrift</p>
+<div class="code-wrapper"><pre><code class="hljs Thrift">include <span class="hljs-string">&quot;User.thrift&quot;</span>
+
+<span class="hljs-keyword">namespace</span> go Sample
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-type">map</span>&lt;<span class="hljs-type">string</span>, <span class="hljs-type">string</span>&gt; Data
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Response</span> </span>&#123;
+    <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> errCode; <span class="hljs-comment">//错误码</span>
+    <span class="hljs-number">2</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> errMsg; <span class="hljs-comment">//错误信息</span>
+    <span class="hljs-number">3</span>:<span class="hljs-keyword">required</span> Data data;
+&#125;
+
+<span class="hljs-comment">//定义服务</span>
+<span class="hljs-class"><span class="hljs-keyword">service</span> <span class="hljs-title">Greeter</span> </span>&#123;
+    Response SayHello(
+        <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> User.User user
+    )
+
+    Response GetUser(
+        <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> uid
+    )
+&#125;</code></pre></div>
+<ol>
+<li>
+<h5 id="文件引入">文件引入</h5>
+</li>
+</ol>
+<p>thrift支持引入另一个thrift文件：</p>
+<div class="code-wrapper"><pre><code class="hljs Makefile"><span class="hljs-keyword">include</span> <span class="hljs-string">&quot;User.thrift&quot;</span></code></pre></div>
+<p>注意：</p>
+<p>include 引入文件的使用，字段必须带文件名前缀：</p>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> User.User user</code></pre></div>
+<p>不能直接写 <code>User user</code>，这样会提示找不到 <code>User</code>定义。</p>
+<p>编译时只编译引用了其他文件的thrift文件即可：</p>
+<div class="code-wrapper"><pre><code class="hljs Bash">thrift -r --gen go Service.thrift</code></pre></div>
+<ol start="2">
+<li>
+<h5 id="定义命名空间或者包名">定义命名空间或者包名</h5>
+</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-keyword">namespace</span> go Sample
+<span class="hljs-keyword">namespace</span> php Sample</code></pre></div>
+<p>需要支持多个语言，则需要定义多行。</p>
+<p>命名空间或者包名是多层级，使用 <code>.</code>号隔开。例如golang对于 <code>Sample.Model</code>会生成目录 <code>Sample/Model</code>，包名是 <code>Model</code>。</p>
+<ol start="3">
+<li>
+<h5 id="Field">Field</h5>
+</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">User</span> </span>&#123;
+    <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> id = <span class="hljs-number">0</span>;
+    <span class="hljs-number">2</span>:<span class="hljs-keyword">optional</span> <span class="hljs-type">string</span> name;
+&#125;</code></pre></div>
+<p>字段选项 支持 <code>required</code>、<code>optional</code>两种。</p>
+<p>一旦一个参数设置为 <code>required</code>，未来就一定不能删除或者改为 <code>optional</code>，否则就会出现版本不兼容问题，老客户端访问新服务会出现参数错误。不确定的情况可以都使用 <code>optional</code> 。</p>
+<ol start="4">
+<li>
+<h5 id="类型定义">类型定义</h5>
+</li>
+<li>基本类型</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-type">bool</span>：布尔值（<span class="hljs-literal">true</span>或<span class="hljs-literal">false</span>）
+<span class="hljs-type">byte</span>：<span class="hljs-number">8</span>位有符号整数
+<span class="hljs-type">i16</span>：<span class="hljs-number">16</span>位有符号整数
+<span class="hljs-type">i32</span>：<span class="hljs-number">32</span>位有符号整数
+<span class="hljs-type">i64</span>：<span class="hljs-number">64</span>位有符号整数
+<span class="hljs-type">double</span>：<span class="hljs-number">64</span>位浮点数
+<span class="hljs-type">string</span>：使用UTF-<span class="hljs-number">8</span>编码编码的文本字符串</code></pre></div>
+<ol start="2">
+<li>容器类型</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-type">list</span>&lt;t1&gt;：一系列t1类型的元素组成的有序列表，元素可以重复
+<span class="hljs-type">set</span>&lt;t1&gt;：一些t1类型的元素组成的无序集合，元素唯一不重复
+<span class="hljs-type">map</span>&lt;t1,t2&gt;：key/value对，key唯一</code></pre></div>
+<ol start="3">
+<li>类型别名</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-keyword">typedef</span> <span class="hljs-type">map</span>&lt;<span class="hljs-type">string</span>, <span class="hljs-type">string</span>&gt; Data</code></pre></div>
+<ol start="4">
+<li>枚举类型</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">TweetType</span> </span>&#123;
+    TWEET,
+    RETWEET = <span class="hljs-number">2</span>,
+    DM = <span class="hljs-number">0</span>xa,
+    REPLY
+&#125;</code></pre></div>
+<p>默认从0开始赋值，枚举值可以赋予某个常量，允许常量是十六进制整数。末尾没有逗号。</p>
+<p>不支持枚举类嵌套，枚举常量必须是32位正整数。</p>
+<p>对于go，会生成 <code>TweetType_</code>开头的常量。</p>
+<ol start="5">
+<li>常量类型</li>
+</ol>
+<p>Thrift允许用户定义常量，复杂的类型和结构体可以使用JSON形式表示：</p>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-keyword">const</span> <span class="hljs-type">i32</span> INT_CONST = <span class="hljs-number">1234</span>
+<span class="hljs-keyword">const</span> <span class="hljs-type">map</span>&lt;<span class="hljs-type">string</span>,<span class="hljs-type">string</span>&gt; MAP_CONST = &#123;<span class="hljs-string">&quot;hello&quot;</span>: <span class="hljs-string">&quot;world&quot;</span>, <span class="hljs-string">&quot;goodnight&quot;</span>: <span class="hljs-string">&quot;moon&quot;</span>&#125;</code></pre></div>
+<ol start="6">
+<li>异常类型</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-class"><span class="hljs-keyword">exception</span> <span class="hljs-title">BizException</span> </span>&#123;
+    <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> code
+    <span class="hljs-number">2</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> msg
+&#125;</code></pre></div>
+<ol start="7">
+<li>结构体</li>
+</ol>
+<p>结构体可以包含其他结构体，但不支持继承结构体。</p>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Response</span> </span>&#123;
+    <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">i32</span> errCode; <span class="hljs-comment">//错误码</span>
+    <span class="hljs-number">2</span>:<span class="hljs-keyword">required</span> <span class="hljs-type">string</span> errMsg; <span class="hljs-comment">//错误信息</span>
+    <span class="hljs-number">3</span>:<span class="hljs-keyword">required</span> Data data;
+&#125;</code></pre></div>
+<ol start="8">
+<li>服务</li>
+</ol>
+<p>Thrift编译器会根据选择的目标语言为server产生服务接口代码，为client产生桩(stub)代码。</p>
+<p>在go里是 <code>interface</code>。<code>service</code>里定义的方法必须由服务端实现。</p>
+<div class="code-wrapper"><pre><code class="hljs Thrift"><span class="hljs-class"><span class="hljs-keyword">service</span> <span class="hljs-title">Greeter</span> </span>&#123;
+    Response SayHello(
+        <span class="hljs-number">1</span>:<span class="hljs-keyword">required</span> User.User user
+    )
+&#125;</code></pre></div>
+<p>参数是user，返回值是Response类型</p>
+<h4 id="服务端代码">服务端代码</h4>
+<p>服务端主要完成4个部分的工作：</p>
+<ul>
+<li>Create a transport</li>
+<li>Create input/output protocols for the transport</li>
+<li>Create a processor based on the input/output protocols</li>
+<li>Wait for incoming connections and hand them off to the processor</li>
+</ul>
+<p>服务端最终要创建这样的一个server</p>
+<div class="code-wrapper"><pre><code class="hljs Go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewTSimpleServerFactory6</span><span class="hljs-params">(processorFactory TProcessorFactory, serverTransport TServerTransport, inputTransportFactory TTransportFactory, outputTransportFactory TTransportFactory, inputProtocolFactory TProtocolFactory, outputProtocolFactory TProtocolFactory)</span></span> *TSimpleServer &#123;
+    <span class="hljs-keyword">return</span> &amp;TSimpleServer&#123;
+        processorFactory:       processorFactory,
+        serverTransport:        serverTransport,
+        inputTransportFactory:  inputTransportFactory,
+        outputTransportFactory: outputTransportFactory,
+        inputProtocolFactory:   inputProtocolFactory,
+        outputProtocolFactory:  outputProtocolFactory,
+    &#125;
+&#125;</code></pre></div>
+<p>说明：</p>
+<ul>
+<li>需要至少指定2个字段（processorFactory和serverTransport）</li>
+<li>常用是指定4个字段（包括TransportFactory和ProtocolFactory），默认input与output使用的协议相同</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs Go">server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
+err = server.Serve()</code></pre></div>
+<ol>
+<li>
+<h5 id="processor：thrift定义服务的处理函数">processor：thrift定义服务的处理函数</h5>
+</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Go"><span class="hljs-comment">// 定义服务</span>
+<span class="hljs-keyword">type</span> Greeter <span class="hljs-keyword">struct</span> &#123;
+&#125;
+handler := &amp;Greeter&#123;&#125;
+processor := Sample.NewGreeterProcessor(handler)</code></pre></div>
+<ol start="2">
+<li>
+<h5 id="serverTransport：在指定的端口上创建一个socket连接">serverTransport：在指定的端口上创建一个socket连接</h5>
+</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> transport thrift.TServerTransport
+transport, err = thrift.NewTServerSocket(*addr)</code></pre></div>
+<ol start="3">
+<li>
+<h5 id="transportFactory">transportFactory</h5>
+</li>
+</ol>
+<p>不同类型可选</p>
+<div class="code-wrapper"><pre><code class="hljs Go"><span class="hljs-comment">//buffered</span>
+<span class="hljs-keyword">var</span> transportFactory thrift.TTransportFactory
+<span class="hljs-keyword">if</span> *buffered &#123;
+    transportFactory = thrift.NewTBufferedTransportFactory(<span class="hljs-number">8192</span>)
+&#125; <span class="hljs-keyword">else</span> &#123;
+    transportFactory = thrift.NewTTransportFactory()
+&#125;
+
+<span class="hljs-comment">//framed</span>
+<span class="hljs-keyword">if</span> *framed &#123;
+    transportFactory = thrift.NewTFramedTransportFactory(transportFactory)
+&#125;</code></pre></div>
+<ol start="4">
+<li>
+<h5 id="ProtocolFactory">ProtocolFactory</h5>
+</li>
+</ol>
+<p>不同类型可选</p>
+<div class="code-wrapper"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> protocolFactory thrift.TProtocolFactory
+<span class="hljs-keyword">switch</span> *protocol &#123;
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;compact&quot;</span>:
+    protocolFactory = thrift.NewTCompactProtocolFactory()
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;simplejson&quot;</span>:
+    protocolFactory = thrift.NewTSimpleJSONProtocolFactory()
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;json&quot;</span>:
+    protocolFactory = thrift.NewTJSONProtocolFactory()
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;binary&quot;</span>, <span class="hljs-string">&quot;&quot;</span>:
+    protocolFactory = thrift.NewTBinaryProtocolFactoryDefault()</code></pre></div>
+<h4 id="客户端代码">客户端代码</h4>
+<p>客户端定义好client后直接调用方法即可，如下所示：</p>
+<div class="code-wrapper"><pre><code class="hljs Go">client := GetClient()
+rep, err := client.GetUser(ctx, <span class="hljs-number">100</span>)
+rep, err := client.SayHello(ctx, &amp;Sample.User&#123;
+     Name:    <span class="hljs-string">&quot;thrift&quot;</span>,
+     Address: <span class="hljs-string">&quot;address&quot;</span>,
+ &#125;)</code></pre></div>
+<ol>
+<li>
+<h5 id="定义client">定义client</h5>
+</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Go">iprot := protocolFactory.GetProtocol(transport)
+oprot := protocolFactory.GetProtocol(transport)
+client := Sample.NewGreeterClient(thrift.NewTStandardClient(iprot, oprot))</code></pre></div>
+<p>涉及到protocolFactory与transport</p>
+<ol start="2">
+<li>
+<h5 id="protocolFactory">protocolFactory</h5>
+</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs Go">protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
+iprot := protocolFactory.GetProtocol(transport)
+oprot := protocolFactory.GetProtocol(transport)</code></pre></div>
+<p>注意要与服务端定义的protocolFactory要一致</p>
+<ol start="3">
+<li>
+<h5 id="transport">transport</h5>
+</li>
+</ol>
+<p>创建socket连接：</p>
+<div class="code-wrapper"><pre><code class="hljs Go"><span class="hljs-keyword">var</span> transport thrift.TTransport
+<span class="hljs-keyword">var</span> err <span class="hljs-type">error</span>
+transport, err = thrift.NewTSocket(addr)</code></pre></div>
+<p>注意要提前进行类型定义，否则后面类型不匹配</p>
+<p>定义transportFactory：</p>
+<div class="code-wrapper"><pre><code class="hljs Go">transportFactory := thrift.NewTTransportFactory()
+transport, err = transportFactory.GetTransport(transport)
+transport.Open()</code></pre></div>
+<p>注意transportFactory的类型要与服务端相同</p>
+<h4 id="其他">其他</h4>
+<p>可以添加key同时使用SSL进行Socket连接从而确保安全性</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/Hertz/" class="print-no-link">#Hertz</a>
+      
+        <a href="/tags/Thrift/" class="print-no-link">#Thrift</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hertz和Thrift简单示例</div>
+      <div>https://zhangzhao219.github.io/2023/02/24/Backend/HertzAndThrift/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/02/Backend/Prometheus/" title="Prometheus简单示例">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Prometheus简单示例</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="面试大数据题目准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试大数据题目准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/02/14/Interview/Interview-Questions-bigdata/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="面试大数据题目准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-14T19:49:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Big Data">
+<meta property="article:tag" content="Internship">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>面试大数据题目准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">面试大数据题目准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-14 19:49" pubdate>
+          2023年2月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">面试大数据题目准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>面试大数据题目准备</p>
+<span id="more"></span>
+<h1>解题技巧</h1>
+<ol>
+<li>哈希函数可以把数据按照种类均匀分流</li>
+<li>布隆过滤器用于集合的建立与查询，并可以节省大量空间</li>
+<li>一致性哈希解决数据服务器的负载管理问题</li>
+<li>利用并查集结构做岛问题的并行计算</li>
+<li>位图解决某一范围上数字的出现情况，并可以节省大量空间</li>
+<li>利用分段统计思想、并进一步节省大量空间</li>
+<li>利用堆、外排序来做多个处理单元的结果合并</li>
+</ol>
+<h2 id="统计40亿个整数中出现次数最多的数，只有1G内存，磁盘无限制">统计40亿个整数中出现次数最多的数，只有1G内存，磁盘无限制</h2>
+<h3 id="分析">分析</h3>
+<p>正常来说，我们一般会想到用哈希表来统计词频，也就是 <code>HashMap&lt;Integer, Integer&gt;</code>，其中，<code>key</code> 表示数字，<code>value</code> 表示这个数字的出现次数。但在 <code>Java</code> 中 <code>Integer</code> 类型的占用空间是 <code>4 Byte</code>，我们暂时不考虑其他的占用空间，这样一个数的 <code>key + value</code> 的占用空间就是 <code>8 Byte</code>。假设最差情况，40 亿个数字，出现最多次数的数只出现了两次，也就是说我们需要保存 <code>40 亿 - 1</code> 个数，40 亿大约是 2 ^32。所以我们可以计算一下大概要花费的空间：2^32 * 8 Byte = 2^35 Byte = 32 GB。所以说这种方式肯定不符合题目的条件的。</p>
+<h3 id="思路">思路</h3>
+<p><strong>我们可以使用哈希函数对 40 亿个数字进行分类这种方式</strong> 。具体步骤如下：</p>
+<p>（1）在磁盘上申请 100 个文件（具体申请多少个文件视情况而定）</p>
+<p>（2）对 40 亿个数依次进行遍历，对遍历到的数字用哈希函数计算出一个哈希值，然后再模除文件的个数，也就是 <code>% 100</code> ，这样就能均匀的分配到 100 个文件中（相等的数他们的哈希值肯定是一样的，所以一样的数肯定能保存到一个文件中）</p>
+<p>（3）依次对 100 个文件进行统计，统计每个文件中出现最多的数字，如何统计呢？我们可以使用哈希表进行统计，<code>key</code> 还是数字，<code>value</code> 还是出现次数。正常情况下，文件中的数大概是 <code>40 亿  / 100</code> 个，也就是只占用  <code>32 GB / 100 = 0.32 GB</code>，内存足够。</p>
+<p>（4）再用一个哈希表保存每个文件出现最多的数字和出现次数（也就是只保存 100 个数）。然后再依次遍历哈希表，找出现次数最大值即可。</p>
+<p>注意：假设出现最差情况，一个数出现了 <code>40 亿 - 1</code> 次，这意味着一个文件中保持了将近 40 亿个数，也就是 32 GB 左右，但是也没事。我们统计的时候是分批读入数字，并且哈希表肯定不会溢出，因为你保存的本来就是  <strong>数字 + 出现次数</strong> ，假设 2 出现了 40 亿次，我们在哈希表中就记录 <code>2 : 40 亿</code> 不就行了吗，也就是只记录一个数就行了。</p>
+<hr>
+<h2 id="假设有40亿个整数，统计0-42亿范围中没出现过的数">假设有40亿个整数，统计0~42亿范围中没出现过的数</h2>
+<p>32位无符号整数的范围是 0~4294967295，现在有一个正好包含40亿个无符号整数的文件， 所以在整个范围中必然存在没出现过的数。 可以使用最多1GB 的内存，怎么找到所有未出现过的数 ？</p>
+<p>进阶：内存限制为 10MB, 但是只用找到一个没出现过的数即可</p>
+<h3 id="分析-2">分析</h3>
+<p>正常来说，我们想到的是范围多大就开多大的数组，只要出现过就在数组对应的下标标记，最后我们遍历数组，没有标记过的位置就是范围内没出现过的数。一个 <code>int</code> 类型在 <code>Java</code> 中是 4 个字节，计算空间占用：<code>42 亿 * 4 Byte</code>，大概为 <code>16 GB</code>，不符合题意。</p>
+<h3 id="思路-2">思路</h3>
+<p><strong>我们可以使用位图的方式来做，也就是</strong> <code>bitMap</code>。具体步骤如下：</p>
+<p>（1）我们用 1 <code>bit</code> 来表示数字是否出现过，也就是说我们可以开 <code> int[ 42 亿 / 8]</code> 这么大的数组（一个 Byte = 8 bit），这里的 42 亿是范围，其实意思就是说我们的思路没有变化，只是换了一种数据的存储方式。空间占用：<code>42 亿 Byte / 8</code>，大概是 500 多 MB，满足条件。</p>
+<p>（2）然后遍历这 40 亿个数，依次在对应的 bit 位上标为 1。</p>
+<p>（3）最后统计我们开的数组，bit 位上为 0 的就是没出现过的。</p>
+<h3 id="进阶">进阶</h3>
+<p><strong>我们可以使用范围划分的方式</strong> 。具体步骤如下：</p>
+<p>（1）10 MB 大概可以申请 <code>int[2621440]</code> 这么多数组空间，计算方式：10 MB / 4Byte = 2621440</p>
+<p>（2）划分份数：42 亿 / 2621440 大概等于 1638，假设这个数组名为 arr，arr[0] 就代表 0 ~ 1637 这个范围出现的数字的个数，同理 arr[1] 就代表 1638~ (1638+ 1638- 1) 这个范围出现的数字的个数。也就是类似于词频统计。</p>
+<p>（3）依次遍历这 40 亿个数，<code>arr[每个数 / 1638]++</code>，也就是说 0 就是 arr[0]++，1638就是 arr[1]++，其实思路就是把范围划分成 1638份，每份统计对应的数字个数，如果对应的数字个数小于 1638，说明在这个范围内肯定有数字没出现过</p>
+<p>（4）重复此过程，将范围逐渐缩小即可求出答案。</p>
+<p>注意：这里是因为能使用的空间比较大，所以只需一次划分即可。</p>
+<h3 id="再进阶">再进阶</h3>
+<p><strong>只能使用有限几个变量，如何做</strong> ？</p>
+<p>二分法，一直二分下去。</p>
+<h2 id="有一个包含100亿个URL的大文件，每个URL占用64B，找出所有重复的URL">有一个包含100亿个URL的大文件，每个URL占用64B，找出所有重复的URL</h2>
+<h3 id="思路-3">思路</h3>
+<p>第一种办法：使用哈希函数进行分类。</p>
+<p>（1）申请 N 个磁盘文件</p>
+<p>（2）遍历所有的 URL，为每个 URL 计算哈希值，然后再模除 N，就能均匀地分类到对应的文件中，重复的 URL 一定会在同一个文件中。</p>
+<p>（3）依次统计每一个文件中重复的 URL，然后再汇总各个文件的信息即可。</p>
+<p>第二种办法：使用布隆过滤器。会有失误率，不过概率很低。</p>
+<p>（1）首先申请一个足够大的 bitMap，便建立边检查是否重复</p>
+<p>（2）遍历所有的 URL，遍历到一个 URL，就通过某种哈希函数计算它的哈希值，然后再模除 bitMap 的位数。</p>
+<p>（3）如果发现对应的槽位已经为 1 （初始都是为 0，一个 bit 位就两种状态，0 和 1），就说明这个 URL 是重复的。</p>
+<p>（4）如果发现对应的槽位为 0，说明不重复，将槽位置为 1。</p>
+<p>可以发现，如果重复的 URL 一定能找出来，但是可能不重复的 URL 也被找出来了（这也就是失误率，因为哈希冲突），如果可以允许有一定的失误率就可以使用这种办法。</p>
+<h2 id="百亿数据量中找到热门-Top-100">百亿数据量中找到热门 Top 100</h2>
+<h3 id="思路-4">思路</h3>
+<p><strong>使用分类 + 大根堆方式</strong> 。</p>
+<p>（1）通过哈希函数将海量数据分类到一个个小文件中</p>
+<p>（2）依次对每个小文件建立大根堆，规则就是 URL 出现次数最多的就在大根堆的顶部</p>
+<p>（3）取每个小文件出现次数最多的 URL，也就是刚刚建立的大根堆顶部元素，再建立一个大根堆</p>
+<p>（4）这样建立出来的大根堆就是 Top 100 了</p>
+<h2 id="40亿个数中只出现了两次的数">40亿个数中只出现了两次的数</h2>
+<p>32位无符号整数的范围是0~4294967295，现在有40亿个无符号整数，可以使用最多1GB的内存，找出所有出现了两次的数。</p>
+<h3 id="思路-5">思路</h3>
+<p>第一种方式：哈希函数。</p>
+<p>（1）通过哈希函数对 40 亿个数进行分流，分到一个个小文件中。</p>
+<p>（2）依次用哈希表统计每个小文件中只出现了两次的数。</p>
+<p>（3）然后再汇总各个文件中只出现了两次的数即可。</p>
+<p>第二种方式：bitMap</p>
+<p>（1）正常来说我们都是用 1 bit 来表示对应的数字是否出现过，对应这个题目，我们可以变化一下。</p>
+<p>（2）用 2 bit 来表示对应的数字，<code>00</code> 代表这个数没有出现过，<code>01</code> 代表这个数出现过一次，<code>10</code> 代表这个数出现过两次，<code>11</code> 代表这个数出现了两次以上。</p>
+<p>（3）容量大概使用：40 亿大概就是 2 ^32^ ，所以就是 2^32^ * 2 bit / 8  ，大概就是 1 GB 左右。</p>
+<h2 id="10G的文件，文件中每个数都是无符号整数，是无序的，只给5G内存，输出一个新文件，使其变成有序的">10G的文件，文件中每个数都是无符号整数，是无序的，只给5G内存，输出一个新文件，使其变成有序的</h2>
+<p>小根堆方式。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Internship/" class="print-no-link">#Internship</a>
+      
+        <a href="/tags/Big-Data/" class="print-no-link">#Big Data</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>面试大数据题目准备</div>
+      <div>https://zhangzhao219.github.io/2023/02/14/Interview/Interview-Questions-bigdata/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

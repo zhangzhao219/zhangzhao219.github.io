@@ -1,0 +1,920 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="算法面试题准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法面试题准备">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/02/Interview/Interview-Questions-algorithm/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="算法面试题准备">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-02T20:26:04.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.194Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Internship">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>算法面试题准备 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">算法面试题准备</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-02 20:26" pubdate>
+          2022年12月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          667 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">算法面试题准备</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>算法面试题准备</p>
+<span id="more"></span>
+<h1>排序</h1>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mergesort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp; nums, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(start &gt;= end)&#123;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-type">int</span> mid = (end - start) / <span class="hljs-number">2</span> + start;
+    <span class="hljs-built_in">mergesort</span>(nums, start, mid);
+    <span class="hljs-built_in">mergesort</span>(nums, mid<span class="hljs-number">+1</span>, end);
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-type">int</span> l1start = start;
+    <span class="hljs-type">int</span> l1end = mid;
+    <span class="hljs-type">int</span> l2start = mid + <span class="hljs-number">1</span>;
+    <span class="hljs-type">int</span> l2end = end;
+    <span class="hljs-keyword">while</span>(l1start &lt;= l1end || l2start &lt;= l2end)&#123;
+        <span class="hljs-keyword">if</span>(l1start &gt; l1end)&#123;
+            temp.<span class="hljs-built_in">push_back</span>(nums[l2start]);
+            l2start += <span class="hljs-number">1</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(l2start &gt; l2end)&#123;
+            temp.<span class="hljs-built_in">push_back</span>(nums[l1start]);
+            l1start += <span class="hljs-number">1</span>;
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">if</span>(nums[l1start] &lt; nums[l2start])&#123;
+                temp.<span class="hljs-built_in">push_back</span>(nums[l1start]);
+                l1start += <span class="hljs-number">1</span>;
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                temp.<span class="hljs-built_in">push_back</span>(nums[l2start]);
+                l2start += <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;temp.<span class="hljs-built_in">size</span>();i++)&#123;
+        nums[start+i] = temp[i];
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">quicksort</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(start &gt;= end)&#123;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-type">int</span> x = nums[start];
+    <span class="hljs-type">int</span> left = start;
+    <span class="hljs-type">int</span> right = end;
+    <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+        <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[right] &gt;= x)&#123;
+            right--;
+        &#125;
+        nums[left] = nums[right];
+        <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[left] &lt; x)&#123;
+            left++;
+        &#125;
+        nums[right] = nums[left];
+    &#125;
+    nums[left] = x;
+    <span class="hljs-built_in">quicksort</span>(nums, start, left<span class="hljs-number">-1</span>);
+    <span class="hljs-built_in">quicksort</span>(nums, left<span class="hljs-number">+1</span>, end);
+&#125;</code></pre></div>
+<h1>计算某个数字的平方根和立方根</h1>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">binarysearch</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> threshold)</span></span>&#123;
+    <span class="hljs-type">double</span> left = <span class="hljs-number">0</span>;
+    <span class="hljs-type">double</span> right = x<span class="hljs-number">+1</span>;
+    <span class="hljs-keyword">while</span>(right - left &gt;= threshold)&#123;
+        <span class="hljs-type">double</span> mid = (left + right) / <span class="hljs-number">2.0</span>;
+        <span class="hljs-keyword">if</span>(mid * mid &lt; x)&#123;
+            left = mid;
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            right = mid;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> left;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">gdtosqrt</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> threshold)</span></span>&#123;
+    <span class="hljs-comment">// y^2 = x -&gt; x - y^2 = 0</span>
+    <span class="hljs-comment">// min (x - y^2)^2</span>
+    <span class="hljs-comment">// x^2 - 2 * x * y^2 + y^4</span>
+    <span class="hljs-comment">// 对y求导</span>
+    <span class="hljs-comment">// -4*x * y + 4 * y ^ 3 </span>
+
+    <span class="hljs-type">double</span> now = x;
+    <span class="hljs-type">double</span> pre = x + threshold*<span class="hljs-number">2</span>;
+    <span class="hljs-type">double</span> lr = <span class="hljs-number">0.00001</span>;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">abs</span>(now-pre) &gt;= threshold)&#123;
+        pre = now;
+        now = now - lr * (<span class="hljs-number">-4</span> * x * now + <span class="hljs-number">4</span> * now * now * now);
+    &#125;
+    <span class="hljs-keyword">return</span> now;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">gdtocube</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> threshold)</span></span>&#123;
+    <span class="hljs-comment">// y^3 = x -&gt; x - y^3 = 0</span>
+    <span class="hljs-comment">// min (x - y^3)^2</span>
+    <span class="hljs-comment">// x^2 - 2 * x * y^3 + y^6</span>
+    <span class="hljs-comment">// 对y求导</span>
+    <span class="hljs-comment">// -6*x * y^2 + 6 * y ^ 5</span>
+
+    <span class="hljs-type">double</span> now = x;
+    <span class="hljs-type">double</span> pre = x + threshold*<span class="hljs-number">2</span>;
+    <span class="hljs-type">double</span> lr = <span class="hljs-number">0.00001</span>;
+    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">abs</span>(now-pre) &gt;= threshold)&#123;
+        pre = now;
+        now = now - lr * (<span class="hljs-number">-6</span> * x * now * now + <span class="hljs-number">6</span> * now * now * now * now * now);
+    &#125;
+  
+    <span class="hljs-keyword">return</span> now;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+    <span class="hljs-type">double</span> a = <span class="hljs-number">1</span>;
+    <span class="hljs-type">double</span> threshold = <span class="hljs-number">0.00000000001</span>;
+    <span class="hljs-type">double</span> res = <span class="hljs-built_in">binarysearch</span>(a, threshold);
+    cout &lt;&lt; res &lt;&lt; endl;
+    <span class="hljs-type">double</span> res2 = <span class="hljs-built_in">gdtosqrt</span>(a, threshold);
+    cout &lt;&lt; res2 &lt;&lt; endl;
+    <span class="hljs-type">double</span> res3 = <span class="hljs-built_in">gdtocube</span>(a, threshold);
+    cout &lt;&lt; res3 &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</code></pre></div>
+<p>跑不通调整学习率，大数学习率要小，小数学习率要大</p>
+<h1>MultiHeadAttention</h1>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MultiHeadAttention</span>(nn.Module):
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, hidden_size, num_heads</span>):
+        <span class="hljs-built_in">super</span>(MultiHeadAttention, <span class="hljs-variable language_">self</span>).__init__()
+        <span class="hljs-variable language_">self</span>.num_heads = num_heads
+        <span class="hljs-variable language_">self</span>.head_dim = hidden_size // num_heads
+
+        <span class="hljs-variable language_">self</span>.q_linear = nn.Linear(hidden_size, hidden_size)
+        <span class="hljs-variable language_">self</span>.k_linear = nn.Linear(hidden_size, hidden_size)
+        <span class="hljs-variable language_">self</span>.v_linear = nn.Linear(hidden_size, hidden_size)
+
+        <span class="hljs-variable language_">self</span>.o_linear = nn.Linear(hidden_size, hidden_size)
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, hidden_state, attention_mask=<span class="hljs-literal">None</span></span>):
+        batch_size = hidden_state.size()[<span class="hljs-number">0</span>]
+
+        query = <span class="hljs-variable language_">self</span>.q_linear(hidden_state)
+        key = <span class="hljs-variable language_">self</span>.k_linear(hidden_state)
+        value = <span class="hljs-variable language_">self</span>.v_linear = nn.Linear(hidden_state)
+
+        query = <span class="hljs-variable language_">self</span>.split_head(query)
+        key = <span class="hljs-variable language_">self</span>.split_head(key)
+        value = <span class="hljs-variable language_">self</span>.split_head(value)
+
+        attention_scores = torch.matmul(query, key.transpose(-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>)) / torch.sqrt(torch.tensor(<span class="hljs-variable language_">self</span>.head_dim))
+
+        <span class="hljs-keyword">if</span> attention_mask != <span class="hljs-literal">None</span>:
+            attention_scores += attention_mask * -<span class="hljs-number">1e9</span>
+      
+        attention_probs = torch.softmax(attention_scores, dim=-<span class="hljs-number">1</span>)
+
+        output = torch.matmul(attention_probs, value)
+
+        output = output.transpose(-<span class="hljs-number">1</span>,-<span class="hljs-number">2</span>).contiguous().view(batch_size, -<span class="hljs-number">1</span>, <span class="hljs-variable language_">self</span>.head_dim * <span class="hljs-variable language_">self</span>.num_heads)
+
+        output = <span class="hljs-variable language_">self</span>.o_linear(output)
+
+        <span class="hljs-keyword">return</span> output
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">split_head</span>(<span class="hljs-params">self, x</span>):
+        batch_size = x.size()[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">return</span> x.view(batch_size, -<span class="hljs-number">1</span>, <span class="hljs-variable language_">self</span>.num_heads, <span class="hljs-variable language_">self</span>.head_dim).transpose(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)</code></pre></div>
+<h1>Softmax和CrossEntropy</h1>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn
+
+nn.Softmax()
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">softmax</span>(<span class="hljs-params">logits</span>):
+    max_logits = np.<span class="hljs-built_in">max</span>(logits)
+    exp_logits = np.exp(logits - max_logits)
+    <span class="hljs-keyword">return</span> exp_logits / np.<span class="hljs-built_in">sum</span>(exp_logits)
+
+<span class="hljs-built_in">print</span>(softmax([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]))
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Our_CrossEntropy</span>(torch.nn.Module):
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):
+        <span class="hljs-built_in">super</span>(Our_CrossEntropy,<span class="hljs-variable language_">self</span>).__init__()
+  
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">forward</span>(<span class="hljs-params">self, x ,y</span>):
+        P_i = torch.nn.functional.softmax(x, dim=<span class="hljs-number">1</span>)
+        y = torch.nn.functional.one_hot(y)
+        loss = y*torch.log(P_i + <span class="hljs-number">0.0000001</span>)
+        loss = -torch.mean(torch.<span class="hljs-built_in">sum</span>(loss, dim=<span class="hljs-number">1</span>),dim = <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> loss
+</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Internship/" class="print-no-link">#Internship</a>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>算法面试题准备</div>
+      <div>https://zhangzhao219.github.io/2022/12/02/Interview/Interview-Questions-algorithm/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

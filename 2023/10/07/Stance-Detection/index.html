@@ -1,0 +1,1509 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="立场检测相关内容总结整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stance Detection">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/10/07/Stance-Detection/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="立场检测相关内容总结整理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/08/pPvtXj0.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/11/pPz7FzQ.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/20/piUUZ6J.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/20/piU6EUH.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/07/pPj2v6S.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/09/pPxUfET.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/08/pPvJ5xP.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/11/pPzo3hF.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/09/pPxUhUU.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/11/pPzolkT.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/20/piU6WM6.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/12/piSBw1U.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/13/pipi3YF.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/13/pipF4D1.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/09/pPxUqDx.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/13/pipkSVP.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/07/pPjWQbQ.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/11/pPz522d.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/20/piUJzO1.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/20/piUcLtJ.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/08/pPvJTr8.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/10/pPzQSNn.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/10/08/pPvYprT.md.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/19/piUkrSe.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/19/piUk7Os.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/01/28/pFuEtgA.md.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/02/04/pFlQIR1.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/02/04/pFlQoxx.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/02/04/pFlQ7M6.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/02/04/pFlQbqO.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/02/04/pFlQvid.png">
+<meta property="og:image" content="https://z1.ax1x.com/2023/11/19/piUklJU.md.png">
+<meta property="og:image" content="https://s11.ax1x.com/2024/02/04/pFllSzt.png">
+<meta property="article:published_time" content="2023-10-07T18:56:39.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Stance Detection">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://z1.ax1x.com/2023/10/08/pPvtXj0.md.png">
+  
+  
+  
+  <title>Stance Detection - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Stance Detection</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-07 18:56" pubdate>
+          2023年10月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Stance Detection</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>立场检测相关内容总结整理</p>
+<span id="more"></span>
+<h1>数据集</h1>
+<h2 id="SemEval-2016"><a target="_blank" rel="noopener" href="https://alt.qcri.org/semeval2016/task6/index.php?id=data-and-tools">SemEval 2016</a></h2>
+<p>论文：Stance and Sentiment in Tweets</p>
+<p>数据集可视化：<a target="_blank" rel="noopener" href="http://www.saifmohammad.com/WebPages/StanceDataset.htm">http://www.saifmohammad.com/WebPages/StanceDataset.htm</a></p>
+<h2 id="VAST"><a target="_blank" rel="noopener" href="https://github.com/emilyallaway/zero-shot-stance/tree/master/data">VAST</a></h2>
+<p>Zero-shot数据集</p>
+<p>New data released in this submission. Short column descriptions</p>
+<ul>
+<li>author: username of the comment author</li>
+<li>post: original comment, unprocessed</li>
+<li>ori_topic: heuristically extracted topic</li>
+<li>ori_id: id generated to link post and heuristically extracted topics</li>
+<li>new_topic: updated topic from crowdsourced annotations</li>
+<li>label: stance label, 0=con, 1=pro, 2=neutral</li>
+<li>type_idx: type number, 1=HeurTopic, 2=CorrTopic, 3=ListTopic, 4=Synthetic neutral</li>
+<li>new_id: unique id for every comment-topic-label pair</li>
+<li>arc_id: id of the original article on NYT</li>
+<li>text: sentence and word tokenized and lowercased text, with punctuation and stopwords removed</li>
+<li>text_s: string version of text</li>
+<li>topic: tokenized and lowercased version topic, with punctuation and stopwords removed</li>
+<li>topic_str: string version of topic</li>
+<li>seen?: indicator for zero-shot or few-shot example, 0=zero-shot, 1=few-shot</li>
+<li>contains_topic?: indicator for whether topic is contained in the text, 0=no, 1=yes</li>
+<li>change_lst: list of swapped words (unique to vast_test-sentswap.csv)</li>
+<li>change_type: type of sentiment swapping</li>
+<li>LexSim: a list of lexically similar training topics (if a zero-shot topic)</li>
+<li>Qte: whether the example contains quotes (1=yes, 0=no)</li>
+<li>Sarc: whether the example contains sarcasm (1=yes, 0=no)</li>
+<li>Imp: whether the text contains the topic and the label is non-neutral (1=yes, 0=no)</li>
+<li>mlS: whether there are other examples with the same document and different, non-neutral, stance labels (1=yes, 0=no)</li>
+<li>mlT: whether there are other examples with the same document and different topics (1=yes, 0=no)</li>
+</ul>
+<h2 id="WT-WT"><a target="_blank" rel="noopener" href="https://github.com/cambridge-wtwt/acl2020-wtwt-tweets/tree/master">WT-WT</a></h2>
+<p>相关链接：<a target="_blank" rel="noopener" href="https://github.com/BinLiang-NLP/TPDG">https://github.com/BinLiang-NLP/TPDG</a></p>
+<p>51284条英文Tweet</p>
+<p>关于公司的兼并收购的信息，第一个金融领域的数据集</p>
+<p>四个标签：</p>
+<ul>
+<li>Support：两个公司会合并成一个公司</li>
+<li>Refute：对两个公司要合并成一个的消息表示怀疑</li>
+<li>Comment：对合并消息的评论，中立态度</li>
+<li>Unrelated：完全不相关</li>
+</ul>
+<h2 id="P-stance"><a target="_blank" rel="noopener" href="https://github.com/chuchun8/pstance">P-stance</a></h2>
+<p>21574条英文Tweet</p>
+<p>对三个target（Donald Trump（7953），Joe Biden（7296），Bernie Sanders（6325））的立场</p>
+<p>按照8：1：1进行划分</p>
+<h2 id="UKP">UKP</h2>
+<h1>论文</h1>
+<h2 id="2017">2017</h2>
+<h3 id="A-Dataset-for-Multi-Target-Stance-Detection">A Dataset for Multi-Target Stance Detection</h3>
+<p>时间：2017年4月</p>
+<p>等级：EACL 2017</p>
+<h2 id="2020">2020</h2>
+<h3 id="Will-They-Won’t-They-A-Very-Large-Dataset-for-Stance-Detection-on-Twitter">Will-They-Won’t-They: A Very Large Dataset for Stance Detection on Twitter</h3>
+<p>时间：2020年5月1日</p>
+<p>等级：ACL 2020</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPvtXj0"><img src="https://z1.ax1x.com/2023/10/08/pPvtXj0.md.png" srcset="/img/loading.gif" lazyload alt="pPvtXj0.md.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>第一个金融领域的立场数据集，描述公司的兼并收购的信息</li>
+<li>首先爬取关于公司、兼并等内容的Tweet</li>
+<li>定义四个标签（support, refute, comment, unrelated），其中一个Tweet的不同的target可能会有不同的标签</li>
+<li>找人进行标注，评估了标注的质量，并与之前的数据集进行了对比</li>
+<li>对目前的一些模型进行了这个数据集上面的测试</li>
+</ul>
+<h3 id="Zero-Shot-Stance-Detection-A-Dataset-and-Model-using-Generalized-Topic-Representations">Zero-Shot Stance Detection: A Dataset and Model using Generalized Topic Representations</h3>
+<p>时间：2020年10月7日</p>
+<p>等级：EMNLP 2020（CCF B）</p>
+<p>思想：提出了VAST数据集</p>
+<ul>
+<li>纽约时报辩论区的评论内容</li>
+<li>选择了3365条评论，包括304个主题，找人工进行主题标注</li>
+<li>中立的立场很少，从支持与反对两种类别中选一些可能性较低的加入到中立标签中</li>
+</ul>
+<p>同时提出了一个方法解决Zero-shot问题</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPz7FzQ"><img src="https://z1.ax1x.com/2023/10/11/pPz7FzQ.md.png" srcset="/img/loading.gif" lazyload alt="pPz7FzQ.md.png"></a></p>
+<ul>
+<li>文档和主题联合输入</li>
+<li>对主题进行聚类，获取注意力</li>
+</ul>
+<p>数据集：VAST</p>
+<h2 id="2021">2021</h2>
+<h3 id="Target-adaptive-Graph-for-Cross-target-Stance-Detection">Target-adaptive Graph for Cross-target Stance Detection</h3>
+<p>时间：2021年4月</p>
+<p>等级：WWW 2021（CCF A）</p>
+<h3 id="tWT–WT-A-Dataset-to-Assert-the-Role-of-Target-Entities-for-Detecting-Stance-of-Tweets">tWT–WT: A Dataset to Assert the Role of Target Entities for Detecting Stance of Tweets</h3>
+<p>时间：2021年6月</p>
+<p>等级：NAACL 2021（CCF B）</p>
+<h3 id="Adversarial-Learning-for-Zero-Shot-Stance-Detection-on-Social-Media">Adversarial Learning for Zero-Shot Stance Detection on Social Media</h3>
+<p>时间：2021年6月</p>
+<p>等级：NAACL 2021（CCF B）</p>
+<p>思想：使用对抗学习增强zero-shot的立场检测的效果</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piUUZ6J"><img src="https://z1.ax1x.com/2023/11/20/piUUZ6J.md.png" srcset="/img/loading.gif" lazyload alt="piUUZ6J.md.png"></a></p>
+<ul>
+<li>使用BiCond编码text</li>
+<li>将编码的向量进行正则化</li>
+<li>对立场进行分类</li>
+<li>对topic进行鉴别</li>
+<li>增加对抗训练的技巧</li>
+</ul>
+<p>数据集：Sem-16</p>
+<h3 id="Stance-Detection-in-COVID-19-Tweets">Stance Detection in COVID-19 Tweets</h3>
+<p>时间：2021年8月</p>
+<p>等级：ACL 2021（CCF A）</p>
+<p>思想：</p>
+<ul>
+<li>构建了一个COVID-19数据集，包括四个target，例如关闭学校、居家、戴口罩等</li>
+<li>用无标签的数据做预训练</li>
+<li>对不同的监督学习方法进行了比较</li>
+</ul>
+<p>数据集：自行构建的COVID-19数据集</p>
+<h3 id="Enhancing-Zero-shot-and-Few-shot-Stance-Detection-with-Commonsense-Knowledge-Graph">Enhancing Zero-shot and Few-shot Stance Detection with Commonsense Knowledge Graph</h3>
+<p>时间：2021年8月</p>
+<p>等级：ACL 2021 Findings （CCF A）</p>
+<p>思想：topic在文本中是可以通过图推断出来的</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piU6EUH"><img src="https://z1.ax1x.com/2023/11/20/piU6EUH.png" srcset="/img/loading.gif" lazyload alt="piU6EUH.png"></a></p>
+<ul>
+<li>用Bert对文本和topic进行编码</li>
+<li>使用ConceptNet获取文本之间的关系</li>
+<li>进行立场分类检测</li>
+</ul>
+<p>数据集：</p>
+<h3 id="MeLT-Message-Level-Transformer-with-Masked-Document-Representations-as-Pre-Training-for-Stance-Detection">MeLT: Message-Level Transformer with Masked Document Representations as Pre-Training for Stance Detection</h3>
+<p>时间：2021年09月16日</p>
+<p>等级：EMNLP 2021 Findings</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPj2v6S"><img src="https://z1.ax1x.com/2023/10/07/pPj2v6S.png" srcset="/img/loading.gif" lazyload alt="pPj2v6S.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>在Twitter数据集上做预训练，将word级别的mask更改为message级别的mask，message的表示是word的表示取平均，按照时间顺序进行排列，对某个人的一些message进行随机mask（Bert的方式），让模型预测该位置的message。</li>
+<li>后续进行分类任务的微调</li>
+</ul>
+<p>数据集：SemEval 2016</p>
+<h3 id="P-Stance-A-Large-Dataset-for-Stance-Detection-in-Political-Domain">P-Stance: A Large Dataset for Stance Detection in Political Domain</h3>
+<p>时间：2021年08月</p>
+<p>等级：ACL 2021 Findings</p>
+<p>思想：</p>
+<ul>
+<li>现有数据集局限
+<ul>
+<li>明确提及的目标和可能暴露立场的表层词汇线索在数据中显式存在</li>
+<li>社交媒体的数据太短了，模型不需要理解就可以找出立场</li>
+</ul>
+</li>
+<li>通过#的标签收集三个总统候选人的Tweet，收集了2.8 million条数据
+<ul>
+<li>选取10-128长度的Tweet</li>
+<li>移除重复数据</li>
+<li>只保留英文数据</li>
+<li>减少到2 million，为PSTANCE-EXT数据</li>
+<li>每个人采样10000，共30000条数据构成最终的数据集</li>
+<li>人工标注，并去除I don’t know类别的数据</li>
+</ul>
+</li>
+<li>构建一个#词典，删除文本后面的#，同时更改内部的#为中性的标记，防止暴露立场信息</li>
+<li>微调BERTweet预测CLS进行分类任务</li>
+<li>可以进行跨目标的立场检测、跨主题的立场检测（在2016年的数据上训练，预测2020年的立场）</li>
+<li>采用半监督方法（UST）提升跨主题的立场检测性能（没详细介绍）</li>
+</ul>
+<p>数据集：SemEval-2016、Multi-Target stance datasets</p>
+<h2 id="2022">2022</h2>
+<h3 id="Zero-Shot-Stance-Detection-via-Contrastive-Learning">Zero-Shot Stance Detection via Contrastive Learning</h3>
+<p>时间：2022年4月</p>
+<p>等级：WWW 2022（CCF A）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPxUfET"><img src="https://z1.ax1x.com/2023/10/09/pPxUfET.md.png" srcset="/img/loading.gif" lazyload alt="pPxUfET.md.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>将数据分为两种类型：
+<ul>
+<li>target-invariant：即使目标或目标相关词被屏蔽，仍然可以识别上下文中表达的立场。</li>
+<li>target-specific：如果目标和与目标相关的词语被屏蔽，则很难理解立场信息。</li>
+</ul>
+</li>
+<li>训练一个普通的立场检测模型，训练到过拟合</li>
+<li>用主题模型找到与target最相关的词语，然后将其MASK掉，用上面的模型进行预测。如果预测对了就是target-invariant，错了就是target-specific，加一个标签给这个数据</li>
+<li>重新训练主模型
+<ul>
+<li>target-invariant与target-specific之间作对比学习</li>
+<li>不同的label之间做对比学习</li>
+</ul>
+</li>
+<li>数据集： VAST、SEM-16、WT-WT</li>
+</ul>
+<h3 id="Infusing-Knowledge-from-Wikipedia-to-Enhance-Stance-Detection">Infusing Knowledge from Wikipedia to Enhance Stance Detection</h3>
+<p>时间：2022年5月</p>
+<p>等级：ACL 2022 Workshop（WASSA）</p>
+<p>思想：从Wikipedia上预先查询到target的相关知识，融合到模型中进行立场检测</p>
+<p>数据集：P-Stance、COVID-19-Stance、VAST</p>
+<h3 id="Few-Shot-Stance-Detection-via-Target-Aware-Prompt-Distillation">Few-Shot Stance Detection via Target-Aware Prompt Distillation</h3>
+<p>时间：2022年6月27日</p>
+<p>等级：SIGIR 2022（CCF A）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPvJ5xP"><img src="https://z1.ax1x.com/2023/10/08/pPvJ5xP.md.png" srcset="/img/loading.gif" lazyload alt="pPvJ5xP.md.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>动机：target通常是随时间变化的，对每一个target都获取充足的数据进行训练是很不现实的，立场检测方法需要获得few-shot的能力</li>
+</ul>
+<ol>
+<li>多目标训练：训练一个模型，可以准确预测不同的target的label</li>
+<li>设计三个Prompt，输入到Bert等模型的预训练任务中，让其预测label</li>
+<li>预测的时候不映射到具体的label的词语，而是提前通过预训练模型获取label的表示向量，最终将target的向量与label的向量相乘计算损失</li>
+<li>teacher-student model融合三个prompt的结果，迭代进行预测，对比真实标签与预测标签之间的差距。</li>
+</ol>
+<p>数据集：SemEval-2016、UKP</p>
+<h3 id="JointCL-A-Joint-Contrastive-Learning-Framework-for-Zero-Shot-Stance-Detection">JointCL: A Joint Contrastive Learning Framework for Zero-Shot Stance Detection</h3>
+<p>时间：2022年5月</p>
+<p>等级：ACL 2022（CCF A）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPzo3hF"><img src="https://z1.ax1x.com/2023/10/11/pPzo3hF.md.png" srcset="/img/loading.gif" lazyload alt="pPzo3hF.md.png"></a></p>
+<p>图相关</p>
+<ul>
+<li>一个没有出现过的target的信息是可以通过其他已知的target表示出来的（从target-aware的视角来看）</li>
+<li>提出了由立场对比学习与原型图网络对比学习。通过构建原形图，可以在未知target和已知target之间建立关系，从而用已学习到的信息表示未知target，从而提升对未知target的立场学习能力。</li>
+</ul>
+<p>数据集：VAST、SEM-16、WT-WT</p>
+<h3 id="A-Survey-on-Stance-Detection-for-Mis-and-Disinformation-Identification">A Survey on Stance Detection for Mis- and Disinformation Identification</h3>
+<p>时间：2022年7月</p>
+<p>等级：NAACL 2022 Findings（CCF B）</p>
+<p>思想：虚假新闻的立场检测，一篇综述性质的文章</p>
+<p>数据集：没有做实验，只是汇总之前人的数据、方法与结果</p>
+<h3 id="Enhancing-Zero-Shot-Stance-Detection-via-Targeted-Background-Knowledge">Enhancing Zero-Shot Stance Detection via Targeted Background Knowledge</h3>
+<p>时间：2022年7月</p>
+<p>等级：SIGIR 2022（CCF A）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPxUhUU"><img src="https://z1.ax1x.com/2023/10/09/pPxUhUU.png" srcset="/img/loading.gif" lazyload alt="pPxUhUU.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>用相关信息进行增强
+<ul>
+<li>根据target在网络上爬取相关信息，找最相关的top k个主题</li>
+<li>用NLTK的工具提取关键词，找到爬取的信息中与关键词最相关的部分，作为额外知识</li>
+</ul>
+</li>
+<li>其他的模型训练非常普通</li>
+</ul>
+<p>数据集：VAST、SEM-16、WT-WT</p>
+<h3 id="Exploiting-Sentiment-and-Common-Sense-for-Zero-shot-Stance-Detection">Exploiting Sentiment and Common Sense for Zero-shot Stance Detection</h3>
+<p>时间：2022年10月</p>
+<p>等级：COLING 2022</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPzolkT"><img src="https://z1.ax1x.com/2023/10/11/pPzolkT.md.png" srcset="/img/loading.gif" lazyload alt="pPzolkT.md.png"></a></p>
+<p>图相关</p>
+<ol>
+<li>使用图自动编码的模块将target的普遍信息融合进立场检测的模型</li>
+<li>立场检测是被情感词汇影响的，使用Bert单独提取文档中的情感的词汇。</li>
+</ol>
+<h3 id="Generative-Data-Augmentation-with-Contrastive-Learning-for-Zero-Shot-Stance-Detection">Generative Data Augmentation with Contrastive Learning for Zero-Shot Stance Detection</h3>
+<p>时间：2022年12月</p>
+<p>等级：EMNLP 2022（CCF B）</p>
+<p>思想：在看见过的target的基础之上生成没有看见过的target的数据</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piU6WM6"><img src="https://z1.ax1x.com/2023/11/20/piU6WM6.md.png" srcset="/img/loading.gif" lazyload alt="piU6WM6.md.png"></a></p>
+<ul>
+<li>使用GAN网络进行对抗生成</li>
+<li>添加对比学习的策略</li>
+<li>在立场检测任务上进行微调</li>
+</ul>
+<p>数据集：VAST、Sem-16</p>
+<h3 id="How-would-Stance-Detection-Techniques-Evolve-after-the-Launch-of-ChatGPT">How would Stance Detection Techniques Evolve after the Launch of ChatGPT?</h3>
+<p>时间：2022年12月30日</p>
+<p>等级：Arxiv</p>
+<p>思想：</p>
+<ul>
+<li>加个Prompt的立场检测效果可以达到SOTA</li>
+<li>多轮对话理论上可以增强背景知识等</li>
+<li>没有和很多的SOTA进行比较，没啥说服力</li>
+</ul>
+<p>数据集：P-Stance</p>
+<h2 id="2023">2023</h2>
+<h3 id="Hashtag-Guided-Low-Resource-Tweet-Classification">Hashtag-Guided Low-Resource Tweet Classification</h3>
+<p>时间：2023年2月20日</p>
+<p>等级：WWW 2023（CCF A）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piSBw1U"><img src="https://z1.ax1x.com/2023/10/12/piSBw1U.png" srcset="/img/loading.gif" lazyload alt="piSBw1U.png"></a></p>
+<ul>
+<li>Hash Tag是很重要的</li>
+<li>Tweet注意力模块：获取Tweet之间的相关性从而借鉴已有的标签</li>
+<li>实体注意力模块：实体图获取Tweet中的实体</li>
+<li>融合两个模块生成HashTag</li>
+<li>通过原始的Tweet与HashTag一起输入到预训练模型中进行训练</li>
+</ul>
+<p>数据集：</p>
+<h3 id="Few-shot-Learning-for-Cross-Target-Stance-Detection-by-Aggregating-Multimodal-Embeddings">Few-shot Learning for Cross-Target Stance Detection by Aggregating Multimodal Embeddings</h3>
+<p>时间：2023年3月31日</p>
+<p>等级：IEEE Transactions on Computational Social Systems（CCF C）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pipi3YF"><img src="https://z1.ax1x.com/2023/10/13/pipi3YF.png" srcset="/img/loading.gif" lazyload alt="pipi3YF.png"></a></p>
+<ul>
+<li>通过发Tweet的人之间的关系网络增强立场检测的效果</li>
+<li>包括Follower、Like和Friend的信息</li>
+</ul>
+<p>数据集：P-Stance，额外找到了作者的关系信息</p>
+<h3 id="Investigating-Chain-of-thought-with-ChatGPT-for-Stance-Detection-on-Social-Media">Investigating Chain-of-thought with ChatGPT for Stance Detection on Social Media</h3>
+<p>时间：2023年4月6日</p>
+<p>等级：Arxiv</p>
+<p>思想：通过思维链的方式，给一个例子帮助ChatGPT进行分析，在多个数据集上达到了SOTA（假）效果</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pipF4D1"><img src="https://z1.ax1x.com/2023/10/13/pipF4D1.md.png" srcset="/img/loading.gif" lazyload alt="pipF4D1.md.png"></a></p>
+<p>数据集：SEM-16、VAST、P-Stance</p>
+<h3 id="Claim-Extraction-and-Dynamic-Stance-Detection-in-COVID-19-Tweets">Claim Extraction and Dynamic Stance Detection in COVID-19 Tweets</h3>
+<p>时间：2023年4月</p>
+<p>等级：WWW 2023 Companion</p>
+<p>思想：</p>
+<ul>
+<li>是否存在主张：作者是否在Tweet中提出了客观事实的主张？并进一步分析是否值得检查。
+<ul>
+<li>微调Bert系列的模型来完成</li>
+</ul>
+</li>
+<li>主张提取：识别Tweet中的哪些部分对应于事实主张，哪些部分对应于作者的评论
+<ul>
+<li>使用IOB2方式进行标注，也是微调Bert进行，尝试了多种模型结构</li>
+</ul>
+</li>
+<li>动态立场检测：识别作者对事实主张的立场。不过主张是上面识别出来的，因此变化很大，基本上之前都没有见过</li>
+<li>数据集：自行收集的COVID-19的数据集</li>
+</ul>
+<h3 id="Can-ChatGPT-Reproduce-Human-Generated-Labels-A-Study-of-Social-Computing-Tasks">Can ChatGPT Reproduce Human-Generated Labels? A Study of Social Computing Tasks</h3>
+<p>时间：2023年4月22日</p>
+<p>等级：无</p>
+<p>思想：</p>
+<ul>
+<li>将一些NLP任务的数据集通过ChatGPT进行标注，标注后评估效果</li>
+<li>在立场检测的任务上面大概0.5-0.6左右</li>
+</ul>
+<h3 id="Examining-Temporalities-on-Stance-Detection-Towards-COVID-19-Vaccination">Examining Temporalities on Stance Detection Towards COVID-19 Vaccination</h3>
+<p>时间：2023年5月7日</p>
+<p>等级：ICWSM Data Challenge</p>
+<p>思想：</p>
+<ul>
+<li>划分数据集是以时间顺序进行划分的，更接近于真实的情况</li>
+<li>用单语言的Bert和多语言的Bert进行测试</li>
+</ul>
+<p>数据集：COVID数据集</p>
+<h3 id="Robust-Integration-of-Contextual-Information-for-Cross-Target-Stance-Detection">Robust Integration of Contextual Information for Cross-Target Stance Detection</h3>
+<p>（Contextual information integration for stance detection via cross-attention）</p>
+<p>时间：2023年5月25日</p>
+<p>等级：SEM2023（Co-located with ACL 2023）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPxUqDx"><img src="https://z1.ax1x.com/2023/10/09/pPxUqDx.png" srcset="/img/loading.gif" lazyload alt="pPxUqDx.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>一个灵活的结合外部知识的方法
+<ul>
+<li>一个Input+Target的Encoder和另外一个Context的Encoder，相当于Cross Attention</li>
+<li>直接连接Context与Text，相当于Self Attention</li>
+</ul>
+</li>
+<li>尝试了多种获取外部知识的方法。例如ConceptNet、CauseNet、预训练模型等</li>
+<li>多个数据集测试效果</li>
+</ul>
+<h3 id="Guiding-Computational-Stance-Detection-with-Expanded-Stance-Triangle-Framework">Guiding Computational Stance Detection with Expanded Stance Triangle Framework</h3>
+<p>时间：2023年5月31日</p>
+<p>等级：ACL 2023</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pipkSVP"><img src="https://z1.ax1x.com/2023/10/13/pipkSVP.md.png" srcset="/img/loading.gif" lazyload alt="pipkSVP.md.png"></a></p>
+<ul>
+<li>从语言学的角度考虑立场检测，使用很早就提出过的立场检测三角形</li>
+<li>语言学看不太懂，效果也没有很SOTA</li>
+<li>感觉就是方法比较新颖</li>
+</ul>
+<p>数据集：SEM-16、P-Stance、VAST、Tweet-COVID</p>
+<h3 id="Knowledge-enhanced-Prompt-tuning-for-Stance-Detection">Knowledge-enhanced Prompt-tuning for Stance Detection</h3>
+<p>时间：2023年6月</p>
+<p>等级：2023 ACM Transactions on Asian and Low-Resource Language Information Processing（SCI 4区 CCF C）</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPjWQbQ"><img src="https://z1.ax1x.com/2023/10/07/pPjWQbQ.md.png" srcset="/img/loading.gif" lazyload alt="pPjWQbQ.md.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>将立场检测的任务通过Bert中MASK的方式转换成一个MLM任务</li>
+<li>自动空间映射器：用SenticNet扩充词汇，自动选择相关的词语进行答案的映射（涉及一个树模型）</li>
+<li>背景知识
+<ol>
+<li>将target送入ConceptGraph中获得target的背景知识</li>
+<li>使用neural topic model学习利用#符号的语义信息（涉及变分自编码器VAE）</li>
+</ol>
+</li>
+<li>将上述的知识一起作为Prompt送入到预训练模型中进行微调，得到类别</li>
+</ul>
+<p>数据集：SEM16、VAST、P-stance、自己的数据集（ISD）</p>
+<h3 id="Topic-Guided-Sampling-For-Data-Efficient-Multi-Domain-Stance-Detection">Topic-Guided Sampling For Data-Efficient Multi-Domain Stance Detection</h3>
+<p>时间：2023年6月</p>
+<p>等级：ACL 2023 Oral（CCF A）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPz522d"><img src="https://z1.ax1x.com/2023/10/11/pPz522d.png" srcset="/img/loading.gif" lazyload alt="pPz522d.png"></a></p>
+<ul>
+<li>适用于跨主题（领域）的立场检测</li>
+<li>方法
+<ul>
+<li>通过主题模型进行训练数据的采样</li>
+<li>将立场检测看成序列分类问题（d, t），加个Prompt</li>
+<li>对比学习计算损失</li>
+</ul>
+</li>
+</ul>
+<p>数据集：16个benchmark数据集</p>
+<h3 id="Voting-Booklet-Bias-Stance-Detection-in-Swiss-Federal-Communication">Voting Booklet Bias: Stance Detection in Swiss Federal Communication</h3>
+<p>时间：2023年6月15日</p>
+<p>等级：Arxiv</p>
+<p>思想：</p>
+<ul>
+<li>分析的目标是面向选民的小册子中的Topic的立场是否为中立的立场</li>
+<li>模型结构没有创新，评价了一些方法的性能</li>
+<li>这个任务与普通的立场检测任务不同</li>
+</ul>
+<p>数据集：x-stance</p>
+<h3 id="C-STANCE-A-Large-Dataset-for-Chinese-Zero-Shot-Stance-Detection">C-STANCE: A Large Dataset for Chinese Zero-Shot Stance Detection</h3>
+<p>时间：2023年7月</p>
+<p>等级：ACL 2023（CCF A）</p>
+<p>思想：第一个中文的Zero-shot数据集</p>
+<ul>
+<li>微博的数据</li>
+<li>人工进行标注</li>
+<li>在多个立场检测的领域，使用多种方法进行评测</li>
+</ul>
+<p>数据集：C-STANCE</p>
+<h3 id="A-New-Direction-in-Stance-Detection-Target-Stance-Extraction-in-the-Wild">A New Direction in Stance Detection: Target-Stance Extraction in the Wild</h3>
+<p>时间：2023年7月</p>
+<p>等级：ACL 2023（CCF A）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piUJzO1"><img src="https://z1.ax1x.com/2023/11/20/piUJzO1.png" srcset="/img/loading.gif" lazyload alt="piUJzO1.png"></a></p>
+<ul>
+<li>在立场检测中，target可能是隐含在text中的，大规模标注target不太现实</li>
+<li>从文本中获取target-stance的对</li>
+<li>Target Identification：
+<ul>
+<li>训练一个分类器对target进行分类</li>
+<li>用BART对target进行生成，然后map到已知的target上面</li>
+</ul>
+</li>
+<li>Stance Detection
+<ul>
+<li>建立一个分类器，并用target预测作为辅助任务</li>
+</ul>
+</li>
+</ul>
+<p>数据集：SemEval-2016、AM、COVID-19、P-Stance、自己构建的zero-shot数据集</p>
+<h3 id="Distilling-Calibrated-Knowledge-for-Stance-Detection">Distilling Calibrated Knowledge for Stance Detection</h3>
+<p>时间：2023年7月</p>
+<p>等级：ACL 2023 Findings（CCF A）</p>
+<p>思想：与知识蒸馏等相关</p>
+<p>数据集：AM、COVID-19、P-Stance</p>
+<h3 id="Target-Oriented-Relation-Alignment-for-Cross-Lingual-Stance-Detection">Target-Oriented Relation Alignment for Cross-Lingual Stance Detection</h3>
+<p>时间：2023年7月</p>
+<p>等级：ACL 2023 Findings（CCF A）</p>
+<p>思想：将单语言的立场检测迁移到多语言上</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piUcLtJ"><img src="https://z1.ax1x.com/2023/11/20/piUcLtJ.md.png" srcset="/img/loading.gif" lazyload alt="piUcLtJ.md.png"></a></p>
+<ul>
+<li>使用mBert获取文本的表示</li>
+<li>构建target的关系图</li>
+</ul>
+<p>也是图相关的工作</p>
+<p>数据集：X-Stance-all</p>
+<h3 id="Exploration-of-Contrastive-Learning-Strategies-toward-more-Robust-Stance-Detection">Exploration of Contrastive Learning Strategies toward more Robust Stance Detection</h3>
+<p>时间：2023年7月</p>
+<p>等级：ACL 2023 Workshop（WASSA）</p>
+<p>思想：使用对比学习增强立场检测系统的鲁棒性</p>
+<ul>
+<li>词表相似的句子也能通过对比学习获取语义从而发现他们之间的区别</li>
+<li>选择anchor的策略可以有多种方法</li>
+<li>使用拼写错误、同义重复和同义词替换三种策略来对数据集进行增强</li>
+<li>不同的构造方法（数据集中的所有topic或者一部分的topic）进行不同的数据集下的训练，仅考虑二分类</li>
+</ul>
+<p>数据集：DebateForum (DF), SemEval2016 (SE) ,ARC, Perspectrum, FNC-1, KSD-Biden, KSD-Trump</p>
+<h3 id="Zero-Shot-and-Few-Shot-Stance-Detection-on-Varied-Topics-via-Conditional-Generation">Zero-Shot and Few-Shot Stance Detection on Varied Topics via Conditional Generation</h3>
+<p>时间：2023年7月</p>
+<p>等级：ACL 2023（CCF A）</p>
+<p>思想：</p>
+<ul>
+<li>用生成的思想做立场检测的问题，使用BART作为基础架构</li>
+<li>使用联合训练，不仅生成标签，同时生成target</li>
+<li>Unlikelihood Training 数据增强方法提升性能</li>
+<li>结合Wiki的知识（其他论文的工作）</li>
+</ul>
+<p>数据集：VAST</p>
+<h3 id="Ladder-of-Thought-Using-Knowledge-as-Steps-to-Elevate-Stance-Detection">Ladder-of-Thought: Using Knowledge as Steps to Elevate Stance Detection</h3>
+<p>时间：2023年8月31日</p>
+<p>等级：Arxiv</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPvJTr8"><img src="https://z1.ax1x.com/2023/10/08/pPvJTr8.md.png" srcset="/img/loading.gif" lazyload alt="pPvJTr8.md.png"></a></p>
+<p>思想：</p>
+<ul>
+<li>CoT利用的是大模型内部的知识，但是立场检测相关的知识大模型可能没有见过</li>
+<li>首先在Google上面搜到target的相关信息</li>
+<li>用Text，Target和上面搜集到的信息微调一个预训练模型，让其产生更好的外部信息 Generation Finetuning</li>
+<li>在上面的模型基础上，将text，target，和上面产生的外部信息连接在一起输入到模型中，以预测label为目标进行微调</li>
+</ul>
+<p>数据集：VAST</p>
+<h3 id="Use-of-Large-Language-Models-for-Stance-Classification">Use of Large Language Models for Stance Classification</h3>
+<p>时间：2023年9月24日</p>
+<p>等级：ICWSM 2024 （CCF B）</p>
+<p>思想：</p>
+<ul>
+<li>尝试了四种Prompt，用上下文包裹text和target，加一些few shot的例子，最后让其解释原因</li>
+<li>尝试了几种开源的大模型</li>
+<li>总结：大模型不太行，不如微调过的小模型，甚至不如zero-shot</li>
+</ul>
+<p>数据集：covid-lies、election2016、phemerumors、semeval2016、wtwt</p>
+<h3 id="STANCE-C3-Domain-adaptive-Cross-target-Stance-Detection-via-Contrastive-Learning-and-Counterfactual-Generation">STANCE-C3: Domain-adaptive Cross-target Stance Detection via Contrastive Learning and Counterfactual Generation</h3>
+<p>时间：2023年9月26日</p>
+<p>等级：无</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPzQSNn"><img src="https://z1.ax1x.com/2023/10/10/pPzQSNn.md.png" srcset="/img/loading.gif" lazyload alt="pPzQSNn.md.png"></a></p>
+<ul>
+<li>跨领域的知识迁移</li>
+<li>反事实数据增强</li>
+</ul>
+<h3 id="StanceReCL-Zero-Shot-Stance-Detection-Based-on-Relevance-and-Contrastive-Learning">StanceReCL: Zero-Shot Stance Detection Based on Relevance and Contrastive Learning</h3>
+<p>时间：2023年10月</p>
+<p>等级：投稿 EMNLP 2023 没中</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pPvYprT"><img src="https://z1.ax1x.com/2023/10/08/pPvYprT.md.png" srcset="/img/loading.gif" lazyload alt="pPvYprT.md.png"></a></p>
+<ul>
+<li>提出了几个概念：stance indicator（support，against和neutral），stance pattern（由stance indicator和target组成）</li>
+<li>两种表达：句子层面的表达（[CLS]对应的最后一层的表示）与词语层面的表达（单个token的最后一层的隐藏状态）</li>
+<li>相关性的计算：
+<ul>
+<li>上面的CLS与下面的CLS计算句子层面的相关性</li>
+<li>上面的stance indicator与下面的sentence中的最相关的词语计算相关性</li>
+</ul>
+</li>
+<li>句子层面计算对比学习的损失，然后与词语层面的损失加权重融合计算</li>
+</ul>
+<p>数据集：SEM-16、VAST、WT-WT</p>
+<h3 id="Stance-Detection-with-Collaborative-Role-Infused-LLM-Based-Agents">Stance Detection with Collaborative Role-Infused LLM-Based Agents</h3>
+<p>时间：2023年10月</p>
+<p>等级：Arxiv</p>
+<p>思想：多个LLM的Agent一起分析文本的各个方面，最后一正一反对立场进行推断，完全的Zero-shot</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piUkrSe"><img src="https://z1.ax1x.com/2023/11/19/piUkrSe.png" srcset="/img/loading.gif" lazyload alt="piUkrSe.png"></a></p>
+<p>数据集：Sem-16、WT-WT、VAST</p>
+<h3 id="TATA-Stance-Detection-via-Topic-Agnostic-and-Topic-Aware-Embeddings">TATA: Stance Detection via Topic-Agnostic and Topic-Aware Embeddings</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piUk7Os"><img src="https://z1.ax1x.com/2023/11/19/piUk7Os.png" srcset="/img/loading.gif" lazyload alt="piUk7Os.png"></a></p>
+<ul>
+<li>topic-aware/TAW embeddings and generalized topic-agnostic/TAG stance embeddings</li>
+<li>使用T5-Flan作为基座模型</li>
+<li>收集了一个新的数据集，包括相关的passage对与相关的topic对，Topic-Aware/TAW Dataset
+<ul>
+<li>使用T5对topic进行预测从而做预训练任务</li>
+<li>使用MPNet LLM 识别其他数据集中相同的topic</li>
+</ul>
+</li>
+<li>用TAW Dataset对VAST数据集进行扩充</li>
+<li>Topic-Aware/TAW Embedding Layer：对整个的text-topic对进行训练</li>
+<li>Topic-Agnostic/TAG Embedding Layer：topic看不到</li>
+<li>后面加两个注意力层</li>
+</ul>
+<p>数据集：VAST</p>
+<h3 id="Support-or-Refute-Analyzing-the-Stance-of-Evidence-to-Detect-Out-of-Context-Mis-and-Disinformation">Support or Refute: Analyzing the Stance of Evidence to Detect Out-of-Context Mis- and Disinformation</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：多模态的信息不匹配会造成误解</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFuEtgA"><img src="https://s11.ax1x.com/2024/01/28/pFuEtgA.md.png" srcset="/img/loading.gif" lazyload alt="pFuEtgA.md.png"></a></p>
+<p>分别训练图片的立场检测分类器、文本的立场检测分类器，外加一些实体的知识进行识别</p>
+<p>数据集：NewsCLIPpings</p>
+<h3 id="Why-Should-This-Article-Be-Deleted-Transparent-Stance-Detection-in-Multilingual-Wikipedia-Editor-Discussions">Why Should This Article Be Deleted? Transparent Stance Detection in Multilingual Wikipedia Editor Discussions</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：在文本审核中加入立场检测从而进行自动判断其是否应该被删除</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFlQIR1"><img src="https://s11.ax1x.com/2024/02/04/pFlQIR1.png" srcset="/img/loading.gif" lazyload alt="pFlQIR1.png"></a></p>
+<p>数据集：提出了多语言的Wiki的审核数据集</p>
+<h3 id="ORCHID-A-Chinese-Debate-Corpus-for-Target-Independent-Stance-Detection-and-Argumentative-Dialogue-Summarization">ORCHID: A Chinese Debate Corpus for Target-Independent Stance Detection and Argumentative Dialogue Summarization</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：</p>
+<ul>
+<li>提出中文的辩论的立场检测数据集，且是与目标无关的</li>
+<li>提出立场相关的摘要任务，可以提升摘要的效果</li>
+</ul>
+<p>数据集：</p>
+<h3 id="Cross-Lingual-Cross-Target-Stance-Detection-with-Dual-Knowledge-Distillation-Framework">Cross-Lingual Cross-Target Stance Detection with Dual Knowledge Distillation Framework</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFlQoxx"><img src="https://s11.ax1x.com/2024/02/04/pFlQoxx.png" srcset="/img/loading.gif" lazyload alt="pFlQoxx.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFlQ7M6"><img src="https://s11.ax1x.com/2024/02/04/pFlQ7M6.png" srcset="/img/loading.gif" lazyload alt="pFlQ7M6.png"></a></p>
+<ul>
+<li>提出了新的跨语言cross target的立场检测任务</li>
+<li>一个跨语言的老师，一个跨target的老师</li>
+<li>大量的目标语言的无标签数据如何利用</li>
+<li>使用mBert作为跨语言的teacher，翻译prompt和label构建文本对，使得两个文本对的预测结果更为接近</li>
+<li>使用上面的跨语言的teacher作为跨target的encoder</li>
+<li>使用GAT等将target分类，然后做与类别相关的对比学习</li>
+<li>用无标签的目标语言数据+两个teacher的伪标签训练</li>
+</ul>
+<p>数据集：X-Stance、Semeval-2016、R-ita、Czech</p>
+<h3 id="Identification-of-Multimodal-Stance-Towards-Frames-of-Communication">Identification of Multimodal Stance Towards Frames of Communication</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：文字和图片的多模态立场检测，主要的贡献是数据集</p>
+<ul>
+<li>在疫苗场景下</li>
+<li>收集了关于疫苗或者新冠的Twitter的数据集，包括文字与图片数据</li>
+<li>选择了一些多模态的模型作为baseline，通过OCR等方式提取图片中的文字</li>
+<li>分一些图片与文字不吻合的情况</li>
+</ul>
+<p>数据集：MMVAX-STANCE</p>
+<h3 id="From-Values-to-Opinions-Predicting-Human-Behaviors-and-Stances-Using-Value-Injected-Large-Language-Models">From Values to Opinions: Predicting Human Behaviors and Stances Using Value-Injected Large Language Models</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：与价值观相关，不算立场检测任务</p>
+<ul>
+<li>使用Argument Generation和Question Answering两种方法对LLM进行微调</li>
+</ul>
+<p>数据集：非立场检测</p>
+<h3 id="Stance-Detection-on-Social-Media-with-Background-Knowledge">Stance Detection on Social Media with Background Knowledge</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023（CCF B）</p>
+<p>思想：补充两种知识增强立场检测的效果</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFlQbqO"><img src="https://s11.ax1x.com/2024/02/04/pFlQbqO.png" srcset="/img/loading.gif" lazyload alt="pFlQbqO.png"></a></p>
+<ul>
+<li>Episodic knowledge：情景知识，只能从背景知识中推断出来</li>
+<li>discourse knowledge：口语知识，代号、hashtag等</li>
+<li>在网络上搜索最相关的top10的wiki知识</li>
+<li>通过主题模型和关键词检索最相关的部分、使用大模型进行过滤</li>
+<li>使用大模型对口语知识进行扩充</li>
+<li>既微调了小模型，也在大模型上面做zero-shot看效果</li>
+</ul>
+<p>数据集：Sem-16、P-Stance、VAST</p>
+<h3 id="EZ-STANCE-A-Large-Dataset-for-Zero-Shot-Stance-Detection">EZ-STANCE: A Large Dataset for Zero-Shot Stance Detection</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023 Findings</p>
+<p>思想：提出了与VAST对标的EZ-Stance数据集</p>
+<p>数据集：EZ-Stance</p>
+<h3 id="Multi-label-and-Multi-target-Sampling-of-Machine-Annotation-for-Computational-Stance-Detection">Multi-label and Multi-target Sampling of Machine Annotation for Computational Stance Detection</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023 Findings</p>
+<p>思想：思维链等zero-shot来增强直接使用大模型进行立场检测的效果</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFlQvid"><img src="https://s11.ax1x.com/2024/02/04/pFlQvid.png" srcset="/img/loading.gif" lazyload alt="pFlQvid.png"></a></p>
+<p>数据集：</p>
+<h3 id="Chain-of-Thought-Embeddings-for-Stance-Detection-on-Social-Media">Chain-of-Thought Embeddings for Stance Detection on Social Media</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023 Findings</p>
+<p>思想：用大模型对立场进行预测，然后输入到Roberta中进行再次预测</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/piUklJU"><img src="https://z1.ax1x.com/2023/11/19/piUklJU.md.png" srcset="/img/loading.gif" lazyload alt="piUklJU.md.png"></a></p>
+<p>数据集：Tweet-Stance、P-Stance</p>
+<h3 id="Toxicity-Morality-and-Speech-Act-Guided-Stance-Detection">Toxicity, Morality, and Speech Act Guided Stance Detection</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023 Findings</p>
+<p>思想：关注一些情绪倾向</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pFllSzt"><img src="https://s11.ax1x.com/2024/02/04/pFllSzt.png" srcset="/img/loading.gif" lazyload alt="pFllSzt.png"></a></p>
+<p>数据集：SemEval、P-Stance、Climate、COVID</p>
+<h3 id="Multilingual-Coarse-Political-Stance-Classification-of-Media-The-Editorial-Line-of-a-ChatGPT-and-Bard-Newspaper">Multilingual Coarse Political Stance Classification of Media. The Editorial Line of a ChatGPT and Bard Newspaper</h3>
+<p>时间：2023年12月</p>
+<p>等级：EMNLP 2023 Findings</p>
+<p>思想：使用大模型对人工编写的新闻的倾向进行判断，不算立场检测</p>
+<p>数据集：与立场检测无关</p>
+<h2 id="2024">2024</h2>
+<h3 id="Cross-target-Stance-Detection-by-Exploiting-Target-Analytical-Perspectives">Cross-target Stance Detection by Exploiting Target Analytical Perspectives</h3>
+<p>时间：2024年1月</p>
+<p>等级：Arxiv</p>
+<p>思想：先用GPT3.5给出可以分析的视角，然后一起送到小模型中进行立场检测，同时情感词汇使用SenticNet进行扩充。比较传统的做法</p>
+<p>数据集：SEM16和VAST</p>
+<h3 id="EACL-2024-气候相关立场检测竞赛">EACL 2024 气候相关立场检测竞赛</h3>
+<p>HAMiSoN-Generative at ClimateActivism 2024: Stance Detection using generative large language models</p>
+<ul>
+<li>大模型+分类头做立场检测</li>
+<li>BertTweet+CNN</li>
+<li>扩充了数据，然后用小模型做了微调</li>
+<li>训练多个模型，包括小模型、大模型等，然后进行集成</li>
+</ul>
+<h3 id="Unsupervised-Stance-Detection-for-Social-Media-Discussions-A-Generic-Baseline">Unsupervised Stance Detection for Social Media Discussions: A Generic Baseline</h3>
+<p>采用无监督学习的方式保证立场检测的泛化性</p>
+<p>关于图神经网络的做法</p>
+<p>等级：EACL 2024</p>
+<h3 id="SocialPET-Socially-Informed-Pattern-Exploiting-Training-for-Few-Shot-Stance-Detection-in-Social-Media">SocialPET: Socially Informed Pattern Exploiting Training for Few-Shot Stance Detection in Social Media</h3>
+<p>等级：期刊</p>
+<p>现状介绍的很详细，可以参考</p>
+<p>也是用辩论的方式，构建多个场景然后集成一下</p>
+<p>数据集：P-Stance</p>
+<h3 id="Collaborative-Knowledge-Infusion-for-Low-resource-Stance-Detection">Collaborative Knowledge Infusion for Low-resource Stance Detection</h3>
+<p>等级：Arxiv</p>
+<p>小模型+Wiki的RAG+LoRA+一些训练技巧</p>
+<p>数据集：VAST、P-Stance、COVID-19-Stance</p>
+<h3 id="Stance-Detection-on-Social-Media-with-Fine-Tuned-Large-Language-Models">Stance Detection on Social Media with Fine-Tuned Large Language Models</h3>
+<p>用大模型微调的方式探索了一下立场检测使用大模型能力的边界</p>
+<h3 id="Zero-shot-Cross-lingual-Stance-Detection-via-Adversarial-Language-Adaptation">Zero-shot Cross-lingual Stance Detection via  Adversarial Language Adaptation</h3>
+<p>有跨主题跨语言的相关工作</p>
+<p>用一个多语言的Encoder，构建一个Pipeline做跨语言的立场检测</p>
+<h3 id="EDDA-An-Encoder-Decoder-Data-Augmentation-Framework-for-Zero-Shot-Stance-Detection">EDDA: An Encoder-Decoder Data Augmentation Framework for Zero-Shot Stance Detection</h3>
+<p>Coling 2024</p>
+<p>先训一个完整的Transformer，然后将他的输出通过Prompt的方式进行多步推理的立场检测</p>
+<h3 id="EcoVerse-An-Annotated-Twitter-Dataset-for-Eco-Relevance-Classification-Environmental-Impact-Analysis-and-Stance-Detection">EcoVerse: An Annotated Twitter Dataset for Eco-Relevance Classification, Environmental Impact Analysis, and Stance Detection</h3>
+<p>关于气候的新的立场检测的数据集</p>
+<h3 id="KPatch-Knowledge-Patch-to-Pre-trained-Language-Model-for-Zero-Shot-Stance-Detection-on-Social-Media">KPatch: Knowledge Patch to Pre-trained Language Model for Zero-Shot Stance Detection on Social Media</h3>
+<p>先扩充Topic，然后通过查询知识库的方式提取相关信息，获取知识</p>
+<p>获取知识后先判断知识的正确性，然后再使用大模型、LoRA的方式进行立场检测</p>
+<h3 id="STEntConv-Predicting-Disagreement-with-Stance-Detection-and-a-Signed-Graph-Convolutional-Network">STEntConv: Predicting Disagreement with Stance Detection and a Signed Graph Convolutional Network</h3>
+<p>不用大模型，是GCN+小模型的做法</p>
+<h3 id="Examining-Temporalities-on-Stance-Detection-Towards-COVID-19-Vaccination-2">Examining Temporalities on Stance Detection Towards COVID-19 Vaccination</h3>
+<p>探索了一下新冠数据集中大家的立场随着时间的变化，用一些模型跑了一下</p>
+<h3 id="A-Challenge-Dataset-and-Effective-Models-for-Conversational-Stance-Detection">A Challenge Dataset and Effective Models for Conversational Stance Detection</h3>
+<p>构建了一个对话的立场检测数据集，魔改了一下Attention的结构进行立场检测</p>
+<h3 id="Investigating-the-Robustness-of-Modelling-Decisions-for-Few-Shot-Cross-Topic-Stance-Detection-A-Preregistered-Study">Investigating the Robustness of Modelling Decisions for Few-Shot Cross-Topic Stance Detection: A Preregistered Study</h3>
+<p>探索了不同的立场检测结构对于新闻立场检测的效果</p>
+<h3 id="Stance-Reasoner-Zero-Shot-Stance-Detection-on-Social-Media-with-Explicit-Reasoning">Stance Reasoner: Zero-Shot Stance Detection on Social Media with Explicit Reasoning</h3>
+<p>Prompt+In Context+示例选择的方式，不微调大模型进行立场检测</p>
+<h3 id="Target-Adaptive-Consistency-Enhanced-Prompt-Tuning-for-Multi-Domain-Stance-Detection">Target-Adaptive Consistency Enhanced Prompt-Tuning for Multi-Domain Stance Detection</h3>
+<p>比较传统的Verbalizer的方法，不涉及大模型</p>
+<h3 id="DEEM-Dynamic-Experienced-Expert-Modeling-for-Stance-Detection">DEEM: Dynamic Experienced Expert Modeling for Stance Detection</h3>
+<p>使用多专家的方式，多步进行推理</p>
+<h3 id="The-Impact-of-Stance-Object-Type-on-the-Quality-of-Stance-Detection">The Impact of Stance Object Type on the Quality of Stance Detection</h3>
+<p>claim、frame相关，构建了一套pipeline</p>
+<h3 id="Ad-Hoc-Compounds-for-Stance-Detection">Ad Hoc Compounds for Stance Detection</h3>
+<p>和立场检测不是很相关</p>
+<h3 id="Relative-Counterfactual-Contrastive-Learning-for-Mitigating-Pretrained-Stance-Bias-in-Stance-Detection">Relative Counterfactual Contrastive Learning for Mitigating Pretrained Stance Bias in Stance Detection</h3>
+<p>更改了对比学习的构建数据的方式，算是对训练方法的改进，用的是小模型</p>
+<h3 id="Zero-Shot-Stance-Detection-using-Contextual-Data-Generation-with-LLMs">Zero-Shot Stance Detection using Contextual Data Generation with LLMs</h3>
+<p>用GPT-3扩充VAST数据集</p>
+<p>增强目前已有模型的能力</p>
+<h3 id="Let-Silence-Speak-Enhancing-Fake-News-Detection-with-Generated-Comments-from-Large-Language-Models">Let Silence Speak: Enhancing Fake News Detection with Generated Comments from Large Language Models</h3>
+<p>还是多的角度的角色扮演，然后再对比学习什么的做一下立场检测</p>
+<h3 id="Reinforcement-Tuning-for-Detecting-Stances-and-Debunking-Rumors-Jointly-with-Large-Language-Models">Reinforcement Tuning for Detecting Stances and Debunking Rumors Jointly with Large Language Models</h3>
+<p>强化学习+MOE+LoRA</p>
+<h3 id="Mitigating-Biases-of-Large-Language-Models-in-Stance-Detection-with-Calibration">Mitigating Biases of Large Language Models in Stance Detection with Calibration</h3>
+<p>分析模型的偏见，蛮复杂的</p>
+<h3 id="The-Power-of-LLM-Generated-Synthetic-Data-for-Stance-Detection-in-Online-Political-Discussions">The Power of LLM-Generated Synthetic Data for Stance Detection in Online Political Discussions</h3>
+<p>（SQBC: Active Learning using LLM-Generated Synthetic Data  for Stance Detection in Online Political Discussions）</p>
+<p>像是投ICML然后没中，投了NeurIPS</p>
+<p>生成数据然后通过查询的方式，筛选出最有价值的没有打标签的样本</p>
+<h3 id="CoSD-Collaborative-Stance-Detection-with-Contrastive-Heterogeneous-Topic-Graph-Learning">CoSD: Collaborative Stance Detection with  Contrastive Heterogeneous Topic Graph Learning</h3>
+<p>通过主题模型找主题的做法</p>
+<h3 id="Applying-the-Ego-Network-Model-to-Cross-Target-Stance-Detection">Applying the Ego Network Model to Cross-Target Stance Detection</h3>
+<p>利用社交网络信息对立场检测的效果进行增强</p>
+<h3 id="GunStance-Stance-Detection-for-Gun-Control-and-Gun-Regulation">GunStance: Stance Detection for Gun Control and Gun Regulation</h3>
+<p>收集了一个枪支的数据集，然后进行立场检测</p>
+<h3 id="Multi-modal-Stance-Detection-New-Datasets-and-Model">Multi-modal Stance Detection: New Datasets and Model</h3>
+<p>多模态的数据集和基本的方法</p>
+<h3 id="Tree-of-Counterfactual-Prompting-for-Zero-Shot-Stance-Detection">Tree-of-Counterfactual Prompting for Zero-Shot Stance Detection</h3>
+<p>树形的Prompt，多步推理出立场检测的标签</p>
+<h3 id="Transitive-Consistency-Constrained-Learning-for-Entity-to-Entity-Stance-Detection">Transitive Consistency Constrained Learning for  Entity-to-Entity Stance Detection</h3>
+<p>实体对实体的立场检测，与普通的差异较大</p>
+<h3 id="ZeroStance-Leveraging-ChatGPT-for-Open-Domain-Stance-Detection-via-Dataset-Generation">ZeroStance: Leveraging ChatGPT for Open-Domain Stance Detection via  Dataset Generation</h3>
+<p>用ChatGPT构建数据的pipeline</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/Stance-Detection/" class="print-no-link">#Stance Detection</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Stance Detection</div>
+      <div>https://zhangzhao219.github.io/2023/10/07/Stance-Detection/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,948 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="机器学习-监督学习：回归和分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Supervised Machine Learning: Regression and Classification">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/07/28/Coursera/Supervised-Machine-Learning-Regression-and-Classification/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="机器学习-监督学习：回归和分类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7By%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%28x%2Cy%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28x%5E%7B(i%29%7D%2Cy%5E%7B(i)%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7Bw%2Cb%7D%28x%29%3Dwx%2Bb">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28w%2Cb%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(%5Chat%7By%7D%5E%7B(i)%7D-y%5E%7B(i)%7D)%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28w%2Cb%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28w%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=w%3Dw-%5Calpha%20%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=b%3Db-%5Calpha%20%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(wx%5E%7B(i)%7D%2Bb-y%5E%7B(i)%7D)%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B%28wx%5E%7B(i%29%7D%2Bb-y%5E%7B(i)%7D)2x%5E%7B(i)%7D%7D%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)x%5E%7B(i)%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(wx%5E%7B(i)%7D%2Bb-y%5E%7B(i)%7D)%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B%28wx%5E%7B(i%29%7D%2Bb-y%5E%7B(i)%7D)2%7D%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x_j">
+<meta property="og:image" content="https://math.now.sh/?inline=j">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bx%7D%5E%7B%28i%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=x_j%5E%7B%28i%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=j">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7Bw%2Cb%7D%28x%29%3Dw_1x_1%2Bw_2x_2%2B%5Ccdots%2Bw_nx_n%2Bb">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bw%7D%3D%5Bw_1%2Cw_2%2C%5Ccdots%2Cw_n%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Bx%7D%3D%5Bx_1%2Cx_2%2C%5Ccdots%2Cx_n%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3D%5Cvec%7Bw%7D%5Ccdot%5Cvec%7Bx%7D%2Bb%3Dw_1x_1%2Bw_2x_2%2B%5Ccdots%2Bw_nx_n%2Bb">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3D%5Cfrac%7Bx-%5Cmu%7D%7Bx_%7Bmax%7D-x_%7Bmin%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28-1%2C1%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3D%5Cfrac%7Bx-%5Cmu%7D%7B%5Csigma%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=g%28z%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-z%7D%7D%2C0%3Cg(z)%3C1">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-(%5Cvec%7Bw%7D%5Ccdot%5Cvec%7Bx%7D%2Bb)%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3DP(y%3D1%7C%5Cvec%7Bx%7D%3B%5Cvec%7Bw%7D%2Cb)">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3Dg(z)%3Dg(w_1x_1%2Bw_2x_2%2Bb)">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3Dg(z)%3Dg(w_1x_1%5E2%2Bw_2x_2%5E2%2Bb)">
+<meta property="og:image" content="https://math.now.sh/?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3Dg(z)%3Dg(w_1x_1%2Bw_2x_2%2Bw_3x_1%5E2%2Bw_4x_1x_2%2Bw_5x_2%5E2%2Bb)">
+<meta property="og:image" content="https://math.now.sh/?inline=L%28f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i%29%7D)%2Cy%5E%7B(i)%7D)%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D-log%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D%2Cif%5C%2Cy%5E%7B(i)%7D%3D1%5C%5C-log%7B(1-f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D%2Cif%5C%2Cy%5E%7B(i)%7D%3D0%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=L%28f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i%29%7D)%2Cy%5E%7B(i)%7D)%3D-y%5E%7B(i)%7Dlog%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D-(1-y%5E%7B(i)%7D)log%7B(1-f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28%5Cvec%7Bw%7D%2Cb%29%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B%5BL(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)%2Cy%5E%7B(i)%7D)%5D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28w%2Cb%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D%2B%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5En%7Bw_j%5E2%7D(%2B%5Cfrac%7B%5Clambda%7D%7B2m%7Db%5E2)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)-y%5E%7B(i)%7D)x_j%5E%7B(i)%7D%7D%2B%5Cfrac%7B%5Clambda%7D%7Bm%7Dw_j">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)-y%5E%7B(i)%7D)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=w_j%3Dw_j-%5Calpha%5Ccdot%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B%28f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i%29%7D)-y%5E%7B(i)%7D)x_j%5E%7B(i)%7D%7D%2B%5Cfrac%7B%5Clambda%7D%7Bm%7Dw_j%5D%3Dw_j(1-%5Calpha%5Cfrac%7B%5Clambda%7D%7Bm%7D)-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)-y%5E%7B(i)%7D)x_j%5E%7B(i)%7D%7D">
+<meta property="article:published_time" content="2022-07-28T19:57:37.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.192Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Supervised Learning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=x">
+  
+  
+  
+  <title>Supervised Machine Learning: Regression and Classification - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Supervised Machine Learning: Regression and Classification</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-28 19:57" pubdate>
+          2022年7月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Supervised Machine Learning: Regression and Classification</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>机器学习-监督学习：回归和分类</p>
+<span id="more"></span>
+<h1>开始学习</h1>
+<p>吴恩达的机器学习课程终于更新了！！！想当初应该是大二的时候，看了吴恩达的课程，对机器学习有了初步的了解。当时听的不是很明白，英语看不太懂，一些给了充分提示的代码也写不太好，也就是入了一个门而已。这次有一些时间，正好捡一捡机器学习的基础知识，推一推那些一直在调包的数学公式。注重记录！</p>
+<h1>课程简介</h1>
+<p>In the first course of the Machine Learning Specialization, you will:</p>
+<p>• Build machine learning models in Python using popular machine learning libraries NumPy and scikit-learn.<br>
+• Build and train supervised machine learning models for prediction and binary classification tasks, including linear regression and logistic regression</p>
+<p>The Machine Learning Specialization is a foundational online program created in collaboration between <a target="_blank" rel="noopener" href="http://DeepLearning.AI">DeepLearning.AI</a> and Stanford Online. In this beginner-friendly program, you will learn the fundamentals of machine learning and how to use these techniques to build real-world AI applications.</p>
+<p>This Specialization is taught by Andrew Ng, an AI visionary who has led critical research at Stanford University and groundbreaking work at Google Brain, Baidu, and <a target="_blank" rel="noopener" href="http://Landing.AI">Landing.AI</a> to advance the AI field.</p>
+<p>This 3-course Specialization is an updated and expanded version of Andrew’s pioneering Machine Learning course, rated 4.9 out of 5 and taken by over 4.8 million learners since it launched in 2012.</p>
+<p>It provides a broad introduction to modern machine learning, including supervised learning (multiple linear regression, logistic regression, neural networks, and decision trees), unsupervised learning (clustering, dimensionality reduction, recommender systems), and some of the best practices used in Silicon Valley for artificial intelligence and machine learning innovation (evaluating and tuning models, taking a data-centric approach to improving performance, and more.)</p>
+<p>By the end of this Specialization, you will have mastered key concepts and gained the practical know-how to quickly and powerfully apply machine learning to challenging real-world problems. If you’re looking to break into AI or build a career in machine learning, the new Machine Learning Specialization is the best place to start.</p>
+<h1>什么是机器学习</h1>
+<ul>
+<li>在谷歌、必应或百度上进行网络搜索会出现想要的答案。这是因为他们的机器学习软件已经解决了如何对网页进行排名。</li>
+<li>上传照片到Instagram或Snapchat，并且想标记我的朋友，让他们可以看到他们的照片。这些应用程序可以识别你照片中的朋友，并给他们贴上标签。</li>
+<li>刚刚在视频流服务上看完一部星球大战电影，流媒体服务可能会使用机器学习来推荐您可能喜欢的内容。</li>
+<li>用语音短信在手机上写短信时，手机会做出你希望的行为</li>
+<li>收到一封赢了一百万美元的电子邮件，你的电子邮件服务很可能会将其标记为垃圾邮件。</li>
+<li>除了消费者应用之外，人工智能也在迅速进入大公司和工业应用。机器学习已经有望优化风力涡轮机发电，开始进入医院，帮助医生做出准确的诊断，将计算机视觉应用到工厂中，以帮助检查生产线中的产品是否有任何缺陷。</li>
+<li>机器学习是一门让计算机在没有明确编程的情况下学习的科学-1950</li>
+</ul>
+<h1>监督学习</h1>
+<p>监督学习是学习从输入<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到输出标签<img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的一个函数映射，主要特征是给予算法示例去学习，也就是从被给予的正确答案中学习。</p>
+<p>监督学习的基本类型有两种：<strong>回归和分类</strong></p>
+<p>回归任务是在大量的数值空间中，对某一个具体数值进行预测</p>
+<p>分类任务是在给定的数值空间中（如0和1），对某一个具体数据进行预测</p>
+<h2 id="符号表示方法">符号表示方法</h2>
+<p><img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示输入的变量或者特征</p>
+<p><img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示输出的实际目标变量，<img src="https://math.now.sh?inline=%5Chat%7By%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示预测的变量</p>
+<p><img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示训练样本总数</p>
+<p><img src="https://math.now.sh?inline=%28x%2Cy%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示一个训练样本，<img src="https://math.now.sh?inline=%28x%5E%7B(i%29%7D%2Cy%5E%7B(i)%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个训练样本</p>
+<p>线性回归的机器学习模型可以表示为：<img src="https://math.now.sh?inline=f_%7Bw%2Cb%7D%28x%29%3Dwx%2Bb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h2 id="损失函数">损失函数</h2>
+<p>度量预测值与实际目标值之间的差异</p>
+<p>线性回归中使用的平方损失函数：<img src="https://math.now.sh?inline=J%28w%2Cb%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(%5Chat%7By%7D%5E%7B(i)%7D-y%5E%7B(i)%7D)%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，将机器学习模型代入，则表示为<img src="https://math.now.sh?inline=J%28w%2Cb%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>目标就是要找出最合适的<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，使得<img src="https://math.now.sh?inline=J%28w%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>最小</p>
+<p>使用<strong>梯度下降</strong>算法：</p>
+<p><img src="https://math.now.sh?inline=w%3Dw-%5Calpha%20%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=b%3Db-%5Calpha%20%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为学习率</p>
+<p>梯度下降在更新的时候需要同时更新<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，因此在计算的过程中，首先要计算<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，然后再相减，保证同步更新。</p>
+<p>具体计算：</p>
+<p><img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(wx%5E%7B(i)%7D%2Bb-y%5E%7B(i)%7D)%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B%28wx%5E%7B(i%29%7D%2Bb-y%5E%7B(i)%7D)2x%5E%7B(i)%7D%7D%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)x%5E%7B(i)%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D%3D%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(wx%5E%7B(i)%7D%2Bb-y%5E%7B(i)%7D)%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B%28wx%5E%7B(i%29%7D%2Bb-y%5E%7B(i)%7D)2%7D%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>学习率的选择：</p>
+<p>如果学习率过小，梯度下降算法运行会比较慢</p>
+<p>如果学习率过大，梯度下降算法可能运行过头，最终导致算法不能收敛</p>
+<p>如果使用固定的学习率，梯度下降算法运行到局部最小值后不会再变化。因为到达局部最小值的附近后，梯度下降的每一步会变得更小，更新的值也会逐渐变小。</p>
+<p>通过损失值随着迭代次数的变化可以看出一些错误：</p>
+<ol>
+<li>随着迭代次数增加，损失值波动上升下降——代码有问题或者学习率过大</li>
+<li>随着迭代次数增加，损失值一直上升——学习率过大或代码有问题（可能每一次的计算符号反了）</li>
+<li>如果很长时间不收敛，可能是学习率太小了</li>
+</ol>
+<p><strong>将学习率调整足够小，损失值在每一次迭代的过程中都会减小</strong></p>
+<h1>多元线性回归</h1>
+<p><img src="https://math.now.sh?inline=x_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示第<img src="https://math.now.sh?inline=j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征，<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示特征的数量</p>
+<p><img src="https://math.now.sh?inline=%5Cvec%7Bx%7D%5E%7B%28i%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个训练样本的全部特征，<img src="https://math.now.sh?inline=x_j%5E%7B%28i%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个训练样本中的第<img src="https://math.now.sh?inline=j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个特征</p>
+<p><img src="https://math.now.sh?inline=f_%7Bw%2Cb%7D%28x%29%3Dw_1x_1%2Bw_2x_2%2B%5Ccdots%2Bw_nx_n%2Bb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>令<img src="https://math.now.sh?inline=%5Cvec%7Bw%7D%3D%5Bw_1%2Cw_2%2C%5Ccdots%2Cw_n%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cvec%7Bx%7D%3D%5Bx_1%2Cx_2%2C%5Ccdots%2Cx_n%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则</p>
+<p><img src="https://math.now.sh?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3D%5Cvec%7Bw%7D%5Ccdot%5Cvec%7Bx%7D%2Bb%3Dw_1x_1%2Bw_2x_2%2B%5Ccdots%2Bw_nx_n%2Bb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><strong>可以通过Numpy的向量化进行计算</strong></p>
+<h2 id="特征缩放">特征缩放</h2>
+<p>当具有不同的值范围的不同特征时，可能会导致梯度下降算法运行较慢</p>
+<p>需要对不同的特征重新缩放到相同或相似的范围</p>
+<p>均值归一化：<img src="https://math.now.sh?inline=x%3D%5Cfrac%7Bx-%5Cmu%7D%7Bx_%7Bmax%7D-x_%7Bmin%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，可以缩放到<img src="https://math.now.sh?inline=%28-1%2C1%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的范围内</p>
+<p>Z-score归一化：<img src="https://math.now.sh?inline=x%3D%5Cfrac%7Bx-%5Cmu%7D%7B%5Csigma%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>逻辑回归（分类问题）</h1>
+<p>sigmoid函数：<img src="https://math.now.sh?inline=g%28z%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-z%7D%7D%2C0%3Cg(z)%3C1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>逻辑回归：<img src="https://math.now.sh?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-(%5Cvec%7Bw%7D%5Ccdot%5Cvec%7Bx%7D%2Bb)%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，用概率的形式表达：<img src="https://math.now.sh?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3DP(y%3D1%7C%5Cvec%7Bx%7D%3B%5Cvec%7Bw%7D%2Cb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>不同的决策边界：</p>
+<p><img src="https://math.now.sh?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3Dg(z)%3Dg(w_1x_1%2Bw_2x_2%2Bb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3Dg(z)%3Dg(w_1x_1%5E2%2Bw_2x_2%5E2%2Bb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=f_%7B%5Cvec%7Bw%7D%2Cb%7D%28%5Cvec%7Bx%7D%29%3Dg(z)%3Dg(w_1x_1%2Bw_2x_2%2Bw_3x_1%5E2%2Bw_4x_1x_2%2Bw_5x_2%5E2%2Bb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>逻辑回归损失函数：</p>
+<p><img src="https://math.now.sh?inline=L%28f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i%29%7D)%2Cy%5E%7B(i)%7D)%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bc%7D-log%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D%2Cif%5C%2Cy%5E%7B(i)%7D%3D1%5C%5C-log%7B(1-f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D%2Cif%5C%2Cy%5E%7B(i)%7D%3D0%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>简化写法：<img src="https://math.now.sh?inline=L%28f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i%29%7D)%2Cy%5E%7B(i)%7D)%3D-y%5E%7B(i)%7Dlog%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D-(1-y%5E%7B(i)%7D)log%7B(1-f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D))%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=J%28%5Cvec%7Bw%7D%2Cb%29%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B%5BL(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)%2Cy%5E%7B(i)%7D)%5D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>欠拟合和过拟合</h1>
+<p>欠拟合：函数对于训练集的拟合效果不好——高偏差（high bias）</p>
+<p>过拟合：函数对于训练集的拟合效果好，对于测试集的效果不好——高方差（high variance）</p>
+<p>避免过拟合的方法：</p>
+<ol>
+<li>收集更多的训练数据</li>
+<li>从全部的特征中挑选最相关的特征进行训练</li>
+<li>正则化——减小某一参数对拟合函数的影响</li>
+</ol>
+<h2 id="正则化">正则化</h2>
+<p>通过将损失函数加上特别大的常数与某一参数的乘积，使得这个参数在优化的过程中变得非常小</p>
+<p>例如回归问题：</p>
+<p><img src="https://math.now.sh?inline=J%28w%2Cb%29%3D%5Cfrac%7B1%7D%7B2m%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7Bw%2Cb%7D(x%5E%7B(i)%7D)-y%5E%7B(i)%7D)%5E2%7D%2B%5Cfrac%7B%5Clambda%7D%7B2m%7D%5Csum_%7Bj%3D1%7D%5En%7Bw_j%5E2%7D(%2B%5Cfrac%7B%5Clambda%7D%7B2m%7Db%5E2)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>由于不知道哪些特征是比较重要的，哪些特征不重要，因此加上参数平方求和的正则项，让优化算法自行选择。</p>
+<p>对于线性回归来说：</p>
+<p><img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bw%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)-y%5E%7B(i)%7D)x_j%5E%7B(i)%7D%7D%2B%5Cfrac%7B%5Clambda%7D%7Bm%7Dw_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%7B%7D%7D%7B%5Cpartial%7Bb%7D%7DJ%28w%2Cb%29%3D%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)-y%5E%7B(i)%7D)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>进一步推导：</p>
+<p><img src="https://math.now.sh?inline=w_j%3Dw_j-%5Calpha%5Ccdot%5B%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B%28f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i%29%7D)-y%5E%7B(i)%7D)x_j%5E%7B(i)%7D%7D%2B%5Cfrac%7B%5Clambda%7D%7Bm%7Dw_j%5D%3Dw_j(1-%5Calpha%5Cfrac%7B%5Clambda%7D%7Bm%7D)-%5Calpha%5Cfrac%7B1%7D%7Bm%7D%5Csum_%7Bi%3D1%7D%5Em%7B(f_%7B%5Cvec%7Bw%7D%2Cb%7D(%5Cvec%7Bx%7D%5E%7B(i)%7D)-y%5E%7B(i)%7D)x_j%5E%7B(i)%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此正则项的加入实际上相当于将参数略微减小</p>
+<h1>资料</h1>
+<h2 id="第一周课件和代码">第一周课件和代码</h2>
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/Notebooks-W1.zip" title="Notebooks Week 1 for Supervised Machine Learning: Regression and Classification">Notebooks Week 1</a></p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/C1_W1.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="第二周课件和代码">第二周课件和代码</h2>
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/Notebooks-W2.zip" title="Notebooks Week 2 for Supervised Machine Learning: Regression and Classification">Notebooks Week 2</a></p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/C1_W2.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="第三周课件和代码">第三周课件和代码</h2>
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/Notebooks-W3.zip" title="Notebooks Week 3 for Supervised Machine Learning: Regression and Classification">Notebooks Week 3</a></p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/C1_W3.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<h2 id="作业代码">作业代码</h2>
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/Exercises-W2.zip" title="Exercise 1 for Supervised Machine Learning: Regression and Classification">Exercise 1</a></p>
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Machine-Learning-Specialization/Supervised-Machine-Learning-Regression-and-Classification/Exercises-W3.zip" title="Exercise 2 for Supervised Machine Learning: Regression and Classification">Exercise 2</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/Supervised-Learning/" class="print-no-link">#Supervised Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Supervised Machine Learning: Regression and Classification</div>
+      <div>https://zhangzhao219.github.io/2022/07/28/Coursera/Supervised-Machine-Learning-Regression-and-Classification/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/07/31/Coursera/Mathematics-for-Machine-Learning-Multivariate-Calculus/" title="Mathematics for Machine Learning: Multivariate Calculus">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mathematics for Machine Learning: Multivariate Calculus</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/28/about-my-previous-love/" title="My Previous Love">
+                        <span class="hidden-mobile">My Previous Love</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

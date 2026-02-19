@@ -1,0 +1,1188 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="微服务框架 - 不变的基建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务框架 - 不变的基建">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/02/02/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day09/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="微服务框架 - 不变的基建">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-02T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.191Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>微服务框架 - 不变的基建 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">微服务框架 - 不变的基建</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-02 10:00" pubdate>
+          2023年2月2日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">微服务框架 - 不变的基建</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>微服务框架 - 不变的基建</p>
+<span id="more"></span>
+<h1>微服务框架 - 不变的基建</h1>
+<h2 id="概述">概述</h2>
+<p>本课程内容主要分为以下4个方面：</p>
+<ul>
+<li>
+<p>微服务架构介绍</p>
+<ul>
+<li>微服务架构的背景由来、架构概览、基本要素</li>
+</ul>
+</li>
+<li>
+<p>微服务架构原理及特征</p>
+<ul>
+<li>微服务架构的基本组件、工作原理、流量特征</li>
+</ul>
+</li>
+<li>
+<p>核心服务治理功能</p>
+<ul>
+<li>核心的服务治理功能，包括流量治理、服务均衡、稳定性治理</li>
+</ul>
+</li>
+<li>
+<p>字节跳动服务治理实践</p>
+<ul>
+<li>字节跳动在微服务架构稳定性治理中，对请求重试策略的探索及实践</li>
+</ul>
+</li>
+</ul>
+<p>为了帮助大家更好地预习及理解本节课程，该学员手册列出了课前、课中、及课后这三个阶段所涉及到的专业内容大纲，其中课前部分供同学们提前预习参考，课中部分给出了课程大纲，帮助同学们整理思路，课后部分列出一些扩展性的问题让同学们进一步延伸思考。</p>
+<h2 id="课前">课前</h2>
+<h3 id="微服务架构介绍">微服务架构介绍</h3>
+<ul>
+<li>
+<p>系统架构的演进历史</p>
+<ul>
+<li>单体架构</li>
+<li>垂直应用架构</li>
+<li>分布式架构</li>
+<li>SOA架构</li>
+<li>微服务架构</li>
+</ul>
+</li>
+<li>
+<p>微服务架构的三大要素</p>
+<ul>
+<li>服务治理</li>
+<li>可观测性</li>
+<li>安全</li>
+</ul>
+</li>
+</ul>
+<h3 id="微服务架构原理及特征">微服务架构原理及特征</h3>
+<ul>
+<li>
+<p>微服务架构中的基本概念及组件</p>
+<ul>
+<li>服务、实例…</li>
+</ul>
+</li>
+<li>
+<p>服务间通信</p>
+<ul>
+<li>RPC、HTTP</li>
+</ul>
+</li>
+<li>
+<p>服务注册及服务发现</p>
+</li>
+</ul>
+<h3 id="核心服务治理功能">核心服务治理功能</h3>
+<ul>
+<li>
+<p>服务发布</p>
+<ul>
+<li>蓝绿部署</li>
+<li>灰度发布（金丝雀发布）</li>
+</ul>
+</li>
+<li>
+<p>流量治理</p>
+</li>
+<li>
+<p>负载均衡</p>
+<ul>
+<li>Round Robin</li>
+<li>Ring Hash</li>
+<li>Random</li>
+</ul>
+</li>
+<li>
+<p>稳定性治理</p>
+<ul>
+<li>限流</li>
+<li>熔断</li>
+<li>过载保护</li>
+<li>降级</li>
+</ul>
+</li>
+</ul>
+<h3 id="字节跳动服务治理实践">字节跳动服务治理实践</h3>
+<ul>
+<li>请求重试的意义</li>
+<li>请求重试的难点</li>
+</ul>
+<h2 id="课中">课中</h2>
+<h3 id="微服务架构介绍-2">微服务架构介绍</h3>
+<h4 id="系统架构的演进历史">系统架构的演进历史</h4>
+<ul>
+<li>
+<p>单体架构</p>
+<ul>
+<li>All in one process</li>
+</ul>
+</li>
+<li>
+<p>垂直应用架构</p>
+<ul>
+<li>按照业务线垂直划分</li>
+</ul>
+</li>
+<li>
+<p>分布式架构</p>
+<ul>
+<li>抽出与业务无关的公共模块</li>
+</ul>
+</li>
+<li>
+<p>SOA架构</p>
+<ul>
+<li>面向服务</li>
+</ul>
+</li>
+<li>
+<p>微服务架构</p>
+<ul>
+<li>彻底的服务化</li>
+</ul>
+</li>
+</ul>
+<h4 id="微服务架构概览">微服务架构概览</h4>
+<ul>
+<li>网关</li>
+<li>服务配置和治理</li>
+<li>链路追踪和监控</li>
+</ul>
+<h4 id="微服务架构的三大要素">微服务架构的三大要素</h4>
+<ul>
+<li>
+<p>服务治理（本课程内容）</p>
+<ul>
+<li>服务注册</li>
+<li>服务发现</li>
+<li>负载均衡</li>
+<li>扩缩容</li>
+<li>流量治理</li>
+<li>稳定性治理</li>
+</ul>
+</li>
+<li>
+<p>可观测性</p>
+<ul>
+<li>日志采集</li>
+<li>日志分析</li>
+<li>监控打点</li>
+<li>监控大盘</li>
+<li>异常报警</li>
+<li>链路追踪</li>
+</ul>
+</li>
+<li>
+<p>安全</p>
+<ul>
+<li>身份验证</li>
+<li>认证授权</li>
+<li>访问令牌</li>
+<li>审计</li>
+<li>传输加密</li>
+<li>黑产攻击</li>
+</ul>
+</li>
+</ul>
+<h3 id="微服务架构原理及特征-2">微服务架构原理及特征</h3>
+<h4 id="微服务架构中的基本概念及组件">微服务架构中的基本概念及组件</h4>
+<ul>
+<li>
+<p>服务</p>
+<ul>
+<li>一组具有相同逻辑的运行实体</li>
+</ul>
+</li>
+<li>
+<p>实例</p>
+<ul>
+<li>一个服务中的每个运行实体</li>
+</ul>
+</li>
+<li>
+<p>实例与进程的关系</p>
+<ul>
+<li>没有必然对应关系，一般一对一或者一对多</li>
+</ul>
+</li>
+<li>
+<p>常见的实例承载形式</p>
+<ul>
+<li>进程、VM、k8s pod…</li>
+</ul>
+</li>
+</ul>
+<h4 id="服务间通信">服务间通信</h4>
+<ul>
+<li>微服务之间通过网络进行通信</li>
+<li>常见的通信协议包括 HTTP、RPC</li>
+</ul>
+<h4 id="服务注册及服务发现">服务注册及服务发现</h4>
+<ul>
+<li>
+<p>基本问题</p>
+<ul>
+<li>服务间调用中，如何指定下游服务实例的地址？</li>
+</ul>
+</li>
+<li>
+<p>简单方案</p>
+<ul>
+<li>直接指定 ip:port？
+<ul>
+<li>没有任何动态能力</li>
+<li>有多个实例下游实例怎么办？</li>
+</ul>
+</li>
+<li>使用 DNS？
+<ul>
+<li>本地 DNS 存在缓存，导致延迟</li>
+<li>DNS 没有负载均衡</li>
+<li>不支持服务探活检查</li>
+<li>DNS 不能指定端口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>服务注册发现</p>
+<ul>
+<li>新增一个统一的服务注册中心，用于存储服务名到服务实例之间的映射关系</li>
+<li>旧服务实例下线前，从服务注册中心删除该实例，下线流量</li>
+<li>新服务实例上线后，在服务注册中心注册该实例，上线流量</li>
+</ul>
+</li>
+<li>
+<p>微服务流量特征</p>
+<ul>
+<li>统一网关入口</li>
+<li>外网通信多数采用 HTTP，内网通信多数采用 RPC（Thrift, gRPC）</li>
+</ul>
+</li>
+</ul>
+<h3 id="核心服务治理功能-2">核心服务治理功能</h3>
+<h4 id="服务发布">服务发布</h4>
+<ul>
+<li>
+<p>何为服务发布</p>
+<ul>
+<li>让一个服务升级运行新的代码的过程</li>
+</ul>
+</li>
+<li>
+<p>服务发布难点</p>
+<ul>
+<li>服务不可用</li>
+<li>服务抖动</li>
+<li>服务回滚</li>
+</ul>
+</li>
+<li>
+<p>蓝绿部署</p>
+<ul>
+<li>将服务分成两个部分，分别先后发布</li>
+<li>简单、稳定</li>
+<li>但需要两倍资源</li>
+</ul>
+</li>
+<li>
+<p>灰度发布（金丝雀发布）</p>
+<ul>
+<li>先发布少部分实例，接着逐步增加发布比例</li>
+<li>不需要增加资源</li>
+<li>回滚难度大，基础设施要求高</li>
+</ul>
+</li>
+</ul>
+<h4 id="流量治理">流量治理</h4>
+<ul>
+<li>
+<p>流量控制</p>
+<ul>
+<li>在微服务架构中，可以从各个维度对端到端的流量在链路上进行精确控制</li>
+</ul>
+</li>
+<li>
+<p>控制维度</p>
+<ul>
+<li>地区维度</li>
+<li>集群维度</li>
+<li>实例维度</li>
+<li>请求维度</li>
+</ul>
+</li>
+</ul>
+<h4 id="负载均衡">负载均衡</h4>
+<ul>
+<li>Round Robin</li>
+<li>Random</li>
+<li>Ring Hash</li>
+<li>Least Request</li>
+</ul>
+<h4 id="稳定性治理">稳定性治理</h4>
+<ul>
+<li>
+<p>限流</p>
+<ul>
+<li>限制服务处理的最大 QPS，拒绝过多请求</li>
+</ul>
+</li>
+<li>
+<p>熔断</p>
+<ul>
+<li>中断请求路径，增加冷却时间从而让故障实例尝试恢复</li>
+</ul>
+</li>
+<li>
+<p>过载保护</p>
+<ul>
+<li>在负载高的实例中，主动拒绝一部分请求，防止实例被打挂</li>
+</ul>
+</li>
+<li>
+<p>降级</p>
+<ul>
+<li>服务处理能力不足时，拒绝低级别的请求，只响应线上高优请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="字节跳动服务治理实践-2">字节跳动服务治理实践</h3>
+<ul>
+<li>
+<p>请求重试的意义</p>
+<ul>
+<li>本地函数调用
+<ul>
+<li>通常没有重试意义</li>
+</ul>
+</li>
+<li>远程函数调用
+<ul>
+<li>网络抖动、下游负载高、下游机器宕机…</li>
+<li>重试是有意义的，可以避免偶发性的错误，提高 SLA</li>
+</ul>
+</li>
+<li>重试的意义
+<ul>
+<li>降低错误率</li>
+<li>降低长尾延时</li>
+<li>容忍暂时性错误</li>
+<li>避开下游故障实例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>请求重试的难点</p>
+<ul>
+<li>幂等性
+<ul>
+<li>POST 请求可以重试吗？</li>
+</ul>
+</li>
+<li>重试风暴
+<ul>
+<li>随着调用链路的增加，重试次数呈指数级上升</li>
+</ul>
+</li>
+<li>超时设置
+<ul>
+<li>假设调用时间一共1s，经过多少时间开始重试？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>重试策略</p>
+<ul>
+<li>限制重试比例
+<ul>
+<li>设定一个重试比例阈值（例如 1%），重试次数占所有请求比例不超过该阈值</li>
+</ul>
+</li>
+<li>防止链路重试
+<ul>
+<li>返回特殊的 status code，表示“请求失败，但别重试”</li>
+</ul>
+</li>
+<li>Hedged Requests
+<ul>
+<li>对于可能超时（或延时高）的请求，重新向另一个下游实例发送一个相同的请求，并等待先到达的响应</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>重试效果验证</p>
+<ul>
+<li>字节跳动重试组件能够极大限制重试发生的链路放大效应</li>
+</ul>
+</li>
+</ul>
+<h2 id="课后">课后</h2>
+<ol>
+<li>结合 CAP 等原理，思考微服务架构有哪些缺陷？</li>
+<li>微服务是否拆分得越“微”越好？为什么？</li>
+<li>Service Mesh 这一架构是为了解决微服务架构的什么问题？</li>
+<li>有没有可能有这样一种架构，从开发上线运维体验上是微服务，但实际运行又类似单体服务？</li>
+</ol>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fmedium.com%2Fswlh%2Fa-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f" title="https://link.juejin.cn?target=https%3A%2F%2Fmedium.com%2Fswlh%2Fa-design-analysis-of-cloud-based-microservices-architecture-at-netflix-98836b2da45f">A Design Analysis of Cloud-based Microservices Architecture at Netflix</a></li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Flink.juejin.cn%3Ftarget%3Dhttps%253A%252F%252Fwww.infoq.cn%252Farticle%252Fasgjevrm8islszo7ixzh" title="https://link.juejin.cn?target=https%3A%2F%2Fwww.infoq.cn%2Farticle%2Fasgjevrm8islszo7ixzh">字节跳动微服务架构体系演进</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6960282794081812511" title="https://juejin.cn/post/6960282794081812511">微服务架构的一知半解</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>微服务框架 - 不变的基建</div>
+      <div>https://zhangzhao219.github.io/2023/02/02/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day09/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/03/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day10/" title="【实践课】手把手教你做系统设计">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【实践课】手把手教你做系统设计</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/31/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day08/" title="分布式理论 - 现代架构基石">
+                        <span class="hidden-mobile">分布式理论 - 现代架构基石</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

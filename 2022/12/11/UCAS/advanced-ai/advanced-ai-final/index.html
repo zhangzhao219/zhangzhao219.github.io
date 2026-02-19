@@ -1,0 +1,1280 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《高级人工智能》期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：高级人工智能-期末复习">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/11/UCAS/advanced-ai/advanced-ai-final/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《高级人工智能》期末复习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpBeD1.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpBZuR.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=h">
+<meta property="og:image" content="https://math.now.sh/?inline=0%E2%89%A4h%28n%29%E2%89%A4h%5E*(n)">
+<meta property="og:image" content="https://math.now.sh/?inline=h%5E*%28n%29">
+<meta property="og:image" content="https://math.now.sh/?inline=h">
+<meta property="og:image" content="https://math.now.sh/?inline=h%28A%29%20%E2%80%93%20h(C)%20%E2%89%A4%20cost(A%20to%20C)">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpsd56.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpy9sJ.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A5_0%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A3_0%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=g_%7Bbest%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%93%28%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96%29%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A3_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%90_1%E2%88%97%F0%9D%91%9F_1%E2%88%97(%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%F0%9D%91%96%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%F0%9D%91%96)%2B%F0%9D%91%90_2%E2%88%97%F0%9D%91%9F_2%E2%88%97(%F0%9D%91%94_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A5_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B(i)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9A">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9B">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%96">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%98">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%97">
+<meta property="og:image" content="https://math.now.sh/?inline=p_%7Bi%20j%7D%5Ek%28t%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D%5Cfrac%7B%5Cleft(%5Ctau_%7Bi%20j%7D(t)%5Cright)%5E%5Calpha%5Cleft(%5Ceta_%7Bi%20j%7D(t)%5Cright)%5E%5Cbeta%7D%7B%5Csum_%7Bk%20%5Cin%20%5Ctext%20%7B%20allowed%20%7D%7D%5Cleft(%5Ctau_%7Bi%20k%7D(t)%5Cright)%5E%5Calpha%5Cleft(%5Ceta_%7Bi%20k%7D(t)%5Cright)%5E%5Cbeta%7D%20%26%20j%20%5Cin%20%5Ctext%20%7B%20allowed%20%7D%20%5C%5C%200%2C%20%26%20%5Ctext%20%7B%20otherwise%20%7D%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctau_%7Bi%20j%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28i%2Cj%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ceta_%7Bi%2C%20j%7D%28t%29%3D1%20%2F%20d_%7Bi%20j%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cbeta">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CDelta%20%5Ctau_%7Bi%20j%7D%5Ek%3Df%28x%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcc%7D%5Cfrac%7BQ%7D%7BL_k%7D%2C%20%26%20(i%2C%20j)%20%5Cin%20w_k%20%5C%5C%200%2C%20%26%20%5Ctext%20%7B%20otherwise%20%7D%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctau_%7Bi%20j%7D%28t%2B1%29%3D%5Crho%20%5Ccdot%20%5Ctau_%7Bi%20j%7D(t%2B1)%2B%5CDelta%20%5Ctau_%7Bi%20j%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CDelta%20%5Ctau_%7Bi%20j%7D%3D%5Csum_%7Bk%3D1%7D%5Em%20%5CDelta%20%5Ctau_%7Bi%20j%7D%5Ek">
+<meta property="og:image" content="https://math.now.sh/?inline=Q">
+<meta property="og:image" content="https://math.now.sh/?inline=w_k">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=L_k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Crho">
+<meta property="og:image" content="https://math.now.sh/?inline=h">
+<meta property="og:image" content="https://math.now.sh/?inline=0%E2%89%A4h%28n%29%E2%89%A4h%5E*(n)">
+<meta property="og:image" content="https://math.now.sh/?inline=h%5E*%28n%29">
+<meta property="og:image" content="https://math.now.sh/?inline=h">
+<meta property="og:image" content="https://math.now.sh/?inline=h%28A%29%20%E2%80%93%20h(C)%20%E2%89%A4%20cost(A%20to%20C)">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPRY7D.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPRNAe.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpsjiV.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyldI.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyGJf.md.png">
+<meta property="og:image" content="https://math.now.sh/?from=A%5CLeftrightarrow%28B%20%5Clor%20E%29%2CE%20%5CRightarrow%20D%2CC%20%5Cland%20F%20%5CRightarrow%20%5Cneg%20B%2C%20E%5CRightarrow%20B%2C%20B%5CRightarrow%20F%2CB%5CRightarrow%20C%0A">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPdsmR.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPdafU.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPdwpF.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPdB6J.md.jpg">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha_i%3Di">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CRightarrow">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CRightarrow">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPd0l4.md.jpg">
+<meta property="og:image" content="https://math.now.sh/?from=%5Cforall%20x%5B%5Cforall%20y%5C%2CAnimal%28y%29%5CRightarrow%5C%2CLoves(x%2Cy)%5D%5CRightarrow%20%5B%5Cexists%20y%5C%2CLoves(y%2Cx)%5D%0A">
+<meta property="og:image" content="https://math.now.sh/?inline=KB">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=KB%5Cvdash%20%5Calpha">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPdUYT.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpsvGT.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpsxRU.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyEi6.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=K">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1">
+<meta property="og:image" content="https://math.now.sh/?inline=x_2">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1%20%5Coplus%20x_2">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29%3Dsign(w_1x_1%2Bw_2x_2%2Bb)">
+<meta property="og:image" content="https://math.now.sh/?inline=w_1%5Ccdot%200%2Bw_2%20%5Ccdot%200%20%2Bb%20%3C%200">
+<meta property="og:image" content="https://math.now.sh/?inline=b%3C0">
+<meta property="og:image" content="https://math.now.sh/?inline=w_1%5Ccdot%201%2Bw_2%20%5Ccdot%200%20%2Bb%20%3E%200">
+<meta property="og:image" content="https://math.now.sh/?inline=w_1%3E-b%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=w_1%5Ccdot%200%2Bw_2%20%5Ccdot%201%20%2Bb%20%3E%200">
+<meta property="og:image" content="https://math.now.sh/?inline=w_2%3E-b%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=w_1%5Ccdot%201%2Bw_2%20%5Ccdot%201%20%2Bb%20%3C%200">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/12/z4tj3V.md.jpg">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1%2C%20x_2%2C%20%5Ccdots%2C%20x_N">
+<meta property="og:image" content="https://math.now.sh/?inline=z_1%2C%20z_2%2C%20%5Ccdots%2C%20z_N">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7Bx_1%7D%EF%BC%8C%5Chat%7Bx_2%7D%EF%BC%8C%5Ccdots%2C%20%5Chat%7Bx_N%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=V%20%28G%2C%20D%29%20%3D%20-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Clog%20D(x_i)%20-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Clog%20D(1%20-%20%5Chat%7Bx_i%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=z_1%2C%20z_2%2C%20%5Ccdots%2C%20z_N">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7Bx_1%7D%2C%20%5Chat%7Bx_2%7D%2C%20%5Ccdots%2C%20%5Chat%7Bx_N%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=V%20%28G%2C%20D%29%20%3D%20-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Clog%20D(%5Chat%7Bx_i%7D)">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPRJ0O.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPRGnK.png">
+<meta property="og:image" content="https://math.now.sh/?inline=x_t">
+<meta property="og:image" content="https://math.now.sh/?inline=h_t%20%3D%20%28W_%7Bhh%7Dh_%7Bt%20-%201%7D%20%2B%20W_%7Bxh%7Dx_t%20%2B%20b%29">
+<meta property="og:image" content="https://math.now.sh/?inline=c%20%3D%20Mean%20%28h_1%2C%20h_2%2C%20%5Ccdots%2C%20h_T%29">
+<meta property="og:image" content="https://math.now.sh/?inline=s_t%20%3D%20%28W_%7Bss%7Ds_%7Bt%20-%201%7D%20%2B%20W_%7Bys%7D%5Ctext%7BCAT%7D(y_t%2C%20c%29)">
+<meta property="og:image" content="https://math.now.sh/?inline=s_t">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7By_t%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=y_t">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7By_t%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=1%E2%88%92%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cepsilon">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpWfmD.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpfnhR.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyJW8.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpytSS.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyFd1.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyNQg.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpyaLj.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://math.now.sh/?inline=s%3D1-x-y">
+<meta property="og:image" content="https://math.now.sh/?inline=x%2B%5Cfrac%7Bs%7D%7B2%7D%3D%5Cfrac%7B1%2Bx-y%7D%7B2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=y%2B%5Cfrac%7Bs%7D%7B2%7D%3D%5Cfrac%7B1%2By-x%7D%7B2%7D">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSpykIx.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSp5cUe.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/30/pSp5g4H.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/11/zf5LVA.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/11/zf71aj.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/11/zf7lZQ.md.jpg">
+<meta property="article:published_time" content="2022-12-11T09:38:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Advanced AI">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/12/30/pSpBeD1.md.png">
+  
+  
+  
+  <title>研究生课程：高级人工智能-期末复习 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：高级人工智能-期末复习</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-11 09:38" pubdate>
+          2022年12月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          46 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：高级人工智能-期末复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《高级人工智能》期末复习</p>
+<span id="more"></span>
+<h1>概述部分</h1>
+<p>人工智能的三大主义：行为主义、联结主义、符号主义</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpBeD1"><img src="https://s1.ax1x.com/2022/12/30/pSpBeD1.md.png" srcset="/img/loading.gif" lazyload alt="pSpBeD1.md.png"></a></p>
+<p>图灵测试是做什么的？给几个论断，哪些是哪些不是？</p>
+<p>图灵测试：一个人（C）在完全不接触对方（A和B）的情况下，和对方进行一系列的问答，如果在相当长时间内，他无法根据这些问题判断对方是人（B）还是计算机（A），那么，就认为该计算机具有同人相当的智能（即计算机是能思维的）。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpBZuR"><img src="https://s1.ax1x.com/2022/12/30/pSpBZuR.md.png" srcset="/img/loading.gif" lazyload alt="pSpBZuR.md.png"></a></p>
+<h1>搜索和优化部分</h1>
+<h2 id="选择题">选择题</h2>
+<p>g(x)为从根节点到x节点的代价总和</p>
+<p>h(x)为从x节点到目标节点的估计代价总和</p>
+<p>代价一致搜索 f(x) = g(x)</p>
+<ul>
+<li>完备性：肯定能找到最优解</li>
+<li>最优性：找到的解花费最小</li>
+<li>比A*慢一些</li>
+<li>广度优先搜索是代价一致搜索的特例</li>
+</ul>
+<p>贪婪搜索 f(x) = h(x)</p>
+<ul>
+<li>不完备</li>
+<li>不保证能找到最优解</li>
+<li>深度优先搜索是贪婪搜索的特例</li>
+</ul>
+<p>A*搜索 f(x) = g(x) + h(x)</p>
+<ul>
+<li>启发函数<img src="https://math.now.sh?inline=h" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<strong>可采纳的</strong>，那么<img src="https://math.now.sh?inline=0%E2%89%A4h%28n%29%E2%89%A4h%5E*(n)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=h%5E*%28n%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是到最近目标的真实耗散。</li>
+<li>启发函数<img src="https://math.now.sh?inline=h" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<strong>可采纳的</strong>，那么A* 树搜索是最优的</li>
+<li>A*图搜索与树搜索的区别在于图搜索不允许访问相同结点</li>
+<li>一致的：启发函数不仅仅要是可采纳的，沿路径的节点估计耗散值单调递增。<img src="https://math.now.sh?inline=h%28A%29%20%E2%80%93%20h(C)%20%E2%89%A4%20cost(A%20to%20C)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>图搜索中，如果启发函数是一致的，A* 搜索是最优的。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpsd56"><img src="https://s1.ax1x.com/2022/12/30/pSpsd56.md.png" srcset="/img/loading.gif" lazyload alt="pSpsd56.md.png"></a></p>
+<h3 id="遗传算法">遗传算法</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpy9sJ"><img src="https://s1.ax1x.com/2022/12/30/pSpy9sJ.md.png" srcset="/img/loading.gif" lazyload alt="pSpy9sJ.md.png"></a></p>
+<h2 id="简答题">简答题</h2>
+<p>蚁群优化算法和粒子群优化算法是群体智能优化算法的两个代表，请从蚁群优化算法和粒子群优化算法中任选一个阐述其基本原理、算法过程及适用范围。</p>
+<h3 id="粒子群优化算法">粒子群优化算法</h3>
+<p>基本原理：</p>
+<p>粒子群优化算法中的每个粒子模拟一只鸟，代表待求解问题搜索解空间中的一个潜在解，“飞行信息”包括粒子当前的位置和速度两个状态量。每个粒子都可以获得其邻域内其它个体的信息，对所经过的位置进行评价，并根据这些信息和位置速度更新规则，改变自身的两个状态量，随着这一过程的不断进行，粒子群最终能够找到问题的近似最优解。</p>
+<p>算法过程：</p>
+<ul>
+<li>初始化
+<ul>
+<li>初始化粒子群：每个粒子的位置和速度，即<img src="https://math.now.sh?inline=%F0%9D%91%A5_0%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%F0%9D%91%A3_0%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%28%F0%9D%91%96%29%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=g_%7Bbest%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+<li>循环执行如下三步直至满足结束条件
+<ul>
+<li>计算每个粒子的适应度：<img src="https://math.now.sh?inline=%F0%9D%91%93%28%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96%29%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>更新每个粒子历史最好适应度及其相应的位置，更新当前全局最好适应度及其相应的位置</li>
+<li>更新每个粒子的速度和位置
+<ul>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A3_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%90_1%E2%88%97%F0%9D%91%9F_1%E2%88%97(%F0%9D%91%9D_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%5E%7B%F0%9D%91%96%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%F0%9D%91%96)%2B%F0%9D%91%90_2%E2%88%97%F0%9D%91%9F_2%E2%88%97(%F0%9D%91%94_%7B%F0%9D%91%8F%F0%9D%91%92%F0%9D%91%A0%F0%9D%91%A1%7D%E2%88%92%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=%F0%9D%91%A5_%7B%F0%9D%91%9B%2B1%7D%5E%7B%28%F0%9D%91%96%29%7D%3D%F0%9D%91%A5_%F0%9D%91%9B%5E%7B(%F0%9D%91%96)%7D%2B%F0%9D%91%A3_%7B%F0%9D%91%9B%2B1%7D%5E%7B(i)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>适用范围：适用于求解连续解空间的优化问题</p>
+<h3 id="蚁群优化算法">蚁群优化算法</h3>
+<p>基本原理：</p>
+<p>蚁群算法是一种用来寻找优化路径的概率型算法。用蚂蚁的行走路径表示待优化问题的可行解，整个蚂蚁群体的所有路径构成待优化问题的解空间。路径较短的蚂蚁释放的信息素量较多，随着时间的推进，较短的路径上累积的信息素浓度逐渐增高，选择该路径的蚂蚁个数也愈来愈多。最终，整个蚂蚁会在正反馈的作用下集中到最佳的路径上，此时对应的便是待优化问题的最优解。</p>
+<p>算法过程：</p>
+<ul>
+<li>首先将<img src="https://math.now.sh?inline=%F0%9D%91%9A" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>只蚂蚁随机放置在<img src="https://math.now.sh?inline=%F0%9D%91%9B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个城市，位于城市<img src="https://math.now.sh?inline=%F0%9D%91%96" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的第<img src="https://math.now.sh?inline=%F0%9D%91%98" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>只蚂蚁选择下一个城市<img src="https://math.now.sh?inline=%F0%9D%91%97" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的概率为：</li>
+</ul>
+<p><img src="https://math.now.sh?inline=p_%7Bi%20j%7D%5Ek%28t%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D%5Cfrac%7B%5Cleft(%5Ctau_%7Bi%20j%7D(t)%5Cright)%5E%5Calpha%5Cleft(%5Ceta_%7Bi%20j%7D(t)%5Cright)%5E%5Cbeta%7D%7B%5Csum_%7Bk%20%5Cin%20%5Ctext%20%7B%20allowed%20%7D%7D%5Cleft(%5Ctau_%7Bi%20k%7D(t)%5Cright)%5E%5Calpha%5Cleft(%5Ceta_%7Bi%20k%7D(t)%5Cright)%5E%5Cbeta%7D%20%26%20j%20%5Cin%20%5Ctext%20%7B%20allowed%20%7D%20%5C%5C%200%2C%20%26%20%5Ctext%20%7B%20otherwise%20%7D%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>其中<img src="https://math.now.sh?inline=%5Ctau_%7Bi%20j%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示边<img src="https://math.now.sh?inline=%28i%2Cj%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的信息素浓度，<img src="https://math.now.sh?inline=%5Ceta_%7Bi%2C%20j%7D%28t%29%3D1%20%2F%20d_%7Bi%20j%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是根据距离定义的启发信息，<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5Cbeta" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>反映了信息素与启发信息的相对重要性</p>
+<ul>
+<li>当所有蚂蚁完成周游后，按以下公式进行信息素更新：</li>
+</ul>
+<p><img src="https://math.now.sh?inline=%5CDelta%20%5Ctau_%7Bi%20j%7D%5Ek%3Df%28x%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcc%7D%5Cfrac%7BQ%7D%7BL_k%7D%2C%20%26%20(i%2C%20j)%20%5Cin%20w_k%20%5C%5C%200%2C%20%26%20%5Ctext%20%7B%20otherwise%20%7D%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Ctau_%7Bi%20j%7D%28t%2B1%29%3D%5Crho%20%5Ccdot%20%5Ctau_%7Bi%20j%7D(t%2B1)%2B%5CDelta%20%5Ctau_%7Bi%20j%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5CDelta%20%5Ctau_%7Bi%20j%7D%3D%5Csum_%7Bk%3D1%7D%5Em%20%5CDelta%20%5Ctau_%7Bi%20j%7D%5Ek" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>其中: <img src="https://math.now.sh?inline=Q" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为常数, <img src="https://math.now.sh?inline=w_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 表示第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>只蚂蚁在本轮迭代中走过的路径，<img src="https://math.now.sh?inline=L_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为路径长度，<img src="https://math.now.sh?inline=%5Crho" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为小于1的常数，反映信息素挥发速度</p>
+<p>适用范围：适用于求解离散解空间的优化问题，适用于在图上寻找最优路径</p>
+<h2 id="应用题">应用题</h2>
+<p>A*树搜索的最优性条件</p>
+<ul>
+<li>启发函数<img src="https://math.now.sh?inline=h" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<strong>可采纳的</strong>，那么<img src="https://math.now.sh?inline=0%E2%89%A4h%28n%29%E2%89%A4h%5E*(n)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=h%5E*%28n%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是到最近目标的真实耗散。</li>
+<li>启发函数<img src="https://math.now.sh?inline=h" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<strong>可采纳的</strong>，那么A* 树搜索是最优的</li>
+</ul>
+<p>A*图搜索的最优性条件</p>
+<ul>
+<li>一致的：启发函数不仅仅要是可采纳的，沿路径的节点估计耗散值单调递增。<img src="https://math.now.sh?inline=h%28A%29%20%E2%80%93%20h(C)%20%E2%89%A4%20cost(A%20to%20C)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>图搜索中，如果启发函数是一致的，A* 搜索是最优的。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPRY7D"><img src="https://s1.ax1x.com/2023/01/02/pSPRY7D.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPRY7D.md.jpg"></a></p>
+<p>传教士和野人问题通常描述如下：三个传教士和三个野人在河的一边，还有一条能载一个人或者两个人的船，找到一个方法让所有的人都渡到河的另一岸，要求在任何地方野人数都不能多于传教士的人数（可以只有野人没有传教士）。</p>
+<p>(1) 精确地形式化该问题，只描述确保该问题有解所必须的特性，画出该问题的完全状态图</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPRNAe"><img src="https://s1.ax1x.com/2023/01/02/pSPRNAe.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPRNAe.md.jpg"></a></p>
+<p>(2) 用一个合适的算法实现和最优地求解该问题，检查重复状态是个好主意吗?</p>
+<p>采用先深搜索、先广搜索以及图搜索都可以，注意检查重复状态，重复状态的检测避免程序陷入死循环。</p>
+<p>(3) 这个问题的状态空间如此简单，你认为为什么人们求解他却很困难?</p>
+<p>虽然状态空间比较简单，但是要检测重复状态是一个困难：另外，在当前状态选取下一个合法状态，要能够不漏举所有合法状态也存在困难，当在某个状态无下一个合法状态时，需要回溯，这些都使得人为求解它变得困难</p>
+<h1>逻辑部分</h1>
+<h2 id="选择题-2">选择题</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpsjiV"><img src="https://s1.ax1x.com/2022/12/30/pSpsjiV.md.png" srcset="/img/loading.gif" lazyload alt="pSpsjiV.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyldI"><img src="https://s1.ax1x.com/2022/12/30/pSpyldI.md.png" srcset="/img/loading.gif" lazyload alt="pSpyldI.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyGJf"><img src="https://s1.ax1x.com/2022/12/30/pSpyGJf.md.png" srcset="/img/loading.gif" lazyload alt="pSpyGJf.md.png"></a></p>
+<h2 id="简答题-2">简答题</h2>
+<h3 id="命题逻辑">命题逻辑</h3>
+<p>已知知识库里包含如下的句子：</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=A%5CLeftrightarrow%28B%20%5Clor%20E%29%2CE%20%5CRightarrow%20D%2CC%20%5Cland%20F%20%5CRightarrow%20%5Cneg%20B%2C%20E%5CRightarrow%20B%2C%20B%5CRightarrow%20F%2CB%5CRightarrow%20C%0A" srcset="/img/loading.gif" lazyload /></p><p>请用归结原理证明该知识库蕴含如下的句子：$\neg A \land \neg B $</p>
+<p>Forward chain 证明7&lt;3+9</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPdsmR"><img src="https://s1.ax1x.com/2023/01/02/pSPdsmR.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPdsmR.md.jpg"></a></p>
+<p>kb中所有句子都为definite子句，请构造一种真值指派使得kb中所有子句为真</p>
+<p>将所有的原子命题指派为True即可。</p>
+<ol>
+<li>由于是definite子句，不可能包含负文字，只能包含正文字，因此单独的文字一定为正文字，也就一定为True</li>
+<li>由于是definite子句，每一个非文字的子句中一定有一个文字是正文字，且子句内部一定使用析取符号连接，因此正文字一定为True，子句也一定为True</li>
+<li>综上，所有子句都为True</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPdafU"><img src="https://s1.ax1x.com/2023/01/02/pSPdafU.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPdafU.md.jpg"></a></p>
+<p>归结原理及证明：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPdwpF"><img src="https://s1.ax1x.com/2023/01/02/pSPdwpF.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPdwpF.md.jpg"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPdB6J"><img src="https://s1.ax1x.com/2023/01/02/pSPdB6J.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPdB6J.md.jpg"></a></p>
+<p>设计一个可靠但不完备的规则</p>
+<ul>
+<li>知识库中是全部有理数的集合</li>
+<li>算法：<img src="https://math.now.sh?inline=%5Calpha_i%3Di" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，为全部自然数的集合</li>
+<li>因此算法是可靠的，但是并不完备，因为算法无法计算出任何的小数</li>
+</ul>
+<p>描述语义蕴含、<img src="https://math.now.sh?inline=%5CRightarrow" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的作用</p>
+<ul>
+<li>语义蕴含指的是有了知识表示后，额外推出其他的知识</li>
+<li><img src="https://math.now.sh?inline=%5CRightarrow" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是命题逻辑里面的连接词，用于知识表示（实际上是可以替代的，但是引入这个符号进行知识表示比较方便）</li>
+</ul>
+<p>设计A*启发式函数来使归结次数最少</p>
+<p>构想一个A启发式函数，使得A归结结果为最优，并证明</p>
+<p>h(n)为集合中的最短子句的长度</p>
+<h3 id="一阶谓词逻辑">一阶谓词逻辑</h3>
+<p>胜者为王，败者为寇</p>
+<p>不到长城非好汉，到了长城就是好汉；两个句子是否语义等价，并证明</p>
+<p>成绩好的人都很刻苦，刻苦的人，一定成绩好；两个句子是否语义等价，并证明</p>
+<p>理发师只给不给自己理发的人理发</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPd0l4"><img src="https://s1.ax1x.com/2023/01/02/pSPd0l4.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPd0l4.md.jpg"></a></p>
+<p>将如下的一阶谓词逻辑的句子转化为合取范式：（不需要包含存在量词）</p>
+<p style="transform:box-shadow:unset;border-radius:0px;"><img src="https://math.now.sh?from=%5Cforall%20x%5B%5Cforall%20y%5C%2CAnimal%28y%29%5CRightarrow%5C%2CLoves(x%2Cy)%5D%5CRightarrow%20%5B%5Cexists%20y%5C%2CLoves(y%2Cx)%5D%0A" srcset="/img/loading.gif" lazyload /></p><p>构造一个一阶谓词逻辑的知识库<img src="https://math.now.sh?inline=KB" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和句子<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，使得<img src="https://math.now.sh?inline=KB%5Cvdash%20%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的归结过程永远不会停止。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPdUYT"><img src="https://s1.ax1x.com/2023/01/02/pSPdUYT.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPdUYT.md.jpg"></a></p>
+<h3 id="模糊逻辑">模糊逻辑</h3>
+<p>（刻画模糊量词、模糊修饰词等）</p>
+<p>很少有成绩好的学生特别贪玩</p>
+<ul>
+<li>模糊谓词：贪玩、成绩好</li>
+<li>模糊修饰词：很、特别</li>
+<li>模糊量词：很少</li>
+</ul>
+<p>很少有成绩好的学生特别喜欢玩游戏</p>
+<ul>
+<li>模糊谓词：贪玩、喜欢玩游戏</li>
+<li>模糊修饰词：很、特别</li>
+<li>模糊量词：很少</li>
+</ul>
+<h3 id="Prolog">Prolog</h3>
+<p>普通编程的步骤：了解问题-收集条件-寻找解决方法-编程解决-将问题数据化-用程序运行数据-debug</p>
+<p>逻辑编程的步骤：了解问题-收集条件-不寻找解决方法-将条件写进KB-将问题转换为fact-问query-寻找错误的事实</p>
+<p>C :- A,B 如果AB，则implyC（definite 子句）</p>
+<p>[E | L]：将list拆解成第一个是E，后面的剩下</p>
+<p>trace 和 notrace是debug的过程</p>
+<p>DFS+backward chaining</p>
+<p>不教程序怎么算，只列出事实</p>
+<p>Prolog缺点：</p>
+<ul>
+<li>不做occur check，因此有些事实是错的但是也可能推导出来，也就是不sound</li>
+<li>DFS可能造成无穷递归，对的也导不出来，不complete。与语句编写的顺序也有关系</li>
+</ul>
+<h1>深度学习部分</h1>
+<h2 id="选择题-3">选择题</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpsvGT"><img src="https://s1.ax1x.com/2022/12/30/pSpsvGT.md.png" srcset="/img/loading.gif" lazyload alt="pSpsvGT.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpsxRU"><img src="https://s1.ax1x.com/2022/12/30/pSpsxRU.png" srcset="/img/loading.gif" lazyload alt="pSpsxRU.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyEi6"><img src="https://s1.ax1x.com/2022/12/30/pSpyEi6.md.png" srcset="/img/loading.gif" lazyload alt="pSpyEi6.md.png"></a></p>
+<h3 id="GNN">GNN</h3>
+<p>谱方法：在谱空间中定义卷积：</p>
+<ul>
+<li>通过图傅里叶变换和卷积原理定义卷积
+<ul>
+<li>图数据符合幂律分布，造成了极大的挑战</li>
+</ul>
+</li>
+<li>主要挑战是在谱空间定义的卷积在结点空间并没有局部化</li>
+</ul>
+<p>空间方法：在向量空间中定义卷积</p>
+<ul>
+<li>卷积被定义为目标结点到它的所有邻居的一个加权平均函数</li>
+<li>主要挑战是邻域的大小在结点之间差异很大，可能服从幂律分布</li>
+</ul>
+<p>谱方法是空间方法的特例</p>
+<ul>
+<li>谱方法通过特别的空间变换定义核函数</li>
+<li>空间方法直接定义核函数</li>
+</ul>
+<p>聚合，更新是什么？</p>
+<p>图神经网络的框架：聚合邻居节点的信息从而更新中心节点的表示</p>
+<p>GraphSAGE：从每个结点开始随机游走，采样<img src="https://math.now.sh?inline=K" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个结点，不用临近度指标判断。然后通过聚合函数进行参数共享</p>
+<p>图卷积网络（GCN）：通过归一化的拉普拉斯矩阵从不固定数量的邻居结点中聚合信息，通过特征变换共享参数</p>
+<h2 id="应用题-2">应用题</h2>
+<p>证明感知机不能表示异或逻辑</p>
+<p>异或的逻辑为：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><img src="https://math.now.sh?inline=x_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th style="text-align:center"><img src="https://math.now.sh?inline=x_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+<th style="text-align:center"><img src="https://math.now.sh?inline=x_1%20%5Coplus%20x_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>两个变量的感知机模型为<img src="https://math.now.sh?inline=f%28x%29%3Dsign(w_1x_1%2Bw_2x_2%2Bb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>代入上面的异或逻辑：</p>
+<ol>
+<li><img src="https://math.now.sh?inline=w_1%5Ccdot%200%2Bw_2%20%5Ccdot%200%20%2Bb%20%3C%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=b%3C0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=w_1%5Ccdot%201%2Bw_2%20%5Ccdot%200%20%2Bb%20%3E%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=w_1%3E-b%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=w_1%5Ccdot%200%2Bw_2%20%5Ccdot%201%20%2Bb%20%3E%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=w_2%3E-b%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=w_1%5Ccdot%201%2Bw_2%20%5Ccdot%201%20%2Bb%20%3C%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，根据上面三个式子是明显不可满足的</li>
+</ol>
+<p>因此感知机不能表示异或逻辑</p>
+<p>设计用于异或问题的二层感知机</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/z4tj3V"><img src="https://s1.ax1x.com/2022/12/12/z4tj3V.md.jpg" srcset="/img/loading.gif" lazyload alt="z4tj3V.md.jpg"></a></p>
+<p>（以下简答题目答案来源于<a target="_blank" rel="noopener" href="https://github.com/Ming-er">shmily</a>）</p>
+<p>描述BP算法</p>
+<p>BP算法由正向传播与反向传播两个过程组成。正向传播时，输入由输入层经过隐藏层到输出层；反向传播时，输出结果与真实结果通过损失函数计算误差，误差信号再沿相反方向传播至输入层，获得各层各单元的误差信号（梯度），并将其作为修正权值的依据。通过梯度下降算法更新权值，使得网络的整体误差迭代减小。</p>
+<p>试论述在深度神经网络中BP算法遇到的困难，并说明为什么会出现“梯度消失”问题</p>
+<p>当网络变深时，BP算法会遇到梯度消失或者梯度爆炸的现象，此时浅层的神经元几乎接受不到来自输出层的误差信号或者误差太大，无法更新其参数或参数剧烈波动。</p>
+<p>根据链式求导法则，浅层参数的梯度来源于深层参数梯度的乘积。由于中间梯度矩阵的范数可能远小于1，再加上许多激活函数的导数小于1，随着传播层数的增多，误差信号反向传播的过程中以指数形式衰减，当传播到浅层时便出现了梯度消失现象。</p>
+<p>简述对抗式生成网络（GAN）的基本原理及其学习算法</p>
+<p>GAN的思想来源于博弈论当中的均衡理论，其由生成器G与判别器D构成。生成器G希望生成更接近于真实分布的数据，判别器则希望尽可能分辨所给数据是由生成器生成的还是从真实分布中采样的。</p>
+<p>GAN的学习算法交替地更新判别器D与生成器G：</p>
+<p>首先训练判别器D，</p>
+<ol>
+<li>从真实分布采样数据<img src="https://math.now.sh?inline=x_1%2C%20x_2%2C%20%5Ccdots%2C%20x_N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；</li>
+<li>从高斯分布采样数据<img src="https://math.now.sh?inline=z_1%2C%20z_2%2C%20%5Ccdots%2C%20z_N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，送入生成器G生成数据<img src="https://math.now.sh?inline=%5Chat%7Bx_1%7D%EF%BC%8C%5Chat%7Bx_2%7D%EF%BC%8C%5Ccdots%2C%20%5Chat%7Bx_N%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；</li>
+<li>最小化损失函数<img src="https://math.now.sh?inline=V%20%28G%2C%20D%29%20%3D%20-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Clog%20D(x_i)%20-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Clog%20D(1%20-%20%5Chat%7Bx_i%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；</li>
+</ol>
+<p>接着训练生成器G，</p>
+<ol>
+<li>从高斯分布采样数据<img src="https://math.now.sh?inline=z_1%2C%20z_2%2C%20%5Ccdots%2C%20z_N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，送入生成器G生成数据<img src="https://math.now.sh?inline=%5Chat%7Bx_1%7D%2C%20%5Chat%7Bx_2%7D%2C%20%5Ccdots%2C%20%5Chat%7Bx_N%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；</li>
+<li>最小化损失函数<img src="https://math.now.sh?inline=V%20%28G%2C%20D%29%20%3D%20-%5Csum_%7Bi%3D1%7D%5E%7BN%7D%5Clog%20D(%5Chat%7Bx_i%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；</li>
+</ol>
+<p>重复进行以上各步骤直至收敛。</p>
+<p>描述ResNet（ResNet的原理和结构图）</p>
+<p>ResNet由如下多个Residual Block堆叠构成</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPRJ0O"><img src="https://s1.ax1x.com/2023/01/02/pSPRJ0O.png" srcset="/img/loading.gif" lazyload alt="pSPRJ0O.png"></a></p>
+<p>残差网络容易优化恒等式函数，学习优化残差映射比原始映射更加容易，随着网络加深，网络至少不会变得更差，有效地缓解了梯度消失等现象；此外，残差连接隐式地扩展了模型的特征空间，可以看作一种模型集成。</p>
+<p>利用RNN构建一个翻译器</p>
+<p>采用编码器-解码器结构，二者都是RNN网络，示意图如下：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPRGnK"><img src="https://s1.ax1x.com/2023/01/02/pSPRGnK.png" srcset="/img/loading.gif" lazyload alt="pSPRGnK.png"></a></p>
+<p>其中，编码器RNN接受输入(原文token) <img src="https://math.now.sh?inline=x_t" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，并通过RNN结构编码隐藏状态<img src="https://math.now.sh?inline=h_t%20%3D%20%28W_%7Bhh%7Dh_%7Bt%20-%201%7D%20%2B%20W_%7Bxh%7Dx_t%20%2B%20b%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。编码器编码完成后所有隐藏状态聚合为背景向量<img src="https://math.now.sh?inline=c%20%3D%20Mean%20%28h_1%2C%20h_2%2C%20%5Ccdots%2C%20h_T%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>解码器的RNN同样编码隐藏状态<img src="https://math.now.sh?inline=s_t%20%3D%20%28W_%7Bss%7Ds_%7Bt%20-%201%7D%20%2B%20W_%7Bys%7D%5Ctext%7BCAT%7D(y_t%2C%20c%29)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，并将编码的隐藏状态<img src="https://math.now.sh?inline=s_t" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>映射到预测结果<img src="https://math.now.sh?inline=%5Chat%7By_t%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，计算<img src="https://math.now.sh?inline=y_t" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=%5Chat%7By_t%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>间的损失来完成模型的训练</p>
+<p>预测时，通过自回归与束搜索的方式得到翻译序列。</p>
+<h1>强化学习部分</h1>
+<h2 id="选择题-4">选择题</h2>
+<h3 id="强化学习基础">强化学习基础</h3>
+<p>多臂赌博机：</p>
+<p>一台赌博机有多个摇臂，每个摇臂摇出的奖励大小不确定，玩家希望<strong>摇固定次数的臂所获得的期望累积奖励最大</strong></p>
+<p>优化目标：期望累计奖励最大化</p>
+<p>探索和利用的关系：</p>
+<ul>
+<li>利用：按照贪心策略进行选择，最大化即时奖励</li>
+<li>探索：选择贪心策略之外的行为，短期奖励会比较低，长期奖励会比较高</li>
+</ul>
+<p>策略：</p>
+<ul>
+<li>贪心策略</li>
+<li><img src="https://math.now.sh?inline=%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>贪心策略
+<ul>
+<li>以概率<img src="https://math.now.sh?inline=1%E2%88%92%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>按照贪心策略进行行为选择（利用）</li>
+<li>以概率<img src="https://math.now.sh?inline=%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在所有行为中随机选择一个（探索）</li>
+</ul>
+</li>
+<li>乐观初值法：未发生之前，保持乐观的心态。每次摇完臂都会失望，所以下次会换个臂摇，鼓励探索</li>
+<li>UCB行为选择策略：对Qt(a)做估计，但因为估不准（估不准与之前尝试的次数有关，尝试次数越多估的越准），所以对它做一个上界</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpWfmD"><img src="https://s1.ax1x.com/2022/12/30/pSpWfmD.md.png" srcset="/img/loading.gif" lazyload alt="pSpWfmD.md.png"></a></p>
+<p>马尔可夫状态过程的要素：</p>
+<ul>
+<li>智能体（Agent）和环境（Environment）按照离散的时间步进行交互</li>
+<li>智能体的状态S、智能体采取的行为A、获得的奖励R</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpfnhR"><img src="https://s1.ax1x.com/2022/12/30/pSpfnhR.md.png" srcset="/img/loading.gif" lazyload alt="pSpfnhR.md.png"></a></p>
+<p>奖励假设：最终目标是通过最大化累积的Reward实现的</p>
+<p>策略学习方法：</p>
+<ul>
+<li>动态规划
+<ul>
+<li>策略迭代：从初始策略开始，迭代进行策略估值和策略提升，最终得到最优策略
+<ul>
+<li>策略估值：解给定的策略下的值函数，也就是预测当前策略下所能拿到的值函数问题。</li>
+<li>策略提升：根据当前策略的估值函数，寻找更优的策略（如果存在）</li>
+</ul>
+</li>
+<li>估值迭代：值迭代算法是策略评估过程只进行一次迭代的策略迭代算法，从初始状态估值开始，进行估值迭代，找到最优状态估值，按照贪心方式得到最优策略</li>
+<li>从运算量角度看，值迭代方法中策略评估只需要一次迭代，需要的运算量更小，应该比策略迭代更快收敛。但是，通常在策略提升中间插入需要多次迭代的策略评估的算法，收敛的更快！这可能与值迭代算法的终止条件有关。值迭代算法的终止条件对象为值函数，策略迭代算法的终止条件对象为策略，结合之前gridworld中观察的现象（策略可能比值函数收敛的更快），所以策略迭代可能比值迭代更快收敛。</li>
+</ul>
+</li>
+<li>蒙特卡洛：（通过采样的方式，最后用样本的平均值作估值，是一种从经验中获得的方法）
+<ul>
+<li>从真实或者模拟的经验中计算状态（行动估值函数）不需要关于环境的完整模型</li>
+<li>直接根据真实经验或模拟经验计算状态估值函数</li>
+<li>不同状态的估值在计算时是独立的，不依赖于“自举”方法</li>
+</ul>
+</li>
+<li>时序差分：非平稳情形下的蒙特卡洛方法（恒定步长）</li>
+<li>参数近似</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyJW8"><img src="https://s1.ax1x.com/2022/12/30/pSpyJW8.md.png" srcset="/img/loading.gif" lazyload alt="pSpyJW8.md.png"></a></p>
+<h3 id="博弈部分">博弈部分</h3>
+<p>博弈的要素</p>
+<ul>
+<li>局中人：在博弈中有权决定自己行动方案的博弈参加者</li>
+<li>重要假设：局中人是自私的理性人</li>
+<li>策略：博弈中可供局中人选择的行动方案</li>
+<li>效用函数：对每个参与博弈的局中人，都有一个相应的效用函数，每个局中人的目的都是最大化自己的效用</li>
+</ul>
+<p>剪刀石头布：所有玩家的收益之和为0-零和博弈</p>
+<p>最佳应对：针对局中人2的策略t，若局中人1用策略s产生的收益大于或等于其任何其他策略，则称策略s是局中人1对局中人2的策略t的最佳应对</p>
+<p>纳什均衡：如果一个局势下，每个局中人的策略都是相对其他局中人当前策略的最佳应对，则称该局势是一个纳什均衡</p>
+<p>帕累托最优：对于一组策略选择（局势）若不存在其他策略选择使所有参与者得到至少和目前一样高的回报，且至少一个参与者会得到严格较高的回报，则这组策略选择为帕累托最优。（“不可能再改善某些人的境况，而不使任何其他人受损。”）</p>
+<p>社会最优：使参与者的回报之和最大的策略选择，社会最优的结果一定也是帕累托最优的结果</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpytSS"><img src="https://s1.ax1x.com/2022/12/30/pSpytSS.md.png" srcset="/img/loading.gif" lazyload alt="pSpytSS.md.png"></a></p>
+<p>应用案例：</p>
+<ul>
+<li>首价密封报价拍卖
+<ul>
+<li>纳什均衡：每个竞拍者的报价低于其对商品的估价</li>
+<li>最优报价低于估价，竞拍者越多，报价越接近于估价</li>
+</ul>
+</li>
+<li>次价密封报价拍卖
+<ul>
+<li>纳什均衡：每个竞拍者会倾向于采用其对商品的估价进行报价</li>
+</ul>
+</li>
+</ul>
+<p>讨价的对象是双方对商品估价之差</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyFd1"><img src="https://s1.ax1x.com/2022/12/30/pSpyFd1.md.png" srcset="/img/loading.gif" lazyload alt="pSpyFd1.md.png"></a></p>
+<p>maxmin策略：最大化自己最坏情况时的效用</p>
+<ul>
+<li>最小化损失，控制风险</li>
+<li>预防其它局中人的不理性给自己带来损失</li>
+</ul>
+<p>minmax策略：最小化对手的最大效用</p>
+<p>零和博弈情况下：</p>
+<ul>
+<li>minmax和maxmin是对偶的</li>
+<li>minmax策略和maxmin策略等价于纳什均衡策略</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyNQg"><img src="https://s1.ax1x.com/2022/12/30/pSpyNQg.md.png" srcset="/img/loading.gif" lazyload alt="pSpyNQg.md.png"></a></p>
+<p>匹配市场：</p>
+<ul>
+<li>完全匹配：对于两类节点集合大小一样的二部图，选择数目和节点个数一样的边，使得每类节点中的任意一个节点在另一类节点中都有唯一的对应者</li>
+<li>最优匹配：效用最大的匹配，最优匹配对于个体而言不一定最优，甚至是最差的</li>
+</ul>
+<p>市场结清价格：给定买方报价的情况下，如果卖方的某种价格使得对应的买方偏好图中存在完全匹配，则称卖方的这组价格为市场结清价格。市场结清价格总是存在，且使得买卖双方总效用最优。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpyaLj"><img src="https://s1.ax1x.com/2022/12/30/pSpyaLj.md.png" srcset="/img/loading.gif" lazyload alt="pSpyaLj.md.png"></a></p>
+<p>议价权：</p>
+<p>不稳定边：对于结局中未参与配对的边，如果边的两个端点获得的收益之和小于1，则称这条边为不稳定边，不稳定边的存在意味着其两个端点可以通过改变报价而改变结局</p>
+<p>稳定结局：如果一个结局中不存在不稳定边，则称该结局为稳定结局</p>
+<p>纳什议价解：</p>
+<ul>
+<li>A的备选项收益为<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>B的备选项收益为<img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>分配剩余价值<img src="https://math.now.sh?inline=s%3D1-x-y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>纳什议价解：一人一半就好
+<ul>
+<li>A的收益是<img src="https://math.now.sh?inline=x%2B%5Cfrac%7Bs%7D%7B2%7D%3D%5Cfrac%7B1%2Bx-y%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>B的收益是<img src="https://math.now.sh?inline=y%2B%5Cfrac%7Bs%7D%7B2%7D%3D%5Cfrac%7B1%2By-x%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+</ul>
+<p>均衡结局：给定一个结局，如果结局中的任意一个参与配对的边都满足纳什议价解的条件，则称该结局是均衡结局</p>
+<p>均衡结局一定是稳定结局</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpykIx"><img src="https://s1.ax1x.com/2022/12/30/pSpykIx.md.png" srcset="/img/loading.gif" lazyload alt="pSpykIx.md.png"></a></p>
+<h3 id="因果学习">因果学习</h3>
+<p>画一个图，什么什么路径，上课那种，阻断、D分离</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSp5cUe"><img src="https://s1.ax1x.com/2022/12/30/pSp5cUe.md.png" srcset="/img/loading.gif" lazyload alt="pSp5cUe.md.png"></a></p>
+<p>后门准则：Z满足关于(X,Y)的后门准则</p>
+<ul>
+<li>Z阻断了X与Y之间的每条含有指向X的路径（后门路径）</li>
+<li>Z中没有X的后代节点</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSp5g4H"><img src="https://s1.ax1x.com/2022/12/30/pSp5g4H.md.png" srcset="/img/loading.gif" lazyload alt="pSp5g4H.md.png"></a></p>
+<h2 id="应用题：格子游戏">应用题：格子游戏</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zf5LVA"><img src="https://s1.ax1x.com/2022/12/11/zf5LVA.md.png" srcset="/img/loading.gif" lazyload alt="zf5LVA.md.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zf71aj"><img src="https://s1.ax1x.com/2022/12/11/zf71aj.md.jpg" srcset="/img/loading.gif" lazyload alt="zf71aj.md.jpg"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zf7lZQ"><img src="https://s1.ax1x.com/2022/12/11/zf7lZQ.md.jpg" srcset="/img/loading.gif" lazyload alt="zf7lZQ.md.jpg"></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Advanced-AI/" class="print-no-link">#Advanced AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：高级人工智能-期末复习</div>
+      <div>https://zhangzhao219.github.io/2022/12/11/UCAS/advanced-ai/advanced-ai-final/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/11/UCAS/machine-learning/machine-learning-final/" title="研究生课程：机器学习-期末复习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：机器学习-期末复习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/11/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-final/" title="研究生课程：模式识别与机器学习-期末复习">
+                        <span class="hidden-mobile">研究生课程：模式识别与机器学习-期末复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

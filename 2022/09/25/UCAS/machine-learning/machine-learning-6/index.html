@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《机器学习》课程笔记：第6章 聚类分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：机器学习-第6章 聚类分析">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/25/UCAS/machine-learning/machine-learning-6/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《机器学习》课程笔记：第6章 聚类分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=d_p%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cleft(%5Csum_%7Bi%3D1%7D%5El%20w_i%5Cleft%7Cx_i-y_i%5Cright%7C%5Ep%5Cright)%5E%7B1%20%2F%20p%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=s_%7B%5Ctext%20%7Bcosine%20%7D%7D%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7B%5Cboldsymbol%7Bx%7D%5ET%20%5Cboldsymbol%7By%7D%7D%7B%5C%7C%5Cboldsymbol%7Bx%7D%5C%7C%5C%7C%5Cboldsymbol%7By%7D%5C%7C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=r_%7B%5Ctext%20%7BPearson%20%7D%7D%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7B%5Cboldsymbol%7Bx%7D_d%5ET%20%5Cboldsymbol%7By%7D_d%7D%7B%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D_d%5Cright%5C%7C%5Cleft%5C%7C%5Cboldsymbol%7By%7D_d%5Cright%5C%7C%7D%20%5Cquad%20%5Cboldsymbol%7Bx%7D_d%3D%5Cleft%5Bx_1-%5Cbar%7Bx%7D%2C%20%5Cldots%2C%20x_l-%5Cbar%7Bx%7D%5Cright%5D%5ET%20%5Cquad%20%5Cboldsymbol%7By%7D_d%3D%5Cleft%5By_1-%5Cbar%7By%7D%2C%20%5Cldots%2C%20y_l-%5Cbar%7By%7D%5Cright%5D%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=s_T%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7B1%7D%7B1%2B%5Cfrac%7B(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7By%7D)%5ET(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7By%7D)%7D%7B%5Cboldsymbol%7Bx%7D%5ET%20%5Cboldsymbol%7By%7D%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%2C%20C%29%3D%5Cmax%20_%7By%20%5Cin%20C%7D%20d(x%2C%20y)">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%2C%20C%29%3D%5Cmin%20_%7By%20%5Cin%20C%7D%20d(x%2C%20y)">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%2C%20C%29%3D%5Cfrac%7B1%7D%7B%7CC%7C%7D%20%5Csum_%7B%5Cmathrm%7By%7D%20%5Cin%20%5Cmathrm%7BC%7D%7D%20d(x%2C%20y)">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%2C%20H%29%3D%5Cmin%20_%7Bz%20%5Cin%20H%7D%20d(x%2C%20z)">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%2C%20Q%29%3D%5Cmin%20_%7Bz%20%5Cin%20Q%7D%20d(x%2C%20z)">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7B%5Cmax%20%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3D%5Cmax%20_%7Bx%20%5Cin%20C_i%2C%20y%20%5Cin%20C_j%7D%20d(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7B%5Cmin%20%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3D%5Cmin%20_%7Bx%20%5Cin%20C_i%2C%20y%20%5Cin%20C_j%7D%20d(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7Ba%20v%20g%7D%5E%7Bs%20s%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3D%5Cfrac%7B1%7D%7B%5Cleft%7CC_i%5Cright%7C%5Cleft%7CC_j%5Cright%7C%7D%20%5Cquad%20%5Csum_%7Bx%20%5Cin%20C_i%2C%20y%20%5Cin%20C_j%7D%20d(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7Bc%20e%20n%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3Dd%5Cleft(%5Cboldsymbol%7B%5Cmu%7D_i%2C%20%5Cboldsymbol%7B%5Cmu%7D_j%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coperatorname%7Bavg%7D%28C%29%3D%5Cfrac%7B2%7D%7B%7CC%7C(%7CC%7C-1)%7D%20%5Csum_%7B1%20%5Cleqslant%20i%3Cj%20%5Cleqslant%7CC%7C%7D%20%5Coperatorname%7Bdist%7D%5Cleft(%5Cboldsymbol%7Bx%7D_i%2C%20%5Cboldsymbol%7Bx%7D_j%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathrm%7BDBI%7D%3D%5Cfrac%7B1%7D%7Bk%7D%20%5Csum_%7Bi%3D1%7D%5Ek%20%5Cmax%20_%7Bj%20%5Cneq%20i%7D%5Cleft%28%5Cfrac%7B%5Coperatorname%7Bavg%7D%5Cleft(C_i%5Cright%29%2B%5Coperatorname%7Bavg%7D%5Cleft(C_j%5Cright)%7D%7Bd_%7B%5Coperatorname%7Bcen%7D%7D%5Cleft(%5Cboldsymbol%7B%5Cmu%7D_i%2C%20%5Cboldsymbol%7B%5Cmu%7D_j%5Cright)%7D%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathrm%7BDI%7D%3D%5Cmin%20_%7B1%20%5Cleqslant%20i%20%5Cleqslant%20k%7D%5Cleft%5C%7B%5Cmin%20_%7Bj%20%5Cneq%20i%7D%5Cleft%28%5Cfrac%7Bd_%7B%5Cmin%20%7D%5Cleft(C_i%2C%20C_j%5Cright%29%7D%7B%5Cmax%20_%7B1%20%5Cleqslant%20l%20%5Cleqslant%20k%7D%20%5Coperatorname%7Bdiam%7D%5Cleft(C_l%5Cright)%7D%5Cright)%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1">
+<meta property="og:image" content="https://math.now.sh/?inline=R_2">
+<meta property="og:image" content="https://math.now.sh/?inline=X">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1">
+<meta property="og:image" content="https://math.now.sh/?inline=R_2">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1">
+<meta property="og:image" content="https://math.now.sh/?inline=R_2">
+<meta property="og:image" content="https://math.now.sh/?inline=R_1%20%5Csubset%20R_2">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=R_i">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=R_i">
+<meta property="og:image" content="https://math.now.sh/?inline=J%20e%3D%5Csum_%7Bi%3D1%7D%5EK%20%5Csum_%7By%20%5Cin%20C_i%7D%5Cleft%5C%7C%5Cboldsymbol%7By%7D-%5Cboldsymbol%7Bm%7D_i%5Cright%5C%7C%5E2%3D%5Csum_%7Bi%3D1%7D%5EK%20J%20e_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_i%3D%5Cfrac%7B1%7D%7BN_i%7D%20%5Csum_%7By%20%5Cin%20C_i%7D%20%5Cboldsymbol%7By%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7By%7D%20%5Cin%20C_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bi%7D">
+<meta property="article:published_time" content="2022-09-25T14:08:21.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.198Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=d_p%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cleft(%5Csum_%7Bi%3D1%7D%5El%20w_i%5Cleft%7Cx_i-y_i%5Cright%7C%5Ep%5Cright)%5E%7B1%20%2F%20p%7D">
+  
+  
+  
+  <title>研究生课程：机器学习-第6章 聚类分析 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：机器学习-第6章 聚类分析</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-25 14:08" pubdate>
+          2022年9月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：机器学习-第6章 聚类分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《机器学习》课程笔记：第6章 聚类分析</p>
+<span id="more"></span>
+<h1>第6章 聚类分析</h1>
+<h2 id="概述">概述</h2>
+<p>聚类是无监督机器学习问题</p>
+<ul>
+<li>目标：感知样本间的相似度，进行类别归纳</li>
+<li>聚类研究的重要应用：1. 潜在类别预测，2. 数据压缩</li>
+<li>既可以作为一个单独过程，用于寻找数据内在的分布结构，也可以作为分类、稀疏表示等其他学习任务的前驱过程。</li>
+</ul>
+<p>影响聚类结果的因素：</p>
+<ol>
+<li>属性选择导致不同结果</li>
+<li>相似性度量是判断样本间、类别间的相似的标准</li>
+<li>聚类规则是样本聚集条件，例如，近邻、损失函数</li>
+</ol>
+<h3 id="相似性度量">相似性度量</h3>
+<p><strong>样本-样本：（向量相似性）</strong></p>
+<p><img src="https://math.now.sh?inline=d_p%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cleft(%5Csum_%7Bi%3D1%7D%5El%20w_i%5Cleft%7Cx_i-y_i%5Cright%7C%5Ep%5Cright)%5E%7B1%20%2F%20p%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=s_%7B%5Ctext%20%7Bcosine%20%7D%7D%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7B%5Cboldsymbol%7Bx%7D%5ET%20%5Cboldsymbol%7By%7D%7D%7B%5C%7C%5Cboldsymbol%7Bx%7D%5C%7C%5C%7C%5Cboldsymbol%7By%7D%5C%7C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=r_%7B%5Ctext%20%7BPearson%20%7D%7D%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7B%5Cboldsymbol%7Bx%7D_d%5ET%20%5Cboldsymbol%7By%7D_d%7D%7B%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D_d%5Cright%5C%7C%5Cleft%5C%7C%5Cboldsymbol%7By%7D_d%5Cright%5C%7C%7D%20%5Cquad%20%5Cboldsymbol%7Bx%7D_d%3D%5Cleft%5Bx_1-%5Cbar%7Bx%7D%2C%20%5Cldots%2C%20x_l-%5Cbar%7Bx%7D%5Cright%5D%5ET%20%5Cquad%20%5Cboldsymbol%7By%7D_d%3D%5Cleft%5By_1-%5Cbar%7By%7D%2C%20%5Cldots%2C%20y_l-%5Cbar%7By%7D%5Cright%5D%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=s_T%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7B1%7D%7B1%2B%5Cfrac%7B(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7By%7D)%5ET(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7By%7D)%7D%7B%5Cboldsymbol%7Bx%7D%5ET%20%5Cboldsymbol%7By%7D%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><strong>样本-集合：</strong></p>
+<ol>
+<li>集合为离散点集</li>
+</ol>
+<p>到集合最远点距离：<img src="https://math.now.sh?inline=d%28x%2C%20C%29%3D%5Cmax%20_%7By%20%5Cin%20C%7D%20d(x%2C%20y)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>到集合最近点距离：<img src="https://math.now.sh?inline=d%28x%2C%20C%29%3D%5Cmin%20_%7By%20%5Cin%20C%7D%20d(x%2C%20y)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>到集合平均点距离：<img src="https://math.now.sh?inline=d%28x%2C%20C%29%3D%5Cfrac%7B1%7D%7B%7CC%7C%7D%20%5Csum_%7B%5Cmathrm%7By%7D%20%5Cin%20%5Cmathrm%7BC%7D%7D%20d(x%2C%20y)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ol start="2">
+<li>集合为连续区域</li>
+</ol>
+<p>集合为平面：<img src="https://math.now.sh?inline=d%28x%2C%20H%29%3D%5Cmin%20_%7Bz%20%5Cin%20H%7D%20d(x%2C%20z)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>集合为圆：<img src="https://math.now.sh?inline=d%28x%2C%20Q%29%3D%5Cmin%20_%7Bz%20%5Cin%20Q%7D%20d(x%2C%20z)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><strong>集合-集合：（类间距离）</strong></p>
+<p>集合间最远点距离：<img src="https://math.now.sh?inline=d_%7B%5Cmax%20%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3D%5Cmax%20_%7Bx%20%5Cin%20C_i%2C%20y%20%5Cin%20C_j%7D%20d(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>集合间最近点距离：<img src="https://math.now.sh?inline=d_%7B%5Cmin%20%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3D%5Cmin%20_%7Bx%20%5Cin%20C_i%2C%20y%20%5Cin%20C_j%7D%20d(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>集合间所有点平均距离：<img src="https://math.now.sh?inline=d_%7Ba%20v%20g%7D%5E%7Bs%20s%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3D%5Cfrac%7B1%7D%7B%5Cleft%7CC_i%5Cright%7C%5Cleft%7CC_j%5Cright%7C%7D%20%5Cquad%20%5Csum_%7Bx%20%5Cin%20C_i%2C%20y%20%5Cin%20C_j%7D%20d(%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7By%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>集合表征点间距离（如平均值）：<img src="https://math.now.sh?inline=d_%7Bc%20e%20n%7D%5Cleft%28C_i%2C%20C_j%5Cright%29%3Dd%5Cleft(%5Cboldsymbol%7B%5Cmu%7D_i%2C%20%5Cboldsymbol%7B%5Cmu%7D_j%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>集合内样本间距离（类内距离）：<img src="https://math.now.sh?inline=%5Coperatorname%7Bavg%7D%28C%29%3D%5Cfrac%7B2%7D%7B%7CC%7C(%7CC%7C-1)%7D%20%5Csum_%7B1%20%5Cleqslant%20i%3Cj%20%5Cleqslant%7CC%7C%7D%20%5Coperatorname%7Bdist%7D%5Cleft(%5Cboldsymbol%7Bx%7D_i%2C%20%5Cboldsymbol%7Bx%7D_j%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h3 id="性能度量">性能度量</h3>
+<p>聚类性能的外部指标指通过已知类簇划分，对聚类结果进行评价；判别同类别样本对标签一致与否，避免相同类簇划分，不同标签名称导致的不一致。</p>
+<p>Jaccard系数、FM系数和Rand系数</p>
+<p>聚类性能的内部指标：没有已知的类簇划分进行参考，通过聚类具有的类内相似和类间相异的特点进行评价。</p>
+<p>DB指数：<img src="https://math.now.sh?inline=%5Cmathrm%7BDBI%7D%3D%5Cfrac%7B1%7D%7Bk%7D%20%5Csum_%7Bi%3D1%7D%5Ek%20%5Cmax%20_%7Bj%20%5Cneq%20i%7D%5Cleft%28%5Cfrac%7B%5Coperatorname%7Bavg%7D%5Cleft(C_i%5Cright%29%2B%5Coperatorname%7Bavg%7D%5Cleft(C_j%5Cright)%7D%7Bd_%7B%5Coperatorname%7Bcen%7D%7D%5Cleft(%5Cboldsymbol%7B%5Cmu%7D_i%2C%20%5Cboldsymbol%7B%5Cmu%7D_j%5Cright)%7D%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，越小越好</p>
+<p>Dunn指数：<img src="https://math.now.sh?inline=%5Cmathrm%7BDI%7D%3D%5Cmin%20_%7B1%20%5Cleqslant%20i%20%5Cleqslant%20k%7D%5Cleft%5C%7B%5Cmin%20_%7Bj%20%5Cneq%20i%7D%5Cleft%28%5Cfrac%7Bd_%7B%5Cmin%20%7D%5Cleft(C_i%2C%20C_j%5Cright%29%7D%7B%5Cmax%20_%7B1%20%5Cleqslant%20l%20%5Cleqslant%20k%7D%20%5Coperatorname%7Bdiam%7D%5Cleft(C_l%5Cright)%7D%5Cright)%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，越大越好</p>
+<h2 id="序贯方法">序贯方法</h2>
+<p>基本思想：逐一比较单个样本与类簇的相似性，有相似类则归类，无相似类则建立新类。</p>
+<p>优点：一种简单的，快速算法</p>
+<p>相似性的关键度量：类别相似性：样本—类簇（样本—集合）。</p>
+<p>缺点：所有样本过滤一遍后才知道类别总数，而先出现的样本不能找到（后出现的）合适类别</p>
+<p>改进算法：采用两个阶段，类别确定、分类。</p>
+<p>两阶段序贯方法：</p>
+<p>缺点：以上两种方法依赖于阈值</p>
+<p>改进方法：弱化阈值作用，采用两个阈值，形成灰色带。</p>
+<p>双阈值序贯方法</p>
+<p>三种算法缺点：</p>
+<ol>
+<li>当类别一旦产生，不可变，尽管后来类簇增加，类别很相近也无法合并。</li>
+<li>敏感于样本顺序，样本类别未必是最合适的。</li>
+</ol>
+<p>增强算法</p>
+<p>增强处理1：对类别集合进行合并操作</p>
+<p>增强处理2：对样本类别重置</p>
+<h2 id="层次聚类">层次聚类</h2>
+<p>基本思想：</p>
+<p>聚类嵌套定义：<img src="https://math.now.sh?inline=R_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=R_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是样本集<img src="https://math.now.sh?inline=X" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的两种聚类划分，如果<img src="https://math.now.sh?inline=R_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中所有的类簇都是<img src="https://math.now.sh?inline=R_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中类簇的子集，则称<img src="https://math.now.sh?inline=R_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>嵌套在<img src="https://math.now.sh?inline=R_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>内，记作<img src="https://math.now.sh?inline=R_1%20%5Csubset%20R_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>层次聚类策略：类簇之间（依据相似性）不断合并、或不断的分化, 直到满足聚类停止条件。</p>
+<p>自底向上/归并算法：</p>
+<p>第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次迭代：计算所有两个类簇的相似性，归并最相似的两个类簇，更新类别划分<img src="https://math.now.sh?inline=R_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>缺点：没有归并的类簇间相似性，被重复计算</p>
+<p>基于矩阵的归并算法</p>
+<p>利用矩阵记录类簇间的相似性</p>
+<ul>
+<li>删除对应合并的两行和列</li>
+<li>增加一行和列： 新类簇与其他类簇的相似度</li>
+</ul>
+<p>优点：不必重新计算“没有合并的类簇间”的相似性</p>
+<p>分化算法：过程与归并相反</p>
+<p>第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次迭代：在所有类簇的所有划分中，计算所有两个类簇相似性，选择最不相似的类簇集合划分，更新类别划分<img src="https://math.now.sh?inline=R_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>缺点：没有划分的类簇间相似性，被重复计算</p>
+<p>如何确定聚类个数？</p>
+<h2 id="K均值聚类">K均值聚类</h2>
+<p>Kmeans：将样本分给最近的类心，然后重新调整类心；通过多次迭代，逐步进行类别划分。</p>
+<p>最优准则：最小化误差平方和<img src="https://math.now.sh?inline=J%20e%3D%5Csum_%7Bi%3D1%7D%5EK%20%5Csum_%7By%20%5Cin%20C_i%7D%5Cleft%5C%7C%5Cboldsymbol%7By%7D-%5Cboldsymbol%7Bm%7D_i%5Cright%5C%7C%5E2%3D%5Csum_%7Bi%3D1%7D%5EK%20J%20e_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_i%3D%5Cfrac%7B1%7D%7BN_i%7D%20%5Csum_%7By%20%5Cin%20C_i%7D%20%5Cboldsymbol%7By%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cboldsymbol%7By%7D%20%5Cin%20C_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 是第<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bi%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个类簇的样本。</p>
+<p>一般方法：最近类心原则，批量划分后修正类心</p>
+<p>改进方法：单个划分最优原则，单个划分后修正类心</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：机器学习-第6章 聚类分析</div>
+      <div>https://zhangzhao219.github.io/2022/09/25/UCAS/machine-learning/machine-learning-6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/25/diary/diary20220925/" title="杂谈-20220925">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">杂谈-20220925</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/24/UCAS/information-retrieval/information-retrieval-9/" title="研究生课程：现代信息检索-第9讲 完整搜索系统中的评分计算">
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第9讲 完整搜索系统中的评分计算</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

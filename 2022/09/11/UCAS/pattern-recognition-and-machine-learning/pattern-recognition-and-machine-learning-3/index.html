@@ -1,0 +1,1262 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《模式识别与机器学习》课程笔记：第3章 判别函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：模式识别与机器学习-第3章 判别函数">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/11/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-3/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《模式识别与机器学习》课程笔记：第3章 判别函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=w_k">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/11/vOaAmt.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%29%3D%5Comega_1x_1%2B%5Comega_2x_2%2B%5Comega_3%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%29%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5Cin%5Comega_1">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%29%3C0">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5Cin%5Comega_2">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%29%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28%5Cboldsymbol%7Bx%7D%29%3Dw_1%20x_1%2Bw_2%20x_2%2B%5Ccdots%2Bw_n%20x_n%2Bw_%7Bn%2B1%7D%3D%5Cboldsymbol%7Bw%7D_0%5ET%20%5Cboldsymbol%7Bx%7D%2Bw_%7Bn%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D_0%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_%7B%5Cmathrm%7Bn%7D%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28%5Cboldsymbol%7Bx%7D%29%3D%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%3D%5Cleft%28x_1%2C%20x_2%2C%20%5Cldots%2C%20x_n%2C%201%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_%7B%5Cmathrm%7Bn%2B1%7D%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_i%2F%20%5Cbar%7B%5Comega_i%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://s1.ax1x.com/2022/09/11/vOdk34.png">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_i%2F%CF%89_j">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7Bi%20j%7D%28%5Cboldsymbol%7Bx%7D%29%3D%5Cboldsymbol%7Bw%7D_%7Bi%20j%7D%5ET%20%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7B%5Cmathrm%7Bij%7D%7D%28%5Cboldsymbol%7Bx%7D%29%3E0%2C%20%5Cforall%20j%20%5Cneq%20i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%20%5Cin%20%5Comega_i">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7BM%28M-1%29%7D%7B2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7BM%28M-1%29%7D%7B2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=M-1">
+<meta property="og:image" content="https://math.now.sh/?inline=M-1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_i%2F%CF%89_j">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7B%5Cmathrm%7Bij%7D%7D%28%5Cboldsymbol%7Bx%7D%29%3Dd_%7B%5Cmathrm%7Bi%7D%7D(%5Cboldsymbol%7Bx%7D)-d_%7B%5Cmathrm%7Bj%7D%7D(%5Cboldsymbol%7Bx%7D)%3D%5Cleft(%5Cboldsymbol%7Bw%7D_%7B%5Cmathrm%7Bi%7D%7D-%5Cboldsymbol%7Bw%7D_%7B%5Cmathrm%7Bj%7D%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7Bx%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E*%20%3D%20%28f_1(x%29%2Cf_2(x)%2C%5Ccdots%2Cf_k(x))%2Ck%3En">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28%5Cboldsymbol%7Bx%7D%29%3Dw_%7B1%7D%20f_%7B1%7D(%5Cboldsymbol%7Bx%7D)%2Bw_%7B2%7D%20f_%7B2%7D(%5Cboldsymbol%7Bx%7D)%2B%5Ccdots%2Bw_%7Bk%7D%20f_%7Bk%7D(%5Cboldsymbol%7Bx%7D)%2Bw_%7Bk%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f_i%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5E%7B*%7D%3D%5Cleft%28f_%7B1%7D(%5Cboldsymbol%7Bx%7D%29%2C%20f_%7B2%7D(%5Cboldsymbol%7Bx%7D)%2C%20%5Cldots%2C%20f_%7B%5Cmathrm%7Bk%7D%7D(%5Cboldsymbol%7Bx%7D)%2C%201%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=d%5Cleft%28%5Cboldsymbol%7Bx%7D%5E%7B*%7D%5Cright%29%3D%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7Bx%7D%5E%7B*%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%3D%5Cleft%28w_%7B1%7D%2C%20w_%7B2%7D%2C%20%5Cldots%2C%20w_%7B%5Cmathrm%7Bk%7D%7D%2C%20w_%7B%5Cmathrm%7Bk%7D%2B1%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f_i%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28%5Cboldsymbol%7Bx%7D%29%3D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%20w_%7Bj%20j%7D%20x_%7Bj%7D%5E%7B2%7D%2B%5Csum_%7Bj%3D1%7D%5E%7Bn-1%7D%20%5Csum_%7Bk%3Dj%2B1%7D%5E%7Bn%7D%20w_%7Bj%20k%7D%20x_%7Bj%7D%20x_%7Bk%7D%2B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%20w_%7Bj%7D%20x_%7Bj%7D%2Bw_%7Bn%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bn%28n-1%29%7D%7B2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n%20%2B%20%5Cfrac%7Bn%28n-1%29%7D%7B2%7D%2B%20n%20%2B%201%20%3D%20%5Cfrac%7B(n%2B1)(n%2B2)%7D%7B2%7D%3E%20n">
+<meta property="og:image" content="https://math.now.sh/?inline=f_i%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://math.now.sh/?inline=N_%7Bw%7D%3DC_%7Bn%2Br%7D%5E%7Br%7D%3D%5Cfrac%7B%28n%2Br%29%20!%7D%7Br%20!%20n%20!%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=w_1x_1%2Bw_2x_2%2Bw_3x_3%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=%28x_1%20%2Cx_2%20%2Cx_3%29">
+<meta property="og:image" content="https://math.now.sh/?inline=w%3D%28w_1%2Cw_2%2Cw_3%29%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=w%20%3D%28w_1%2Cw_2%29%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1w_1%2Bx_2w_2%2Bw_3%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=w%3D%28w_1%2Cw_2%2Cw_3%29%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3D%28x_1%2Cx_2%2C1%29%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=d">
+<meta property="og:image" content="https://math.now.sh/?inline=d">
+<meta property="og:image" content="https://math.now.sh/?inline=d">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CGamma">
+<meta property="og:image" content="https://math.now.sh/?inline=N">
+<meta property="og:image" content="https://math.now.sh/?inline=d">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5E1%2Cx%5E2%2C%E2%80%A6%2C%20x%5EN">
+<meta property="og:image" content="https://math.now.sh/?inline=N_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CGamma_1">
+<meta property="og:image" content="https://math.now.sh/?inline=N_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CGamma_2">
+<meta property="og:image" content="https://math.now.sh/?inline=x%5En">
+<meta property="og:image" content="https://math.now.sh/?inline=y_n%3Dw%5ETx%5En%2C%20n%3D1%2C2%2C%E2%80%A6%2CN">
+<meta property="og:image" content="https://math.now.sh/?inline=N">
+<meta property="og:image" content="https://math.now.sh/?inline=y_n">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CGamma_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CGamma_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%7Cw%7C">
+<meta property="og:image" content="https://math.now.sh/?inline=y_n">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=w%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=d">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BX%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bm%7D_i%3D%5Cfrac%7B1%7D%7BN_i%7D%20%5Csum_%7Bx%20%5Cin%20%5CGamma_i%7D%20%5Cboldsymbol%7Bx%7D%2C%20i%3D1%2C2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_i%3D%5Csum_%7B%5Cboldsymbol%7Bx%7D%20%5Cin%20%5CGamma_i%7D%5Cleft%28%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright%29%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5ET%2C%20i%3D1%2C2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS_w%7D%3D%5Cboldsymbol%7BS_1%7D%2B%5Cboldsymbol%7BS_2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_b%3D%5Cleft%28%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright%29%5Cleft(%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright)%5ET">
+<meta property="og:image" content="https://math.now.sh/?inline=Y">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctilde%7Bm%7D_i%3D%5Cfrac%7B1%7D%7BN_i%7D%20%5Csum_%7By%20%5Cin%20%5CGamma_i%5E%7B%5Cprime%7D%7D%20y%2C%20i%3D1%2C2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctilde%7BS%7D_i%5E2%3D%5Csum_%7By%20%5Cin%20%5CGamma_i%5E%7B%5Cprime%7D%7D%5Cleft%28y-%5Ctilde%7Bm%7D_i%5Cright%29%5E2%2C%20i%3D1%2C2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Ctilde%7BS%7D_w%3D%5Ctilde%7BS%7D_1%5E2%2B%5Ctilde%7BS%7D_2%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=Y">
+<meta property="og:image" content="https://math.now.sh/?inline=J_F%28w%29%3D%5Cfrac%7B%5Cleft(%5Ctilde%7Bm%7D_1-%5Ctilde%7Bm%7D_2%5Cright)%5E2%7D%7B%5Ctilde%7BS%7D_1%5E2%2B%5Ctilde%7BS%7D_2%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=J_%7B%5Cmathrm%7BF%7D%7D%28%5Cboldsymbol%7Bw%7D%29%3D%5Cfrac%7B%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7BS%7D_b%20%5Cboldsymbol%7Bw%7D%7D%7B%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7BS%7D_w%20%5Cboldsymbol%7Bw%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%5E*%3D%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%5Cleft%28%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright%29">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://math.now.sh/?inline=w%5ETx%5En">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b%20W%5E*%3D%5Clambda%20W%5E*">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%281%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_1%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_2%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%3C0">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_1%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%E2%89%A40">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%5Ek%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%2B1%29%3D%5Cboldsymbol%7Bw%7D(%5Cmathrm%7Bk%7D)%2BC%20%5Cboldsymbol%7Bx%7D%5Ek">
+<meta property="og:image" content="https://math.now.sh/?inline=C">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_2%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%5Ek%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%2B1%29%3D%5Cboldsymbol%7Bw%7D(%5Cmathrm%7Bk%7D)-C%20%5Cboldsymbol%7Bx%7D%5Ek">
+<meta property="og:image" content="https://math.now.sh/?inline=C">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%2B1%29%3D%5Cboldsymbol%7Bw%7D(%5Cmathrm%7Bk%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5Ek">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7Bd_i%2C%20i%20%3D%201%2C2%2C%E2%80%A6%2CM%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D_k%20%5Cin%20%5Comega_i">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%3Ed_j%2C%20%5Cforall%20j%20%5Cneq%20i">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1%EF%BC%8C%CF%89_2%EF%BC%8C%E2%80%A6%EF%BC%8C%CF%89_M">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_i">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=M">
+<meta property="og:image" content="https://math.now.sh/?inline=d_j%28k%29%3D%5Cboldsymbol%7Bw%7D_j(k)%20%5Cboldsymbol%7Bx%7D%2C%20j%3D1%2C2%2C%20%5Ccdots%2C%20%5Cmathrm%7BM%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%28k%29%3Ed_j(k)%2C%20j%3D1%2C2%2C%20%5Cldots%2C%20M%2C%20%5Cforall%20j%20%5Cneq%20i">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D_j%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_j(k)%2C%20j%3D1%2C2%2C%20%5Ccdots%2C%20M">
+<meta property="og:image" content="https://math.now.sh/?inline=l">
+<meta property="og:image" content="https://math.now.sh/?inline=d_i%28k%29%E2%89%A4d_j(k)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D_i%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_i(k)%2BCx">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D_l%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_l(k)-C%20x">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D_j%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_j(k)%2C%20j%3D1%2C2%2C%20%5Ccdots%2C%20M%2C%20j%20%5Cneq%20i%2C%20j%20%5Cneq%20l">
+<meta property="og:image" content="https://math.now.sh/?inline=C">
+<meta property="og:image" content="https://math.now.sh/?inline=w_i%28l%29%EF%BC%8Ci%20%3D%201%2C2%2C%E2%80%A6%2CM">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=C%3D2%28k%2B1%29">
+<meta property="og:image" content="https://math.now.sh/?inline=C">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28%5Cboldsymbol%7By%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7By%7D%3D%5Cleft%28y_1%2C%20y_2%2C%20%5Cldots%2C%20y_%7B%5Cmathrm%7Bn%7D%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28%5Cboldsymbol%7By%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cnabla%20f%28%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7Bd%7D%7Bd%20%5Cboldsymbol%7By%7D%7D%20f(%5Cboldsymbol%7By%7D)%3D%5Cleft(%5Cbegin%7Barray%7D%7Bllll%7D%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y_1%7D%20%26%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y_2%7D%20%26%20%5Ccdots%20%26%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y_n%7D%5Cend%7Barray%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D(k)-C%5Cleft%5C%7B%5Cfrac%7B%5Cpartial%20J(%5Cboldsymbol%7Bw%7D%2C%20%5Cboldsymbol%7Bx%7D)%7D%7B%5Cpartial%20%5Cboldsymbol%7Bw%7D%7D%5Cright%5C%7D_%7Bw%3D%5Cboldsymbol%7Bw%7D(k)%7D%3D%5Cboldsymbol%7Bw%7D(k)-C%20%5Ccdot%20%5Cnabla%20J">
+<meta property="og:image" content="https://math.now.sh/?inline=C">
+<meta property="og:image" content="https://math.now.sh/?inline=f">
+<meta property="og:image" content="https://math.now.sh/?inline=f">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28w%2C%20x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=w%281%29">
+<meta property="og:image" content="https://math.now.sh/?inline=J">
+<meta property="og:image" content="https://math.now.sh/?inline=w%281%29">
+<meta property="og:image" content="https://math.now.sh/?inline=w%282%29">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28%5Cboldsymbol%7Bw%7D%2C%20%5Cboldsymbol%7Bx%7D%29%3D%5Cfrac%7B%5Cleft%7C%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Cright%7C-%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%7D%7B2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=J">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B%5Cpartial%20J%7D%7B%5Cpartial%20%5Cboldsymbol%7Bw%7D%7D%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%5B%5Cboldsymbol%7Bx%7D%20%5Ccdot%20%5Coperatorname%7Bsign%7D%5Cleft%28%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Cright%29-%5Cboldsymbol%7Bx%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coperatorname%7Bsign%7D%5Cleft%28%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Cright%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D%2B1%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%3E0%20%5C%5C%20-1%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%20%5Cleq%200%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=w%28k%2B1%29">
+<meta property="og:image" content="https://math.now.sh/?inline=w%28k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D(k)%2B%5Cfrac%7BC%7D%7B2%7D%5Cleft%5B%5Cboldsymbol%7Bx%7D%5Ek-%5Cboldsymbol%7Bx%7D%5Ek%20%5Ccdot%20%5Coperatorname%7Bsign%7D%5Cleft(%5Cboldsymbol%7Bw%7D%5ET(k)%20%5Cboldsymbol%7Bx%7D%5Ek%5Cright)%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bx%7D%5Ek">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D(k)%2BC%20%5Ccdot%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcl%7D0%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Ek%3E0%20%5C%5C%20%5Cboldsymbol%7Bx%7D%5Ek%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Ek%20%5Cleq%200%5Cend%7Barray%7D%5Cright.">
+<meta property="og:image" content="https://math.now.sh/?inline=J%28w%2Cx%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=N">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BX%20w%7D_%7B%5Cmathbf%7Bw%7D%7D%3E%5Cmathbf%7B0%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=X%3D%5Cleft%28%5Cbegin%7Barray%7D%7Bc%7D%5Cleft(x%5E1%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cleft(%5Cboldsymbol%7Bx%7D%5Ei%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20-%5Cleft(%5Cboldsymbol%7Bx%7D%5E%7Bi%2B1%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20-%5Cleft(%5Cboldsymbol%7Bx%7D%5EN%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%5Cend%7Barray%7D%5Cright)%2C%5Cleft(%5Cbegin%7Barray%7D%7Bc%7D%5Cleft(%5Cboldsymbol%7Bx%7D%5E1%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cleft(%5Cboldsymbol%7Bx%7D%5Ei%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%5Cend%7Barray%7D%5Cright)%20%5Cin%20%5Comega_1%2C%5Cleft(%5Cbegin%7Barray%7D%7Bc%7D%5Cleft(%5Cboldsymbol%7Bx%7D%5E%7Bi%2B1%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cleft(%5Cboldsymbol%7Bx%7D%5EN%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%5Cend%7Barray%7D%5Cright)%20%5Cin%20%5Comega_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_n%2C%20w_%7Bn%2B1%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BX%7D%7B%5Cmathbf%7Bw%7D%7D%3E%5Cmathbf%7B0%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=0%3CC%E2%89%A41">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathbf%7Bw%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Be%7D%28k%29%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BX%7D%20%5Cboldsymbol%7Bw%7D%28k%29%3D%5Cboldsymbol%7Bb%7D(k)%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Be%7D%28k%29%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BX%7D%20%5Cboldsymbol%7Bw%7D%28k%29%20%5Cgeq%20%5Cboldsymbol%7Bb%7D(k)%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Be%7D%28k%29%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Be%7D%28k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Be%7D%28k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bb%7D%28k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=X%5ETX">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=x_k">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=x_k">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2C%20x_k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5C%7Bx_k%2C%20k%3D1%2C2%2C%5Ccdots%5C%7D%20x_k%20%5Cin%5Cleft%28%5Comega_1%20%5Ccup%20%5Comega_2%5Cright%29">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2Cx_k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2C%20x_1%29%EF%BC%8C%20K(x%2C%20x_2)%EF%BC%8C%E2%80%A6">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1%EF%BC%8Cx_2%EF%BC%8C%E2%80%A6">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x_%7Bk%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x_%7Bk%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=K_k%28x_%7Bk%2B1%7D%29%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=x_%7Bk%2B1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=K_k%28x_%7Bk%2B1%7D%29%3C0">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_1">
+<meta property="og:image" content="https://math.now.sh/?inline=%CF%89_2">
+<meta property="og:image" content="https://math.now.sh/?inline=d%28x%29%3DK%20(x)">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7Bk%2B1%7D%28x%29%3D%20d_k(x)%2Br_%7Bk%2B1%7DK(x%2Cx_%7Bk%2B1%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x_k">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2C%20x_k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2Cx_k%29%3DK(x_k%2C%20x)">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3Dx_k">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x_k">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2C%20x_k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2Cx_k%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x_k">
+<meta property="og:image" content="https://math.now.sh/?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3D%5Csum_%7Bi%3D1%7D%5Em%20%5Cvarphi_i(%5Cboldsymbol%7Bx%7D)%20%5Cvarphi_i%5Cleft(%5Cboldsymbol%7Bx%7D_k%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5C%7B%5Cvarphi_i%28%5Cboldsymbol%7Bx%7D%29%5Cright%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=d_%7Bk%2B1%7D%28%5Cboldsymbol%7Bx%7D%29%3D%5Csum_%7Bi%3D1%7D%5Em%20%5Cboldsymbol%7BC%7D_i(k%2B1)%20%5Cvarphi_i(%5Cboldsymbol%7Bx%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BC%7D_i%28k%2B1%29%3D%5Cboldsymbol%7BC%7D_i(k)%2B%5Cmathrm%7Br%7D_%7Bk%2B1%7D%20%5Cvarphi_i%5Cleft(%5Cboldsymbol%7Bx%7D_%7Bk%2B1%7D%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=K_%7Bk%2B1%7D%28%5Cboldsymbol%7Bx%7D%29%3D%5Csum_%7Bi%3D1%7D%5Em%20%5Cboldsymbol%7BC%7D_i(k%2B1)%20%5Cvarphi_i(%5Cboldsymbol%7Bx%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BC%7D_i">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x_k">
+<meta property="og:image" content="https://math.now.sh/?inline=K%28x%2C%20x_k%29%3DK(x_k%2C%20x)">
+<meta property="og:image" content="https://math.now.sh/?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3De%5E%7B-%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3D%5Cfrac%7B1%7D%7B1%2B%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3D%5Cfrac%7B%5Csin%20%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D%7B%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n_1">
+<meta property="og:image" content="https://math.now.sh/?inline=n_i">
+<meta property="og:image" content="https://math.now.sh/?inline=t_j">
+<meta property="og:image" content="https://math.now.sh/?inline=t_j">
+<meta property="og:image" content="https://math.now.sh/?inline=T">
+<meta property="og:image" content="https://math.now.sh/?inline=T">
+<meta property="og:image" content="https://math.now.sh/?inline=n_i">
+<meta property="og:image" content="https://math.now.sh/?inline=n_%7Bil%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n%7Bir%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=n_i">
+<meta property="article:published_time" content="2022-09-11T08:21:45.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.198Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Pattern Recognition and Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=w_k">
+  
+  
+  
+  <title>研究生课程：模式识别与机器学习-第3章 判别函数 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：模式识别与机器学习-第3章 判别函数</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-11 08:21" pubdate>
+          2022年9月11日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：模式识别与机器学习-第3章 判别函数</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《模式识别与机器学习》课程笔记：第3章 判别函数</p>
+<span id="more"></span>
+<h1>第3章 判别函数</h1>
+<h2 id="线性判别函数">线性判别函数</h2>
+<p><strong>模式识别系统的主要作用：判别各个模式（也称样本）所属的类别</strong></p>
+<p>模式分类若可用任一个线性函数来划分，则这些模式就称为线性可分的，否则就是非线性可分的。</p>
+<p>一旦线性函数的系数<img src="https://math.now.sh?inline=w_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>被确定，这些函数就可用作模式分类的基础。</p>
+<p>对一个两类问题的判别，就是将模式<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>划分成<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>两类</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vOaAmt"><img src="https://s1.ax1x.com/2022/09/11/vOaAmt.md.png" srcset="/img/loading.gif" lazyload alt="vOaAmt.md.png"></a></p>
+<p>这两类可以通过一个直线方程<img src="https://math.now.sh?inline=d%28x%29%3D%5Comega_1x_1%2B%5Comega_2x_2%2B%5Comega_3%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来划分</p>
+<p>若<img src="https://math.now.sh?inline=d%28x%29%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=x%5Cin%5Comega_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若<img src="https://math.now.sh?inline=d%28x%29%3C0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=x%5Cin%5Comega_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=d%28x%29%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>称为决策面/判别界面方程**（判别函数和判别界面是否等于0要注意）**</p>
+<p>用判别函数进行模式分类依赖的两个因素：</p>
+<ul>
+<li>判别函数的几何性质：线性的（一条直线）和非线性的函数（曲线、折线等）。
+<ul>
+<li>线性判别函数建立起来比较简单（实际应用较多）；</li>
+<li>非线性判别函数建立起来比较复杂。</li>
+</ul>
+</li>
+<li>判别函数的形式确定后，主要就是确定判别函数的系数问题，只要被研究的模式是可分的，就能用给定的模式样本集来确定判别函数的系数。</li>
+</ul>
+<p>一个<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维线性判别函数的一般形式：</p>
+<p><img src="https://math.now.sh?inline=d%28%5Cboldsymbol%7Bx%7D%29%3Dw_1%20x_1%2Bw_2%20x_2%2B%5Ccdots%2Bw_n%20x_n%2Bw_%7Bn%2B1%7D%3D%5Cboldsymbol%7Bw%7D_0%5ET%20%5Cboldsymbol%7Bx%7D%2Bw_%7Bn%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>权向量（参数向量）：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D_0%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_%7B%5Cmathrm%7Bn%7D%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维线性判别函数也可以表示为<img src="https://math.now.sh?inline=d%28%5Cboldsymbol%7Bx%7D%29%3D%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>增广模式向量：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%3D%5Cleft%28x_1%2C%20x_2%2C%20%5Cldots%2C%20x_n%2C%201%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，增广权向量：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_%7B%5Cmathrm%7Bn%2B1%7D%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>多类情况1：用线性判别函数将属于<img src="https://math.now.sh?inline=%CF%89_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类的模式与不属于<img src="https://math.now.sh?inline=%CF%89_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类的模式分开，称为 <img src="https://math.now.sh?inline=%5Comega_i%2F%20%5Cbar%7B%5Comega_i%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>两分法，即把<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类多类问题分成<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个两类问题，因此共有<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数。会存在分类失败的问题：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/vOdk34"><img src="https://s1.ax1x.com/2022/09/11/vOdk34.png" srcset="/img/loading.gif" lazyload alt="vOdk34.png"></a></p>
+<p>多类情况2：采用每对划分，即 <img src="https://math.now.sh?inline=%CF%89_i%2F%CF%89_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>两分法，此时一个判别界面只能分开两种类别，但不能把它与其余所有的界面分开。</p>
+<p>判别函数为<img src="https://math.now.sh?inline=d_%7Bi%20j%7D%28%5Cboldsymbol%7Bx%7D%29%3D%5Cboldsymbol%7Bw%7D_%7Bi%20j%7D%5ET%20%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若<img src="https://math.now.sh?inline=d_%7B%5Cmathrm%7Bij%7D%7D%28%5Cboldsymbol%7Bx%7D%29%3E0%2C%20%5Cforall%20j%20%5Cneq%20i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> ，则 <img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%20%5Cin%20%5Comega_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此要分开<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类模式，共需<img src="https://math.now.sh?inline=%5Cfrac%7BM%28M-1%29%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数。也会存在不确定区域，即分类失败。</p>
+<p>多类情况1和多类情况2的比较</p>
+<ul>
+<li>对于<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类模式的分类，多类情况1需要<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数，而多类情况2需<img src="https://math.now.sh?inline=%5Cfrac%7BM%28M-1%29%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数，当<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>较大时，后者需要更多的判别式</li>
+<li>采用多类情况1时，每一个判别函数都要把一种类别的模式与其余<img src="https://math.now.sh?inline=M-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>种类别的模式分开，而不是将一种类别的模式仅与另一种类别的模式分开。</li>
+<li>由于一种模式的分布要比<img src="https://math.now.sh?inline=M-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>种模式的分布更为聚集，因此多类情况2对模式是线性可分的可能性比多类情况1更大一些。</li>
+</ul>
+<p>多类情况3：没有不确定区域的 <img src="https://math.now.sh?inline=%CF%89_i%2F%CF%89_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>两分法</p>
+<p><img src="https://math.now.sh?inline=d_%7B%5Cmathrm%7Bij%7D%7D%28%5Cboldsymbol%7Bx%7D%29%3Dd_%7B%5Cmathrm%7Bi%7D%7D(%5Cboldsymbol%7Bx%7D)-d_%7B%5Cmathrm%7Bj%7D%7D(%5Cboldsymbol%7Bx%7D)%3D%5Cleft(%5Cboldsymbol%7Bw%7D_%7B%5Cmathrm%7Bi%7D%7D-%5Cboldsymbol%7Bw%7D_%7B%5Cmathrm%7Bj%7D%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，此时，对<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类情况应有<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数。</p>
+<h2 id="广义线性判别函数">广义线性判别函数</h2>
+<p>线性判别函数简单，容易实现，而非线性判别函数复杂，不容易实现。</p>
+<p>若能将非线性判别函数转换为线性判别函数，则有利于模式分类的实现。</p>
+<p>设有一个训练用的模式集<img src="https://math.now.sh?inline=%5C%7Bx%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，在模式空间<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中线性不可分，但在模式空间<img src="https://math.now.sh?inline=x%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中线性可分，其中<img src="https://math.now.sh?inline=x%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的各个分量是<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的单值实函数，<img src="https://math.now.sh?inline=x%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的维数<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>高于<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的维数<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即若取<img src="https://math.now.sh?inline=x%5E*%20%3D%20%28f_1(x%29%2Cf_2(x)%2C%5Ccdots%2Cf_k(x))%2Ck%3En" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则分类界面在<img src="https://math.now.sh?inline=x%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中是线性的，在<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中是非线性的，此时只要将模式<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行非线性变换，使之变换后得到维数更高的模式<img src="https://math.now.sh?inline=x%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，就可以用线性判别函数来进行分类。</p>
+<p>一个非线性判别函数可如下表示：<img src="https://math.now.sh?inline=d%28%5Cboldsymbol%7Bx%7D%29%3Dw_%7B1%7D%20f_%7B1%7D(%5Cboldsymbol%7Bx%7D)%2Bw_%7B2%7D%20f_%7B2%7D(%5Cboldsymbol%7Bx%7D)%2B%5Ccdots%2Bw_%7Bk%7D%20f_%7Bk%7D(%5Cboldsymbol%7Bx%7D)%2Bw_%7Bk%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=f_i%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是模式<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的单值实函数。</p>
+<p>若定义成广义形式：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5E%7B*%7D%3D%5Cleft%28f_%7B1%7D(%5Cboldsymbol%7Bx%7D%29%2C%20f_%7B2%7D(%5Cboldsymbol%7Bx%7D)%2C%20%5Cldots%2C%20f_%7B%5Cmathrm%7Bk%7D%7D(%5Cboldsymbol%7Bx%7D)%2C%201%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>此时有：<img src="https://math.now.sh?inline=d%5Cleft%28%5Cboldsymbol%7Bx%7D%5E%7B*%7D%5Cright%29%3D%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7Bx%7D%5E%7B*%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%3D%5Cleft%28w_%7B1%7D%2C%20w_%7B2%7D%2C%20%5Cldots%2C%20w_%7B%5Cmathrm%7Bk%7D%7D%2C%20w_%7B%5Cmathrm%7Bk%7D%2B1%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>非线性判别函数已被变换成广义线性，因此只讨论线性判别函数不会失去一般性意义。</p>
+<p>当<img src="https://math.now.sh?inline=f_i%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是模式<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的二次多项式函数时：</p>
+<p><img src="https://math.now.sh?inline=d%28%5Cboldsymbol%7Bx%7D%29%3D%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%20w_%7Bj%20j%7D%20x_%7Bj%7D%5E%7B2%7D%2B%5Csum_%7Bj%3D1%7D%5E%7Bn-1%7D%20%5Csum_%7Bk%3Dj%2B1%7D%5E%7Bn%7D%20w_%7Bj%20k%7D%20x_%7Bj%7D%20x_%7Bk%7D%2B%5Csum_%7Bj%3D1%7D%5E%7Bn%7D%20w_%7Bj%7D%20x_%7Bj%7D%2Bw_%7Bn%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>式中各项的组成应包含<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的各个分量的二次项、一次项和常数项，其中平方项<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个，二次项<img src="https://math.now.sh?inline=%5Cfrac%7Bn%28n-1%29%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个，一次项<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个，常数项1个，其总项数为：<br>
+<img src="https://math.now.sh?inline=n%20%2B%20%5Cfrac%7Bn%28n-1%29%7D%7B2%7D%2B%20n%20%2B%201%20%3D%20%5Cfrac%7B(n%2B1)(n%2B2)%7D%7B2%7D%3E%20n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>若<img src="https://math.now.sh?inline=f_i%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是模式<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次多项式函数，总项数为<img src="https://math.now.sh?inline=N_%7Bw%7D%3DC_%7Bn%2Br%7D%5E%7Br%7D%3D%5Cfrac%7B%28n%2Br%29%20!%7D%7Br%20!%20n%20!%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h2 id="分段线性判别函数">分段线性判别函数</h2>
+<ul>
+<li>线性判别函数在进行分类决策时是最简单有效的，但在实际应用中，常常会出现不能用线性判别函数直接进行分类的情况。</li>
+<li>采用广义线性判别函数的概念，可以通过增加维数来得到线性判别，但维数的大量增加会使在低维空间里在解析和计算上行得通的方法在高维空间遇到困难，增加计算的复杂性。</li>
+<li>引入分段线性判别函数的判别过程，它比一般的线性判别函数的错误率小，但又比非线性判别函数简单。</li>
+</ul>
+<p>也就是说，可以使用一个二次判别函数进行分类的地方，也可以使用一个分段线性判别函数来逼近这个二次曲线。</p>
+<p>可以采用最小距离分类的方法，只有在类别密集地分布在其均值附近时才有效。</p>
+<p>对于各类交错分布的情况，若再用每类一个均值代表点产生最小距离分类器，就会产生很明显的错误率。在这种情况下，可以运用聚类方法将一些类分解成若干个子类，再用最小距离分类。</p>
+<ul>
+<li>寻找交遇区—找到互为最小距离的原型对，组成“交遇区”。</li>
+<li>用局部训练模式产生分段线性判别函数并迭代优化决策面。</li>
+<li>撤走已分类正确的样本，从剩下的样本集合中，寻找交遇区，产生分段线性判别函数。</li>
+</ul>
+<h2 id="模式空间和权空间">模式空间和权空间</h2>
+<p>模式空间：</p>
+<p>对一个线性方程<img src="https://math.now.sh?inline=w_1x_1%2Bw_2x_2%2Bw_3x_3%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，它在三维空间<img src="https://math.now.sh?inline=%28x_1%20%2Cx_2%20%2Cx_3%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中是一个平面方程式，<img src="https://math.now.sh?inline=w%3D%28w_1%2Cw_2%2Cw_3%29%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是方程的系数。</p>
+<p>把<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>向量作为该平面的法线向量，则该线性方程决定的平面通过原点且与<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>垂直</p>
+<p>若<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是二维的增广向量，<img src="https://math.now.sh?inline=w%20%3D%28w_1%2Cw_2%29%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为非增广的权向量，它与直线AB垂直</p>
+<p>模式空间即为增广向量决定的平面或非增广向量决定的直线。</p>
+<p>权空间：</p>
+<p>若将方程<img src="https://math.now.sh?inline=x_1w_1%2Bx_2w_2%2Bw_3%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>绘在权向量<img src="https://math.now.sh?inline=w%3D%28w_1%2Cw_2%2Cw_3%29%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的三维空间中，则<img src="https://math.now.sh?inline=x%3D%28x_1%2Cx_2%2C1%29%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为方程的系数</p>
+<h2 id="Fisher线性判别">Fisher线性判别</h2>
+<ul>
+<li>应用统计方法解决模式识别问题时，一再碰到的问题之一就是维数问题。</li>
+<li>在低维空间里解析上或计算上行得通的方法，在高维空间里往往行不通。</li>
+<li>因此，降低维数有时就会成为处理实际问题的关键。</li>
+</ul>
+<p>问题描述：</p>
+<ul>
+<li>考虑把<img src="https://math.now.sh?inline=d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维空间的样本投影到一条直线上，形成一维空间，即把维数压缩到一维。</li>
+<li>然而，即使样本在<img src="https://math.now.sh?inline=d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维空间里形成若干紧凑的互相分得开的集群，当把它们投影到一条直线上时，也可能会是几类样本混在一起而变得无法识别。</li>
+<li>但是，在一般情况下，总可以找到某个方向，使在这个方向的直线上，样本的投影能分得开。</li>
+</ul>
+<p>Fisher判别方法所要解决的基本问题：如何根据实际情况找到一条最好的、最易于分类的投影线。</p>
+<p>从<img src="https://math.now.sh?inline=d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维空间到一维空间的一般数学变换方法：</p>
+<p>假设有一集合<img src="https://math.now.sh?inline=%5CGamma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>包含<img src="https://math.now.sh?inline=N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个<img src="https://math.now.sh?inline=d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维样本<img src="https://math.now.sh?inline=x%5E1%2Cx%5E2%2C%E2%80%A6%2C%20x%5EN" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=N_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个属于<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类的样本记为子集<img src="https://math.now.sh?inline=%5CGamma_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=N_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个属于<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类的样本记为子集<img src="https://math.now.sh?inline=%5CGamma_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若对<img src="https://math.now.sh?inline=x%5En" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的分量做线性组合可得标量：<img src="https://math.now.sh?inline=y_n%3Dw%5ETx%5En%2C%20n%3D1%2C2%2C%E2%80%A6%2CN" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，这样便得到<img src="https://math.now.sh?inline=N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个一维样本<img src="https://math.now.sh?inline=y_n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>组成的集合，并可分为两个子集<img src="https://math.now.sh?inline=%5CGamma_1'" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5CGamma_2'" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>实际上，<img src="https://math.now.sh?inline=%7Cw%7C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的值是无关紧要的，它仅是<img src="https://math.now.sh?inline=y_n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>乘上一个比例因子，重要的是选择<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的方向。<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的方向不同，将使样本投影后的可分离程度不同，从而直接影响分类效果。因此，上述寻找最佳投影方向的问题，在数学上就是寻找最好的变换向量<img src="https://math.now.sh?inline=w%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的问题。</p>
+<p>Fisher准则函数中的基本参量：</p>
+<p>在<img src="https://math.now.sh?inline=d" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维<img src="https://math.now.sh?inline=%5Cboldsymbol%7BX%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>空间：</p>
+<p>各类样本的均值向量<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bm%7D_i%3D%5Cfrac%7B1%7D%7BN_i%7D%20%5Csum_%7Bx%20%5Cin%20%5CGamma_i%7D%20%5Cboldsymbol%7Bx%7D%2C%20i%3D1%2C2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>样本类内离散度矩阵：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_i%3D%5Csum_%7B%5Cboldsymbol%7Bx%7D%20%5Cin%20%5CGamma_i%7D%5Cleft%28%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright%29%5Cleft(%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bm%7D_i%5Cright)%5ET%2C%20i%3D1%2C2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>总样本类内离散度矩阵：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS_w%7D%3D%5Cboldsymbol%7BS_1%7D%2B%5Cboldsymbol%7BS_2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（对称半正定矩阵）</p>
+<p>样本类间离散度矩阵：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_b%3D%5Cleft%28%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright%29%5Cleft(%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright)%5ET" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（对称半正定矩阵）</p>
+<p>在一维<img src="https://math.now.sh?inline=Y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>空间：</p>
+<p>各类样本的均值：<img src="https://math.now.sh?inline=%5Ctilde%7Bm%7D_i%3D%5Cfrac%7B1%7D%7BN_i%7D%20%5Csum_%7By%20%5Cin%20%5CGamma_i%5E%7B%5Cprime%7D%7D%20y%2C%20i%3D1%2C2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>样本类内离散度：<img src="https://math.now.sh?inline=%5Ctilde%7BS%7D_i%5E2%3D%5Csum_%7By%20%5Cin%20%5CGamma_i%5E%7B%5Cprime%7D%7D%5Cleft%28y-%5Ctilde%7Bm%7D_i%5Cright%29%5E2%2C%20i%3D1%2C2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>总样本类内离散度：<img src="https://math.now.sh?inline=%5Ctilde%7BS%7D_w%3D%5Ctilde%7BS%7D_1%5E2%2B%5Ctilde%7BS%7D_2%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>我们希望投影后，在一维<img src="https://math.now.sh?inline=Y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>空间中各类样本尽可能分得开些，即希望两类均值之差越大越好，同时希望各类样本内部尽量密集，即希望类内离散度越小越好。</p>
+<p>Fisher准则函数：<img src="https://math.now.sh?inline=J_F%28w%29%3D%5Cfrac%7B%5Cleft(%5Ctilde%7Bm%7D_1-%5Ctilde%7Bm%7D_2%5Cright)%5E2%7D%7B%5Ctilde%7BS%7D_1%5E2%2B%5Ctilde%7BS%7D_2%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>将其推导为<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的显函数：<img src="https://math.now.sh?inline=J_%7B%5Cmathrm%7BF%7D%7D%28%5Cboldsymbol%7Bw%7D%29%3D%5Cfrac%7B%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7BS%7D_b%20%5Cboldsymbol%7Bw%7D%7D%7B%5Cboldsymbol%7Bw%7D%5E%7B%5Cmathrm%7BT%7D%7D%20%5Cboldsymbol%7BS%7D_w%20%5Cboldsymbol%7Bw%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>然后使用Lagrange乘数法求解，最终解得<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%5E*%3D%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%5Cleft%28%5Cboldsymbol%7Bm%7D_1-%5Cboldsymbol%7Bm%7D_2%5Cright%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>事实上，Fisher的降维就相当于找一个线性判别函数。投影后的<img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是<img src="https://math.now.sh?inline=w%5ETx%5En" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>变化得来的，就相当于线性判别。</p>
+<p>多类情形：</p>
+<p>类间散度矩阵与两类情形略有不同：原来度量的是两个均值点的散列情况，现在度量的是每类均值点相对于样本中心的散列情况</p>
+<p>推导可得：<img src="https://math.now.sh?inline=%5Cboldsymbol%7BS%7D_w%5E%7B-1%7D%20%5Cboldsymbol%7BS%7D_b%20W%5E*%3D%5Clambda%20W%5E*" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h2 id="感知器算法">感知器算法</h2>
+<p>一旦判别函数的形式确定下来，不管它是线性的还是非线性的，剩下的问题就是如何确定它的系数。在模式识别中，系数确定的一个主要方法就是通过对已知样本的训练和学习来得到。感知器算法就是通过训练样本模式的迭代和学习，产生线性（或广义线性）可分的模式判别函数。</p>
+<p>基本思想：采用感知器算法能通过对训练模式样本集的“学习”得到判别函数的系数。不需要对各类别中模式的统计性质做任何假设，因此称为确定性的方法。</p>
+<p>感知器作为人工神经网络中最基本的单元，由多个输入和一个输出组成。</p>
+<p>已知两个训练模式集分别属于<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类和<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类，权向量的初始值为<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%281%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，可任意取值。</p>
+<p>若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_1%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_2%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%3C0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次的训练步骤为：</p>
+<p>若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_1%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%E2%89%A40" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则分类器对第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个模式<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%5Ek%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>做了错误分类，此时应校正权向量，使得<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%2B1%29%3D%5Cboldsymbol%7Bw%7D(%5Cmathrm%7Bk%7D)%2BC%20%5Cboldsymbol%7Bx%7D%5Ek" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为一个校正增量。</p>
+<p>若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5Ek%20%5Cin%20%5Comega_2%2C%20%5Cboldsymbol%7Bw%7D%5ET%28k%29%20%5Cboldsymbol%7Bx%7D%5Ek%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则分类器对第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个模式<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%5Ek%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>做了错误分类，此时应校正权向量，使得<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%2B1%29%3D%5Cboldsymbol%7Bw%7D(%5Cmathrm%7Bk%7D)-C%20%5Cboldsymbol%7Bx%7D%5Ek" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为一个校正增量。</p>
+<p>若以上情况不符合，则表明该模式样本在第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次中分类正确，因此权向量不变<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%2B1%29%3D%5Cboldsymbol%7Bw%7D(%5Cmathrm%7Bk%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ul>
+<li>对正确分类的模式则“赏”，实际上是“不罚”，即权向量不变。</li>
+<li>对错误分类的模式则“罚”，使<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28%5Cmathrm%7Bk%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>加上一个正比于<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5Ek" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的分量。</li>
+<li>当用全部模式样本训练过一轮以后，只要有一个模式是判别错误的，则需要进行下一轮迭代，即用全部模式样本再训练一次。</li>
+<li>如此不断反复直到全部模式样本进行训练都能得到正确的分类结果为止。</li>
+</ul>
+<p>感知器算法的收敛性：只要模式类别是线性可分的，就可以在有限的迭代步数里求出权向量。</p>
+<h2 id="采用感知器算法的多类模式的分类">采用感知器算法的多类模式的分类</h2>
+<p>采用多类情况3，将感知器算法推广到多类模式。</p>
+<p>多类情况3：对<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类模式存在<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数<img src="https://math.now.sh?inline=%5C%7Bd_i%2C%20i%20%3D%201%2C2%2C%E2%80%A6%2CM%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D_k%20%5Cin%20%5Comega_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>, 则 <img src="https://math.now.sh?inline=d_i%3Ed_j%2C%20%5Cforall%20j%20%5Cneq%20i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>设有<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>种模式类别<img src="https://math.now.sh?inline=%CF%89_1%EF%BC%8C%CF%89_2%EF%BC%8C%E2%80%A6%EF%BC%8C%CF%89_M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，若在训练过程的第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次迭代时，一个属于<img src="https://math.now.sh?inline=%CF%89_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类的模式样本<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>送入分类器，则应先计算出<img src="https://math.now.sh?inline=M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个判别函数：<img src="https://math.now.sh?inline=d_j%28k%29%3D%5Cboldsymbol%7Bw%7D_j(k)%20%5Cboldsymbol%7Bx%7D%2C%20j%3D1%2C2%2C%20%5Ccdots%2C%20%5Cmathrm%7BM%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。若<img src="https://math.now.sh?inline=d_i%28k%29%3Ed_j(k)%2C%20j%3D1%2C2%2C%20%5Cldots%2C%20M%2C%20%5Cforall%20j%20%5Cneq%20i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的条件成立，则权向量不变，即<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D_j%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_j(k)%2C%20j%3D1%2C2%2C%20%5Ccdots%2C%20M" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>若其中第<img src="https://math.now.sh?inline=l" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个权向量使得<img src="https://math.now.sh?inline=d_i%28k%29%E2%89%A4d_j(k)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则相应的权向量应做调整，即</p>
+<p><img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D_i%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_i(k)%2BCx" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D_l%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_l(k)-C%20x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D_j%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D_j(k)%2C%20j%3D1%2C2%2C%20%5Ccdots%2C%20M%2C%20j%20%5Cneq%20i%2C%20j%20%5Cneq%20l" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>其中<img src="https://math.now.sh?inline=C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是一个正常数。权向量的初始值<img src="https://math.now.sh?inline=w_i%28l%29%EF%BC%8Ci%20%3D%201%2C2%2C%E2%80%A6%2CM" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>可视情况任意选择。</p>
+<p>这里的分类算法都是通过模式样本来确定判别函数的系数，但一个分类器的判断性能最终要受并未用于训练的那些未知样本来检验。要使一个分类器设计完善，必须采用有代表性的训练数据，它能够合理反映模式数据的整体。</p>
+<p>要获得一个判别性能好的线性分类器，直观上训练样本越多越好，但实际上能收集到的样本数目会受到客观条件的限制，且过多的训练样本在训练阶段会使计算机需要较长的运算时间。一般来说，合适的样本数目可如下估计：若<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是模式的维数，令<img src="https://math.now.sh?inline=C%3D2%28k%2B1%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则通常选用的训练样本数目约为<img src="https://math.now.sh?inline=C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的10~20倍。</p>
+<p>感知器算法的解与初值的选择和迭代过程中误分类点的选择顺序有关。</p>
+<h2 id="可训练的确定性分类器的迭代算法">可训练的确定性分类器的迭代算法</h2>
+<h3 id="梯度法">梯度法</h3>
+<p>设函数<img src="https://math.now.sh?inline=f%28%5Cboldsymbol%7By%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 是向量 <img src="https://math.now.sh?inline=%5Cboldsymbol%7By%7D%3D%5Cleft%28y_1%2C%20y_2%2C%20%5Cldots%2C%20y_%7B%5Cmathrm%7Bn%7D%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 的函数, 则 <img src="https://math.now.sh?inline=f%28%5Cboldsymbol%7By%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> 的梯度定义为</p>
+<p><img src="https://math.now.sh?inline=%5Cnabla%20f%28%5Cboldsymbol%7By%7D%29%3D%5Cfrac%7Bd%7D%7Bd%20%5Cboldsymbol%7By%7D%7D%20f(%5Cboldsymbol%7By%7D)%3D%5Cleft(%5Cbegin%7Barray%7D%7Bllll%7D%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y_1%7D%20%26%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y_2%7D%20%26%20%5Ccdots%20%26%20%5Cfrac%7B%5Cpartial%20f%7D%7B%5Cpartial%20y_n%7D%5Cend%7Barray%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>从<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>导出<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的一般关系式<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D(k)-C%5Cleft%5C%7B%5Cfrac%7B%5Cpartial%20J(%5Cboldsymbol%7Bw%7D%2C%20%5Cboldsymbol%7Bx%7D)%7D%7B%5Cpartial%20%5Cboldsymbol%7Bw%7D%7D%5Cright%5C%7D_%7Bw%3D%5Cboldsymbol%7Bw%7D(k)%7D%3D%5Cboldsymbol%7Bw%7D(k)-C%20%5Ccdot%20%5Cnabla%20J" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是一个正的比例因子（步长）</p>
+<p>梯度是一个向量，它的最重要性质就是指出了函数<img src="https://math.now.sh?inline=f" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在其自变量增加时最大增长率的方向。负梯度指出<img src="https://math.now.sh?inline=f" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的最陡下降方向，利用这个性质可以设计一个迭代方案来寻找函数的最小值。</p>
+<p>定义一个对错误分类敏感的准则函数<img src="https://math.now.sh?inline=J%28w%2C%20x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。先任选一个初始权向量<img src="https://math.now.sh?inline=w%281%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，计算准则函数<img src="https://math.now.sh?inline=J" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的梯度，然后从<img src="https://math.now.sh?inline=w%281%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>出发，在最陡方向（梯度方向）上移动某一距离得到下一个权向量<img src="https://math.now.sh?inline=w%282%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>C值的选择是很重要的。若C值太小，则收敛太慢；若C值太大，则搜索可能过头，引起发散。</p>
+<h3 id="固定增量的逐次调整算法">固定增量的逐次调整算法</h3>
+<p>设取准则函数为：<img src="https://math.now.sh?inline=J%28%5Cboldsymbol%7Bw%7D%2C%20%5Cboldsymbol%7Bx%7D%29%3D%5Cfrac%7B%5Cleft%7C%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Cright%7C-%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%7D%7B2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>则<img src="https://math.now.sh?inline=J" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的微分式：<img src="https://math.now.sh?inline=%5Cfrac%7B%5Cpartial%20J%7D%7B%5Cpartial%20%5Cboldsymbol%7Bw%7D%7D%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%5B%5Cboldsymbol%7Bx%7D%20%5Ccdot%20%5Coperatorname%7Bsign%7D%5Cleft%28%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Cright%29-%5Cboldsymbol%7Bx%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Coperatorname%7Bsign%7D%5Cleft%28%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Cright%29%3D%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D%2B1%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%3E0%20%5C%5C%20-1%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%20%5Cleq%200%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>则由梯度法中<img src="https://math.now.sh?inline=w%28k%2B1%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=w%28k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的关系有：<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D(k)%2B%5Cfrac%7BC%7D%7B2%7D%5Cleft%5B%5Cboldsymbol%7Bx%7D%5Ek-%5Cboldsymbol%7Bx%7D%5Ek%20%5Ccdot%20%5Coperatorname%7Bsign%7D%5Cleft(%5Cboldsymbol%7Bw%7D%5ET(k)%20%5Cboldsymbol%7Bx%7D%5Ek%5Cright)%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bx%7D%5Ek" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是训练模式样本，<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是指第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次迭代。<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%28k%2B1%29%3D%5Cboldsymbol%7Bw%7D(k)%2BC%20%5Ccdot%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bcl%7D0%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Ek%3E0%20%5C%5C%20%5Cboldsymbol%7Bx%7D%5Ek%20%26%20%5Ctext%20%7B%20if%20%7D%20%5Cboldsymbol%7Bw%7D%5ET%20%5Cboldsymbol%7Bx%7D%5Ek%20%5Cleq%200%5Cend%7Barray%7D%5Cright." srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>若模式是线性可分的，选择合适的准则函数<img src="https://math.now.sh?inline=J%28w%2Cx%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，算法就能给出解。若模式不是线性可分的，算法的结果就会来回摆动，得不到收敛。</p>
+<h3 id="最小平方误差-LMSE-算法">最小平方误差(LMSE)算法</h3>
+<p>感知器算法只是当被分模式可用一个特定的判别界面分开时才收敛，在不可分情况下，只要计算程序不终止，它就始终不收敛。即使在模式可分的情况下，也很难事先算出达到收敛时所需要的迭代次数。这样，在模式分类过程中，有时候会出现一次又一次迭代却不见收敛的情况，白白浪费时间。为此需要知道：发生迟迟不见收敛的情况时，到底是由于收敛速度过慢造成的呢，还是由于所给的训练样本集不是线性可分造成的呢？</p>
+<p>最小平方误差(LMSE)算法，除了对可分模式是收敛的以外，对于类别不可分的情况也能指出来。</p>
+<p>求两类问题的解相当于求一组线性不等式的解，因此，若给出分别属于<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的两个模式样本的训练样本集，即可求出其权向量<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的解。</p>
+<p>设两类模式的训练样本总数为<img src="https://math.now.sh?inline=N" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，写成增广形式，则有不等式组<img src="https://math.now.sh?inline=%5Cboldsymbol%7BX%20w%7D_%7B%5Cmathbf%7Bw%7D%7D%3E%5Cmathbf%7B0%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=X%3D%5Cleft%28%5Cbegin%7Barray%7D%7Bc%7D%5Cleft(x%5E1%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cleft(%5Cboldsymbol%7Bx%7D%5Ei%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20-%5Cleft(%5Cboldsymbol%7Bx%7D%5E%7Bi%2B1%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20-%5Cleft(%5Cboldsymbol%7Bx%7D%5EN%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%5Cend%7Barray%7D%5Cright)%2C%5Cleft(%5Cbegin%7Barray%7D%7Bc%7D%5Cleft(%5Cboldsymbol%7Bx%7D%5E1%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cleft(%5Cboldsymbol%7Bx%7D%5Ei%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%5Cend%7Barray%7D%5Cright)%20%5Cin%20%5Comega_1%2C%5Cleft(%5Cbegin%7Barray%7D%7Bc%7D%5Cleft(%5Cboldsymbol%7Bx%7D%5E%7Bi%2B1%7D%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cleft(%5Cboldsymbol%7Bx%7D%5EN%5Cright)%5E%7B%5Cmathrm%7BT%7D%7D%5Cend%7Barray%7D%5Cright)%20%5Cin%20%5Comega_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D%3D%5Cleft%28w_1%2C%20w_2%2C%20%5Cldots%2C%20w_n%2C%20w_%7Bn%2B1%7D%5Cright%29%5E%7B%5Cmathrm%7BT%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>H-K算法：</p>
+<p>模式类别可分性的判别：</p>
+<p>当不等式组<img src="https://math.now.sh?inline=%5Cboldsymbol%7BX%7D%7B%5Cmathbf%7Bw%7D%7D%3E%5Cmathbf%7B0%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>有解时，该算法对<img src="https://math.now.sh?inline=0%3CC%E2%89%A41" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>收敛，可求得解<img src="https://math.now.sh?inline=%5Cmathbf%7Bw%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<ul>
+<li>若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Be%7D%28k%29%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即<img src="https://math.now.sh?inline=%5Cboldsymbol%7BX%7D%20%5Cboldsymbol%7Bw%7D%28k%29%3D%5Cboldsymbol%7Bb%7D(k)%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，有解。</li>
+<li>若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Be%7D%28k%29%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，此时隐含<img src="https://math.now.sh?inline=%5Cboldsymbol%7BX%7D%20%5Cboldsymbol%7Bw%7D%28k%29%20%5Cgeq%20%5Cboldsymbol%7Bb%7D(k)%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的条件，有解。若继续进行迭代，可使<img src="https://math.now.sh?inline=%5Cboldsymbol%7Be%7D%28k%29%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</li>
+<li>若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Be%7D%28k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的全部分量停止变为正值（但不是全部为零），表明该模式类别线性不可分。因此，若<img src="https://math.now.sh?inline=%5Cboldsymbol%7Be%7D%28k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>没有一个分量为正值，则<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bb%7D%28k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>不会再变化，所以不能求得解。</li>
+</ul>
+<p>固定增量算法与LMSE算法的比较：</p>
+<ul>
+<li>固定增量算法：实现相对简单，可直接引伸到多类模式的分类情况，但未提供模式线性可分的测试特征；</li>
+<li>LMSE算法：相对复杂，需要对<img src="https://math.now.sh?inline=X%5ETX" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>求逆（维数高时求逆比较困难），但对两类情况，提供了线性可分的测试特征。</li>
+</ul>
+<h2 id="势函数法-一种确定性的非线性分类算法">势函数法-一种确定性的非线性分类算法</h2>
+<p>用势函数的概念来<strong>确定判别函数</strong>和<strong>划分类别界面</strong></p>
+<p>基本思想：</p>
+<ul>
+<li>假设要划分属于两种类别<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的模式样本，这些样本可看成是分布在<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维模式空间中的点<img src="https://math.now.sh?inline=x_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</li>
+<li>把属于<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的点比拟为某种能源点，在点上，电位达到峰值。</li>
+<li>随着与该点距离的增大，电位分布迅速减小，即把样本<img src="https://math.now.sh?inline=x_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>附近空间<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>点上的电位分布，看成是一个势函数<img src="https://math.now.sh?inline=K%28x%2C%20x_k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</li>
+<li>对于属于<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的样本集群，其附近空间会形成一个“高地”，这些样本点所处的位置就是“山头”。</li>
+<li>同理，用电位的几何分布来看待属于<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的模式样本，在其附近空间就形成“凹地”。</li>
+<li>只要在两类电位分布之间选择合适的等高线，就可以认为是模式分类的判别函数。</li>
+</ul>
+<h3 id="判别函数的产生">判别函数的产生</h3>
+<p>模式分类的判别函数可由分布在模式空间中的许多样本向量<img src="https://math.now.sh?inline=%5C%7Bx_k%2C%20k%3D1%2C2%2C%5Ccdots%5C%7D%20x_k%20%5Cin%5Cleft%28%5Comega_1%20%5Ccup%20%5Comega_2%5Cright%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的势函数产生。任意一个样本所产生的势函数以<img src="https://math.now.sh?inline=K%28x%2Cx_k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表征，则判别函数<img src="https://math.now.sh?inline=d%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>可由势函数序列<img src="https://math.now.sh?inline=K%28x%2C%20x_1%29%EF%BC%8C%20K(x%2C%20x_2)%EF%BC%8C%E2%80%A6" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>来构成，序列中的这些势函数相应于在训练过程中输入机器的训练模式样本<img src="https://math.now.sh?inline=x_1%EF%BC%8Cx_2%EF%BC%8C%E2%80%A6" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。在训练状态，模式样本逐个输入分类器，分类器就连续计算相应的势函数，在第<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>步迭代时的积累位势决定于在该步前所有的单独势函数的累加。以<img src="https://math.now.sh?inline=K%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示积累位势函数，若加入的训练样本<img src="https://math.now.sh?inline=x_%7Bk%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是错误分类，则积累函数需要修改，若是正确分类，则不变。</p>
+<p>从势函数可以看出，积累位势起着判别函数的作用：</p>
+<ul>
+<li>当<img src="https://math.now.sh?inline=x_%7Bk%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>属于<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，<img src="https://math.now.sh?inline=K_k%28x_%7Bk%2B1%7D%29%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>；</li>
+<li>当<img src="https://math.now.sh?inline=x_%7Bk%2B1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>属于<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，<img src="https://math.now.sh?inline=K_k%28x_%7Bk%2B1%7D%29%3C0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则积累位势不做任何修改就可用作判别函数。</li>
+</ul>
+<p>由于一个模式样本的错误分类可造成积累位势在训练时的变化，因此势函数算法提供了确定<img src="https://math.now.sh?inline=%CF%89_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%CF%89_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>两类判别函数的迭代过程。</p>
+<p>判别函数表达式：取<img src="https://math.now.sh?inline=d%28x%29%3DK%20(x)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则有<img src="https://math.now.sh?inline=d_%7Bk%2B1%7D%28x%29%3D%20d_k(x)%2Br_%7Bk%2B1%7DK(x%2Cx_%7Bk%2B1%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h3 id="势函数的选择">势函数的选择</h3>
+<p>选择势函数的条件：一般来说，若两个<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>维向量<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=x_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的函数<img src="https://math.now.sh?inline=K%28x%2C%20x_k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>同时满足下列三个条件，则可作为势函数。</p>
+<ul>
+<li><img src="https://math.now.sh?inline=K%28x%2Cx_k%29%3DK(x_k%2C%20x)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，并且当且仅当<img src="https://math.now.sh?inline=x%3Dx_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时达到最大值；</li>
+<li>当向量<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=x_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的距离趋于无穷时，<img src="https://math.now.sh?inline=K%28x%2C%20x_k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>趋于零；</li>
+<li><img src="https://math.now.sh?inline=K%28x%2Cx_k%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是光滑函数，且是<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=x_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>之间距离的单调下降函数。</li>
+</ul>
+<p>第一类势函数：可用对称的有限多项式展开：</p>
+<p><img src="https://math.now.sh?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3D%5Csum_%7Bi%3D1%7D%5Em%20%5Cvarphi_i(%5Cboldsymbol%7Bx%7D)%20%5Cvarphi_i%5Cleft(%5Cboldsymbol%7Bx%7D_k%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cleft%5C%7B%5Cvarphi_i%28%5Cboldsymbol%7Bx%7D%29%5Cright%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在模式定义域内为正交函数集。</p>
+<p>将这类势函数代入判别函数：<img src="https://math.now.sh?inline=d_%7Bk%2B1%7D%28%5Cboldsymbol%7Bx%7D%29%3D%5Csum_%7Bi%3D1%7D%5Em%20%5Cboldsymbol%7BC%7D_i(k%2B1)%20%5Cvarphi_i(%5Cboldsymbol%7Bx%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cboldsymbol%7BC%7D_i%28k%2B1%29%3D%5Cboldsymbol%7BC%7D_i(k)%2B%5Cmathrm%7Br%7D_%7Bk%2B1%7D%20%5Cvarphi_i%5Cleft(%5Cboldsymbol%7Bx%7D_%7Bk%2B1%7D%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>因此，积累位势可写成<img src="https://math.now.sh?inline=K_%7Bk%2B1%7D%28%5Cboldsymbol%7Bx%7D%29%3D%5Csum_%7Bi%3D1%7D%5Em%20%5Cboldsymbol%7BC%7D_i(k%2B1)%20%5Cvarphi_i(%5Cboldsymbol%7Bx%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Cboldsymbol%7BC%7D_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>可用迭代式求得。</p>
+<p>第二类势函数：选择双变量<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=x_k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的对称函数作为势函数，即<img src="https://math.now.sh?inline=K%28x%2C%20x_k%29%3DK(x_k%2C%20x)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，并且它可展开成无穷级数。</p>
+<p>例如：</p>
+<p><img src="https://math.now.sh?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3De%5E%7B-%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3D%5Cfrac%7B1%7D%7B1%2B%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是正常数</p>
+<p><img src="https://math.now.sh?inline=K%5Cleft%28%5Cboldsymbol%7Bx%7D%2C%20%5Cboldsymbol%7Bx%7D_k%5Cright%29%3D%5Cfrac%7B%5Csin%20%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D%7B%5Calpha%5Cleft%5C%7C%5Cboldsymbol%7Bx%7D-%5Cboldsymbol%7Bx%7D_k%5Cright%5C%7C%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>用第二类势函数，当训练样本维数和数目都较高时，需要计算和存储的指数项较多。</p>
+<p>因为势函数由许多新项组成，因此有很强的分类能力。</p>
+<h2 id="决策树简介">决策树简介</h2>
+<p>决策树，或称多级分类器，是模式识别中进行分类的一种有效方法，对于多类或多峰分布问题，这种方法尤为方便。利用树分类器可以把一个复杂的多类别分类问题，转化为若干个简单的分类问题来解决。它不是企图用一种算法、一个决策规则去把多个类别一次分开，而是采用分级的形式，使分类问题逐步得到解决。</p>
+<p>一般来讲，一个决策树由一个根节点<img src="https://math.now.sh?inline=n_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，一组非终止节点<img src="https://math.now.sh?inline=n_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和一些终止节点<img src="https://math.now.sh?inline=t_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>组成，可对<img src="https://math.now.sh?inline=t_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>标以各种类别标签，有时不同的终止节点上可以出现相同的类别标签。</p>
+<p>如果用<img src="https://math.now.sh?inline=T" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示决策树，则一个决策树<img src="https://math.now.sh?inline=T" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对应于特征空间的一种划分，它把特征空间分成若干个区域，在每个区域中，某类的样本占优势，因此可以标出该类样本的类别标签。</p>
+<p>决策树的一种简单形式是二叉树，它是指除叶结点外，树的每个节点仅分为两个分支，即每个非终止节点<img src="https://math.now.sh?inline=n_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>都有且仅有两个子节点<img src="https://math.now.sh?inline=n_%7Bil%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=n%7Bir%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<p>二叉树结构分类器可以把一个复杂的多类别分类问题转化为多级多个两类问题来解决，在每个非终止节点<img src="https://math.now.sh?inline=n_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>都把样本集分成左右两个子集。分成的每一部分仍然可能包含多个类别的样本，可以把每一部分再分成两个子集，如此下去，直至分成的每一部分只包含同一类别的样本，或某一类样本占优势为止。</p>
+<p>二叉树结构分类器概念简单、直观、便于解释，而且在各个节点上可以选择不同的特征和采用不同的决策规则，因此设计方法灵活多样，便于利用先验知识来获得一个较好的分类器。</p>
+<p>在设计一个决策树时，主要应解决以下几个问题：</p>
+<ul>
+<li>选择一个合适的树结构，即合理安排树的节点和分支；</li>
+<li>确定在每个非终止节点上要使用的特征；</li>
+<li>在每个非终止节点上选择合适的决策规则。</li>
+</ul>
+<p>把一个多类别分类问题转化为两类问题的形式是多种多样的，因此，对应的二叉树的结构也是各不相同的。通常的目的是要找一个最优的决策树。一个性能良好的决策树结构应该具有小的错误率和低的决策代价。但是由于很难把错误率的解析表达式和树的结构联系起来，而且在每个节点上所采用的决策规则也仅仅是在该节点上所采用的特征观测值的函数，因此，即使每个节点上的性能都达到最优，也不能说整个决策树的性能达到最优。在实际问题中，人们往往提出其它一些优化准则，例如极小化整个树的节点数目，或从根节点到叶结点的最大路经长度，或从根节点到叶结点的平均路经长度等，然后采用动态规划的方法，力争设计出能满足某种准则的“最优”决策树。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Pattern-Recognition-and-Machine-Learning/" class="print-no-link">#Pattern Recognition and Machine Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：模式识别与机器学习-第3章 判别函数</div>
+      <div>https://zhangzhao219.github.io/2022/09/11/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/12/UCAS/information-retrieval/information-retrieval-5/" title="研究生课程：现代信息检索-第5讲 文档评分、词项权重计算及向量空间模型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：现代信息检索-第5讲 文档评分、词项权重计算及向量空间模型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/08/UCAS/advanced-ai/advanced-ai-2/" title="研究生课程：高级人工智能-第2讲 搜索">
+                        <span class="hidden-mobile">研究生课程：高级人工智能-第2讲 搜索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1534 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代码随想录-贪心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录-贪心">
+<meta property="og:url" content="https://zhangzhao219.github.io/2024/03/14/Leetcode/programmercarl/programmercarl-gd/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="代码随想录-贪心">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-14T21:32:21.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码随想录-贪心 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">代码随想录-贪心</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-14 21:32" pubdate>
+          2024年3月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">代码随想录-贪心</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>代码随想录-贪心</p>
+<span id="more"></span>
+<h1>贪心</h1>
+<h2 id="455-分发饼干">455. 分发饼干</h2>
+<p>假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。</p>
+<p>对每个孩子 i，都有一个胃口值 g[i]，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 j，都有一个尺寸 s[j] 。如果 s[j] &gt;= g[i]，我们可以将这个饼干 j 分配给孩子 i ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。</p>
+<p>贪心策略：对于每个孩子，找到能满足他的最小饼干，并分配给他。从胃口最大的孩子开始，从最大的饼干开始。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findContentChildren</span><span class="hljs-params">(g []<span class="hljs-type">int</span>, s []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    sort.Slice(g, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i, j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;<span class="hljs-keyword">return</span> g[i] &gt; g[j]&#125;)
+    sort.Slice(s, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i, j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;<span class="hljs-keyword">return</span> s[i] &gt; s[j]&#125;)
+    leng := <span class="hljs-built_in">len</span>(g)
+    lens := <span class="hljs-built_in">len</span>(s)
+    si := <span class="hljs-number">0</span>
+    gi := <span class="hljs-number">0</span>
+    childsum := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span>&#123;
+        <span class="hljs-keyword">if</span> (si == lens) || (gi == leng)&#123;
+            <span class="hljs-keyword">break</span>
+        &#125;
+        <span class="hljs-keyword">if</span> s[si] &gt;= g[gi]&#123;
+            childsum++
+            si++
+        &#125;
+        gi++
+    &#125;
+    <span class="hljs-keyword">return</span> childsum
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findContentChildren</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; g, vector&lt;<span class="hljs-type">int</span>&gt;&amp; s)</span> </span>&#123;
+        <span class="hljs-built_in">sort</span>(g.<span class="hljs-built_in">begin</span>(), g.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">sort</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>());
+        <span class="hljs-type">int</span> gindex = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> sindex = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(gindex != g.<span class="hljs-built_in">size</span>() &amp;&amp; sindex != s.<span class="hljs-built_in">size</span>())&#123;
+            <span class="hljs-keyword">if</span>(s[sindex] &gt;= g[gindex])&#123;
+                gindex += <span class="hljs-number">1</span>;
+                sindex += <span class="hljs-number">1</span>;
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                sindex += <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> gindex;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="376-摆动序列">376. 摆动序列</h2>
+<p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 摆动序列 。第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。</p>
+<p>例如， [1, 7, 4, 9, 2, 5] 是一个 摆动序列 ，因为差值 (6, -3, 5, -7, 3) 是正负交替出现的。</p>
+<p>相反，[1, 4, 7, 2, 5] 和 [1, 7, 4, 5, 5] 不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。<br>
+子序列 可以通过从原始序列中删除一些（也可以不删除）元素来获得，剩下的元素保持其原始顺序。</p>
+<p>给你一个整数数组 nums ，返回 nums 中作为 摆动序列 的 最长子序列的长度 。</p>
+<p>贪心策略：统计整个序列的峰值，但是序列的两个端点不好统计，需要进行特殊判断。</p>
+<p>这里的技巧是结尾直接加上，开头的判断融入到循环内部</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">wiggleMaxLength</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    <span class="hljs-keyword">if</span> lennums == <span class="hljs-number">1</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> lennums == <span class="hljs-number">2</span>&#123;
+        <span class="hljs-keyword">if</span> nums[<span class="hljs-number">1</span>] != nums[<span class="hljs-number">0</span>]&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+    &#125; <span class="hljs-keyword">else</span>&#123;
+        result := <span class="hljs-number">1</span>
+        predif := <span class="hljs-number">0</span>
+        <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;=lennums<span class="hljs-number">-2</span>;i++&#123;
+            curdif := nums[i+<span class="hljs-number">1</span>] - nums[i]
+            <span class="hljs-keyword">if</span> (predif &lt;= <span class="hljs-number">0</span> &amp;&amp; curdif &gt; <span class="hljs-number">0</span>) || (predif &gt;= <span class="hljs-number">0</span> &amp;&amp; curdif &lt; <span class="hljs-number">0</span>)&#123;
+                result++
+                predif = curdif
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> result == <span class="hljs-number">2</span> &amp;&amp; nums[<span class="hljs-number">0</span>] == nums[lennums<span class="hljs-number">-1</span>]&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+        &#125;
+        <span class="hljs-keyword">return</span> result
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">wiggleMaxLength</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">dp</span>(nums.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>));
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;i;j++)&#123;
+                <span class="hljs-keyword">if</span>(nums[j] &lt; nums[i])&#123;
+                    dp[i][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[i][<span class="hljs-number">0</span>],dp[j][<span class="hljs-number">1</span>]<span class="hljs-number">+1</span>);
+                &#125;
+                <span class="hljs-keyword">if</span>(nums[j] &gt; nums[i])&#123;
+                    dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i][<span class="hljs-number">1</span>], dp[j][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(dp[nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], dp[nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]);
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="55-跳跃游戏">55. 跳跃游戏</h2>
+<p>给定一个非负整数数组 <code>nums</code> ，你最初位于数组的 <strong>第一个下标</strong> 。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个下标。</p>
+<p>贪心策略：跳几步不重要，重要的是跳一次的覆盖范围。只要覆盖的范围能超过最后一个下标即可</p>
+<p>这里的更新注意是遍历的范围变化</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">canJump</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    result := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;=result;i++&#123;
+        result = max(result,i+nums[i])
+        <span class="hljs-keyword">if</span> result &gt;= lennums - <span class="hljs-number">1</span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canJump</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">judge</span><span class="hljs-params">(nums.size(),<span class="hljs-literal">false</span>)</span></span>;
+        judge[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(judge[i] == <span class="hljs-literal">true</span>)&#123;
+                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i;j&lt;=i+nums[i];j++)&#123;
+                    <span class="hljs-keyword">if</span>(j &lt; nums.<span class="hljs-built_in">size</span>())&#123;
+                        judge[j] = <span class="hljs-literal">true</span>;
+                        <span class="hljs-keyword">if</span>(judge[nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>] == <span class="hljs-literal">true</span>)&#123;
+                            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                        &#125;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> judge[nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="45-跳跃游戏II">45. 跳跃游戏II</h2>
+<p>给你一个非负整数数组 nums ，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+<p>假设你总是可以到达数组的最后一个位置。</p>
+<p>贪心策略：记录当前的覆盖范围和下一步的覆盖范围，覆盖范围超过了最后的下标就可以</p>
+<p><strong>代码不会写。。。。</strong></p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">jump</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lennums := <span class="hljs-built_in">len</span>(nums)
+    curDistance := <span class="hljs-number">0</span>;    <span class="hljs-comment">// 当前覆盖的最远距离下标</span>
+    ans := <span class="hljs-number">0</span>;            <span class="hljs-comment">// 记录走的最大步数</span>
+    nextDistance := <span class="hljs-number">0</span>;   <span class="hljs-comment">// 下一步覆盖的最远距离下标</span>
+    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; lennums - <span class="hljs-number">1</span>; i++ &#123; <span class="hljs-comment">// 注意这里是小于nums.size() - 1，这是关键所在</span>
+        nextDistance = max(nums[i] + i, nextDistance); <span class="hljs-comment">// 更新下一步覆盖的最远距离下标</span>
+        <span class="hljs-keyword">if</span> i == curDistance &#123;                 <span class="hljs-comment">// 遇到当前覆盖的最远距离下标</span>
+            curDistance = nextDistance;         <span class="hljs-comment">// 更新当前覆盖的最远距离下标</span>
+            ans++;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> ans;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">jump</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;
+        <span class="hljs-type">int</span> curDistance = <span class="hljs-number">0</span>;    <span class="hljs-comment">// 当前覆盖的最远距离下标</span>
+        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;            <span class="hljs-comment">// 记录走的最大步数</span>
+        <span class="hljs-type">int</span> nextDistance = <span class="hljs-number">0</span>;   <span class="hljs-comment">// 下一步覆盖的最远距离下标</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) &#123; <span class="hljs-comment">// 注意这里是小于nums.size() - 1，这是关键所在</span>
+            nextDistance = <span class="hljs-built_in">max</span>(nums[i] + i, nextDistance); <span class="hljs-comment">// 更新下一步覆盖的最远距离下标</span>
+            <span class="hljs-keyword">if</span> (i == curDistance) &#123;                 <span class="hljs-comment">// 遇到当前覆盖的最远距离下标</span>
+                curDistance = nextDistance;         <span class="hljs-comment">// 更新当前覆盖的最远距离下标</span>
+                ans++;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> ans;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="1005-K次取反后最大化的数组和">1005. K次取反后最大化的数组和</h2>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，按以下方法修改该数组：</p>
+<ul>
+<li>选择某个下标 <code>i</code> 并将 <code>nums[i]</code> 替换为 <code>-nums[i]</code> 。</li>
+</ul>
+<p>重复这个过程恰好 <code>k</code> 次。可以多次选择同一个下标 <code>i</code> 。</p>
+<p>以这种方式修改数组后，返回数组 <strong>可能的最大和</strong> 。</p>
+<p>贪心策略：计数数组中有多少负值，从负值最大的开始向最小的逐渐变为相反数。如果负数都变为正数了，就对最小的正数进行重复改变。</p>
+<p>落实到代码上，对数组进行排序，然后一边计数一边加和即可。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">largestSumAfterKNegations</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>, k <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    sort.Slice(nums, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i, j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;<span class="hljs-keyword">return</span> nums[i] &lt; nums[j]&#125;)
+
+    minnum := <span class="hljs-number">1000</span>
+    lennum := <span class="hljs-built_in">len</span>(nums)
+    sum := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lennum;i++&#123;
+        <span class="hljs-keyword">if</span> nums[i] &lt; <span class="hljs-number">0</span>&#123;
+            <span class="hljs-keyword">if</span> k != <span class="hljs-number">0</span>&#123;
+                k--
+                nums[i] = -nums[i]
+            &#125;
+        &#125;
+        sum += nums[i]
+        minnum = min(minnum,nums[i])
+    &#125;
+    <span class="hljs-keyword">if</span> k % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>&#123;
+        sum -= <span class="hljs-number">2</span> * minnum
+    &#125;
+    <span class="hljs-keyword">return</span> sum
+  
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">if</span> a &lt;b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">largestSumAfterKNegations</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;
+        <span class="hljs-type">int</span> maxsum = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(),nums.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>() &amp;&amp; k &gt; <span class="hljs-number">0</span>;i++,k--)&#123;
+            <span class="hljs-keyword">if</span>(nums[i] &lt; <span class="hljs-number">0</span>)&#123;
+                nums[i] = -nums[i];
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            maxsum += nums[i];
+        &#125;
+        <span class="hljs-keyword">if</span>(k == <span class="hljs-number">0</span> || k % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span> maxsum;
+        &#125;
+        <span class="hljs-type">int</span> minvalue = nums[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            minvalue = <span class="hljs-built_in">min</span>(minvalue, nums[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> maxsum - <span class="hljs-number">2</span> * minvalue;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="134-加油站">134. 加油站</h2>
+<p>在一条环路上有 <code>n</code> 个加油站，其中第 <code>i</code> 个加油站有汽油 <code>gas[i]</code> 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 <code>i</code> 个加油站开往第 <code>i+1</code> 个加油站需要消耗汽油 <code>cost[i]</code> 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>给定两个整数数组 <code>gas</code> 和 <code>cost</code> ，如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 <code>-1</code> 。如果存在解，则 <strong>保证</strong> 它是 <strong>唯一</strong> 的。</p>
+<p>贪心策略：首先如果总油量减去总消耗大于等于零那么一定可以跑完一圈，说明 各个站点的加油站 剩油量rest[i]相加一定是大于等于零的。每个加油站的剩余量rest[i]为gas[i] - cost[i]。i从0开始累加rest[i]，和记为curSum，一旦curSum小于零，说明[0, i]区间都不能作为起始位置，起始位置从i+1算起，再从0计算curSum。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">canCompleteCircuit</span><span class="hljs-params">(gas []<span class="hljs-type">int</span>, cost []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lengas := <span class="hljs-built_in">len</span>(gas)
+    totalgas := <span class="hljs-number">0</span>
+    totalcost := <span class="hljs-number">0</span>
+    start := <span class="hljs-number">0</span>
+    sum := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lengas;i++&#123;
+        totalgas += gas[i]
+        totalcost += cost[i]
+        sum += gas[i] - cost[i]
+        <span class="hljs-keyword">if</span> sum &lt; <span class="hljs-number">0</span>&#123;
+            start = i+<span class="hljs-number">1</span>
+            sum = <span class="hljs-number">0</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">if</span> totalcost &gt; totalgas&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
+    &#125;
+    <span class="hljs-keyword">return</span> start
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">canCompleteCircuit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; gas, vector&lt;<span class="hljs-type">int</span>&gt;&amp; cost)</span> </span>&#123;
+        <span class="hljs-type">int</span> curSum = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> totalSum = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> start = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; gas.<span class="hljs-built_in">size</span>(); i++) &#123;
+            curSum += gas[i] - cost[i];
+            totalSum += gas[i] - cost[i];
+            <span class="hljs-keyword">if</span> (curSum &lt; <span class="hljs-number">0</span>) &#123;   <span class="hljs-comment">// 当前累加rest[i]和 curSum一旦小于0</span>
+                start = i + <span class="hljs-number">1</span>;  <span class="hljs-comment">// 起始位置更新为i+1</span>
+                curSum = <span class="hljs-number">0</span>;     <span class="hljs-comment">// curSum从0开始</span>
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (totalSum &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; <span class="hljs-comment">// 说明怎么走都不可能跑一圈了</span>
+        <span class="hljs-keyword">return</span> start;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="135-分发糖果">135. 分发糖果</h2>
+<p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
+<p>你需要按照以下要求，给这些孩子分发糖果：</p>
+<ul>
+<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
+<li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li>
+</ul>
+<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
+<p>贪心策略：从左到右遍历一遍，从右到左遍历一遍，每一次只看一侧的孩子就可以</p>
+<p>需要注意在右往左遍历的时候不要毁掉左往右遍历好的</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">candy</span><span class="hljs-params">(ratings []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenratings := <span class="hljs-built_in">len</span>(ratings)
+    result := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,lenratings)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lenratings<span class="hljs-number">-1</span>;i++&#123;
+        <span class="hljs-keyword">if</span> ratings[i+<span class="hljs-number">1</span>] &gt; ratings[i]&#123;
+            result[i+<span class="hljs-number">1</span>] = result[i] + <span class="hljs-number">1</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span> i:=lenratings<span class="hljs-number">-1</span>;i&gt;<span class="hljs-number">0</span>;i--&#123;
+        <span class="hljs-keyword">if</span> ratings[i<span class="hljs-number">-1</span>] &gt; ratings[i] &amp;&amp; result[i<span class="hljs-number">-1</span>] &lt;= result[i]&#123;
+            result[i<span class="hljs-number">-1</span>] = result[i] + <span class="hljs-number">1</span>
+        &#125;
+    &#125;
+    sum := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lenratings;i++&#123;
+        sum += result[i]
+    &#125;
+    <span class="hljs-keyword">return</span> sum + lenratings
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">candy</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; ratings)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">temp</span><span class="hljs-params">(ratings.size(),<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;ratings.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span>)&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(ratings[i] &gt; ratings[i<span class="hljs-number">-1</span>])&#123;
+                temp[i] = temp[i<span class="hljs-number">-1</span>] + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=ratings.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;
+            <span class="hljs-keyword">if</span>(i == ratings.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>)&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(ratings[i] &gt; ratings[i<span class="hljs-number">+1</span>])&#123;
+                temp[i] = <span class="hljs-built_in">max</span>(temp[i], temp[i<span class="hljs-number">+1</span>] + <span class="hljs-number">1</span>);
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> totalsum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;temp.<span class="hljs-built_in">size</span>();i++)&#123;
+            totalsum += temp[i];
+        &#125;
+        <span class="hljs-keyword">return</span> totalsum;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="860-柠檬水找零">860. 柠檬水找零</h2>
+<p>在柠檬水摊上，每一杯柠檬水的售价为 <code>5</code> 美元。顾客排队购买你的产品，（按账单 <code>bills</code> 支付的顺序）一次购买一杯。</p>
+<p>每位顾客只买一杯柠檬水，然后向你付 <code>5</code> 美元、<code>10</code> 美元或 <code>20</code> 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 <code>5</code> 美元。</p>
+<p>注意，一开始你手头没有任何零钱。</p>
+<p>给你一个整数数组 <code>bills</code> ，其中 <code>bills[i]</code> 是第 <code>i</code> 位顾客付的账。如果你能给每位顾客正确找零，返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<p>贪心策略：直接模拟就好了，没有什么意思</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">lemonadeChange</span><span class="hljs-params">(bills []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    bill10 := <span class="hljs-number">0</span>
+    bill5 := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(bills);i++&#123;
+        <span class="hljs-keyword">if</span> bills[i] == <span class="hljs-number">5</span>&#123;
+            bill5 += <span class="hljs-number">1</span>
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> bills[i] == <span class="hljs-number">10</span>&#123;
+            bill10 += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">if</span> bill5 &gt; <span class="hljs-number">0</span>&#123;
+                bill5 -= <span class="hljs-number">1</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+            &#125;
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">if</span> bill10 &gt;= <span class="hljs-number">1</span> &amp;&amp; bill5 &gt;= <span class="hljs-number">1</span>&#123;
+                bill5 -= <span class="hljs-number">1</span>
+                bill10 -= <span class="hljs-number">1</span>
+            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> bill5 &gt;= <span class="hljs-number">3</span>&#123;
+                bill5 -= <span class="hljs-number">3</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">lemonadeChange</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; bills)</span> </span>&#123;
+        map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mp;
+        mp[<span class="hljs-number">5</span>] = <span class="hljs-number">0</span>;
+        mp[<span class="hljs-number">10</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;bills.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(bills[i] == <span class="hljs-number">5</span>)&#123;
+                mp[<span class="hljs-number">5</span>] += <span class="hljs-number">1</span>;
+            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (bills[i] == <span class="hljs-number">10</span>)&#123;
+                <span class="hljs-keyword">if</span>(mp[<span class="hljs-number">5</span>] &lt;= <span class="hljs-number">0</span>)&#123;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                &#125;
+                mp[<span class="hljs-number">5</span>] -= <span class="hljs-number">1</span>;
+                mp[<span class="hljs-number">10</span>] += <span class="hljs-number">1</span>;
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">if</span>(mp[<span class="hljs-number">10</span>] &gt;= <span class="hljs-number">1</span> &amp;&amp; mp[<span class="hljs-number">5</span>] &gt;= <span class="hljs-number">1</span>)&#123;
+                    mp[<span class="hljs-number">5</span>] -= <span class="hljs-number">1</span>;
+                    mp[<span class="hljs-number">10</span>] -= <span class="hljs-number">1</span>;
+                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(mp[<span class="hljs-number">5</span>] &gt;= <span class="hljs-number">3</span>)&#123;
+                    mp[<span class="hljs-number">5</span>] -= <span class="hljs-number">3</span>;
+                &#125; <span class="hljs-keyword">else</span>&#123;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="406-根据身高重建队列">406. 根据身高重建队列</h2>
+<p>假设有打乱顺序的一群人站成一个队列，数组 <code>people</code> 表示队列中一些人的属性（不一定按顺序）。每个 <code>people[i] = [hi, ki]</code> 表示第 <code>i</code> 个人的身高为 <code>hi</code> ，前面 <strong>正好</strong> 有 <code>ki</code>个身高大于或等于 <code>hi</code> 的人。</p>
+<p>请你重新构造并返回输入数组 <code>people</code> 所表示的队列。返回的队列应该格式化为数组 <code>queue</code> ，其中 <code>queue[j] = [hj, kj]</code> 是队列中第 <code>j</code> 个人的属性（<code>queue[0]</code> 是排在队列前面的人）。</p>
+<p>贪心策略：身高一定是从大到小排（身高相同的话则k小的站前面），让高个子在前面。然后只需要按照k为下标重新插入队列就可以了</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">reconstructQueue</span><span class="hljs-params">(people [][]<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    sort.Slice(
+        people, <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span>&#123;
+            <span class="hljs-keyword">if</span> people[i][<span class="hljs-number">0</span>] == people[j][<span class="hljs-number">0</span>]&#123;
+                <span class="hljs-keyword">return</span> people[i][<span class="hljs-number">1</span>] &lt; people[j][<span class="hljs-number">1</span>]
+            &#125;
+            <span class="hljs-keyword">return</span> people[i][<span class="hljs-number">0</span>] &gt; people[j][<span class="hljs-number">0</span>]
+        &#125;)
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> _,info := <span class="hljs-keyword">range</span> people&#123;
+        result = <span class="hljs-built_in">append</span>(result,info)
+        <span class="hljs-built_in">copy</span>(result[info[<span class="hljs-number">1</span>] +<span class="hljs-number">1</span>:], result[info[<span class="hljs-number">1</span>]:])
+        result[info[<span class="hljs-number">1</span>]] = info
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; b)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (a[<span class="hljs-number">0</span>] == b[<span class="hljs-number">0</span>]) <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] &lt; b[<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &gt; b[<span class="hljs-number">0</span>];
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">reconstructQueue</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; people) &#123;
+        <span class="hljs-built_in">sort</span> (people.<span class="hljs-built_in">begin</span>(), people.<span class="hljs-built_in">end</span>(), cmp);
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; que;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; people.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-type">int</span> position = people[i][<span class="hljs-number">1</span>];
+            que.<span class="hljs-built_in">insert</span>(que.<span class="hljs-built_in">begin</span>() + position, people[i]);
+        &#125;
+        <span class="hljs-keyword">return</span> que;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="452-用最少数量的箭引爆气球">452. 用最少数量的箭引爆气球</h2>
+<p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 <code>points</code> ，其中 <code>points[i] = [xstart, xend]</code> 表示水平直径在 <code>xstart</code> 和 <code>xend</code>之间的气球。你不知道气球的确切 y 坐标。</p>
+<p>一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，若有一个气球的直径的开始和结束坐标为 <code>xstart</code>， <code>xend</code>， 且满足  <code>xstart ≤ x ≤ xend</code>， 则该气球会被 <strong>引爆</strong>。 可以射出的弓箭的数量 <strong>没有限制</strong> 。 弓箭一旦被射出之后，可以无限地前进。</p>
+<p>给你一个数组 <code>points</code> ， 返回引爆所有气球所必须射出的 <strong>最小</strong> 弓箭数 。</p>
+<p>贪心策略：按照最小末尾坐标排序，射出的箭在保证将最末尾的气球引爆的同时最好引爆更多的气球。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findMinArrowShots</span><span class="hljs-params">(points [][]<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    lenpoints := <span class="hljs-built_in">len</span>(points)
+    sort.Slice(
+        points,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span>&#123;
+            <span class="hljs-keyword">if</span> points[i][<span class="hljs-number">1</span>] == points[j][<span class="hljs-number">1</span>]&#123;
+                <span class="hljs-keyword">return</span> points[i][<span class="hljs-number">0</span>] &lt; points[j][<span class="hljs-number">0</span>]
+            &#125;
+            <span class="hljs-keyword">return</span> points[i][<span class="hljs-number">1</span>] &lt; points[j][<span class="hljs-number">1</span>]
+        &#125;)
+    count := <span class="hljs-number">0</span>
+    start := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> start &lt; lenpoints&#123;
+        count += <span class="hljs-number">1</span>
+        arrow := points[start][<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">for</span> i:=start;i&lt;lenpoints;i++&#123;
+            start = i+<span class="hljs-number">1</span>
+            <span class="hljs-keyword">if</span> points[i][<span class="hljs-number">0</span>] &lt;= arrow &amp;&amp; points[i][<span class="hljs-number">1</span>] &gt;= arrow&#123;
+                <span class="hljs-keyword">continue</span>
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                start -= <span class="hljs-number">1</span>
+                <span class="hljs-keyword">break</span>
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> start == lenpoints&#123;
+            <span class="hljs-keyword">break</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> count
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; b)</span></span>&#123;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findMinArrowShots</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; points)</span> </span>&#123;
+        <span class="hljs-built_in">sort</span>(points.<span class="hljs-built_in">begin</span>(), points.<span class="hljs-built_in">end</span>(), cmp);
+        <span class="hljs-type">int</span> result = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;points.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(points[i][<span class="hljs-number">0</span>] &gt; points[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>])&#123;
+                result += <span class="hljs-number">1</span>;
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                points[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">min</span>(points[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>], points[i][<span class="hljs-number">1</span>]);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="435-无重叠区间">435. 无重叠区间</h2>
+<p>给定一个区间的集合 <code>intervals</code> ，其中 <code>intervals[i] = [starti, endi]</code> 。返回需要移除区间的最小数量，使剩余区间互不重叠。</p>
+<p>贪心策略：与上一道题相同，仍然是对后面的值进行排序，然后从头到尾遍历去除即可。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">eraseOverlapIntervals</span><span class="hljs-params">(intervals [][]<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    leni := <span class="hljs-built_in">len</span>(intervals)
+    sort.Slice(
+        intervals,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span>&#123;
+            <span class="hljs-keyword">if</span> intervals[i][<span class="hljs-number">1</span>] == intervals[j][<span class="hljs-number">1</span>]&#123;
+                <span class="hljs-keyword">return</span> intervals[i][<span class="hljs-number">0</span>] &lt; intervals[j][<span class="hljs-number">0</span>]
+            &#125;
+            <span class="hljs-keyword">return</span> intervals[i][<span class="hljs-number">1</span>] &lt; intervals[j][<span class="hljs-number">1</span>]
+        &#125;)
+    count := <span class="hljs-number">0</span>
+    min1 := intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;leni;i++&#123;
+        <span class="hljs-keyword">if</span> intervals[i][<span class="hljs-number">0</span>] &gt;= min1&#123;
+            min1 = intervals[i][<span class="hljs-number">1</span>]
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            count += <span class="hljs-number">1</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> count
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; b)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(a[<span class="hljs-number">1</span>] == b[<span class="hljs-number">1</span>])&#123;
+            <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] &lt; b[<span class="hljs-number">1</span>];
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">eraseOverlapIntervals</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;
+        <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">sort</span>(intervals.<span class="hljs-built_in">begin</span>(), intervals.<span class="hljs-built_in">end</span>(), cmp);
+        <span class="hljs-type">int</span> nowend = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;intervals.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(intervals[i][<span class="hljs-number">0</span>] &lt; nowend)&#123;
+                result += <span class="hljs-number">1</span>;
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                nowend = intervals[i][<span class="hljs-number">1</span>];
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="763-划分字母区间">763. 划分字母区间</h2>
+<p>字符串 <code>S</code> 由小写字母组成。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。返回一个表示每个字符串片段的长度的列表。</p>
+<p>贪心策略：与上一题的贪心策略也是相同的，只是多了一步字母到区间的转换</p>
+<p>注意这道题的区别是看0位置进行排序，因为是一个包括的区间，与前面只看后面1位置不相同</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">partitionLabels</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> []<span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">26</span>)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">26</span>;i++&#123;
+        result[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">2</span>)
+        result[i][<span class="hljs-number">0</span>] = <span class="hljs-number">1000</span>
+        result[i][<span class="hljs-number">1</span>] = <span class="hljs-number">1000</span>
+    &#125;
+    s1 := []<span class="hljs-type">rune</span>(s)
+    lens := <span class="hljs-built_in">len</span>(s1)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;lens;i++&#123;
+        index := <span class="hljs-type">int</span>(s1[i]) - <span class="hljs-number">97</span>
+        <span class="hljs-keyword">if</span> result[index][<span class="hljs-number">0</span>] == <span class="hljs-number">1000</span>&#123;
+            result[index][<span class="hljs-number">0</span>] = i  
+        &#125;
+        result[index][<span class="hljs-number">1</span>] = i
+    &#125;
+    sort.Slice(
+        result,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span><span class="hljs-type">bool</span>&#123;
+            <span class="hljs-keyword">if</span> result[i][<span class="hljs-number">0</span>] == result[j][<span class="hljs-number">0</span>]&#123;
+                <span class="hljs-keyword">return</span> result[i][<span class="hljs-number">1</span>] &lt; result[j][<span class="hljs-number">1</span>]
+            &#125; 
+            <span class="hljs-keyword">return</span> result[i][<span class="hljs-number">0</span>] &lt; result[j][<span class="hljs-number">0</span>]
+        &#125;)
+    submit := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    startmin := result[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]
+    endmax := result[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;<span class="hljs-number">26</span>;i++&#123;
+        <span class="hljs-keyword">if</span> result[i][<span class="hljs-number">0</span>] &gt; endmax&#123;
+            submit = <span class="hljs-built_in">append</span>(submit,endmax-startmin+<span class="hljs-number">1</span>)
+            endmax = result[i][<span class="hljs-number">1</span>]
+            startmin = result[i][<span class="hljs-number">0</span>]
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            startmin = min(startmin,result[i][<span class="hljs-number">0</span>])
+            endmax = max(endmax,result[i][<span class="hljs-number">1</span>])
+        &#125;
+    &#125;
+    <span class="hljs-keyword">if</span> startmin != <span class="hljs-number">1000</span>&#123;
+        submit = <span class="hljs-built_in">append</span>(submit,endmax-startmin+<span class="hljs-number">1</span>)
+    &#125;
+    <span class="hljs-keyword">return</span> submit
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &lt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">partitionLabels</span><span class="hljs-params">(string s)</span> </span>&#123;
+        <span class="hljs-type">int</span> hash[<span class="hljs-number">27</span>] = &#123;<span class="hljs-number">0</span>&#125;;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) &#123; 
+            hash[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>] = i;
+        &#125;
+        vector&lt;<span class="hljs-type">int</span>&gt; result;
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) &#123;
+            right = <span class="hljs-built_in">max</span>(right, hash[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>]); 
+            <span class="hljs-keyword">if</span> (i == right) &#123;
+                result.<span class="hljs-built_in">push_back</span>(right - left + <span class="hljs-number">1</span>);
+                left = i + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="56-合并区间">56. 合并区间</h2>
+<p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 <em>一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间</em> 。</p>
+<p>贪心策略：相当于上一道题的简化版</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">merge</span><span class="hljs-params">(intervals [][]<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    leni := <span class="hljs-built_in">len</span>(intervals)
+    sort.Slice(
+        intervals,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+            <span class="hljs-keyword">if</span> intervals[i][<span class="hljs-number">0</span>] == intervals[j][<span class="hljs-number">0</span>]&#123;
+                <span class="hljs-keyword">return</span> intervals[i][<span class="hljs-number">1</span>] &lt; intervals[j][<span class="hljs-number">1</span>]
+            &#125;
+            <span class="hljs-keyword">return</span> intervals[i][<span class="hljs-number">0</span>] &lt; intervals[j][<span class="hljs-number">0</span>]
+        &#125;)
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    minstart := intervals[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]
+    maxend := intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">1</span>;i&lt;leni;i++&#123;
+        <span class="hljs-keyword">if</span> intervals[i][<span class="hljs-number">0</span>] &gt; maxend&#123;
+            temp := []<span class="hljs-type">int</span>&#123;minstart,maxend&#125;
+            result = <span class="hljs-built_in">append</span>(result,temp)
+            minstart = intervals[i][<span class="hljs-number">0</span>]
+            maxend = intervals[i][<span class="hljs-number">1</span>]
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            minstart = min(minstart,intervals[i][<span class="hljs-number">0</span>])
+            maxend = max(maxend,intervals[i][<span class="hljs-number">1</span>])
+        &#125;
+    &#125;
+    temp := []<span class="hljs-type">int</span>&#123;minstart,maxend&#125;
+    result = <span class="hljs-built_in">append</span>(result,temp)
+    <span class="hljs-keyword">return</span> result
+&#125; 
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &lt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(a,b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    <span class="hljs-keyword">if</span> a &gt; b&#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; b)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(a[<span class="hljs-number">0</span>] == b[<span class="hljs-number">0</span>])&#123;
+            <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] &lt; b[<span class="hljs-number">1</span>];
+        &#125;
+        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">merge</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; intervals) &#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+        <span class="hljs-built_in">sort</span>(intervals.<span class="hljs-built_in">begin</span>(), intervals.<span class="hljs-built_in">end</span>(), cmp);
+        <span class="hljs-type">int</span> nowstart = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];
+        <span class="hljs-type">int</span> nowend = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;intervals.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(intervals[i][<span class="hljs-number">0</span>] &lt;= nowend)&#123;
+                nowstart = <span class="hljs-built_in">min</span>(nowstart,intervals[i][<span class="hljs-number">0</span>]);
+                nowend = <span class="hljs-built_in">max</span>(nowend,intervals[i][<span class="hljs-number">1</span>]);
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                result.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;nowstart, nowend&#125;);
+                nowstart = intervals[i][<span class="hljs-number">0</span>];
+                nowend = intervals[i][<span class="hljs-number">1</span>];
+            &#125;
+        &#125;
+        result.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;nowstart, nowend&#125;);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="738-单调递增的数字">738. 单调递增的数字</h2>
+<p>当且仅当每个相邻位数上的数字 <code>x</code> 和 <code>y</code> 满足 <code>x &lt;= y</code> 时，我们称这个整数是<strong>单调递增</strong>的。</p>
+<p>给定一个整数 <code>n</code> ，返回 <em>小于或等于 <code>n</code> 的最大数字，且数字呈 <strong>单调递增</strong></em> 。</p>
+<p>贪心策略：<strong>局部最优：遇到strNum[i - 1] &gt; strNum[i]的情况，让strNum[i - 1]–，然后strNum[i]给为9，可以保证这两位变成最大单调递增整数</strong> 。</p>
+<p>从前向后遍历的话，遇到strNum[i - 1] &gt; strNum[i]的情况，让strNum[i - 1]减一，但此时如果strNum[i - 1]减一了，可能又小于strNum[i - 2]。</p>
+<p>因此应该从后向前遍历</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">monotoneIncreasingDigits</span><span class="hljs-params">(N <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    s := strconv.Itoa(N)<span class="hljs-comment">//将数字转为字符串，方便使用下标</span>
+    ss := []<span class="hljs-type">byte</span>(s)<span class="hljs-comment">//将字符串转为byte数组，方便更改。</span>
+    n := <span class="hljs-built_in">len</span>(ss)
+    <span class="hljs-keyword">if</span> n &lt;= <span class="hljs-number">1</span> &#123;
+        <span class="hljs-keyword">return</span> N
+    &#125;
+    <span class="hljs-keyword">for</span> i:=n<span class="hljs-number">-1</span> ; i&gt;<span class="hljs-number">0</span>; i-- &#123;
+        <span class="hljs-keyword">if</span> ss[i<span class="hljs-number">-1</span>] &gt; ss[i] &#123;<span class="hljs-comment">//前一个大于后一位,前一位减1，后面的全部置为9</span>
+            ss[i<span class="hljs-number">-1</span>] -= <span class="hljs-number">1</span>
+            <span class="hljs-keyword">for</span> j := i ; j &lt; n; j++ &#123;<span class="hljs-comment">//后面的全部置为9</span>
+                ss[j] = <span class="hljs-string">&#x27;9&#x27;</span>
+            &#125;
+        &#125; 
+    &#125;
+    res, _ := strconv.Atoi(<span class="hljs-type">string</span>(ss))
+    <span class="hljs-keyword">return</span> res 
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">monotoneIncreasingDigits</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+        string strNum = <span class="hljs-built_in">to_string</span>(n);
+        <span class="hljs-type">int</span> flag = strNum.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = strNum.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--) &#123;
+            <span class="hljs-keyword">if</span> (strNum[i - <span class="hljs-number">1</span>] &gt; strNum[i] ) &#123;
+                flag = i;
+                strNum[i - <span class="hljs-number">1</span>]--;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = flag; i &lt; strNum.<span class="hljs-built_in">size</span>(); i++) &#123;
+            strNum[i] = <span class="hljs-string">&#x27;9&#x27;</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">stoi</span>(strNum);
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="968-监控二叉树">968. 监控二叉树</h2>
+<p>给定一个二叉树，我们在树的节点上安装摄像头。</p>
+<p>节点上的每个摄影头都可以监视<strong>其父对象、自身及其直接子对象。</strong></p>
+<p>计算监控树的所有节点所需的最小摄像头数量。</p>
+<p><strong>局部最优：让叶子节点的父节点安摄像头，所用摄像头最少，整体最优：全部摄像头数量所用最少！</strong></p>
+<h3 id="确定遍历顺序">确定遍历顺序</h3>
+<p>在二叉树中如何从低向上推导呢？</p>
+<p>可以使用后序遍历也就是左右中的顺序，这样就可以在回溯的过程中从下到上进行推导了。</p>
+<h3 id="如何隔两个节点放一个摄像头">如何隔两个节点放一个摄像头</h3>
+<p>每个节点可能有如下三种状态：</p>
+<ul>
+<li>该节点无覆盖</li>
+<li>本节点有摄像头</li>
+<li>本节点有覆盖</li>
+</ul>
+<p>为了让摄像头数量最少，我们要尽量让叶子节点的父节点安装摄像头，这样才能摄像头的数量最少。</p>
+<p>那么空节点不能是无覆盖的状态，这样叶子节点就要放摄像头了，空节点也不能是有摄像头的状态，这样叶子节点的父节点就没有必要放摄像头了，而是可以把摄像头放在叶子节点的爷爷节点上。</p>
+<p><strong>所以空节点的状态只能是有覆盖，这样就可以在叶子节点的父节点放摄像头了</strong></p>
+<p>后续待补充</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">const</span> inf = math.MaxInt64 / <span class="hljs-number">2</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minCameraCover</span><span class="hljs-params">(root *TreeNode)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">var</span> dfs <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(*TreeNode)</span></span> (a, b, c <span class="hljs-type">int</span>)
+    dfs = <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(node *TreeNode)</span></span> (a, b, c <span class="hljs-type">int</span>) &#123;
+        <span class="hljs-keyword">if</span> node == <span class="hljs-literal">nil</span> &#123;
+            <span class="hljs-keyword">return</span> inf, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+        &#125;
+        lefta, leftb, leftc := dfs(node.Left)
+        righta, rightb, rightc := dfs(node.Right)
+        a = leftc + rightc + <span class="hljs-number">1</span>
+        b = min(a, min(lefta+rightb, righta+leftb))
+        c = min(a, leftb+rightb)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    _, ans, _ := dfs(root)
+    <span class="hljs-keyword">return</span> ans
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a, b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;
+    <span class="hljs-keyword">if</span> a &lt;= b &#123;
+        <span class="hljs-keyword">return</span> a
+    &#125;
+    <span class="hljs-keyword">return</span> b
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-type">int</span> result;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">traversal</span><span class="hljs-params">(TreeNode* cur)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (cur == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
+        <span class="hljs-type">int</span> left = <span class="hljs-built_in">traversal</span>(cur-&gt;left);    <span class="hljs-comment">// 左</span>
+        <span class="hljs-type">int</span> right = <span class="hljs-built_in">traversal</span>(cur-&gt;right);  <span class="hljs-comment">// 右</span>
+        <span class="hljs-keyword">if</span> (left == <span class="hljs-number">2</span> &amp;&amp; right == <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (left == <span class="hljs-number">0</span> || right == <span class="hljs-number">0</span>) &#123;
+            result++;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
+    &#125;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minCameraCover</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;
+        result = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">traversal</span>(root) == <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">// root 无覆盖</span>
+            result++;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码随想录-贪心</div>
+      <div>https://zhangzhao219.github.io/2024/03/14/Leetcode/programmercarl/programmercarl-gd/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Leetcode 刷题笔记-Leetcode 101 第3章 双指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode 刷题笔记-Leetcode 101 第3章 双指针">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-3/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Leetcode 刷题笔记-Leetcode 101 第3章 双指针">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-28T08:30:24.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.195Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Leetcode 刷题笔记-Leetcode 101 第3章 双指针 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Leetcode 刷题笔记-Leetcode 101 第3章 双指针</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-28 08:30" pubdate>
+          2022年8月28日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Leetcode 刷题笔记-Leetcode 101 第3章 双指针</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Leetcode 刷题笔记-Leetcode 101 第3章 双指针</p>
+<span id="more"></span>
+<h1>双指针</h1>
+<p>双指针主要用于遍历数组，两个指针指向不同的元素，从而协同完成任务。也可以延伸到多个数组的多个指针。</p>
+<p>若两个指针指向同一数组，遍历方向相同且不会相交，则也称为滑动窗口（两个指针包围的区域即为当前的窗口），经常用于区间搜索。</p>
+<p>若两个指针指向同一数组，但是遍历方向相反，则可以用来进行搜索，待搜索的数组往往是排好序的。</p>
+<h2 id="Two-Sum">Two Sum</h2>
+<h3 id="Leetcode-167">Leetcode 167</h3>
+<p>在一个增序的整数数组里找到两个数，使它们的和为给定值。已知有且只有一对解。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">twoSum</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; numbers, <span class="hljs-type">int</span> target)</span> </span>&#123;
+        vector&lt;<span class="hljs-type">int</span>&gt; result;
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = numbers.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(left &lt; right)&#123;
+            <span class="hljs-keyword">if</span>(numbers[left] + numbers[right] &lt; target)&#123;
+                ++left;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(numbers[left] + numbers[right] &gt; target)&#123;
+                --right;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                result.<span class="hljs-built_in">push_back</span>(left<span class="hljs-number">+1</span>);
+                result.<span class="hljs-built_in">push_back</span>(right<span class="hljs-number">+1</span>);
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：左右两个指针分别进行移动，加和小了就把左边的指针往右移动一下，加和大了就把右边的指针往左移动一下。这道题比较特殊，限定了一定有答案而且答案只会有一个，因此不需要添加任何其他的额外条件。</p>
+<p>错误：没看清下标的表示方式，直接输出数组下标了。</p>
+<h2 id="归并两个有序数组">归并两个有序数组</h2>
+<h3 id="Leetcode-88">Leetcode 88</h3>
+<p>给定两个有序数组，把两个数组合并为一个。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, <span class="hljs-type">int</span> m, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2, <span class="hljs-type">int</span> n)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">if</span>(m == <span class="hljs-number">0</span>)&#123;
+            nums1 = nums2;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-type">int</span> mi = m - <span class="hljs-number">1</span>;
+        <span class="hljs-type">int</span> ni = n - <span class="hljs-number">1</span>;
+        <span class="hljs-type">int</span> numIndex = m+n<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">while</span>(numIndex &gt;= <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">if</span>(mi &gt;= <span class="hljs-number">0</span> &amp;&amp; ni &gt;= <span class="hljs-number">0</span>)&#123;
+                <span class="hljs-keyword">if</span>(nums1[mi] &gt; nums2[ni])&#123;
+                    <span class="hljs-built_in">swap</span>(nums1[mi],nums1[numIndex]);
+                    --mi;
+                &#125;
+                <span class="hljs-keyword">else</span>&#123;
+                    <span class="hljs-built_in">swap</span>(nums2[ni],nums1[numIndex]);
+                    --ni;  
+                &#125;
+          
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(mi == <span class="hljs-number">-1</span>)&#123;
+                <span class="hljs-keyword">while</span>(ni != <span class="hljs-number">-1</span>)&#123;
+                    nums1[numIndex] = nums2[ni];
+                    --ni;
+                    --numIndex;
+                &#125;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+            --numIndex;
+        &#125;
+
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：从后边开始安排数字，填充0的空位</p>
+<p>错误：挺简单的一道题，首先是刚开始没有想到非常好的解法，看了答案后双指针又有一些问题。。真的是生疏了。</p>
+<h2 id="快慢指针">快慢指针</h2>
+<h3 id="Leetcode-142">Leetcode 142</h3>
+<p>给定一个链表，如果有环路，找出环路的开始点。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode *<span class="hljs-title">detectCycle</span><span class="hljs-params">(ListNode *head)</span> </span>&#123;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        <span class="hljs-keyword">do</span>&#123;
+            <span class="hljs-keyword">if</span>(fast == <span class="hljs-literal">nullptr</span> || fast-&gt;next == <span class="hljs-literal">nullptr</span>)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+            &#125;
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        &#125;<span class="hljs-keyword">while</span>(slow != fast);
+        fast = head;
+        <span class="hljs-keyword">while</span>(slow != fast)&#123;
+            slow = slow-&gt;next;
+            fast = fast-&gt;next;
+        &#125;
+        <span class="hljs-keyword">return</span> fast;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：有一个通用的解法——快慢指针（Floyd判圈法）。给定两个指针，分别命名为slow和fast，起始位置在链表的开头。每次fast前进两步，slow前进一步。如果fast可以走到尽头，那么说明没有环路；如果fast可以无限走下去，那么说明一定有环路，且一定存在一个时刻slow 和fast 相遇。当slow和fast第一次相遇时，我们将fast重新移动到链表开头，并让slow和fast每次都前进一步。当slow和fast第二次相遇时，相遇的节点即为环路的开始点。</p>
+<p>错误：算法忘记了，没有思路。</p>
+<h2 id="滑动窗口">滑动窗口</h2>
+<h3 id="Leetcode-76">Leetcode 76</h3>
+<p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code></p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">minWindow</span><span class="hljs-params">(string s, string t)</span> </span>&#123;
+        <span class="hljs-type">size_t</span> s_size = s.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">size_t</span> t_size = t.<span class="hljs-built_in">size</span>();
+        map&lt;<span class="hljs-type">char</span>,<span class="hljs-type">int</span>&gt; mp1;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">size_t</span> i=<span class="hljs-number">0</span>;i&lt;t_size;i++)&#123;
+            <span class="hljs-keyword">if</span>(mp<span class="hljs-number">1.</span><span class="hljs-built_in">count</span>(t[i]))&#123;
+                mp1[t[i]] += <span class="hljs-number">1</span>;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                mp1[t[i]] = <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>,cnt = <span class="hljs-number">0</span>,min_l = <span class="hljs-number">0</span>,min_size = s_size<span class="hljs-number">+1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> r=<span class="hljs-number">0</span>;r&lt;s_size;++r)&#123;
+            <span class="hljs-keyword">if</span>(mp<span class="hljs-number">1.</span><span class="hljs-built_in">count</span>(s[r]))&#123;
+                --mp1[s[r]];
+                <span class="hljs-keyword">if</span>(mp1[s[r]] &gt;= <span class="hljs-number">0</span>)&#123;
+                    ++cnt;
+                &#125;
+                <span class="hljs-keyword">while</span>(cnt == t_size)&#123;
+                    <span class="hljs-keyword">if</span>(r - left + <span class="hljs-number">1</span> &lt; min_size)&#123;
+                        min_size = r - left + <span class="hljs-number">1</span>;
+                        min_l = left;
+                    &#125;
+                    <span class="hljs-keyword">if</span>(mp<span class="hljs-number">1.</span><span class="hljs-built_in">count</span>(s[left]) &amp;&amp; ++mp1[s[left]] &gt; <span class="hljs-number">0</span>)&#123;   
+                        --cnt;
+                    &#125; 
+                    ++left;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> min_size &gt; s_size ? <span class="hljs-string">&quot;&quot;</span> : s.<span class="hljs-built_in">substr</span>(min_l,min_size);
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：滑动窗口典型题目</p>
+<p>首先对子字符串进行计数，记录是否出现，以及出现的次数。然后采取滑动窗口的策略，两个指针都从左开始滑动，以右指针为基准构成外侧的大循环。右指针滑动的过程中，对之前的计数进行更改，滑动到了一个字符就减小1。等到0的时候，说明右指针滑动过了的字符串一定包含子字符串的全部字符，然后将左指针向右滑动来减小这个字符串的长度。左指针碰到了某个子字符串内部的字符，就会将计数+1，从而不满足这个字符串包含整个子字符串的要求，因此重新开始移动右字符串，以尝试再次包含整个子字符串。</p>
+<p>错误：算法忘记了，没有思路。</p>
+<h2 id="练习">练习</h2>
+<h3 id="Leetcode-633">Leetcode 633</h3>
+<p>给定一个非负整数 <code>c</code> ，你要判断是否存在两个整数 <code>a</code> 和 <code>b</code>，使得 <code>a^2 + b^2 = c</code> 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judgeSquareSum</span><span class="hljs-params">(<span class="hljs-type">int</span> c)</span> </span>&#123;
+        <span class="hljs-type">long</span> <span class="hljs-type">long</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">long</span> <span class="hljs-type">long</span> right = <span class="hljs-built_in">sqrt</span>(c);
+        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
+            <span class="hljs-keyword">if</span>(left * left + right * right &lt; c)&#123;
+                ++left;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(left * left + right * right &gt; c)&#123;
+                --right;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：仍然是双指针的问题，多了一点点细节问题。</p>
+<p>错误：<code>left = right</code>，right的范围考虑的不太好。</p>
+<h3 id="Leetcode-680">Leetcode 680</h3>
+<p>给你一个字符串 <code>s</code>，<strong>最多</strong>可以从中删除一个字符。请你判断 <code>s</code>是否能成为回文字符串：如果能，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(string &amp;s,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> right)</span></span>&#123;
+        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
+            <span class="hljs-keyword">if</span>(s[left] == s[right])&#123;
+                ++left;
+                --right;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">validPalindrome</span><span class="hljs-params">(string s)</span> </span>&#123;
+        <span class="hljs-type">size_t</span> s_size = s.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> right = s_size - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;
+            <span class="hljs-keyword">if</span>(s[left] == s[right])&#123;
+                ++left;
+                --right;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">judge</span>(s,left<span class="hljs-number">+1</span>,right) || <span class="hljs-built_in">judge</span>(s,left,right<span class="hljs-number">-1</span>);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：双指针移动就好</p>
+<p>错误：没有考虑到删除一个字符后有两种情况，应该共同考虑而不是仅仅使用某一种情况进行判断。</p>
+<h3 id="Leetcode-524">Leetcode 524</h3>
+<p>给你一个字符串 <code>s</code> 和一个字符串数组 <code>dictionary</code> ，找出并返回 <code>dictionary</code> 中最长的字符串，该字符串可以通过删除 <code>s</code> 中的某些字符得到。如果答案不止一个，返回长度最长且字母序最小的字符串。如果答案不存在，则返回空字符串。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(string &amp;a,string &amp;b)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(a.<span class="hljs-built_in">size</span>() != b.<span class="hljs-built_in">size</span>())&#123;
+            <span class="hljs-keyword">return</span> a.<span class="hljs-built_in">size</span>() &gt; b.<span class="hljs-built_in">size</span>();
+        &#125;
+        <span class="hljs-keyword">return</span> a &lt; b;
+    &#125;
+    <span class="hljs-function">string <span class="hljs-title">findLongestWord</span><span class="hljs-params">(string s, vector&lt;string&gt;&amp; dictionary)</span> </span>&#123;
+        <span class="hljs-built_in">sort</span>(dictionary.<span class="hljs-built_in">begin</span>(),dictionary.<span class="hljs-built_in">end</span>(),cmp);
+        <span class="hljs-type">size_t</span> s_size = s.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> t : dictionary)&#123;
+            <span class="hljs-type">size_t</span> t_size = t.<span class="hljs-built_in">size</span>();
+            <span class="hljs-type">int</span> si = <span class="hljs-number">0</span>,ti = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">while</span>(si != s_size)&#123;
+                <span class="hljs-keyword">if</span>(s[si] == t[ti])&#123;
+                    ++ti;
+                &#125;
+                ++si;
+                <span class="hljs-keyword">if</span>(ti == t_size)&#123;
+                    <span class="hljs-keyword">return</span> t;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;
+    &#125;
+&#125;;</code></pre></div>
+<p>分析：先排序，然后双指针进行移动匹配，如果子字符串的指针移动到字符串的末尾了，说明已经匹配成功了，可以直接输出这个字符串。如果原始的字符串的指针移动到末尾了，说明没有匹配成功，因此转为匹配下一个字符串。</p>
+<p>错误：题目要求的排序条件没有看好，返回了长度比较短的字符串。</p>
+<h3 id="Leetcode-340">Leetcode 340</h3>
+<p>给定一个字符串 <code>s</code>，找出至多包含 <code>k</code>个不同字符的最长子串 <code>T</code></p>
+<p>分析：还是滑动窗口的策略，以右边指针为基准，滑动一下就记录一下最长的长度，滑动到不满足条件了，就将左边的指针收回来，收到满足条件了就继续放右边的指针去滑动。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lengthOfLongestSubstringKDistinct</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> k)</span> </span>&#123;
+        <span class="hljs-type">size_t</span> s_size - s.<span class="hljs-built_in">size</span>();
+        map&lt;<span class="hljs-type">char</span>,<span class="hljs-type">int</span>&gt; mp;
+        <span class="hljs-type">int</span> maxlen = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> l = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> r=<span class="hljs-number">0</span>;r&lt;s_size;r++)&#123;
+            <span class="hljs-keyword">if</span>(mp.<span class="hljs-built_in">size</span>() &lt;= k)&#123;
+                ++mp[s[r]];
+            &#125;
+            <span class="hljs-keyword">while</span>(mp.<span class="hljs-built_in">size</span>() &gt; k)&#123;
+                <span class="hljs-keyword">if</span>(--mp[s[l]] == <span class="hljs-number">0</span>)&#123;
+                    mp.<span class="hljs-built_in">erase</span>(s[l]);
+                &#125;
+                l++;
+            &#125;
+            maxlen = <span class="hljs-built_in">max</span>(maxlen,r-l<span class="hljs-number">+1</span>);
+        &#125;
+        <span class="hljs-keyword">return</span> maxlen;
+    &#125;
+&#125;;</code></pre></div>
+<p>错误：会员题，无法提交。</p>
+<h2 id="总结">总结</h2>
+<p>双指针的题目还可以，感觉重要的是判断条件。滑动窗口的题目比较困难，可能也是做的题目比较少。后面还需要加强练习。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Leetcode 刷题笔记-Leetcode 101 第3章 双指针</div>
+      <div>https://zhangzhao219.github.io/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/28/Leetcode/Leetcode-101/Leetcode-101-4/" title="Leetcode 刷题笔记-Leetcode 101 第4章 二分查找">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第4章 二分查找</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/27/Leetcode/Leetcode-101/Leetcode-101-2/" title="Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法">
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第2章 贪心算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

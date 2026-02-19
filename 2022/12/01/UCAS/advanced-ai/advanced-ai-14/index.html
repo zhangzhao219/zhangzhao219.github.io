@@ -1,0 +1,987 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《高级人工智能》课程笔记：第14讲 强化学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：高级人工智能-第14讲 强化学习">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/01/UCAS/advanced-ai/advanced-ai-14/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《高级人工智能》课程笔记：第14讲 强化学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%90%B4_%F0%9D%91%A1">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%85_%F0%9D%91%A1">
+<meta property="og:image" content="https://math.now.sh/?inline=t">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%8E">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29%20%5Cdoteq%20%5Cmathbb%7BE%7D%5Cleft%5BR_t%20%5Cmid%20A_t%3Da%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%87">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%8E">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%A1">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29">
+<meta property="og:image" content="https://math.now.sh/?inline=a">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29">
+<meta property="og:image" content="https://math.now.sh/?inline=a">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=A_t%20%5Cdoteq%20argmax_aQ_t%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=Q_t%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=1%E2%88%92%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cepsilon">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29">
+<meta property="og:image" content="https://math.now.sh/?inline=q_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9B">
+<meta property="og:image" content="https://math.now.sh/?inline=Q_n%20%5Cdoteq%20%5Cfrac%7BR_1%2BR_2%2B%5Ccdots%2BR_n%7D%7Bn-1%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9B%E2%88%921">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9E_*%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%F0%9D%91%9E_%E2%88%97%28%F0%9D%91%A0%2C%F0%9D%91%8E%29">
+<meta property="og:image" content="https://math.now.sh/?inline=v_%E2%88%97%28%F0%9D%91%A0%29">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=p%28s">
+<meta property="article:published_time" content="2022-12-01T18:01:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Advanced AI">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=%F0%9D%90%B4_%F0%9D%91%A1">
+  
+  
+  
+  <title>研究生课程：高级人工智能-第14讲 强化学习 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：高级人工智能-第14讲 强化学习</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-01 18:01" pubdate>
+          2022年12月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：高级人工智能-第14讲 强化学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《高级人工智能》课程笔记：第14讲 强化学习</p>
+<span id="more"></span>
+<h1>第14讲 强化学习</h1>
+<h2 id="强化学习">强化学习</h2>
+<p>目标：学习<strong>从环境状态到行为的映射（即策略）</strong>，智能体选择能够获得环境<strong>最大奖赏</strong>的行为，使得外部环境对学习系统在某种意义下的评价为最佳。</p>
+<p>区别于监督学习：监督学习是从标注中学习；强化学习是从交互中学习</p>
+<h3 id="两种反馈">两种反馈</h3>
+<p>评价性反馈</p>
+<ul>
+<li>当智能体采取某个行为时，对该行为给出一个评价，但并不知道哪个行为是最好的</li>
+<li>强化学习经常面临的是评价性反馈</li>
+</ul>
+<p>指导性反馈</p>
+<ul>
+<li>直接给出某个状态下的正确或最好行为</li>
+<li>独立于智能体当前采取的行为</li>
+<li>监督学习使用的是指导性反馈</li>
+</ul>
+<h3 id="强化学习的两大特性">强化学习的两大特性</h3>
+<p>试错搜索和延迟奖励，用于判断某一问题是否适用于强化学习求解。</p>
+<h3 id="强化学习需要应对的挑战">强化学习需要应对的挑战</h3>
+<p>利用和探索之间的矛盾</p>
+<h3 id="强化学习的要素">强化学习的要素</h3>
+<p>主体：智能体和环境-状态、行为和奖励</p>
+<p>要素：</p>
+<ul>
+<li>策略：状态到行为的映射，包括确定策略和随机策略两种</li>
+<li>奖励：关于状态和行为的函数，通常具有一定的不确定性</li>
+<li>价值：累积奖励或长期目标</li>
+<li>环境模型：刻画环境对行为的反馈</li>
+</ul>
+<h3 id="强化学习发展历程">强化学习发展历程</h3>
+<ul>
+<li>1911年，Thorndike 提出效果律（Law of effect），从心理学的角度探讨了强化思想：动物感到舒服的行为会被强化，动物感到不舒服的行为会被弱化</li>
+<li>1954年，马文 · 明斯基（Marvin Minsky）在其博士论文中实现了计算上的试错学习</li>
+<li>1957年，Bellman提出求解最优控制问题的动态规划方法，并提出了最优控制问题的随机离散版本，即著名的马尔科夫决策过程</li>
+<li>1960年，Howard提出马尔科夫决策过程的策略迭代方法</li>
+<li>1961年，明斯基在其论文“Steps toward artificial intelligence”中首次使用“Reinforcement learning”一词</li>
+<li>1989年，Watkins提出了Q-learning，将动态规划、时序差分、蒙特卡洛模拟三条线结合在了一起</li>
+<li>1992年，Tesauro 将强化学习成功应用到西洋双陆棋</li>
+<li>2015年，强化学习和深度学习结合： AlphaGo</li>
+<li>2017年，AlphaGo Zero</li>
+</ul>
+<h2 id="多臂赌博机">多臂赌博机</h2>
+<p>一台赌博机有多个摇臂 ，每个摇臂摇出的奖励（reward）大小不确定 ，玩家希望摇固定次数的臂所获得的期望累积奖励最大</p>
+<h3 id="问题形式化">问题形式化</h3>
+<p>行为：摇哪个臂</p>
+<p>奖励：每次摇臂获得的奖金</p>
+<p><img src="https://math.now.sh?inline=%F0%9D%90%B4_%F0%9D%91%A1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示第<img src="https://math.now.sh?inline=%F0%9D%91%A1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮的行为，<img src="https://math.now.sh?inline=%F0%9D%91%85_%F0%9D%91%A1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示第<img src="https://math.now.sh?inline=t" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮获得的奖励</p>
+<p>第<img src="https://math.now.sh?inline=%F0%9D%91%A1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮采取行为<img src="https://math.now.sh?inline=%F0%9D%91%8E" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的期望奖励为：<img src="https://math.now.sh?inline=q_*%28a%29%20%5Cdoteq%20%5Cmathbb%7BE%7D%5Cleft%5BR_t%20%5Cmid%20A_t%3Da%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>假如摇臂<img src="https://math.now.sh?inline=%F0%9D%91%87" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次， 那么按照什么策略摇臂，才能使期望累积奖励最大呢？</p>
+<p>当<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>已知时， 每次都选择<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>最大的<img src="https://math.now.sh?inline=%F0%9D%91%8E" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（贪心策略）</p>
+<p>但是一般情况下，<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对于玩家而言是未知的或具有不确定性，玩家在第<img src="https://math.now.sh?inline=%F0%9D%91%A1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮时只能依赖于当时对<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的估值<img src="https://math.now.sh?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行选择，此时，贪心策略是在第<img src="https://math.now.sh?inline=%F0%9D%91%A1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>轮 选择<img src="https://math.now.sh?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>最大的<img src="https://math.now.sh?inline=a" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h3 id="利用和探索">利用和探索</h3>
+<p>利用：</p>
+<ul>
+<li>按照贪心策略进行选择，即选择<img src="https://math.now.sh?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>最大的行为<img src="https://math.now.sh?inline=a" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>优点：最大化即时奖励</li>
+<li>缺点：由于<img src="https://math.now.sh?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>只是对<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的估计，估计的不确定性导致按照贪心策略选择的行为不一定是<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>最大的行为</li>
+</ul>
+<p>探索：</p>
+<ul>
+<li>选择贪心策略之外的行为</li>
+<li>缺点：短期奖励会比较低</li>
+<li>优点：长期奖励会比较高 ，通过探索可以找出奖励更大的行为，供后续选择</li>
+</ul>
+<p>每步选择在“利用”和“探索”中二选一</p>
+<p>如何平衡“利用”和“探索” 是关键</p>
+<p>贪心策略形式化地表示为：<img src="https://math.now.sh?inline=A_t%20%5Cdoteq%20argmax_aQ_t%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，当有多个行为的<img src="https://math.now.sh?inline=Q_t%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>同时为最大时，随机选择一个</p>
+<p><img src="https://math.now.sh?inline=%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>贪心策略：</p>
+<ul>
+<li>以概率<img src="https://math.now.sh?inline=1%E2%88%92%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>按照贪心策略进行行为选择（Exploitation）</li>
+<li>以概率<img src="https://math.now.sh?inline=%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在所有行为中随机选择一个（Exploration）</li>
+<li><img src="https://math.now.sh?inline=%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的取值取决于<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的方差，方差越大<img src="https://math.now.sh?inline=%5Cepsilon" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>取值应越大</li>
+</ul>
+<h3 id="行为估值方法">行为估值方法</h3>
+<p>根据历史观测样本的均值对<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行估计</p>
+<p>约定：</p>
+<ul>
+<li>当分母等于0时，<img src="https://math.now.sh?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>当分母趋于无穷大时，<img src="https://math.now.sh?inline=%F0%9D%91%84_%F0%9D%91%A1%28%F0%9D%91%8E%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>收敛到<img src="https://math.now.sh?inline=q_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>行为估值时，一个行为被选择了<img src="https://math.now.sh?inline=%F0%9D%91%9B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>次后的估值记为<img src="https://math.now.sh?inline=Q_n%20%5Cdoteq%20%5Cfrac%7BR_1%2BR_2%2B%5Ccdots%2BR_n%7D%7Bn-1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，该估值方式需要记录<img src="https://math.now.sh?inline=%F0%9D%91%9B%E2%88%921" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个奖励值</p>
+<h3 id="乐观初值法">乐观初值法</h3>
+<p>行为的初始估值</p>
+<ul>
+<li>前述贪心策略中，每个行为的初始估值为0</li>
+<li>每个行为的初始估值可以帮助我们引入先验知识</li>
+<li>初始估值还可以帮助我们平衡exploitation 和 exploration</li>
+</ul>
+<p>乐观初值法：Optimistic Initial Values</p>
+<ul>
+<li>为每个行为赋一个高的初始估值</li>
+<li>好处：初期每个行为都有较大机会被explore</li>
+</ul>
+<h3 id="小结">小结</h3>
+<ul>
+<li>多臂赌博机是强化学习的一个简化场景，行为和状态之间没有关联关系</li>
+<li>扩展情形
+<ul>
+<li>有上下文的多臂赌博机
+<ul>
+<li>存在多个多臂赌博机，状态表示赌博机</li>
+<li>学习状态到行为的映射</li>
+<li>但行为不改变状态</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>更一般的情形
+<ul>
+<li>马尔科夫决策过程</li>
+</ul>
+</li>
+</ul>
+<h2 id="马尔科夫决策过程">马尔科夫决策过程</h2>
+<ul>
+<li>常用于建模序列化决策过程</li>
+<li>行为不仅获得即时奖励，还能改变状态，从而影响长期奖励</li>
+<li>学习状态到行为的映射-策略
+<ul>
+<li>多臂赌博机学习<img src="https://math.now.sh?inline=%F0%9D%91%9E_*%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>MDP学习<img src="https://math.now.sh?inline=%F0%9D%91%9E_%E2%88%97%28%F0%9D%91%A0%2C%F0%9D%91%8E%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>或<img src="https://math.now.sh?inline=v_%E2%88%97%28%F0%9D%91%A0%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+</li>
+</ul>
+<h2 id="奖励设置">奖励设置</h2>
+<ul>
+<li>设置奖励是希望智能体能达到我们期望的目标
+<ul>
+<li>下围棋
+<ul>
+<li>目标：赢棋</li>
+<li>奖励需要是能够实现赢棋这一目标才合适
+<ul>
+<li>吃子多少？占领棋盘的中心？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>迷宫
+<ul>
+<li>目标：尽快走出去</li>
+<li>奖励：每走一步，奖励为-1（相当于惩罚）</li>
+</ul>
+</li>
+<li>垃圾回收机器人
+<ul>
+<li>目标：在尽可能少的人工干预的情况下回收尽可能多的垃圾</li>
+<li>奖励：回收一个垃圾奖励+1 （等待和主动寻找获得奖励的概率不同），人工干预一次奖励-3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="贝尔曼方程的作用">贝尔曼方程的作用</h3>
+<p>贝尔曼方程定义了状态估值函数的依赖关系</p>
+<ul>
+<li>给定策略下，每个状态的估值视为一个变量</li>
+<li>所有状态（假如有<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个）的估值根据贝尔曼方程形成了一个具有<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个方程和<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个变量的线性方程组</li>
+<li>求解该方程组即可得到该策略下每个状态的估值</li>
+</ul>
+<h3 id="寻找最优策略">寻找最优策略</h3>
+<ul>
+<li>基于状态估值函数的贝尔曼最优性方程
+<ul>
+<li>第一步：求解状态估值函数的贝尔曼最优性方程得到最优策略对应的状态估值函数</li>
+<li>第二步：根据状态估值函数的贝尔曼最优性方程，进行一步搜索找到每个状态下的最优行为
+<ul>
+<li>注意：最优策略可以存在多个</li>
+<li>贝尔曼最优性方程的优势，可以采用贪心局部搜索即可得到全局最优解</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于行为估值函数的贝尔曼最优性方程
+<ul>
+<li>直接得到最优策略</li>
+</ul>
+</li>
+</ul>
+<h3 id="寻找最优策略小结">寻找最优策略小结</h3>
+<p>求解贝尔曼最优性方程寻找最优策略的局限性</p>
+<ul>
+<li>需要知道环境模型<img src="https://math.now.sh?inline=p%28s'%2Cr%7Cs%2Ca%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>需要高昂的计算代价和内存（存放估值函数）</li>
+<li>依赖于马尔科夫性</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Advanced-AI/" class="print-no-link">#Advanced AI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：高级人工智能-第14讲 强化学习</div>
+      <div>https://zhangzhao219.github.io/2022/12/01/UCAS/advanced-ai/advanced-ai-14/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/24/UCAS/advanced-ai/advanced-ai-13/" title="研究生课程：高级人工智能-第13讲 群体智能">
+                        <span class="hidden-mobile">研究生课程：高级人工智能-第13讲 群体智能</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1600 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代码随想录-图论专题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录-图论专题">
+<meta property="og:url" content="https://zhangzhao219.github.io/2024/03/07/Leetcode/programmercarl/programmercarl-gt/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="代码随想录-图论专题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-07T18:37:20.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.196Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码随想录-图论专题 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">代码随想录-图论专题</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-07 18:37" pubdate>
+          2024年3月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">代码随想录-图论专题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>代码随想录-图论专题</p>
+<span id="more"></span>
+<h1>图论专题</h1>
+<h2 id="dfs-与-bfs-区别">dfs 与 bfs 区别</h2>
+<ul>
+<li>
+<p>dfs是可一个方向去搜，不到黄河不回头，直到遇到绝境了，搜不下去了，再换方向（换方向的过程就涉及到了回溯）。</p>
+</li>
+<li>
+<p>bfs是先把本节点所连接的所有节点遍历一遍，走到下一个节点的时候，再把连接节点的所有节点遍历一遍，搜索方向更像是广度，四面八方的搜索过程。</p>
+</li>
+</ul>
+<h2 id="深度优先搜索理论基础">深度优先搜索理论基础</h2>
+<p>回溯算法，其实就是dfs的过程，这里给出dfs的代码框架：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(参数)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (终止条件) &#123;
+        存放结果;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+
+    <span class="hljs-keyword">for</span> (选择：本节点所连接的其他节点) &#123;
+        处理节点;
+        <span class="hljs-built_in">dfs</span>(图，选择的节点); <span class="hljs-comment">// 递归</span>
+        回溯，撤销处理结果
+    &#125;
+&#125;</code></pre></div>
+<p>可以发现dfs的代码框架和回溯算法的代码框架是差不多的。</p>
+<p>深搜三部曲如下：</p>
+<ol>
+<li>确认递归函数，参数</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(参数)</span></span></code></pre></div>
+<p>通常我们递归的时候，我们递归搜索需要了解哪些参数，其实也可以在写递归函数的时候，发现需要什么参数，再去补充就可以。</p>
+<p>一般情况，深搜需要 二维数组数组结构保存所有路径，需要一维数组保存单一路径，这种保存结果的数组，我们可以定义一个全局变量，避免让我们的函数参数过多。</p>
+<p>例如这样：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; result; <span class="hljs-comment">// 保存符合条件的所有路径</span>
+vector&lt;<span class="hljs-type">int</span>&gt; path; <span class="hljs-comment">// 起点到终点的路径</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span> <span class="hljs-params">(图，目前搜索的节点)</span> </span></code></pre></div>
+<ol start="2">
+<li>确认终止条件</li>
+</ol>
+<p>终止条件很重要，写dfs的时候，之所以容易死循环，栈溢出等等这些问题，都是因为终止条件没有想清楚。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span> (终止条件) &#123;
+    存放结果;
+    <span class="hljs-keyword">return</span>;
+&#125;</code></pre></div>
+<p>终止添加不仅是结束本层递归，同时也是我们收获结果的时候。</p>
+<p>另外，其实很多dfs写法，没有写终止条件，其实终止条件写在了， 下面dfs递归的逻辑里了，也就是不符合条件，直接不会向下递归。</p>
+<ol start="3">
+<li>处理目前搜索节点出发的路径</li>
+</ol>
+<p>一般这里就是一个for循环的操作，去遍历 目前搜索节点 所能到的所有节点。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (选择：本节点所连接的其他节点) &#123;
+    处理节点;
+    <span class="hljs-built_in">dfs</span>(图，选择的节点); <span class="hljs-comment">// 递归</span>
+    回溯，撤销处理结果
+&#125;</code></pre></div>
+<h2 id="广度优先搜索理论基础">广度优先搜索理论基础</h2>
+<p>广搜的搜索方式就适合于解决两个点之间的最短路径问题。</p>
+<p>因为广搜是从起点出发，以起始点为中心一圈一圈进行搜索，一旦遇到终点，记录之前走过的节点就是一条最短路。</p>
+<p>当然，也有一些问题是广搜 和 深搜都可以解决的，例如岛屿问题，<strong>这类问题的特征就是不涉及具体的遍历方式，只要能把相邻且相同属性的节点标记上就行</strong>。</p>
+<p>我们仅仅需要一个容器，能保存我们要遍历过的元素就可以，那么用队列，还是用栈，甚至用数组，都是可以的。</p>
+<p>用队列的话，就是保证每一圈都是一个方向去转，例如统一顺时针或者逆时针。</p>
+<p>因为队列是先进先出，加入元素和弹出元素的顺序是没有改变的。</p>
+<p>如果用栈的话，就是第一圈顺时针遍历，第二圈逆时针遍历，第三圈有顺时针遍历。</p>
+<p>因为栈是先进后出，加入元素和弹出元素的顺序改变了。</p>
+<p>下面给出广搜代码模板，该模板针对的就是，上面的四方格的地图： （详细注释）</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;; <span class="hljs-comment">// 表示四个方向</span>
+<span class="hljs-comment">// grid 是地图，也就是一个二维数组</span>
+<span class="hljs-comment">// visited标记访问过的节点，不要重复访问</span>
+<span class="hljs-comment">// x,y 表示开始搜索节点的下标</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; grid, vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt;&gt;&amp; visited, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
+    queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; que; <span class="hljs-comment">// 定义队列</span>
+    que.<span class="hljs-built_in">push</span>(&#123;x, y&#125;); <span class="hljs-comment">// 起始节点加入队列</span>
+    visited[x][y] = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 只要加入队列，立刻标记为访问过的节点</span>
+    <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()) &#123; <span class="hljs-comment">// 开始遍历队列里的元素</span>
+        pair&lt;<span class="hljs-type">int</span> ,<span class="hljs-type">int</span>&gt; cur = que.<span class="hljs-built_in">front</span>(); que.<span class="hljs-built_in">pop</span>(); <span class="hljs-comment">// 从队列取元素</span>
+        <span class="hljs-type">int</span> curx = cur.first;
+        <span class="hljs-type">int</span> cury = cur.second; <span class="hljs-comment">// 当前节点坐标</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123; <span class="hljs-comment">// 开始想当前节点的四个方向左右上下去遍历</span>
+            <span class="hljs-type">int</span> nextx = curx + dir[i][<span class="hljs-number">0</span>];
+            <span class="hljs-type">int</span> nexty = cury + dir[i][<span class="hljs-number">1</span>]; <span class="hljs-comment">// 获取周边四个方向的坐标</span>
+            <span class="hljs-keyword">if</span> (nextx &lt; <span class="hljs-number">0</span> || nextx &gt;= grid.<span class="hljs-built_in">size</span>() || nexty &lt; <span class="hljs-number">0</span> || nexty &gt;= grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">continue</span>;  <span class="hljs-comment">// 坐标越界了，直接跳过</span>
+            <span class="hljs-keyword">if</span> (!visited[nextx][nexty]) &#123; <span class="hljs-comment">// 如果节点没被访问过</span>
+                que.<span class="hljs-built_in">push</span>(&#123;nextx, nexty&#125;);  <span class="hljs-comment">// 队列添加该节点为下一轮要遍历的节点</span>
+                visited[nextx][nexty] = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 只要加入队列立刻标记，避免重复访问</span>
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<h2 id="并查集理论基础">并查集理论基础</h2>
+<p>当我们需要判断两个元素是否在同一个集合里的时候，我们就要想到用并查集。</p>
+<p>并查集主要有两个功能：</p>
+<ul>
+<li>将两个元素添加到一个集合中。</li>
+<li>判断两个元素在不在同一个集合</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-type">int</span> n = <span class="hljs-number">1005</span>; <span class="hljs-comment">// n根据题目中节点数量而定，一般比节点数量大一点就好</span>
+vector&lt;<span class="hljs-type">int</span>&gt; father = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt; (n, <span class="hljs-number">0</span>); <span class="hljs-comment">// C++里的一种数组结构</span>
+
+<span class="hljs-comment">// 并查集初始化</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;
+        father[i] = i;
+    &#125;
+&#125;
+<span class="hljs-comment">// 并查集里寻根的过程</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> u)</span> </span>&#123;
+    <span class="hljs-keyword">return</span> u == father[u] ? u : father[u] = <span class="hljs-built_in">find</span>(father[u]); <span class="hljs-comment">// 路径压缩</span>
+&#125;
+
+<span class="hljs-comment">// 判断 u 和 v是否找到同一个根</span>
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSame</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span> </span>&#123;
+    u = <span class="hljs-built_in">find</span>(u);
+    v = <span class="hljs-built_in">find</span>(v);
+    <span class="hljs-keyword">return</span> u == v;
+&#125;
+
+<span class="hljs-comment">// 将v-&gt;u 这条边加入并查集</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span> </span>&#123;
+    u = <span class="hljs-built_in">find</span>(u); <span class="hljs-comment">// 寻找u的根</span>
+    v = <span class="hljs-built_in">find</span>(v); <span class="hljs-comment">// 寻找v的根</span>
+    <span class="hljs-keyword">if</span> (u == v) <span class="hljs-keyword">return</span> ; <span class="hljs-comment">// 如果发现根相同，则说明在一个集合，不用两个节点相连直接返回</span>
+    father[v] = u;
+&#125;</code></pre></div>
+<p>通过模板，我们可以知道，并查集主要有三个功能。</p>
+<ul>
+<li>寻找根节点，函数：find(int u)，也就是判断这个节点的祖先节点是哪个</li>
+<li>将两个节点接入到同一个集合，函数：join(int u, int v)，将两个节点连在同一个根节点上</li>
+<li>判断两个节点是否在同一个集合，函数：isSame(int u, int v)，就是判断两个节点是不是同一个根节点</li>
+</ul>
+<h2 id="797-所有可能的路径">797. 所有可能的路径</h2>
+<p>给你一个有 n 个节点的 有向无环图（DAG），请你找出所有从节点 0 到节点 n-1 的路径并输出（不要求按特定顺序）</p>
+<p>graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; path;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; graph, <span class="hljs-type">int</span> node)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(node == graph.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>)&#123;
+            result.<span class="hljs-built_in">push_back</span>(path);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;graph[node].<span class="hljs-built_in">size</span>();i++)&#123;
+            path.<span class="hljs-built_in">push_back</span>(graph[node][i]);
+            <span class="hljs-built_in">DFS</span>(graph, graph[node][i]);
+            path.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; <span class="hljs-built_in">allPathsSourceTarget</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; graph) &#123;
+        path.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-built_in">DFS</span>(graph,<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="200-岛屿数量">200. 岛屿数量</h2>
+<p>给你一个由 ‘1’（陆地）和 ‘0’（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; isvisit;
+    <span class="hljs-type">int</span> sumcount = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span> || j &lt; <span class="hljs-number">0</span> || i &gt;= m || j &gt;= n || grid[i][j] == <span class="hljs-string">&#x27;0&#x27;</span> || isvisit[i][j] == <span class="hljs-literal">true</span>)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        isvisit[i][j] = <span class="hljs-literal">true</span>;
+        <span class="hljs-built_in">DFS</span>(grid,i<span class="hljs-number">-1</span>,j,m,n);
+        <span class="hljs-built_in">DFS</span>(grid,i,j<span class="hljs-number">-1</span>,m,n);
+        <span class="hljs-built_in">DFS</span>(grid,i<span class="hljs-number">+1</span>,j,m,n);
+        <span class="hljs-built_in">DFS</span>(grid,i,j<span class="hljs-number">+1</span>,m,n);
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span></span>&#123;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        isvisit[i][j] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x<span class="hljs-number">-1</span>][y] == <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; isvisit[x<span class="hljs-number">-1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+                isvisit[x<span class="hljs-number">-1</span>][y] = <span class="hljs-literal">true</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; m &amp;&amp; grid[x<span class="hljs-number">+1</span>][y] == <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; isvisit[x<span class="hljs-number">+1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+                isvisit[x<span class="hljs-number">+1</span>][y] = <span class="hljs-literal">true</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x][y<span class="hljs-number">-1</span>] == <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; isvisit[x][y<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+                isvisit[x][y<span class="hljs-number">-1</span>] = <span class="hljs-literal">true</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[x][y<span class="hljs-number">+1</span>] == <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; isvisit[x][y<span class="hljs-number">+1</span>] == <span class="hljs-literal">false</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+                isvisit[x][y<span class="hljs-number">+1</span>] = <span class="hljs-literal">true</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; grid)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            isvisit.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(isvisit[i][j] == <span class="hljs-literal">true</span> || grid[i][j] == <span class="hljs-string">&#x27;0&#x27;</span>)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-built_in">BFS</span>(grid, i,j,m,n);
+                sumcount += <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> sumcount;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="695-岛屿的最大面积">695. 岛屿的最大面积</h2>
+<p>给你一个大小为 m x n 的二进制矩阵 grid 。</p>
+<p>岛屿 是由一些相邻的 1 (代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在 水平或者竖直的四个方向上 相邻。你可以假设 grid 的四个边缘都被 0（代表水）包围着。</p>
+<p>岛屿的面积是岛上值为 1 的单元格的数目。</p>
+<p>计算并返回 grid 中最大的岛屿面积。如果没有岛屿，则返回面积为 0 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; isvisit;
+    <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> nowsum)</span></span>&#123;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        isvisit[i][j] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            nowsum += <span class="hljs-number">1</span>;
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x<span class="hljs-number">-1</span>][y] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x<span class="hljs-number">-1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">-1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; m &amp;&amp; grid[x<span class="hljs-number">+1</span>][y] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x<span class="hljs-number">+1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">+1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x][y<span class="hljs-number">-1</span>] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x][y<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">-1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[x][y<span class="hljs-number">+1</span>] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x][y<span class="hljs-number">+1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">+1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+            &#125;
+        &#125;
+        result = <span class="hljs-built_in">max</span>(result,nowsum);
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxAreaOfIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            isvisit.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span> &amp;&amp; isvisit[i][j] == <span class="hljs-literal">false</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(grid,i,j,m,n,<span class="hljs-number">0</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="1020-飞地的数量">1020. 飞地的数量</h2>
+<p>给你一个大小为 m x n 的二进制矩阵 grid ，其中 0 表示一个海洋单元格、1 表示一个陆地单元格。</p>
+<p>一次 移动 是指从一个陆地单元格走到另一个相邻（上、下、左、右）的陆地单元格或跨过 grid 的边界。</p>
+<p>返回网格中 无法 在任意次数的移动中离开网格边界的陆地单元格的数量。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; isvisit;
+    <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> nowsum, <span class="hljs-type">int</span> mode)</span></span>&#123;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        isvisit[i][j] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            nowsum += <span class="hljs-number">1</span>;
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x<span class="hljs-number">-1</span>][y] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x<span class="hljs-number">-1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">-1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; m &amp;&amp; grid[x<span class="hljs-number">+1</span>][y] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x<span class="hljs-number">+1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">+1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x][y<span class="hljs-number">-1</span>] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x][y<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">-1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[x][y<span class="hljs-number">+1</span>] == <span class="hljs-number">1</span> &amp;&amp; isvisit[x][y<span class="hljs-number">+1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">+1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(mode == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+
+        result  += nowsum;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numEnclaves</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            isvisit.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i != <span class="hljs-number">0</span> &amp;&amp; j != <span class="hljs-number">0</span> &amp;&amp; i != m<span class="hljs-number">-1</span> &amp;&amp; j != n<span class="hljs-number">-1</span>)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(grid,i,j,m,n,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span> || j == <span class="hljs-number">0</span> || i == m<span class="hljs-number">-1</span> || j == n<span class="hljs-number">-1</span>)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span> &amp;&amp; isvisit[i][j] == <span class="hljs-literal">false</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(grid,i,j,m,n,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="1254-统计封闭岛屿的数目">1254. 统计封闭岛屿的数目</h2>
+<p>二维矩阵 grid 由 0 （土地）和 1 （水）组成。岛是由最大的4个方向连通的 0 组成的群，封闭岛是一个 完全 由1包围（左、上、右、下）的岛。</p>
+<p>请返回 封闭岛屿 的数目。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; isvisit;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span></span>&#123;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        isvisit[i][j] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x<span class="hljs-number">-1</span>][y] == <span class="hljs-number">0</span> &amp;&amp; isvisit[x<span class="hljs-number">-1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">-1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; m &amp;&amp; grid[x<span class="hljs-number">+1</span>][y] == <span class="hljs-number">0</span> &amp;&amp; isvisit[x<span class="hljs-number">+1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">+1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x][y<span class="hljs-number">-1</span>] == <span class="hljs-number">0</span> &amp;&amp; isvisit[x][y<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">-1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[x][y<span class="hljs-number">+1</span>] == <span class="hljs-number">0</span> &amp;&amp; isvisit[x][y<span class="hljs-number">+1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">+1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">closedIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            isvisit.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i != <span class="hljs-number">0</span> &amp;&amp; j != <span class="hljs-number">0</span> &amp;&amp; i != m<span class="hljs-number">-1</span> &amp;&amp; j != n<span class="hljs-number">-1</span>)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(grid,i,j,m,n);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span> &amp;&amp; isvisit[i][j] == <span class="hljs-literal">false</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(grid,i,j,m,n);
+                    result += <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="130-被围绕的区域">130. 被围绕的区域</h2>
+<p>给你一个 m x n 的矩阵 board ，由若干字符 ‘X’ 和 ‘O’ ，找到所有被 ‘X’ 围绕的区域，并将这些区域里所有的 ‘O’ 用 ‘X’ 填充。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; isvisit;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; board, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span></span>&#123;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        isvisit[i][j] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; board[x<span class="hljs-number">-1</span>][y] == <span class="hljs-string">&#x27;O&#x27;</span> &amp;&amp; isvisit[x<span class="hljs-number">-1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">-1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; m &amp;&amp; board[x<span class="hljs-number">+1</span>][y] == <span class="hljs-string">&#x27;O&#x27;</span> &amp;&amp; isvisit[x<span class="hljs-number">+1</span>][y] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x<span class="hljs-number">+1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; board[x][y<span class="hljs-number">-1</span>] == <span class="hljs-string">&#x27;O&#x27;</span> &amp;&amp; isvisit[x][y<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">-1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; board[x][y<span class="hljs-number">+1</span>] == <span class="hljs-string">&#x27;O&#x27;</span> &amp;&amp; isvisit[x][y<span class="hljs-number">+1</span>] == <span class="hljs-literal">false</span>)&#123;
+                isvisit[x][y<span class="hljs-number">+1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;
+        <span class="hljs-type">int</span> m = board.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = board[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            isvisit.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i != <span class="hljs-number">0</span> &amp;&amp; i != m<span class="hljs-number">-1</span> &amp;&amp; j != <span class="hljs-number">0</span> &amp;&amp; j != n<span class="hljs-number">-1</span>)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(board[i][j] == <span class="hljs-string">&#x27;O&#x27;</span> &amp;&amp; isvisit[i][j] == <span class="hljs-literal">false</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(board,i,j,m,n);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(board[i][j] == <span class="hljs-string">&#x27;O&#x27;</span> &amp;&amp; isvisit[i][j] == <span class="hljs-literal">false</span>)&#123;
+                    board[i][j] = <span class="hljs-string">&#x27;X&#x27;</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="417-太平洋大西洋水流问题">417. 太平洋大西洋水流问题</h2>
+<p>有一个 m × n 的矩形岛屿，与 太平洋 和 大西洋 相邻。 “太平洋” 处于大陆的左边界和上边界，而 “大西洋” 处于大陆的右边界和下边界。</p>
+<p>这个岛被分割成一个由若干方形单元格组成的网格。给定一个 m x n 的整数矩阵 heights ， heights[r][c] 表示坐标 (r, c) 上单元格 高于海平面的高度 。</p>
+<p>岛上雨水较多，如果相邻单元格的高度 小于或等于 当前单元格的高度，雨水可以直接向北、南、东、西流向相邻单元格。水可以从海洋附近的任何单元格流入海洋。</p>
+<p>返回网格坐标 result 的 2D 列表 ，其中 result[i] = [ri, ci] 表示雨水从单元格 (ri, ci) 流动 既可流向太平洋也可流向大西洋 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; visit_p;
+    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt; visit_a;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt;&amp; heights, vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt; &gt;&amp; visit, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span></span>&#123;
+        visit[i][j] = <span class="hljs-literal">true</span>;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; visit[x<span class="hljs-number">-1</span>][y] == <span class="hljs-literal">false</span> &amp;&amp; heights[x<span class="hljs-number">-1</span>][y] &gt;= heights[x][y])&#123;
+                visit[x<span class="hljs-number">-1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; m &amp;&amp; visit[x<span class="hljs-number">+1</span>][y] == <span class="hljs-literal">false</span> &amp;&amp; heights[x<span class="hljs-number">+1</span>][y] &gt;= heights[x][y])&#123;
+                visit[x<span class="hljs-number">+1</span>][y] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; visit[x][y<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span> &amp;&amp; heights[x][y<span class="hljs-number">-1</span>] &gt;= heights[x][y])&#123;
+                visit[x][y<span class="hljs-number">-1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; visit[x][y<span class="hljs-number">+1</span>] == <span class="hljs-literal">false</span> &amp;&amp; heights[x][y<span class="hljs-number">+1</span>] &gt;= heights[x][y])&#123;
+                visit[x][y<span class="hljs-number">+1</span>] = <span class="hljs-literal">true</span>;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+            &#125;
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">pacificAtlantic</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; heights) &#123;
+        <span class="hljs-type">int</span> m = heights.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = heights[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            visit_p.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+            visit_a.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(n));
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span> || j == <span class="hljs-number">0</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(heights, visit_p, i,j,m,n);
+                &#125;
+                <span class="hljs-keyword">if</span>(i == m<span class="hljs-number">-1</span> || j == n<span class="hljs-number">-1</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(heights, visit_a, i,j,m,n);
+                &#125;
+            &#125;
+        &#125;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(visit_p[i][j] == <span class="hljs-literal">true</span> &amp;&amp; visit_a[i][j] == <span class="hljs-literal">true</span>)&#123;
+                    result.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;i,j&#125;);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="827-最大人工岛">827. 最大人工岛</h2>
+<p>给你一个大小为 n x n 二进制矩阵 grid 。最多 只能将一格 0 变成 1 。</p>
+<p>返回执行此操作后，grid 中最大的岛屿面积是多少？</p>
+<p>岛屿 由一组上、下、左、右四个方向相连的 1 形成。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-type">int</span> numindex = <span class="hljs-number">2</span>;
+    unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; mp;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> numindex)</span></span>&#123;
+        queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &gt; q;
+        q.<span class="hljs-built_in">push</span>(&#123;i,j&#125;);
+        <span class="hljs-type">int</span> nowcount = <span class="hljs-number">1</span>;
+        grid[i][j] = numindex;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; cur = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-type">int</span> x = cur.first;
+            <span class="hljs-type">int</span> y = cur.second;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x<span class="hljs-number">-1</span>][y] == <span class="hljs-number">1</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">-1</span>,y&#125;);
+                nowcount += <span class="hljs-number">1</span>;
+                grid[x<span class="hljs-number">-1</span>][y] = numindex;
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[x][y<span class="hljs-number">-1</span>] == <span class="hljs-number">1</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">-1</span>&#125;);
+                nowcount += <span class="hljs-number">1</span>;
+                grid[x][y<span class="hljs-number">-1</span>] = numindex;
+            &#125;
+            <span class="hljs-keyword">if</span>(x<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[x<span class="hljs-number">+1</span>][y] == <span class="hljs-number">1</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x<span class="hljs-number">+1</span>,y&#125;);
+                nowcount += <span class="hljs-number">1</span>;
+                grid[x<span class="hljs-number">+1</span>][y] = numindex;
+            &#125;
+            <span class="hljs-keyword">if</span>(y<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[x][y<span class="hljs-number">+1</span>] == <span class="hljs-number">1</span>)&#123;
+                q.<span class="hljs-built_in">push</span>(&#123;x,y<span class="hljs-number">+1</span>&#125;);
+                nowcount += <span class="hljs-number">1</span>;
+                grid[x][y<span class="hljs-number">+1</span>] = numindex;
+            &#125;
+        &#125;
+        mp[numindex] = nowcount;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">largestIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>)&#123;
+                    <span class="hljs-built_in">BFS</span>(grid,i,j,n,numindex);
+                    numindex += <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+        &#125;
+        mp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> maxarea = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-type">int</span> area = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>)&#123;
+                    area += <span class="hljs-number">1</span>;
+                &#125;
+                unordered_map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">bool</span>&gt; mp2;
+                mp2[grid[i][j]] = <span class="hljs-literal">true</span>;
+                area += mp[grid[i][j]];
+                <span class="hljs-keyword">if</span>(i<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; mp<span class="hljs-number">2.f</span>ind(grid[i<span class="hljs-number">-1</span>][j]) == mp<span class="hljs-number">2.</span><span class="hljs-built_in">end</span>())&#123;
+                    mp2[grid[i<span class="hljs-number">-1</span>][j]] = <span class="hljs-literal">true</span>;
+                    area += mp[grid[i<span class="hljs-number">-1</span>][j]];
+                &#125;
+                <span class="hljs-keyword">if</span>(j<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; mp<span class="hljs-number">2.f</span>ind(grid[i][j<span class="hljs-number">-1</span>]) == mp<span class="hljs-number">2.</span><span class="hljs-built_in">end</span>())&#123;
+                    mp2[grid[i][j<span class="hljs-number">-1</span>]] = <span class="hljs-literal">true</span>;
+                    area += mp[grid[i][j<span class="hljs-number">-1</span>]];
+                &#125;
+                <span class="hljs-keyword">if</span>(i<span class="hljs-number">+1</span> &lt; n &amp;&amp; mp<span class="hljs-number">2.f</span>ind(grid[i<span class="hljs-number">+1</span>][j]) == mp<span class="hljs-number">2.</span><span class="hljs-built_in">end</span>())&#123;
+                    mp2[grid[i<span class="hljs-number">+1</span>][j]] = <span class="hljs-literal">true</span>;
+                    area += mp[grid[i<span class="hljs-number">+1</span>][j]];
+                &#125;
+                <span class="hljs-keyword">if</span>(j<span class="hljs-number">+1</span> &lt; n &amp;&amp; mp<span class="hljs-number">2.f</span>ind(grid[i][j<span class="hljs-number">+1</span>]) == mp<span class="hljs-number">2.</span><span class="hljs-built_in">end</span>())&#123;
+                    mp2[grid[i][j<span class="hljs-number">+1</span>]] = <span class="hljs-literal">true</span>;
+                    area += mp[grid[i][j<span class="hljs-number">+1</span>]];
+                &#125;
+                maxarea = <span class="hljs-built_in">max</span>(maxarea, area);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> maxarea;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="127-单词接龙">127. 单词接龙</h2>
+<p>字典 wordList 中从单词 beginWord 和 endWord 的 转换序列 是一个按下述规格形成的序列：</p>
+<p>序列中第一个单词是 beginWord 。</p>
+<p>序列中最后一个单词是 endWord 。</p>
+<p>每次转换只能改变一个字母。</p>
+<p>转换过程中的中间单词必须是字典 wordList 中的单词。</p>
+<p>给你两个单词 beginWord 和 endWord 和一个字典 wordList ，找到从 beginWord 到 endWord 的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回 0。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-type">int</span> mincount = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judgetwowords</span><span class="hljs-params">(string word1, string word2)</span></span>&#123;
+        <span class="hljs-type">int</span> sumcount = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;word<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(word1[i] != word2[i])&#123;
+                sumcount += <span class="hljs-number">1</span>;
+            &#125;
+            <span class="hljs-keyword">if</span>(sumcount &gt;= <span class="hljs-number">2</span>)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(sumcount == <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">BFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt;&amp; grid, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">bool</span>&gt; visitMap;
+        visitMap[start] = <span class="hljs-literal">true</span>;
+        queue&lt;<span class="hljs-type">int</span>&gt; q;
+        q.<span class="hljs-built_in">push</span>(start);
+        <span class="hljs-type">int</span> nowcount = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            <span class="hljs-type">int</span> t = q.<span class="hljs-built_in">size</span>();
+            nowcount += <span class="hljs-number">1</span>;
+            <span class="hljs-comment">// cout &lt;&lt; nowcount &lt;&lt; &quot; &quot; &lt;&lt; t &lt;&lt; endl;</span>
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;t;j++)&#123;
+                <span class="hljs-type">int</span> cur = q.<span class="hljs-built_in">front</span>();
+                q.<span class="hljs-built_in">pop</span>();
+                <span class="hljs-keyword">if</span>(cur == end)&#123;
+                    <span class="hljs-keyword">return</span> nowcount;
+                &#125;
+                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;grid[cur].<span class="hljs-built_in">size</span>();i++)&#123;
+                    <span class="hljs-keyword">if</span>(visitMap.<span class="hljs-built_in">find</span>(grid[cur][i]) == visitMap.<span class="hljs-built_in">end</span>())&#123;
+                        visitMap[grid[cur][i]] = <span class="hljs-literal">true</span>;
+                        q.<span class="hljs-built_in">push</span>(grid[cur][i]);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">ladderLength</span><span class="hljs-params">(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList)</span> </span>&#123;
+        <span class="hljs-type">int</span> sign = <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;wordList.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(wordList[i] == endWord)&#123;
+                sign = i<span class="hljs-number">+1</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(sign == <span class="hljs-number">-1</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        &#125;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; grid;
+        vector&lt;<span class="hljs-type">int</span>&gt; tempgrid;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;wordList.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">judgetwowords</span>(wordList[i], beginWord))&#123;
+                <span class="hljs-comment">// cout &lt;&lt; i &lt;&lt; &quot;fgdgf&quot; &lt;&lt; endl;</span>
+                tempgrid.<span class="hljs-built_in">push_back</span>(i<span class="hljs-number">+1</span>);
+            &#125;
+        &#125;
+        grid.<span class="hljs-built_in">push_back</span>(tempgrid);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;wordList.<span class="hljs-built_in">size</span>();i++)&#123;
+            vector&lt;<span class="hljs-type">int</span>&gt; tempgrid2;
+            <span class="hljs-comment">// tempgrid2.push_back(i+2);</span>
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;wordList.<span class="hljs-built_in">size</span>();j++)&#123;
+                <span class="hljs-keyword">if</span>(i<span class="hljs-number">+1</span> == j<span class="hljs-number">+1</span>)&#123;
+                    <span class="hljs-keyword">continue</span>;
+                &#125;
+                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">judgetwowords</span>(wordList[i], wordList[j]))&#123;
+                    tempgrid<span class="hljs-number">2.</span><span class="hljs-built_in">push_back</span>(j<span class="hljs-number">+1</span>);
+                &#125;
+            &#125;
+            grid.<span class="hljs-built_in">push_back</span>(tempgrid2);
+        &#125;
+        <span class="hljs-comment">// for(int i=0;i&lt;grid.size();i++)&#123;</span>
+        <span class="hljs-comment">//     for(int j=0;j&lt;grid[i].size();j++)&#123;</span>
+        <span class="hljs-comment">//         cout &lt;&lt; grid[i][j] &lt;&lt; &quot; &quot;;</span>
+        <span class="hljs-comment">//     &#125;</span>
+        <span class="hljs-comment">//     cout &lt;&lt; endl;</span>
+        <span class="hljs-comment">// &#125;</span>
+        <span class="hljs-type">int</span> mincount = <span class="hljs-built_in">BFS</span>(grid, <span class="hljs-number">0</span>, sign);
+        <span class="hljs-keyword">return</span> mincount;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="841-钥匙和房间">841. 钥匙和房间</h2>
+<p>有 N 个房间，开始时你位于 0 号房间。每个房间有不同的号码：0，1，2，…，N-1，并且房间里可能有一些钥匙能使你进入下一个房间。</p>
+<p>在形式上，对于每个房间 i 都有一个钥匙列表 rooms[i]，每个钥匙 rooms[i][j] 由 [0,1，…，N-1] 中的一个整数表示，其中 N = rooms.length。 钥匙 rooms[i][j] = v 可以打开编号为 v 的房间。</p>
+<p>最初，除 0 号房间外的其余所有房间都被锁住。</p>
+<p>你可以自由地在房间之间来回走动。</p>
+<p>如果能进入每个房间返回 true，否则返回 false。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canVisitAllRooms</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; rooms)</span> </span>&#123;
+        <span class="hljs-type">int</span> lenrooms = rooms.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">isvisit</span><span class="hljs-params">(lenrooms)</span></span>;
+        queue&lt;<span class="hljs-type">int</span>&gt; q;
+        q.<span class="hljs-built_in">push</span>(<span class="hljs-number">0</span>);
+        isvisit[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())&#123;
+            <span class="hljs-type">int</span> t = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;rooms[t].<span class="hljs-built_in">size</span>();i++)&#123;
+                <span class="hljs-keyword">if</span> (isvisit[rooms[t][i]] == <span class="hljs-literal">false</span>)&#123;
+                    isvisit[rooms[t][i]] = <span class="hljs-literal">true</span>;
+                    q.<span class="hljs-built_in">push</span>(rooms[t][i]);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;lenrooms;i++)&#123;
+            <span class="hljs-keyword">if</span>(isvisit[i] == <span class="hljs-literal">false</span>)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="463-岛屿的周长">463. 岛屿的周长</h2>
+<p>给定一个 row x col 的二维网格地图 grid ，其中：grid[i][j] = 1 表示陆地， grid[i][j] = 0 表示水域。</p>
+<p>网格中的格子 水平和垂直 方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。</p>
+<p>岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">islandPerimeter</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;
+        <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> m = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-type">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>)&#123;
+                    result += <span class="hljs-number">4</span>;
+                    <span class="hljs-keyword">if</span>(i<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[i<span class="hljs-number">-1</span>][j] == <span class="hljs-number">1</span>)&#123;
+                        result -= <span class="hljs-number">1</span>;
+                    &#125;
+                    <span class="hljs-keyword">if</span>(j<span class="hljs-number">-1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; grid[i][j<span class="hljs-number">-1</span>] == <span class="hljs-number">1</span>)&#123;
+                        result -= <span class="hljs-number">1</span>;
+                    &#125;
+                    <span class="hljs-keyword">if</span>(i<span class="hljs-number">+1</span> &lt; m &amp;&amp; grid[i<span class="hljs-number">+1</span>][j] == <span class="hljs-number">1</span>)&#123;
+                        result -= <span class="hljs-number">1</span>;
+                    &#125;
+                    <span class="hljs-keyword">if</span>(j<span class="hljs-number">+1</span> &lt; n &amp;&amp; grid[i][j<span class="hljs-number">+1</span>] == <span class="hljs-number">1</span>)&#123;
+                        result -= <span class="hljs-number">1</span>;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="1971-寻找图中是否存在路径">1971. 寻找图中是否存在路径</h2>
+<p>有一个具有 n个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] = [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。</p>
+<p>请你确定是否存在从顶点 start 开始，到顶点 end 结束的 有效路径 。</p>
+<p>给你数组 edges 和整数 n、start和end，如果从 start 到 end 存在 有效路径 ，则返回 true，否则返回 false 。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;<span class="hljs-type">int</span>&gt; father;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findfather</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(a == father[a])&#123;
+            <span class="hljs-keyword">return</span> a;
+        &#125;
+        <span class="hljs-keyword">return</span> father[a] = <span class="hljs-built_in">findfather</span>(father[a]);
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>&#123;
+        a = <span class="hljs-built_in">findfather</span>(a);
+        b = <span class="hljs-built_in">findfather</span>(b);
+        <span class="hljs-keyword">if</span>(a == b)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        father[a] = b;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">validPath</span><span class="hljs-params">(<span class="hljs-type">int</span> n, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges, <span class="hljs-type">int</span> source, <span class="hljs-type">int</span> destination)</span> </span>&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            father.<span class="hljs-built_in">push_back</span>(i);
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;edges.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-built_in">join</span>(edges[i][<span class="hljs-number">0</span>], edges[i][<span class="hljs-number">1</span>]);
+        &#125;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">findfather</span>(source) == <span class="hljs-built_in">findfather</span>(destination))&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="684-冗余连接">684. 冗余连接</h2>
+<p>树可以看成是一个连通且 无环 的 无向 图。</p>
+<p>给定往一棵 n 个节点 (节点值 1～n) 的树中添加一条边后的图。添加的边的两个顶点包含在 1 到 n 中间，且这条附加的边不属于树中已存在的边。图的信息记录于长度为 n 的二维数组 edges ，edges[i] = [ai, bi] 表示图中在 ai 和 bi 之间存在一条边。</p>
+<p>请找出一条可以删去的边，删除后可使得剩余部分是一个有着 n 个节点的树。如果有多个答案，则返回数组 edges 中最后出现的边。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;<span class="hljs-type">int</span>&gt; father;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findfather</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>&#123;
+        <span class="hljs-keyword">return</span> a == father[a] ? a : father[a] = <span class="hljs-built_in">findfather</span>(father[a]);
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">join</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>&#123;
+        a = <span class="hljs-built_in">findfather</span>(a);
+        b = <span class="hljs-built_in">findfather</span>(b);
+        <span class="hljs-keyword">if</span>(a == b)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        father[a] = b;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">issamefather</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>&#123;
+        a = <span class="hljs-built_in">findfather</span>(a);
+        b = <span class="hljs-built_in">findfather</span>(b);
+        <span class="hljs-keyword">if</span>(a == b)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">findRedundantConnection</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;
+        <span class="hljs-type">int</span> n = edges.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">+1</span>;i++)&#123;
+            father.<span class="hljs-built_in">push_back</span>(i);
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;i++)&#123;
+            <span class="hljs-type">int</span> x = edges[i][<span class="hljs-number">0</span>];
+            <span class="hljs-type">int</span> y = edges[i][<span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">issamefather</span>(x,y))&#123;
+                <span class="hljs-keyword">return</span> edges[i];
+            &#125;
+            <span class="hljs-built_in">join</span>(x,y);
+        &#125;
+        <span class="hljs-keyword">return</span> edges[<span class="hljs-number">0</span>];
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="685-冗余连接II">685. 冗余连接II</h2>
+<p>在本问题中，有根树指满足以下条件的 有向 图。该树只有一个根节点，所有其他节点都是该根节点的后继。该树除了根节点之外的每一个节点都有且只有一个父节点，而根节点没有父节点。</p>
+<p>输入一个有向图，该图由一个有着 n 个节点（节点值不重复，从 1 到 n）的树及一条附加的有向边构成。附加的边包含在 1 到 n 中的两个不同顶点间，这条附加的边不属于树中已存在的边。</p>
+<p>结果图是一个以边组成的二维数组 edges 。 每个元素是一对 [ui, vi]，用以表示 有向 图中连接顶点 ui 和顶点 vi 的边，其中 ui 是 vi 的一个父节点。</p>
+<p>返回一条能删除的边，使得剩下的图是有 n 个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。</p>
+<p>这个不会</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"></code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码随想录-图论专题</div>
+      <div>https://zhangzhao219.github.io/2024/03/07/Leetcode/programmercarl/programmercarl-gt/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

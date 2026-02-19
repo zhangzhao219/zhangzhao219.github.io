@@ -1,0 +1,1841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="代码随想录-回溯算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录-回溯算法">
+<meta property="og:url" content="https://zhangzhao219.github.io/2024/03/13/Leetcode/programmercarl/programmercarl-bkt/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="代码随想录-回溯算法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-13T14:30:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.195Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码随想录-回溯算法 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">代码随想录-回溯算法</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-13 14:30" pubdate>
+          2024年3月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">代码随想录-回溯算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>代码随想录-回溯算法</p>
+<span id="more"></span>
+<h1>回溯</h1>
+<h2 id="回溯算法理论基础">回溯算法理论基础</h2>
+<p>回溯法，一般可以解决如下几种问题：</p>
+<ul>
+<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
+<li>切割问题：一个字符串按一定规则有几种切割方式</li>
+<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
+<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
+<li>棋盘问题：N皇后，解数独等等</li>
+</ul>
+<p><strong>回溯法解决的问题都可以抽象为树形结构</strong> ，是的，我指的是所有回溯法的问题都可以抽象为树形结构！</p>
+<p>因为回溯法解决的都是在集合中递归查找子集， <strong>集合的大小就构成了树的宽度，递归的深度，都构成的树的深度</strong> 。</p>
+<p>递归就要有终止条件，所以必然是一棵高度有限的树（N叉树）。</p>
+<p>回溯算法模板：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(参数)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (终止条件) &#123;
+        存放结果;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+
+    <span class="hljs-keyword">for</span> (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;
+        处理节点;
+        <span class="hljs-built_in">backtracking</span>(路径，选择列表); <span class="hljs-comment">// 递归</span>
+        回溯，撤销处理结果
+    &#125;
+&#125;
+</code></pre></div>
+<h2 id="77-组合">77. 组合</h2>
+<p>给定两个整数 <code>n</code> 和 <code>k</code>，返回范围 <code>[1, n]</code> 中所有可能的 <code>k</code> 个数的组合。</p>
+<p>你可以按 <strong>任何顺序</strong> 返回答案。</p>
+<div class="code-wrapper"><pre><code class="hljs 共、">func combine(n int, k int) [][]int &#123;
+    result := make([][]int,0)
+    temp := make([]int,0)
+    backtracking(n,k,1,temp,&amp;result)
+    return result
+&#125;
+
+func backtracking(n,k,s int,temp []int, result *[][]int)&#123;
+    if len(temp) == k&#123;
+        b := make([]int, len(temp))
+	copy(b, temp)
+        *result = append(*result,b)
+        return
+    &#125;
+    for i:=s;i&lt;=n-k+len(temp)+1;i++&#123;
+        temp = append(temp,i)
+        backtracking(n,k,i+1,temp,result)
+        temp = temp[:len(temp)-1]
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end, <span class="hljs-type">int</span> k)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == k)&#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=start;i&lt;=end;i++)&#123;
+            temp.<span class="hljs-built_in">push_back</span>(i);
+            <span class="hljs-built_in">backtracking</span>(i<span class="hljs-number">+1</span>,end,k);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combine</span>(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> k) &#123;
+        
+        <span class="hljs-built_in">backtracking</span>(<span class="hljs-number">1</span>,n,k);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="216-组合总和III">216. 组合总和III</h2>
+<p>找出所有相加之和为 <code>n</code> 的 <code>k</code> 个数的组合，且满足下列条件：</p>
+<ul>
+<li>只使用数字1到9</li>
+<li>每个数字 <strong>最多使用一次</strong></li>
+</ul>
+<p>返回 <em>所有可能的有效组合的列表</em> 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">combinationSum3</span><span class="hljs-params">(k <span class="hljs-type">int</span>, n <span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    backtracking(n,k,<span class="hljs-number">1</span>,temp,&amp;result)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(n,k,s <span class="hljs-type">int</span>, temp []<span class="hljs-type">int</span>,result *[][]<span class="hljs-type">int</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) == k&#123;
+        <span class="hljs-keyword">if</span> sum(temp) == n&#123;
+            t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>(temp))
+            <span class="hljs-built_in">copy</span>(t2,temp)
+            *result = <span class="hljs-built_in">append</span>(*result,t2)
+        &#125;
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=s;i&lt;=<span class="hljs-number">9</span>-k+<span class="hljs-built_in">len</span>(temp)+<span class="hljs-number">1</span>;i++&#123;
+        temp = <span class="hljs-built_in">append</span>(temp,i)
+        backtracking(n,k,i+<span class="hljs-number">1</span>,temp,result)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sum</span><span class="hljs-params">(temp []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    res := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(temp);i++&#123;
+        res += temp[i]
+    &#125;
+    <span class="hljs-keyword">return</span> res
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> n)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == k)&#123;
+            <span class="hljs-type">int</span> tempsum = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;k;i++)&#123;
+                tempsum += temp[i];
+            &#125;
+            <span class="hljs-keyword">if</span>(tempsum == n)&#123;
+                result.<span class="hljs-built_in">push_back</span>(temp);
+                <span class="hljs-keyword">return</span>;
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() &gt; k)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=start;i&lt;=end;i++)&#123;
+            temp.<span class="hljs-built_in">push_back</span>(i);
+            <span class="hljs-built_in">backtracking</span>(i<span class="hljs-number">+1</span>,<span class="hljs-number">9</span>,k,n);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum3</span>(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span> n) &#123;
+        <span class="hljs-built_in">backtracking</span>(<span class="hljs-number">1</span>,<span class="hljs-number">9</span>,k,n);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="17-电话号码的字母组合">17. 电话号码的字母组合</h2>
+<p>给定一个仅包含数字 <code>2-9</code> 的字符串，返回所有它能表示的字母组合。答案可以按 <strong>任意顺序</strong> 返回。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">letterCombinations</span><span class="hljs-params">(digits <span class="hljs-type">string</span>)</span></span> []<span class="hljs-type">string</span> &#123;
+    alphamap := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">byte</span>][]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    alphamap[<span class="hljs-string">&#x27;2&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;3&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;f&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;4&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;g&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;i&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;5&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;j&quot;</span>,<span class="hljs-string">&quot;k&quot;</span>,<span class="hljs-string">&quot;l&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;6&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;m&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>,<span class="hljs-string">&quot;o&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;7&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;p&quot;</span>,<span class="hljs-string">&quot;q&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,<span class="hljs-string">&quot;s&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;8&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;t&quot;</span>,<span class="hljs-string">&quot;u&quot;</span>,<span class="hljs-string">&quot;v&quot;</span>&#125;
+    alphamap[<span class="hljs-string">&#x27;9&#x27;</span>] = []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;w&quot;</span>,<span class="hljs-string">&quot;x&quot;</span>,<span class="hljs-string">&quot;y&quot;</span>,<span class="hljs-string">&quot;z&quot;</span>&#125;
+    result := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    n := <span class="hljs-built_in">len</span>(digits)
+    temp := <span class="hljs-string">&quot;&quot;</span>
+    backtracking(n,<span class="hljs-number">0</span>,digits,alphamap,temp,&amp;result)
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(result) == <span class="hljs-number">1</span> &amp;&amp; result[<span class="hljs-number">0</span>] == <span class="hljs-string">&quot;&quot;</span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(n,s <span class="hljs-type">int</span>,digits <span class="hljs-type">string</span>,alphamap <span class="hljs-keyword">map</span>[<span class="hljs-type">byte</span>][]<span class="hljs-type">string</span>,temp <span class="hljs-type">string</span> ,result *[]<span class="hljs-type">string</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) == n&#123;
+        *result = <span class="hljs-built_in">append</span>(*result,temp)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    index := digits[s]
+    letter := alphamap[index]
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(letter);i++&#123;
+        temp += letter[i]
+        backtracking(n,s+<span class="hljs-number">1</span>,digits,alphamap,temp,result)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    map&lt;<span class="hljs-type">int</span>, vector&lt;string&gt; &gt; mp;
+    vector&lt;string&gt; result;
+    vector&lt;string&gt; temp;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(string digits, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == end)&#123;
+            string t;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;end;i++)&#123;
+                t += temp[i];
+            &#125;
+            result.<span class="hljs-built_in">push_back</span>(t);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=start;i&lt;end;i++)&#123;
+            <span class="hljs-type">int</span> index = digits[i] - <span class="hljs-string">&#x27;0&#x27;</span>;
+            vector&lt;string&gt; worddict = mp[index];
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;worddict.<span class="hljs-built_in">size</span>();j++)&#123;
+                temp.<span class="hljs-built_in">push_back</span>(worddict[j]);
+                <span class="hljs-built_in">backtracking</span>(digits,i<span class="hljs-number">+1</span>,digits.<span class="hljs-built_in">size</span>());
+                temp.<span class="hljs-built_in">pop_back</span>();
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">letterCombinations</span><span class="hljs-params">(string digits)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(digits.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">return</span> result;
+        &#125;
+        mp[<span class="hljs-number">2</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;b&quot;</span>,<span class="hljs-string">&quot;c&quot;</span>&#125;;
+        mp[<span class="hljs-number">3</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;d&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;f&quot;</span>&#125;;
+        mp[<span class="hljs-number">4</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;g&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;i&quot;</span>&#125;;
+        mp[<span class="hljs-number">5</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;j&quot;</span>,<span class="hljs-string">&quot;k&quot;</span>,<span class="hljs-string">&quot;l&quot;</span>&#125;;
+        mp[<span class="hljs-number">6</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;m&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>,<span class="hljs-string">&quot;o&quot;</span>&#125;;
+        mp[<span class="hljs-number">7</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;p&quot;</span>,<span class="hljs-string">&quot;q&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,<span class="hljs-string">&quot;s&quot;</span>&#125;;
+        mp[<span class="hljs-number">8</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;t&quot;</span>,<span class="hljs-string">&quot;u&quot;</span>,<span class="hljs-string">&quot;v&quot;</span>&#125;;
+        mp[<span class="hljs-number">9</span>] = vector&lt;string&gt;&#123;<span class="hljs-string">&quot;w&quot;</span>,<span class="hljs-string">&quot;x&quot;</span>,<span class="hljs-string">&quot;y&quot;</span>,<span class="hljs-string">&quot;z&quot;</span>&#125;;
+        <span class="hljs-built_in">backtracking</span>(digits,<span class="hljs-number">0</span>,digits.<span class="hljs-built_in">size</span>());
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="39-组合总和">39. 组合总和</h2>
+<p>给你一个 <strong>无重复元素</strong> 的整数数组 <code>candidates</code> 和一个目标整数 <code>target</code> ，找出 <code>candidates</code> 中可以使数字和为目标数 <code>target</code> 的 所有 <strong>不同组合</strong> ，并以列表形式返回。你可以按 <strong>任意顺序</strong> 返回这些组合。</p>
+<p><code>candidates</code> 中的 <strong>同一个</strong> 数字可以 <strong>无限制重复被选取</strong> 。如果至少一个数字的被选数量不同，则两种组合是不同的。</p>
+<p>对于给定的输入，保证和为 <code>target</code> 的不同组合数少于 <code>150</code> 个。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">combinationSum</span><span class="hljs-params">(candidates []<span class="hljs-type">int</span>, target <span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    backtracking(<span class="hljs-number">0</span>,candidates,target,temp,&amp;result)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">int</span>,candidates []<span class="hljs-type">int</span>, target <span class="hljs-type">int</span>, temp []<span class="hljs-type">int</span>,result *[][]<span class="hljs-type">int</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> sum(temp) == target&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>(temp))
+        <span class="hljs-built_in">copy</span>(t2,temp)
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> sum(temp) &gt; target&#123;
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=s;i&lt;<span class="hljs-built_in">len</span>(candidates);i++&#123;
+        temp = <span class="hljs-built_in">append</span>(temp,candidates[i])
+        backtracking(i,candidates,target,temp,result)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sum</span><span class="hljs-params">(temp []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span>&#123;
+    res := <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(temp);i++&#123;
+        res += temp[i]
+    &#125;
+    <span class="hljs-keyword">return</span> res
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+        <span class="hljs-type">int</span> countsum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;temp.<span class="hljs-built_in">size</span>();i++)&#123;
+            countsum += temp[i];
+        &#125;
+        <span class="hljs-keyword">if</span>(countsum == target)&#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+            <span class="hljs-keyword">return</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(countsum &gt; target)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=start;i&lt;=end;i++)&#123;
+            temp.<span class="hljs-built_in">push_back</span>(candidates[i]);
+            <span class="hljs-built_in">backtracking</span>(candidates,target,i,candidates.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target) &#123;
+        <span class="hljs-built_in">backtracking</span>(candidates, target,<span class="hljs-number">0</span>,candidates.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="40-组合总和II">40. 组合总和II</h2>
+<p>给定一个候选人编号的集合 <code>candidates</code> 和一个目标数 <code>target</code> ，找出 <code>candidates</code> 中所有可以使数字和为 <code>target</code> 的组合。</p>
+<p><code>candidates</code> 中的每个数字在每个组合中只能使用 <strong>一次</strong> 。</p>
+<p><strong>注意：</strong> 解集不能包含重复的组合。</p>
+<p>注意要去重！</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">combinationSum2</span><span class="hljs-params">(candidates []<span class="hljs-type">int</span>, target <span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    sort.Slice(candidates,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span>&#123;
+        <span class="hljs-keyword">return</span> candidates[i] &lt; candidates[j]
+    &#125;)
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    backtracking(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,candidates,target,temp,&amp;result)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s,sum <span class="hljs-type">int</span>,candidates []<span class="hljs-type">int</span>, target <span class="hljs-type">int</span>, temp []<span class="hljs-type">int</span>,result *[][]<span class="hljs-type">int</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> sum == target&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>(temp))
+        <span class="hljs-built_in">copy</span>(t2,temp)
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> sum &gt; target&#123;
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=s;i&lt;<span class="hljs-built_in">len</span>(candidates);i++&#123;
+        <span class="hljs-keyword">if</span> i&gt;s&amp;&amp;candidates[i]==candidates[i<span class="hljs-number">-1</span>]&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        temp = <span class="hljs-built_in">append</span>(temp,candidates[i])
+        sum += candidates[i]
+        backtracking(i+<span class="hljs-number">1</span>,sum,candidates,target,temp,result)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+        sum -= candidates[i]
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">private</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+        <span class="hljs-type">int</span> countsum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;temp.<span class="hljs-built_in">size</span>();i++)&#123;
+            countsum += temp[i];
+        &#125;
+        <span class="hljs-keyword">if</span>(countsum == target)&#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+            <span class="hljs-keyword">return</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(countsum &gt; target)&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=start;i&lt;=end;i++)&#123;
+            <span class="hljs-keyword">if</span> (i &gt; start &amp;&amp; candidates[i] == candidates[i - <span class="hljs-number">1</span>]) &#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            temp.<span class="hljs-built_in">push_back</span>(candidates[i]);
+            <span class="hljs-built_in">backtracking</span>(candidates,target,i<span class="hljs-number">+1</span>,candidates.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum2</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target) &#123;
+        <span class="hljs-built_in">sort</span>(candidates.<span class="hljs-built_in">begin</span>(), candidates.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">backtracking</span>(candidates, target,<span class="hljs-number">0</span>,candidates.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="131-分割回文串">131. 分割回文串</h2>
+<p>给你一个字符串 <code>s</code>，请你将 <code>s</code> 分割成一些子串，使每个子串都是 <strong>回文串</strong> 。返回 <code>s</code> 所有可能的分割方案。</p>
+<p><strong>回文串</strong> 是正着读和反着读都一样的字符串。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">partition</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> [][]<span class="hljs-type">string</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    backtracking(s,<span class="hljs-number">0</span>,temp,&amp;result)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">string</span>, start <span class="hljs-type">int</span>, temp []<span class="hljs-type">string</span>,result *[][]<span class="hljs-type">string</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> start == <span class="hljs-built_in">len</span>(s)&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-built_in">len</span>(temp))
+        <span class="hljs-built_in">copy</span>(t2,temp)
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=start;i&lt;<span class="hljs-built_in">len</span>(s);i++&#123;
+        <span class="hljs-keyword">if</span> judge(s,start,i)&#123;
+            temp = <span class="hljs-built_in">append</span>(temp,s[start:i+<span class="hljs-number">1</span>])
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        backtracking(s,i+<span class="hljs-number">1</span>,temp,result)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">judge</span><span class="hljs-params">(s <span class="hljs-type">string</span>,start,end <span class="hljs-type">int</span>)</span></span><span class="hljs-type">bool</span> &#123;
+    <span class="hljs-keyword">for</span> start &lt; end&#123;
+        <span class="hljs-keyword">if</span> s[start] != s[end]&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+        start += <span class="hljs-number">1</span>
+        end -= <span class="hljs-number">1</span>
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;string&gt; &gt; result;
+    vector&lt;string&gt; path;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judgepa</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> startIndex, <span class="hljs-type">int</span> endIndex)</span></span>&#123;
+        <span class="hljs-keyword">while</span>(startIndex &lt; endIndex)&#123;
+            <span class="hljs-keyword">if</span>(s[startIndex] != s[endIndex])&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+            startIndex += <span class="hljs-number">1</span>;
+            endIndex -= <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> startIndex)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(startIndex &gt;= s.<span class="hljs-built_in">size</span>())&#123;
+            result.<span class="hljs-built_in">push_back</span>(path);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = startIndex;i&lt;s.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">judgepa</span>(s,startIndex,i))&#123;
+                string str = s.<span class="hljs-built_in">substr</span>(startIndex, i-startIndex<span class="hljs-number">+1</span>);
+                path.<span class="hljs-built_in">push_back</span>(str);
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            <span class="hljs-built_in">backtracking</span>(s,i<span class="hljs-number">+1</span>);
+            path.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+
+    &#125;
+    vector&lt;vector&lt;string&gt;&gt; <span class="hljs-built_in">partition</span>(string s) &#123;
+        <span class="hljs-built_in">backtracking</span>(s,<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="93-复原IP地址">93. 复原IP地址</h2>
+<p><strong>有效 IP 地址</strong> 正好由四个整数（每个整数位于 <code>0</code> 到 <code>255</code> 之间组成，且不能含有前导 <code>0</code>），整数之间用 <code>'.'</code> 分隔。</p>
+<ul>
+<li>例如：<code>&quot;0.1.2.201&quot;</code> 和 <code> &quot;192.168.1.1&quot;</code> 是 <strong>有效</strong> IP 地址，但是 <code>&quot;0.011.255.245&quot;</code>、<code>&quot;192.168.1.312&quot;</code> 和 <code>&quot;192.168@1.1&quot;</code> 是 <strong>无效</strong> IP 地址。</li>
+</ul>
+<p>给定一个只包含数字的字符串 <code>s</code> ，用以表示一个 IP 地址，返回所有可能的 <strong>有效 IP 地址</strong> ，这些地址可以通过在 <code>s</code> 中插入 <code>'.'</code> 来形成。你 <strong>不能</strong> 重新排序或删除 <code>s</code> 中的任何数字。你可以按 <strong>任何</strong> 顺序返回答案。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">restoreIpAddresses</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> []<span class="hljs-type">string</span> &#123;
+    result := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    backtracking(s,<span class="hljs-number">0</span>,temp,&amp;result)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">string</span>, start <span class="hljs-type">int</span>, temp []<span class="hljs-type">string</span>,result *[]<span class="hljs-type">string</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> start == <span class="hljs-built_in">len</span>(s) &amp;&amp; <span class="hljs-built_in">len</span>(temp) == <span class="hljs-number">4</span>&#123;
+        t2 := temp[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot;.&quot;</span> + temp[<span class="hljs-number">1</span>] + <span class="hljs-string">&quot;.&quot;</span> + temp[<span class="hljs-number">2</span>] + <span class="hljs-string">&quot;.&quot;</span> + temp[<span class="hljs-number">3</span>]
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=start;i&lt;<span class="hljs-built_in">len</span>(s);i++&#123;
+        temp = <span class="hljs-built_in">append</span>(temp,s[start:i+<span class="hljs-number">1</span>])
+        <span class="hljs-keyword">if</span> i-start+<span class="hljs-number">1</span>&lt;=<span class="hljs-number">3</span>&amp;&amp;<span class="hljs-built_in">len</span>(temp)&lt;=<span class="hljs-number">4</span>&amp;&amp;judge(s,start,i)&#123;
+            backtracking(s,i+<span class="hljs-number">1</span>,temp,result)
+        &#125; <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">judge</span><span class="hljs-params">(s <span class="hljs-type">string</span>,start,end <span class="hljs-type">int</span>)</span></span><span class="hljs-type">bool</span> &#123;
+    checkInt,_:=strconv.Atoi(s[start:end+<span class="hljs-number">1</span>])
+	<span class="hljs-keyword">if</span> end-start+<span class="hljs-number">1</span>&gt;<span class="hljs-number">1</span>&amp;&amp;s[start]==<span class="hljs-string">&#x27;0&#x27;</span>&#123;<span class="hljs-comment">//对于前导 0的IP（特别注意s[startIndex]==&#x27;0&#x27;的判断，不应该写成s[startIndex]==0，因为s截取出来不是数字）</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+	&#125;
+	<span class="hljs-keyword">if</span> checkInt&gt;<span class="hljs-number">255</span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;string&gt; result;
+    vector&lt;string&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judgenum</span><span class="hljs-params">(string r)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(r.<span class="hljs-built_in">size</span>() &lt;= <span class="hljs-number">0</span> || r.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">3</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-type">int</span> num = <span class="hljs-built_in">stoi</span>(r);
+        <span class="hljs-keyword">if</span>(num &gt; <span class="hljs-number">255</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-keyword">if</span>(num != <span class="hljs-number">0</span> &amp;&amp; r[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;0&#x27;</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-keyword">if</span>(num == <span class="hljs-number">0</span> &amp;&amp; r.<span class="hljs-built_in">size</span>() != <span class="hljs-number">1</span>)&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> startIndex)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(startIndex &gt;= s.<span class="hljs-built_in">size</span>() &amp;&amp; temp.<span class="hljs-built_in">size</span>() == <span class="hljs-number">4</span>)&#123;
+            string r = <span class="hljs-string">&quot;&quot;</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">3</span>;i++)&#123;
+                r += temp[i];
+                r += <span class="hljs-string">&quot;.&quot;</span>;
+            &#125;
+            r += temp[<span class="hljs-number">3</span>];
+            result.<span class="hljs-built_in">push_back</span>(r);
+            <span class="hljs-keyword">return</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">4</span> || startIndex &gt;= s.<span class="hljs-built_in">size</span>())&#123;
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=startIndex;i&lt;s.<span class="hljs-built_in">size</span>();i++)&#123;
+            string r = s.<span class="hljs-built_in">substr</span>(startIndex,i-startIndex<span class="hljs-number">+1</span>);
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">judgenum</span>(r))&#123;
+                temp.<span class="hljs-built_in">push_back</span>(r);
+            &#125; <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            <span class="hljs-built_in">backtracking</span>(s,i<span class="hljs-number">+1</span>);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">restoreIpAddresses</span><span class="hljs-params">(string s)</span> </span>&#123;
+        <span class="hljs-built_in">backtracking</span>(s,<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="78-子集">78. 子集</h2>
+<p>给你一个整数数组 <code>nums</code> ，数组中的元素 <strong>互不相同</strong> 。返回该数组所有可能的子集（幂集）。</p>
+<p>解集 <strong>不能</strong> 包含重复的子集。你可以按 <strong>任意顺序</strong> 返回解集。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">subsets</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> n:=<span class="hljs-number">0</span>;n&lt;=<span class="hljs-built_in">len</span>(nums);n++&#123;
+        backtracking(<span class="hljs-number">0</span>,n,temp,&amp;result,nums)
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s,n <span class="hljs-type">int</span>,temp []<span class="hljs-type">int</span>,result *[][]<span class="hljs-type">int</span>,nums []<span class="hljs-type">int</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) == n&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,n)
+        <span class="hljs-built_in">copy</span>(t2,temp)
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=s;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        temp = <span class="hljs-built_in">append</span>(temp,nums[i])
+        backtracking(i+<span class="hljs-number">1</span>,n,temp,result,nums)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; nums, <span class="hljs-type">int</span> startIndex, <span class="hljs-type">int</span> maxIndex)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == maxIndex)&#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=startIndex;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            temp.<span class="hljs-built_in">push_back</span>(nums[i]);
+            <span class="hljs-built_in">backtracking</span>(nums, i<span class="hljs-number">+1</span>, maxIndex);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">subsets</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-built_in">backtracking</span>(nums,<span class="hljs-number">0</span>,i);
+        &#125;
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="90-子集-II">90. 子集 II</h2>
+<p>给你一个整数数组 <code>nums</code> ，其中可能包含重复元素，请你返回该数组所有可能的子集（幂集）。</p>
+<p>解集 <strong>不能</strong> 包含重复的子集。返回的解集中，子集可以按 <strong>任意顺序</strong> 排列。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">subsetsWithDup</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    sort.Slice(nums,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span>&#123;
+        <span class="hljs-keyword">return</span> nums[i] &lt; nums[j]
+    &#125;)
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> n:=<span class="hljs-number">0</span>;n&lt;=<span class="hljs-built_in">len</span>(nums);n++&#123;
+        backtracking(<span class="hljs-number">0</span>,n,temp,&amp;result,nums)
+    &#125;
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s,n <span class="hljs-type">int</span>,temp []<span class="hljs-type">int</span>,result *[][]<span class="hljs-type">int</span>,nums []<span class="hljs-type">int</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) == n&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,n)
+        <span class="hljs-built_in">copy</span>(t2,temp)
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=s;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        <span class="hljs-keyword">if</span> i &gt; s &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>]&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        temp = <span class="hljs-built_in">append</span>(temp,nums[i])
+        backtracking(i+<span class="hljs-number">1</span>,n,temp,result,nums)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; nums, <span class="hljs-type">int</span> startIndex)</span></span>&#123;
+        result.<span class="hljs-built_in">push_back</span>(temp);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=startIndex;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(i &gt; startIndex &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>])&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            temp.<span class="hljs-built_in">push_back</span>(nums[i]);
+            <span class="hljs-built_in">backtracking</span>(nums, i<span class="hljs-number">+1</span>);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">subsetsWithDup</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;
+        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">backtracking</span>(nums,<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="491-递增子序列">491. 递增子序列</h2>
+<p>给你一个整数数组 <code>nums</code> ，找出并返回所有该数组中不同的递增子序列，递增子序列中 <strong>至少有两个元素</strong> 。你可以按 <strong>任意顺序</strong> 返回答案。</p>
+<p>数组中可能含有重复元素，如出现两个整数相等，也可以视作递增序列的一种特殊情况。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findSubsequences</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    backtracking(<span class="hljs-number">0</span>,temp,&amp;result,nums)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">int</span> ,temp []<span class="hljs-type">int</span>,result *[][]<span class="hljs-type">int</span>,nums []<span class="hljs-type">int</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) &gt; <span class="hljs-number">1</span>&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>(temp))
+        <span class="hljs-built_in">copy</span>(t2,temp)
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+    &#125;
+    history:=[<span class="hljs-number">201</span>]<span class="hljs-type">int</span>&#123;&#125;
+    <span class="hljs-keyword">for</span> i:=s;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp)&gt;<span class="hljs-number">0</span> &amp;&amp; nums[i]&lt;temp[<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]||history[nums[i] + <span class="hljs-number">100</span>]==<span class="hljs-number">1</span>&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        history[nums[i] + <span class="hljs-number">100</span>]=<span class="hljs-number">1</span>
+        temp = <span class="hljs-built_in">append</span>(temp,nums[i])
+        backtracking(i+<span class="hljs-number">1</span>,temp,result,nums)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; t)</span></span>&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;t.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;i++)&#123;
+            <span class="hljs-keyword">if</span>(t[i<span class="hljs-number">+1</span>] &lt;= t[i])&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> startIndex)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (temp.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">1</span>) &#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+        &#125;
+        unordered_set&lt;<span class="hljs-type">int</span>&gt; uset; 
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = startIndex; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">if</span> ((!temp.<span class="hljs-built_in">empty</span>() &amp;&amp; nums[i] &lt; temp.<span class="hljs-built_in">back</span>())
+                    || uset.<span class="hljs-built_in">find</span>(nums[i]) != uset.<span class="hljs-built_in">end</span>()) &#123;
+                    <span class="hljs-keyword">continue</span>;
+            &#125;
+            uset.<span class="hljs-built_in">insert</span>(nums[i]);
+            temp.<span class="hljs-built_in">push_back</span>(nums[i]);
+            <span class="hljs-built_in">backtracking</span>(nums, i + <span class="hljs-number">1</span>);
+            temp.<span class="hljs-built_in">pop_back</span>();
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">findSubsequences</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;
+        <span class="hljs-built_in">backtracking</span>(nums,<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="46-全排列">46. 全排列</h2>
+<p>给定一个不含重复数字的数组 <code>nums</code> ，返回其 <em>所有可能的全排列</em> 。你可以 <strong>按任意顺序</strong> 返回答案。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">permute</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    used := <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>,<span class="hljs-built_in">len</span>(nums))
+    backtracking(<span class="hljs-number">0</span>,nums,temp,&amp;result,used)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">int</span>, nums,temp []<span class="hljs-type">int</span>, result *[][]<span class="hljs-type">int</span>,used []<span class="hljs-type">bool</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) == <span class="hljs-built_in">len</span>(nums)&#123;
+        b := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-built_in">len</span>(temp))
+	    <span class="hljs-built_in">copy</span>(b, temp)
+        *result = <span class="hljs-built_in">append</span>(*result,b)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        <span class="hljs-keyword">if</span> used[i] == <span class="hljs-literal">true</span>&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        temp = <span class="hljs-built_in">append</span>(temp,nums[i])
+        used[i] = <span class="hljs-literal">true</span>
+        backtracking(i+<span class="hljs-number">1</span>,nums,temp,result,used)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+        used[i] = <span class="hljs-literal">false</span>
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> startIndex, vector&lt;<span class="hljs-type">bool</span>&gt; used)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == nums.<span class="hljs-built_in">size</span>())&#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>(used[i] == <span class="hljs-literal">true</span>)&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            used[i] = <span class="hljs-literal">true</span>;
+            temp.<span class="hljs-built_in">push_back</span>(nums[i]);
+            <span class="hljs-built_in">backtracking</span>(nums,i<span class="hljs-number">+1</span>, used);
+            temp.<span class="hljs-built_in">pop_back</span>();
+            used[i] = <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">permute</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(nums.size(), <span class="hljs-literal">false</span>)</span></span>;
+        <span class="hljs-built_in">backtracking</span>(nums,<span class="hljs-number">0</span>, used);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="47-全排列-II">47. 全排列 II</h2>
+<p>给定一个可包含重复数字的序列 <code>nums</code> ，<em><strong>按任意顺序</strong></em> 返回所有不重复的全排列。</p>
+<p>used[i - 1] == true，说明同一树枝nums[i - 1]使用过</p>
+<p>used[i - 1] == false，说明同一树层nums[i - 1]使用过</p>
+<p>如果同一树层nums[i - 1]使用过则直接跳过</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">permuteUnique</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">int</span> &#123;
+    sort.Slice(nums,<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i,j <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+        <span class="hljs-keyword">return</span> nums[i] &lt; nums[j]
+    &#125;)
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-number">0</span>)
+    used := <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>,<span class="hljs-built_in">len</span>(nums))
+    backtracking(<span class="hljs-number">0</span>,nums,temp,&amp;result,used)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">int</span>, nums,temp []<span class="hljs-type">int</span>, result *[][]<span class="hljs-type">int</span>,used []<span class="hljs-type">bool</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(temp) == <span class="hljs-built_in">len</span>(nums)&#123;
+        b := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-built_in">len</span>(temp))
+	    <span class="hljs-built_in">copy</span>(b, temp)
+        *result = <span class="hljs-built_in">append</span>(*result,b)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(nums);i++&#123;
+        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>] &amp;&amp; used[i - <span class="hljs-number">1</span>] == <span class="hljs-literal">false</span> || used[i] == <span class="hljs-literal">true</span>&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        temp = <span class="hljs-built_in">append</span>(temp,nums[i])
+        used[i] = <span class="hljs-literal">true</span>
+        backtracking(i+<span class="hljs-number">1</span>,nums,temp,result,used)
+        temp = temp[:<span class="hljs-built_in">len</span>(temp)<span class="hljs-number">-1</span>]
+        used[i] = <span class="hljs-literal">false</span>
+    &#125;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, vector&lt;<span class="hljs-type">bool</span>&gt; used)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == nums.<span class="hljs-built_in">size</span>())&#123;
+            result.<span class="hljs-built_in">push_back</span>(temp);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;nums.<span class="hljs-built_in">size</span>();i++)&#123;
+            <span class="hljs-keyword">if</span>((i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>] &amp;&amp; used[i<span class="hljs-number">-1</span>] == <span class="hljs-literal">false</span>) || used[i] == <span class="hljs-literal">true</span>)&#123;
+                <span class="hljs-keyword">continue</span>;
+            &#125;
+            used[i] = <span class="hljs-literal">true</span>;
+            temp.<span class="hljs-built_in">push_back</span>(nums[i]);
+            <span class="hljs-built_in">backtracking</span>(nums, used);
+            temp.<span class="hljs-built_in">pop_back</span>();
+            used[i] = <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">permuteUnique</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(nums.size(), <span class="hljs-literal">false</span>)</span></span>;
+        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">backtracking</span>(nums, used);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="332-重新安排行程">332. 重新安排行程</h2>
+<p>给你一份航线列表 <code>tickets</code> ，其中 <code>tickets[i] = [from&lt;sub&gt;i&lt;/sub&gt;, to&lt;sub&gt;i&lt;/sub&gt;]</code> 表示飞机出发和降落的机场地点。请你对该行程进行重新规划排序。</p>
+<p>所有这些机票都属于一个从 <code>JFK</code>（肯尼迪国际机场）出发的先生，所以该行程必须从 <code>JFK</code> 开始。如果存在多种有效的行程，请你按字典排序返回最小的行程组合。</p>
+<ul>
+<li>例如，行程 <code>[&quot;JFK&quot;, &quot;LGA&quot;]</code> 与 <code>[&quot;JFK&quot;, &quot;LGB&quot;]</code> 相比就更小，排序更靠前。</li>
+</ul>
+<p>假定所有机票至少存在一种合理的行程。且所有的机票 必须都用一次 且 只能用一次。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> pair <span class="hljs-keyword">struct</span> &#123;
+	target  <span class="hljs-type">string</span>
+	visited <span class="hljs-type">bool</span>
+&#125;
+<span class="hljs-keyword">type</span> pairs []*pair
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p pairs)</span></span> Len() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(p)
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p pairs)</span></span> Swap(i, j <span class="hljs-type">int</span>) &#123;
+	p[i], p[j] = p[j], p[i]
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p pairs)</span></span> Less(i, j <span class="hljs-type">int</span>) <span class="hljs-type">bool</span> &#123;
+	<span class="hljs-keyword">return</span> p[i].target &lt; p[j].target
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findItinerary</span><span class="hljs-params">(tickets [][]<span class="hljs-type">string</span>)</span></span> []<span class="hljs-type">string</span> &#123;
+	result := []<span class="hljs-type">string</span>&#123;&#125;
+	<span class="hljs-comment">// map[出发机场] pair&#123;目的地,是否被访问过&#125;</span>
+	targets := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]pairs)
+	<span class="hljs-keyword">for</span> _, ticket := <span class="hljs-keyword">range</span> tickets &#123;
+		<span class="hljs-keyword">if</span> targets[ticket[<span class="hljs-number">0</span>]] == <span class="hljs-literal">nil</span> &#123;
+			targets[ticket[<span class="hljs-number">0</span>]] = <span class="hljs-built_in">make</span>(pairs, <span class="hljs-number">0</span>)
+		&#125;
+		targets[ticket[<span class="hljs-number">0</span>]] = <span class="hljs-built_in">append</span>(targets[ticket[<span class="hljs-number">0</span>]], &amp;pair&#123;target: ticket[<span class="hljs-number">1</span>], visited: <span class="hljs-literal">false</span>&#125;)
+	&#125;
+	<span class="hljs-keyword">for</span> k, _ := <span class="hljs-keyword">range</span> targets &#123;
+		sort.Sort(targets[k])
+	&#125;
+	result = <span class="hljs-built_in">append</span>(result, <span class="hljs-string">&quot;JFK&quot;</span>)
+	<span class="hljs-keyword">var</span> backtracking <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> <span class="hljs-type">bool</span>
+	backtracking = <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> <span class="hljs-type">bool</span> &#123;
+		<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(tickets)+<span class="hljs-number">1</span> == <span class="hljs-built_in">len</span>(result) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+		&#125;
+		<span class="hljs-comment">// 取出起飞航班对应的目的地</span>
+		<span class="hljs-keyword">for</span> _, pair := <span class="hljs-keyword">range</span> targets[result[<span class="hljs-built_in">len</span>(result)<span class="hljs-number">-1</span>]] &#123;
+			<span class="hljs-keyword">if</span> pair.visited == <span class="hljs-literal">false</span> &#123;
+				result = <span class="hljs-built_in">append</span>(result, pair.target)
+				pair.visited = <span class="hljs-literal">true</span>
+				<span class="hljs-keyword">if</span> backtracking() &#123;
+					<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+				&#125;
+				result = result[:<span class="hljs-built_in">len</span>(result)<span class="hljs-number">-1</span>]
+				pair.visited = <span class="hljs-literal">false</span>
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+	&#125;
+
+	backtracking()
+
+	<span class="hljs-keyword">return</span> result
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;string, map&lt;string, <span class="hljs-type">int</span>&gt;&gt; targets;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> ticketNum, vector&lt;string&gt;&amp; result)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (result.<span class="hljs-built_in">size</span>() == ticketNum + <span class="hljs-number">1</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">for</span> (pair&lt;<span class="hljs-type">const</span> string, <span class="hljs-type">int</span>&gt;&amp; target : targets[result[result.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>]]) &#123;
+            <span class="hljs-keyword">if</span> (target.second &gt; <span class="hljs-number">0</span> ) &#123; <span class="hljs-comment">// 记录到达机场是否飞过了</span>
+                result.<span class="hljs-built_in">push_back</span>(target.first);
+                target.second--;
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">backtracking</span>(ticketNum, result)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                result.<span class="hljs-built_in">pop_back</span>();
+                target.second++;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">findItinerary</span><span class="hljs-params">(vector&lt;vector&lt;string&gt;&gt;&amp; tickets)</span> </span>&#123;
+        targets.<span class="hljs-built_in">clear</span>();
+        vector&lt;string&gt; result;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> vector&lt;string&gt;&amp; vec : tickets) &#123;
+            targets[vec[<span class="hljs-number">0</span>]][vec[<span class="hljs-number">1</span>]]++; <span class="hljs-comment">// 记录映射关系</span>
+        &#125;
+        result.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&quot;JFK&quot;</span>); <span class="hljs-comment">// 起始机场</span>
+        <span class="hljs-built_in">backtracking</span>(tickets.<span class="hljs-built_in">size</span>(), result);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="51-N皇后">51. N皇后</h2>
+<p>按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。</p>
+<p><strong>n 皇后问题</strong> 研究的是如何将 <code>n</code> 个皇后放置在 <code>n×n</code> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>给你一个整数 <code>n</code> ，返回所有不同的 <strong>n 皇后问题</strong> 的解决方案。</p>
+<p>每一种解法包含一个不同的 <strong>n 皇后问题</strong> 的棋子放置方案，该方案中 <code>'Q'</code> 和 <code>'.'</code> 分别代表了皇后和空位。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">solveNQueens</span><span class="hljs-params">(n <span class="hljs-type">int</span>)</span></span> [][]<span class="hljs-type">string</span> &#123;
+    result := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+    temp := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">string</span>,n)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;n;i++&#123;
+        temp[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,n)
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;n;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;n;j++&#123;
+            temp[i][j] = <span class="hljs-string">&quot;.&quot;</span>
+        &#125;
+    &#125;
+    backtracking(<span class="hljs-number">0</span>,temp,&amp;result)
+    <span class="hljs-keyword">return</span> result
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(s <span class="hljs-type">int</span>,temp [][]<span class="hljs-type">string</span>,result *[][]<span class="hljs-type">string</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span> s == <span class="hljs-built_in">len</span>(temp)&#123;
+        t2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">string</span>,<span class="hljs-number">0</span>)
+        <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(temp);i++&#123;
+            s2 := <span class="hljs-string">&quot;&quot;</span>
+            <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;<span class="hljs-built_in">len</span>(temp);j++&#123;
+                s2 += temp[i][j]
+            &#125;
+            t2 = <span class="hljs-built_in">append</span>(t2,s2)
+        &#125;
+        *result = <span class="hljs-built_in">append</span>(*result,t2)
+        <span class="hljs-keyword">return</span>
+    &#125;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">len</span>(temp);i++&#123;
+        <span class="hljs-keyword">if</span> judge(temp,s,i) == <span class="hljs-literal">false</span>&#123;
+            <span class="hljs-keyword">continue</span>
+        &#125;
+        temp[s][i] = <span class="hljs-string">&quot;Q&quot;</span>
+        backtracking(s+<span class="hljs-number">1</span>,temp,result)
+        temp[s][i] = <span class="hljs-string">&quot;.&quot;</span>
+    &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">judge</span><span class="hljs-params">(temp [][]<span class="hljs-type">string</span>,p,q <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    n := <span class="hljs-built_in">len</span>(temp)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;n;i++&#123;
+        <span class="hljs-keyword">if</span> temp[i][q] == <span class="hljs-string">&quot;Q&quot;</span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+    &#125;
+    i := p
+    j := q 
+    <span class="hljs-keyword">for</span> i &gt;= <span class="hljs-number">0</span> &amp;&amp; i &lt; n &amp;&amp; j &gt;= <span class="hljs-number">0</span> &amp;&amp; j &lt; n&#123;
+        <span class="hljs-keyword">if</span> temp[i][j] == <span class="hljs-string">&quot;Q&quot;</span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+        i--
+        j--
+    &#125;
+    i = p
+    j = q 
+    <span class="hljs-keyword">for</span> i &gt;= <span class="hljs-number">0</span> &amp;&amp; i &lt; n &amp;&amp; j &gt;= <span class="hljs-number">0</span> &amp;&amp; j &lt; n&#123;
+        <span class="hljs-keyword">if</span> temp[i][j] == <span class="hljs-string">&quot;Q&quot;</span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+        i--
+        j++
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;string&gt; &gt; result;
+    vector&lt;<span class="hljs-type">int</span>&gt; temp;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(<span class="hljs-type">int</span> now, <span class="hljs-type">int</span> end)</span></span>&#123;
+        <span class="hljs-type">int</span> now_size = temp.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;now_size;i++)&#123;
+            <span class="hljs-keyword">if</span>(now == temp[i])&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> x = now_size - <span class="hljs-number">1</span>;
+        <span class="hljs-type">int</span> y = now - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(x &gt;= <span class="hljs-number">0</span> &amp;&amp; y &gt;= <span class="hljs-number">0</span>)&#123;
+            <span class="hljs-keyword">if</span>(temp[x] == y)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+            x -= <span class="hljs-number">1</span>;
+            y -= <span class="hljs-number">1</span>;
+        &#125;
+        x = now_size - <span class="hljs-number">1</span>;
+        y = now + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(x &gt;= <span class="hljs-number">0</span> &amp;&amp; y &lt; end)&#123;
+            <span class="hljs-keyword">if</span>(temp[x] == y)&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+            x -= <span class="hljs-number">1</span>;
+            y += <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;
+        <span class="hljs-keyword">if</span>(start == end)&#123;
+            vector&lt;string&gt; s;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;end;i++)&#123;
+                <span class="hljs-type">int</span> a = temp[i];
+                string temp_s = <span class="hljs-string">&quot;&quot;</span>;
+                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;end;j++)&#123;
+                    <span class="hljs-keyword">if</span>(j == a)&#123;
+                        temp_s += <span class="hljs-string">&quot;Q&quot;</span>;
+                    &#125; <span class="hljs-keyword">else</span>&#123;
+                        temp_s += <span class="hljs-string">&quot;.&quot;</span>;
+                    &#125;
+                &#125;
+                s.<span class="hljs-built_in">push_back</span>(temp_s);
+            &#125;
+            result.<span class="hljs-built_in">push_back</span>(s);
+            <span class="hljs-keyword">return</span>;
+        &#125;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;end;i++)&#123;
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">judge</span>(i,end))&#123;
+                temp.<span class="hljs-built_in">push_back</span>(i);
+                <span class="hljs-built_in">backtracking</span>(start<span class="hljs-number">+1</span>, end);
+                temp.<span class="hljs-built_in">pop_back</span>();
+            &#125;
+        &#125;
+    &#125;
+    vector&lt;vector&lt;string&gt; &gt; <span class="hljs-built_in">solveNQueens</span>(<span class="hljs-type">int</span> n) &#123;
+        <span class="hljs-built_in">backtracking</span>(<span class="hljs-number">0</span>,n);
+        <span class="hljs-keyword">return</span> result;
+    &#125;
+&#125;;</code></pre></div>
+<h2 id="37-解数独">37. 解数独</h2>
+<p>编写一个程序，通过填充空格来解决数独问题。</p>
+<p>数独的解法需 <strong>遵循如下规则</strong> ：</p>
+<ol>
+<li>数字 <code>1-9</code> 在每一行只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一列只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一个以粗实线分隔的 <code>3x3</code> 宫内只能出现一次。（请参考示例图）</li>
+</ol>
+<p>数独部分空格内已填入了数字，空白格用 <code>'.'</code> 表示。</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">solveSudoku</span><span class="hljs-params">(board [][]<span class="hljs-type">byte</span>)</span></span>  &#123;
+    <span class="hljs-comment">// numstring := []byte&#123;&quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;&#125;</span>
+    numbyte := []<span class="hljs-type">byte</span>&#123;<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>,<span class="hljs-string">&#x27;4&#x27;</span>,<span class="hljs-string">&#x27;5&#x27;</span>,<span class="hljs-string">&#x27;6&#x27;</span>,<span class="hljs-string">&#x27;7&#x27;</span>,<span class="hljs-string">&#x27;8&#x27;</span>,<span class="hljs-string">&#x27;9&#x27;</span>&#125;
+    backtracking(numbyte,&amp;board)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(numbyte []<span class="hljs-type">byte</span>, board *[][]<span class="hljs-type">byte</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">9</span>;i++&#123;
+        <span class="hljs-keyword">for</span> j:=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">9</span>;j++&#123;
+            <span class="hljs-keyword">if</span> (*board)[i][j] != <span class="hljs-string">&#x27;.&#x27;</span>&#123;
+                <span class="hljs-keyword">continue</span>
+            &#125;
+            <span class="hljs-keyword">for</span> k:=<span class="hljs-number">0</span>;k&lt;<span class="hljs-number">9</span>;k++&#123;
+                <span class="hljs-keyword">if</span> judge(*board,i,j,numbyte[k]) == <span class="hljs-literal">false</span>&#123;
+                    <span class="hljs-keyword">continue</span>
+                &#125;
+                (*board)[i][j] = numbyte[k]
+                <span class="hljs-keyword">if</span> backtracking(numbyte,board) == <span class="hljs-literal">true</span>&#123;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+                &#125;
+                (*board)[i][j] = <span class="hljs-string">&#x27;.&#x27;</span>
+            &#125;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">judge</span><span class="hljs-params">(board [][]<span class="hljs-type">byte</span>, p,q <span class="hljs-type">int</span>,c <span class="hljs-type">byte</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">9</span>;i++&#123;
+        <span class="hljs-keyword">if</span> board[p][i] == c || board[i][q] == c&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+        &#125;
+    &#125;
+    p = p / <span class="hljs-number">3</span>
+    q = q / <span class="hljs-number">3</span>
+    <span class="hljs-keyword">for</span> i:=p*<span class="hljs-number">3</span>;i&lt;(p+<span class="hljs-number">1</span>)*<span class="hljs-number">3</span>;i++&#123;
+        <span class="hljs-keyword">for</span> j := q*<span class="hljs-number">3</span>;j&lt;(q+<span class="hljs-number">1</span>)*<span class="hljs-number">3</span>;j++&#123;
+            <span class="hljs-keyword">if</span> board[i][j] == c&#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; board.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; board[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++) &#123;
+                <span class="hljs-keyword">if</span> (board[i][j] == <span class="hljs-string">&#x27;.&#x27;</span>) &#123;
+                    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> k = <span class="hljs-string">&#x27;1&#x27;</span>; k &lt;= <span class="hljs-string">&#x27;9&#x27;</span>; k++) &#123;
+                        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isValid</span>(i, j, k, board)) &#123;
+                            board[i][j] = k;
+                            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">backtracking</span>(board)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                            board[i][j] = <span class="hljs-string">&#x27;.&#x27;</span>;
+                        &#125;
+                    &#125;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isValid</span><span class="hljs-params">(<span class="hljs-type">int</span> row, <span class="hljs-type">int</span> col, <span class="hljs-type">char</span> val, vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;
+            <span class="hljs-keyword">if</span> (board[row][i] == val) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">9</span>; j++) &#123;
+            <span class="hljs-keyword">if</span> (board[j][col] == val) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> startRow = (row / <span class="hljs-number">3</span>) * <span class="hljs-number">3</span>;
+        <span class="hljs-type">int</span> startCol = (col / <span class="hljs-number">3</span>) * <span class="hljs-number">3</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = startRow; i &lt; startRow + <span class="hljs-number">3</span>; i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = startCol; j &lt; startCol + <span class="hljs-number">3</span>; j++) &#123;
+                <span class="hljs-keyword">if</span> (board[i][j] == val ) &#123;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solveSudoku</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;
+        <span class="hljs-built_in">backtracking</span>(board);
+    &#125;
+&#125;;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Leetcode/" class="print-no-link">#Leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码随想录-回溯算法</div>
+      <div>https://zhangzhao219.github.io/2024/03/13/Leetcode/programmercarl/programmercarl-bkt/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年3月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

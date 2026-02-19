@@ -1,0 +1,1121 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《模式识别与机器学习》期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：模式识别与机器学习-期末复习">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/11/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-final/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《模式识别与机器学习》期末复习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Df%28x%29">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSirOKS.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIkB5j.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIk0aQ.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIkUr8.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/18/zbf478.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/18/zbfh0f.md.jpg">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Dwx">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://math.now.sh/?inline=C_%7Bn%2Br%7D%5Er">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=r">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/02/pSPdNkV.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/13/z5CLon.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIkaqS.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/14/zIkwVg.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/29/pSpCJmD.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/19/zqsmin.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSi6VhR.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSi6QBD.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiybnS.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiyXkj.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiyjts.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSit5Af.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSitgcd.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/01/pSCUIW4.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiNZE6.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiNm4O.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiN1KA.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSiNUPS.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/01/pSCdBvj.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSitc1H.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSi6S10.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSi6pcV.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSi6Y9I.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/13/z5CjJ0.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/13/z5CXiq.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSi6s4s.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/01/pSCaYhF.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1%2Cx_2">
+<meta property="og:image" content="https://math.now.sh/?inline=y_1%2Cy_2">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3D%5Bx_1%2Cx_2%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1">
+<meta property="og:image" content="https://math.now.sh/?inline=x_2">
+<meta property="og:image" content="https://math.now.sh/?inline=x_1">
+<meta property="og:image" content="https://math.now.sh/?inline=x_2">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=A%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=A%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/29/pSSLlbq.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/16/z7Vp0P.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/16/z7VSmt.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/15/zoUqK0.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/15/zoUjVU.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/15/zoUObT.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/15/zoULrV.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/15/zoUvaF.md.jpg">
+<meta property="og:image" content="https://math.now.sh/?inline=d_1">
+<meta property="og:image" content="https://math.now.sh/?inline=d_1">
+<meta property="og:image" content="https://math.now.sh/?inline=L%28y%2Cf(x%29)%3Dexp(-yf(x))">
+<meta property="og:image" content="https://s1.ax1x.com/2023/01/03/pSigIpR.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/29/pSpSD6U.md.png">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3E0">
+<meta property="og:image" content="https://math.now.sh/?inline=1">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3C0">
+<meta property="og:image" content="https://math.now.sh/?inline=0">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/29/pSpSLtI.md.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/29/pSpSOht.md.png">
+<meta property="article:published_time" content="2022-12-11T09:38:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.198Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Pattern Recognition and Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=y%3Df%28x%29">
+  
+  
+  
+  <title>研究生课程：模式识别与机器学习-期末复习 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：模式识别与机器学习-期末复习</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-11 09:38" pubdate>
+          2022年12月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：模式识别与机器学习-期末复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《模式识别与机器学习》期末复习</p>
+<span id="more"></span>
+<h1>第1章 引言</h1>
+<p>模式识别：利用计算机对物理对象进行分类，在错误概率最小的条件下，使识别的结果尽量与客观物体相符合</p>
+<p>在特征空间和解释空间之间找到一种映射关系：<img src="https://math.now.sh?inline=y%3Df%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>机器学习：利用大量的训练数据，获得产生数据的模式或预测</p>
+<h1>第2章 统计判别</h1>
+<h2 id="贝叶斯">贝叶斯</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSirOKS"><img src="https://s1.ax1x.com/2023/01/03/pSirOKS.md.png" srcset="/img/loading.gif" lazyload alt="pSirOKS.md.png"></a></p>
+<h3 id="作为统计判别问题的模式分类">作为统计判别问题的模式分类</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zIkB5j"><img src="https://s1.ax1x.com/2022/12/14/zIkB5j.md.jpg" srcset="/img/loading.gif" lazyload alt="zIkB5j.md.jpg"></a><img src="https://s1.ax1x.com/2022/12/14/zIk0aQ.md.jpg" srcset="/img/loading.gif" lazyload alt="zIk0aQ.md.jpg"><a target="_blank" rel="noopener" href="https://imgse.com/i/zIkUr8"><img src="https://s1.ax1x.com/2022/12/14/zIkUr8.md.jpg" srcset="/img/loading.gif" lazyload alt="zIkUr8.md.jpg"></a></p>
+<h3 id="正态分布模式的贝叶斯分类器">正态分布模式的贝叶斯分类器</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zbf478"><img src="https://s1.ax1x.com/2022/12/18/zbf478.md.jpg" srcset="/img/loading.gif" lazyload alt="zbf478.md.jpg"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/zbfh0f"><img src="https://s1.ax1x.com/2022/12/18/zbfh0f.md.jpg" srcset="/img/loading.gif" lazyload alt="zbfh0f.md.jpg"></a></p>
+<h1>第3章 判别函数</h1>
+<h2 id="线性判别函数">线性判别函数</h2>
+<p>什么是线性判别函数？</p>
+<p>统计模式识别中用以对模式进行分类的一种最简单的判别函数称为线性判别函数。线性判别函数的一般形式是<img src="https://math.now.sh?inline=y%3Dwx" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是特征向量的增广形式，<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是权重系数。根据<img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的取值进行分类，这个函数在几何上一般表现为直线（高维空间的超平面），所以称之为线性判别函数。</p>
+<p>为什么需要非线性判别函数？</p>
+<p>对于复杂的实际应用，线性分类器往往无法满足要求，不同类别的样本之间并不总是线性可分的，比如著名的异或问题，这就需要寻找能够实现非线性分类的判别函数分类器。</p>
+<p>多类情况：</p>
+<ul>
+<li>多类情况1：用M个判别函数将属于这一类的和不属于这一类的分开，也就是分类成功只能有一个大于0的</li>
+<li>多类情况2：用M*(M-1)/2个判别函数，两两进行分类，只有这一类关于其他所有类的判别函数都大于0时才算分类成功</li>
+<li>多类情况3：M个判别函数，没有不确定区域的多类情况2，判别函数比较大小即可</li>
+</ul>
+<p>权重分量数量计算：<img src="https://math.now.sh?inline=C_%7Bn%2Br%7D%5Er" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的维度，<img src="https://math.now.sh?inline=r" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为多项式次数。</p>
+<h2 id="Fisher线性判别">Fisher线性判别</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSPdNkV"><img src="https://s1.ax1x.com/2023/01/02/pSPdNkV.md.jpg" srcset="/img/loading.gif" lazyload alt="pSPdNkV.md.jpg"></a></p>
+<h2 id="感知器">感知器</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/z5CLon"><img src="https://s1.ax1x.com/2022/12/13/z5CLon.md.jpg" srcset="/img/loading.gif" lazyload alt="z5CLon.md.jpg"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/zIkaqS"><img src="https://s1.ax1x.com/2022/12/14/zIkaqS.md.jpg" srcset="/img/loading.gif" lazyload alt="zIkaqS.md.jpg"></a></p>
+<p>多类情况增广向量不需要变为负数，要求这个类别的比其他的类别都要大，否则这个类别+样本，其他的类别-样本</p>
+<p>H-K算法可以发现类别不可分的情况</p>
+<h1>第4章 特征选择和提取</h1>
+<h2 id="K-L变换">K-L变换</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zIkwVg"><img src="https://s1.ax1x.com/2022/12/14/zIkwVg.md.jpg" srcset="/img/loading.gif" lazyload alt="zIkwVg.md.jpg"></a></p>
+<h1>第5章 统计机器学习基础</h1>
+<p>期望风险：机器学习算法的目标就是降低式所示的期望泛化误差（这个数据量被称为风险），选择期望风险最小的模型。</p>
+<p>经验风险：用训练集的分布代替真实情况下的数据分布，最小化训练集上的期望损失</p>
+<p>结构风险：在经验风险最小化的基础上再引入参数的正则化来限制模型能力，使其不要过度地最小化经验风险</p>
+<h2 id="偏差方差和噪声">偏差方差和噪声</h2>
+<p>简述偏差方差分解及其推导过程，并说明偏差、方差和噪声三部分的内在含义</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpCJmD"><img src="https://s1.ax1x.com/2022/12/29/pSpCJmD.md.png" srcset="/img/loading.gif" lazyload alt="pSpCJmD.md.png"></a><img src="https://s1.ax1x.com/2022/12/19/zqsmin.md.jpg" srcset="/img/loading.gif" lazyload alt="zqsmin.md.jpg"></p>
+<h2 id="过拟合和欠拟合">过拟合和欠拟合</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSi6VhR"><img src="https://s1.ax1x.com/2023/01/03/pSi6VhR.md.png" srcset="/img/loading.gif" lazyload alt="pSi6VhR.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSi6QBD"><img src="https://s1.ax1x.com/2023/01/03/pSi6QBD.md.png" srcset="/img/loading.gif" lazyload alt="pSi6QBD.md.png"></a></p>
+<p>过拟合：当学习器把训练样本学的“太好”了的时候，很可能已经把训练样本自身的一些特点当作了所有潜在样本都会具有的一般性质，在训练集上效果好。但是在测试集上效果差，这样就会导致模型的泛化性能下降。</p>
+<p>欠拟合：模型尚未学习到数据的真实结构。在训练集和验证集上的性能都很差。</p>
+<p>如何判断一个模型处在过拟合状态还是欠拟合状态？</p>
+<ul>
+<li>欠拟合情况 ：随着训练样本数增大，训练集得分和验证集得分相差不大，并且得分都不高。</li>
+<li>过拟合情况 ：随着训练样本数增大，训练集得分上升的同时和验证集得分下降。</li>
+</ul>
+<p>给出3种减轻模型过拟合的方法：</p>
+<p>过拟合：</p>
+<ul>
+<li>获得更多数据</li>
+<li>降低模型复杂度</li>
+<li>特征选择</li>
+<li>早停</li>
+<li>正则化</li>
+<li>添加噪声</li>
+</ul>
+<p>欠拟合：</p>
+<ul>
+<li>增加特征数</li>
+<li>增加模型复杂度</li>
+<li>减小正则化参数</li>
+</ul>
+<p>假设某研究者在 ImageNet 数据上使用线性支持向量机 Linear SVM 来做文本分类的任务，请说明在如下情况下分别如何操作才能得到更好的结果， 并说明原因。</p>
+<ul>
+<li>训练误差5％，验证误差10％，测试误差10％
+<ul>
+<li>训练、验证和测试误差都很大，模型处于欠拟合状态，可以选择将正则化参数C值适当调大，增大模型的复杂度</li>
+</ul>
+</li>
+<li>训练误差1％，验证误差10％，测试误差10％
+<ul>
+<li>训练误差比较小，验证和测试误差比较大，模型处于过拟合状态，可以选择进行数据增强、或者将C值适当调小，增加模型泛化能力</li>
+</ul>
+</li>
+<li>训练误差1％，验证误差3％，测试误差10％
+<ul>
+<li>训练和验证误差比较小，测试误差比较大，说明训练数据和测试数据的分布差别比较大，可以重新采样或者shuffle数据</li>
+</ul>
+</li>
+</ul>
+<p>如果使用SVM做二分类问题得到如下结果，分别应该采取什么措施以取得更好的结果？并说明原因。</p>
+<ul>
+<li>训练集的分类准确率90%，验证集的分类准确率90%，测试集的分类准确率88%
+<ul>
+<li>训练、验证和测试准确率都很低，模型处于欠拟合状态，可以选择将正则化参数C值适当调大，增大模型的复杂度</li>
+</ul>
+</li>
+<li>训练集的分类准确率98%，验证集的分类准确率90%，测试集的分类准确率88%
+<ul>
+<li>训练准确率比较高，验证和测试准确率比较低，模型处于过拟合状态，可以选择进行数据增强、或者将C值适当调小，增加模型泛化能力</li>
+</ul>
+</li>
+</ul>
+<p>如果使用逻辑回归算法做二分类问题得到如下结果，分别应该采取什么措施以取得更好的结果？并说明理由。</p>
+<ul>
+<li>训练集的分类准确率85%，验证集的分类准确率80%，测试集的分类准确率75%
+<ul>
+<li>训练、验证和测试准确率都很低，模型处于欠拟合状态，可以选择增加训练特征，使用更多的训练参数</li>
+</ul>
+</li>
+<li>训练集的分类准确率99%，验证集的分类准确率80%，测试集的分类准确率78%
+<ul>
+<li>训练准确率比较高，验证和测试准确率比较低，模型处于过拟合状态，可以选择减少训练特征，添加正则项，增加数据量等等</li>
+</ul>
+</li>
+</ul>
+<h1>第6章 有监督学习方法</h1>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiybnS"><img src="https://s1.ax1x.com/2023/01/03/pSiybnS.md.png" srcset="/img/loading.gif" lazyload alt="pSiybnS.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiyXkj"><img src="https://s1.ax1x.com/2023/01/03/pSiyXkj.md.png" srcset="/img/loading.gif" lazyload alt="pSiyXkj.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiyjts"><img src="https://s1.ax1x.com/2023/01/03/pSiyjts.md.png" srcset="/img/loading.gif" lazyload alt="pSiyjts.md.png"></a></p>
+<h2 id="公式推导相关">公式推导相关</h2>
+<p>2018-2019</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSit5Af"><img src="https://s1.ax1x.com/2023/01/03/pSit5Af.md.png" srcset="/img/loading.gif" lazyload alt="pSit5Af.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSitgcd"><img src="https://s1.ax1x.com/2023/01/03/pSitgcd.md.jpg" srcset="/img/loading.gif" lazyload alt="pSitgcd.md.jpg"></a><img src="https://s1.ax1x.com/2023/01/01/pSCUIW4.md.png" srcset="/img/loading.gif" lazyload alt="pSCUIW4.md.png"><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiNZE6"><img src="https://s1.ax1x.com/2023/01/03/pSiNZE6.md.png" srcset="/img/loading.gif" lazyload alt="pSiNZE6.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiNm4O"><img src="https://s1.ax1x.com/2023/01/03/pSiNm4O.md.png" srcset="/img/loading.gif" lazyload alt="pSiNm4O.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiN1KA"><img src="https://s1.ax1x.com/2023/01/03/pSiN1KA.md.png" srcset="/img/loading.gif" lazyload alt="pSiN1KA.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSiNUPS"><img src="https://s1.ax1x.com/2023/01/03/pSiNUPS.md.png" srcset="/img/loading.gif" lazyload alt="pSiNUPS.md.png"></a></p>
+<p>2021-2022</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSCdBvj"><img src="https://s1.ax1x.com/2023/01/01/pSCdBvj.md.png" srcset="/img/loading.gif" lazyload alt="pSCdBvj.md.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSitc1H"><img src="https://s1.ax1x.com/2023/01/03/pSitc1H.md.jpg" srcset="/img/loading.gif" lazyload alt="pSitc1H.md.jpg"></a></p>
+<h1>第7章 支持向量机</h1>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSi6S10"><img src="https://s1.ax1x.com/2023/01/03/pSi6S10.md.png" srcset="/img/loading.gif" lazyload alt="pSi6S10.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSi6pcV"><img src="https://s1.ax1x.com/2023/01/03/pSi6pcV.md.png" srcset="/img/loading.gif" lazyload alt="pSi6pcV.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSi6Y9I"><img src="https://s1.ax1x.com/2023/01/03/pSi6Y9I.md.png" srcset="/img/loading.gif" lazyload alt="pSi6Y9I.md.png"></a></p>
+<p>径向基函数（RBF）gamma和C的影响：</p>
+<ul>
+<li>参数gamma定义了单个训练样本的影响大小，值越小影响越大，值越大影响越小。参数gamma可以看作被模型选中作为支持向量的样本的影响半径的倒数。gamma越大半径越窄，因此如果欠拟合需要增大gamma，分的更准</li>
+<li>参数C在误分类样本和分界面之间进行权衡。低的C值使分界面平滑，而高的C值通过增加模型自由度以选择更多支持向量来确保所有样本都被正确分类。因此如果欠拟合要增大C</li>
+</ul>
+<p>最小化VC维h等价于最大化间隔，使分类器的复杂度小！</p>
+<p>简述SVM算法的原理</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/z5CjJ0"><img src="https://s1.ax1x.com/2022/12/13/z5CjJ0.md.jpg" srcset="/img/loading.gif" lazyload alt="z5CjJ0.md.jpg"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/z5CXiq"><img src="https://s1.ax1x.com/2022/12/13/z5CXiq.md.jpg" srcset="/img/loading.gif" lazyload alt="z5CXiq.md.jpg"></a></p>
+<h1>第8章 聚类</h1>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSi6s4s"><img src="https://s1.ax1x.com/2023/01/03/pSi6s4s.md.png" srcset="/img/loading.gif" lazyload alt="pSi6s4s.md.png"></a></p>
+<p>K均值：CE</p>
+<p>密度：AF</p>
+<p>高斯混合：BD</p>
+<p>Kmeans：<strong>Kmeans的判别界面应该是簇的中垂线</strong></p>
+<ul>
+<li>一种经典的聚类算法，简单、快速</li>
+<li>假定簇为球形且每个簇的概率相等</li>
+<li>能处理大规模数据，可扩展型好</li>
+<li>当簇接近高斯分布时，效果较好</li>
+<li>当簇具有不同的尺寸、密度、非球形，Kmeans可能得不到理想的聚类结果</li>
+<li>硬划分数据点到簇，当数据上出现一些小的扰动，可能导致一个点划分到另外的簇</li>
+</ul>
+<p>K-Means与GMM</p>
+<p>K-Means</p>
+<ul>
+<li>损失函数:最小化平方距离的和</li>
+<li>样本点硬划分到某个簇</li>
+<li>假定样本属于每个簇的概率相等，且为球形簇</li>
+</ul>
+<p>GMM</p>
+<ul>
+<li>最小化负对数似然</li>
+<li>点到簇的从属关系为软分配</li>
+<li>可以被用于椭球形簇，且各个簇概率不同</li>
+</ul>
+<p>层次聚类：<strong>最小距离层次聚类可以做同心圆相关聚类</strong></p>
+<ul>
+<li>对噪声和离群点敏感</li>
+<li>比较难处理不同尺寸的簇和凸的簇</li>
+<li>成链,误把大簇分裂</li>
+</ul>
+<p>DBSCAN</p>
+<ul>
+<li>各种大小、各种形状的簇，不需要明确簇的数量</li>
+<li>具有一定的抗噪音特性</li>
+<li>参数选择比较困难</li>
+<li>不适合密度差异较大的数据集</li>
+<li>时间慢</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSCaYhF"><img src="https://s1.ax1x.com/2023/01/01/pSCaYhF.md.png" srcset="/img/loading.gif" lazyload alt="pSCaYhF.md.png"></a></p>
+<h1>第9章 降维</h1>
+<p>PCA的优化目标：</p>
+<ul>
+<li>最大化映射后的样本方差角度</li>
+<li>最小重建误差角度</li>
+</ul>
+<h1>第10章 半监督学习</h1>
+<h2 id="基本假设">基本假设</h2>
+<p>平滑假设：如果高密度区域中两个点<img src="https://math.now.sh?inline=x_1%2Cx_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>距离较近, 那么对应的输出<img src="https://math.now.sh?inline=y_1%2Cy_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>也应该接近</p>
+<p>聚类假设：如果两个点在同一个簇，那么它们很有可能属于同一个类别</p>
+<ul>
+<li>等价形式：低密度分割（决策边界应该在低密度区域）</li>
+</ul>
+<p>流形假设：输入空间由所有数据点所在的多个低维流形构成，位于同一流形上的数据点具有相同的标签，流形上距离近的点的标签相似</p>
+<h2 id="具体算法">具体算法</h2>
+<p>自我训练算法：假设输出的高度置信的预测是正确的</p>
+<p>协同训练：假设特征可分裂<img src="https://math.now.sh?inline=x%3D%5Bx_1%2Cx_2%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=x_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>或<img src="https://math.now.sh?inline=x_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>单独对于训练一个好的分类器是充分的，<img src="https://math.now.sh?inline=x_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=x_2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在给定类别后是条件独立的</p>
+<p>生成式模型：假设所有数据（带标签&amp;不带标签）都由一个潜在的模型生成（GMM，HMM，朴素贝叶斯）</p>
+<p>半监督支持向量机：假设来自不同类别的无标记数据之间会被较大的间隔隔开</p>
+<ul>
+<li>C2很小表达对未标注样本错分的容忍度比较大，很大表示不容忍错分，每一个未标注样本也要分对</li>
+</ul>
+<p>基于干扰的半监督：基于连续性假设：考虑对输入<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>稍加改变，得到其增广表示<img src="https://math.now.sh?inline=A%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，模型对<img src="https://math.now.sh?inline=A%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的预测和对原始数据点的预测<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>相似。</p>
+<p>基于图的半监督学习：假设在所有数据点（标注数据和无标注数据）定义一个相似性图，相似的数据点之间存在边，边的权重表示两个数据点之间的相似程度，相似图中“紧密”连接的点趋向于有相同的标签</p>
+<h1>第11章 概率图模型</h1>
+<p>贝叶斯球：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSSLlbq"><img src="https://s1.ax1x.com/2022/12/29/pSSLlbq.md.png" srcset="/img/loading.gif" lazyload alt="pSSLlbq.md.png"></a></p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/z7Vp0P"><img src="https://s1.ax1x.com/2022/12/16/z7Vp0P.md.jpg" srcset="/img/loading.gif" lazyload alt="z7Vp0P.md.jpg"></a><br>
+<a target="_blank" rel="noopener" href="https://imgse.com/i/z7VSmt"><img src="https://s1.ax1x.com/2022/12/16/z7VSmt.md.jpg" srcset="/img/loading.gif" lazyload alt="z7VSmt.md.jpg"></a></p>
+<h2 id="HMM">HMM</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zoUqK0"><img src="https://s1.ax1x.com/2022/12/15/zoUqK0.md.jpg" srcset="/img/loading.gif" lazyload alt="zoUqK0.md.jpg"></a></p>
+<h3 id="前向算法">前向算法</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zoUjVU"><img src="https://s1.ax1x.com/2022/12/15/zoUjVU.md.jpg" srcset="/img/loading.gif" lazyload alt="zoUjVU.md.jpg"></a><br>
+<a target="_blank" rel="noopener" href="https://imgse.com/i/zoUObT"><img src="https://s1.ax1x.com/2022/12/15/zoUObT.md.jpg" srcset="/img/loading.gif" lazyload alt="zoUObT.md.jpg"></a></p>
+<h3 id="维特比算法">维特比算法</h3>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/zoULrV"><img src="https://s1.ax1x.com/2022/12/15/zoULrV.md.jpg" srcset="/img/loading.gif" lazyload alt="zoULrV.md.jpg"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/zoUvaF"><img src="https://s1.ax1x.com/2022/12/15/zoUvaF.md.jpg" srcset="/img/loading.gif" lazyload alt="zoUvaF.md.jpg"></a></p>
+<h1>第12章 集成学习</h1>
+<h2 id="bagging">bagging</h2>
+<p>降低模型的方差，偏差不变</p>
+<p>原理：通过对训练样本进行bootstrap采样（有放回的随机采样），然后训练多个模型，最后对多个模型作平均，得到最后的融合模型。</p>
+<p>Bagging适合对偏差低、方差高的模型进行融合，如决策树、神经网络等</p>
+<h2 id="boosting">boosting</h2>
+<p>降低模型的偏差，方差不变</p>
+<p>原理：每次迭代顺序的把一些模型加进去，最后一些子模型的加权平均是我们最后的集成模型</p>
+<h3 id="Adaboost">Adaboost</h3>
+<p>Adaboost：在弱学习器失败的样本上，学习第二个弱学习器</p>
+<p>开始初始化的时候每个样本的权重相同</p>
+<p>分对的样本，其权重除以<img src="https://math.now.sh?inline=d_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，权重减小</p>
+<p>分错的样本，其权重乘以<img src="https://math.now.sh?inline=d_1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，权重增大</p>
+<p>最后对模型进行加权融合</p>
+<p>Adaboost 原理：先从初始训练集训练出一个学习器，再根据基学习器的表现来对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续得到更多的关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直到基学习器达到事先指定的值T，最终将这T个基学习器进行加权结合。</p>
+<p>Adaboost 损失函数：使用指数损失函数<img src="https://math.now.sh?inline=L%28y%2Cf(x%29)%3Dexp(-yf(x))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>Adaboost算法流程：</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSigIpR"><img src="https://s1.ax1x.com/2023/01/03/pSigIpR.md.png" srcset="/img/loading.gif" lazyload alt="pSigIpR.md.png"></a></p>
+<p>为什么AdaBoost经常可以在训练误差为0后继续训练还可能带来测试误差的持续下降？</p>
+<p>在训练误差下降到接近0的时候，更多的训练，会增加分类器的分类margin，这个过程也能够防止测试误差的上升，随着Margin的变大，测试误差会逐渐收敛。</p>
+<p>AdaBoost优缺点：</p>
+<p>优点：实现快速简单、灵活、通用性高</p>
+<p>缺点：AdaBoost性能取决于数据和弱学习器，如果弱分类器过于复杂，可能会产生过拟合情况，如果弱分类器太弱有可能造成欠拟合，还容易收到均匀噪声的影响。</p>
+<h1>第13章 深度学习</h1>
+<h2 id="神经元的结构">神经元的结构</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpSD6U"><img src="https://s1.ax1x.com/2022/12/29/pSpSD6U.md.png" srcset="/img/loading.gif" lazyload alt="pSpSD6U.md.png"></a></p>
+<h2 id="激活函数">激活函数</h2>
+<p>Sigmoid函数：</p>
+<p>在早期的神经网络中较为普遍，逐渐被更简单的ReLU函数取代</p>
+<p>容易导致梯度消失问题：</p>
+<ul>
+<li>导数最大值为0.25：反向传播时，返回网络的误差将会在每一层收缩至少75%</li>
+<li>尾部是饱和的，对应的梯度接近0，导致消失梯度问题</li>
+</ul>
+<p>Tanh函数：形状和sigmoid函数的形状很像，但tanh函数在坐标系的原点上对称：使用tanh激活函数收敛会更快，减轻消失梯度的现象</p>
+<p>ReLU函数：</p>
+<ul>
+<li>计算量小，不涉及除法</li>
+<li>一部分神经元的输出为0：网络稀疏，减少了参数的相互依存关系，缓解过拟合</li>
+<li>当<img src="https://math.now.sh?inline=x%3E0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，导数为<img src="https://math.now.sh?inline=1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，解决了梯度消失问题，收敛速度更快</li>
+<li>当<img src="https://math.now.sh?inline=x%3C0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>时，导数为<img src="https://math.now.sh?inline=0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，无法更新权重</li>
+</ul>
+<h2 id="神经网络">神经网络</h2>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpSLtI"><img src="https://s1.ax1x.com/2022/12/29/pSpSLtI.md.png" srcset="/img/loading.gif" lazyload alt="pSpSLtI.md.png"></a><a target="_blank" rel="noopener" href="https://imgse.com/i/pSpSOht"><img src="https://s1.ax1x.com/2022/12/29/pSpSOht.md.png" srcset="/img/loading.gif" lazyload alt="pSpSOht.md.png"></a></p>
+<h2 id="梯度消失和梯度爆炸">梯度消失和梯度爆炸</h2>
+<p>梯度爆炸：梯度值超出范围：无穷大值</p>
+<p>对学习率敏感</p>
+<ul>
+<li>学习率较大-更大的权重-更大的梯度</li>
+<li>学习率太小-模型训练没有进展</li>
+<li>可能需要在训练期间大幅改变学习率</li>
+</ul>
+<p>梯度消失：梯度值趋近0</p>
+<p>无论如何选择学习率，训练都没有进展</p>
+<p>只有顶层训练有效，底层训练基本无效，使网络更深可能并没有更好</p>
+<p>模型的深度增加，梯度会逐渐消失：</p>
+<ul>
+<li>将sigmoid激活函数换成其他的激活函数</li>
+<li>Resnet：通过跳接的方式，优化残差映射比直接优化原始映射更容易，带有集成学习的思想</li>
+<li>Batch normalization，还能带来正则化的效果</li>
+</ul>
+<p>其他技巧：</p>
+<ul>
+<li>batch normalization 会使得我们的训练对好多因素（学习率、初始化）的要求没有那么高</li>
+<li>参数初始化，或者采用预训练网络作初始化或者核初始化</li>
+<li>mini-batch的梯度下降</li>
+<li>动量法梯度下降：移动量不仅与梯度有关，还与前一时刻的移动量有关。</li>
+<li>Adam：同时利用一阶动量和二阶动量进行优化</li>
+</ul>
+<h2 id="过拟合">过拟合</h2>
+<ul>
+<li>早停</li>
+<li>正则：L1正则能让系数=0，L2可以让参数趋向于变小，对整体的影响就变小了，相当于参数变简单了</li>
+<li>Dropout：随机删除一部分神经元（可视为一种集成学习）</li>
+<li>数据增强：增加训练样本集尽可能让他多样化，也可以增加模型的泛化能力</li>
+</ul>
+<h2 id="卷积神经网络">卷积神经网络</h2>
+<ul>
+<li>局部连接：我们认为是一个模式在一个比较小的范围内，而不是要看全局，有些模式比整个图像小得多，神经元不需要看整幅图像就能发现模式，与一个小区域连接所需的参数更少</li>
+<li>权值共享：同一个模式会在图像中不同的区域出现，不同位置可能都有这样的模式，这样做可以使得模型的参数变少</li>
+<li>池化：对像素进行下采样不影响目标，通过下采样可以让图像更小，网络处理图像需要的参数更少</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+        <a href="/tags/Pattern-Recognition-and-Machine-Learning/" class="print-no-link">#Pattern Recognition and Machine Learning</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：模式识别与机器学习-期末复习</div>
+      <div>https://zhangzhao219.github.io/2022/12/11/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-final/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/11/UCAS/advanced-ai/advanced-ai-final/" title="研究生课程：高级人工智能-期末复习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：高级人工智能-期末复习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/05/Go/Go-Project-Geecache/" title="Go项目-分布式缓存GeeCache">
+                        <span class="hidden-mobile">Go项目-分布式缓存GeeCache</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

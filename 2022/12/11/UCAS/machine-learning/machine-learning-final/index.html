@@ -1,0 +1,1097 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《机器学习》期末复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：机器学习-期末复习">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/11/UCAS/machine-learning/machine-learning-final/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《机器学习》期末复习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=T%3D%5C%7B%28%5Cmathbf%7Bx%7D_%7B1%7D%2C%20y_%7B1%7D%29%2C%20%5Ccdots%2C(%5Cmathbf%7Bx%7D_%7Bl%7D%2C%20y_%7Bl%7D)%5C%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathbf%7Bx%7D_%7Bi%7D%20%5Cin%20C%3DR%5E%7Bn%7D%20%2C%20%20y_%7Bi%7D%20%5Cin%20%5Cmathrm%7BY%7D%3D%5C%7B1%2C2%2C%20%5Cldots%2C%20m%5C%7D%2C%20i%3D1%2C2%2C%20%5Cldots%2C%20l">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cmathrm%7BC%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=g%28%5Cmathbf%7Bx%7D%29%3A%20%5Cmathrm%7BC%7D%20%5Crightarrow%20%5Cmathrm%7BY%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%20%5Cgeq%200">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%3D0%20%20%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%20%20x_%7Bi%7D%3Dx_%7Bj%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%3D%5Coperatorname%7Bdist%7D%5Cleft(x_%7Bj%7D%2C%20x_%7Bi%7D%5Cright)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%20%5Cleq%20%5Coperatorname%7Bdist%7D%5Cleft(x_%7Bi%7D%2C%20x_%7Bk%7D%5Cright)%2B%5Coperatorname%7Bdist%7D%5Cleft(x_%7Bk%7D%2C%20x_%7Bj%7D%5Cright)">
+<meta property="og:image" content="https://s1.ax1x.com/2022/12/31/pS96XQO.md.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/72bc54765e58432bb4f437c753288655.jpeg">
+<meta property="article:published_time" content="2022-12-11T09:40:26.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.198Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=T%3D%5C%7B%28%5Cmathbf%7Bx%7D_%7B1%7D%2C%20y_%7B1%7D%29%2C%20%5Ccdots%2C(%5Cmathbf%7Bx%7D_%7Bl%7D%2C%20y_%7Bl%7D)%5C%7D">
+  
+  
+  
+  <title>研究生课程：机器学习-期末复习 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：机器学习-期末复习</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-11 09:40" pubdate>
+          2022年12月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：机器学习-期末复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《机器学习》期末复习</p>
+<span id="more"></span>
+<h1>选择题</h1>
+<h2 id="各种分类">各种分类</h2>
+<p>监督学习：贝叶斯分类器、支持向量机、Logistic回归、决策树、线性回归、最大熵、CRF</p>
+<p>无监督学习：主成分分析、K-Means、高斯混合聚类、层次聚类</p>
+<p>线性分类方法：感知机、线性鉴别分析、最小距离分类器</p>
+<p>非线性分类方法：决策树、最近邻、集成学习、核SVM</p>
+<p>线性分类器最佳准则：感知准则函数、支持向量机、Fisher准则</p>
+<p>生成式模型：朴素贝叶斯、隐马尔可夫模型、高斯混合模型</p>
+<p>判别式模型：支持向量机、线性分类器、神经网络、线性判别分析</p>
+<h2 id="回归">回归</h2>
+<p>Logistic回归使用最大似然估计</p>
+<p>回归问题和分类问题的区别：前者预测函数值为连续值，后者为离散值</p>
+<p>最小二乘回归方法的等效回归方法：线性均值和正态误差的最大似然回归</p>
+<p>正则化的回归分析，可以避免过拟合</p>
+<p>假如使用一个较复杂的回归模型来拟合样本数据，使用岭回归，调试正则化参数λ，来降低模型复杂度。若λ较大时，偏差增大，方差减小</p>
+<p>在线性回归中使用正则项，你发现解的不少coefficient都是0，这个正则项可能是L0-norm或L1-norm</p>
+<p>LR模型的损失函数是交叉熵</p>
+<p>在Logistic Regression 中,如果同时加入L1和L2范数，可以做特征选择，并在一定程度上防止过拟合</p>
+<p>逻辑斯蒂回归没有利用回归的思想</p>
+<h2 id="共轭分布">共轭分布</h2>
+<p>二项式分布的共轭分布是Beta分布</p>
+<p>多项式分布的共轭分布是Dirichlet分布</p>
+<h2 id="贝叶斯">贝叶斯</h2>
+<ul>
+<li>以贝叶斯定理为基础</li>
+<li>可以解决有监督学习的问题</li>
+<li>可以用极大似然估计法解贝叶斯分类器</li>
+</ul>
+<p>朴素贝叶斯分类器的特点是假设样本各维属性独立</p>
+<p>最大似然估计没有考虑先验分布</p>
+<p>对于正态密度的贝叶斯分类器，各类协方差矩阵相同时，决策函数为线性决策函数</p>
+<p>下面关于贝叶斯分类器描述错误：是基于后验概率，推导出先验概率</p>
+<p>朴素贝叶斯模型属于生成式模型</p>
+<p>贝叶斯分类器参数估计的准则：最大高斯后验、最大beta后验、极大似然</p>
+<p>错误：以贝叶斯估计的角度来看朴素贝叶斯时，其没有估计联合概率</p>
+<p>以下模型中属于贝叶斯网络的有( BD )</p>
+<p>A.马尔可夫随机场</p>
+<p>B.隐马尔可夫模型</p>
+<p>C.条件随机场</p>
+<p>D.朴素贝叶斯分类器</p>
+<h2 id="SVM">SVM</h2>
+<p>支持向量机属于判别式模型</p>
+<p>SVM的原理：最大间隔分类</p>
+<p>SVM的算法性能取决于：核函数的选择、核函数的参数、软间隔参数C</p>
+<p>支持向量机的对偶问题是凸二次优化</p>
+<p>支撑向量：最大间隔支撑面上的向量</p>
+<p>避免直接的复杂非线性变换，采用线性手段实现非线性学习的方法是：核函数方法</p>
+<p>软间隔SVM的阈值趋于无穷：只要最佳分类超平面存在，它就能将所有数据全部正确分类</p>
+<p>核函数并不是把特征映射到的空间维度越高越好</p>
+<p>如果SVM模型欠拟合, 以下方法哪些可以改进模型：增大惩罚参数C的值，增大核系数(gamma参数)</p>
+<h2 id="聚类">聚类</h2>
+<p>密度聚类方法充分考虑了样本间的密度可达关系</p>
+<p>混合高斯聚类使用了EM算法</p>
+<p>k-means算法初始值不同，最终结果可能不同</p>
+<p>k-means不适合处理非凸型数据</p>
+<p>以下可用于聚类性能测量的评估方法：Jaccard系数、FM指数、Rand指数、DB指数</p>
+<h2 id="降维">降维</h2>
+<p>主成分分析方法是一种降维方法</p>
+<p>PCA在做降维处理时，优先选取中心化样本的协方差矩阵的最大特征值对应特征向量</p>
+<p>可以用于特征降维的：SVD、PCA和LDA</p>
+<p>不可以用于特征降维的：蒙特卡洛方法</p>
+<p>特征降维带来的好处：节省数据通信开销、节省数据存储资源、加快模型计算速度</p>
+<h2 id="决策树">决策树</h2>
+<p>关于决策树节点划分指标描述正确的是信息增益越大越好</p>
+<p>决策树不受数据归一化影响，SVM、神经网络、Logistic回归都会受影响</p>
+<p>增加决策树的深度可能导致随机森林模型过拟合数据</p>
+<p>我们想在大数据集上训练决策树, 为了使用较少时间, 我们可以减少树的深度，减少树的数量</p>
+<h2 id="集成学习">集成学习</h2>
+<p>Bootstrap数据：有放回地从总共N个样本中抽样n个样本</p>
+<p>集成学习中基分类器多样，差异大，学习效率通常越好，每个基分类器的正确率的最低要求50%以上</p>
+<p>Bagging方法的特点：构造训练集时采用Bootstraping的方式</p>
+<p>Boosting方法的特点：预测结果时，分类器的比重不同</p>
+<p>随机森林方法属于Bagging方法</p>
+<p>Adaboost算法：</p>
+<ul>
+<li>是弱分类器的线性组合</li>
+<li>提升树是以分类树或者回归树为基本分类器的提升办法</li>
+<li>该算法实际上是前向分步算法的一个实现，在这个方法里，模型是加法模型，损失函数是指数损失，算法是前向分步算法。</li>
+</ul>
+<p>Adaboost方法中，需要迭代调整的两个重要参数是：样本权重和分类器权重</p>
+<h2 id="深度学习">深度学习</h2>
+<p>以下关于深度网络训练的说法正确的：</p>
+<ul>
+<li>训练过程需要用到梯度，梯度衡量了损失函数相对于模型参数的变化率</li>
+<li>损失函数衡量了模型预测结果与真实值之间的差异</li>
+<li>训练过程基于一种叫做反向传播的技术</li>
+</ul>
+<p>在训练神经网络时，如果出现训练error过高，增加训练数据不能大幅度降低训练error</p>
+<p>Tanh可以导致梯度消失</p>
+<p>ReLU在神经网络中引入了非线性</p>
+<p>关于CNN，Pooling层用于减少图片的空间分辨率</p>
+<p>卷积神经网络可以有多个卷积核，可以不同大小</p>
+<p>GRU和LSTM的说法正确的是：GRU的参数比LSTM的参数少</p>
+<p>与普通反向传播不同的是，BPTT会在每个时间步长内叠加所有对应权重的梯度</p>
+<p>在RNN中，梯度裁剪可以较好地处理梯度爆炸问题</p>
+<p>循环神经网络有反馈连接并常被用来处理序列数据</p>
+<h2 id="过拟合和欠拟合">过拟合和欠拟合</h2>
+<p>数据增强会增加模型的欠拟合风险</p>
+<p>过拟合现象中训练样本的测试误差最小，测试样本的正确识别率却很低</p>
+<p>过拟合：训练误差小，测试误差大</p>
+<p>容易引起过拟合：SVM算法中使用高斯核代替线性核</p>
+<p>不容易引起过拟合：增加训练集量、减少神经网络隐藏层节点数、删除稀疏的特征</p>
+<p>神经网络处理过拟合：Dropout、Batch Normalization、regularization</p>
+<h2 id="概率图模型">概率图模型</h2>
+<p>在HMM中,如果已知观察序列和产生观察序列的状态序列,那么可用极大似然估计直接进行参数估计</p>
+<p>解决隐马模型中预测问题的算法是维特比算法</p>
+<h2 id="其他">其他</h2>
+<p>K-NN最近邻方法在什么情况下效果好：样本较少但典型性较好</p>
+<p>以下可行的最近邻分类的加速方案：分层搜索和训练样本缩减</p>
+<p>线性鉴别分析：找到一个投影方向，使得类内距离最小，类间距离最大</p>
+<p>KL散度是根据类概率密度构造的可分性判据</p>
+<p>最大似然估计没有考虑先验分布</p>
+<p>多层感知机方法中，可用作神经元的非线性激活函数：logistic 函数</p>
+<p>在有限支撑集上，均匀分布的熵最大</p>
+<p>已知均值和方差，高斯分布的熵最大</p>
+<p>受限玻尔兹曼机属于概率图模型</p>
+<p>余弦距离会侧重考虑向量的方向</p>
+<p>除了EM算法，梯度下降也可求混合高斯模型的参数</p>
+<p>下列哪个不属于常用的文本分类的特征选择算法（D）</p>
+<p>A. 卡方检验值</p>
+<p>B. 互信息</p>
+<p>C. 信息增益</p>
+<p>D. 主成分分析</p>
+<p>解决样本类别不平衡的手段：欠采样、过采样、使用focal loss</p>
+<p>对于k折交叉验证, 以下对k的说法正确的是：</p>
+<p>A.k越大, 不一定越好, 选择大的k会加大评估时间</p>
+<p>B.选择更大的k, 就会有更小的bias ，因为训练集更加接近总数据集</p>
+<p>C.在选择k时, 要最小化数据集之间的方差</p>
+<p>下列选项中，关于KNN算法说法不正确的是（D）</p>
+<p>A.能找出与待测样本相近的K个样本</p>
+<p>B.可以使用欧氏距离度量相似度</p>
+<p>C.实现过程相对简单，但是可解释性不强</p>
+<p>D.效率很高</p>
+<p>73.关于特征预处理，下列说法中错误的是（B ）</p>
+<p>A.包含标准化和归一化</p>
+<p>B.标准化在任何场景下受异常值的影响都很小</p>
+<p>C.归一化利用了样本中的最大值和最小值</p>
+<p>D.标准化实际上是将数据在样本的标准差上做了等比例的缩放操作</p>
+<p>交叉验证不能够提升模型的准确率</p>
+<p>76.EM算法（Expectation Maximization Algorithm）是机器学习领域的一个经典算法，下面关于EM算法的说法中不正确的有：（A）</p>
+<p>A.EM算法属于一种分类算法</p>
+<p>B.EM算法可用于隐马尔科夫模型的参数估计</p>
+<p>C.EM算法可以分为E-step和M-step两步</p>
+<p>D.EM算法可用于从不完整的数据中计算最大似然估计</p>
+<p>将一个k分类问题分解成一对一问题时总共需要k(k-1)/2个分类器</p>
+<p>在有限支撑集上，下面分布中熵最大的是均匀分布</p>
+<p>在机器学习中，当模型的参数量大于样本量时参数估计使用梯度下降法</p>
+<ol start="62">
+<li>GRU和LSTM的说法正确的是（D）</li>
+</ol>
+<p>A.  GRU通过output gate控制memory；</p>
+<p>B.  LSTM对memory不做控制，直接传递给下一个unit</p>
+<p>C.  GRU不对上一时刻的信息做任何控制；</p>
+<p>D.  GRU的参数比LSTM的参数少；</p>
+<p>以下哪些算法, 可以用神经网络去构造( BD )</p>
+<p>A.KNN</p>
+<p>B.Logistic回归</p>
+<p>C.决策树</p>
+<p>D.最小二乘估计</p>
+<h1>简答题</h1>
+<h2 id="原题目">原题目</h2>
+<h3 id="试阐述LDA（线性鉴别分析）的分类思想">试阐述LDA（线性鉴别分析）的分类思想</h3>
+<p>给定训练样例集，设法将样例投影到一条直线上，使得同类样例的投影点尽可能接近，异类样例的投影点尽可能远离；</p>
+<p>在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来判断新样本的类别。</p>
+<h3 id="请简要介绍SVM的设计思想">请简要介绍SVM的设计思想</h3>
+<p>答案：SVM是一个分类算法，它的目标为确定一个分类超平面，从而将不同类别的数据分隔开达到分类的目标。</p>
+<p>当训练数据线性可分时，通过硬间隔最大化，学习一个线性的分类器，即线性可分支持向量机，又称为硬间隔支持向量机；</p>
+<p>当训练数据近似线性可分时，通过软间隔最大化，也学习一个线性的分类器，即线性支持向量机，又称为软间隔支持向量机；</p>
+<p>当训练数据线性不可分时，通过使用核技巧及软间隔最大化，学习非线性支持向量机。</p>
+<h3 id="试分析SVM对噪声敏感的原因">试分析SVM对噪声敏感的原因</h3>
+<p>给定训练集，SVM最优决策边界由支持向量决定。</p>
+<p>当增加噪声时，那么该噪声有极高的可能是含噪声训练集的一个支持向量，这意味着决策边界需要变。</p>
+<h3 id="简要介绍在深度神经网络中引入非线性激活函数的作用">简要介绍在深度神经网络中引入非线性激活函数的作用</h3>
+<p>不引入非线性激活函数的情况下，不管神经网络有多少层其输出都是输入的线性组合，与没有隐藏层的效果相当</p>
+<h3 id="在数据处理时，为什么通常要进行标准化处理">在数据处理时，为什么通常要进行标准化处理</h3>
+<p>在实际问题中，我们使用的样本通常是多维数据，每一维对应一个特征，这些特征的量纲和数量级都是不一样的</p>
+<p>这时需要对数据进行标准化处理，试所有的特征具有同样的尺度</p>
+<h3 id="试述将线性函数用作神经元激活函数的缺陷">试述将线性函数用作神经元激活函数的缺陷</h3>
+<p>如果单用线性函数作为激活函数，无论多少层的神经网络会退化成一个线性回归，不能处理非线性分类任务。</p>
+<h3 id="试述学习率的取值对神经网络训练的影响">试述学习率的取值对神经网络训练的影响</h3>
+<p>如果学习率太低，每次下降的很慢，使得迭代次数非常多。</p>
+<p>如果学习率太高，在后面迭代时会出现震荡现象，在最小值附近来回波动。</p>
+<h3 id="神经网络为什么会产生梯度消失，有什么解决方案">神经网络为什么会产生梯度消失，有什么解决方案</h3>
+<p>前面层上的梯度是来自于后面层上梯度的乘积。当存在过多的层次时，且激活函数的梯度小于1时，就会使前面层的梯度变得很小，更新速度过慢，导致梯度消失。</p>
+<p>一种解决方案是使用Relu激活函数替换sigmoid，relu函数的梯度不会随着x的增大而变小，sigmoid在x取值较大时梯度趋近于0。</p>
+<h3 id="卷积核尺度和参数的计算">卷积核尺度和参数的计算</h3>
+<p>对3个32×32的特征图进行卷积层操作，卷积核10个5×5，Stride是1，pad为2，输出特征图的尺度是多少？卷积层的参数是多少？写出公式和结果。</p>
+<p>输出尺度：(N+2P-F)/stride+1</p>
+<p>卷积层的参数：(F×F×n+1)×N</p>
+<p>答案：输出尺度（ 32+2×2-5）/1+1 = 32</p>
+<p>卷积层的参数 （5×5×3+1）×10=760</p>
+<h3 id="试析随机森林为何比决策树Bagging集成的训练速度更快">试析随机森林为何比决策树Bagging集成的训练速度更快</h3>
+<p>随机森林是Bagging算法的一个扩展变体，以决策树为基学习器构建Bagging集成，</p>
+<p>Bagging在选择划分属性时需要考察结点的所有属性，而随机森林只需随机地考察一个属性子集</p>
+<p>所以随机森林比决策树Bagging训练速度更快，泛化能力越强。</p>
+<h3 id="请给出L1范数和L2范数的计算方法及他们的使用场景。">请给出L1范数和L2范数的计算方法及他们的使用场景。</h3>
+<p>L1范数为向量各个元素绝对值之和可以使权值稀疏，方便特征提取。</p>
+<p>L2 范数为向量各个元素平方和的1/2次方可以防止过拟合，提升模型的泛化能力。</p>
+<h3 id="试述为什么基于L1范数可以进行特征选择。">试述为什么基于L1范数可以进行特征选择。</h3>
+<p>基于L1范数的特征选择：不能直接设置最终选择特征的个数k；通过设置正则化系数λ来隐式控制k；</p>
+<p>λ值越大，模型越关注稀疏性，得到的非零系数个数越少；</p>
+<p>反之，非零稀疏个数越多；</p>
+<p>可以设置一个选择特征个数的上限，通过设置不同λ值，得到满足要求的特征。</p>
+<p>从有条件极值问题的角度来看，L1范数相当于将模型界空间限制在了L1-ball上，目标函数的等高线有很大的概率与坐标轴和边相交，这样的解具有稀疏性。</p>
+<h3 id="请指出数据聚类存在哪些挑战性问题">请指出数据聚类存在哪些挑战性问题</h3>
+<ul>
+<li>能够处理高维数据：在高维空间聚类更具挑战性，随着维数的增加，具有相同距离的两个样本其相似程度可以相差很远。对于高维稀疏数据，这一点更突出。</li>
+<li>对噪声鲁棒：在实际中，绝大多数样本集都包含噪声、空缺、部分未知属性、孤立点、甚至错误数据。</li>
+<li>具有约束的聚类：在实际应用中，通常需要在某种约束条件下进行聚类，既满足约束条件，以希望有高聚类精度，是一个挑战性问题。</li>
+<li>对初始输入参数鲁棒：具有自适应的簇数判定能力，对初始聚类中心鲁棒。</li>
+<li>能够解决用户的问题：聚类结果能被用户所理解，并能带来经济效益，特别是在数据挖掘领域。</li>
+</ul>
+<h3 id="描述主成分分析的主要步骤">描述主成分分析的主要步骤</h3>
+<ol>
+<li>数据标准化</li>
+<li>计算协方差矩阵，求协方差的特征值和特征向量。</li>
+<li>将特征值按照从大到小的顺序排序，选择其中最大的k个，然后将其对应的k个特征向量分别作为列向量组成特征向量矩阵。</li>
+<li>将样本点投影到选取的特征向量上。</li>
+</ol>
+<h3 id="请描述机器学习中的分类任务">请描述机器学习中的分类任务</h3>
+<p>根据给定的训练集<img src="https://math.now.sh?inline=T%3D%5C%7B%28%5Cmathbf%7Bx%7D_%7B1%7D%2C%20y_%7B1%7D%29%2C%20%5Ccdots%2C(%5Cmathbf%7Bx%7D_%7Bl%7D%2C%20y_%7Bl%7D)%5C%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=%5Cmathbf%7Bx%7D_%7Bi%7D%20%5Cin%20C%3DR%5E%7Bn%7D%20%2C%20%20y_%7Bi%7D%20%5Cin%20%5Cmathrm%7BY%7D%3D%5C%7B1%2C2%2C%20%5Cldots%2C%20m%5C%7D%2C%20i%3D1%2C2%2C%20%5Cldots%2C%20l" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，要求寻找<img src="https://math.now.sh?inline=%5Cmathrm%7BC%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上的决策函数  <img src="https://math.now.sh?inline=g%28%5Cmathbf%7Bx%7D%29%3A%20%5Cmathrm%7BC%7D%20%5Crightarrow%20%5Cmathrm%7BY%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>。</p>
+<h3 id="请给出你对泛化误差的理解">请给出你对泛化误差的理解</h3>
+<p>泛化误差 = 偏差+方差+噪声</p>
+<p>偏差：度量了学习算法的期望预测与真实结果的偏离程度，刻画了学习算法本身的拟合能力</p>
+<p>方差：度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了数据扰动所造成的影响</p>
+<p>噪声：表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，即刻画了学习问题本身的难度</p>
+<h3 id="模型评估过程中，欠拟合和过拟合现象是什么。">模型评估过程中，欠拟合和过拟合现象是什么。</h3>
+<p>过拟合是指模型对于训练数据拟合呈过当的情况，反映到评估指标上，就是模型在训练集上的表现很好，但在测试集和新数据上的表现较差。</p>
+<p>欠拟合是模型在训练和预测时表现都不好的情况。</p>
+<h3 id="说出几种降低过拟合和欠拟合的方法。">说出几种降低过拟合和欠拟合的方法。</h3>
+<p>降低过拟合：</p>
+<ol>
+<li>从数据入手，获得更多的训练数据。使用更多的训练数据是解决过拟合问题最高效的手段，因为更多的样本能够让模型学习到更多更高效的特征。当然，直接增加实验数据一般是很困难的，但是可以通过一定的规则来扩充训练数据。比如在图像分类的问题上，可以通过图像的平移、旋转、缩放等方式扩充数据，更进一步地，可以使用生成式对抗网络来合成大量的新训练数据。</li>
+<li>降低模型复杂度。在数据较少时，模型过于复杂是产生过拟合的主要因素，适当降低模型复杂度可以避免模型拟合过多的采样噪声。例如，在神经网络模型中减少网络层数、神经元个数等;在决策树模型中降低树的深度、进行剪枝等。</li>
+<li>正则化方法。给模型的参数加上一定的正则约束，比如将权值的大小加入到损失函数中。</li>
+<li>集成学习方法。集成学习是把多个模型集成在一起，来降低单一模型的过拟合风险，如Bagging方法。</li>
+</ol>
+<p>降低欠拟合：</p>
+<ol>
+<li>添加新特征。当特征不足或者现特征与样本标签的相关性不强时，模型容易出现欠拟合。通过挖掘“上下文特征”“ ID 类特征”“组合特征”等新的特征，往往能够取得更好的效果。</li>
+<li>增加模型复杂度。简单模型的学习能力较差，通过增加模型的复杂度可以便模型拥高更强的拟合能力。例如，在线性模型中添加高次项，在神经网络模型中增加网络层数或神经元个数等。</li>
+<li>减小正则化系数。正则化是用来防止过拟合的，但当模型出现欠拟合现象时，则需要针对性地减小正则化系数。</li>
+</ol>
+<h3 id="K均值算法的优缺点是什么，如何对其调优。">K均值算法的优缺点是什么，如何对其调优。</h3>
+<p>K均值算法缺点：例如受初值和离群点的影响每次的结果不稳定、结果通常不是全局最优而是局部最优解、无法很好地解决数据簇分布差别比较大的情况、不太适用于离散分类等。</p>
+<p>K均值聚类的优点：主要体现在对于大数据集，K均值聚类算法相对是高效的，计算复杂度是 O(NKt) 接近于线性，其中N是数据对象的数目，K是聚类的簇数，t 是迭代的轮数。</p>
+<p>调优方法：数据归一化，离群点预处理，采用核函数，合理选择K值。</p>
+<h3 id="请简述relu激活函数的优缺点">请简述relu激活函数的优缺点</h3>
+<p>优点：</p>
+<ol>
+<li>从计算的角度上，Sigmoid与Tanh激活函数均需要计算指数，复杂度高。而ReLU 只需要一个阈值即可得到激活值。</li>
+<li>ReLU的非饱和性可以有效地解决梯度消失的问题。</li>
+<li>ReLU的单侧抑制提供了网络的稀疏表达能力。</li>
+</ol>
+<p>缺点：</p>
+<p>在较大学习率设置下Relu可能会出现大量神经元死亡问题。后面神经元方向传播梯度为正，且学习率较大，Relu的梯度为1，梯度下降此时会导致该神经元的参数为负值，可能之后不会再被激活，造成神经元死亡。</p>
+<h2 id="补充题目">补充题目</h2>
+<h3 id="生成式模型和判别式模型的区别">生成式模型和判别式模型的区别</h3>
+<p>生成模型估计的是联合概率分布，然后求出条件概率分布P(Y|X)作为预测的模型，即生成模型：P(Y|X)= P(X,Y)/ P(X)。</p>
+<p>生成方法关心的是给定输入x产生输出y的生成关系。</p>
+<p>判别模型估计的是条件概率分布，有数据直接学得决策函数P(X)或者条件概率分布P(Y|X)作为预测的模型。</p>
+<p>判别式方法关心的是给定输入X，应该预测什么样的输出Y</p>
+<h3 id="逻辑回归和线性回归的异同">逻辑回归和线性回归的异同</h3>
+<p>不同之处：</p>
+<ol>
+<li>逻辑回归解决的是分类问题，因此因变量是离散的；而线性回归解决的是回归问题，因此因变量是连续的。这是两者最本质的区别</li>
+<li>在自变量和超参数确定的情况下逻辑回归可看作广义的线性模型在因变量下服从二元分布的一个特殊情况</li>
+<li>使用最小二乘法求解线性回归时我们认为因变量服从正态分布</li>
+</ol>
+<p>相同之处：</p>
+<ol>
+<li>二者在求解超参数的过程中都使用梯度下降的方法</li>
+<li>二者都使用了极大似然估计对训练样本进行建模</li>
+</ol>
+<h3 id="距离函数的四个基本性质">距离函数的四个基本性质</h3>
+<ol>
+<li>非负性:  <img src="https://math.now.sh?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%20%5Cgeq%200" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>同一性:  <img src="https://math.now.sh?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%3D0%20%20%E5%BD%93%E4%B8%94%E4%BB%85%E5%BD%93%20%20x_%7Bi%7D%3Dx_%7Bj%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>对称性:  <img src="https://math.now.sh?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%3D%5Coperatorname%7Bdist%7D%5Cleft(x_%7Bj%7D%2C%20x_%7Bi%7D%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>直递性:  <img src="https://math.now.sh?inline=%5Coperatorname%7Bdist%7D%5Cleft%28x_%7Bi%7D%2C%20x_%7Bj%7D%5Cright%29%20%5Cleq%20%5Coperatorname%7Bdist%7D%5Cleft(x_%7Bi%7D%2C%20x_%7Bk%7D%5Cright)%2B%5Coperatorname%7Bdist%7D%5Cleft(x_%7Bk%7D%2C%20x_%7Bj%7D%5Cright)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<h3 id="随机变量x的支撑集（也就是非零值域）定义为-a，b-，没有别的限制加在x上，该随机变量的最大熵分布是什么">随机变量x的支撑集（也就是非零值域）定义为[a，b]，没有别的限制加在x上，该随机变量的最大熵分布是什么</h3>
+<p>根据最大熵模型， 推导出x概率密度函数是一个常函数，所以最大熵分布为均匀分布。</p>
+<h3 id="随机变量x的给定均值和方差限制在x上，该随机变量的最大熵分布是什么">随机变量x的给定均值和方差限制在x上，该随机变量的最大熵分布是什么</h3>
+<p>根据最大熵模型推导出x概率密度函数是一个高斯分布 。</p>
+<h1>计算题</h1>
+<h2 id="概率图">概率图</h2>
+<p>写出概率图模型联合分布的因子分解式</p>
+<p>无向图看团，有向图看条件概率</p>
+<p>贝叶斯网络计算概率</p>
+<h2 id="HMM">HMM</h2>
+<p>前向算法</p>
+<p>后向算法</p>
+<p>维特比解码</p>
+<h2 id="聚类-2">聚类</h2>
+<p>Kmeans：</p>
+<ul>
+<li>确定初始中心点</li>
+<li>计算聚类结果</li>
+<li>根据结果更新中心点</li>
+</ul>
+<p>层次聚类自底向上：初始每一个点为一类，逐步合并更新中心即可，注意更新的时候要使用原始的点重新进行计算</p>
+<h2 id="贝叶斯-2">贝叶斯</h2>
+<p>贝叶斯最小错误分类</p>
+<p>贝叶斯最小风险</p>
+<h2 id="决策树-2">决策树</h2>
+<ul>
+<li>ID3：最大信息增益：根据类别计算经验熵，然后按照特征对类别算条件熵，两者相减，取比较大的特征作为划分的节点</li>
+<li>C4.5：最大信息增益比：在ID3计算后的基础上除以每一个特征的经验熵</li>
+<li>CART：最小基尼指数：外层是特征比例，内层是特征内部的类别比例</li>
+</ul>
+<h2 id="Maximum-Likelihood">Maximum Likelihood</h2>
+<p>抛一枚硬币问题，观察数据情况是：一枚硬币包括正反两面，共抛了30次，其中12次是正面，18次是反面。采用Maximum Likelihood方法，估计正面出<br>
+现的概率和反面出现的概率。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pS96XQO"><img src="https://s1.ax1x.com/2022/12/31/pS96XQO.md.png" srcset="/img/loading.gif" lazyload alt="pS96XQO.md.png"></a></p>
+<h2 id="Fisher">Fisher</h2>
+<h1>设计题</h1>
+<h2 id="10万张图片分类，说明模型结构和训练方法">10万张图片分类，说明模型结构和训练方法</h2>
+<p>在机器学习中常常采用基于数据驱动的方法进行图像分类。所谓基于数据驱动的方法，就是给计算机很多数据，然后实现学习算法，让计算机学习到每个类的外形的方法。基于这种方法的完整流程如下</p>
+<ol>
+<li>输入：输入是包含 N 个图像的集合，每个图像的标签是 K 种分类标签中的一种。这个集合称为训练集。</li>
+<li>学习：这一步的任务是使用训练集来学习每个类到底长什么样。一般该步骤叫做训练分类器或者学习一个模型。</li>
+<li>评价：让分类器来预测它未曾见过的图像的分类标签，并以此来评价分类器的质量。我们会把分类器预测的标签和图像真正的分类标签对比。毫无疑问，分类器预测的分类标签和图像真正的分类标签如果一致，那就是好事，这样的情况越多越好。</li>
+</ol>
+<p>[<img src="https://img-blog.csdnimg.cn/72bc54765e58432bb4f437c753288655.jpeg" srcset="/img/loading.gif" lazyload alt="pS.md.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：机器学习-期末复习</div>
+      <div>https://zhangzhao219.github.io/2022/12/11/UCAS/machine-learning/machine-learning-final/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/13/6.824/Distributed-Systems-MIT-6.824-LEC-1/" title="MIT-6.824 Distributed Systems-LEC 1 Introduction">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-LEC 1 Introduction</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/11/UCAS/advanced-ai/advanced-ai-final/" title="研究生课程：高级人工智能-期末复习">
+                        <span class="hidden-mobile">研究生课程：高级人工智能-期末复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

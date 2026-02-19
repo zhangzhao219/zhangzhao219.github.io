@@ -1,0 +1,1284 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Go项目-分布式缓存GeeCache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go项目-分布式缓存GeeCache">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/12/05/Go/Go-Project-Geecache/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="Go项目-分布式缓存GeeCache">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-05T17:54:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.193Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="Go">
+<meta property="article:tag" content="Project">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Go项目-分布式缓存GeeCache - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Go项目-分布式缓存GeeCache</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-05 17:54" pubdate>
+          2022年12月5日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Go项目-分布式缓存GeeCache</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Go项目-分布式缓存GeeCache</p>
+<span id="more"></span>
+<h1>GeeCache</h1>
+<h2 id="完成的功能">完成的功能</h2>
+<ul>
+<li>单机缓存和基于 HTTP 的分布式缓存</li>
+<li>最近最少访问(Least Recently Used, LRU) 缓存策略</li>
+<li>使用 Go 锁机制防止缓存击穿</li>
+<li>使用一致性哈希选择节点，实现负载均衡</li>
+</ul>
+<h2 id="LRU-缓存淘汰策略">LRU 缓存淘汰策略</h2>
+<p>FIFO：先淘汰缓存中最早添加的记录</p>
+<p>LFU：淘汰缓存中访问频率最低的记录，需要维护一个访问频率的表</p>
+<p>LRU：最近最少使用，认为如果数据最近被访问过，那么将来被访问的概率也会更高。维护一个队列，如果一条记录被访问，则移动到队列尾端，这样保证队首一定是最近最少访问的数据</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> lru
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;container/list&quot;</span>
+
+<span class="hljs-comment">// LRU cache 结构体</span>
+<span class="hljs-keyword">type</span> Cache <span class="hljs-keyword">struct</span> &#123;
+	maxBytes  <span class="hljs-type">int64</span>                         <span class="hljs-comment">// 允许使用的最大内存</span>
+	nbytes    <span class="hljs-type">int64</span>                         <span class="hljs-comment">// 当前已使用的内存</span>
+	ll        *list.List                    <span class="hljs-comment">// cache链表</span>
+	cache     <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*list.Element      <span class="hljs-comment">// 查找键值对的字典</span>
+	OnEvicted <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(key <span class="hljs-type">string</span>, value Value)</span></span> <span class="hljs-comment">// 某条记录被移除时的回调函数</span>
+&#125;
+
+<span class="hljs-comment">// 双向链表节点的数据类型</span>
+<span class="hljs-comment">// 主要目的是为了删除节点后能从字典中删除该键值对</span>
+<span class="hljs-keyword">type</span> entry <span class="hljs-keyword">struct</span> &#123;
+	key   <span class="hljs-type">string</span>
+	value Value
+&#125;
+
+<span class="hljs-comment">// 值的类型可以是任意的，定义一个空接口，实现Len()方法返回值的占用空间大小</span>
+
+<span class="hljs-comment">// Len the number of cache entries</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *Cache)</span></span> Len() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> c.ll.Len()
+&#125;
+
+<span class="hljs-keyword">type</span> Value <span class="hljs-keyword">interface</span> &#123;
+	Len() <span class="hljs-type">int</span> <span class="hljs-comment">// 包含一个方法返回值占用的内存大小</span>
+&#125;
+
+<span class="hljs-comment">// 工厂模式，返回实例化的cache</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">New</span><span class="hljs-params">(maxBytes <span class="hljs-type">int64</span>, onEvicted <span class="hljs-keyword">func</span>(<span class="hljs-type">string</span>, Value)</span></span>) *Cache &#123;
+	<span class="hljs-keyword">return</span> &amp;Cache&#123;
+		maxBytes:  maxBytes,
+		ll:        list.New(),
+		cache:     <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*list.Element),
+		OnEvicted: onEvicted,
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 查找功能，在字典中进行查找，然后移动到队尾（Front）</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *Cache)</span></span> Get(key <span class="hljs-type">string</span>) (value Value, ok <span class="hljs-type">bool</span>) &#123;
+	<span class="hljs-keyword">if</span> ele, ok := c.cache[key]; ok &#123;
+		c.ll.MoveToFront(ele)
+		kv := ele.Value.(*entry)
+		<span class="hljs-keyword">return</span> kv.value, <span class="hljs-literal">true</span>
+	&#125;
+	<span class="hljs-keyword">return</span>
+&#125;
+
+<span class="hljs-comment">// LRU删除策略：从队首（Back）拿到节点，然后将其删除</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *Cache)</span></span> RemoveOldest() &#123;
+	ele := c.ll.Back()
+	<span class="hljs-keyword">if</span> ele != <span class="hljs-literal">nil</span> &#123;
+		c.ll.Remove(ele)
+		kv := ele.Value.(*entry)
+		<span class="hljs-built_in">delete</span>(c.cache, kv.key)
+		c.nbytes -= <span class="hljs-type">int64</span>(<span class="hljs-built_in">len</span>(kv.key)) + <span class="hljs-type">int64</span>(kv.value.Len()) <span class="hljs-comment">// 更新当前已经使用的内存</span>
+		<span class="hljs-keyword">if</span> c.OnEvicted != <span class="hljs-literal">nil</span> &#123;
+			c.OnEvicted(kv.key, kv.value)
+		&#125;
+	&#125;
+&#125;
+
+<span class="hljs-comment">// 新增节点/修改节点</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *Cache)</span></span> Add(key <span class="hljs-type">string</span>, value Value) &#123;
+	<span class="hljs-comment">// 如果在链表中找到则将其更新，同时更新占用的空间大小等，并移动到队列尾端</span>
+	<span class="hljs-keyword">if</span> ele, ok := c.cache[key]; ok &#123;
+		c.ll.MoveToFront(ele)
+		kv := ele.Value.(*entry)
+		c.nbytes += <span class="hljs-type">int64</span>(value.Len()) - <span class="hljs-type">int64</span>(kv.value.Len())
+		kv.value = value
+	&#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 如果找不到则直接插入</span>
+		ele := c.ll.PushFront(&amp;entry&#123;key, value&#125;)
+		c.cache[key] = ele
+		c.nbytes += <span class="hljs-type">int64</span>(<span class="hljs-built_in">len</span>(key)) + <span class="hljs-type">int64</span>(value.Len())
+	&#125;
+	<span class="hljs-comment">// 如果占用空间超过了链表的最大空间，则删除掉队首的节点</span>
+	<span class="hljs-keyword">for</span> c.maxBytes != <span class="hljs-number">0</span> &amp;&amp; c.maxBytes &lt; c.nbytes &#123;
+		c.RemoveOldest()
+	&#125;
+&#125;
+</code></pre></div>
+<h2 id="单机并发缓存">单机并发缓存</h2>
+<p>多个协程(goroutine)同时读写同一个变量，在并发度较高的情况下，会发生冲突。确保一次只有一个协程(goroutine)可以访问该变量以避免冲突，这称之为 <code>互斥</code>，互斥锁可以解决这个问题。</p>
+<p>当一个协程调用了 <code>Lock()</code> 方法时，其他协程被阻塞了，直到 <code>Unlock()</code>调用将锁释放。因此被包裹部分的代码就能够避免冲突，实现互斥。</p>
+<p>抽象了一个只读数据结构 <code>ByteView</code> 用来表示缓存值：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> geecache
+
+<span class="hljs-comment">// 只读数据结构用来表示缓存值</span>
+<span class="hljs-keyword">type</span> ByteView <span class="hljs-keyword">struct</span> &#123;
+	b []<span class="hljs-type">byte</span>
+&#125;
+
+<span class="hljs-comment">// 返回缓存值的长度</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(v ByteView)</span></span> Len() <span class="hljs-type">int</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(v.b)
+&#125;
+
+<span class="hljs-comment">// 返回拷贝从而防止这个值被外部操作修改</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(v ByteView)</span></span> ByteSlice() []<span class="hljs-type">byte</span> &#123;
+	<span class="hljs-keyword">return</span> cloneBytes(v.b)
+&#125;
+
+<span class="hljs-comment">// 将数据作为一个字符串进行返回</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(v ByteView)</span></span> String() <span class="hljs-type">string</span> &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-type">string</span>(v.b)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">cloneBytes</span><span class="hljs-params">(b []<span class="hljs-type">byte</span>)</span></span> []<span class="hljs-type">byte</span> &#123;
+	c := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-built_in">len</span>(b))
+	<span class="hljs-built_in">copy</span>(c, b)
+	<span class="hljs-keyword">return</span> c
+&#125;
+</code></pre></div>
+<p>为 lru.Cache 添加并发特性（加锁）：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> geecache
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;Go-Projects/GeeCache/lru&quot;</span>
+	<span class="hljs-string">&quot;sync&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> cache <span class="hljs-keyword">struct</span> &#123;
+	mu         sync.Mutex
+	lru        *lru.Cache
+	cacheBytes <span class="hljs-type">int64</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *cache)</span></span> add(key <span class="hljs-type">string</span>, value ByteView) &#123;
+	c.mu.Lock()
+	<span class="hljs-keyword">defer</span> c.mu.Unlock()
+	<span class="hljs-comment">// 延迟初始化</span>
+	<span class="hljs-keyword">if</span> c.lru == <span class="hljs-literal">nil</span> &#123;
+		c.lru = lru.New(c.cacheBytes, <span class="hljs-literal">nil</span>)
+	&#125;
+	c.lru.Add(key, value)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *cache)</span></span> get(key <span class="hljs-type">string</span>) (value ByteView, ok <span class="hljs-type">bool</span>) &#123;
+	c.mu.Lock()
+	<span class="hljs-keyword">defer</span> c.mu.Unlock()
+	<span class="hljs-keyword">if</span> c.lru == <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	<span class="hljs-keyword">if</span> v, ok := c.lru.Get(key); ok &#123;
+		<span class="hljs-keyword">return</span> v.(ByteView), ok
+	&#125;
+
+	<span class="hljs-keyword">return</span>
+&#125;
+</code></pre></div>
+<p>Group 是 GeeCache 最核心的数据结构，负责与用户的交互，并且控制缓存值存储和获取的流程。</p>
+<p>在缓存不存在时，调用这个函数，得到源数据：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Getter <span class="hljs-keyword">interface</span> &#123;
+	Get(key <span class="hljs-type">string</span>) ([]<span class="hljs-type">byte</span>, <span class="hljs-type">error</span>)
+&#125;
+
+<span class="hljs-comment">// 定义函数类型 GetterFunc，并实现 Getter 接口的 Get 方法</span>
+<span class="hljs-keyword">type</span> GetterFunc <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(key <span class="hljs-type">string</span>)</span></span> ([]<span class="hljs-type">byte</span>, <span class="hljs-type">error</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(f GetterFunc)</span></span> Get(key <span class="hljs-type">string</span>) ([]<span class="hljs-type">byte</span>, <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">return</span> f(key)
+&#125;</code></pre></div>
+<p>核心Group：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 缓存的命名空间</span>
+<span class="hljs-keyword">type</span> Group <span class="hljs-keyword">struct</span> &#123;
+	name      <span class="hljs-type">string</span> <span class="hljs-comment">// 每个Group拥有一个唯一的名称</span>
+	getter    Getter <span class="hljs-comment">// 缓存未命中时的回溯</span>
+	mainCache cache  <span class="hljs-comment">// 并发缓存</span>
+&#125;
+
+<span class="hljs-keyword">var</span> (
+	mu     sync.RWMutex
+	groups = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*Group)
+)
+
+<span class="hljs-comment">// 创建Group实例，并且将group的名称存在全局变量中</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewGroup</span><span class="hljs-params">(name <span class="hljs-type">string</span>, cacheBytes <span class="hljs-type">int64</span>, getter Getter)</span></span> *Group &#123;
+	<span class="hljs-keyword">if</span> getter == <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;nil Getter&quot;</span>)
+	&#125;
+	mu.Lock()
+	<span class="hljs-keyword">defer</span> mu.Unlock()
+	g := &amp;Group&#123;
+		name:      name,
+		getter:    getter,
+		mainCache: cache&#123;cacheBytes: cacheBytes&#125;,
+	&#125;
+	groups[name] = g
+	<span class="hljs-keyword">return</span> g
+&#125;
+
+<span class="hljs-comment">// 获取指定的group</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GetGroup</span><span class="hljs-params">(name <span class="hljs-type">string</span>)</span></span> *Group &#123;
+	mu.RLock()
+	g := groups[name]
+	mu.RUnlock()
+	<span class="hljs-keyword">return</span> g
+&#125;</code></pre></div>
+<p>Group的Get方法，完成对缓存的查找以及未命中后的回调操作</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 找到缓存值</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> Get(key <span class="hljs-type">string</span>) (ByteView, <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-comment">// 如果没有键则报错</span>
+	<span class="hljs-keyword">if</span> key == <span class="hljs-string">&quot;&quot;</span> &#123;
+		<span class="hljs-keyword">return</span> ByteView&#123;&#125;, fmt.Errorf(<span class="hljs-string">&quot;key is required&quot;</span>)
+	&#125;
+	<span class="hljs-comment">// 从 mainCache 中查找缓存，如果存在则返回缓存值</span>
+	<span class="hljs-keyword">if</span> v, ok := g.mainCache.get(key); ok &#123;
+		log.Println(<span class="hljs-string">&quot;[GeeCache] hit&quot;</span>)
+		<span class="hljs-keyword">return</span> v, <span class="hljs-literal">nil</span>
+	&#125;
+
+	<span class="hljs-keyword">return</span> g.load(key)
+&#125;
+
+<span class="hljs-comment">// 缓存不存在，则调用 load 方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> load(key <span class="hljs-type">string</span>) (value ByteView, err <span class="hljs-type">error</span>) &#123;
+	<span class="hljs-keyword">return</span> g.getLocally(key)
+&#125;
+
+<span class="hljs-comment">// getLocally 调用用户回调函数 g.getter.Get() 获取源数据，并且将源数据添加到缓存 mainCache 中</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> getLocally(key <span class="hljs-type">string</span>) (ByteView, <span class="hljs-type">error</span>) &#123;
+	bytes, err := g.getter.Get(key)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> ByteView&#123;&#125;, err
+
+	&#125;
+	value := ByteView&#123;b: cloneBytes(bytes)&#125;
+	g.populateCache(key, value)
+	<span class="hljs-keyword">return</span> value, <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> populateCache(key <span class="hljs-type">string</span>, value ByteView) &#123;
+	g.mainCache.add(key, value)
+&#125;
+</code></pre></div>
+<h2 id="HTTP-服务端">HTTP 服务端</h2>
+<p>分布式缓存需要实现节点间通信，建立基于 HTTP 的通信机制是比较常见和简单的做法。如果一个节点启动了 HTTP 服务，那么这个节点就可以被其他节点访问。</p>
+<p>承载节点间 HTTP 通信的核心数据结构：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> geecache
+
+<span class="hljs-keyword">const</span> defaultBasePath = <span class="hljs-string">&quot;/_geecache/&quot;</span>
+
+<span class="hljs-keyword">type</span> HTTPPool <span class="hljs-keyword">struct</span> &#123;
+	self     <span class="hljs-type">string</span> <span class="hljs-comment">// 记录自己的地址，包括主机名/IP 和端口</span>
+	basePath <span class="hljs-type">string</span> <span class="hljs-comment">// 节点间通讯地址的前缀</span>
+&#125;
+
+<span class="hljs-comment">// 返回HTTP实例</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewHTTPPool</span><span class="hljs-params">(self <span class="hljs-type">string</span>)</span></span> *HTTPPool &#123;
+	<span class="hljs-keyword">return</span> &amp;HTTPPool&#123;
+		self:     self,
+		basePath: defaultBasePath,
+	&#125;
+&#125;</code></pre></div>
+<p>实现最为核心的 <code>ServeHTTP</code> 方法：</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 使用服务器登录</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *HTTPPool)</span></span> Log(format <span class="hljs-type">string</span>, v ...<span class="hljs-keyword">interface</span>&#123;&#125;) &#123;
+	log.Printf(<span class="hljs-string">&quot;[Server %s] %s&quot;</span>, p.self, fmt.Sprintf(format, v...))
+&#125;
+
+<span class="hljs-comment">// 处理HTTP请求</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *HTTPPool)</span></span> ServeHTTP(w http.ResponseWriter, r *http.Request) &#123;
+	<span class="hljs-comment">// 判断访问路径的前缀是否是 basePath，不是返回错误</span>
+	<span class="hljs-keyword">if</span> !strings.HasPrefix(r.URL.Path, p.basePath) &#123;
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;HTTPPool serving unexpected path: &quot;</span> + r.URL.Path)
+	&#125;
+	p.Log(<span class="hljs-string">&quot;%s %s&quot;</span>, r.Method, r.URL.Path)
+	<span class="hljs-comment">// /&lt;basepath&gt;/&lt;groupname&gt;/&lt;key&gt; required</span>
+	parts := strings.SplitN(r.URL.Path[<span class="hljs-built_in">len</span>(p.basePath):], <span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-number">2</span>)
+	<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(parts) != <span class="hljs-number">2</span> &#123;
+		http.Error(w, <span class="hljs-string">&quot;bad request&quot;</span>, http.StatusBadRequest)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	groupName := parts[<span class="hljs-number">0</span>]
+	key := parts[<span class="hljs-number">1</span>]
+	<span class="hljs-comment">// 通过 groupname 得到 group 实例，再使用 group.Get(key) 获取缓存数据</span>
+	group := GetGroup(groupName)
+	<span class="hljs-keyword">if</span> group == <span class="hljs-literal">nil</span> &#123;
+		http.Error(w, <span class="hljs-string">&quot;no such group: &quot;</span>+groupName, http.StatusNotFound)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	view, err := group.Get(key)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		<span class="hljs-keyword">return</span>
+	&#125;
+
+	w.Header().Set(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/octet-stream&quot;</span>)
+	<span class="hljs-comment">// 将缓存值作为 httpResponse 的 body 返回</span>
+	w.Write(view.ByteSlice())
+&#125;</code></pre></div>
+<h2 id="一致性哈希">一致性哈希</h2>
+<p>一致性哈希算法将 key 映射到 2^32 的空间中，将这个数字首尾相连，形成一个环</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> consistenthash
+
+<span class="hljs-keyword">import</span> (
+	<span class="hljs-string">&quot;hash/crc32&quot;</span>
+	<span class="hljs-string">&quot;sort&quot;</span>
+	<span class="hljs-string">&quot;strconv&quot;</span>
+)
+
+<span class="hljs-comment">// 定义了函数类型 Hash，采取依赖注入的方式，允许用于替换成自定义的 Hash 函数</span>
+<span class="hljs-keyword">type</span> Hash <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(data []<span class="hljs-type">byte</span>)</span></span> <span class="hljs-type">uint32</span>
+
+<span class="hljs-comment">// 一致性哈希算法的主数据结构</span>
+<span class="hljs-keyword">type</span> Map <span class="hljs-keyword">struct</span> &#123;
+	hash     Hash
+	replicas <span class="hljs-type">int</span>            <span class="hljs-comment">// 虚拟节点倍数</span>
+	keys     []<span class="hljs-type">int</span>          <span class="hljs-comment">// 哈希环</span>
+	hashMap  <span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]<span class="hljs-type">string</span> <span class="hljs-comment">// 虚拟节点与真实节点的映射表</span>
+&#125;
+
+<span class="hljs-comment">// 允许自定义虚拟节点倍数和 Hash 函数</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">New</span><span class="hljs-params">(replicas <span class="hljs-type">int</span>, fn Hash)</span></span> *Map &#123;
+	m := &amp;Map&#123;
+		replicas: replicas,
+		hash:     fn,
+		hashMap:  <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]<span class="hljs-type">string</span>),
+	&#125;
+	<span class="hljs-keyword">if</span> m.hash == <span class="hljs-literal">nil</span> &#123;
+		m.hash = crc32.ChecksumIEEE
+	&#125;
+	<span class="hljs-keyword">return</span> m
+&#125;
+
+<span class="hljs-comment">// 实现添加真实节点/机器的 Add() 方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(m *Map)</span></span> Add(keys ...<span class="hljs-type">string</span>) &#123;
+	<span class="hljs-keyword">for</span> _, key := <span class="hljs-keyword">range</span> keys &#123;
+		<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; m.replicas; i++ &#123;
+			hash := <span class="hljs-type">int</span>(m.hash([]<span class="hljs-type">byte</span>(strconv.Itoa(i) + key)))
+			m.keys = <span class="hljs-built_in">append</span>(m.keys, hash)
+			m.hashMap[hash] = key
+		&#125;
+	&#125;
+	sort.Ints(m.keys)
+&#125;
+
+<span class="hljs-comment">// 实现选择节点的 Get() 方法</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(m *Map)</span></span> Get(key <span class="hljs-type">string</span>) <span class="hljs-type">string</span> &#123;
+	<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(m.keys) == <span class="hljs-number">0</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>
+	&#125;
+
+	hash := <span class="hljs-type">int</span>(m.hash([]<span class="hljs-type">byte</span>(key))) <span class="hljs-comment">// 计算 key 的哈希值</span>
+	<span class="hljs-comment">// 顺时针找到第一个匹配的虚拟节点的下标 idx</span>
+	idx := sort.Search(<span class="hljs-built_in">len</span>(m.keys), <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;
+		<span class="hljs-keyword">return</span> m.keys[i] &gt;= hash
+	&#125;)
+
+	<span class="hljs-keyword">return</span> m.hashMap[m.keys[idx%<span class="hljs-built_in">len</span>(m.keys)]]
+&#125;
+</code></pre></div>
+<h2 id="分布式节点">分布式节点</h2>
+<p>抽象 PeerPicker</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> geecache
+
+<span class="hljs-comment">// PeerPicker 的 PickPeer() 方法用于根据传入的 key 选择相应节点 PeerGetter</span>
+<span class="hljs-keyword">type</span> PeerPicker <span class="hljs-keyword">interface</span> &#123;
+	PickPeer(key <span class="hljs-type">string</span>) (peer PeerGetter, ok <span class="hljs-type">bool</span>)
+&#125;
+
+<span class="hljs-comment">// 接口 PeerGetter 的 Get() 方法用于从对应 group 查找缓存值</span>
+<span class="hljs-keyword">type</span> PeerGetter <span class="hljs-keyword">interface</span> &#123;
+	Get(group <span class="hljs-type">string</span>, key <span class="hljs-type">string</span>) ([]<span class="hljs-type">byte</span>, <span class="hljs-type">error</span>)
+&#125;
+</code></pre></div>
+<p>节点选择与 HTTP 客户端</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">const</span> (
+	defaultBasePath = <span class="hljs-string">&quot;/_geecache/&quot;</span>
+	defaultReplicas = <span class="hljs-number">50</span>
+)
+
+<span class="hljs-keyword">type</span> HTTPPool <span class="hljs-keyword">struct</span> &#123;
+	self        <span class="hljs-type">string</span>                 <span class="hljs-comment">// 记录自己的地址，包括主机名/IP 和端口</span>
+	basePath    <span class="hljs-type">string</span>                 <span class="hljs-comment">// 节点间通讯地址的前缀</span>
+	mu          sync.Mutex             <span class="hljs-comment">// 锁</span>
+	peers       *consistenthash.Map    <span class="hljs-comment">// 新增成员变量 peers，类型是一致性哈希算法的 Map，用来根据具体的 key 选择节点</span>
+	httpGetters <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*httpGetter <span class="hljs-comment">// 映射远程节点与对应的 httpGetter</span>
+&#125;
+
+<span class="hljs-comment">// 实现 PeerGetter 接口</span>
+<span class="hljs-keyword">type</span> httpGetter <span class="hljs-keyword">struct</span> &#123;
+	baseURL <span class="hljs-type">string</span>
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 使用 http.Get() 方式获取返回值，并转换为 []bytes 类型</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(h *httpGetter)</span></span> Get(group <span class="hljs-type">string</span>, key <span class="hljs-type">string</span>) ([]<span class="hljs-type">byte</span>, <span class="hljs-type">error</span>) &#123;
+	u := fmt.Sprintf(
+		<span class="hljs-string">&quot;%v%v/%v&quot;</span>,
+		h.baseURL,
+		url.QueryEscape(group),
+		url.QueryEscape(key),
+	)
+	res, err := http.Get(u)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, err
+	&#125;
+	<span class="hljs-keyword">defer</span> res.Body.Close()
+
+	<span class="hljs-keyword">if</span> res.StatusCode != http.StatusOK &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;server returned: %v&quot;</span>, res.Status)
+	&#125;
+
+	bytes, err := ioutil.ReadAll(res.Body)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;reading response body: %v&quot;</span>, err)
+	&#125;
+
+	<span class="hljs-keyword">return</span> bytes, <span class="hljs-literal">nil</span>
+&#125;</code></pre></div>
+<p>实现 PeerPicker 接口</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// Set() 方法实例化了一致性哈希算法，并且添加了传入的节点，为每一个节点创建了一个 HTTP 客户端 httpGetter</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *HTTPPool)</span></span> Set(peers ...<span class="hljs-type">string</span>) &#123;
+	p.mu.Lock()
+	<span class="hljs-keyword">defer</span> p.mu.Unlock()
+	p.peers = consistenthash.New(defaultReplicas, <span class="hljs-literal">nil</span>)
+	p.peers.Add(peers...)
+	p.httpGetters = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*httpGetter, <span class="hljs-built_in">len</span>(peers))
+	<span class="hljs-keyword">for</span> _, peer := <span class="hljs-keyword">range</span> peers &#123;
+		p.httpGetters[peer] = &amp;httpGetter&#123;baseURL: peer + p.basePath&#125;
+	&#125;
+&#125;
+
+<span class="hljs-comment">// PickerPeer() 包装了一致性哈希算法的 Get() 方法，根据具体的 key，选择节点，返回节点对应的 HTTP 客户端</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(p *HTTPPool)</span></span> PickPeer(key <span class="hljs-type">string</span>) (PeerGetter, <span class="hljs-type">bool</span>) &#123;
+	p.mu.Lock()
+	<span class="hljs-keyword">defer</span> p.mu.Unlock()
+	<span class="hljs-keyword">if</span> peer := p.peers.Get(key); peer != <span class="hljs-string">&quot;&quot;</span> &amp;&amp; peer != p.self &#123;
+		p.Log(<span class="hljs-string">&quot;Pick peer %s&quot;</span>, peer)
+		<span class="hljs-keyword">return</span> p.httpGetters[peer], <span class="hljs-literal">true</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, <span class="hljs-literal">false</span>
+&#125;</code></pre></div>
+<p>修改主方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 将 实现了 PeerPicker 接口的 HTTPPool 注入到 Group 中</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> RegisterPeers(peers PeerPicker) &#123;
+	<span class="hljs-keyword">if</span> g.peers != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;RegisterPeerPicker called more than once&quot;</span>)
+	&#125;
+	g.peers = peers
+&#125;
+
+<span class="hljs-comment">// 使用实现了 PeerGetter 接口的 httpGetter 从访问远程节点，获取缓存值</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> getFromPeer(peer PeerGetter, key <span class="hljs-type">string</span>) (ByteView, <span class="hljs-type">error</span>) &#123;
+	bytes, err := peer.Get(g.name, key)
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">return</span> ByteView&#123;&#125;, err
+	&#125;
+	<span class="hljs-keyword">return</span> ByteView&#123;b: bytes&#125;, <span class="hljs-literal">nil</span>
+&#125;
+
+<span class="hljs-comment">// 缓存不存在，则调用 load 方法</span>
+<span class="hljs-comment">// 若非本机节点，则调用 getFromPeer() 从远程获取。若是本机节点或失败，则回退到 getLocally()</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> load(key <span class="hljs-type">string</span>) (value ByteView, err <span class="hljs-type">error</span>) &#123;
+
+	<span class="hljs-keyword">if</span> g.peers != <span class="hljs-literal">nil</span> &#123;
+		<span class="hljs-keyword">if</span> peer, ok := g.peers.PickPeer(key); ok &#123;
+			<span class="hljs-keyword">if</span> value, err = g.getFromPeer(peer, key); err == <span class="hljs-literal">nil</span> &#123;
+				<span class="hljs-keyword">return</span> value, <span class="hljs-literal">nil</span>
+			&#125;
+			log.Println(<span class="hljs-string">&quot;[GeeCache] Failed to get from peer&quot;</span>, err)
+		&#125;
+	&#125;
+
+	<span class="hljs-keyword">return</span> g.getLocally(key)
+&#125;</code></pre></div>
+<h2 id="防止缓存击穿">防止缓存击穿</h2>
+<p>并发了 N 个请求，假设对数据库的访问没有做任何限制的，很可能向数据库也发起 N 次请求，容易导致缓存击穿和穿透。针对相同的 key，如何做到只向远端节点发起一次请求呢？</p>
+<p>实现了一个名为 singleflight 的 package 来解决这个问题</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> singleflight
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;sync&quot;</span>
+
+<span class="hljs-comment">// call 代表正在进行中，或已经结束的请求。使用 sync.WaitGroup 锁避免重入</span>
+<span class="hljs-keyword">type</span> call <span class="hljs-keyword">struct</span> &#123;
+	wg  sync.WaitGroup
+	val <span class="hljs-keyword">interface</span>&#123;&#125;
+	err <span class="hljs-type">error</span>
+&#125;
+
+<span class="hljs-comment">// Group 是 singleflight 的主数据结构，管理不同 key 的请求(call)</span>
+<span class="hljs-keyword">type</span> Group <span class="hljs-keyword">struct</span> &#123;
+	mu sync.Mutex <span class="hljs-comment">// protects m</span>
+	m  <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*call
+&#125;
+</code></pre></div>
+<p>实现 <code>Do</code> 方法</p>
+<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 针对相同的 key，无论 Do 被调用多少次，函数 fn 都只会被调用一次，等待 fn 调用结束了，返回返回值或错误。</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(g *Group)</span></span> Do(key <span class="hljs-type">string</span>, fn <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> (<span class="hljs-keyword">interface</span>&#123;&#125;, <span class="hljs-type">error</span>)) (<span class="hljs-keyword">interface</span>&#123;&#125;, <span class="hljs-type">error</span>) &#123;
+	g.mu.Lock()
+	<span class="hljs-keyword">if</span> g.m == <span class="hljs-literal">nil</span> &#123;
+		g.m = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]*call)
+	&#125;
+	<span class="hljs-keyword">if</span> c, ok := g.m[key]; ok &#123;
+		g.mu.Unlock()
+		c.wg.Wait()         <span class="hljs-comment">// 如果请求正在进行中，则等待</span>
+		<span class="hljs-keyword">return</span> c.val, c.err <span class="hljs-comment">// 请求结束，返回结果</span>
+	&#125;
+	c := <span class="hljs-built_in">new</span>(call)
+	c.wg.Add(<span class="hljs-number">1</span>)  <span class="hljs-comment">// 发起请求前加锁</span>
+	g.m[key] = c <span class="hljs-comment">// 添加到 g.m，表明 key 已经有对应的请求在处理</span>
+	g.mu.Unlock()
+
+	c.val, c.err = fn() <span class="hljs-comment">// 调用 fn，发起请求</span>
+	c.wg.Done()         <span class="hljs-comment">// 请求结束</span>
+
+	g.mu.Lock()
+	<span class="hljs-built_in">delete</span>(g.m, key) <span class="hljs-comment">// 更新 g.m</span>
+	g.mu.Unlock()
+
+	<span class="hljs-keyword">return</span> c.val, c.err <span class="hljs-comment">// 返回结果</span>
+&#125;</code></pre></div>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/" class="print-no-link">#Go</a>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/Project/" class="print-no-link">#Project</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Go项目-分布式缓存GeeCache</div>
+      <div>https://zhangzhao219.github.io/2022/12/05/Go/Go-Project-Geecache/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/11/UCAS/pattern-recognition-and-machine-learning/pattern-recognition-and-machine-learning-final/" title="研究生课程：模式识别与机器学习-期末复习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：模式识别与机器学习-期末复习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

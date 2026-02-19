@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数学在机器学习领域的应用二：多元微积分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mathematics for Machine Learning: Multivariate Calculus">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/07/31/Coursera/Mathematics-for-Machine-Learning-Multivariate-Calculus/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="数学在机器学习领域的应用二：多元微积分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=y">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28x%2Cf(x%29)">
+<meta property="og:image" content="https://math.now.sh/?inline=%28x%2B%5CDelta%7Bx%7D%2Cf(x%2B%5CDelta%7Bx%7D%29)">
+<meta property="og:image" content="https://math.now.sh/?inline=gradient_x%3D%5Cfrac%7Brise%7D%7Brun%7D%3D%5Clim_%7B%5CDelta%7Bx%7D%5Cto0%7D%7B%28%5Cfrac%7Bf(x%2B%5CDelta%7Bx%7D%29-f(x)%7D%7B%5CDelta%7Bx%7D%7D)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bdf%7D%7Bdx%7D%3Df%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bd%7D%7Bdx%7D%28f(x%29%2Bg(x))%3D%5Cfrac%7Bdf(x)%7D%7Bdx%7D%2B%5Cfrac%7Bdg(x)%7D%7Bdx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29%3Dax%5Eb">
+<meta property="og:image" content="https://math.now.sh/?inline=f%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7B1%7D%7Bx%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=f%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=x%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29%3De%5Ex">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%29%3Df%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Csin%7Bx%7D%29%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=A%28x%29%3Df(x)%5Ccdot%20g(x)">
+<meta property="og:image" content="https://math.now.sh/?inline=A%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=h%3Dh%28p%29">
+<meta property="og:image" content="https://math.now.sh/?inline=p%3Dp%28m%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bdh%7D%7Bdm%7D%3D%5Cfrac%7Bdh%7D%7Bdp%7D%5Ccdot%20%5Cfrac%7Bdp%7D%7Bdm%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cfrac%7Bdf%28x%2Cy%2Cz%29%7D%7Bdt%7D%3D%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx%7D%7D%5Cfrac%7Bdx%7D%7Bdt%7D%2B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7By%7D%7D%5Cfrac%7Bdy%7D%7Bdt%7D%2B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bz%7D%7D%5Cfrac%7Bdz%7D%7Bdt%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x_1%2Cx_2%2Cx_3%2C%5Ccdots%29">
+<meta property="og:image" content="https://math.now.sh/?inline=J%3D%5B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_1%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_2%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_3%7D%7D%2C%5Ccdots%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28x%2Cy%2Cz%29">
+<meta property="og:image" content="https://math.now.sh/?inline=u%28x%2Cy%29%2Cv(x%2Cy)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D%5Cfrac%7B%5Cpartial%7Bu%7D%7D%7B%5Cpartial%7Bx%7D%7D%26%5Cfrac%7B%5Cpartial%7Bu%7D%7D%7B%5Cpartial%7By%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7Bv%7D%7D%7B%5Cpartial%7Bx%7D%7D%26%5Cfrac%7B%5Cpartial%7Bv%7D%7D%7B%5Cpartial%7By%7D%7D%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x_1%2Cx_2%2Cx_3%29">
+<meta property="og:image" content="https://math.now.sh/?inline=J%3D%5B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_1%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_2%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_3%7D%7D%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bccc%7D%5Cpartial%7Bx_1x_1f%7D%26%5Cpartial%7Bx_1x_2f%7D%26%5Cpartial%7Bx_1x_3f%7D%5C%5C%20%5Cpartial%7Bx_2x_1f%7D%26%5Cpartial%7Bx_2x_2f%7D%26%5Cpartial%7Bx_2x_3f%7D%5C%5C%5Cpartial%7Bx_3x_1f%7D%26%5Cpartial%7Bx_3x_2f%7D%26%5Cpartial%7Bx_3x_3f%7D%5C%5C%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=a%5E%7B%281%29%7D%3D%5Csigma(wa%5E%7B(0)%7D%2Bb)">
+<meta property="og:image" content="https://math.now.sh/?inline=a">
+<meta property="og:image" content="https://math.now.sh/?inline=w">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csigma">
+<meta property="og:image" content="https://math.now.sh/?inline=n">
+<meta property="og:image" content="https://math.now.sh/?inline=a%5E%7B%281%29%7D%3D%5Csigma((%5Csum_%7Bj%3D0%7D%5E%7Bn%7D%7Bw_ja_j%5E%7B(0)%7D%7D)%2Bb)">
+<meta property="og:image" content="https://math.now.sh/?inline=m">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cleft%5B%5Cbegin%7Bmatrix%7Da_0%5E%7B%281%29%7D%5C%5Ca_1%5E%7B(1)%7D%5C%5C%5Cvdots%5C%5Ca_%7Bm-1%7D%5E%7B(1)%7D%5Cend%7Bmatrix%7D%5Cright%5D%3D%5Csigma(%5Cleft%5B%5Cbegin%7Bmatrix%7Dw_%7B0%2C0%7D%5E%7B(1)%7D%26w_%7B0%2C1%7D%5E%7B(1)%7D%26%5Ccdots%26w_%7B0%2Cn-1%7D%5E%7B(1)%7D%5C%5Cw_%7B1%2C0%7D%5E%7B(1)%7D%26w_%7B1%2C1%7D%5E%7B(1)%7D%26%5Ccdots%26w_%7B1%2Cn-1%7D%5E%7B(1)%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5Cw_%7Bm-1%2C0%7D%5E%7B(1)%7D%26w_%7Bm-1%2C1%7D%5E%7B(1)%7D%26%5Ccdots%26w_%7Bm-1%2Cn-1%7D%5E%7B(1)%7D%20%5Cend%7Bmatrix%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Bmatrix%7Da_0%5E%7B(1)%7D%5C%5Ca_1%5E%7B(1)%7D%5C%5C%5Cvdots%5C%5Ca_%7Bn-1%7D%5E%7B(1)%7D%5Cend%7Bmatrix%7D%5Cright%5D%2B%5Cleft%5B%5Cbegin%7Bmatrix%7Db_0%5E%7B(1)%7D%5C%5Cb_1%5E%7B(1)%7D%5C%5C%5Cvdots%5C%5Cb_%7Bm-1%7D%5E%7B(1)%7D%5Cend%7Bmatrix%7D%5Cright%5D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Ba%7D%5E%7B%281%29%7D%3D%5Csigma(%5Cvec%7Bw%7D%5E%7B(1)%7D%5Ccdot%5Cvec%7Ba%7D%5E%7B(0)%7D%2B%5Cvec%7Bb%7D%5E%7B(1)%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cvec%7Ba%7D%5E%7B%28L%29%7D%3D%5Csigma(%5Cvec%7Bw%7D%5E%7B(L)%7D%5Ccdot%5Cvec%7Ba%7D%5E%7B(L-1)%7D%2B%5Cvec%7Bb%7D%5E%7B(L)%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=C%3D%5Csum_%7Bi%7D%28a_i%5E%7B(L%29%7D-y_i)%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=g_0%28x%29%3Df(0)">
+<meta property="og:image" content="https://math.now.sh/?inline=g_1%28x%29%3Df(0)%2Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=g_2%28x%29%3Df(0)%2Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=g_3%28x%29%3Df(0)%2Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=g_4%28x%29%3Df(0)%2Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=g_n%28x%29%3D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%7B%5Cfrac%7B1%7D%7Bn!%7Df%5E%7B(n)%7D(0)x%5En%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=g_0%28x%29%3Df(p)">
+<meta property="og:image" content="https://math.now.sh/?inline=g_1%28x%29%3Df(p)%2Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=g_2%28x%29%3Df(p)%2Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=g_n%28x%29%3D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%7B%5Cfrac%7B1%7D%7Bn!%7Df%5E%7B(n)%7D(p)(x-p)%5En%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=p">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%2B%5CDelta%7Bx%7D%2Cy%2B%5CDelta%7By%7D%29%3D">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28x%2Cy%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%2B%5Cleft%5B%5Cbegin%7Bmatrix%7D%5Cpartial_x%7Bf%28x%2Cy%29%7D%5C%5C%5Cpartial_y%7Bf(x%2Cy)%7D%5Cend%7Bmatrix%7D%5Cright%5D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5CDelta%7Bx%7D%5C%5C%5CDelta%7By%7D%5Cend%7Bmatrix%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%2B%5Cfrac%7B1%7D%7B2%7D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5CDelta%7Bx%7D%26%5CDelta%7By%7D%5Cend%7Bmatrix%7D%5Cright%5D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5Cpartial_%7Bxx%7D%7Bf%28x%2Cy%29%7D%26%5Cpartial_%7Bxy%7D%7Bf(x%2Cy)%7D%5C%5C%5Cpartial_%7Byx%7D%7Bf(x%2Cy)%7D%26%5Cpartial_%7Byy%7D%7Bf(x%2Cy)%7D%5Cend%7Bmatrix%7D%5Cright%5D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5CDelta%7Bx%7D%5C%5C%5CDelta%7By%7D%5Cend%7Bmatrix%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=x_%7Bi%2B1%7D%3Dx_i-%5Cfrac%7Bf%28x_i%29%7D%7Bf%5E%7B">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cnabla%7Bf%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D%5Cfrac%7B%5Cpartial%7Bf_%7B%28a%2Cb%29%7D%7D%7D%7B%5Cpartial%7Bx%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7Bf_%7B(a%2Cb)%7D%7D%7D%7B%5Cpartial%7By%7D%7D%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cnabla%7Bf%7D%5Ccdot%5Cfrac%7B%5Cnabla%7Bf%7D%7D%7B%7C%7C%5Cnabla%7Bf%7D%7C%7C%7D%3D%7C%7C%5Cnabla%7Bf%7D%7C%7C">
+<meta property="og:image" content="https://math.now.sh/?inline=S_%7Bn%2B1%7D%3DS_n-%5Cgamma%5Cnabla%7Bf_%7BS_n%7D%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=maximize%5C%2Cf%28x%2Cy%29%2C%5C%2Cwith%5C%2Cconstrain%5C%2Cg(x%2Cy)">
+<meta property="og:image" content="https://math.now.sh/?inline=solve%5C%2C%5Cnabla%7Bf%7D%3D%5Clambda%5Cnabla%7Bg%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Clambda">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cnabla%7BL%28x%2Cy%2C%5Clambda%29%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx%7D%7D-%5Clambda%5Cfrac%7B%5Cpartial%7Bg%7D%7D%7B%5Cpartial%7Bx%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7By%7D%7D-%5Clambda%5Cfrac%7B%5Cpartial%7Bg%7D%7D%7B%5Cpartial%7By%7D%7D%5C%5C-g(x)%5Cend%7Barray%7D%5Cright%5D%3D0">
+<meta property="og:image" content="https://math.now.sh/?inline=y%3Dy%28x%3Ba_i%29%3Dmx_i%2Bc">
+<meta property="og:image" content="https://math.now.sh/?inline=a%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dm%5C%5Cc%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=L%5E2%3D%5Csum_i%7Br_i%5E2%7D%3D%5Csum_i%7B%28y_i-mx_i-c%29%5E2%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cnabla%7BL%5E2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D%5Cfrac%7B%5Cpartial%7BL%5E2%7D%7D%7B%5Cpartial%7Bm%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7BL%5E2%7D%7D%7B%5Cpartial%7Bc%7D%7D%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C0%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-2%5Csum_i%7Bx_i%28y_i-mx_i-c%29%7D%5C%5C-2%5Csum_i%7B(y_i-mx_i-c)%7D%5Cend%7Barray%7D%5Cright%5D">
+<meta property="og:image" content="https://math.now.sh/?inline=m%3D%5Cfrac%7B%5Csum_i%7B%28x-%5Cbar%7Bx%7D%29y%7D%7D%7B%5Csum_i%7B(x-%5Cbar%7Bx%7D)%5E2%7D%7D%2C%5Csigma_%7Bm%7D%5Capprox%5Cfrac%7BL%5E2%7D%7B%5Csum_i%7B(x-%5Cbar%7Bx%7D)%5E2%7D(n-2)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=c%3D%5Cbar%7By%7D-m%5Cbar%7Bx%7D%2C%5Csigma_%7Bc%7D%5Capprox%5Csigma_%7Bm%7D%5Csqrt%7B%5Cbar%7Bx%7D%5E2%2B%5Cfrac%7B1%7D%7Bn%7D%5Csum_i%7B%28x-%5Cbar%7Bx%7D%29%5E2%7D%7D">
+<meta property="article:published_time" content="2022-07-31T15:15:01.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.192Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Calculus">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=y">
+  
+  
+  
+  <title>Mathematics for Machine Learning: Multivariate Calculus - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Mathematics for Machine Learning: Multivariate Calculus</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-31 15:15" pubdate>
+          2022年7月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mathematics for Machine Learning: Multivariate Calculus</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>数学在机器学习领域的应用二：多元微积分</p>
+<span id="more"></span>
+<h1>课程简介</h1>
+<p>This course offers a brief introduction to the multivariate calculus required to build many common machine learning techniques. We start at the very beginning with a refresher on the “rise over run” formulation of a slope, before converting this to the formal definition of the gradient of a function. We then start to build up a set of tools for making calculus easier and faster. Next, we learn how to calculate vectors that point up hill on multidimensional surfaces and even put this into action using an interactive game. We take a look at how we can use calculus to build approximations to functions, as well as helping us to quantify how accurate we should expect those approximations to be. We also spend some time talking about where calculus comes up in the training of neural networks, before finally showing you how it is applied in linear regression models. This course is intended to offer an intuitive understanding of calculus, as well as the language necessary to look concepts up yourselves when you get stuck. Hopefully, without going into too much detail, you’ll still come away with the confidence to dive into some more focused machine learning courses in future.</p>
+<h1>函数</h1>
+<p>函数是从输入到输出的映射，选择函数来建模世界的过程是伟大天才的科学目的，微积分只是对这些函数如何相对于它们的输入变量如何变化的研究。</p>
+<h1>导数（derivative）</h1>
+<p>对于线性函数而言，斜率（梯度、gradient）=‘rise over run’，也就是任意取两点，<img src="https://math.now.sh?inline=y" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>方向的距离与<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>方向的距离之比即为梯度。</p>
+<p>对于梯度一直在变化的函数来说，设函数为<img src="https://math.now.sh?inline=f%28x%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，任意取两点<img src="https://math.now.sh?inline=%28x%2Cf(x%29)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%28x%2B%5CDelta%7Bx%7D%2Cf(x%2B%5CDelta%7Bx%7D%29)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，</p>
+<p><img src="https://math.now.sh?inline=gradient_x%3D%5Cfrac%7Brise%7D%7Brun%7D%3D%5Clim_%7B%5CDelta%7Bx%7D%5Cto0%7D%7B%28%5Cfrac%7Bf(x%2B%5CDelta%7Bx%7D%29-f(x)%7D%7B%5CDelta%7Bx%7D%7D)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>即，<img src="https://math.now.sh?inline=%5Cfrac%7Bdf%7D%7Bdx%7D%3Df%5E%7B'%7D%28x%29%3D%5Clim_%7B%5CDelta%7Bx%7D%5Cto0%7D%7B(%5Cfrac%7Bf(x%2B%5CDelta%7Bx%7D)-f(x)%7D%7B%5CDelta%7Bx%7D%7D)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>导数的求和法则：<img src="https://math.now.sh?inline=%5Cfrac%7Bd%7D%7Bdx%7D%28f(x%29%2Bg(x))%3D%5Cfrac%7Bdf(x)%7D%7Bdx%7D%2B%5Cfrac%7Bdg(x)%7D%7Bdx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>幂函数求导法则：令<img src="https://math.now.sh?inline=f%28x%29%3Dax%5Eb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=f%5E%7B'%7D%28x%29%3Dabx%5E%7Bb-1%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>不连续（discontinuity）的函数，例如<img src="https://math.now.sh?inline=%5Cfrac%7B1%7D%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，在<img src="https://math.now.sh?inline=x%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>处没有定义，导数<img src="https://math.now.sh?inline=f%5E%7B'%7D%28x%29%3D%5Cfrac%7B1%7D%7Bx%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>在<img src="https://math.now.sh?inline=x%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>处也没有定义.</p>
+<p>例如<img src="https://math.now.sh?inline=f%28x%29%3De%5Ex" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>这种函数，<img src="https://math.now.sh?inline=f%28x%29%3Df%5E%7B'%7D(x)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，这种类型的函数与导数始终相等，因此有两个特点：</p>
+<ol>
+<li>函数必须恒大于0或者恒小于0，如果函数改变符号，导数也会改变符号，会使得函数不改变符号，与定义不符</li>
+<li>函数是单调的，因为函数永远不可能达到其原来的值</li>
+</ol>
+<p>三角函数：<img src="https://math.now.sh?inline=%28%5Csin%7Bx%7D%29%5E%7B'%7D%3D%5Ccos%7Bx%7D%2C(%5Ccos%7Bx%7D)%5E%7B'%7D%3D-%5Csin%7Bx%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>导数乘积法则：令<img src="https://math.now.sh?inline=A%28x%29%3Df(x)%5Ccdot%20g(x)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=A%5E%7B'%7D%28x%29%3Df(x)%5Ccdot%20g%5E%7B'%7D(x)%2Bf%5E%7B'%7D(x)%5Ccdot%20g(x)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>求导的链式法则：若<img src="https://math.now.sh?inline=h%3Dh%28p%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，且<img src="https://math.now.sh?inline=p%3Dp%28m%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=%5Cfrac%7Bdh%7D%7Bdm%7D%3D%5Cfrac%7Bdh%7D%7Bdp%7D%5Ccdot%20%5Cfrac%7Bdp%7D%7Bdm%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>偏导数求导法则：<img src="https://math.now.sh?inline=%5Cfrac%7Bdf%28x%2Cy%2Cz%29%7D%7Bdt%7D%3D%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx%7D%7D%5Cfrac%7Bdx%7D%7Bdt%7D%2B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7By%7D%7D%5Cfrac%7Bdy%7D%7Bdt%7D%2B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bz%7D%7D%5Cfrac%7Bdz%7D%7Bdt%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><strong>偏导数仍然遵循导数的求导法则</strong></p>
+<h1>雅可比行列式（Jacobian）</h1>
+<p>设函数<img src="https://math.now.sh?inline=f%28x_1%2Cx_2%2Cx_3%2C%5Ccdots%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，它的雅可比行列式为<img src="https://math.now.sh?inline=J%3D%5B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_1%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_2%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_3%7D%7D%2C%5Ccdots%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>这样给予一组<img src="https://math.now.sh?inline=%28x%2Cy%2Cz%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的值，可以快速得出函数在该点指向此函数最陡斜率方向的向量。</p>
+<p>设函数<img src="https://math.now.sh?inline=u%28x%2Cy%29%2Cv(x%2Cy)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则它的雅可比行列式为<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bcc%7D%5Cfrac%7B%5Cpartial%7Bu%7D%7D%7B%5Cpartial%7Bx%7D%7D%26%5Cfrac%7B%5Cpartial%7Bu%7D%7D%7B%5Cpartial%7By%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7Bv%7D%7D%7B%5Cpartial%7Bx%7D%7D%26%5Cfrac%7B%5Cpartial%7Bv%7D%7D%7B%5Cpartial%7By%7D%7D%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>海森矩阵（The Hessian）</h1>
+<p>对雅可比行列式再求一次偏导数，构成的二阶偏导数矩阵为海森矩阵</p>
+<p>设函数<img src="https://math.now.sh?inline=f%28x_1%2Cx_2%2Cx_3%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，它的雅可比行列式为<img src="https://math.now.sh?inline=J%3D%5B%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_1%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_2%7D%7D%2C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx_3%7D%7D%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则海森矩阵为<img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Barray%7D%7Bccc%7D%5Cpartial%7Bx_1x_1f%7D%26%5Cpartial%7Bx_1x_2f%7D%26%5Cpartial%7Bx_1x_3f%7D%5C%5C%20%5Cpartial%7Bx_2x_1f%7D%26%5Cpartial%7Bx_2x_2f%7D%26%5Cpartial%7Bx_2x_3f%7D%5C%5C%5Cpartial%7Bx_3x_1f%7D%26%5Cpartial%7Bx_3x_2f%7D%26%5Cpartial%7Bx_3x_3f%7D%5C%5C%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>雅可比行列式求得的值为0的情况下，首先求海森矩阵的行列式，如果行列式为正数，说明目前的点是一个极值点；然后看海森矩阵的第一个数字，如果第一个数字是正数，说明目前在极小值点，否则在极大值点；如果海森矩阵的行列式为负，说明目前的点是一个鞍点。</p>
+<h1>神经网络</h1>
+<p>最简单的神经网络：<img src="https://math.now.sh?inline=a%5E%7B%281%29%7D%3D%5Csigma(wa%5E%7B(0)%7D%2Bb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中，<img src="https://math.now.sh?inline=a" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示活动，<img src="https://math.now.sh?inline=w" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示权重，<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示偏差，<img src="https://math.now.sh?inline=%5Csigma" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>表示激活函数</p>
+<p>输入可能不仅仅是一个，设输入的神经元有<img src="https://math.now.sh?inline=n" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个，则<img src="https://math.now.sh?inline=a%5E%7B%281%29%7D%3D%5Csigma((%5Csum_%7Bj%3D0%7D%5E%7Bn%7D%7Bw_ja_j%5E%7B(0)%7D%7D)%2Bb)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>输出可能也不仅仅是一个，设输出的神经元有<img src="https://math.now.sh?inline=m" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个，总体的神经网络表示为：</p>
+<p><img src="https://math.now.sh?inline=%5Cleft%5B%5Cbegin%7Bmatrix%7Da_0%5E%7B%281%29%7D%5C%5Ca_1%5E%7B(1)%7D%5C%5C%5Cvdots%5C%5Ca_%7Bm-1%7D%5E%7B(1)%7D%5Cend%7Bmatrix%7D%5Cright%5D%3D%5Csigma(%5Cleft%5B%5Cbegin%7Bmatrix%7Dw_%7B0%2C0%7D%5E%7B(1)%7D%26w_%7B0%2C1%7D%5E%7B(1)%7D%26%5Ccdots%26w_%7B0%2Cn-1%7D%5E%7B(1)%7D%5C%5Cw_%7B1%2C0%7D%5E%7B(1)%7D%26w_%7B1%2C1%7D%5E%7B(1)%7D%26%5Ccdots%26w_%7B1%2Cn-1%7D%5E%7B(1)%7D%5C%5C%5Cvdots%26%5Cvdots%26%5Cddots%26%5Cvdots%5C%5Cw_%7Bm-1%2C0%7D%5E%7B(1)%7D%26w_%7Bm-1%2C1%7D%5E%7B(1)%7D%26%5Ccdots%26w_%7Bm-1%2Cn-1%7D%5E%7B(1)%7D%20%5Cend%7Bmatrix%7D%5Cright%5D%5Cleft%5B%5Cbegin%7Bmatrix%7Da_0%5E%7B(1)%7D%5C%5Ca_1%5E%7B(1)%7D%5C%5C%5Cvdots%5C%5Ca_%7Bn-1%7D%5E%7B(1)%7D%5Cend%7Bmatrix%7D%5Cright%5D%2B%5Cleft%5B%5Cbegin%7Bmatrix%7Db_0%5E%7B(1)%7D%5C%5Cb_1%5E%7B(1)%7D%5C%5C%5Cvdots%5C%5Cb_%7Bm-1%7D%5E%7B(1)%7D%5Cend%7Bmatrix%7D%5Cright%5D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>可以简化表示为：<img src="https://math.now.sh?inline=%5Cvec%7Ba%7D%5E%7B%281%29%7D%3D%5Csigma(%5Cvec%7Bw%7D%5E%7B(1)%7D%5Ccdot%5Cvec%7Ba%7D%5E%7B(0)%7D%2B%5Cvec%7Bb%7D%5E%7B(1)%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>如果神经网络不止一层，则可以表示为：<img src="https://math.now.sh?inline=%5Cvec%7Ba%7D%5E%7B%28L%29%7D%3D%5Csigma(%5Cvec%7Bw%7D%5E%7B(L)%7D%5Ccdot%5Cvec%7Ba%7D%5E%7B(L-1)%7D%2B%5Cvec%7Bb%7D%5E%7B(L)%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>神经网络（分类任务）的损失函数为<img src="https://math.now.sh?inline=C%3D%5Csum_%7Bi%7D%28a_i%5E%7B(L%29%7D-y_i)%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>泰勒展开式</h1>
+<p>泰勒展开式是对一个复杂函数的简化估计函数</p>
+<p><img src="https://math.now.sh?inline=g_0%28x%29%3Df(0)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_1%28x%29%3Df(0)%2Bf%5E%7B'%7D(0)x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_2%28x%29%3Df(0)%2Bf%5E%7B'%7D(0)x%2B%5Cfrac%7B1%7D%7B2%7Df%5E%7B''%7D(0)x%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_3%28x%29%3Df(0)%2Bf%5E%7B'%7D(0)x%2B%5Cfrac%7B1%7D%7B2%7Df%5E%7B''%7D(0)x%5E2%2B%5Cfrac%7B1%7D%7B6%7Df%5E%7B(3)%7D(0)x%5E3" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_4%28x%29%3Df(0)%2Bf%5E%7B'%7D(0)x%2B%5Cfrac%7B1%7D%7B2%7Df%5E%7B''%7D(0)x%5E2%2B%5Cfrac%7B1%7D%7B6%7Df%5E%7B(3)%7D(0)x%5E3%2B%5Cfrac%7B1%7D%7B24%7Df%5E%7B(4)%7D(0)x%5E4" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_n%28x%29%3D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%7B%5Cfrac%7B1%7D%7Bn!%7Df%5E%7B(n)%7D(0)x%5En%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（麦克劳林形式，需要知道零点）</p>
+<p>泰勒形式：</p>
+<p><img src="https://math.now.sh?inline=g_0%28x%29%3Df(p)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_1%28x%29%3Df(p)%2Bf%5E%7B'%7D(p)(x-p)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_2%28x%29%3Df(p)%2Bf%5E%7B'%7D(p)(x-p)%2B%5Cfrac%7B1%7D%7B2%7Df%5E%7B''%7D(p)(x-p)%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=g_n%28x%29%3D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%7B%5Cfrac%7B1%7D%7Bn!%7Df%5E%7B(n)%7D(p)(x-p)%5En%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（泰勒形式，知道任意一点<img src="https://math.now.sh?inline=p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>即可）</p>
+<h2 id="二维泰勒展开">二维泰勒展开</h2>
+<p><img src="https://math.now.sh?inline=f%28x%2B%5CDelta%7Bx%7D%2Cy%2B%5CDelta%7By%7D%29%3D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=f%28x%2Cy%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（零阶泰勒展开）<br>
+<img src="https://math.now.sh?inline=%2B%5Cleft%5B%5Cbegin%7Bmatrix%7D%5Cpartial_x%7Bf%28x%2Cy%29%7D%5C%5C%5Cpartial_y%7Bf(x%2Cy)%7D%5Cend%7Bmatrix%7D%5Cright%5D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5CDelta%7Bx%7D%5C%5C%5CDelta%7By%7D%5Cend%7Bmatrix%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（一阶泰勒展开-雅可比行列式）</p>
+<p><img src="https://math.now.sh?inline=%2B%5Cfrac%7B1%7D%7B2%7D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5CDelta%7Bx%7D%26%5CDelta%7By%7D%5Cend%7Bmatrix%7D%5Cright%5D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5Cpartial_%7Bxx%7D%7Bf%28x%2Cy%29%7D%26%5Cpartial_%7Bxy%7D%7Bf(x%2Cy)%7D%5C%5C%5Cpartial_%7Byx%7D%7Bf(x%2Cy)%7D%26%5Cpartial_%7Byy%7D%7Bf(x%2Cy)%7D%5Cend%7Bmatrix%7D%5Cright%5D%5Ccdot%5Cleft%5B%5Cbegin%7Bmatrix%7D%5CDelta%7Bx%7D%5C%5C%5CDelta%7By%7D%5Cend%7Bmatrix%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（二阶泰勒展开-海森矩阵）</p>
+<h1>牛顿迭代法（Newton-Raphson）</h1>
+<p>迭代求解方程的近似根：</p>
+<p><img src="https://math.now.sh?inline=x_%7Bi%2B1%7D%3Dx_i-%5Cfrac%7Bf%28x_i%29%7D%7Bf%5E%7B'%7D(x_i)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>这种方法会存在一些问题，如果选取的点比较靠近函数的拐点，会得不到正确的结果，或者得到的结果并不是与选取的点最接近的。</p>
+<h1>梯度下降</h1>
+<p>如何使用梯度找到多元函数的最大值或者最小值</p>
+<p>函数的梯度：<img src="https://math.now.sh?inline=%5Cnabla%7Bf%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D%5Cfrac%7B%5Cpartial%7Bf_%7B%28a%2Cb%29%7D%7D%7D%7B%5Cpartial%7Bx%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7Bf_%7B(a%2Cb)%7D%7D%7D%7B%5Cpartial%7By%7D%7D%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即为函数值增加最快的方向</p>
+<p>如果希望找到最大值，将梯度与它的单位向量相乘，则<img src="https://math.now.sh?inline=%5Cnabla%7Bf%7D%5Ccdot%5Cfrac%7B%5Cnabla%7Bf%7D%7D%7B%7C%7C%5Cnabla%7Bf%7D%7C%7C%7D%3D%7C%7C%5Cnabla%7Bf%7D%7C%7C" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>梯度下降：<img src="https://math.now.sh?inline=S_%7Bn%2B1%7D%3DS_n-%5Cgamma%5Cnabla%7Bf_%7BS_n%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>拉格朗日乘子法（Lagrange multipliers）</h1>
+<p>计算函数在某些约束下的最大值或者最小值</p>
+<p><img src="https://math.now.sh?inline=maximize%5C%2Cf%28x%2Cy%29%2C%5C%2Cwith%5C%2Cconstrain%5C%2Cg(x%2Cy)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=solve%5C%2C%5Cnabla%7Bf%7D%3D%5Clambda%5Cnabla%7Bg%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=%5Clambda" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为拉格朗日乘子</p>
+<p>即：<img src="https://math.now.sh?inline=%5Cnabla%7BL%28x%2Cy%2C%5Clambda%29%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7Bx%7D%7D-%5Clambda%5Cfrac%7B%5Cpartial%7Bg%7D%7D%7B%5Cpartial%7Bx%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7Bf%7D%7D%7B%5Cpartial%7By%7D%7D-%5Clambda%5Cfrac%7B%5Cpartial%7Bg%7D%7D%7B%5Cpartial%7By%7D%7D%5C%5C-g(x)%5Cend%7Barray%7D%5Cright%5D%3D0" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h1>多元微积分在回归问题中的应用</h1>
+<h2 id="线性回归">线性回归</h2>
+<p>设函数<img src="https://math.now.sh?inline=y%3Dy%28x%3Ba_i%29%3Dmx_i%2Bc" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=a%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7Dm%5C%5Cc%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>计算平方误差：<img src="https://math.now.sh?inline=L%5E2%3D%5Csum_i%7Br_i%5E2%7D%3D%5Csum_i%7B%28y_i-mx_i-c%29%5E2%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>求解使得误差最小：<img src="https://math.now.sh?inline=%5Cnabla%7BL%5E2%7D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D%5Cfrac%7B%5Cpartial%7BL%5E2%7D%7D%7B%5Cpartial%7Bm%7D%7D%5C%5C%5Cfrac%7B%5Cpartial%7BL%5E2%7D%7D%7B%5Cpartial%7Bc%7D%7D%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D0%5C%5C0%5Cend%7Barray%7D%5Cright%5D%3D%5Cleft%5B%5Cbegin%7Barray%7D%7Bc%7D-2%5Csum_i%7Bx_i%28y_i-mx_i-c%29%7D%5C%5C-2%5Csum_i%7B(y_i-mx_i-c)%7D%5Cend%7Barray%7D%5Cright%5D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>则可以解得：</p>
+<p><img src="https://math.now.sh?inline=m%3D%5Cfrac%7B%5Csum_i%7B%28x-%5Cbar%7Bx%7D%29y%7D%7D%7B%5Csum_i%7B(x-%5Cbar%7Bx%7D)%5E2%7D%7D%2C%5Csigma_%7Bm%7D%5Capprox%5Cfrac%7BL%5E2%7D%7B%5Csum_i%7B(x-%5Cbar%7Bx%7D)%5E2%7D(n-2)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p><img src="https://math.now.sh?inline=c%3D%5Cbar%7By%7D-m%5Cbar%7Bx%7D%2C%5Csigma_%7Bc%7D%5Capprox%5Csigma_%7Bm%7D%5Csqrt%7B%5Cbar%7Bx%7D%5E2%2B%5Cfrac%7B1%7D%7Bn%7D%5Csum_i%7B%28x-%5Cbar%7Bx%7D%29%5E2%7D%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h2 id="非线性回归">非线性回归</h2>
+<ol>
+<li>梯度下降法</li>
+<li>泰勒展开式+海森矩阵</li>
+<li>莱文贝格-马夸特方法（Levenberg-Marquardt）</li>
+<li>高斯-牛顿迭代法 （Gauss-Newton iteration method）</li>
+<li>拟牛顿法（BFGS）</li>
+</ol>
+<h1>资料</h1>
+<p>Formula Sheet: Sheet summarising all the formulae covered in this course.</p>
+
+
+	<div class="row">
+    <embed src="https://zhangzhao219.github.io/file/Coursera/Mathematics-for-Machine-Learning-Specialization/Mathematics-for-Machine-Learning-Multivariate-Calculus/Formula-Sheet.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<p><a href="https://zhangzhao219.github.io/file/Coursera/Mathematics-for-Machine-Learning-Specialization/Mathematics-for-Machine-Learning-Multivariate-Calculus/Notebooks.zip" title="Code for Mathematics for Machine Learning: Multivariate Calculus">Code and Notebooks</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/" class="print-no-link">#Python</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/Calculus/" class="print-no-link">#Calculus</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mathematics for Machine Learning: Multivariate Calculus</div>
+      <div>https://zhangzhao219.github.io/2022/07/31/Coursera/Mathematics-for-Machine-Learning-Multivariate-Calculus/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/01/Coursera/Advanced-Learning-Algorithms/" title="Advanced Learning Algorithms">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Advanced Learning Algorithms</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/28/Coursera/Supervised-Machine-Learning-Regression-and-Classification/" title="Supervised Machine Learning: Regression and Classification">
+                        <span class="hidden-mobile">Supervised Machine Learning: Regression and Classification</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

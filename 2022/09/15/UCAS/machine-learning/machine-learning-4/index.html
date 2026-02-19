@@ -1,0 +1,1073 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《机器学习》课程笔记：第4章 非线性分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="研究生课程：机器学习-第4章 非线性分类">
+<meta property="og:url" content="https://zhangzhao219.github.io/2022/09/15/UCAS/machine-learning/machine-learning-4/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="《机器学习》课程笔记：第4章 非线性分类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bg%28x%29%7D%3D%5Cboldsymbol%7Bw%5ET%5Cvarphi(x)%7D%2Bb">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bg%28x%29%7D%3D%5Cboldsymbol%7Bk(x%2Cx_i)%7D%2Bb">
+<meta property="og:image" content="https://math.now.sh/?inline=A_i">
+<meta property="og:image" content="https://math.now.sh/?inline=n_i">
+<meta property="og:image" content="https://math.now.sh/?inline=A_i">
+<meta property="og:image" content="https://math.now.sh/?inline=N_i%3D1">
+<meta property="og:image" content="https://math.now.sh/?inline=A_i">
+<meta property="og:image" content="https://math.now.sh/?inline=N_i%3Dn_i">
+<meta property="og:image" content="https://math.now.sh/?inline=A_i">
+<meta property="og:image" content="https://math.now.sh/?inline=n_%7Bs_i%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=A_i">
+<meta property="og:image" content="https://math.now.sh/?inline=N_i%3Dn_%7Bs_i%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=N%20%3D%20%5Csum%20N_i">
+<meta property="og:image" content="https://math.now.sh/?inline=I%28D%29%3D-%5Csum_%7Bi%3D1%7D%5E%7Bk%7Dp_ilog(p_i)">
+<meta property="og:image" content="https://math.now.sh/?inline=I%28D%29%3D1-%5Csum_%7Bi%3D1%7D%5E%7Bk%7Dp_i%5E2">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CDelta%20I%28t%29%3DI(t)-%5Cfrac%7BN_%7BtY%7D%7D%7BN_t%7DI(tY)-%5Cfrac%7BN_%7BtN%7D%7D%7BN_t%7DI(tN)">
+<meta property="og:image" content="https://math.now.sh/?inline=Gain%28D%2Ca%29%3DEntropy(D)-%5Csum_%7Bv%20%5Cin%20Values(A)%7D%20%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7DEntropy(D%5Ev)">
+<meta property="og:image" content="https://math.now.sh/?inline=v">
+<meta property="og:image" content="https://math.now.sh/?inline=a">
+<meta property="og:image" content="https://math.now.sh/?inline=Gain%28D%2Ca%29">
+<meta property="og:image" content="https://math.now.sh/?inline=v">
+<meta property="og:image" content="https://math.now.sh/?inline=D">
+<meta property="og:image" content="https://math.now.sh/?inline=a">
+<meta property="og:image" content="https://math.now.sh/?inline=Gini%5C_ratio%28D%2Ca%29%3D%5Cfrac%7BGain(D%2Ca)%7D%7BIV(a)%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=IV%28a%29%3D-%5Csum_%7Bv%3D1%7D%5E%7BV%7D%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7Dlog(%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7D)">
+<meta property="og:image" content="https://math.now.sh/?inline=IV%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=v">
+<meta property="og:image" content="https://math.now.sh/?inline=v">
+<meta property="og:image" content="https://math.now.sh/?inline=IV%28a%29">
+<meta property="og:image" content="https://math.now.sh/?inline=Gini%5C_index%28D%2Ca%29%3D%5Csum_%7Bv%3D1%7D%5E%7BV%7D%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7DGini(D%5Ev)">
+<meta property="og:image" content="https://math.now.sh/?inline=%5CDelta%7BI%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_i">
+<meta property="og:image" content="https://math.now.sh/?inline=g_i%28x%29%3Dmin_%7Bk%7D%7C%7Cx-x_i%5Ek%7C%7C%2Cx_i%5Ek%20%5Cin%20%5Comega_i%2Ck%3D1%2C2%2C%5Ccdots%2CN_i">
+<meta property="og:image" content="https://math.now.sh/?inline=if%20%5Cquad%20g_j%28x%29%3Dmin_%7Bi%3D1%2C%5Ccdots%2Cc%7Dg_i(x)%2Cthen%20%5Cquad%20x%20%5Cin%20%5Comega_j">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=k_i%2Ci%3D1%2C%5Ccdots%2Cc">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Comega_i">
+<meta property="og:image" content="https://math.now.sh/?inline=g_i%28x%29%3Dk_i%2Ci%3D1%2C2%2C%5Ccdots%2Cc">
+<meta property="og:image" content="https://math.now.sh/?inline=if%20%5Cquad%20g_j%28x%29%3Dmax_%7Bi%3D1%2C%5Ccdots%2Cc%7Dk_i%2Cthen%20%5Cquad%20x%20%5Cin%20%5Comega_j">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=S_p">
+<meta property="og:image" content="https://math.now.sh/?inline=B">
+<meta property="og:image" content="https://math.now.sh/?inline=S_p">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=x_i">
+<meta property="og:image" content="https://math.now.sh/?inline=x_i">
+<meta property="og:image" content="https://math.now.sh/?inline=B">
+<meta property="og:image" content="https://math.now.sh/?inline=k">
+<meta property="og:image" content="https://math.now.sh/?inline=A">
+<meta property="og:image" content="https://math.now.sh/?inline=B">
+<meta property="og:image" content="https://math.now.sh/?inline=A">
+<meta property="og:image" content="https://math.now.sh/?inline=B">
+<meta property="og:image" content="https://math.now.sh/?inline=B">
+<meta property="og:image" content="https://math.now.sh/?inline=S">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=S">
+<meta property="og:image" content="https://math.now.sh/?inline=1">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=N-1">
+<meta property="og:image" content="https://math.now.sh/?inline=S">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=S">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=G">
+<meta property="og:image" content="https://math.now.sh/?inline=S">
+<meta property="og:image" content="https://math.now.sh/?inline=k_i">
+<meta property="og:image" content="https://math.now.sh/?inline=P_j%28%5Comega_i%7Cx%29%2Ci%3D1%2C2%2C%5Ccdots%2CM%2Cj%3D1%2C2%2C%5Ccdots%2CL">
+<meta property="og:image" content="https://math.now.sh/?inline=i">
+<meta property="og:image" content="https://math.now.sh/?inline=j">
+<meta property="og:image" content="https://math.now.sh/?inline=x">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28%5Comega_i%7Cx%29%2Ci%3D1%2C2%2C%5Ccdots%2CM">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csum_i%5Csqrt%7C%7Cp_i-q_i%7C%7C%5EP">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csum_iq_iln%5Cfrac%7Bp_i%7D%7Bq_i%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csum_iq_iln%5Cfrac%7Bq_i%7D%7Bp_i%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Csum_ip_iq_i">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28%5Comega_i%7Cx%29%3D%5CPi_%7Bj%3D1%7D%5EL(P_j(%5Comega_i%7Cx))">
+<meta property="og:image" content="https://math.now.sh/?inline=max_%7B%5Comega_i%7D%5CPi_%7Bj%3D1%7D%5ELP_j%28%5Comega_i%7Cx%29">
+<meta property="og:image" content="https://math.now.sh/?inline=P%28%5Comega_i%7Cx%29%3D%5Csum_%7Bj%3D1%7D%5EL(P_j(%5Comega_i%7Cx))">
+<meta property="og:image" content="https://math.now.sh/?inline=max_%7B%5Comega_i%7D%5Csum_%7Bj%3D1%7D%5ELP_j%28%5Comega_i%7Cx%29">
+<meta property="og:image" content="https://math.now.sh/?inline=f%28w%2Cb%2Cx%29">
+<meta property="og:image" content="https://math.now.sh/?inline=g%28%5Calpha%2Cx%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Calpha">
+<meta property="og:image" content="https://math.now.sh/?inline=w%2Cb">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BT%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7B%5Cgamma_i%7D%3Dy_i%28%5Cboldsymbol%7Bw%20%5Ccdot%20x_i%7D%2Bb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BT%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7B%5Cgamma%7D%3Dmin_%7Bi%3D1%2C%5Ccdots%2CN%7D%5Cgamma_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BT%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cgamma_i%3Dy_i%28%5Cboldsymbol%7B%5Cfrac%7Bw%7D%7B%7C%7Cw%7C%7C%7D%20%5Ccdot%20x_i%7D%2B%5Cfrac%7Bb%7D%7B%7C%7C%5Cboldsymbol%7Bw%7D%7C%7C%7D%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7BT%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cgamma%3Dmin_%7Bi%3D1%2C%5Ccdots%2CN%7D%5Cgamma_i">
+<meta property="og:image" content="https://math.now.sh/?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bw%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=b">
+<meta property="og:image" content="https://math.now.sh/?inline=min_%7Bw%2Cb%7D%5Cfrac%7B1%7D%7B2%7D%7C%7C%5Cboldsymbol%7Bw%7D%7C%7C%5E2%2C%20s.t.%5Cquad%20y_i%28%5Cboldsymbol%7Bw%20%5Ccdot%20x_i%7D%2Bb%29-1%E2%89%A50%2Ci%3D1%2C2%2C%5Ccdots%2CN">
+<meta property="og:image" content="https://math.now.sh/?inline=%5Chat%7B%5Cgamma%7D">
+<meta property="og:image" content="https://math.now.sh/?inline=min_%7Bw%2Cb%7DL%28w%2Cb%2C%5Calpha%29%3D-%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bi%3D1%7D%5EN%5Csum_%7Bj%3D1%7D%5EN%5Calpha_i%5Calpha_jy_iy_j(x_i%5Ccdot%20x_j)%2B%5Csum_%7Bi%3D1%7D%5EN%5Calpha_i">
+<meta property="article:published_time" content="2022-09-15T11:15:25.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.197Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Postgraduate">
+<meta property="article:tag" content="UCAS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://math.now.sh/?inline=%5Cboldsymbol%7Bg%28x%29%7D%3D%5Cboldsymbol%7Bw%5ET%5Cvarphi(x)%7D%2Bb">
+  
+  
+  
+  <title>研究生课程：机器学习-第4章 非线性分类 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">研究生课程：机器学习-第4章 非线性分类</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-15 11:15" pubdate>
+          2022年9月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">研究生课程：机器学习-第4章 非线性分类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>《机器学习》课程笔记：第4章 非线性分类</p>
+<span id="more"></span>
+<h1>第4章 非线性分类</h1>
+<h2 id="概述">概述</h2>
+<p>非线性问题：对于线性不可分数据，采用非线性决策的方法</p>
+<p>线性扩展的思想：线性扩展模型<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bg%28x%29%7D%3D%5Cboldsymbol%7Bw%5ET%5Cvarphi(x)%7D%2Bb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，核函数方法<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bg%28x%29%7D%3D%5Cboldsymbol%7Bk(x%2Cx_i)%7D%2Bb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>非线性的思想：最近邻、决策树、神经网络、集成学习</p>
+<h2 id="决策树">决策树</h2>
+<p>决策问题一定是一个二判决问题</p>
+<p>样本根据问题一定可以分成两部分，两部分之间没有交集，两部分的并集包括所有的情况</p>
+<p>决策树的目标：在树结构上，根据节点的判断，搜索类别。</p>
+<p>树结构的优点：可以不必测试所有特征和区域。</p>
+<h3 id="问题数">问题数</h3>
+<ol>
+<li>离散值情况：以特征或特征的可能离散值作为问题：</li>
+</ol>
+<p>设属性<img src="https://math.now.sh?inline=A_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的可能离散取值个数为<img src="https://math.now.sh?inline=n_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ul>
+<li>方法1：每个特征可以作为候选问题，例如ID3、C4.5，属性<img src="https://math.now.sh?inline=A_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>产生的候选问题数为<img src="https://math.now.sh?inline=N_i%3D1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（切分太快，容易过拟合）</li>
+<li>方法2：每个特征的每个离散值作为候选问题，例如CART，属性<img src="https://math.now.sh?inline=A_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>产生的候选问题数为<img src="https://math.now.sh?inline=N_i%3Dn_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<ol start="2">
+<li>连续值情况：以每个维度的样本特征值作为问题</li>
+</ol>
+<p>属性<img src="https://math.now.sh?inline=A_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>上出现的样本特征值个数为<img src="https://math.now.sh?inline=n_%7Bs_i%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>方法：每个特征上的样本特征值作为候选问题，属性<img src="https://math.now.sh?inline=A_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>产生的候选问题数为<img src="https://math.now.sh?inline=N_i%3Dn_%7Bs_i%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>无论特征值是连续还是离散，确定每个属性所产生的候选问题，候选的问题总数为<img src="https://math.now.sh?inline=N%20%3D%20%5Csum%20N_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h3 id="划分（问题）选择">划分（问题）选择</h3>
+<p>非纯度（Impurity Measure）需要满足两条性质：</p>
+<ul>
+<li>IM最大值时，各类别概率相等</li>
+<li>IM最小时为0，只有一类（期望的目标）</li>
+</ul>
+<p>非纯度的熵度量（C4.5）：<img src="https://math.now.sh?inline=I%28D%29%3D-%5Csum_%7Bi%3D1%7D%5E%7Bk%7Dp_ilog(p_i)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>非纯度的基尼度量（CART）：<img src="https://math.now.sh?inline=I%28D%29%3D1-%5Csum_%7Bi%3D1%7D%5E%7Bk%7Dp_i%5E2" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>划分目标：选择最大减少类别非纯度的问题作为划分节点。</p>
+<p><img src="https://math.now.sh?inline=%5CDelta%20I%28t%29%3DI(t)-%5Cfrac%7BN_%7BtY%7D%7D%7BN_t%7DI(tY)-%5Cfrac%7BN_%7BtN%7D%7D%7BN_t%7DI(tN)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>基于非纯度变化量的三个指标：</p>
+<ul>
+<li>信息增益（ID3）：越大越好</li>
+<li>增益率（C4.5）：越大越好</li>
+<li>基尼指数：越小越好</li>
+</ul>
+<p>信息增益（熵度量）：<img src="https://math.now.sh?inline=Gain%28D%2Ca%29%3DEntropy(D)-%5Csum_%7Bv%20%5Cin%20Values(A)%7D%20%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7DEntropy(D%5Ev)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=v" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是问题<img src="https://math.now.sh?inline=a" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>导致的决策划分数目</p>
+<p><img src="https://math.now.sh?inline=Gain%28D%2Ca%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>倾向于选择划分集合个数<img src="https://math.now.sh?inline=v" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>多的节点。区间划分的越细，区间内纯度越高，极端情况每个区间只有一个样本，则熵为0。</p>
+<p>增益率（信息增益与数据集<img src="https://math.now.sh?inline=D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>关于问题<img src="https://math.now.sh?inline=a" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的熵值之比）</p>
+<p><img src="https://math.now.sh?inline=Gini%5C_ratio%28D%2Ca%29%3D%5Cfrac%7BGain(D%2Ca)%7D%7BIV(a)%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> ，<img src="https://math.now.sh?inline=IV%28a%29%3D-%5Csum_%7Bv%3D1%7D%5E%7BV%7D%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7Dlog(%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7D)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>增益率改善信息增益：<img src="https://math.now.sh?inline=IV%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>对划分集合个数<img src="https://math.now.sh?inline=v" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>少的属性有所偏好，<img src="https://math.now.sh?inline=v" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>越小则<img src="https://math.now.sh?inline=IV%28a%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>越小</p>
+<p>基尼指数（基尼度量）：<img src="https://math.now.sh?inline=Gini%5C_index%28D%2Ca%29%3D%5Csum_%7Bv%3D1%7D%5E%7BV%7D%5Cfrac%7B%7CD%5Ev%7C%7D%7B%7CD%7C%7DGini(D%5Ev)" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>节点类别设置：叶子节点纯度达到预设阈值后，停止划分，并对叶子节点进行类别设置。（按概率最大的类别设定）</p>
+<h3 id="决策树生成">决策树生成</h3>
+<p>决策树生成过程</p>
+<p>从顶向下（不断增加一个节点）</p>
+<ul>
+<li>准则：所有划分中选择一个使<img src="https://math.now.sh?inline=%5CDelta%7BI%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>（非纯度减少量）最大的划分为节点，加入决策树。</li>
+<li>贪婪学习：根据划分准则，在问题集上进行划分，直到Impurity不能再改善，或达到较小的改善。</li>
+<li>停止规则：设定阈值</li>
+</ul>
+<p>ID3 决策树：属性特征作为结点问题，划分选择实际是特征选择过程，最大化信息增益作为划分选择依据</p>
+<p>C4.5 决策树：属性特征作为结点问题，划分选择实际是特征选择过程，最大化信息增益率作为划分选择依据</p>
+<p>CART 决策树：属性特征离散值作为结点问题，本质是二叉树，最小化基尼指数作为划分选择依据</p>
+<p>连续值二叉决策树</p>
+<h3 id="剪枝处理">剪枝处理</h3>
+<p>ID3、C4.5决策树剪枝</p>
+<ul>
+<li>代价函数</li>
+<li>剪枝算法</li>
+</ul>
+<p>泛化性能评估法</p>
+<h2 id="最近邻方法">最近邻方法</h2>
+<h3 id="最近邻法">最近邻法</h3>
+<p>原理：将样本分类为离之最近的样本类别</p>
+<p><img src="https://math.now.sh?inline=%5Comega_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>类判别函数：<img src="https://math.now.sh?inline=g_i%28x%29%3Dmin_%7Bk%7D%7C%7Cx-x_i%5Ek%7C%7C%2Cx_i%5Ek%20%5Cin%20%5Comega_i%2Ck%3D1%2C2%2C%5Ccdots%2CN_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>决策规则：<img src="https://math.now.sh?inline=if%20%5Cquad%20g_j%28x%29%3Dmin_%7Bi%3D1%2C%5Ccdots%2Cc%7Dg_i(x)%2Cthen%20%5Cquad%20x%20%5Cin%20%5Comega_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>最近邻分类隐含的决策边界是非线性的</p>
+<h3 id="k-近邻法">k-近邻法</h3>
+<p>原理：将样本分给<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个近邻中类别样本个数最多的类</p>
+<p><img src="https://math.now.sh?inline=k_i%2Ci%3D1%2C%5Ccdots%2Cc" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个近邻中属于<img src="https://math.now.sh?inline=%5Comega_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的样本数</p>
+<p>判别函数：<img src="https://math.now.sh?inline=g_i%28x%29%3Dk_i%2Ci%3D1%2C2%2C%5Ccdots%2Cc" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>决策规则：<img src="https://math.now.sh?inline=if%20%5Cquad%20g_j%28x%29%3Dmax_%7Bi%3D1%2C%5Ccdots%2Cc%7Dk_i%2Cthen%20%5Cquad%20x%20%5Cin%20%5Comega_j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>误差讨论</p>
+<p>近邻法的缺点：</p>
+<ul>
+<li>存储量大：训练样本需要存到内存</li>
+<li>计算量大：每次决策都要计算所有样本的相似性</li>
+</ul>
+<h3 id="近邻法的快速算法">近邻法的快速算法</h3>
+<h4 id="快速算法一：快速搜索近邻法（不减少的情况下怎么样才能更快）">快速算法一：快速搜索近邻法（不减少的情况下怎么样才能更快）</h4>
+<p>原理：将样本分成不相交的子集，基于子集的搜索</p>
+<ol>
+<li>样本分级分层为多个子集</li>
+<li>逐层搜出一个最优子集</li>
+<li>在最后的子集中局部找最近样本点</li>
+</ol>
+<p>规则1-找最近子集：如果<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=S_p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的距离 &gt; 当前最近子集距离<img src="https://math.now.sh?inline=B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，则<img src="https://math.now.sh?inline=S_p" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>被忽略。</p>
+<p>规则2-找最近样本：如果<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>到<img src="https://math.now.sh?inline=x_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的距离&gt;已存在的最近点，则样本<img src="https://math.now.sh?inline=x_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>被忽略。</p>
+<p>k 近邻快速搜索推广：子集搜索过程与最近邻一致，样本搜索时，<img src="https://math.now.sh?inline=B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>存有<img src="https://math.now.sh?inline=k" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个最近距离值。</p>
+<h4 id="快速算法二：剪辑近邻法">快速算法二：剪辑近邻法</h4>
+<p>原理：通过剪掉边界样本（错误分类样本），缩减样本规模</p>
+<p>剪辑规则：两分剪辑近邻法</p>
+<ul>
+<li>将训练样本集，分成两个子集<img src="https://math.now.sh?inline=A" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li><img src="https://math.now.sh?inline=A" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>做分类参考，对<img src="https://math.now.sh?inline=B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行剪辑（错分样本被剪掉）</li>
+<li>剪辑后的<img src="https://math.now.sh?inline=B" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>作为最终的训练集训练近邻分类器</li>
+</ul>
+<h4 id="快速算法三：压缩近邻法">快速算法三：压缩近邻法</h4>
+<p>原理：去掉中心附近样本，保留错误样本，<strong>在剪辑基础上进行压缩</strong></p>
+<p>基本思想：分类中通常被正确分类的样本，较少支持决策，将常分误的样本保留。</p>
+<p>压缩规则：</p>
+<ol>
+<li>初始化，训练集分为<img src="https://math.now.sh?inline=S" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，<img src="https://math.now.sh?inline=S" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中仅<img src="https://math.now.sh?inline=1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个样本；<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中<img src="https://math.now.sh?inline=N-1" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个</li>
+<li><img src="https://math.now.sh?inline=S" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>作为训练，分类<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中第<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>个样本；如果错误，将该样本放入<img src="https://math.now.sh?inline=S" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中</li>
+<li>对每一个样本重复2</li>
+<li>直到<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>无错分样本，或<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为空</li>
+<li>将<img src="https://math.now.sh?inline=G" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>中样本放弃，<img src="https://math.now.sh?inline=S" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>是最终压缩样本集</li>
+</ol>
+<h3 id="拒绝决策近邻法">拒绝决策近邻法</h3>
+<p>原理：对于与各类别相似度较低的样本，不做判断</p>
+<p>优点：在样本压缩时，给<strong>可是可非</strong>的样本机会。</p>
+<ul>
+<li>算法1：可拒绝的k近邻法（分类决策）-k近邻中，各类样本的个数小于<img src="https://math.now.sh?inline=k_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/> , 拒绝分类</li>
+<li>算法2：可拒绝的编辑近邻法（样本压缩）-与编辑近邻法比较的不同之处：除保留正确分类样本外，还保留了拒绝样本。</li>
+</ul>
+<h2 id="集成学习">集成学习</h2>
+<h3 id="结合策略">结合策略</h3>
+<p>原理：不同的分类器对样本有不同的鉴别力；综合优势，使错误率最小。</p>
+<p>问题描述：已知一组训练分类器，分类器的类别后验为<img src="https://math.now.sh?inline=P_j%28%5Comega_i%7Cx%29%2Ci%3D1%2C2%2C%5Ccdots%2CM%2Cj%3D1%2C2%2C%5Ccdots%2CL" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，其中<img src="https://math.now.sh?inline=i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为索引类别，<img src="https://math.now.sh?inline=j" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>为索引分类器.</p>
+<p>目标是对<img src="https://math.now.sh?inline=x" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>进行分类，求<img src="https://math.now.sh?inline=P%28%5Comega_i%7Cx%29%2Ci%3D1%2C2%2C%5Ccdots%2CM" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>概率分布相似性的计算：</p>
+<ol>
+<li>期望之间的相似度：<img src="https://math.now.sh?inline=%5Csum_i%5Csqrt%7C%7Cp_i-q_i%7C%7C%5EP" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>在每个维度上的log比值：<img src="https://math.now.sh?inline=%5Csum_iq_iln%5Cfrac%7Bp_i%7D%7Bq_i%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=%5Csum_iq_iln%5Cfrac%7Bq_i%7D%7Bp_i%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>内积运算：<img src="https://math.now.sh?inline=%5Csum_ip_iq_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ol>
+<h3 id="几种集成学习准则">几种集成学习准则</h3>
+<p>Geometric Average Rule</p>
+<ul>
+<li>目标函数：最小化KL平均</li>
+<li>集成方法：<img src="https://math.now.sh?inline=P%28%5Comega_i%7Cx%29%3D%5CPi_%7Bj%3D1%7D%5EL(P_j(%5Comega_i%7Cx))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>决策规则：<img src="https://math.now.sh?inline=max_%7B%5Comega_i%7D%5CPi_%7Bj%3D1%7D%5ELP_j%28%5Comega_i%7Cx%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>Arithmetic Average Rule</p>
+<ul>
+<li>目标函数：最小化Alternative KL平均</li>
+<li>集成方法：<img src="https://math.now.sh?inline=P%28%5Comega_i%7Cx%29%3D%5Csum_%7Bj%3D1%7D%5EL(P_j(%5Comega_i%7Cx))" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>决策规则：<img src="https://math.now.sh?inline=max_%7B%5Comega_i%7D%5Csum_%7Bj%3D1%7D%5ELP_j%28%5Comega_i%7Cx%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+</ul>
+<p>Majority Voting Rule</p>
+<ul>
+<li>原理：对两类问题，多个分类器进行决策投票，票数过半的类别为样本最终标签。</li>
+<li>基分类器要求相互独立且正确率p&gt;50%，且最好具有多样性</li>
+</ul>
+<h3 id="Bagging和随机森林">Bagging和随机森林</h3>
+<p>Bagging：通过随机采样，训练分类器，保证分类器的差异。从训练集中不断随机抽取样本构造分类器，分类时通过投票进行类别判断。</p>
+<p>随机森林：多决策树的Bagging；决策树随机属性选择；从训练集中不断随机构造决策树分类器，分类时通过投票进行类别判断。</p>
+<p>随机森林较一般Bagging效果好</p>
+<h3 id="Boosting-AdaBoost">Boosting: AdaBoost</h3>
+<p>Boosting原理：一系列弱分类器，在不同子集上学习，得到增强分类器。</p>
+<p>AdaBoost加权分类器</p>
+<p>AdaBoost 目标函数</p>
+<h2 id="非线性SVM">非线性SVM</h2>
+<h3 id="SVM-原理">SVM 原理</h3>
+<p>两个核心思想</p>
+<ul>
+<li>最大间隔：找到最大间隔分类超平面；</li>
+<li>核函数方法：样本升维映射到高维空间后，采用线性决策。升维映射由核技巧实现。</li>
+</ul>
+<h4 id="数学问题">数学问题</h4>
+<p>KKT：任何目标函数有解的充要条件</p>
+<p>一个原始问题总有它的对偶问题</p>
+<p>对于特殊的凸优化来说，原始问题<img src="https://math.now.sh?inline=f%28w%2Cb%2Cx%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的对偶问题是<img src="https://math.now.sh?inline=g%28%5Calpha%2Cx%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，两个函数的极值相等，也就是最优解是相等的</p>
+<p>如果原始问题和它的对偶问题都满足KKT条件，对于条件好的凸优化，可以构造<img src="https://math.now.sh?inline=%5Calpha" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>与<img src="https://math.now.sh?inline=w%2Cb" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的关系，从而将不好求解的原始问题转化为好求的对偶问题</p>
+<h3 id="最大间隔">最大间隔</h3>
+<p>目标：找到最大间隔分类超平面（类别集合到分类超平面的最小距离最大化）</p>
+<p>函数间隔：给定的训练数据集<img src="https://math.now.sh?inline=%5Cboldsymbol%7BT%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和超平面<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ul>
+<li>超平面<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>关于样本<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的函数间隔定义为<img src="https://math.now.sh?inline=%5Chat%7B%5Cgamma_i%7D%3Dy_i%28%5Cboldsymbol%7Bw%20%5Ccdot%20x_i%7D%2Bb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>超平面<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>关于训练数据集<img src="https://math.now.sh?inline=%5Cboldsymbol%7BT%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的函数间隔定义为<img src="https://math.now.sh?inline=%5Chat%7B%5Cgamma%7D%3Dmin_%7Bi%3D1%2C%5Ccdots%2CN%7D%5Cgamma_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即所有样本点<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的函数间隔的最小值。</li>
+<li>存在问题：只要成比例的改变<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，函数间隔会相应变化。</li>
+</ul>
+<p>几何间隔：给定的训练数据集<img src="https://math.now.sh?inline=%5Cboldsymbol%7BT%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和超平面<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<ul>
+<li>超平面<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>关于样本<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的几何间隔定义为<img src="https://math.now.sh?inline=%5Cgamma_i%3Dy_i%28%5Cboldsymbol%7B%5Cfrac%7Bw%7D%7B%7C%7Cw%7C%7C%7D%20%5Ccdot%20x_i%7D%2B%5Cfrac%7Bb%7D%7B%7C%7C%5Cboldsymbol%7Bw%7D%7C%7C%7D%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></li>
+<li>超平面<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bw%7D%2Cb%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>关于训练数据集<img src="https://math.now.sh?inline=%5Cboldsymbol%7BT%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的几何间隔定义为<img src="https://math.now.sh?inline=%5Cgamma%3Dmin_%7Bi%3D1%2C%5Ccdots%2CN%7D%5Cgamma_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，即所有样本点<img src="https://math.now.sh?inline=%28%5Cboldsymbol%7Bx_i%7D%2Cy_i%29" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的几何间隔的最小值。</li>
+<li>成比例的改变<img src="https://math.now.sh?inline=%5Cboldsymbol%7Bw%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>和<img src="https://math.now.sh?inline=b" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>，几何间隔不会相应变化。</li>
+</ul>
+<p>最大几何间隔等价的问题：<img src="https://math.now.sh?inline=min_%7Bw%2Cb%7D%5Cfrac%7B1%7D%7B2%7D%7C%7C%5Cboldsymbol%7Bw%7D%7C%7C%5E2%2C%20s.t.%5Cquad%20y_i%28%5Cboldsymbol%7Bw%20%5Ccdot%20x_i%7D%2Bb%29-1%E2%89%A50%2Ci%3D1%2C2%2C%5Ccdots%2CN" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<p>函数间隔<img src="https://math.now.sh?inline=%5Chat%7B%5Cgamma%7D" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/>的取值并不影响最优化问题的解。</p>
+<p>支撑向量（SV）：支撑最小距离最大化的样本</p>
+<p>支撑超平面：通过支持向量，平行于分类面的超平面</p>
+<p>间隔：支撑向量到分类面的距离</p>
+<p>支持向量机学习的基本想法是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。</p>
+<h3 id="对偶问题">对偶问题</h3>
+<p><img src="https://math.now.sh?inline=min_%7Bw%2Cb%7DL%28w%2Cb%2C%5Calpha%29%3D-%5Cfrac%7B1%7D%7B2%7D%5Csum_%7Bi%3D1%7D%5EN%5Csum_%7Bj%3D1%7D%5EN%5Calpha_i%5Calpha_jy_iy_j(x_i%5Ccdot%20x_j)%2B%5Csum_%7Bi%3D1%7D%5EN%5Calpha_i" srcset="/img/loading.gif" lazyload style="transform:box-shadow:unset;border-radius:0px;display:inline-block;margin: 0;"/></p>
+<h3 id="问题的求解">问题的求解</h3>
+<p>根据KKT条件成立求解</p>
+<h3 id="核函数方法">核函数方法</h3>
+<p>避免直接求非线性映射，由核函数替代内积运算</p>
+<h3 id="SVM-算法">SVM 算法</h3>
+<p>硬间隔SVM</p>
+<p>软间隔SVM</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Postgraduate/" class="print-no-link">#Postgraduate</a>
+      
+        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+      
+        <a href="/tags/UCAS/" class="print-no-link">#UCAS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>研究生课程：机器学习-第4章 非线性分类</div>
+      <div>https://zhangzhao219.github.io/2022/09/15/UCAS/machine-learning/machine-learning-4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/15/UCAS/machine-learning/machine-learning-3/" title="研究生课程：机器学习-第3章 线性分类">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生课程：机器学习-第3章 线性分类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/14/Leetcode/Leetcode-101/Leetcode-101-13/" title="Leetcode 刷题笔记-Leetcode 101 第13章 链表">
+                        <span class="hidden-mobile">Leetcode 刷题笔记-Leetcode 101 第13章 链表</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1143 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  <link rel="icon" href="https://s1.ax1x.com/2022/07/03/j83xmQ.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Zhang Zhao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="架构初探 - 谁动了我的蛋糕">
+<meta property="og:type" content="article">
+<meta property="og:title" content="架构初探 - 谁动了我的蛋糕">
+<meta property="og:url" content="https://zhangzhao219.github.io/2023/01/30/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day07/index.html">
+<meta property="og:site_name" content="Zostanzo&#39;s Blog">
+<meta property="og:description" content="架构初探 - 谁动了我的蛋糕">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1355784a0ae446d8c29b846baa20503~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69fd09e29bb94ccb9ca50f05c9590aa8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+<meta property="article:published_time" content="2023-01-30T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-19T03:55:54.190Z">
+<meta property="article:author" content="Zhang Zhao">
+<meta property="article:tag" content="Backend">
+<meta property="article:tag" content="ByteDance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1355784a0ae446d8c29b846baa20503~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?">
+  
+  
+  
+  <title>架构初探 - 谁动了我的蛋糕 - Zostanzo&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zhangzhao219.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"NeXpkMMRYHdOZW6AImFcr7NU-gzGzoHsz","app_key":"87RqX31mqiCFg6DWMRIA7K6O","server_url":"https://nexpkmmr.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null},"gtag":null,"woyaola":null,"cnzz":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zostanzo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">架构初探 - 谁动了我的蛋糕</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-30 10:00" pubdate>
+          2023年1月30日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">架构初探 - 谁动了我的蛋糕</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>架构初探 - 谁动了我的蛋糕</p>
+<span id="more"></span>
+<h1>架构初探 - 谁动了我的蛋糕</h1>
+<h2 id="使用指南">使用指南</h2>
+<p>为了帮助同学们更好地理解本课程，我为大家准备了本学员手册。它包含以下几大模块内容：</p>
+<ul>
+<li>课程目标，本课程主要框架的简单介绍，便于同学们抓住课程的框架结构，把握听课节奏；</li>
+<li>课前，本课程的重要前置知识点，便于同学们在听课过程中快速理解、跟紧思路；</li>
+<li>课中，本课程各章节涉及的关键概念和知识点，帮助同学们加深核心内容的理解和认识；</li>
+<li>课后，本课程的内容提炼，便于同学们总结课程要点，争取达到举一反三的效果。</li>
+</ul>
+<h2 id="课程目标">课程目标</h2>
+<p>本课程的包含以下四个方面：</p>
+<ul>
+<li>什么是架构
+<ul>
+<li>围绕架构的定义和演进两部分内容展开</li>
+</ul>
+</li>
+<li>企业级后端架构剖析
+<ul>
+<li>详细介绍企业级后端架构的形态</li>
+</ul>
+</li>
+<li>企业级后端架构的挑战
+<ul>
+<li>企业级架构都面临着哪些挑战，如何解决</li>
+</ul>
+</li>
+<li>后端架构实战
+<ul>
+<li>结合前三部分的知识点，以第三部分中的一个挑战为例，讲解如何做架构设计</li>
+</ul>
+</li>
+</ul>
+<h2 id="课前">课前</h2>
+<h3 id="什么是架构">什么是架构</h3>
+<p>常见软件架构：</p>
+<ul>
+<li>单机</li>
+<li>单体</li>
+<li>垂直应用</li>
+<li>SOA (Service Oriented Architecture)</li>
+<li>微服务 (Microservice)</li>
+</ul>
+<p>一些小问题：</p>
+<ul>
+<li>如何给架构下定义？</li>
+<li>架构的重要性？</li>
+<li>架构演进的初衷？</li>
+<li>架构演进的思路？</li>
+</ul>
+<h3 id="企业级后端架构剖析">企业级后端架构剖析</h3>
+<ul>
+<li>云计算
+<ul>
+<li>基础
+<ul>
+<li>虚拟化</li>
+<li>编排</li>
+</ul>
+</li>
+<li>架构
+<ul>
+<li>IaaS</li>
+<li>SaaS</li>
+<li>PaaS</li>
+<li>FaaS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>云原生
+<ul>
+<li>弹性资源
+<ul>
+<li>计算资源</li>
+<li>存储资源</li>
+</ul>
+</li>
+<li>微服务架构
+<ul>
+<li>通信协议</li>
+<li>中间件</li>
+</ul>
+</li>
+<li>DevOps
+<ul>
+<li>软件生命周期</li>
+</ul>
+</li>
+<li>服务网格</li>
+</ul>
+</li>
+</ul>
+<h3 id="企业级后端架构的挑战">企业级后端架构的挑战</h3>
+<ul>
+<li>离线任务</li>
+<li>在线任务</li>
+<li>IO 密集型</li>
+<li>CPU 密集型</li>
+<li>服务治理</li>
+<li>IPC (Inter-Process Communication)</li>
+<li>RPC (Remote Procedure Call)</li>
+</ul>
+<h3 id="后端架构实战">后端架构实战</h3>
+<ul>
+<li>负载均衡 Load Balancing</li>
+<li>服务发现 Service Discovery</li>
+<li>服务注册 Service Registry</li>
+<li>宿主机 Host</li>
+<li>容器 Container</li>
+<li>时序数据 Time Series</li>
+<li>一致性哈希 Consistent Hash</li>
+</ul>
+<h2 id="课前思考题">课前思考题</h2>
+<ol>
+<li>软件架构演进至今都有哪些形态？它们分别解决了什么问题？仍然存在什么问题？</li>
+<li>云计算有哪些基础技术？云计算服务的形态又有哪些？</li>
+<li>云原生是什么？它跟云计算的关系是？</li>
+<li>云原生的代表技术有哪些？</li>
+<li>企业级后端架构面临的挑战有哪些？</li>
+</ol>
+<h2 id="课中">课中</h2>
+<h3 id="什么是架构-2">什么是架构</h3>
+<h4 id="架构定义">架构定义</h4>
+<p><strong>Q：如何给架构下定义？</strong></p>
+<p>A：架构，又称软件架构：</p>
+<ul>
+<li>是有关软件整体结构与组件的抽象描述</li>
+<li>用于指导软件系统各个方面的设计</li>
+</ul>
+<p><strong>Q：架构的重要性？</strong></p>
+<p>A：那盖房子来做举例子。</p>
+<p>我们都知道，地基对于一栋楼房的主要性，架构对于一个软件的重要性也是类似的：</p>
+<ul>
+<li>架构没设计好，软件容易崩，用户体验上不去。最终要么重构，要么放弃</li>
+<li>架构设计好了，软件的稳定性上去了，用户体验高了，口碑一点点就打造出来了</li>
+<li>良好的架构基础，也为软件的未来发展提供了更多的可能。为用户赋能，实现自身价值</li>
+</ul>
+<h4 id="单机架构">单机架构</h4>
+<p>All in one，所有的东西都在一个进程里，部署在一个机器上。</p>
+<p>优点：</p>
+<ul>
+<li>简单</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>运维需要停服，用户体验较差</li>
+<li>承载能力有限。<strong>了解下 c10k 问题</strong></li>
+</ul>
+<h4 id="单体架构">单体架构</h4>
+<p>在单机架构的基础上，将进程部署到多个机器上。</p>
+<p>优点：</p>
+<ul>
+<li>具备水平扩容能力</li>
+<li>运维不需要停服</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>后端进程职责太多，越来越臃肿</li>
+<li>爆炸半径较大，进程中一个很小的模块出现问题，都可能导致整个进程崩溃</li>
+</ul>
+<h4 id="垂直应用架构">垂直应用架构</h4>
+<p>在单机架构基础上，将进程按照某种依据切分开。比如，A 软件和 B 软件的后端原先采用单机架构部署，那就是一个进程部署在多个机器上；如果用垂直应用架构，可以将 A 和 B 的后端拆分为 A、B 两个进程，然后再按照单体模式的思路，部署在多个机器上。</p>
+<p>优点：</p>
+<ul>
+<li>一定程度上减少了后端进程职责</li>
+<li>一定程度上缩小爆炸半径</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>没有根本解决单体架构的问题</li>
+</ul>
+<h4 id="SOA-面向服务架构">SOA (面向服务架构)</h4>
+<p>SOA 架构中，服务为一等公民，将进程按照不同的功能单元进行抽象，拆分为『服务』。有了服务之后，SOA 还为服务之间的通信定义了标准，保证各个服务之间通讯体验的一致性。</p>
+<p>优点：</p>
+<ul>
+<li>各服务的职责更清晰</li>
+<li>运维粒度减小到服务，爆炸半径可控</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>ESB (企业服务总线) 往往需要一整套解决方案</li>
+</ul>
+<h4 id="微服务">微服务</h4>
+<p>在 SOA 架构中，ESB 起到了至关重要的作用。但从架构拓扑来看，它更像是一个集中式的模块。有一个 SOA 分布式演进的分支，最终的形态便是微服务。</p>
+<p>优点：</p>
+<ul>
+<li>兼具 SOA 解决的问题</li>
+<li>服务间的通信更敏捷、灵活</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>运维成本</li>
+</ul>
+<h4 id="小结">小结</h4>
+<ul>
+<li>架构演进的初衷：满足软件迭代诉求，提高迭代效率</li>
+<li>架构演进的思路：垂直切分——分布式，水平切分——分层/模块化</li>
+</ul>
+<h3 id="企业级后端架构剖析-2">企业级后端架构剖析</h3>
+<h4 id="云计算">云计算</h4>
+<p>云计算基础：</p>
+<ul>
+<li>虚拟化技术
+<ul>
+<li>硬件层面（VM 虚拟机）- KVM/Xen/VMware</li>
+<li>操作系统层面（Container 容器）- LCX/Docker/Kata Container</li>
+<li>网络层面 - Linux Bridge/Open v Switch</li>
+</ul>
+</li>
+<li>编排方案
+<ul>
+<li>VM - OpenStack/VMWare Workstation</li>
+<li>Container - Kubernetes/Docker Swarm</li>
+</ul>
+</li>
+</ul>
+<p>云计算架构：</p>
+<ul>
+<li>云服务
+<ul>
+<li>IaaS - 云基础设施，对底层硬件资源池的抽象</li>
+<li>PaaS - 基于资源池抽象，对上层提供的弹性资源平台</li>
+<li>SaaS - 基于弹性资源平台构建的云服务</li>
+<li>FaaS - 更轻量级的函数服务。好比 LeetCode 等 OJ，刷题时只需要实现函数，不需要关注输入输出流</li>
+</ul>
+</li>
+<li>云部署模式（拓展）
+<ul>
+<li>私有云 - 企业自用</li>
+<li>公有云 - AWS/Azure/Google Cloud/Huawei</li>
+<li>混合云</li>
+</ul>
+</li>
+</ul>
+<h4 id="云原生">云原生</h4>
+<p>云原生，实际是云原生（计算）的简称，它是云计算发展到现在的一种形态。</p>
+<p>云原生技术为组织（公司）在公有云、自由云、混合云等新型的动态环境中，构建和运行可弹性拓展的应用提供了可能。 它的代表技术：</p>
+<ul>
+<li>弹性资源</li>
+<li>微服务架构</li>
+<li>DevOps</li>
+<li>服务网格</li>
+</ul>
+<h5 id="弹性资源">弹性资源</h5>
+<p>基于虚拟化技术，提供的可以快速扩缩容的能力。可以分为弹性计算资源和弹性存储资源两个方面。</p>
+<p>弹性计算资源：</p>
+<ul>
+<li>计算资源调度
+<ul>
+<li>在线计算 - 互联网后端服务</li>
+<li>离线计算 - 大数据分析。Map-Reduce/Spark/Flinnk</li>
+</ul>
+</li>
+<li>消息队列
+<ul>
+<li>在线队列 - 削峰、解耦</li>
+<li>离线队列 - 结合数据分析的一整套方案，如 ELK</li>
+</ul>
+</li>
+</ul>
+<p>弹性存储资源：</p>
+<ul>
+<li>经典存储
+<ul>
+<li>对象存储 - 视频、图片等。结合 CDN 等技术，可以为应用提供丰富的多媒体能力</li>
+<li>大数据存储 - 应用日志、用户数据等。结合数据挖掘、机器学习等技术，提高应用的体验</li>
+</ul>
+</li>
+<li>关系型数据库</li>
+<li>元数据
+<ul>
+<li>服务发现</li>
+</ul>
+</li>
+<li>NoSQL
+<ul>
+<li>KV 存储 - Redis</li>
+<li>文档存储 - Mongo</li>
+</ul>
+</li>
+</ul>
+<p>在云原生的大背景下，不论是计算资源还是存储资源，他们都像是服务一样供用户使用。</p>
+<h5 id="微服务架构">微服务架构</h5>
+<p>微服务架构下，服务之间的通讯标准是基于协议而不是 ESB 的。</p>
+<ul>
+<li>HTTP - H1/H2</li>
+<li>RPC - Apache Thrift/gRPC</li>
+</ul>
+<p>如何在 HTTP 和 RPC 之间选择？</p>
+<ul>
+<li>性能 - RPC 协议往往具备较好的压缩率，性能较高。如 Thrift, Protocol Buffers</li>
+<li>服务治理 - RPC 中间件往往集成了丰富的服务治理能力。如 熔断、降级、超时等</li>
+<li>可解释性 - HTTP 通信的协议往往首选 JSON，可解释性、可调试性更好</li>
+</ul>
+<h5 id="服务网格">服务网格</h5>
+<p>什么是服务网格？</p>
+<ul>
+<li>微服务之间通讯的中间层</li>
+<li>一个高性能的 4 层网络代理</li>
+<li>将流量层面的逻辑与业务进程解耦</li>
+</ul>
+<p>没有什么是加一层代理解决不了的问题，服务网格相比较于 RPC/HTTP 框架：</p>
+<ul>
+<li>实现了异构系统治理体验的统一化</li>
+<li>服务网格的数据平面代理与业务进程采取进程间通信的模式，使得流量相关的逻辑（包含治理）与业务进程解耦，生命周期也更容易管理</li>
+</ul>
+<h3 id="企业级后端架构的挑战-2">企业级后端架构的挑战</h3>
+<h4 id="挑战">挑战</h4>
+<p>基础设施层面：</p>
+<p>Q：我们总说，云是弹性的，也就是说，在用户的角度，云提供的资源是无限的。然而，云背后的物理资源是有限的。在企业级后端架构里，云如何解决近乎无限的弹性资源和有限的物理资源之间的矛盾？</p>
+<p>Q：闲事的资源就这么空着呢？如何提高资源利用率，提高物理资源的价值转换率？</p>
+<p>用户层面：</p>
+<p>Q：上了云原生微服务后，服务之间的通信开销较大，应该如何做成本优化？</p>
+<p>Q：微服务看起来没有那么美好，抖动导致的运维成本较高，如何解决？</p>
+<p>Q：异构的物理环境应该对用户是透明的，如何屏蔽这些细节？</p>
+<h4 id="离在线资源并池">离在线资源并池</h4>
+<p>考虑到在线业务的 <strong>潮汐性</strong> ，物理资源的用量不是一成不变的。离在线资源并池，可以：</p>
+<ul>
+<li>提高物理资源利用率</li>
+<li>提供更多的弹性资源</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1355784a0ae446d8c29b846baa20503~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="微服务亲合性部署">微服务亲合性部署</h4>
+<p>微服务之间的通信成本较高，是否可以：</p>
+<ul>
+<li>形态上是微服务架构</li>
+<li>通信上是单体架构</li>
+</ul>
+<p>亲合性部署，通过将微服务调用形态与资源调度系统结合，将一些调用关系紧密、通信量大的服务部署在同一个机器上，并且使用 IPC 代替 RPC 的方式，降低网络通信带来的开销</p>
+<h4 id="流量治理">流量治理</h4>
+<p>Q：微服务之间的通信流量为什么需要治理？</p>
+<p>Q：都有哪些常用的治理手段？</p>
+<p>Q：微服务中心件和服务网格在其中扮演着怎样的角色？</p>
+<h4 id="屏蔽异构环境的算力差异">屏蔽异构环境的算力差异</h4>
+<p>Q：基础设施层往往是个复杂的异构环境，比如，有些机器的 CPU 是英特尔的，而有些是 AMD 的。就算是同一个品牌，也可能是不同代际。如何将这些差异屏蔽掉，使用户尽可能不感知呢？</p>
+<p>Q：什么情况下，我们觉得，服务需要扩容了？异构环境会对这个评判标准产生怎样的影响？</p>
+<h3 id="后端架构实战-2">后端架构实战</h3>
+<h4 id="问题">问题</h4>
+<p>如何设计一个根据主机层面的资源信息，实时进行流量调度的系统，打平不同宿主机异构环境的算力差异。</p>
+<p>关键点：</p>
+<ul>
+<li>紧急回滚能力</li>
+<li>大规模</li>
+<li>极端场景</li>
+</ul>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/69fd09e29bb94ccb9ca50f05c9590aa8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="课后">课后</h2>
+<h5 id="课后作业-兰师傅蛋糕房要支持线上售卖了！请帮忙做整套系统的架构设计">课后作业-兰师傅蛋糕房要支持线上售卖了！请帮忙做整套系统的架构设计</h5>
+<p><strong>设计需求：</strong></p>
+<ol>
+<li>多端支持
+<ol>
+<li>微信/支付宝小程序</li>
+<li>App</li>
+<li>网页</li>
+</ol>
+</li>
+<li>使用云原生基础设施</li>
+<li>用户画像很重要</li>
+<li>积极参加妇女节/光棍节等活动</li>
+</ol>
+<p><strong>注意：</strong> 不需要考虑与做蛋糕相关服务的交互</p>
+<h2 id="尾声">尾声</h2>
+<ol>
+<li>没有最好的架构，只有最合适的架构</li>
+<li>做架构设计
+<ol>
+<li>先从需求出发。要满足什么样的需求？预期规模有多大？</li>
+<li>做足够的业界调研。业界对于类似的需求是怎么做的？有无成熟的方案可以借鉴？直接拿来用有什么问题？</li>
+<li>技术选型。涉及的技术组件是自研，还是使用开源的？</li>
+<li>异常情况。任何时候，都不能做『输入合法』的假设。容灾能力一定要有</li>
+</ol>
+</li>
+<li>学好架构，是工程师成长的一个重要标志</li>
+</ol>
+<h2 id="参考文献">参考文献</h2>
+<ul>
+<li><a href="https://link.juejin.cn?target=http%3A%2F%2Fwww.kegel.com%2Fc10k.html" title="http://www.kegel.com/c10k.html">C10K 问题</a></li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cncf.io%2F" title="https://www.cncf.io/">CNCF</a></li>
+<li><a href="https://link.juejin.cn?target=https%3A%2F%2Flandscape.cncf.io%2F" title="https://landscape.cncf.io/">CNCF landscape</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Study/" class="category-chain-item">Study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/ByteDance/" class="print-no-link">#ByteDance</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>架构初探 - 谁动了我的蛋糕</div>
+      <div>https://zhangzhao219.github.io/2023/01/30/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day07/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Zhang Zhao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/31/ByteDanceYouthTrainCamp/ByteDanceYouthTrainCamp-Day08/" title="分布式理论 - 现代架构基石">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">分布式理论 - 现代架构基石</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/29/6.824/Distributed-Systems-MIT-6.824-Lab-2/" title="MIT-6.824 Distributed Systems-Lab 2 Raft">
+                        <span class="hidden-mobile">MIT-6.824 Distributed Systems-Lab 2 Raft</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"zhangzhao219/zhangzhao219.github.io","repo-id":"R_kgDOHmJY6g","category":"Announcements","category-id":"DIC_kwDOHmJY6s4CSBmw","theme-light":"light","theme-dark":"dark","mapping":"url","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
